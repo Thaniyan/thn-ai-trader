@@ -1,0 +1,7 @@
+{
+  "name": "THN AI Trader",
+  "description": "Professional bilingual AI-powered trading workstation with multi-school analysis, risk governance, and reporting.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

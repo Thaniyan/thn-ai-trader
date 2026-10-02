@@ -3,201 +3,183 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="THN AI Trader - professional AI-assisted market analysis workstation." />
-  <title>THN AI Trader</title>
+  <meta name="description" content="THN AI Trader - Professional bilingual multi-school quantitative trading workstation with MTFA, SMC, and risk governance." />
+  <title>THN AI Trader | Institutional Quantitative Workstation</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-shell">
+    <!-- Left Institutional Dock -->
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand brand-lockup" href="#dashboard" aria-label="THN AI Trader dashboard">
-        <img src="logo.svg" alt="THN AI Trader logo" />
+      <a class="brand brand-lockup" href="#dashboard" aria-label="THN Terminal Pro dashboard">
+        <img src="logo.svg" alt="THN Terminal Pro logo" />
         <div class="brand-text">
-          <strong>THN <span>AI TRADER</span></strong>
-          <small data-i18n="brandTagline">AI-powered market intelligence</small>
+          <strong>THN <span>TERMINAL PRO</span></strong>
+          <small data-i18n="brandTagline">Institutional Quantitative Suite</small>
         </div>
       </a>
+      
+      <div class="sidebar-status-tag">
+        <span class="live-pulse"></span>
+        <span>ENGINE: QUANT V6.2 ACTIVE</span>
+      </div>
+
       <nav class="nav-stack">
-        <button class="nav active" data-jump="dashboard" data-i18n="navDashboard">Dashboard</button>
-        <button class="nav" data-jump="analysis" data-i18n="navAnalysis">AI Analysis</button>
-        <button class="nav" data-jump="watchlist" data-i18n="navWatchlist">Watchlist</button>
-        <button class="nav" data-jump="chart" data-i18n="navChart">TradingView</button>
-        <button class="nav" data-jump="risk" data-i18n="navRisk">Risk Desk</button>
-        <button class="nav" data-jump="journal" data-i18n="navJournal">Journal & Report</button>
+        <button class="nav active" data-jump="dashboard" data-i18n="navDashboard">⚡ Desk Command</button>
+        <button class="nav" data-jump="analysis" data-i18n="navAnalysis">🎯 Quant Decision & Ticket</button>
+        <button class="nav" data-jump="mtfa" data-i18n="navMtfa">🌐 Timeframe Matrix (MTFA)</button>
+        <button class="nav" data-jump="smcDeep" data-i18n="navSmc">🏛️ SMC & Order Flow</button>
+        <button class="nav" data-jump="professional-map" data-i18n="navMarketMap">📊 Institutional Dual-Map</button>
+        <button class="nav" data-jump="chart" data-i18n="navChart">📈 TradingView Terminal</button>
+        <button class="nav" data-jump="schoolsGrid" data-i18n="navSchools">🧠 Multi-School Consensus</button>
+        <button class="nav" data-jump="macroCalendarSection" data-i18n="navMacro">📰 Macro Radar & Calendar</button>
+        <button class="nav" data-jump="watchlist" data-i18n="navWatchlist">📡 Opportunity Scanner</button>
+        <button class="nav" data-jump="risk" data-i18n="navRisk">🛡️ Risk Desk & Exposure</button>
+        <button class="nav" data-jump="performanceAnalytics" data-i18n="navPerformance">📈 Performance Analytics</button>
+        <button class="nav" data-jump="journal" data-i18n="navJournal">📑 Audit Log & Journal</button>
       </nav>
+
       <div class="side-card">
         <span class="pulse"></span>
         <div>
-          <b id="apiStatus" data-i18n="apiChecking">Checking engine...</b>
-          <small id="modelStatus" data-i18n="modelInitializing">THN engine initializing</small>
+          <b id="apiStatus" data-i18n="apiChecking">Quant Core Active</b>
+          <small id="modelStatus" data-i18n="modelInitializing">Realtime Feed Connected</small>
         </div>
       </div>
-      <p class="tiny disclaimer" data-i18n="disclaimer">Educational analysis only. Always verify with your broker, calendar, and risk plan.</p>
+      
+      <p class="tiny disclaimer" data-i18n="disclaimer">Capital Preservation Protocol: Enforce strict risk limits, verify broker execution conditions, and follow the trading playbook.</p>
     </aside>
 
-    <main>
-      <div class="topbar panel">
+    <main class="terminal-main">
+      <!-- Top Institutional Status & Global Sessions Bar -->
+      <header class="terminal-topbar panel">
         <div class="topbar-brand">
           <span class="brand-mark">THN</span>
-          <div>
-            <b class="wordmark"><span class="wordmark-core">THN</span><span class="wordmark-ai">AI</span><span class="wordmark-tail">Trader</span></b>
-            <small data-i18n="topbarSub">Professional multi-school AI trading workstation</small>
+          <div class="brand-titles">
+            <b class="wordmark"><span class="wordmark-core">THN</span><span class="wordmark-ai">TERMINAL</span><span class="wordmark-tail">PRO</span></b>
+            <small data-i18n="topbarSub">Institutional Quantitative Market Analysis Workstation</small>
           </div>
         </div>
-        <details class="options-menu">
-          <summary data-i18n="options">Options</summary>
-          <div class="options-panel">
-            <label for="languageSelect" data-i18n="language">Language</label>
-            <div class="language-switch" role="group" aria-label="Language selector">
-              <button type="button" class="lang-pill active" data-language="en">English</button>
-              <button type="button" class="lang-pill" data-language="ar">العربية</button>
-            </div>
-            <select id="languageSelect" class="sr-only" aria-label="Language selector">
-              <option value="en">English</option>
-              <option value="ar">العربية</option>
-            </select>
-            <button class="ghost" id="themeBtn" type="button" data-i18n="toggleTheme">Toggle Theme</button>
-          </div>
-        </details>
-      </div>
 
-      <section class="hero panel-glow" id="dashboard">
-        <div class="hero-copy">
-          <p class="eyebrow" data-i18n="heroEyebrow">Professional AI trading workstation</p>
-          <h1 class="hero-title"><span class="title-core">THN</span> <span>AI Trader</span></h1>
-          <p class="subtitle" data-i18n="heroSubtitle">Enter one market code and the platform fetches data, analyzes the chart through multiple trading schools, builds a signal, calculates risk, and prepares an institutional-style report.</p>
-          <div class="feature-row" aria-label="Main features">
-            <span data-i18n="featTechnical">Technical</span><span data-i18n="featPriceAction">Price Action</span><span data-i18n="featSmc">SMC</span><span data-i18n="featQuant">Quant</span><span data-i18n="featRisk">Risk</span><span data-i18n="featReport">Report</span>
+        <!-- Global Market Sessions Ticker -->
+        <div class="global-sessions-bar" aria-label="Global market sessions">
+          <div class="session-pill" id="sessLondon"><span class="session-dot"></span><span>London</span></div>
+          <div class="session-pill" id="sessNY"><span class="session-dot"></span><span>New York</span></div>
+          <div class="session-pill" id="sessTokyo"><span class="session-dot"></span><span>Tokyo</span></div>
+          <div class="session-pill" id="sessSydney"><span class="session-dot"></span><span>Sydney</span></div>
+        </div>
+
+        <div class="topbar-controls">
+          <div class="utc-clock-badge">
+            <span class="pulse-green"></span>
+            <b id="terminalUtcClock" class="utc-clock">--:--:-- UTC</b>
           </div>
-          <div class="readiness-row" aria-label="Platform readiness">
-            <div><b data-i18n="readyBilingualTitle">Bilingual UI</b><small data-i18n="readyBilingualText">English and Arabic with RTL support</small></div>
-            <div><b data-i18n="readyAiTitle">Multi-school AI</b><small data-i18n="readyAiText">Consensus from technical, SMC, quant and sentiment modules</small></div>
-            <div><b data-i18n="readyRiskTitle">Risk-first</b><small data-i18n="readyRiskText">Position sizing, SL, TP and scenario planning</small></div>
-            <div><b data-i18n="readyReportTitle">Exportable reports</b><small data-i18n="readyReportText">Journal, checklist and institutional report</small></div>
+
+          <div class="language-switch" role="group" aria-label="Language selector">
+            <button type="button" class="lang-pill active" data-language="en">EN</button>
+            <button type="button" class="lang-pill" data-language="ar">العربية</button>
+          </div>
+          <select id="languageSelect" class="sr-only" aria-label="Language selector">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+
+          <button class="ghost icon-btn" id="themeBtn" type="button" title="Toggle Theme" aria-label="Toggle Theme">🌓</button>
+        </div>
+      </header>
+
+      <!-- Institutional Command Desk -->
+      <section class="command-desk panel-glow" id="dashboard">
+        <div class="desk-header">
+          <div class="desk-title">
+            <p class="eyebrow" data-i18n="deskEyebrow">QUANTITATIVE EXECUTION DESK</p>
+            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Institutional Command Center</span></h1>
+          </div>
+          <div class="desk-market-stats" id="deskMarketStats">
+            <div class="stat-cell"><small>Spread Quality</small><b id="deskSpread">0.3 pips</b></div>
+            <div class="stat-cell"><small>Range Volatility</small><b id="deskVol">ATR Normal</b></div>
+            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">Institutional</b></div>
+            <div class="stat-cell"><small>Consensus Bias</small><b id="deskBias">Awaiting Audit</b></div>
           </div>
         </div>
+
         <div class="command-card">
-          <label class="command-label" for="symbolInput" data-i18n="marketCode">Market / Currency Code</label>
           <div class="command-line">
-            <input id="symbolInput" autocomplete="off" value="EURUSD" placeholder="EURUSD, XAUUSD, BTCUSDT, AAPL" data-i18n-placeholder="symbolPlaceholder" />
-            <button class="primary" id="analyzeBtn" data-i18n="analyze">Analyze</button>
+            <div class="symbol-input-lockup">
+              <span class="input-prefix">TICKER</span>
+              <input id="symbolInput" autocomplete="off" value="EURUSD" placeholder="EURUSD, XAUUSD, BTCUSDT, US30, AAPL" data-i18n-placeholder="symbolPlaceholder" />
+            </div>
+            <button class="primary execute-btn" id="analyzeBtn">
+              <span data-i18n="analyze">Execute Institutional Audit</span>
+              <span class="kbd-hint">↵</span>
+            </button>
           </div>
+
           <div class="quick-row">
-            <button class="chip" data-symbol="EURUSD">EURUSD</button>
-            <button class="chip" data-symbol="XAUUSD">XAUUSD</button>
-            <button class="chip" data-symbol="BTCUSDT">BTCUSDT</button>
-            <button class="chip" data-symbol="US30">US30</button>
+            <span class="chips-label" data-i18n="popularAssets">Quick Select:</span>
+            <button class="chip active-chip" data-symbol="EURUSD">EUR/USD</button>
+            <button class="chip" data-symbol="GBPUSD">GBP/USD</button>
+            <button class="chip" data-symbol="USDJPY">USD/JPY</button>
+            <button class="chip" data-symbol="XAUUSD">XAU/USD (Gold)</button>
+            <button class="chip" data-symbol="BTCUSDT">BTC/USDT</button>
+            <button class="chip" data-symbol="US30">US30 (Dow)</button>
+            <button class="chip" data-symbol="NAS100">NAS100</button>
           </div>
-          <details class="advanced-box">
-            <summary data-i18n="advancedRisk">Advanced risk and context</summary>
+
+          <details class="advanced-box" open>
+            <summary data-i18n="advancedRisk">Execution Governance & Strategy Configuration</summary>
             <div class="advanced-grid">
-              <label><span data-i18n="timeframe">Timeframe</span>
+              <label><span data-i18n="timeframe">Timeframe Strategy</span>
                 <select id="timeframe">
-                  <option value="scalp" data-i18n="tfScalp">Scalp</option>
-                  <option value="intraday" selected data-i18n="tfIntraday">Intraday</option>
-                  <option value="swing" data-i18n="tfSwing">Swing</option>
-                  <option value="position" data-i18n="tfPosition">Position</option>
+                  <option value="scalp" data-i18n="tfScalp">M15 Scalp / Micro Retest</option>
+                  <option value="intraday" selected data-i18n="tfIntraday">H1 Intraday (Primary)</option>
+                  <option value="swing" data-i18n="tfSwing">H4 Swing Protocol</option>
+                  <option value="position" data-i18n="tfPosition">D1 Position / Macro</option>
                 </select>
               </label>
-              <label><span data-i18n="accountBalance">Account Balance</span>
+              <label><span data-i18n="accountBalance">Account Equity ($)</span>
                 <input id="accountBalance" type="number" value="10000" min="1" step="100" />
               </label>
-              <label><span data-i18n="riskPercent">Risk %</span>
+              <label><span data-i18n="riskPercent">Risk per Trade (%)</span>
                 <input id="riskPct" type="number" value="1" min="0.05" max="10" step="0.05" />
               </label>
-              <label><span data-i18n="rewardRisk">Reward / Risk</span>
+              <label><span data-i18n="rewardRisk">Target Reward / Risk</span>
                 <select id="rewardRisk">
-                  <option value="1.5">1 : 1.5</option>
-                  <option value="2" selected>1 : 2</option>
-                  <option value="3">1 : 3</option>
-                  <option value="4">1 : 4</option>
+                  <option value="1.5">1 : 1.5 (Standard Take-Profit)</option>
+                  <option value="2" selected>1 : 2.0 (Institutional Baseline)</option>
+                  <option value="3">1 : 3.0 (Expansion Target)</option>
+                  <option value="4">1 : 4.0 (Runner Target)</option>
                 </select>
               </label>
-              <label><span data-i18n="optionalSentiment">Optional sentiment</span>
+              <label><span data-i18n="optionalSentiment">Macro / Order Flow Bias</span>
                 <select id="sentiment">
-                  <option value="neutral" selected data-i18n="sentNeutral">Neutral / Unknown</option>
-                  <option value="bullish" data-i18n="sentBullish">Bullish Context</option>
-                  <option value="bearish" data-i18n="sentBearish">Bearish Context</option>
+                  <option value="neutral" selected data-i18n="sentNeutral">Quantitative Pure (Neutral)</option>
+                  <option value="bullish" data-i18n="sentBullish">Bullish Macro Factor</option>
+                  <option value="bearish" data-i18n="sentBearish">Bearish Macro Factor</option>
                 </select>
               </label>
-              <label><span data-i18n="traderNotes">Trader notes</span>
-                <input id="notes" placeholder="Example: avoid CPI, wait for NY confirmation" data-i18n-placeholder="notesPlaceholder" />
+              <label><span data-i18n="traderNotes">Desk Execution Notes</span>
+                <input id="notes" placeholder="E.g. Awaiting London sweep of high, verify NY momentum" data-i18n-placeholder="notesPlaceholder" />
               </label>
             </div>
           </details>
-          <div class="status-line" id="statusMsg" data-i18n="readyStatus">Ready. Enter a symbol and press Analyze.</div>
+          <div class="status-line" id="statusMsg" data-i18n="readyStatus">Terminal ready. Select an instrument and execute quantitative audit.</div>
         </div>
       </section>
 
-      <section class="ticker-strip" aria-label="Supported examples">
-        <div><span data-i18n="forex">Forex</span><b>EURUSD • GBPUSD • USDJPY</b></div>
-        <div><span data-i18n="metals">Metals</span><b>XAUUSD • XAGUSD</b></div>
-        <div><span data-i18n="crypto">Crypto</span><b>BTCUSDT • ETHUSDT</b></div>
-        <div><span data-i18n="indices">Indices</span><b>US30 • NAS100 • SPX</b></div>
-      </section>
-
-
-
-      <section class="watchlist-grid" id="watchlist">
-        <article class="panel watchlist-panel">
-          <div class="panel-head">
-            <div><p class="eyebrow" data-i18n="watchlistEyebrow">Automation center</p><h2 data-i18n="favoritePairs">Favorite Pairs Watchlist</h2></div>
-            <span data-i18n="localBrowserStorage">Saved locally</span>
-          </div>
-          <p class="tiny trust-copy" data-i18n="watchlistIntro">Add the markets you trade most. THN will scan them as a professional alert workflow instead of blindly opening live trades.</p>
-          <div class="watch-command">
-            <input id="favoriteSymbolInput" autocomplete="off" placeholder="EURUSD, GBPUSD, XAUUSD" data-i18n-placeholder="favoritePlaceholder" />
-            <button class="primary" id="addFavoriteBtn" type="button" data-i18n="addPair">Add Pair</button>
-          </div>
-          <div class="quick-row compact">
-            <button class="chip favorite-chip" data-favorite="EURUSD">EURUSD</button>
-            <button class="chip favorite-chip" data-favorite="GBPUSD">GBPUSD</button>
-            <button class="chip favorite-chip" data-favorite="USDJPY">USDJPY</button>
-            <button class="chip favorite-chip" data-favorite="XAUUSD">XAUUSD</button>
-            <button class="chip favorite-chip" data-favorite="BTCUSDT">BTCUSDT</button>
-          </div>
-          <div id="watchlistList" class="watchlist-list"></div>
-        </article>
-
-        <article class="panel alert-panel">
-          <div class="panel-head">
-            <div><p class="eyebrow" data-i18n="alertMode">Alert-only automation</p><h2 data-i18n="continuousScanner">Continuous Opportunity Scanner</h2></div>
-            <span class="badge" id="scannerBadge" data-i18n="scannerStopped">Stopped</span>
-          </div>
-          <div class="scanner-controls">
-            <label><span data-i18n="minConfidence">Minimum confidence</span><input id="minConfidence" type="number" min="50" max="95" step="1" value="72" /></label>
-            <label><span data-i18n="scanEvery">Scan every</span>
-              <select id="scanEvery">
-                <option value="60000" data-i18n="oneMinute">1 minute</option>
-                <option value="180000" data-i18n="threeMinutes">3 minutes</option>
-                <option value="300000" selected data-i18n="fiveMinutes">5 minutes</option>
-                <option value="900000" data-i18n="fifteenMinutes">15 minutes</option>
-              </select>
-            </label>
-          </div>
-          <div class="button-row">
-            <button class="primary" id="scanWatchlistBtn" type="button" data-i18n="scanNow">Scan Now</button>
-            <button class="ghost" id="startScannerBtn" type="button" data-i18n="startScanner">Start Scanner</button>
-            <button class="ghost" id="stopScannerBtn" type="button" data-i18n="stopScanner">Stop Scanner</button>
-          </div>
-          <div class="status-line" id="watchStatus" data-i18n="watchReady">Add pairs, then scan for strong opportunities.</div>
-          <div id="alertList" class="alert-list"></div>
-          <p class="tiny disclaimer" data-i18n="automationDisclaimer">Professional safety: this prototype sends alerts only. Live auto-execution requires broker API integration, user authorization, audit logs, kill switches, and regulated compliance controls.</p>
-        </article>
-      </section>
-
+      <!-- Institutional Decision Center & Ticket -->
       <section class="decision-grid" id="analysis">
         <article class="panel decision-card">
           <div class="panel-head">
-            <div><p class="eyebrow" data-i18n="decisionCenter">AI decision center</p><h2 id="decisionTitle" data-i18n="awaitingAnalysis">Awaiting analysis</h2></div>
-            <span class="badge" id="sourceBadge">THN Engine</span>
+            <div><p class="eyebrow" data-i18n="decisionCenter">QUANTITATIVE AUDIT RESULT</p><h2 id="decisionTitle" data-i18n="awaitingAnalysis">Awaiting analysis</h2></div>
+            <span class="badge" id="sourceBadge">THN Quant Engine</span>
           </div>
           <div class="decision-main">
             <div>
-              <span class="mini" data-i18n="signal">Signal</span>
+              <span class="mini" data-i18n="signal">Consensus Decision</span>
               <strong id="decision" class="decision wait">WAIT</strong>
-              <p id="aiNarrative" data-i18n="runAnalysisNarrative">Run the analysis to generate a professional report.</p>
+              <p id="aiNarrative" data-i18n="runAnalysisNarrative">Execute an institutional audit to generate multi-school validation, structural risk levels, and playbook instructions.</p>
             </div>
             <div class="confidence-ring" aria-label="Confidence score">
               <span id="confidence">--%</span>
@@ -205,50 +187,131 @@
             </div>
           </div>
           <div class="decision-meta">
-            <div><span data-i18n="grade">Grade</span><b id="grade">--</b></div>
-            <div><span data-i18n="symbol">Symbol</span><b id="symbolOut">--</b></div>
-            <div><span data-i18n="asset">Asset</span><b id="assetClass">--</b></div>
-            <div><span data-i18n="data">Data</span><b id="marketDataSource">--</b></div>
+            <div><span data-i18n="grade">Setup Grade</span><b id="grade">--</b></div>
+            <div><span data-i18n="symbol">Instrument</span><b id="symbolOut">--</b></div>
+            <div><span data-i18n="asset">Asset Class</span><b id="assetClass">--</b></div>
+            <div><span data-i18n="data">Data Feed</span><b id="marketDataSource">--</b></div>
           </div>
         </article>
 
         <article class="panel ticket-card">
-          <div class="panel-head"><h2 data-i18n="tradeTicket">Trade Ticket</h2><span id="marketTime">--</span></div>
+          <div class="panel-head"><h2 data-i18n="tradeTicket">Institutional Execution Ticket</h2><span id="marketTime">--</span></div>
           <div class="ticket-levels">
-            <div><span data-i18n="entry">Entry</span><b id="entry">--</b></div>
-            <div><span data-i18n="stopLoss">Stop Loss</span><b id="stopLoss">--</b></div>
-            <div><span data-i18n="takeProfit1">Take Profit 1</span><b id="target1">--</b></div>
-            <div><span data-i18n="takeProfit2">Take Profit 2</span><b id="target2">--</b></div>
-            <div><span data-i18n="takeProfit3">Take Profit 3</span><b id="target3">--</b></div>
-            <div><span data-i18n="riskAmount">Risk Amount</span><b id="riskAmount">--</b></div>
+            <div><span data-i18n="entry">Market Price</span><b id="entry">--</b></div>
+            <div><span data-i18n="optimalEntry">Optimal Entry (OTE)</span><b id="optimalEntry">--</b></div>
+            <div><span data-i18n="stopLoss">Invalidation / SL</span><b id="stopLoss">--</b></div>
+            <div><span data-i18n="takeProfit1">Take Profit 1 (Scale 50%)</span><b id="target1">--</b></div>
+            <div><span data-i18n="takeProfit2">Take Profit 2 (Target)</span><b id="target2">--</b></div>
+            <div><span data-i18n="takeProfit3">Take Profit 3 (Runner)</span><b id="target3">--</b></div>
+            <div><span data-i18n="riskAmount">Risk Allocation</span><b id="riskAmount">--</b></div>
           </div>
-          <button class="ghost full" id="saveJournalBtn" data-i18n="saveSignal">Save Signal to Journal</button>
+          <button class="ghost full" id="saveJournalBtn" data-i18n="saveSignal">Commit Setup to Institutional Journal</button>
         </article>
       </section>
 
+      <!-- Multi-Timeframe Alignment Matrix (MTFA) -->
+      <section class="panel mtfa-section" id="mtfa">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="mtfaEyebrow">MULTI-TIMEFRAME CONFLUENCE</p>
+            <h2 data-i18n="mtfaTitle">Multi-Timeframe Alignment Matrix (MTFA)</h2>
+          </div>
+          <span class="badge" id="mtfaVerdictBadge">ALIGNED</span>
+        </div>
+        <div class="mtfa-grid" id="mtfaGrid">
+          <div class="mtfa-card" id="mtfaD1">
+            <div class="mtfa-card-head"><b>D1 Macro</b><span class="trend-badge" id="mtfaD1Trend">--</span></div>
+            <p id="mtfaD1Detail">Higher-timeframe macro trend & long-term EMA alignment.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaH4">
+            <div class="mtfa-card-head"><b>H4 Intermediate</b><span class="trend-badge" id="mtfaH4Trend">--</span></div>
+            <p id="mtfaH4Detail">Order flow structure, swing pivots, and trend direction.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaH1">
+            <div class="mtfa-card-head"><b>H1 Execution</b><span class="trend-badge" id="mtfaH1Trend">--</span></div>
+            <p id="mtfaH1Detail">Active dealing range, Discount/Premium status, and FVG retest.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaM15">
+            <div class="mtfa-card-head"><b>M15 Trigger</b><span class="trend-badge" id="mtfaM15Trend">--</span></div>
+            <p id="mtfaM15Detail">Micro CHoCH/MSS, momentum confirmation, and entry timing.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Smart Money Concepts & Liquidity Architecture -->
+      <section class="panel smc-deep-section" id="smcDeep">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="smcDeepEyebrow">SMART MONEY CONCEPTS & ORDER FLOW</p>
+            <h2 data-i18n="smcDeepTitle">Institutional SMC & Liquidity Architecture</h2>
+          </div>
+          <span class="badge" id="smcZoneBadge">DISCOUNT ZONE</span>
+        </div>
+        <div class="smc-deep-grid">
+          <div class="smc-deep-card">
+            <h3><span class="dot gold"></span><span data-i18n="liquidityArchitecture">Liquidity Pools (BSL / SSL)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Buy-Side Liquidity (BSL)</small><b id="smcBsl">--</b></div>
+              <div><small>Sell-Side Liquidity (SSL)</small><b id="smcSsl">--</b></div>
+            </div>
+            <p id="smcLiquiditySummary">Smart money accumulates orders at liquidity pools.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot blue"></span><span data-i18n="orderBlocksDeep">Institutional Order Blocks (OB)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Demand Order Block</small><b id="smcDemandOb">--</b></div>
+              <div><small>Supply Order Block</small><b id="smcSupplyOb">--</b></div>
+            </div>
+            <p id="smcObSummary">Origin of impulsive liquidity displacement.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot purple"></span><span data-i18n="fvgDeep">Fair Value Gaps (FVG)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Active Bullish FVG</small><b id="smcBullFvg">--</b></div>
+              <div><small>Active Bearish FVG</small><b id="smcBearFvg">--</b></div>
+            </div>
+            <p id="smcFvgSummary">3-candle price imbalance requiring rebalancing.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot green"></span><span data-i18n="dealingRange">Dealing Range & Equilibrium (50%)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Equilibrium (50%)</small><b id="smcEq">--</b></div>
+              <div><small>Current Placement</small><b id="smcRangePos">--</b></div>
+            </div>
+            <div class="equilibrium-bar"><div class="eq-marker" id="eqMarker" style="left: 50%"></div></div>
+            <p id="smcEqSummary">Institutional rule: Long in Discount; Short in Premium.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Multi-School Analysis Results -->
       <section class="school-grid" id="schoolsGrid" aria-label="Multi-school analysis results"></section>
 
+      <!-- AI Automation Studio -->
       <section class="ai-studio panel" id="ai-automation">
         <div class="panel-head">
-          <div><p class="eyebrow" data-i18n="aiAutomationStudio">AI Automation Studio</p><h2 data-i18n="aiAutomationStudioSub">Automated copilot, smart alerts, risk governor and next-best action</h2></div>
+          <div><p class="eyebrow" data-i18n="aiAutomationStudio">QUANTITATIVE GOVERNANCE</p><h2 data-i18n="aiAutomationStudioSub">Automated Execution Protocol, Smart Filters & Risk Governor</h2></div>
           <span class="badge" id="automationBadge" data-i18n="noAutomationYet">Awaiting analysis</span>
         </div>
         <div id="aiStudioGrid" class="ai-studio-grid"></div>
         <div id="smartAlertList" class="smart-alert-list"></div>
       </section>
 
-
+      <!-- Professional Dual-Chart Workstation -->
       <section class="professional-grid" id="professional-map">
         <article class="panel map-panel">
           <div class="panel-head">
-            <div><p class="eyebrow" data-i18n="professionalMarketMap">Professional Market Map</p><h2 data-i18n="professionalMarketMapSub">All schools, levels, patterns and trend diagnostics in one visual chart</h2></div>
-            <button class="ghost" id="exportMapBtn" type="button" data-i18n="exportMap">Export Map PNG</button>
+            <div><p class="eyebrow" data-i18n="professionalMarketMap">INTERACTIVE WORKSTATION</p><h2 data-i18n="professionalMarketMapSub">Dual Institutional Chart: Technical Analysis & SMC Order Flow</h2></div>
+            <button class="ghost" id="exportMapBtn" type="button" data-i18n="exportMap">Export High-Res PNG</button>
           </div>
           <div id="professionalSnapshot" class="professional-snapshot"></div>
           <div class="map-toolbar" aria-label="Professional chart controls">
             <div>
-              <b data-i18n="institutionalChart">Institutional chart</b>
-              <small data-i18n="adaptiveScale">Adaptive scale enabled</small>
+              <b data-i18n="institutionalChart">Institutional Canvas</b>
+              <small data-i18n="adaptiveScale">Sub-pixel precision candles · Hover crosshair active</small>
             </div>
             <div id="mapLayerControls" class="map-layer-controls"></div>
           </div>
@@ -258,7 +321,7 @@
               <canvas id="analysisMapCanvas" class="analysis-map" aria-label="Professional technical analysis map"></canvas>
             </div>
             <div class="sk-analysis-card">
-              <div class="sk-card-head"><b data-i18n="skAnalysisChart">SK / SMC Analysis</b><span data-i18n="skAnalysisSub">Structure, liquidity, BOS/CHoCH and order blocks</span></div>
+              <div class="sk-card-head"><b data-i18n="skAnalysisChart">SK / SMC Analysis Map</b><span data-i18n="skAnalysisSub">Structure, liquidity, BOS/CHoCH and order blocks</span></div>
               <canvas id="skAnalysisCanvas" class="sk-analysis-map" aria-label="SK and SMC analysis map"></canvas>
               <div id="tradeCompass" class="trade-compass"></div>
             </div>
@@ -278,6 +341,7 @@
           </div>
           <div class="table map-details" id="mapDetails"></div>
         </article>
+
         <aside class="professional-side">
           <article class="panel">
             <div class="panel-head"><div><h2 data-i18n="confluenceMatrix">Confluence Matrix</h2><span data-i18n="confluenceMatrixSub">Execution readiness controls</span></div></div>
@@ -285,7 +349,7 @@
           </article>
           <article class="panel">
             <div class="panel-head"><div><h2 data-i18n="playbook">Execution Playbook</h2><span data-i18n="playbookSub">Professional action protocol</span></div></div>
-            <ol class="clean-list playbook-list" id="playbookList"><li data-i18n="noProfessionalMap">Run analysis to generate the professional market map.</li></ol>
+            <ol class="clean-list playbook-list" id="playbookList"><li data-i18n="noProfessionalMap">Execute an audit to generate the institutional playbook.</li></ol>
           </article>
           <article class="panel">
             <div class="panel-head"><div><h2 data-i18n="deskGovernance">Desk Governance</h2><span data-i18n="deskGovernanceSub">Trust, safety and operational filters</span></div></div>
@@ -294,68 +358,446 @@
         </aside>
       </section>
 
-
-      <section class="data-grid">
-        <article class="panel">
-          <div class="panel-head"><h2 data-i18n="technicalIndicators">Technical Indicators</h2><span data-i18n="liveCalculation">Live calculation</span></div>
-          <div class="table" id="indicatorTable"></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head"><h2 data-i18n="structureSmc">Structure & SMC</h2><span data-i18n="supportResistanceLiquidity">Support, resistance, liquidity</span></div>
-          <div class="table" id="structureTable"></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head"><h2 data-i18n="reasons">Reasons</h2><span data-i18n="whySignal">Why this signal?</span></div>
-          <ul class="clean-list" id="reasonsList"><li data-i18n="noAnalysisYet">No analysis yet.</li></ul>
-        </article>
-        <article class="panel">
-          <div class="panel-head"><h2 data-i18n="warnings">Warnings</h2><span data-i18n="riskFilters">Risk filters</span></div>
-          <ul class="clean-list warning-list" id="warningsList"><li data-i18n="noAnalysisYet2">No analysis yet.</li></ul>
-        </article>
-      </section>
-
+      <!-- TradingView Pro Terminal Section -->
       <section class="panel chart-panel" id="chart">
         <div class="panel-head">
-          <div><h2 data-i18n="tradingViewChart">TradingView Professional Chart</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Chart will load after analysis.</p></div>
-          <div class="button-row"><button class="ghost" id="loadChartBtn" data-i18n="reloadChart">Reload Chart</button></div>
+          <div><h2 data-i18n="tradingViewChart">TradingView Pro Institutional Terminal</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Terminal loads upon asset selection.</p></div>
+          <div class="button-row"><button class="ghost" id="loadChartBtn" data-i18n="reloadChart">Reload Feed</button></div>
         </div>
         <div id="tvChart" class="tv-chart"></div>
       </section>
 
+      <!-- Quantitative Technical Indicators & Structure Tables -->
+      <section class="data-grid">
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="technicalIndicators">Quantitative Indicators</h2><span data-i18n="liveCalculation">Live computation</span></div>
+          <div class="table" id="indicatorTable"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="structureSmc">Market Structure & Flow</h2><span data-i18n="supportResistanceLiquidity">Support, resistance, sweeps</span></div>
+          <div class="table" id="structureTable"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="reasons">Confluence Drivers</h2><span data-i18n="whySignal">Why this signal?</span></div>
+          <ul class="clean-list" id="reasonsList"><li data-i18n="noAnalysisYet">No audit executed yet.</li></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="warnings">Risk Governance Flags</h2><span data-i18n="riskFilters">Active risk filters</span></div>
+          <ul class="clean-list warning-list" id="warningsList"><li data-i18n="noAnalysisYet2">No audit executed yet.</li></ul>
+        </article>
+      </section>
+
+      <!-- Macro Economic Calendar Section -->
+      <section class="panel macro-section" id="macroCalendarSection">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="macroEyebrow">INSTITUTIONAL MACRO RADAR</p>
+            <h2 data-i18n="macroTitle">High-Impact Economic Calendar & Central Bank Radar</h2>
+          </div>
+          <span class="badge" data-i18n="macroSafety">Risk Filter Active</span>
+        </div>
+        <div class="macro-events-table-shell">
+          <div class="table macro-table" id="macroEventsTable"></div>
+        </div>
+      </section>
+
+      <!-- Watchlist & Continuous Opportunity Scanner -->
+      <section class="watchlist-grid" id="watchlist">
+        <article class="panel watchlist-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow" data-i18n="watchlistEyebrow">PORTFOLIO SURVEILLANCE</p>
+              <h2 data-i18n="favoritePairs">Favorite Pairs Watchlist</h2>
+            </div>
+            <div class="panel-head-actions">
+              <span id="watchlistCountBadge" class="watchlist-count-badge">0 pairs</span>
+              <button class="ghost small toggle-watch-btn" id="toggleWatchlistBtn" type="button" data-i18n="hideWatchlist">Hide Watchlist</button>
+            </div>
+          </div>
+          <p class="tiny trust-copy" data-i18n="watchlistIntro">Maintain your primary institutional watch universe. Continuous surveillance evaluates high-confluence opportunities.</p>
+          
+          <div id="watchlistCollapsedBar" class="watchlist-collapsed-bar hidden">
+            <span id="watchlistCollapsedSummary">Watchlist is currently minimized.</span>
+            <button type="button" class="ghost small" id="expandWatchlistBtn" data-i18n="showWatchlist">Show Watchlist</button>
+          </div>
+
+          <div id="watchlistBody" class="watchlist-body">
+            <div class="watch-command">
+              <input id="favoriteSymbolInput" autocomplete="off" placeholder="EURUSD, GBPUSD, XAUUSD" data-i18n-placeholder="favoritePlaceholder" />
+              <button class="primary" id="addFavoriteBtn" type="button" data-i18n="addPair">Add Instrument</button>
+            </div>
+            <div class="quick-row compact">
+              <button class="chip favorite-chip" data-favorite="EURUSD">EURUSD</button>
+              <button class="chip favorite-chip" data-favorite="GBPUSD">GBPUSD</button>
+              <button class="chip favorite-chip" data-favorite="USDJPY">USDJPY</button>
+              <button class="chip favorite-chip" data-favorite="XAUUSD">XAUUSD</button>
+              <button class="chip favorite-chip" data-favorite="BTCUSDT">BTCUSDT</button>
+            </div>
+            <div class="watch-search-row">
+              <input id="watchSearchInput" autocomplete="off" placeholder="Search saved pairs..." data-i18n-placeholder="searchPairsPlaceholder" />
+              <button class="ghost small" id="resetDefaultPairsBtn" type="button" data-i18n="loadMajors">Load Majors</button>
+            </div>
+            <div id="watchlistList" class="watchlist-list"></div>
+          </div>
+        </article>
+
+        <article class="panel alert-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow" data-i18n="alertMode">AUTOMATED RADAR</p>
+              <h2 data-i18n="continuousScanner">Continuous Opportunity Scanner</h2>
+            </div>
+            <div class="scanner-head-status">
+              <button class="ghost small sound-btn active" id="toggleSoundBtn" type="button" data-i18n="soundOn">🔊 Sound: ON</button>
+              <span class="badge" id="scannerBadge" data-i18n="scannerStopped">Stopped</span>
+            </div>
+          </div>
+          <div class="scanner-controls">
+            <label><span data-i18n="minConfidence">Minimum Confidence (%)</span><input id="minConfidence" type="number" min="50" max="95" step="1" value="72" /></label>
+            <label><span data-i18n="scanEvery">Scan Frequency</span>
+              <select id="scanEvery">
+                <option value="30000" data-i18n="thirtySeconds">30 seconds (High Frequency)</option>
+                <option value="60000" data-i18n="oneMinute">1 minute</option>
+                <option value="120000" data-i18n="twoMinutes">2 minutes</option>
+                <option value="180000" data-i18n="threeMinutes">3 minutes</option>
+                <option value="300000" selected data-i18n="fiveMinutes">5 minutes (Standard)</option>
+                <option value="900000" data-i18n="fifteenMinutes">15 minutes</option>
+                <option value="1800000" data-i18n="thirtyMinutes">30 minutes</option>
+                <option value="3600000" data-i18n="oneHour">1 hour</option>
+                <option value="custom" data-i18n="customInterval">Manual Time...</option>
+              </select>
+            </label>
+            <div id="customScanBox" class="custom-scan-box hidden">
+              <label><span data-i18n="customTime">Custom Interval Duration</span>
+                <div class="custom-time-row">
+                  <input id="customScanValue" type="number" min="10" max="86400" value="45" />
+                  <select id="customScanUnit">
+                    <option value="seconds" data-i18n="seconds">Seconds</option>
+                    <option value="minutes" data-i18n="minutes">Minutes</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="button-row">
+            <button class="primary" id="scanWatchlistBtn" type="button" data-i18n="scanNow">Scan Universe Now</button>
+            <button class="ghost" id="startScannerBtn" type="button" data-i18n="startScanner">Start Radar</button>
+            <button class="ghost" id="stopScannerBtn" type="button" data-i18n="stopScanner">Pause Radar</button>
+          </div>
+          <div class="status-line" id="watchStatus" data-i18n="watchReady">Add instruments to watchlist, then activate radar scan.</div>
+          <div id="alertList" class="alert-list"></div>
+        </article>
+      </section>
+
+      <!-- Risk Desk & Exposure Calculator -->
       <section class="risk-grid" id="risk">
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="riskDesk">Risk Desk</h2><span data-i18n="positionSizing">Position sizing</span></div>
+          <div class="panel-head"><h2 data-i18n="riskDesk">Risk Desk & Position Sizing</h2><span data-i18n="positionSizing">Exact Lot Calculation</span></div>
           <div class="table" id="riskTable"></div>
         </article>
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="executionChecklist">Execution Checklist</h2><span data-i18n="beforeEntry">Before entry</span></div>
+          <div class="panel-head"><h2 data-i18n="executionChecklist">Pre-Execution Checklist</h2><span data-i18n="beforeEntry">Pre-trade protocol</span></div>
           <div class="checklist" id="checklist"></div>
         </article>
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="scenarioLab">Scenario Lab</h2><span data-i18n="riskAlternatives">Risk alternatives</span></div>
+          <div class="panel-head"><h2 data-i18n="scenarioLab">Scenario & Capital Lab</h2><span data-i18n="riskAlternatives">Risk alternatives</span></div>
           <div class="scenario-grid" id="scenarioGrid"></div>
         </article>
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="backtestSimulator">Backtest Stress Simulator</h2><span data-i18n="estimatedProfile">Estimated profile</span></div>
+          <div class="panel-head"><h2 data-i18n="backtestSimulator">Backtest Stress Simulator</h2><span data-i18n="estimatedProfile">Deterministic profile</span></div>
           <div class="table" id="backtestTable"></div>
         </article>
       </section>
 
+      <!-- Performance Analytics Dashboard -->
+      <section class="panel analytics-section" id="performanceAnalytics">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="analyticsEyebrow">HISTORICAL PERFORMANCE & STATISTICAL EDGE</p>
+            <h2 data-i18n="analyticsTitle">Performance Analytics & Portfolio Intelligence</h2>
+          </div>
+          <div class="analytics-head-actions">
+            <button class="ghost small" id="loadSampleTradesBtn" type="button" data-i18n="loadSampleTrades">Load Benchmark History</button>
+            <button class="ghost small" id="openBulkImportBtn" type="button" data-i18n="bulkImport">📁 Bulk Import CSV</button>
+            <button class="primary small" id="openLogTradeModalBtn" type="button" data-i18n="logClosedTrade">+ Log Closed Trade</button>
+          </div>
+        </div>
+        <p class="tiny trust-copy" data-i18n="analyticsSubtitle">
+          Interactive D3.js visualization of realized equity curves, historical setup win-rates, payout expectancy, and trade profit-loss distribution.
+        </p>
+
+        <!-- Analytics Filter Toolbar -->
+        <div class="analytics-toolbar">
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="filterPeriod">Period:</span>
+            <div class="pill-group" id="analyticsPeriodFilter">
+              <button type="button" class="analytics-pill active" data-period="all" data-i18n="periodAll">All Time</button>
+              <button type="button" class="analytics-pill" data-period="30d" data-i18n="period30d">Last 30 Days</button>
+              <button type="button" class="analytics-pill" data-period="90d" data-i18n="period90d">Last 90 Days</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="filterAsset">Asset Class:</span>
+            <select id="analyticsAssetFilter" class="analytics-select">
+              <option value="all" data-i18n="assetAll">All Markets</option>
+              <option value="Forex" data-i18n="assetForex">Forex</option>
+              <option value="Crypto" data-i18n="assetCrypto">Crypto</option>
+              <option value="Commodity" data-i18n="assetCommodities">Metals & Commodities</option>
+              <option value="Index" data-i18n="assetIndices">Indices</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Performance KPI Metric Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card" id="kpiNetPnlCard">
+            <span data-i18n="kpiNetPnl">Net Realized PnL</span>
+            <b id="kpiNetPnl">$0.00</b>
+            <small id="kpiNetPnlPct">+0.0% return</small>
+          </div>
+          <div class="kpi-card" id="kpiWinRateCard">
+            <span data-i18n="kpiWinRate">Win Rate</span>
+            <b id="kpiWinRate">0.0%</b>
+            <small id="kpiWinLossRatio">0 Wins / 0 Losses</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiProfitFactor">Profit Factor</span>
+            <b id="kpiProfitFactor">0.00</b>
+            <small id="kpiGrossProfitLoss">$0 Gross Profit</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiPayoffRatio">Payoff Ratio (Avg W/L)</span>
+            <b id="kpiPayoffRatio">1 : 0.00</b>
+            <small id="kpiAvgWinLoss">Avg W: $0 | Avg L: $0</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiMaxDrawdown">Max Drawdown</span>
+            <b id="kpiMaxDrawdown">$0.00</b>
+            <small id="kpiMaxDrawdownPct">0.0% from peak</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiExpectancy">Expectancy / Trade</span>
+            <b id="kpiExpectancy">$0.00</b>
+            <small id="kpiTotalTrades">0 closed trades</small>
+          </div>
+        </div>
+
+        <!-- D3 Visualizations Layout -->
+        <div class="d3-visuals-grid">
+          <!-- Cumulative Equity Curve Chart -->
+          <article class="d3-card equity-curve-card">
+            <div class="d3-card-header">
+              <div>
+                <b data-i18n="equityCurveTitle">Cumulative PnL & Equity Growth Curve</b>
+                <small data-i18n="equityCurveSub">D3.js interactive time-series with high-water mark</small>
+              </div>
+              <div class="d3-legend">
+                <span><i class="legend-line green"></i><span data-i18n="legendEquity">Equity Curve</span></span>
+                <span><i class="legend-line gold dashed"></i><span data-i18n="legendPeak">High Water Mark</span></span>
+              </div>
+            </div>
+            <div id="d3EquityCurveContainer" class="d3-chart-shell">
+              <svg id="d3EquityCurveSvg" aria-label="Cumulative Equity PnL Curve"></svg>
+              <div id="equityTooltip" class="d3-tooltip hidden"></div>
+            </div>
+          </article>
+
+          <!-- Win/Loss Ratio Radial Donut Gauge -->
+          <article class="d3-card donut-gauge-card">
+            <div class="d3-card-header">
+              <div>
+                <b data-i18n="winLossDonutTitle">Win / Loss Ratio & Setup Success</b>
+                <small data-i18n="winLossDonutSub">D3.js radial outcome distribution</small>
+              </div>
+            </div>
+            <div id="d3WinLossContainer" class="d3-donut-shell">
+              <svg id="d3WinLossDonutSvg" aria-label="Win Loss Ratio Donut Chart"></svg>
+              <div id="donutTooltip" class="d3-tooltip hidden"></div>
+            </div>
+            <div class="donut-breakdown-row" id="donutBreakdownRow">
+              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">0 (0%)</b></div>
+              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">0 (0%)</b></div>
+              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">0 (0%)</b></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Trade-by-Trade Return Distribution Waterfall -->
+        <article class="d3-card waterfall-card">
+          <div class="d3-card-header">
+            <div>
+              <b data-i18n="waterfallTitle">Trade-by-Trade PnL Distribution & Return Profile</b>
+              <small data-i18n="waterfallSub">Realized return per closed setup ($)</small>
+            </div>
+            <div class="d3-legend">
+              <span><i class="legend-box green"></i><span data-i18n="legendWin">Profit (+$)</span></span>
+              <span><i class="legend-box red"></i><span data-i18n="legendLoss">Loss (-$)</span></span>
+              <span><i class="legend-line blue dashed"></i><span data-i18n="legendAvgWin">Avg Win</span></span>
+              <span><i class="legend-line red dashed"></i><span data-i18n="legendAvgLoss">Avg Loss</span></span>
+            </div>
+          </div>
+          <div id="d3WaterfallContainer" class="d3-chart-shell">
+            <svg id="d3WaterfallSvg" aria-label="Trade PnL Waterfall Distribution"></svg>
+            <div id="waterfallTooltip" class="d3-tooltip hidden"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Manual Trade Logger Modal -->
+      <dialog id="logTradeModal" class="log-trade-dialog">
+        <form method="dialog" id="logTradeForm" class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="logTradeTitle">Log Closed Trade Outcome</h3>
+            <button type="button" class="toast-close-btn" id="closeLogTradeDialogBtn">&times;</button>
+          </div>
+          <div class="dialog-grid">
+            <label>
+              <span data-i18n="symbol">Symbol</span>
+              <input id="manualSymbol" required value="EURUSD" />
+            </label>
+            <label>
+              <span data-i18n="direction">Direction</span>
+              <select id="manualDirection">
+                <option value="BUY">BUY / LONG</option>
+                <option value="SELL">SELL / SHORT</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="entryPrice">Entry Price</span>
+              <input id="manualEntry" type="number" step="any" value="1.08500" required />
+            </label>
+            <label>
+              <span data-i18n="exitPrice">Exit Price</span>
+              <input id="manualExit" type="number" step="any" value="1.08950" required />
+            </label>
+            <label>
+              <span data-i18n="outcome">Outcome</span>
+              <select id="manualOutcome">
+                <option value="WIN">WIN (Profit Target)</option>
+                <option value="LOSS">LOSS (Stop Hit)</option>
+                <option value="BE">BREAKEVEN (Scratch)</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="realizedPnl">Realized PnL ($)</span>
+              <input id="manualPnl" type="number" step="any" value="250" required />
+            </label>
+            <label>
+              <span data-i18n="rewardRisk">Realized R (Multiple)</span>
+              <input id="manualR" type="number" step="0.1" value="2.0" required />
+            </label>
+            <label>
+              <span data-i18n="date">Close Date</span>
+              <input id="manualDate" type="date" required />
+            </label>
+            <label class="full-col">
+              <span data-i18n="traderNotes">Trade Notes</span>
+              <input id="manualNotes" placeholder="E.g. Clean FVG retest, London expansion, exited at TP1" />
+            </label>
+          </div>
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelLogTradeBtn" data-i18n="cancel">Cancel</button>
+            <button type="submit" class="primary" id="saveManualTradeBtn" data-i18n="saveTrade">Save Trade Record</button>
+          </div>
+        </form>
+      </dialog>
+
+      <!-- Bulk CSV Import Modal -->
+      <dialog id="bulkImportModal" class="log-trade-dialog bulk-import-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="bulkImportTitle">Bulk Import Trades (CSV)</h3>
+            <button type="button" class="toast-close-btn" id="closeBulkImportDialogBtn">&times;</button>
+          </div>
+          <p class="tiny trust-copy" data-i18n="bulkImportSub">
+            Upload your historical trading logs or broker CSV to populate the journal and instantly render D3.js equity curves, win/loss ratios, and drawdowns.
+          </p>
+
+          <div class="bulk-dropzone" id="csvDropzone">
+            <input type="file" id="csvFileInput" accept=".csv,text/csv" class="hidden-file-input" />
+            <div class="dropzone-content">
+              <span class="dropzone-icon">📥</span>
+              <p><b>Click to select CSV</b> or drag &amp; drop file here</p>
+              <small class="muted-text">Supports THN export format and standard broker journal CSVs</small>
+            </div>
+          </div>
+
+          <div id="csvFileInfo" class="csv-file-info hidden">
+            <div class="csv-file-meta">
+              <b id="csvFileName">trades.csv</b>
+              <span id="csvFileMeta">--</span>
+            </div>
+            <div id="csvPreviewGrid" class="csv-preview-grid"></div>
+          </div>
+
+          <div class="import-options-row">
+            <label class="import-radio-label">
+              <input type="radio" name="importMode" value="append" checked />
+              <span data-i18n="importAppend">Append to existing records</span>
+            </label>
+            <label class="import-radio-label">
+              <input type="radio" name="importMode" value="replace" />
+              <span data-i18n="importReplace">Replace current journal</span>
+            </label>
+            <button type="button" class="ghost small download-template-btn" id="downloadTemplateBtn" data-i18n="downloadTemplate">
+              📄 Download Sample CSV Template
+            </button>
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelBulkImportBtn" data-i18n="cancel">Cancel</button>
+            <button type="button" class="primary" id="confirmBulkImportBtn" disabled data-i18n="confirmImport">Import Trades</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Institutional Audit & Trade Journal -->
       <section class="journal-grid" id="journal">
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="tradeJournal">Trade Journal</h2><span data-i18n="browserStorage">Browser local storage</span></div>
-          <div class="button-row"><button class="ghost" id="clearJournalBtn" data-i18n="clearJournal">Clear Journal</button><button class="ghost" id="exportJournalBtn" data-i18n="exportJournal">Export Journal</button></div>
+          <div class="panel-head"><h2 data-i18n="tradeJournal">Institutional Trade Journal</h2><span data-i18n="browserStorage">Local storage ledger</span></div>
+          <div class="button-row">
+            <button class="ghost" id="clearJournalBtn" data-i18n="clearJournal">Clear Ledger</button>
+            <button class="ghost" id="journalBulkImportBtn" data-i18n="bulkImport">Import CSV</button>
+            <button class="ghost" id="exportJournalBtn" data-i18n="exportJournal">Export CSV Ledger</button>
+          </div>
           <div id="journalList" class="journal-list"></div>
         </article>
         <article class="panel report-panel">
-          <div class="panel-head"><h2 data-i18n="institutionalReport">Institutional Report</h2><span data-i18n="copyOrExport">Copy or export</span></div>
-          <pre id="report" data-i18n="noReportYet">No report yet.</pre>
-          <div class="button-row"><button class="ghost" id="copyReportBtn" data-i18n="copyReport">Copy Report</button><button class="ghost" id="exportReportBtn" data-i18n="exportTxt">Export TXT</button></div>
+          <div class="panel-head"><h2 data-i18n="institutionalReport">Institutional Audit Briefing</h2><span data-i18n="copyOrExport">Copy or export</span></div>
+          <pre id="report" data-i18n="noReportYet">No report generated yet.</pre>
+          <div class="button-row">
+            <button class="ghost" id="copyReportBtn" data-i18n="copyReport">Copy Briefing</button>
+            <button class="ghost" id="exportReportBtn" data-i18n="exportTxt">Export TXT File</button>
+          </div>
         </article>
       </section>
+
+      <!-- Floating Live Trade Alert Toast Notification -->
+      <div id="tradeToast" class="trade-toast hidden" role="alert" aria-live="assertive">
+        <div class="toast-header">
+          <div class="toast-title-lockup">
+            <span class="toast-signal" id="toastSignal">BUY</span>
+            <strong class="toast-symbol" id="toastSymbol">EURUSD</strong>
+          </div>
+          <span class="toast-confidence" id="toastConfidence">82%</span>
+          <button type="button" class="toast-close-btn" id="toastCloseBtn" aria-label="Dismiss alert">&times;</button>
+        </div>
+        <div class="toast-body">
+          <div class="toast-metrics">
+            <div><small data-i18n="entry">Entry</small><b id="toastEntry">--</b></div>
+            <div><small data-i18n="stopLoss">SL</small><b id="toastSL">--</b></div>
+            <div><small data-i18n="takeProfit1">TP1</small><b id="toastTP1">--</b></div>
+          </div>
+          <p class="toast-reason" id="toastReason">Scanner detected a high-probability opportunity setup.</p>
+        </div>
+        <div class="toast-actions">
+          <button type="button" class="primary small" id="toastInspectBtn" data-i18n="inspectTrade">Inspect Chart & Analysis</button>
+        </div>
+      </div>
     </main>
   </div>
 
+  <script src="d3.min.js"></script>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <script src="app.js"></script>
 </body>

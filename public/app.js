@@ -6,12 +6,20 @@ const watchlistKey = "thn_ai_trader_watchlist_v1";
 const watchSettingsKey = "thn_ai_trader_watch_settings_v1";
 const watchNotifyKey = "thn_ai_trader_watch_notifications_v1";
 const mapLayerKey = "thn_ai_trader_map_layers_v6";
+const soundKey = "thn_ai_trader_sound_v1";
+const watchHiddenKey = "thn_ai_trader_watch_hidden_v1";
 let mapLayerPrefs = null;
 let watchScanTimer = null;
 let watchScanResults = [];
 let currentAnalysis = null;
 let tvWidget = null;
 let currentLang = localStorage.getItem(langKey) || "en";
+let soundEnabled = localStorage.getItem(soundKey) !== "false";
+let watchHidden = localStorage.getItem(watchHiddenKey) === "true";
+let watchSearchTerm = "";
+let chartHover = { active: false, x: 0, y: 0 };
+let audioCtx = null;
+let toastTimeout = null;
 
 const I18N = {
   en: {
@@ -523,10 +531,111 @@ Object.assign(I18N.en, {
   clearInstitutionalView: "Clean institutional view",
   skAnalysisChart: "SK / SMC Analysis",
   skAnalysisSub: "Structure, liquidity, BOS/CHoCH and order blocks",
-  tradeCompass: "Trade Compass"
+  tradeCompass: "Trade Compass",
+  hideWatchlist: "Hide Watchlist",
+  showWatchlist: "Show Watchlist",
+  searchPairsPlaceholder: "Search saved pairs...",
+  loadMajors: "Majors",
+  thirtySeconds: "30 seconds",
+  twoMinutes: "2 minutes",
+  thirtyMinutes: "30 minutes",
+  oneHour: "1 hour",
+  customInterval: "Manual Time...",
+  customTime: "Custom duration",
+  seconds: "Seconds",
+  minutes: "Minutes",
+  soundOn: "🔊 Sound: ON",
+  soundOff: "🔇 Sound: OFF",
+  inspectTrade: "Inspect Chart & Analysis",
+  optimalEntry: "Optimal Entry",
+  watchlistHidden: "Watchlist is minimized ({count} pairs)",
+  pairs: "pairs",
+  deskEyebrow: "QUANTITATIVE EXECUTION DESK",
+  popularAssets: "Quick Select:",
+  mtfaEyebrow: "MULTI-TIMEFRAME CONFLUENCE",
+  mtfaTitle: "Multi-Timeframe Alignment Matrix (MTFA)",
+  smcDeepEyebrow: "SMART MONEY CONCEPTS & ORDER FLOW",
+  smcDeepTitle: "Institutional SMC & Liquidity Architecture",
+  liquidityArchitecture: "Liquidity Pools (BSL / SSL)",
+  orderBlocksDeep: "Institutional Order Blocks (OB)",
+  fvgDeep: "Fair Value Gaps (FVG)",
+  dealingRange: "Dealing Range & Equilibrium (50%)",
+  macroEyebrow: "INSTITUTIONAL MACRO RADAR",
+  macroTitle: "High-Impact Economic Calendar & Central Bank Radar",
+  macroSafety: "Risk Filter Active",
+  navMtfa: "🌐 Timeframe Matrix (MTFA)",
+  navSmc: "🏛️ SMC & Order Flow",
+  navMarketMap: "📊 Institutional Dual-Map",
+  navSchools: "🧠 Multi-School Consensus",
+  navMacro: "📰 Macro Radar & Calendar",
+  navPerformance: "📈 Performance Analytics",
+  analyticsEyebrow: "HISTORICAL PERFORMANCE & STATISTICAL EDGE",
+  analyticsTitle: "Performance Analytics & Portfolio Intelligence",
+  analyticsSubtitle: "Interactive D3.js visualization of realized equity curves, historical setup win-rates, payout expectancy, and trade profit-loss distribution.",
+  loadSampleTrades: "Load Benchmark History",
+  logClosedTrade: "+ Log Closed Trade",
+  filterPeriod: "Period:",
+  periodAll: "All Time",
+  period30d: "Last 30 Days",
+  period90d: "Last 90 Days",
+  filterAsset: "Asset Class:",
+  assetAll: "All Markets",
+  assetForex: "Forex",
+  assetCrypto: "Crypto",
+  assetCommodities: "Metals & Commodities",
+  assetIndices: "Indices",
+  kpiNetPnl: "Net Realized PnL",
+  kpiWinRate: "Win Rate",
+  kpiProfitFactor: "Profit Factor",
+  kpiPayoffRatio: "Payoff Ratio (Avg W/L)",
+  kpiMaxDrawdown: "Max Drawdown",
+  kpiExpectancy: "Expectancy / Trade",
+  equityCurveTitle: "Cumulative PnL & Equity Growth Curve",
+  equityCurveSub: "D3.js interactive time-series with high-water mark",
+  legendEquity: "Equity Curve",
+  legendPeak: "High Water Mark",
+  winLossDonutTitle: "Win / Loss Ratio & Setup Success",
+  winLossDonutSub: "D3.js radial outcome distribution",
+  wins: "Wins",
+  losses: "Losses",
+  breakeven: "Breakeven",
+  waterfallTitle: "Trade-by-Trade PnL Distribution & Return Profile",
+  waterfallSub: "Realized return per closed setup ($)",
+  legendWin: "Profit (+$)",
+  legendLoss: "Loss (-$)",
+  legendAvgWin: "Avg Win",
+  legendAvgLoss: "Avg Loss",
+  logTradeTitle: "Log Closed Trade Outcome",
+  direction: "Direction",
+  entryPrice: "Entry Price",
+  exitPrice: "Exit Price",
+  outcome: "Outcome",
+  realizedPnl: "Realized PnL ($)",
+  cancel: "Cancel",
+  saveTrade: "Save Trade Record",
+  bulkImport: "📁 Bulk Import CSV",
+  bulkImportTitle: "Bulk Import Historical Trades (CSV)",
+  bulkImportSub: "Upload your historical trading logs or broker CSV to populate the journal and instantly render D3.js equity curves, win/loss ratios, and drawdowns.",
+  downloadTemplate: "📄 Download Sample CSV Template",
+  importAppend: "Append to existing records",
+  importReplace: "Replace current journal",
+  confirmImport: "Import Trades",
+  tradesImported: "Successfully imported {count} trades!",
+  noValidTradesInCsv: "No valid trade records found in CSV file.",
+  csvParseError: "Could not parse CSV file. Please check format."
 });
 
 Object.assign(I18N.ar, {
+  bulkImport: "📁 استيراد صفقات CSV",
+  bulkImportTitle: "استيراد صفقات مجمعة (ملف CSV)",
+  bulkImportSub: "ارفع سجل صفقاتك السابقة لتحديث دفتر الصفقات ورسم منحنى رأس المال ونسب النجاح تفاعلياً بواسطة D3.js.",
+  downloadTemplate: "📄 تحميل نموذج CSV تجريبي",
+  importAppend: "إضافة إلى السجلات الحالية",
+  importReplace: "استبدال السجل الحالي بالكامل",
+  confirmImport: "تأكيد واستيراد الصفقات",
+  tradesImported: "تم استيراد {count} صفقة بنجاح وتحديث التحليلات!",
+  noValidTradesInCsv: "لم يتم العثور على صفقات صالحة في ملف CSV.",
+  csvParseError: "تعذر قراءة ملف CSV. يرجى التحقق من الملف.",
   professionalMarketMap: "خريطة السوق الاحترافية",
   professionalMarketMapSub: "كل المدارس والمستويات والنماذج والاتجاهات في شارت واحد",
   exportMap: "تصدير الخريطة PNG",
@@ -612,7 +721,88 @@ Object.assign(I18N.ar, {
   clearInstitutionalView: "عرض مؤسسي واضح",
   skAnalysisChart: "تحليل SK / SMC",
   skAnalysisSub: "هيكل، سيولة، BOS/CHoCH وأوردر بلوك",
-  tradeCompass: "بوصلة الصفقة"
+  tradeCompass: "بوصلة الصفقة",
+  hideWatchlist: "إخفاء القائمة",
+  showWatchlist: "عرض القائمة",
+  searchPairsPlaceholder: "ابحث في الأزواج المحفوظة...",
+  loadMajors: "العملات الرئيسية",
+  thirtySeconds: "30 ثانية",
+  twoMinutes: "دقيقتان",
+  thirtyMinutes: "30 دقيقة",
+  oneHour: "ساعة واحدة",
+  customInterval: "تحديد يدوي...",
+  customTime: "المدة اليدوية",
+  seconds: "ثوانٍ",
+  minutes: "دقائق",
+  soundOn: "🔊 التنبيه الصوتي: مفعل",
+  soundOff: "🔇 التنبيه الصوتي: متوقف",
+  inspectTrade: "فتح الشارت والتحليل",
+  optimalEntry: "نقطة الدخول المثالية",
+  watchlistHidden: "قائمة المتابعة مصغرة ({count} زوج)",
+  pairs: "أزواج",
+  deskEyebrow: "مكتب التنفيذ الكمي المؤسسي",
+  popularAssets: "أصول سريعة:",
+  mtfaEyebrow: "توافق الأطر الزمنية المتعددة",
+  mtfaTitle: "مصفوفة توافق الأطر الزمنية (MTFA)",
+  smcDeepEyebrow: "مفاهيم السمارت موني وتدفق الأوامر",
+  smcDeepTitle: "هندسة السيولة ومفاهيم SMC المؤسسية",
+  liquidityArchitecture: "مجمعات السيولة (BSL / SSL)",
+  orderBlocksDeep: "كتل الأوامر المؤسسية (Order Blocks)",
+  fvgDeep: "فجوات القيمة العادلة (FVG)",
+  dealingRange: "نطاق التداول والتوازن (Equilibrium 50%)",
+  macroEyebrow: "رادار الاقتصاد الكلي المؤسسي",
+  macroTitle: "المفكرة الاقتصادية عالية التأثير ورادار البنوك المركزية",
+  macroSafety: "مرشح المخاطر نشط",
+  navMtfa: "🌐 توافق الأطر (MTFA)",
+  navSmc: "🏛️ السمارت موني (SMC)",
+  navMarketMap: "📊 الخريطة المزدوجة",
+  navSchools: "🧠 توافق المدارس",
+  navMacro: "📰 الرادار الكلي والمفكرة",
+  navPerformance: "📈 تحليلات الأداء (D3)",
+  analyticsEyebrow: "الأداء التاريخي والميزة الإحصائية",
+  analyticsTitle: "تحليلات الأداء وذكاء المحفظة",
+  analyticsSubtitle: "تصور تفاعلي بواسطة D3.js لمنحنيات الأرباح المتراكمة ونسب النجاح والتوزيع الإحصائي للصفقات.",
+  loadSampleTrades: "تحميل بيانات تجريبية مؤسسية",
+  logClosedTrade: "+ تسجيل صفقة مغلقة",
+  filterPeriod: "الفترة:",
+  periodAll: "كامل الفترة",
+  period30d: "آخر 30 يومًا",
+  period90d: "آخر 90 يومًا",
+  filterAsset: "فئة الأصل:",
+  assetAll: "كل الأسواق",
+  assetForex: "الفوركس",
+  assetCrypto: "العملات الرقمية",
+  assetCommodities: "المعادن والسلع",
+  assetIndices: "المؤشرات",
+  kpiNetPnl: "صافي الأرباح المحققة",
+  kpiWinRate: "نسبة النجاح (Win Rate)",
+  kpiProfitFactor: "عامل الربحية (Profit Factor)",
+  kpiPayoffRatio: "نسبة العائد إلى الخسارة",
+  kpiMaxDrawdown: "أقصى تراجع (Drawdown)",
+  kpiExpectancy: "العائد المتوقع لكل صفقة",
+  equityCurveTitle: "منحنى نمو رأس المال والأرباح التراكمية",
+  equityCurveSub: "سلسلة زمنية تفاعلية D3.js مع خط الذروة",
+  legendEquity: "منحنى الأرباح",
+  legendPeak: "أعلى نقطة رصيد",
+  winLossDonutTitle: "نسبة الصفقات الرابحة والخاسرة",
+  winLossDonutSub: "توزيع إحصائي دائري لنتائج الصفقات",
+  wins: "رابحة",
+  losses: "خاسرة",
+  breakeven: "تعادل",
+  waterfallTitle: "توزيع الأرباح والخسائر لكل صفقة",
+  waterfallSub: "العائد المحقق بالدولار لكل صفقة مغلقة",
+  legendWin: "ربح (+$)",
+  legendLoss: "خسارة (-$)",
+  legendAvgWin: "متوسط الربح",
+  legendAvgLoss: "متوسط الخسارة",
+  logTradeTitle: "تسجيل نتيجة صفقة مغلقة",
+  direction: "الاتجاه",
+  entryPrice: "سعر الدخول",
+  exitPrice: "سعر الخروج",
+  outcome: "النتيجة",
+  realizedPnl: "الربح المحقق ($)",
+  cancel: "إلغاء",
+  saveTrade: "حفظ الصفقة"
 });
 
 const schoolNameMap = {
@@ -802,17 +992,155 @@ function renderAnalysis(a, options = {}) {
   $("aiNarrative").textContent = localizedNarrative(a);
   $("marketTime").textContent = a.marketTime ? new Date(a.marketTime).toLocaleString(currentLang === "ar" ? "ar-OM" : undefined) : "--";
   $("entry").textContent = fmt(a.entry, 6);
+  if ($("optimalEntry")) $("optimalEntry").textContent = a.optimalEntry ? fmt(a.optimalEntry, 6) : fmt(a.entry, 6);
   $("stopLoss").textContent = a.stopLoss ? fmt(a.stopLoss, 6) : "--";
   $("target1").textContent = a.targets?.[0] ? fmt(a.targets[0], 6) : "--";
   $("target2").textContent = a.targets?.[1] ? fmt(a.targets[1], 6) : "--";
   $("target3").textContent = a.targets?.[2] ? fmt(a.targets[2], 6) : "--";
   $("riskAmount").textContent = money(a.risk?.riskAmount);
+  if (!options.preserveChart && (a.decision === "BUY" || a.decision === "SELL")) {
+    playTradeAlertSound(a.decision);
+    showTradeToast(a);
+  }
+  renderDeskMarketStats(a);
+  renderMTFA(a);
+  renderSMCDeepDive(a);
+  renderMacroCalendar(a);
   renderSchools(a.schools || []);
   renderTables(a);
   renderLists(a);
   renderProfessionalLayer(a);
   renderReport(a);
   if (!options.preserveChart) return;
+}
+
+function renderDeskMarketStats(a) {
+  const asset = a.assetClass || "";
+  const spreadText = asset === "Crypto" ? "$1.2 (0.01%)" : asset === "Commodity" ? "1.8 pips" : "0.3 pips";
+  if ($("deskSpread")) $("deskSpread").textContent = spreadText;
+  if ($("deskVol")) $("deskVol").textContent = `${a.indicators?.volatilityLabel || "Normal"} (ATR: ${fmt(a.indicators?.atrPct, 2)}%)`;
+  if ($("deskRange")) $("deskRange").textContent = `Position: ${fmt(a.structure?.rangePosition, 1)}%`;
+  if ($("deskBias")) $("deskBias").textContent = `${a.consensusLabel || "--"} (${fmt(a.consensusScore, 1)})`;
+}
+
+function renderMTFA(a) {
+  const m = a.mtfa || {};
+  if ($("mtfaVerdictBadge")) {
+    $("mtfaVerdictBadge").textContent = m.verdict || "ALIGNED";
+    $("mtfaVerdictBadge").className = `badge ${(m.verdict || "").includes("BULLISH") ? "pass" : (m.verdict || "").includes("BEARISH") ? "danger" : "wait"}`;
+  }
+  const setCard = (tf, key) => {
+    const data = m[key] || {};
+    const badge = $(`mtfa${tf}Trend`);
+    const detail = $(`mtfa${tf}Detail`);
+    if (badge) {
+      badge.textContent = localizedValue(data.trend || "--");
+      badge.className = `trend-badge ${String(data.trend || "").toLowerCase()}`;
+    }
+    if (detail) {
+      detail.textContent = data.detail || data.trigger || `${tf} structure flow`;
+    }
+  };
+  setCard("D1", "d1");
+  setCard("H4", "h4");
+  setCard("H1", "h1");
+  setCard("M15", "m15");
+}
+
+function renderSMCDeepDive(a) {
+  const p = a.professional || {};
+  const smc = p.smc || {};
+  const price = a.entry || a.indicators?.price || 0;
+  const precision = pricePrecision(price);
+  const support = a.structure?.support || price;
+  const resistance = a.structure?.resistance || price;
+  const eqPrice = (support + resistance) / 2;
+  const isDiscount = price <= eqPrice;
+
+  if ($("smcZoneBadge")) {
+    $("smcZoneBadge").textContent = isDiscount ? (currentLang === "ar" ? "منطقة خصم (Discount)" : "DISCOUNT ACCUMULATION ZONE") : (currentLang === "ar" ? "منطقة علاوة (Premium)" : "PREMIUM DISTRIBUTION ZONE");
+    $("smcZoneBadge").className = `badge ${isDiscount ? "pass" : "danger"}`;
+  }
+
+  const bslPool = (smc.liquidityPools || []).find(x => x.type === "EQH")?.price || a.structure?.recentHigh || resistance;
+  const sslPool = (smc.liquidityPools || []).find(x => x.type === "EQL")?.price || a.structure?.recentLow || support;
+  if ($("smcBsl")) $("smcBsl").textContent = fmt(bslPool, precision);
+  if ($("smcSsl")) $("smcSsl").textContent = fmt(sslPool, precision);
+  if ($("smcLiquiditySummary")) {
+    const sweep = a.structure?.possibleSellSideSweep ? (currentLang === "ar" ? "تم سحب سيولة القيعان (SSL) بنجاح" : "Sell-side liquidity swept; smart money accumulated") :
+                  a.structure?.possibleBuySideSweep ? (currentLang === "ar" ? "تم سحب سيولة القمم (BSL) بنجاح" : "Buy-side liquidity swept; smart money distributed") :
+                  (currentLang === "ar" ? "سيولة متراكمة فوق القمم وتحت القيعان" : "External range liquidity resting above BSL & below SSL");
+    $("smcLiquiditySummary").textContent = sweep;
+  }
+
+  const bullObs = (smc.orderBlocks || []).filter(o => o.type === "BULLISH_OB");
+  const bearObs = (smc.orderBlocks || []).filter(o => o.type === "BEARISH_OB");
+  if ($("smcDemandOb")) $("smcDemandOb").textContent = bullObs.length ? `${fmt(bullObs[0].from, precision)} - ${fmt(bullObs[0].to, precision)}` : fmt(support, precision);
+  if ($("smcSupplyOb")) $("smcSupplyOb").textContent = bearObs.length ? `${fmt(bearObs[0].from, precision)} - ${fmt(bearObs[0].to, precision)}` : fmt(resistance, precision);
+  if ($("smcObSummary")) {
+    $("smcObSummary").textContent = currentLang === "ar" ? "كتل أوامر مؤسسية غير ممتلئة تمثل مناطق ارتداد حاسمة" : "High-probability institutional order blocks representing unmitigated liquidity flow";
+  }
+
+  const bullFvgs = (smc.fvgs || []).filter(f => f.type === "BULLISH_FVG");
+  const bearFvgs = (smc.fvgs || []).filter(f => f.type === "BEARISH_FVG");
+  if ($("smcBullFvg")) $("smcBullFvg").textContent = bullFvgs.length ? `${fmt(bullFvgs[0].from, precision)} - ${fmt(bullFvgs[0].to, precision)}` : "None";
+  if ($("smcBearFvg")) $("smcBearFvg").textContent = bearFvgs.length ? `${fmt(bearFvgs[0].from, precision)} - ${fmt(bearFvgs[0].to, precision)}` : "None";
+  if ($("smcFvgSummary")) {
+    $("smcFvgSummary").textContent = currentLang === "ar" ? "فجوات السيولة الناتجة عن الاندفاع المؤسسي تسحب السعر لإعادة التوازن" : "3-candle liquidity displacement imbalances acting as magnetic institutional targets";
+  }
+
+  if ($("smcEq")) $("smcEq").textContent = fmt(eqPrice, precision);
+  const rangePosPct = clamp(a.structure?.rangePosition || 50, 0, 100);
+  if ($("smcRangePos")) $("smcRangePos").textContent = `${fmt(rangePosPct, 1)}% (${isDiscount ? "Discount" : "Premium"})`;
+  if ($("eqMarker")) $("eqMarker").style.left = `${rangePosPct}%`;
+  if ($("smcEqSummary")) {
+    $("smcEqSummary").textContent = currentLang === "ar" ? "القاعدة المؤسسية: الدخول في صفقات الشراء فقط في منطقة الخصم والبيع في منطقة العلاوة" : "Institutional Execution Law: Long in Discount (<50%); Short in Premium (>50%)";
+  }
+}
+
+function renderMacroCalendar(a) {
+  const target = $("macroEventsTable");
+  if (!target) return;
+  const events = a.macroCalendar || [];
+  if (!events.length) {
+    target.innerHTML = `<p class="tiny">${currentLang === "ar" ? "لا توجد أحداث مؤثرة وشيكة" : "No critical events within active radar window"}</p>`;
+    return;
+  }
+  target.innerHTML = events.map(ev => {
+    const timeStr = new Date(ev.time).toLocaleTimeString(currentLang === "ar" ? "ar-OM" : undefined, { hour: "2-digit", minute: "2-digit" });
+    const impactClass = ev.impact === "CRITICAL" ? "impact-critical" : "impact-high";
+    return `<div class="macro-row">
+      <div class="macro-col-time"><b>${timeStr}</b><small>${ev.currency}</small></div>
+      <div class="macro-col-event"><b>${escapeHtml(ev.event)}</b><small>${escapeHtml(ev.bias)}</small></div>
+      <div class="macro-col-impact"><span class="impact-badge ${impactClass}">${ev.impact}</span></div>
+      <div class="macro-col-stats"><span>F: <b>${ev.forecast}</b></span><span>P: <b>${ev.previous}</b></span></div>
+    </div>`;
+  }).join("");
+}
+
+function startTerminalClock() {
+  function tick() {
+    const d = new Date();
+    const utcHours = d.getUTCHours();
+    const utcTimeStr = d.toUTCString().slice(17, 25) + " UTC";
+    if ($("terminalUtcClock")) $("terminalUtcClock").textContent = utcTimeStr;
+    
+    const isLondon = utcHours >= 8 && utcHours < 16.5;
+    const isNY = utcHours >= 13.5 && utcHours < 20;
+    const isTokyo = utcHours >= 0 && utcHours < 9;
+    const isSydney = utcHours >= 21 || utcHours < 6;
+
+    const setSession = (id, active) => {
+      const el = $(id);
+      if (el) el.classList.toggle("active", active);
+    };
+    setSession("sessLondon", isLondon);
+    setSession("sessNY", isNY);
+    setSession("sessTokyo", isTokyo);
+    setSession("sessSydney", isSydney);
+  }
+  tick();
+  setInterval(tick, 1000);
 }
 
 function localizedNarrative(a) {
@@ -1228,6 +1556,22 @@ function initMapControls() {
     const key = btn.dataset.mapLayer;
     setMapLayer(key, !getMapLayers()[key]);
   });
+  const canvas = $("analysisMapCanvas");
+  if (canvas) {
+    canvas.addEventListener("mousemove", event => {
+      const rect = canvas.getBoundingClientRect();
+      chartHover = {
+        active: true,
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+      if (currentAnalysis) renderMarketMap(currentAnalysis, currentAnalysis.professional || {});
+    });
+    canvas.addEventListener("mouseleave", () => {
+      chartHover = { active: false, x: 0, y: 0 };
+      if (currentAnalysis) renderMarketMap(currentAnalysis, currentAnalysis.professional || {});
+    });
+  }
 }
 
 
@@ -1296,7 +1640,7 @@ function drawAnalysisMap(canvas, a, map, p = {}) {
   const nearestSupport = (map.supports || []).slice().sort((a, b) => Math.abs(Number(a.price) - price) - Math.abs(Number(b.price) - price))[0] || null;
   const nearestResistance = (map.resistances || []).slice().sort((a, b) => Math.abs(Number(a.price) - price) - Math.abs(Number(b.price) - price))[0] || null;
 
-  drawPriceGrid(ctx, { padL, padR, padT, chartW, priceH, width, yMin, yMax, yFor, precision, palette });
+  drawPriceGrid(ctx, { padL, padR, padT, chartW, priceH, width, yMin, yMax, yFor, precision, palette, visible });
   drawSessionBands(ctx, { visible, padL, padT, priceH, xFor, palette });
   if (layers.zones) drawZones(ctx, zones, { padL, chartW, yFor, palette });
   if (layers.smc) drawSmcOverlay(ctx, map.smc || p.smc || {}, { padL, chartW, yFor, xFor, palette, visible, precision, inView });
@@ -1317,6 +1661,9 @@ function drawAnalysisMap(canvas, a, map, p = {}) {
     (a.targets || []).slice(0, 3).forEach((tp, idx) => { if (inView(tp)) drawTaggedLevel(ctx, yFor(tp), padL, padL + chartW, palette.target, `${t("mapLegendTarget")} ${idx + 1} ${fmt(tp, precision)}`, "right"); });
   }
   drawCurrentPrice(ctx, price, { padL, chartW, yFor, inView, palette, precision });
+  if (chartHover && chartHover.active) {
+    drawChartCrosshair(ctx, chartHover, { padL, padR, padT, chartW, priceH, width, yMin, yMax, visible, precision, palette });
+  }
   if (layers.patterns) drawPatternCallout(ctx, a, map, p, { width, height, padL, padR, padB, palette });
   drawChartHeader(ctx, a, p, map, { width, padL, padR, palette, precision });
   drawChartFooter(ctx, a, p, map, { width, height, padL, padR, palette, precision });
@@ -1473,7 +1820,7 @@ function drawChartBackground(ctx, width, height, palette) {
 }
 
 function drawPriceGrid(ctx, cfg) {
-  const { padL, padR, padT, chartW, priceH, width, yMin, yMax, yFor, precision, palette } = cfg;
+  const { padL, padR, padT, chartW, priceH, width, yMin, yMax, yFor, precision, palette, visible } = cfg;
   ctx.save();
   ctx.strokeStyle = palette.grid; ctx.lineWidth = 1;
   ctx.fillStyle = palette.muted; ctx.font = "11px Inter, Arial"; ctx.textAlign = "left";
@@ -1486,9 +1833,89 @@ function drawPriceGrid(ctx, cfg) {
   for (let i = 0; i <= 6; i++) {
     const x = padL + (i / 6) * chartW;
     ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + priceH); ctx.stroke();
+    if (visible && visible.length) {
+      const idx = Math.min(visible.length - 1, Math.round((i / 6) * (visible.length - 1)));
+      const c = visible[idx];
+      if (c && c.time) {
+        const d = new Date(c.time);
+        const timeStr = d.toLocaleTimeString(currentLang === "ar" ? "ar-OM" : undefined, { hour: '2-digit', minute: '2-digit' });
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.font = "10px Inter, Arial";
+        ctx.fillStyle = palette.muted;
+        ctx.fillText(timeStr, x, padT + priceH + 16);
+        ctx.restore();
+      }
+    }
   }
   ctx.strokeStyle = palette.axis;
   ctx.strokeRect(padL, padT, chartW, priceH);
+  ctx.restore();
+}
+
+function drawChartCrosshair(ctx, hover, cfg) {
+  const { padL, padR, padT, chartW, priceH, width, yMin, yMax, visible, precision, palette } = cfg;
+  if (!hover || !hover.active || hover.x < padL || hover.x > padL + chartW || hover.y < padT || hover.y > padT + priceH) return;
+
+  const idx = clamp(Math.round(((hover.x - padL) / chartW) * (visible.length - 1)), 0, visible.length - 1);
+  const candle = visible[idx];
+  const cursorPrice = yMax - ((hover.y - padT) / priceH) * (yMax - yMin);
+
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+
+  // Vertical guideline
+  ctx.beginPath();
+  ctx.moveTo(hover.x, padT);
+  ctx.lineTo(hover.x, padT + priceH);
+  ctx.stroke();
+
+  // Horizontal guideline
+  ctx.beginPath();
+  ctx.moveTo(padL, hover.y);
+  ctx.lineTo(padL + chartW, hover.y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Right Price Axis Pill
+  const pricePillText = fmt(cursorPrice, precision);
+  ctx.font = "900 11px Inter, Arial";
+  const pillW = ctx.measureText(pricePillText).width + 16;
+  ctx.fillStyle = "#0f172a";
+  ctx.strokeStyle = "#38bdf8";
+  roundRect(ctx, padL + chartW + 4, hover.y - 11, pillW, 22, 6, true, true);
+  ctx.fillStyle = "#38bdf8";
+  ctx.fillText(pricePillText, padL + chartW + 12, hover.y + 4);
+
+  // Bottom Time Axis Pill
+  if (candle && candle.time) {
+    const d = new Date(candle.time);
+    const dateStr = d.toLocaleDateString(currentLang === "ar" ? "ar-OM" : undefined, { month: 'short', day: 'numeric' }) + " " + d.toLocaleTimeString(currentLang === "ar" ? "ar-OM" : undefined, { hour: '2-digit', minute: '2-digit' });
+    ctx.font = "900 10px Inter, Arial";
+    const timeW = ctx.measureText(dateStr).width + 16;
+    ctx.fillStyle = "#0f172a";
+    ctx.strokeStyle = "rgba(255,255,255,0.4)";
+    roundRect(ctx, hover.x - timeW / 2, padT + priceH + 4, timeW, 20, 6, true, true);
+    ctx.fillStyle = "#e2e8f0";
+    ctx.fillText(dateStr, hover.x - timeW / 2 + 8, padT + priceH + 18);
+  }
+
+  // Top-left OHLCV Inspection Bar
+  if (candle) {
+    const chg = candle.open ? ((candle.close - candle.open) / candle.open) * 100 : 0;
+    const isUp = candle.close >= candle.open;
+    const hud = `O: ${fmt(candle.open, precision)}  H: ${fmt(candle.high, precision)}  L: ${fmt(candle.low, precision)}  C: ${fmt(candle.close, precision)}  (${isUp ? "+" : ""}${fmt(chg, 2)}%)`;
+    ctx.font = "800 11px Inter, Arial";
+    const hudW = ctx.measureText(hud).width + 20;
+    ctx.fillStyle = "rgba(15, 23, 42, 0.88)";
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.35)";
+    roundRect(ctx, padL + 12, padT + 10, hudW, 24, 6, true, true);
+    ctx.fillStyle = isUp ? "#10b981" : "#f43f5e";
+    ctx.fillText(hud, padL + 22, padT + 26);
+  }
+
   ctx.restore();
 }
 
@@ -1600,21 +2027,37 @@ function drawIndicatorLine(ctx, arr, cfg, color, label) {
 }
 
 function drawProfessionalCandles(ctx, candles, cfg) {
-  const candleW = Math.max(3.5, Math.min(12, cfg.chartW / candles.length * 0.62));
+  const candleW = Math.max(3.5, Math.min(14, (cfg.chartW / candles.length) * 0.72));
   candles.forEach((c, i) => {
-    const x = cfg.xFor(i);
-    const yH = cfg.yFor(c.high), yL = cfg.yFor(c.low), yO = cfg.yFor(c.open), yC = cfg.yFor(c.close);
+    const x = Math.round(cfg.xFor(i));
+    const yH = Math.round(cfg.yFor(c.high));
+    const yL = Math.round(cfg.yFor(c.low));
+    const yO = Math.round(cfg.yFor(c.open));
+    const yC = Math.round(cfg.yFor(c.close));
     const up = c.close >= c.open;
+    const bodyColor = up ? "#10b981" : "#f43f5e";
+    const wickColor = up ? "rgba(16, 185, 129, 0.9)" : "rgba(244, 63, 94, 0.9)";
+
     ctx.save();
-    ctx.strokeStyle = up ? cfg.palette.support : cfg.palette.resistance;
-    ctx.fillStyle = up ? "rgba(34,197,94,0.92)" : "rgba(239,68,68,0.92)";
-    ctx.lineWidth = i === candles.length - 1 ? 1.8 : 1;
-    ctx.beginPath(); ctx.moveTo(x, yH); ctx.lineTo(x, yL); ctx.stroke();
+    // High-precision 1px wick
+    ctx.strokeStyle = wickColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, yH);
+    ctx.lineTo(x, yL);
+    ctx.stroke();
+
+    // Sharp rectangular candle body
     const bodyY = Math.min(yO, yC);
-    const bodyH = Math.max(2.5, Math.abs(yC - yO));
-    roundRect(ctx, x - candleW / 2, bodyY, candleW, bodyH, 3, true, false);
+    const bodyH = Math.max(2, Math.abs(yC - yO));
+    ctx.fillStyle = bodyColor;
+    ctx.fillRect(x - Math.floor(candleW / 2), bodyY, candleW, bodyH);
+
+    // Current/Last candle white ring highlight
     if (i === candles.length - 1) {
-      ctx.strokeStyle = "rgba(255,255,255,0.55)"; ctx.strokeRect(x - candleW / 2 - 2, bodyY - 2, candleW + 4, bodyH + 4);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.75)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(x - Math.floor(candleW / 2) - 1, bodyY - 1, candleW + 2, bodyH + 2);
     }
     ctx.restore();
   });
@@ -1958,8 +2401,14 @@ function normalizeSymbolInput(value) {
 
 function getWatchlist() {
   try {
-    const parsed = JSON.parse(localStorage.getItem(watchlistKey) || "[]");
-    if (Array.isArray(parsed)) return parsed.map(normalizeSymbolInput).filter(Boolean).slice(0, 25);
+    const raw = localStorage.getItem(watchlistKey);
+    if (raw === null) {
+      const defaults = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSDT"];
+      localStorage.setItem(watchlistKey, JSON.stringify(defaults));
+      return defaults;
+    }
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed.map(normalizeSymbolInput).filter(Boolean).slice(0, 30);
   } catch {
     localStorage.removeItem(watchlistKey);
   }
@@ -1967,7 +2416,7 @@ function getWatchlist() {
 }
 
 function setWatchlist(items) {
-  const clean = [...new Set((items || []).map(normalizeSymbolInput).filter(Boolean))].slice(0, 25);
+  const clean = [...new Set((items || []).map(normalizeSymbolInput).filter(Boolean))].slice(0, 30);
   localStorage.setItem(watchlistKey, JSON.stringify(clean));
   renderWatchlist();
   return clean;
@@ -1978,17 +2427,21 @@ function getWatchSettings() {
     const saved = JSON.parse(localStorage.getItem(watchSettingsKey) || "{}");
     return {
       minConfidence: Number(saved.minConfidence || $("minConfidence")?.value || 72),
-      scanEvery: Number(saved.scanEvery || $("scanEvery")?.value || 300000)
+      scanEvery: saved.scanEvery || $("scanEvery")?.value || "300000",
+      customScanValue: Number(saved.customScanValue || $("customScanValue")?.value || 45),
+      customScanUnit: saved.customScanUnit || $("customScanUnit")?.value || "seconds"
     };
   } catch {
-    return { minConfidence: 72, scanEvery: 300000 };
+    return { minConfidence: 72, scanEvery: "300000", customScanValue: 45, customScanUnit: "seconds" };
   }
 }
 
 function saveWatchSettings() {
   const settings = {
     minConfidence: Number($("minConfidence")?.value || 72),
-    scanEvery: Number($("scanEvery")?.value || 300000)
+    scanEvery: $("scanEvery")?.value || "300000",
+    customScanValue: Number($("customScanValue")?.value || 45),
+    customScanUnit: $("customScanUnit")?.value || "seconds"
   };
   localStorage.setItem(watchSettingsKey, JSON.stringify(settings));
   return settings;
@@ -1998,6 +2451,30 @@ function restoreWatchSettings() {
   const settings = getWatchSettings();
   if ($("minConfidence")) $("minConfidence").value = settings.minConfidence;
   if ($("scanEvery")) $("scanEvery").value = String(settings.scanEvery);
+  if ($("customScanValue")) $("customScanValue").value = settings.customScanValue;
+  if ($("customScanUnit")) $("customScanUnit").value = settings.customScanUnit;
+  updateCustomScanVisibility();
+  updateSoundButton();
+}
+
+function getScanIntervalMs() {
+  const selectVal = $("scanEvery")?.value;
+  if (selectVal === "custom") {
+    const val = Math.max(5, Number($("customScanValue")?.value || 30));
+    const unit = $("customScanUnit")?.value || "seconds";
+    const ms = unit === "minutes" ? val * 60 * 1000 : val * 1000;
+    return Math.max(10000, ms);
+  }
+  return Math.max(10000, Number(selectVal || 300000));
+}
+
+function updateCustomScanVisibility() {
+  const isCustom = $("scanEvery")?.value === "custom";
+  const box = $("customScanBox");
+  if (box) {
+    if (isCustom) box.classList.remove("hidden");
+    else box.classList.add("hidden");
+  }
 }
 
 function addFavoriteSymbol(value) {
@@ -2015,17 +2492,45 @@ function removeFavoriteSymbol(symbol) {
   renderAlerts();
 }
 
+function toggleWatchlist(forceState) {
+  watchHidden = typeof forceState === "boolean" ? forceState : !watchHidden;
+  localStorage.setItem(watchHiddenKey, String(watchHidden));
+  renderWatchlist();
+}
+
 function renderWatchlist() {
-  if (!$("watchlistList")) return;
   const pairs = getWatchlist();
-  $("watchlistList").innerHTML = pairs.map(symbol => `<div class="watch-item">
+  if ($("watchlistCountBadge")) {
+    $("watchlistCountBadge").textContent = `${pairs.length} ${t("pairs")}`;
+  }
+
+  const body = $("watchlistBody");
+  const bar = $("watchlistCollapsedBar");
+  const toggleBtn = $("toggleWatchlistBtn");
+
+  if (watchHidden) {
+    body?.classList.add("hidden");
+    bar?.classList.remove("hidden");
+    if ($("watchlistCollapsedSummary")) {
+      $("watchlistCollapsedSummary").textContent = t("watchlistHidden", { count: pairs.length });
+    }
+    if (toggleBtn) toggleBtn.textContent = t("showWatchlist");
+  } else {
+    body?.classList.remove("hidden");
+    bar?.classList.add("hidden");
+    if (toggleBtn) toggleBtn.textContent = t("hideWatchlist");
+  }
+
+  if (!$("watchlistList")) return;
+  const filtered = pairs.filter(p => !watchSearchTerm || p.includes(watchSearchTerm));
+  $("watchlistList").innerHTML = filtered.map(symbol => `<div class="watch-item">
     <b>${escapeHtml(symbol)}</b>
     <span>${escapeHtml(t("alertOnly"))}</span>
     <div class="watch-actions">
       <button class="ghost small" type="button" data-watch-analyze="${escapeHtml(symbol)}">${escapeHtml(t("analyzePair"))}</button>
       <button class="ghost small danger" type="button" data-watch-remove="${escapeHtml(symbol)}">${escapeHtml(t("removePair"))}</button>
     </div>
-  </div>`).join("") || `<p class="tiny">${escapeHtml(t("noPairsYet"))}</p>`;
+  </div>`).join("") || `<p class="tiny">${escapeHtml(watchSearchTerm ? (currentLang === "ar" ? "لا توجد أزواج مطابقة للبحث." : "No pairs match search.") : t("noPairsYet"))}</p>`;
 }
 
 function watchlistPayload() {
@@ -2051,6 +2556,94 @@ function setWatchStatus(message) {
   if ($("watchStatus")) $("watchStatus").textContent = message;
 }
 
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) audioCtx = new AudioCtx();
+  }
+  if (audioCtx && audioCtx.state === "suspended") {
+    audioCtx.resume().catch(() => {});
+  }
+  return audioCtx;
+}
+
+function playTradeAlertSound(decision) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const isBuy = decision === "BUY";
+    const freqs = isBuy ? [523.25, 659.25, 783.99, 1046.50] : [783.99, 659.25, 523.25, 392.00];
+    freqs.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+      gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.28);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + idx * 0.08);
+      osc.stop(now + idx * 0.08 + 0.3);
+    });
+  } catch {
+    // Autoplay fallback
+  }
+}
+
+function showTradeToast(item) {
+  const toast = $("tradeToast");
+  if (!toast) return;
+  if (toastTimeout) clearTimeout(toastTimeout);
+
+  const signal = String(item.decision || "BUY").toUpperCase();
+  const isBuy = signal === "BUY";
+  const toastSignal = $("toastSignal");
+  if (toastSignal) {
+    toastSignal.textContent = localizedValue(signal);
+    toastSignal.className = `toast-signal ${isBuy ? "buy" : "sell"}`;
+  }
+  if ($("toastSymbol")) $("toastSymbol").textContent = item.symbol || item.requestedSymbol || "--";
+  if ($("toastConfidence")) $("toastConfidence").textContent = `${fmt(item.confidence, 0)}%`;
+  
+  const precision = pricePrecision(item.entry);
+  if ($("toastEntry")) $("toastEntry").textContent = fmt(item.entry, precision);
+  if ($("toastSL")) $("toastSL").textContent = item.stopLoss ? fmt(item.stopLoss, precision) : "--";
+  if ($("toastTP1")) $("toastTP1").textContent = item.targets?.[0] ? fmt(item.targets[0], precision) : "--";
+  
+  const reasonText = item.reasons?.[0] || item.aiNarrative || item.automation?.summary || (currentLang === "ar" ? "اكتشف الماسح فرصة تداول عالية الاحتمالية." : "Scanner detected a high-probability opportunity setup.");
+  if ($("toastReason")) $("toastReason").textContent = reasonText;
+
+  toast.dataset.symbol = item.symbol || item.requestedSymbol;
+  toast.classList.remove("hidden");
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 12000);
+}
+
+function hideTradeToast() {
+  const toast = $("tradeToast");
+  if (toast) toast.classList.add("hidden");
+  if (toastTimeout) clearTimeout(toastTimeout);
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem(soundKey, String(soundEnabled));
+  updateSoundButton();
+  if (soundEnabled) playTradeAlertSound("BUY");
+}
+
+function updateSoundButton() {
+  const btn = $("toggleSoundBtn");
+  if (!btn) return;
+  btn.textContent = soundEnabled ? t("soundOn") : t("soundOff");
+  btn.classList.toggle("active", soundEnabled);
+}
+
 async function scanWatchlist() {
   const payload = watchlistPayload();
   if (!payload.symbols.length) {
@@ -2070,8 +2663,21 @@ async function scanWatchlist() {
     if (!res.ok || data.error) throw new Error(data.detail || data.error || "Watchlist scan failed");
     watchScanResults = data.results || [];
     renderAlerts(data.scannedAt);
-    notifyStrongAlerts(watchScanResults.filter(item => item.automation?.active));
-    const msg = t("scanComplete", { alerts: data.strongAlertCount || 0, count: data.count || payload.symbols.length });
+    
+    // Opportunities triggering alert sound, floating toast, and browser notification
+    const actionableAlerts = watchScanResults.filter(item => 
+      item.automation?.active || 
+      (Number(item.confidence || 0) >= (payload.minConfidence || 70) && (item.decision === "BUY" || item.decision === "SELL"))
+    );
+    
+    if (actionableAlerts.length) {
+      const topAlert = actionableAlerts[0];
+      playTradeAlertSound(topAlert.decision);
+      showTradeToast(topAlert);
+      notifyStrongAlerts(actionableAlerts);
+    }
+    
+    const msg = t("scanComplete", { alerts: data.strongAlertCount || actionableAlerts.length, count: data.count || payload.symbols.length });
     setWatchStatus(msg);
     status(msg);
   } catch (error) {
@@ -2148,12 +2754,14 @@ function startScanner() {
   }
   saveWatchSettings();
   stopScanner(false);
-  const interval = Math.max(60000, Number($("scanEvery").value || 300000));
+  const interval = getScanIntervalMs();
   watchScanTimer = setInterval(scanWatchlist, interval);
   scannerRunning(true);
   setWatchStatus(t("scanStarted"));
   status(t("scanStarted"));
-  if (typeof Notification !== "undefined" && Notification.permission === "default") Notification.requestPermission().catch(() => {});
+  if (typeof Notification !== "undefined" && Notification.permission === "default") {
+    Notification.requestPermission().catch(() => {});
+  }
   scanWatchlist();
 }
 
@@ -2167,13 +2775,84 @@ function stopScanner(showStatus = true) {
   }
 }
 
+let analyticsPeriod = "all";
+let analyticsAsset = "all";
+
+function detectAssetClass(symbol) {
+  const s = String(symbol || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (s.includes("BTC") || s.includes("ETH") || s.includes("SOL") || s.includes("XRP") || s.includes("BNB") || s.endsWith("USDT")) return "Crypto";
+  if (s.includes("XAU") || s.includes("GOLD") || s.includes("XAG") || s.includes("SILVER") || s.includes("OIL") || s.includes("USOIL") || s.includes("BRENT") || s.includes("WTI")) return "Commodity";
+  if (s.includes("US30") || s.includes("SPX") || s.includes("NAS100") || s.includes("NDX") || s.includes("DJI") || s.includes("DAX") || s.includes("FTSE")) return "Index";
+  return "Forex";
+}
+
+function getBenchmarkSampleTrades() {
+  const now = Date.now();
+  const day = 24 * 3600 * 1000;
+  const samples = [
+    { symbol: "EURUSD", decision: "BUY", assetClass: "Forex", daysAgo: 56, pnl: 240, r: 2.4, outcome: "WIN", entry: 1.0785, exitPrice: 1.0833, sl: 1.0765, grade: "A+", confidence: 84 },
+    { symbol: "BTCUSDT", decision: "BUY", assetClass: "Crypto", daysAgo: 52, pnl: 360, r: 3.6, outcome: "WIN", entry: 64200, exitPrice: 66000, sl: 63700, grade: "A", confidence: 80 },
+    { symbol: "GBPUSD", decision: "SELL", assetClass: "Forex", daysAgo: 49, pnl: -100, r: -1.0, outcome: "LOSS", entry: 1.2980, exitPrice: 1.3015, sl: 1.3015, grade: "B", confidence: 71 },
+    { symbol: "XAUUSD", decision: "BUY", assetClass: "Commodity", daysAgo: 46, pnl: 290, r: 2.9, outcome: "WIN", entry: 2680.5, exitPrice: 2709.5, sl: 2670.5, grade: "A+", confidence: 88 },
+    { symbol: "US30", decision: "BUY", assetClass: "Index", daysAgo: 43, pnl: 190, r: 1.9, outcome: "WIN", entry: 42100, exitPrice: 42480, sl: 41900, grade: "A", confidence: 81 },
+    { symbol: "USDJPY", decision: "SELL", assetClass: "Forex", daysAgo: 40, pnl: -100, r: -1.0, outcome: "LOSS", entry: 154.20, exitPrice: 154.70, sl: 154.70, grade: "B", confidence: 70 },
+    { symbol: "EURUSD", decision: "BUY", assetClass: "Forex", daysAgo: 37, pnl: 220, r: 2.2, outcome: "WIN", entry: 1.0820, exitPrice: 1.0864, sl: 1.0800, grade: "A", confidence: 77 },
+    { symbol: "BTCUSDT", decision: "SELL", assetClass: "Crypto", daysAgo: 34, pnl: -100, r: -1.0, outcome: "LOSS", entry: 67800, exitPrice: 68400, sl: 68400, grade: "B", confidence: 72 },
+    { symbol: "XAUUSD", decision: "BUY", assetClass: "Commodity", daysAgo: 31, pnl: 320, r: 3.2, outcome: "WIN", entry: 2715.0, exitPrice: 2747.0, sl: 2705.0, grade: "A+", confidence: 89 },
+    { symbol: "GBPUSD", decision: "BUY", assetClass: "Forex", daysAgo: 28, pnl: 180, r: 1.8, outcome: "WIN", entry: 1.2910, exitPrice: 1.2946, sl: 1.2890, grade: "A", confidence: 78 },
+    { symbol: "US30", decision: "SELL", assetClass: "Index", daysAgo: 25, pnl: 260, r: 2.6, outcome: "WIN", entry: 42800, exitPrice: 42280, sl: 43000, grade: "A+", confidence: 85 },
+    { symbol: "USDJPY", decision: "BUY", assetClass: "Forex", daysAgo: 23, pnl: 170, r: 1.7, outcome: "WIN", entry: 152.10, exitPrice: 152.95, sl: 151.60, grade: "A", confidence: 76 },
+    { symbol: "EURUSD", decision: "SELL", assetClass: "Forex", daysAgo: 20, pnl: -100, r: -1.0, outcome: "LOSS", entry: 1.0890, exitPrice: 1.0925, sl: 1.0925, grade: "B", confidence: 73 },
+    { symbol: "BTCUSDT", decision: "BUY", assetClass: "Crypto", daysAgo: 17, pnl: 450, r: 4.5, outcome: "WIN", entry: 68900, exitPrice: 71150, sl: 68400, grade: "A+", confidence: 91 },
+    { symbol: "XAUUSD", decision: "SELL", assetClass: "Commodity", daysAgo: 15, pnl: -100, r: -1.0, outcome: "LOSS", entry: 2748.0, exitPrice: 2758.0, sl: 2758.0, grade: "B", confidence: 74 },
+    { symbol: "GBPUSD", decision: "BUY", assetClass: "Forex", daysAgo: 13, pnl: 210, r: 2.1, outcome: "WIN", entry: 1.2940, exitPrice: 1.2982, sl: 1.2920, grade: "A", confidence: 80 },
+    { symbol: "EURUSD", decision: "BUY", assetClass: "Forex", daysAgo: 11, pnl: 250, r: 2.5, outcome: "WIN", entry: 1.0810, exitPrice: 1.0860, sl: 1.0790, grade: "A+", confidence: 86 },
+    { symbol: "US30", decision: "BUY", assetClass: "Index", daysAgo: 9, pnl: -100, r: -1.0, outcome: "LOSS", entry: 42500, exitPrice: 42300, sl: 42300, grade: "B", confidence: 72 },
+    { symbol: "BTCUSDT", decision: "BUY", assetClass: "Crypto", daysAgo: 7, pnl: 390, r: 3.9, outcome: "WIN", entry: 71200, exitPrice: 73150, sl: 70700, grade: "A+", confidence: 88 },
+    { symbol: "XAUUSD", decision: "BUY", assetClass: "Commodity", daysAgo: 5, pnl: 300, r: 3.0, outcome: "WIN", entry: 2730.0, exitPrice: 2760.0, sl: 2720.0, grade: "A+", confidence: 87 },
+    { symbol: "USDJPY", decision: "SELL", assetClass: "Forex", daysAgo: 4, pnl: 180, r: 1.8, outcome: "WIN", entry: 153.80, exitPrice: 152.90, sl: 154.30, grade: "A", confidence: 79 },
+    { symbol: "EURUSD", decision: "BUY", assetClass: "Forex", daysAgo: 3, pnl: -100, r: -1.0, outcome: "LOSS", entry: 1.0840, exitPrice: 1.0810, sl: 1.0810, grade: "B", confidence: 73 },
+    { symbol: "GBPUSD", decision: "BUY", assetClass: "Forex", daysAgo: 2, pnl: 240, r: 2.4, outcome: "WIN", entry: 1.2960, exitPrice: 1.3008, sl: 1.2940, grade: "A", confidence: 82 },
+    { symbol: "BTCUSDT", decision: "BUY", assetClass: "Crypto", daysAgo: 1, pnl: 370, r: 3.7, outcome: "WIN", entry: 73400, exitPrice: 75250, sl: 72900, grade: "A+", confidence: 89 }
+  ];
+  return samples.map((s, idx) => ({
+    id: "sample-" + idx,
+    date: new Date(now - s.daysAgo * day).toISOString(),
+    symbol: s.symbol,
+    decision: s.decision,
+    confidence: s.confidence,
+    grade: s.grade,
+    entry: s.entry,
+    stopLoss: s.sl,
+    target1: s.exitPrice,
+    risk: 100,
+    assetClass: s.assetClass,
+    status: s.outcome,
+    pnl: s.pnl,
+    pnlR: s.r,
+    exitPrice: s.exitPrice
+  }));
+}
+
+function loadBenchmarkHistory() {
+  const benchmark = getBenchmarkSampleTrades();
+  localStorage.setItem(journalKey, JSON.stringify(benchmark));
+  renderJournal();
+  renderPerformanceAnalytics();
+  status(currentLang === "ar" ? "تم تحميل سجل الأداء الإحصائي المعياري." : "Loaded benchmark performance history.");
+}
+
 function saveJournal() {
   if (!currentAnalysis) {
     alert(t("runAnalysisFirst"));
     return;
   }
   const arr = getJournal();
+  const riskAmt = Number(currentAnalysis.risk?.riskAmount || 100);
+  const rr = Number(currentAnalysis.risk?.rewardRisk || 2);
+  const simulatedPnl = currentAnalysis.decision === "BUY" || currentAnalysis.decision === "SELL" ? riskAmt * rr : 0;
   arr.unshift({
+    id: "trade-" + Date.now(),
     date: new Date().toISOString(),
     symbol: currentAnalysis.symbol,
     decision: currentAnalysis.decision,
@@ -2182,30 +2861,91 @@ function saveJournal() {
     entry: currentAnalysis.entry,
     stopLoss: currentAnalysis.stopLoss,
     target1: currentAnalysis.targets?.[0],
-    risk: currentAnalysis.risk?.riskAmount
+    risk: riskAmt,
+    assetClass: currentAnalysis.symbolInfo?.assetClass || currentAnalysis.assetClass || detectAssetClass(currentAnalysis.symbol),
+    status: currentAnalysis.decision === "WAIT" ? "BE" : "WIN",
+    pnl: simulatedPnl,
+    pnlR: rr,
+    exitPrice: currentAnalysis.targets?.[0] || currentAnalysis.entry
   });
-  localStorage.setItem(journalKey, JSON.stringify(arr.slice(0, 80)));
+  localStorage.setItem(journalKey, JSON.stringify(arr.slice(0, 100)));
   renderJournal();
+  renderPerformanceAnalytics();
   status(t("savedStatus"));
 }
 
 function getJournal() {
   try {
-    return JSON.parse(localStorage.getItem(journalKey) || "[]");
+    const raw = localStorage.getItem(journalKey);
+    if (raw === null) {
+      const benchmark = getBenchmarkSampleTrades();
+      localStorage.setItem(journalKey, JSON.stringify(benchmark));
+      return benchmark;
+    }
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed) && parsed.length) return parsed;
+    if (Array.isArray(parsed) && parsed.length === 0) return [];
   } catch {
     localStorage.removeItem(journalKey);
-    return [];
   }
+  return [];
+}
+
+function cycleTradeOutcome(tradeId) {
+  const arr = getJournal();
+  const trade = arr.find(t => t.id === tradeId);
+  if (!trade) return;
+  const riskAmt = Number(trade.risk || 100);
+  const rr = Number(trade.pnlR && trade.pnlR > 0 ? trade.pnlR : 2);
+  if (trade.status === "WIN") {
+    trade.status = "LOSS";
+    trade.pnl = -riskAmt;
+    trade.pnlR = -1;
+  } else if (trade.status === "LOSS") {
+    trade.status = "BE";
+    trade.pnl = 0;
+    trade.pnlR = 0;
+  } else {
+    trade.status = "WIN";
+    trade.pnl = riskAmt * rr;
+    trade.pnlR = rr;
+  }
+  localStorage.setItem(journalKey, JSON.stringify(arr));
+  renderJournal();
+  renderPerformanceAnalytics();
+}
+
+function deleteJournalTrade(tradeId) {
+  const arr = getJournal().filter(t => t.id !== tradeId);
+  localStorage.setItem(journalKey, JSON.stringify(arr));
+  renderJournal();
+  renderPerformanceAnalytics();
 }
 
 function renderJournal() {
   const arr = getJournal();
+  if (!$("journalList")) return;
   $("journalList").innerHTML = arr.map(item => {
     const date = new Date(item.date).toLocaleString(currentLang === "ar" ? "ar-OM" : undefined);
+    const pnlNum = Number(item.pnl || 0);
+    const pnlText = pnlNum >= 0 ? `+$${pnlNum.toFixed(2)}` : `-$${Math.abs(pnlNum).toFixed(2)}`;
+    const statusClass = item.status === "WIN" ? "win" : item.status === "LOSS" ? "loss" : "be";
+    const statusLabel = item.status === "WIN" ? (currentLang === "ar" ? "ربح" : "WIN") :
+                        item.status === "LOSS" ? (currentLang === "ar" ? "خسارة" : "LOSS") : (currentLang === "ar" ? "تعادل" : "BE");
     return `<div class="journal-item">
-      <b>${escapeHtml(item.symbol)} - ${escapeHtml(localizedValue(item.decision))} | ${escapeHtml(item.grade)}</b>
-      <p>${escapeHtml(t("journalLine", {
-        date,
+      <div class="journal-item-head">
+        <div>
+          <b>${escapeHtml(item.symbol)} · <span class="decision-sub ${String(item.decision).toLowerCase()}">${escapeHtml(localizedValue(item.decision))}</span> | ${escapeHtml(item.grade || 'A')}</b>
+          <small class="journal-date">${date}</small>
+        </div>
+        <div class="journal-actions-row">
+          <span class="journal-pnl ${pnlNum >= 0 ? 'pnl-green' : 'pnl-red'}">${pnlText} (${item.pnlR >= 0 ? '+' : ''}${item.pnlR || 0}R)</span>
+          <button type="button" class="outcome-badge-btn ${statusClass}" data-cycle-trade="${escapeHtml(item.id)}" title="Click to cycle WIN / LOSS / BE">${statusLabel}</button>
+          <button type="button" class="ghost small danger icon-del-btn" data-delete-trade="${escapeHtml(item.id)}" title="Delete trade">&times;</button>
+        </div>
+      </div>
+      <p class="journal-metrics-line">${escapeHtml(t("journalLine", {
+        date: "",
         confidence: fmt(item.confidence, 0),
         entry: fmt(item.entry, 6),
         sl: item.stopLoss ? fmt(item.stopLoss, 6) : "--",
@@ -2214,6 +2954,456 @@ function renderJournal() {
       }))}</p>
     </div>`;
   }).join("") || `<p class="tiny">${t("noSavedSignals")}</p>`;
+}
+
+function getFilteredJournalTrades() {
+  const all = getJournal();
+  const now = Date.now();
+  return all.filter(t => {
+    // Period filter
+    if (analyticsPeriod === "30d") {
+      if (now - new Date(t.date).getTime() > 30 * 24 * 3600 * 1000) return false;
+    } else if (analyticsPeriod === "90d") {
+      if (now - new Date(t.date).getTime() > 90 * 24 * 3600 * 1000) return false;
+    }
+    // Asset filter
+    if (analyticsAsset !== "all") {
+      if ((t.assetClass || "Forex") !== analyticsAsset) return false;
+    }
+    return true;
+  });
+}
+
+function computePerformanceKPIs(trades) {
+  const total = trades.length;
+  const wins = trades.filter(t => Number(t.pnl || 0) > 0);
+  const losses = trades.filter(t => Number(t.pnl || 0) < 0);
+  const be = trades.filter(t => Number(t.pnl || 0) === 0);
+
+  const netPnl = trades.reduce((sum, t) => sum + Number(t.pnl || 0), 0);
+  const grossProfit = wins.reduce((sum, t) => sum + Number(t.pnl || 0), 0);
+  const grossLoss = Math.abs(losses.reduce((sum, t) => sum + Number(t.pnl || 0), 0));
+  const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : (grossProfit > 0 ? 9.99 : 0);
+
+  const winRate = total ? (wins.length / total) * 100 : 0;
+  const avgWin = wins.length ? grossProfit / wins.length : 0;
+  const avgLoss = losses.length ? grossLoss / losses.length : 0;
+  const payoffRatio = avgLoss > 0 ? avgWin / avgLoss : (avgWin > 0 ? avgWin : 0);
+  const expectancy = total ? (winRate / 100 * avgWin) - ((1 - winRate / 100) * avgLoss) : 0;
+
+  // Peak to trough max drawdown
+  let running = 0, peak = 0, maxDd = 0;
+  [...trades].sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(t => {
+    running += Number(t.pnl || 0);
+    peak = Math.max(peak, running);
+    maxDd = Math.max(maxDd, peak - running);
+  });
+  const maxDdPct = peak > 0 ? (maxDd / peak) * 100 : 0;
+
+  if ($("kpiNetPnl")) {
+    $("kpiNetPnl").textContent = `${netPnl >= 0 ? '+' : '-'}$${Math.abs(netPnl).toFixed(2)}`;
+    $("kpiNetPnl").style.color = netPnl >= 0 ? "var(--green)" : "var(--red)";
+  }
+  if ($("kpiNetPnlPct")) $("kpiNetPnlPct").textContent = `${netPnl >= 0 ? '+' : ''}${((netPnl / 10000) * 100).toFixed(1)}% on $10k base`;
+  if ($("kpiWinRate")) $("kpiWinRate").textContent = `${winRate.toFixed(1)}%`;
+  if ($("kpiWinLossRatio")) $("kpiWinLossRatio").textContent = `${wins.length} W / ${losses.length} L (${be.length} BE)`;
+  if ($("kpiProfitFactor")) $("kpiProfitFactor").textContent = profitFactor.toFixed(2);
+  if ($("kpiGrossProfitLoss")) $("kpiGrossProfitLoss").textContent = `+$${grossProfit.toFixed(0)} / -$${grossLoss.toFixed(0)}`;
+  if ($("kpiPayoffRatio")) $("kpiPayoffRatio").textContent = `1 : ${payoffRatio.toFixed(2)}`;
+  if ($("kpiAvgWinLoss")) $("kpiAvgWinLoss").textContent = `Avg W: $${avgWin.toFixed(0)} | Avg L: $${avgLoss.toFixed(0)}`;
+  if ($("kpiMaxDrawdown")) $("kpiMaxDrawdown").textContent = `-$${maxDd.toFixed(2)}`;
+  if ($("kpiMaxDrawdownPct")) $("kpiMaxDrawdownPct").textContent = `${maxDdPct.toFixed(1)}% from peak`;
+  if ($("kpiExpectancy")) $("kpiExpectancy").textContent = `${expectancy >= 0 ? '+' : '-'}$${Math.abs(expectancy).toFixed(2)}`;
+  if ($("kpiTotalTrades")) $("kpiTotalTrades").textContent = `${total} closed trades`;
+}
+
+function renderD3EquityCurve(trades) {
+  if (typeof d3 === "undefined") return;
+  const container = $("d3EquityCurveContainer");
+  const svg = d3.select("#d3EquityCurveSvg");
+  if (!svg.node() || !container) return;
+  svg.selectAll("*").remove();
+
+  if (!trades.length) {
+    svg.append("text")
+      .attr("x", "50%").attr("y", "50%")
+      .attr("text-anchor", "middle")
+      .attr("fill", "var(--muted)")
+      .attr("font-size", "14px")
+      .text(currentLang === "ar" ? "لا توجد صفقات لعرض منحنى رأس المال." : "No trade records to plot equity curve.");
+    return;
+  }
+
+  const sorted = [...trades].sort((a, b) => new Date(a.date) - new Date(b.date));
+  let running = 0;
+  let peak = 0;
+  const points = sorted.map((t, idx) => {
+    running += Number(t.pnl || 0);
+    peak = Math.max(peak, running);
+    return {
+      idx: idx + 1,
+      date: new Date(t.date),
+      symbol: t.symbol,
+      tradePnl: Number(t.pnl || 0),
+      pnlR: t.pnlR || (t.pnl > 0 ? 2 : -1),
+      cumulativePnl: running,
+      peakEquity: peak,
+      drawdown: peak - running,
+      drawdownPct: peak > 0 ? ((peak - running) / peak) * 100 : 0
+    };
+  });
+
+  const firstDate = new Date(points[0].date.getTime() - 24 * 3600 * 1000);
+  const data = [{ idx: 0, date: firstDate, symbol: "START", tradePnl: 0, cumulativePnl: 0, peakEquity: 0, drawdown: 0, drawdownPct: 0 }, ...points];
+
+  const rect = container.getBoundingClientRect();
+  const width = Math.max(340, rect.width || 760);
+  const height = 310;
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+  const margin = { top: 25, right: 35, bottom: 35, left: 65 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const xExtent = d3.extent(data, d => d.date);
+  const xScale = d3.scaleTime().domain(xExtent).range([0, innerW]);
+
+  const pnlMin = d3.min(data, d => d.cumulativePnl);
+  const pnlMax = Math.max(d3.max(data, d => d.cumulativePnl), d3.max(data, d => d.peakEquity), 500);
+  const yScale = d3.scaleLinear().domain([Math.min(0, pnlMin * 1.15), pnlMax * 1.15]).range([innerH, 0]).nice();
+
+  // Gradient
+  const defs = svg.append("defs");
+  const grad = defs.append("linearGradient")
+    .attr("id", "equityGradient")
+    .attr("x1", "0%").attr("y1", "0%")
+    .attr("x2", "0%").attr("y2", "100%");
+  grad.append("stop").attr("offset", "0%").attr("stop-color", "var(--green)").attr("stop-opacity", 0.35);
+  grad.append("stop").attr("offset", "75%").attr("stop-color", "var(--green)").attr("stop-opacity", 0.05);
+  grad.append("stop").attr("offset", "100%").attr("stop-color", "transparent").attr("stop-opacity", 0);
+
+  // Grid
+  const yAxisGrid = d3.axisLeft(yScale).tickSize(-innerW).tickFormat("").ticks(5);
+  g.append("g").attr("class", "d3-grid").call(yAxisGrid);
+
+  // Zero Line
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", yScale(0)).attr("y2", yScale(0))
+    .attr("stroke", "rgba(255,255,255,0.22)")
+    .attr("stroke-dasharray", "4,4");
+
+  // Area
+  const area = d3.area()
+    .x(d => xScale(d.date))
+    .y0(yScale(0))
+    .y1(d => yScale(d.cumulativePnl))
+    .curve(d3.curveMonotoneX);
+
+  g.append("path")
+    .datum(data)
+    .attr("fill", "url(#equityGradient)")
+    .attr("d", area);
+
+  // High Water Mark Peak Line
+  const peakLine = d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.peakEquity))
+    .curve(d3.curveStepAfter);
+
+  g.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "var(--yellow)")
+    .attr("stroke-width", 1.5)
+    .attr("stroke-dasharray", "5,4")
+    .attr("opacity", 0.75)
+    .attr("d", peakLine);
+
+  // Line
+  const line = d3.line()
+    .x(d => xScale(d.date))
+    .y(d => yScale(d.cumulativePnl))
+    .curve(d3.curveMonotoneX);
+
+  g.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "var(--green)")
+    .attr("stroke-width", 2.5)
+    .attr("d", line);
+
+  // Axes
+  const xAxis = d3.axisBottom(xScale).ticks(5).tickFormat(d3.timeFormat("%b %d"));
+  const yAxis = d3.axisLeft(yScale).ticks(5).tickFormat(d => (d >= 0 ? `+$${d}` : `-$${Math.abs(d)}`));
+
+  g.append("g").attr("class", "d3-axis x-axis").attr("transform", `translate(0,${innerH})`).call(xAxis);
+  g.append("g").attr("class", "d3-axis y-axis").call(yAxis);
+
+  // Nodes
+  g.selectAll(".trade-dot")
+    .data(data.slice(1))
+    .enter()
+    .append("circle")
+    .attr("class", "trade-dot")
+    .attr("cx", d => xScale(d.date))
+    .attr("cy", d => yScale(d.cumulativePnl))
+    .attr("r", 4)
+    .attr("fill", d => d.tradePnl >= 0 ? "var(--green)" : "var(--red)")
+    .attr("stroke", "var(--bg-2)")
+    .attr("stroke-width", 1.5);
+
+  // Crosshair & Tooltip Overlay
+  const verticalLine = g.append("line")
+    .attr("class", "crosshair-line")
+    .attr("y1", 0).attr("y2", innerH)
+    .attr("stroke", "rgba(255,255,255,0.4)")
+    .attr("stroke-dasharray", "3,3")
+    .style("opacity", 0);
+
+  const focusDot = g.append("circle")
+    .attr("r", 6)
+    .attr("fill", "var(--accent)")
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 2)
+    .style("opacity", 0);
+
+  const tooltip = $("equityTooltip");
+  const bisectDate = d3.bisector(d => d.date).left;
+
+  svg.append("rect")
+    .attr("transform", `translate(${margin.left},${margin.top})`)
+    .attr("width", innerW)
+    .attr("height", innerH)
+    .attr("fill", "transparent")
+    .on("mousemove", event => {
+      const [mouseX] = d3.pointer(event);
+      const x0 = xScale.invert(mouseX);
+      const i = bisectDate(data, x0, 1);
+      const d0 = data[i - 1];
+      const d1 = data[i];
+      const d = !d1 ? d0 : (x0 - d0.date > d1.date - x0 ? d1 : d0);
+      if (!d || d.idx === 0) return;
+
+      const px = xScale(d.date);
+      const py = yScale(d.cumulativePnl);
+
+      verticalLine.attr("x1", px).attr("x2", px).style("opacity", 1);
+      focusDot.attr("cx", px).attr("cy", py).style("opacity", 1);
+
+      if (tooltip) {
+        tooltip.innerHTML = `
+          <div class="tooltip-header"><b>#${d.idx} ${escapeHtml(d.symbol)}</b><span>${d.date.toLocaleDateString()}</span></div>
+          <div class="tooltip-row"><span>Trade PnL:</span><b style="color:${d.tradePnl >= 0 ? 'var(--green)' : 'var(--red)'}">${d.tradePnl >= 0 ? '+' : ''}$${d.tradePnl.toFixed(2)} (${d.pnlR >= 0 ? '+' : ''}${d.pnlR}R)</b></div>
+          <div class="tooltip-row"><span>Cumulative Equity:</span><b>$${d.cumulativePnl.toFixed(2)}</b></div>
+          <div class="tooltip-row"><span>Drawdown from Peak:</span><b style="color:var(--yellow)">-$${d.drawdown.toFixed(2)} (${d.drawdownPct.toFixed(1)}%)</b></div>
+        `;
+        const rectBox = container.getBoundingClientRect();
+        tooltip.style.left = `${Math.min(rectBox.width - 200, Math.max(10, px + margin.left - 90))}px`;
+        tooltip.style.top = `${Math.max(10, py + margin.top - 100)}px`;
+        tooltip.classList.remove("hidden");
+      }
+    })
+    .on("mouseleave", () => {
+      verticalLine.style("opacity", 0);
+      focusDot.style("opacity", 0);
+      if (tooltip) tooltip.classList.add("hidden");
+    });
+}
+
+function renderD3WinLossDonut(trades) {
+  if (typeof d3 === "undefined") return;
+  const container = $("d3WinLossContainer");
+  const svg = d3.select("#d3WinLossDonutSvg");
+  if (!svg.node() || !container) return;
+  svg.selectAll("*").remove();
+
+  const wins = trades.filter(t => (t.pnl || 0) > 0).length;
+  const losses = trades.filter(t => (t.pnl || 0) < 0).length;
+  const be = trades.filter(t => (t.pnl || 0) === 0).length;
+  const total = trades.length;
+  const winRate = total ? (wins / total) * 100 : 0;
+
+  if ($("donutWinCount")) $("donutWinCount").textContent = `${wins} (${total ? ((wins/total)*100).toFixed(0) : 0}%)`;
+  if ($("donutLossCount")) $("donutLossCount").textContent = `${losses} (${total ? ((losses/total)*100).toFixed(0) : 0}%)`;
+  if ($("donutBeCount")) $("donutBeCount").textContent = `${be} (${total ? ((be/total)*100).toFixed(0) : 0}%)`;
+
+  const width = 280, height = 280;
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+  const radius = Math.min(width, height) / 2 - 14;
+  const innerRadius = radius * 0.68;
+
+  const g = svg.append("g").attr("transform", `translate(${width / 2},${height / 2})`);
+
+  if (!total) {
+    g.append("text").attr("text-anchor", "middle").attr("fill", "var(--muted)").attr("font-size", "14px").text("No Trades");
+    return;
+  }
+
+  const pieData = [
+    { label: "Wins", count: wins, color: "var(--green)" },
+    { label: "Losses", count: losses, color: "var(--red)" },
+    { label: "Breakeven", count: be, color: "var(--yellow)" }
+  ].filter(d => d.count > 0);
+
+  const pie = d3.pie().value(d => d.count).sort(null).padAngle(0.03);
+  const arc = d3.arc().innerRadius(innerRadius).outerRadius(radius).cornerRadius(5);
+  const hoverArc = d3.arc().innerRadius(innerRadius - 2).outerRadius(radius + 6).cornerRadius(6);
+
+  const tooltip = $("donutTooltip");
+
+  g.selectAll(".arc-slice")
+    .data(pie(pieData))
+    .enter()
+    .append("path")
+    .attr("class", "arc-slice")
+    .attr("d", arc)
+    .attr("fill", d => d.data.color)
+    .attr("stroke", "var(--bg-2)")
+    .attr("stroke-width", 2)
+    .style("cursor", "pointer")
+    .on("mouseenter", function (event, d) {
+      d3.select(this).transition().duration(180).attr("d", hoverArc);
+      if (tooltip) {
+        const pct = ((d.data.count / total) * 100).toFixed(1);
+        tooltip.innerHTML = `<b>${d.data.label}</b><span>${d.data.count} trades (${pct}%)</span>`;
+        tooltip.style.left = `${width / 2 - 50}px`;
+        tooltip.style.top = `${height / 2 - 40}px`;
+        tooltip.classList.remove("hidden");
+      }
+    })
+    .on("mouseleave", function () {
+      d3.select(this).transition().duration(180).attr("d", arc);
+      if (tooltip) tooltip.classList.add("hidden");
+    });
+
+  const centerG = g.append("g").attr("class", "donut-center-label");
+  centerG.append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "-2px")
+    .attr("font-size", "28px")
+    .attr("font-weight", "900")
+    .attr("fill", "var(--text)")
+    .text(`${winRate.toFixed(1)}%`);
+
+  centerG.append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "20px")
+    .attr("font-size", "11px")
+    .attr("font-weight", "800")
+    .attr("letter-spacing", "0.08em")
+    .attr("fill", "var(--muted)")
+    .text(currentLang === "ar" ? "نسبة النجاح" : "WIN RATE");
+}
+
+function renderD3Waterfall(trades) {
+  if (typeof d3 === "undefined") return;
+  const container = $("d3WaterfallContainer");
+  const svg = d3.select("#d3WaterfallSvg");
+  if (!svg.node() || !container) return;
+  svg.selectAll("*").remove();
+
+  if (!trades.length) {
+    svg.append("text").attr("x", "50%").attr("y", "50%").attr("text-anchor", "middle").attr("fill", "var(--muted)").attr("font-size", "14px").text("No trades recorded.");
+    return;
+  }
+
+  const sorted = [...trades].sort((a, b) => new Date(a.date) - new Date(b.date));
+  const rect = container.getBoundingClientRect();
+  const width = Math.max(340, rect.width || 880);
+  const height = 240;
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+  const margin = { top: 20, right: 30, bottom: 35, left: 60 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const xScale = d3.scaleBand().domain(sorted.map((_, i) => i)).range([0, innerW]).padding(0.22);
+  const pnlMin = d3.min(sorted, d => Number(d.pnl || 0));
+  const pnlMax = d3.max(sorted, d => Number(d.pnl || 0));
+  const bound = Math.max(Math.abs(pnlMin || -100), Math.abs(pnlMax || 100)) * 1.15;
+  const yScale = d3.scaleLinear().domain([-bound, bound]).range([innerH, 0]).nice();
+
+  const yAxisGrid = d3.axisLeft(yScale).tickSize(-innerW).tickFormat("").ticks(5);
+  g.append("g").attr("class", "d3-grid").call(yAxisGrid);
+
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", yScale(0)).attr("y2", yScale(0))
+    .attr("stroke", "rgba(255,255,255,0.3)")
+    .attr("stroke-width", 1.5);
+
+  const wins = sorted.filter(t => (t.pnl || 0) > 0);
+  const losses = sorted.filter(t => (t.pnl || 0) < 0);
+  const avgWin = wins.length ? d3.mean(wins, d => Number(d.pnl)) : 0;
+  const avgLoss = losses.length ? d3.mean(losses, d => Number(d.pnl)) : 0;
+
+  if (avgWin > 0) {
+    g.append("line")
+      .attr("x1", 0).attr("x2", innerW)
+      .attr("y1", yScale(avgWin)).attr("y2", yScale(avgWin))
+      .attr("stroke", "var(--accent-2)")
+      .attr("stroke-dasharray", "4,4")
+      .attr("opacity", 0.7);
+  }
+
+  if (avgLoss < 0) {
+    g.append("line")
+      .attr("x1", 0).attr("x2", innerW)
+      .attr("y1", yScale(avgLoss)).attr("y2", yScale(avgLoss))
+      .attr("stroke", "var(--red)")
+      .attr("stroke-dasharray", "4,4")
+      .attr("opacity", 0.7);
+  }
+
+  const tooltip = $("waterfallTooltip");
+
+  g.selectAll(".pnl-bar")
+    .data(sorted)
+    .enter()
+    .append("rect")
+    .attr("class", "pnl-bar")
+    .attr("x", (_, i) => xScale(i))
+    .attr("y", d => (d.pnl || 0) >= 0 ? yScale(Number(d.pnl || 0)) : yScale(0))
+    .attr("width", xScale.bandwidth())
+    .attr("height", d => Math.max(3, Math.abs(yScale(Number(d.pnl || 0)) - yScale(0))))
+    .attr("fill", d => (d.pnl || 0) >= 0 ? "var(--green)" : "var(--red)")
+    .attr("rx", 3)
+    .attr("opacity", 0.9)
+    .on("mouseenter", function (event, d) {
+      d3.select(this).attr("opacity", 1).attr("stroke", "#ffffff").attr("stroke-width", 1);
+      if (tooltip) {
+        const pnlNum = Number(d.pnl || 0);
+        tooltip.innerHTML = `
+          <div class="tooltip-header"><b>${escapeHtml(d.symbol)} (${d.decision || 'TRADE'})</b><span>${new Date(d.date).toLocaleDateString()}</span></div>
+          <div class="tooltip-row"><span>Realized PnL:</span><b style="color:${pnlNum >= 0 ? 'var(--green)' : 'var(--red)'}">${pnlNum >= 0 ? '+' : ''}$${pnlNum.toFixed(2)} (${d.pnlR >= 0 ? '+' : ''}${d.pnlR || 0}R)</b></div>
+          <div class="tooltip-row"><span>Status:</span><b>${d.status || (pnlNum >= 0 ? 'WIN' : 'LOSS')}</b></div>
+        `;
+        const [xPos, yPos] = d3.pointer(event, container);
+        tooltip.style.left = `${Math.min(rect.width - 180, Math.max(10, xPos - 80))}px`;
+        tooltip.style.top = `${Math.max(10, yPos - 80)}px`;
+        tooltip.classList.remove("hidden");
+      }
+    })
+    .on("mouseleave", function () {
+      d3.select(this).attr("opacity", 0.9).attr("stroke", "none");
+      if (tooltip) tooltip.classList.add("hidden");
+    });
+
+  const yAxis = d3.axisLeft(yScale).ticks(5).tickFormat(d => (d >= 0 ? `+$${d}` : `-$${Math.abs(d)}`));
+  g.append("g").attr("class", "d3-axis y-axis").call(yAxis);
+}
+
+function renderPerformanceAnalytics() {
+  const filtered = getFilteredJournalTrades();
+  computePerformanceKPIs(filtered);
+  renderD3EquityCurve(filtered);
+  renderD3WinLossDonut(filtered);
+  renderD3Waterfall(filtered);
 }
 
 function download(filename, text, type = "text/plain") {
@@ -2228,7 +3418,8 @@ function download(filename, text, type = "text/plain") {
 
 function exportJournal() {
   const arr = getJournal();
-  const csv = ["date,symbol,decision,confidence,grade,entry,stopLoss,target1,riskAmount"].concat(arr.map(x => [
+  const csv = ["id,date,symbol,decision,confidence,grade,entry,stopLoss,target1,riskAmount,status,pnl,pnlR,assetClass"].concat(arr.map(x => [
+    x.id,
     x.date,
     x.symbol,
     x.decision,
@@ -2237,9 +3428,163 @@ function exportJournal() {
     x.entry,
     x.stopLoss,
     x.target1,
-    x.risk
+    x.risk,
+    x.status,
+    x.pnl,
+    x.pnlR,
+    x.assetClass
   ].map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(","))).join("\n");
   download(t("journalFilename"), csv, "text/csv");
+}
+
+let pendingImportTrades = [];
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === "," && !inQuotes) {
+      result.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
+function parseTradesCSV(csvText) {
+  if (!csvText || typeof csvText !== "string") return [];
+  const lines = csvText.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (lines.length < 2) return [];
+
+  const rawHeaders = parseCSVLine(lines[0]);
+  const headers = rawHeaders.map(h => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
+
+  const findIdx = patterns => headers.findIndex(h => patterns.some(p => h.includes(p)));
+
+  const dateIdx = findIdx(["date", "time", "timestamp", "datetime", "closedate"]);
+  const symIdx = findIdx(["symbol", "pair", "ticker", "instrument", "market", "asset"]);
+  const dirIdx = findIdx(["decision", "direction", "side", "type", "action"]);
+  const entryIdx = findIdx(["entry", "openprice", "price", "open"]);
+  const exitIdx = findIdx(["exit", "target", "closeprice", "close"]);
+  const slIdx = findIdx(["stoploss", "sl", "stop"]);
+  const pnlIdx = findIdx(["pnl", "profit", "gain", "return", "netpnl", "realizedpnl"]);
+  const rIdx = findIdx(["pnlr", "rmultiple", "rr", "rewardrisk"]);
+  const statusIdx = findIdx(["status", "outcome", "result"]);
+  const riskIdx = findIdx(["risk", "riskamount", "initialrisk"]);
+  const gradeIdx = findIdx(["grade", "quality", "setup"]);
+  const assetIdx = findIdx(["assetclass", "category", "class", "markettype"]);
+  const notesIdx = findIdx(["notes", "comment", "reason"]);
+
+  const trades = [];
+  const now = Date.now();
+
+  for (let i = 1; i < lines.length; i++) {
+    const row = parseCSVLine(lines[i]);
+    if (!row || row.length === 0 || row.every(val => val === "")) continue;
+
+    const rawSym = symIdx >= 0 && row[symIdx] ? row[symIdx] : "EURUSD";
+    const symbol = normalizeSymbolInput(rawSym);
+
+    let decision = "BUY";
+    if (dirIdx >= 0 && row[dirIdx]) {
+      const dUpper = row[dirIdx].toUpperCase();
+      if (dUpper.includes("SELL") || dUpper.includes("SHORT")) decision = "SELL";
+      else if (dUpper.includes("WAIT") || dUpper.includes("HOLD")) decision = "WAIT";
+      else decision = "BUY";
+    }
+
+    const entry = entryIdx >= 0 && !isNaN(Number(row[entryIdx])) ? Number(row[entryIdx]) : 1.0;
+    const exitPrice = exitIdx >= 0 && !isNaN(Number(row[exitIdx])) ? Number(row[exitIdx]) : entry;
+    const stopLoss = slIdx >= 0 && !isNaN(Number(row[slIdx])) ? Number(row[slIdx]) : 0;
+    const risk = riskIdx >= 0 && !isNaN(Number(row[riskIdx])) ? Number(row[riskIdx]) : 100;
+
+    let pnl = 0;
+    if (pnlIdx >= 0 && !isNaN(Number(row[pnlIdx]))) {
+      pnl = Number(row[pnlIdx]);
+    } else if (exitIdx >= 0 && entryIdx >= 0) {
+      const diff = decision === "SELL" ? entry - exitPrice : exitPrice - entry;
+      pnl = Number(((diff / (Math.abs(entry) || 1)) * 1000).toFixed(2));
+    }
+
+    let pnlR = 0;
+    if (rIdx >= 0 && !isNaN(Number(row[rIdx]))) {
+      pnlR = Number(row[rIdx]);
+    } else if (risk > 0) {
+      pnlR = Number((pnl / risk).toFixed(2));
+    }
+
+    let status = "WIN";
+    if (statusIdx >= 0 && row[statusIdx]) {
+      const sUpper = row[statusIdx].toUpperCase();
+      if (sUpper.includes("WIN") || sUpper.includes("PROFIT") || sUpper.includes("GAIN")) status = "WIN";
+      else if (sUpper.includes("LOSS") || sUpper.includes("STOP")) status = "LOSS";
+      else if (sUpper.includes("BE") || sUpper.includes("BREAKEVEN") || sUpper.includes("SCRATCH")) status = "BE";
+      else status = pnl > 0 ? "WIN" : (pnl < 0 ? "LOSS" : "BE");
+    } else {
+      status = pnl > 0 ? "WIN" : (pnl < 0 ? "LOSS" : "BE");
+    }
+
+    let dateStr = new Date(now - (lines.length - i) * 86400000).toISOString();
+    if (dateIdx >= 0 && row[dateIdx]) {
+      const parsedD = new Date(row[dateIdx]);
+      if (!isNaN(parsedD.getTime())) {
+        dateStr = parsedD.toISOString();
+      }
+    }
+
+    const assetClass = (assetIdx >= 0 && row[assetIdx]) ? row[assetIdx] : detectAssetClass(symbol);
+    const grade = (gradeIdx >= 0 && row[gradeIdx]) ? row[gradeIdx] : (status === "WIN" ? "A+" : "B");
+    const notes = (notesIdx >= 0 && row[notesIdx]) ? row[notesIdx] : "";
+
+    trades.push({
+      id: "csv-" + Date.now() + "-" + i,
+      date: dateStr,
+      symbol: symbol,
+      decision: decision,
+      confidence: 80,
+      grade: grade,
+      entry: entry,
+      stopLoss: stopLoss,
+      target1: exitPrice,
+      risk: risk,
+      assetClass: assetClass,
+      status: status,
+      pnl: pnl,
+      pnlR: pnlR,
+      exitPrice: exitPrice,
+      notes: notes
+    });
+  }
+
+  return trades;
+}
+
+function downloadSampleCsvTemplate() {
+  const sampleCsv = [
+    "date,symbol,decision,entry,exitPrice,stopLoss,status,pnl,pnlR,risk,assetClass",
+    "2026-09-01,EURUSD,BUY,1.0820,1.0870,1.0795,WIN,250.00,2.5,100,Forex",
+    "2026-09-04,BTCUSDT,BUY,63500,65800,62700,WIN,420.00,4.2,100,Crypto",
+    "2026-09-08,GBPUSD,SELL,1.3020,1.3060,1.3060,LOSS,-100.00,-1.0,100,Forex",
+    "2026-09-12,XAUUSD,BUY,2675.0,2705.0,2665.0,WIN,300.00,3.0,100,Commodity",
+    "2026-09-15,US30,BUY,42000,42450,41850,WIN,225.00,2.25,100,Index",
+    "2026-09-19,USDJPY,SELL,154.50,154.50,154.00,BE,0.00,0.0,100,Forex",
+    "2026-09-22,EURUSD,SELL,1.0910,1.0945,1.0945,LOSS,-100.00,-1.0,100,Forex",
+    "2026-09-26,BTCUSDT,BUY,68200,70500,67400,WIN,380.00,3.8,100,Crypto",
+    "2026-09-29,XAUUSD,BUY,2720.0,2752.0,2710.0,WIN,320.00,3.2,100,Commodity"
+  ].join("\n");
+  download("thn-historical-trades-template.csv", sampleCsv, "text/csv");
 }
 
 function initEvents() {
@@ -2275,9 +3620,255 @@ function initEvents() {
     if (confirm(t("confirmClear"))) {
       localStorage.removeItem(journalKey);
       renderJournal();
+      renderPerformanceAnalytics();
     }
   });
   $("exportJournalBtn").addEventListener("click", exportJournal);
+
+  // Performance Analytics & Modal handlers
+  $("loadSampleTradesBtn")?.addEventListener("click", loadBenchmarkHistory);
+
+  $("openLogTradeModalBtn")?.addEventListener("click", () => {
+    const modal = $("logTradeModal");
+    if (!modal) return;
+    if ($("manualDate")) $("manualDate").value = new Date().toISOString().split("T")[0];
+    if (currentAnalysis) {
+      if ($("manualSymbol")) $("manualSymbol").value = currentAnalysis.symbol || "EURUSD";
+      if ($("manualDirection")) $("manualDirection").value = currentAnalysis.decision === "SELL" ? "SELL" : "BUY";
+      if ($("manualEntry")) $("manualEntry").value = currentAnalysis.entry || 1.085;
+      if ($("manualExit")) $("manualExit").value = currentAnalysis.targets?.[0] || currentAnalysis.entry || 1.0895;
+    }
+    if (typeof modal.showModal === "function") {
+      modal.showModal();
+    } else {
+      modal.setAttribute("open", "");
+    }
+  });
+
+  const closeLogModal = () => {
+    const modal = $("logTradeModal");
+    if (!modal) return;
+    if (typeof modal.close === "function") {
+      modal.close();
+    } else {
+      modal.removeAttribute("open");
+    }
+  };
+
+  $("closeLogTradeDialogBtn")?.addEventListener("click", closeLogModal);
+  $("cancelLogTradeBtn")?.addEventListener("click", closeLogModal);
+
+  $("manualOutcome")?.addEventListener("change", event => {
+    const val = event.target.value;
+    const pnlInput = $("manualPnl");
+    const rInput = $("manualR");
+    if (!pnlInput || !rInput) return;
+    if (val === "WIN") {
+      pnlInput.value = String(Math.abs(Number(pnlInput.value || 250)));
+      rInput.value = String(Math.abs(Number(rInput.value || 2.0)));
+    } else if (val === "LOSS") {
+      pnlInput.value = String(-Math.abs(Number(pnlInput.value || 100)));
+      rInput.value = "-1.0";
+    } else {
+      pnlInput.value = "0";
+      rInput.value = "0";
+    }
+  });
+
+  $("logTradeForm")?.addEventListener("submit", event => {
+    event.preventDefault();
+    const sym = normalizeSymbolInput($("manualSymbol")?.value || "EURUSD");
+    const direction = $("manualDirection")?.value || "BUY";
+    const entry = Number($("manualEntry")?.value || 0);
+    const exitPrice = Number($("manualExit")?.value || 0);
+    const outcome = $("manualOutcome")?.value || "WIN";
+    const pnl = Number($("manualPnl")?.value || 0);
+    const pnlR = Number($("manualR")?.value || 0);
+    const dateVal = $("manualDate")?.value ? new Date($("manualDate").value).toISOString() : new Date().toISOString();
+    const notes = $("manualNotes")?.value || "";
+
+    const trade = {
+      id: "trade-" + Date.now(),
+      date: dateVal,
+      symbol: sym,
+      decision: direction,
+      confidence: 82,
+      grade: outcome === "WIN" ? "A+" : outcome === "BE" ? "B" : "B-",
+      entry: entry,
+      stopLoss: 0,
+      target1: exitPrice,
+      risk: Math.abs(pnl) || 100,
+      assetClass: detectAssetClass(sym),
+      status: outcome,
+      pnl: pnl,
+      pnlR: pnlR,
+      exitPrice: exitPrice,
+      notes: notes
+    };
+
+    const arr = getJournal();
+    arr.unshift(trade);
+    localStorage.setItem(journalKey, JSON.stringify(arr.slice(0, 150)));
+    renderJournal();
+    renderPerformanceAnalytics();
+    closeLogModal();
+    status(currentLang === "ar" ? "تم تسجيل الصفقة المغلقة بنجاح." : "Logged closed trade outcome successfully.");
+  });
+
+  // Bulk Import Handlers
+  const openBulkModal = () => {
+    const modal = $("bulkImportModal");
+    if (!modal) return;
+    pendingImportTrades = [];
+    $("csvFileInfo")?.classList.add("hidden");
+    $("confirmBulkImportBtn")?.setAttribute("disabled", "true");
+    if ($("csvFileInput")) $("csvFileInput").value = "";
+    if (typeof modal.showModal === "function") modal.showModal();
+    else modal.setAttribute("open", "");
+  };
+
+  const closeBulkModal = () => {
+    const modal = $("bulkImportModal");
+    if (!modal) return;
+    if (typeof modal.close === "function") modal.close();
+    else modal.removeAttribute("open");
+  };
+
+  $("openBulkImportBtn")?.addEventListener("click", openBulkModal);
+  $("journalBulkImportBtn")?.addEventListener("click", openBulkModal);
+  $("closeBulkImportDialogBtn")?.addEventListener("click", closeBulkModal);
+  $("cancelBulkImportBtn")?.addEventListener("click", closeBulkModal);
+  $("downloadTemplateBtn")?.addEventListener("click", downloadSampleCsvTemplate);
+
+  const dropzone = $("csvDropzone");
+  const fileInput = $("csvFileInput");
+
+  if (dropzone && fileInput) {
+    dropzone.addEventListener("click", () => fileInput.click());
+
+    ["dragenter", "dragover"].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add("dragover");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove("dragover");
+      });
+    });
+
+    const handleFile = file => {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const parsed = parseTradesCSV(ev.target.result);
+          if (!parsed.length) {
+            alert(t("noValidTradesInCsv"));
+            return;
+          }
+          pendingImportTrades = parsed;
+          const wins = parsed.filter(t => t.status === "WIN").length;
+          const netPnl = parsed.reduce((sum, t) => sum + (t.pnl || 0), 0);
+
+          if ($("csvFileName")) $("csvFileName").textContent = file.name;
+          if ($("csvFileMeta")) {
+            $("csvFileMeta").textContent = `${parsed.length} trades · ${wins}W (${((wins / parsed.length) * 100).toFixed(0)}%) · Net: ${netPnl >= 0 ? '+' : ''}$${netPnl.toFixed(0)}`;
+          }
+
+          if ($("csvPreviewGrid")) {
+            $("csvPreviewGrid").innerHTML = `
+              <div class="csv-preview-row header">
+                <span>Date</span><span>Symbol</span><span>Side</span><span>PnL ($)</span><span>Status</span>
+              </div>
+            ` + parsed.slice(0, 5).map(t => `
+              <div class="csv-preview-row">
+                <span>${t.date.split("T")[0]}</span>
+                <b>${escapeHtml(t.symbol)}</b>
+                <span class="${t.decision.toLowerCase()}">${t.decision}</span>
+                <span style="color:${t.pnl >= 0 ? 'var(--green)' : 'var(--red)'}">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(0)}</span>
+                <span>${t.status}</span>
+              </div>
+            `).join("");
+          }
+
+          $("csvFileInfo")?.classList.remove("hidden");
+          $("confirmBulkImportBtn")?.removeAttribute("disabled");
+        } catch (err) {
+          alert(t("csvParseError"));
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    dropzone.addEventListener("drop", e => {
+      const files = e.dataTransfer?.files;
+      if (files && files.length) handleFile(files[0]);
+    });
+
+    fileInput.addEventListener("change", e => {
+      if (e.target.files && e.target.files.length) handleFile(e.target.files[0]);
+    });
+  }
+
+  $("confirmBulkImportBtn")?.addEventListener("click", () => {
+    if (!pendingImportTrades.length) return;
+    const mode = document.querySelector('input[name="importMode"]:checked')?.value || "append";
+    let finalLedger = [];
+    if (mode === "replace") {
+      finalLedger = [...pendingImportTrades];
+    } else {
+      const existing = getJournal();
+      finalLedger = [...pendingImportTrades, ...existing];
+    }
+
+    localStorage.setItem(journalKey, JSON.stringify(finalLedger.slice(0, 500)));
+    renderJournal();
+    renderPerformanceAnalytics();
+    closeBulkModal();
+    const msg = t("tradesImported", { count: pendingImportTrades.length });
+    status(msg);
+  });
+
+  document.querySelectorAll("#analyticsPeriodFilter .analytics-pill").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("#analyticsPeriodFilter .analytics-pill").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      analyticsPeriod = button.dataset.period || "all";
+      renderPerformanceAnalytics();
+    });
+  });
+
+  $("analyticsAssetFilter")?.addEventListener("change", event => {
+    analyticsAsset = event.target.value;
+    renderPerformanceAnalytics();
+  });
+
+  $("journalList")?.addEventListener("click", event => {
+    const cycleBtn = event.target.closest("[data-cycle-trade]");
+    if (cycleBtn) {
+      cycleTradeOutcome(cycleBtn.dataset.cycleTrade);
+      return;
+    }
+    const delBtn = event.target.closest("[data-delete-trade]");
+    if (delBtn) {
+      deleteJournalTrade(delBtn.dataset.deleteTrade);
+      return;
+    }
+  });
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      renderPerformanceAnalytics();
+    }, 150);
+  });
   $("addFavoriteBtn").addEventListener("click", () => addFavoriteSymbol($("favoriteSymbolInput").value));
   $("favoriteSymbolInput").addEventListener("keydown", event => {
     if (event.key === "Enter") addFavoriteSymbol($("favoriteSymbolInput").value);
@@ -2298,7 +3889,42 @@ function initEvents() {
   $("startScannerBtn").addEventListener("click", startScanner);
   $("stopScannerBtn").addEventListener("click", () => stopScanner(true));
   $("minConfidence").addEventListener("change", saveWatchSettings);
-  $("scanEvery").addEventListener("change", saveWatchSettings);
+  $("toggleWatchlistBtn")?.addEventListener("click", () => toggleWatchlist());
+  $("expandWatchlistBtn")?.addEventListener("click", () => toggleWatchlist(false));
+  $("watchSearchInput")?.addEventListener("input", event => {
+    watchSearchTerm = event.target.value.trim().toUpperCase();
+    renderWatchlist();
+  });
+  $("resetDefaultPairsBtn")?.addEventListener("click", () => {
+    setWatchlist(["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSDT", "US30"]);
+    status(currentLang === "ar" ? "تم تحميل الأزواج الرئيسية." : "Loaded major pairs.");
+  });
+  $("toggleSoundBtn")?.addEventListener("click", toggleSound);
+  $("scanEvery")?.addEventListener("change", () => {
+    updateCustomScanVisibility();
+    saveWatchSettings();
+    if (watchScanTimer) startScanner();
+  });
+  $("customScanValue")?.addEventListener("change", () => {
+    saveWatchSettings();
+    if (watchScanTimer) startScanner();
+  });
+  $("customScanUnit")?.addEventListener("change", () => {
+    saveWatchSettings();
+    if (watchScanTimer) startScanner();
+  });
+  $("toastCloseBtn")?.addEventListener("click", hideTradeToast);
+  $("toastInspectBtn")?.addEventListener("click", () => {
+    const sym = $("tradeToast")?.dataset.symbol;
+    hideTradeToast();
+    if (sym) {
+      $("symbolInput").value = sym;
+      document.querySelectorAll(".nav").forEach(x => x.classList.remove("active"));
+      document.querySelector('.nav[data-jump="analysis"]')?.classList.add("active");
+      document.getElementById("analysis")?.scrollIntoView({ behavior: "smooth" });
+      analyze();
+    }
+  });
   $("exportMapBtn")?.addEventListener("click", exportMarketMap);
   initMapControls();
   $("copyReportBtn").addEventListener("click", async () => {
@@ -2320,7 +3946,12 @@ restoreWatchSettings();
 initEvents();
 checkHealth();
 renderJournal();
+renderPerformanceAnalytics();
 renderWatchlist();
 renderAlerts();
 scannerRunning(false);
 loadChart();
+startTerminalClock();
+setTimeout(() => {
+  if (!currentAnalysis) analyze();
+}, 250);

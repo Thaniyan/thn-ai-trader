@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "build": "node --check server.js && node --check public/app.js",
     "check": "node --check server.js && node --check public/app.js"
   },
   "dependencies": {}
