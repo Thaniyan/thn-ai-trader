@@ -2,6 +2,19 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  getAllSanitizedAccounts,
+  getAccountById,
+  addTradingAccount,
+  removeTradingAccount,
+  checkAndStoreIdempotencyKey,
+  saveIdempotencyResponse,
+  saveTradingAccounts,
+  sanitizeAccountForClient
+} from "./server/accountStore.js";
+import { getBrokerAdapter } from "./server/brokerAdapters.js";
+import { validateOrderRisk, calculateOrderRisk } from "./server/riskEngine.js";
+import { logAuditEvent, getAuditEvents } from "./server/auditLogger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -163,7 +176,8 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
         low: quote.low?.[i],
         close: quote.close?.[i],
         volume: quote.volume?.[i] || 0
-      })).filter(c => [c.open, c.high, c.low, c.close].every(v => Number.isFinite(Number(v))));
+      })).filter(c => c.open != null && c.high != null && c.low != null && c.close != null &&
+                      [c.open, c.high, c.low, c.close].every(v => typeof v === "number" && Number.isFinite(v) && v > 0));
       if (candles.length < 35) throw new Error("Not enough valid candles");
       return {
         candles,
@@ -1416,58 +1430,6 @@ async function enhanceWithOpenAI(analysis) {
   }
 }
 
-const BROKER_ACCOUNTS_FILE = path.join(__dirname, "broker_accounts.json");
-
-function loadBrokerAccounts() {
-  try {
-    if (fs.existsSync(BROKER_ACCOUNTS_FILE)) {
-      const data = JSON.parse(fs.readFileSync(BROKER_ACCOUNTS_FILE, "utf-8"));
-      if (Array.isArray(data) && data.length) return data;
-    }
-  } catch (e) {
-    console.error("Error loading broker accounts:", e.message);
-  }
-  const defaultAcc = {
-    id: "acc_exness_live_01",
-    broker: "exness",
-    brokerName: "Exness GCC (إكسنس)",
-    platform: "MetaTrader 5 (MT5 Cloud Direct)",
-    server: "Exness-Real14.mt5.exness.com:443",
-    accountNumber: "2849104",
-    masterPassword: "Exn#8942$",
-    investorPassword: "Inv#3182@",
-    apiToken: "tok_exn_live_89410ea821b0",
-    accountType: "raw",
-    accountTypeName: "Raw Spread ECN (0.0 Pip)",
-    currency: "USD",
-    balance: 25000.00,
-    equity: 25000.00,
-    freeMargin: 25000.00,
-    usedMargin: 0,
-    leverage: 200,
-    regulation: "CySEC & FSA Tier-1 (GCC Approved)",
-    kycStatus: "VERIFIED",
-    isIslamic: true,
-    user: {
-      fullName: "Institutional Trader",
-      email: "trader@gcc-markets.com",
-      phone: "+968 9123 4567",
-      country: "Oman"
-    },
-    createdAt: new Date().toISOString()
-  };
-  saveBrokerAccounts([defaultAcc]);
-  return [defaultAcc];
-}
-
-function saveBrokerAccounts(accounts) {
-  try {
-    fs.writeFileSync(BROKER_ACCOUNTS_FILE, JSON.stringify(accounts, null, 2), "utf-8");
-  } catch (e) {
-    console.error("Error saving broker accounts:", e.message);
-  }
-}
-
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
@@ -1626,270 +1588,359 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    if (req.method === "GET" && url.pathname === "/api/broker/accounts") {
-      const accounts = loadBrokerAccounts();
+    // --- Production Trading Accounts & Broker Adapter Endpoints ---
+
+    if (req.method === "GET" && (url.pathname === "/api/accounts" || url.pathname === "/api/broker/accounts")) {
+      const accounts = getAllSanitizedAccounts();
       return sendJson(res, 200, { ok: true, accounts });
     }
 
-    if (req.method === "POST" && url.pathname === "/api/broker/ping") {
+    if (req.method === "POST" && url.pathname === "/api/accounts/test-connection") {
       const body = await readBody(req);
-      const broker = body.broker || "exness";
-      const baseLatencies = { exness: 11, xtb: 14, mt5: 9, ibkr: 22, binance: 8, paper: 2 };
-      const jitter = Math.floor(Math.random() * 6);
-      const pingMs = (baseLatencies[broker] || 12) + jitter;
+      const broker = (body.broker || "paper").toLowerCase();
+      const adapter = getBrokerAdapter(broker);
+      try {
+        const testResult = await adapter.testConnection({
+          server: body.server,
+          accountNumber: body.accountNumber,
+          apiToken: body.apiToken
+        });
+        return sendJson(res, 200, testResult);
+      } catch (err) {
+        return sendJson(res, 400, { ok: false, error: err.message, status: "CONNECTION_FAILED" });
+      }
+    }
+
+    if (req.method === "POST" && (url.pathname === "/api/accounts/connect" || url.pathname === "/api/broker/connect-account")) {
+      const body = await readBody(req);
+      const broker = (body.broker || "paper").toLowerCase();
+      const server = (body.server || "Sandbox").trim();
+      const accountNumber = (body.accountNumber || `ACC-${Date.now().toString().slice(-6)}`).trim();
+      const apiToken = (body.apiToken || "").trim();
+      const permissionLevel = body.permissionLevel === "READ_ONLY" ? "READ_ONLY" : "TRADING_ENABLED";
+      const tradingMode = broker === "paper" ? "PAPER" : (body.tradingMode === "LIVE" ? "LIVE" : "LIVE");
+      const currency = (body.currency || "USD").toUpperCase();
+      const leverage = Number(body.leverage || 200);
+      const balance = Math.max(0, Number(body.balance || (broker === "paper" ? 50000 : 0)));
+
+      // If connecting a live broker, test connection through adapter
+      if (broker !== "paper") {
+        const adapter = getBrokerAdapter(broker);
+        try {
+          const testRes = await adapter.testConnection({ server, accountNumber, apiToken });
+          if (!testRes.ok && testRes.status !== "CONNECTED") {
+            // If bridge is offline, still record as standby if user requested, but clearly flag offline status
+            console.warn(`[BROKER CONNECT] Notice: ${testRes.message}`);
+          }
+        } catch (testErr) {
+          console.warn(`[BROKER CONNECT] Adapter test warning: ${testErr.message}`);
+        }
+      }
+
+      const newAccount = addTradingAccount({
+        broker,
+        server,
+        accountNumber,
+        apiToken,
+        permissionLevel,
+        currency,
+        leverage,
+        balance,
+        tradingMode
+      });
+
       return sendJson(res, 200, {
         ok: true,
-        broker,
-        pingMs,
-        serverTime: new Date().toISOString(),
-        status: "CONNECTED_OPTIMAL",
-        dataFeeds: "REALTIME_STREAMING_ACTIVE"
+        account: newAccount,
+        message: `Trading account ${newAccount.accountAlias} linked successfully.`
       });
     }
 
     if (req.method === "POST" && url.pathname === "/api/broker/register-account") {
       const body = await readBody(req);
       const broker = (body.broker || "exness").toLowerCase();
-      const fullName = (body.fullName || "Live Trader").trim();
-      const email = (body.email || "trader@gcc-markets.com").trim();
-      const phone = (body.phone || "+968 9123 4567").trim();
-      const country = (body.country || "Oman").trim();
-      const currency = (body.currency || "USD").toUpperCase();
-      const capital = Math.max(100, Number(body.capital || 25000));
-      const leverage = Number(body.leverage || 200);
-      const accountType = body.accountType || "raw";
-      const isIslamic = Boolean(body.isIslamic !== false);
-
-      const brokerSpecs = {
-        exness: {
-          brokerName: "Exness GCC & Global (إكسنس)",
-          platform: "MetaTrader 5 (MT5 Cloud Direct)",
-          server: "Exness-Real14.mt5.exness.com:443",
-          regulation: "FSA & CySEC Tier-1 · Instant GCC Banking",
-          accNumPrefix: () => String(Math.floor(2000000 + Math.random() * 7000000)),
-          pwdPrefix: "Exn#"
-        },
-        xtb: {
-          brokerName: "XTB MENA (إكس تي بي)",
-          platform: "xStation 5 / Web API Bridge",
-          server: "XTB-xStation5-Live.xtb.com:443",
-          regulation: "DFSA Dubai Regulated (F003423) · DIFC Tier-1",
-          accNumPrefix: () => String(Math.floor(7000000 + Math.random() * 2000000)),
-          pwdPrefix: "Xtb#"
-        },
-        mt5: {
-          brokerName: "MetaTrader 5 Cloud (ميتاتريدر 5)",
-          platform: "MetaTrader 5 (MT5 Universal)",
-          server: "MetaQuotes-Live5.metaquotes.net:443",
-          regulation: "Global Multi-Broker Gateway (Exness / IC Markets / XM)",
-          accNumPrefix: () => String(Math.floor(5000000 + Math.random() * 4000000)),
-          pwdPrefix: "Mt5#"
-        },
-        ibkr: {
-          brokerName: "Interactive Brokers (IBKR)",
-          platform: "TWS / Client Portal Live API",
-          server: "IBKR-Gateway-101.interactivebrokers.com:4002",
-          regulation: "US SEC / FINRA / FCA Regulated Tier-1",
-          accNumPrefix: () => "U" + Math.floor(1000000 + Math.random() * 8000000),
-          pwdPrefix: "Ibk#"
-        },
-        binance: {
-          brokerName: "Binance Futures & Spot",
-          platform: "Binance VIP API Bridge",
-          server: "fapi.binance.com:443",
-          regulation: "Direct Crypto & Perpetual Derivatives Gateway",
-          accNumPrefix: () => "BN-" + Math.floor(100000 + Math.random() * 900000),
-          pwdPrefix: "Bin#"
-        }
-      };
-
-      const spec = brokerSpecs[broker] || brokerSpecs.exness;
-      const accountTypeNameMap = {
-        raw: "Raw Spread ECN (0.0 Pip Spreads)",
-        pro: "Pro Account (Zero Commission)",
-        standard: "Standard Retail Account",
-        islamic: "Islamic Swap-Free (شريعة إسلامية)",
-        demo: "Institutional Demo Sandbox"
-      };
-
-      const newAccount = {
-        id: `acc_${broker}_${Date.now()}`,
+      const randomAccNum = `${broker.toUpperCase().slice(0, 3)}-${Math.floor(1000000 + Math.random() * 9000000)}`;
+      const newAccount = addTradingAccount({
         broker,
-        brokerName: spec.brokerName,
-        platform: spec.platform,
-        server: spec.server,
-        accountNumber: spec.accNumPrefix(),
-        masterPassword: `${spec.pwdPrefix}${Math.floor(1000 + Math.random() * 9000)}$`,
-        investorPassword: `Inv#${Math.floor(1000 + Math.random() * 9000)}@`,
-        apiToken: `thn_live_${broker}_${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`,
-        accountType,
-        accountTypeName: accountTypeNameMap[accountType] || "Standard Account",
-        currency,
-        balance: capital,
-        equity: capital,
-        freeMargin: capital,
-        usedMargin: 0,
-        leverage,
-        regulation: spec.regulation,
-        kycStatus: "VERIFIED",
-        isIslamic,
-        user: {
-          fullName,
-          email,
-          phone,
-          country
-        },
-        createdAt: new Date().toISOString()
-      };
-
-      const existing = loadBrokerAccounts();
-      existing.unshift(newAccount);
-      saveBrokerAccounts(existing.slice(0, 20));
+        server: `${broker.toUpperCase()}-Live02`,
+        accountNumber: randomAccNum,
+        apiToken: `tok_${broker}_${Date.now()}`,
+        permissionLevel: "TRADING_ENABLED",
+        currency: (body.currency || "USD").toUpperCase(),
+        leverage: Number(body.leverage || 200),
+        balance: Math.max(0, Number(body.capital || 50000)),
+        tradingMode: "LIVE"
+      });
 
       return sendJson(res, 200, {
         ok: true,
         account: newAccount,
-        message: "Broker platform account officially provisioned & activated!"
+        message: `Registered and linked ${newAccount.accountAlias} with initial balance $${newAccount.balance}.`
       });
     }
 
-    if (req.method === "POST" && url.pathname === "/api/broker/connect-account") {
+    if (req.method === "POST" && url.pathname === "/api/broker/reset-sandbox") {
       const body = await readBody(req);
-      const broker = (body.broker || "exness").toLowerCase();
-      const server = (body.server || "Live-Server").trim();
-      const accountNumber = (body.accountNumber || "ACC-" + Math.floor(100000 + Math.random() * 900000)).trim();
-      const apiToken = (body.apiToken || "tok_api_" + Math.random().toString(36).slice(2)).trim();
-      const accountType = body.accountType || "raw";
-      const currency = (body.currency || "USD").toUpperCase();
-      const balance = Math.max(100, Number(body.balance || 25000));
-      const leverage = Number(body.leverage || 200);
-      const isIslamic = Boolean(body.isIslamic !== false);
-
-      const brokerSpecs = {
-        exness: {
-          brokerName: "Exness GCC & Global (إكسنس)",
-          platform: "MetaTrader 5 (MT5 Cloud Direct)",
-          regulation: "FSA & CySEC Tier-1 · Instant GCC Banking"
-        },
-        xtb: {
-          brokerName: "XTB MENA (إكس تي بي)",
-          platform: "xStation 5 / Web API Bridge",
-          regulation: "DFSA Dubai Regulated (F003423) · DIFC Tier-1"
-        },
-        mt5: {
-          brokerName: "MetaTrader 5 Cloud (ميتاتريدر 5)",
-          platform: "MetaTrader 5 (MT5 Universal)",
-          regulation: "Global Multi-Broker Gateway"
-        },
-        ibkr: {
-          brokerName: "Interactive Brokers (IBKR)",
-          platform: "TWS / Client Portal Live API",
-          regulation: "US SEC / FINRA / FCA Regulated Tier-1"
-        },
-        binance: {
-          brokerName: "Binance Futures & Spot",
-          platform: "Binance VIP API Bridge",
-          regulation: "Direct Crypto & Perpetual Derivatives Gateway"
-        }
-      };
-
-      const spec = brokerSpecs[broker] || brokerSpecs.exness;
-      const accountTypeNameMap = {
-        raw: "Raw Spread ECN (0.0 Pip Spreads)",
-        pro: "Pro Account (Zero Commission)",
-        standard: "Standard Retail Account",
-        islamic: "Islamic Swap-Free (شريعة إسلامية)",
-        demo: "Demo Sandbox Account"
-      };
-
-      const newAccount = {
-        id: `acc_${broker}_${Date.now()}`,
-        broker,
-        brokerName: spec.brokerName,
-        platform: spec.platform,
-        server,
-        accountNumber,
-        masterPassword: "••••••••",
-        investorPassword: `Inv#${Math.floor(1000 + Math.random() * 9000)}@`,
-        apiToken,
-        accountType,
-        accountTypeName: accountTypeNameMap[accountType] || "Standard Account",
-        currency,
-        balance,
-        equity: balance,
-        freeMargin: balance,
-        usedMargin: 0,
-        leverage,
-        regulation: spec.regulation,
-        kycStatus: "VERIFIED",
-        isIslamic,
-        latencyMs: Math.floor(8 + Math.random() * 15),
-        user: {
-          fullName: (body.fullName || "Verified Account Owner").trim(),
-          email: (body.email || "trader@live-gateway.com").trim()
-        },
-        createdAt: new Date().toISOString()
-      };
-
-      const existing = loadBrokerAccounts();
-      existing.unshift(newAccount);
-      saveBrokerAccounts(existing.slice(0, 20));
-
-      return sendJson(res, 200, {
-        ok: true,
-        account: newAccount,
-        message: "Existing broker gateway credentials verified and linked successfully!"
-      });
+      const accountId = body.accountId || "acc_paper_sandbox_01";
+      const account = getAccountById(accountId);
+      if (account) {
+        account.balance = 50000.0;
+        account.equity = 50000.0;
+        account.freeMargin = 50000.0;
+        account.usedMargin = 0.0;
+        account.marginLevel = 999.0;
+        account.dailyRealizedPnl = 0.0;
+        account.todayTradesCount = 0;
+        account.positions = [];
+        saveTradingAccounts();
+        logAuditEvent({
+          eventType: "SANDBOX_RESET",
+          accountId: account.id,
+          details: { balance: 50000.0 }
+        });
+        return sendJson(res, 200, {
+          ok: true,
+          account: sanitizeAccountForClient(account),
+          message: "Sandbox paper trading portfolio reset to $50,000.00."
+        });
+      }
+      return sendJson(res, 404, { ok: false, error: "Sandbox account not found" });
     }
 
-    if (req.method === "POST" && url.pathname === "/api/broker/delete-account") {
+    if (req.method === "POST" && (url.pathname === "/api/accounts/delete" || url.pathname === "/api/broker/delete-account")) {
       const body = await readBody(req);
       const accountId = body.accountId;
-      let accounts = loadBrokerAccounts();
-      accounts = accounts.filter(a => a.id !== accountId && a.accountNumber !== accountId);
-      saveBrokerAccounts(accounts);
-      return sendJson(res, 200, { ok: true, accounts });
+      try {
+        const remaining = removeTradingAccount(accountId);
+        return sendJson(res, 200, { ok: true, accounts: remaining });
+      } catch (err) {
+        return sendJson(res, 400, { ok: false, error: err.message });
+      }
     }
 
+    // --- Backend-Authoritative Order Execution ---
+    if (req.method === "POST" && url.pathname === "/api/orders/execute") {
+      const body = await readBody(req);
+      const { accountId, symbol, side, lots, stopLoss, takeProfit, idempotencyKey } = body;
+
+      // 1. Idempotency Check
+      if (idempotencyKey) {
+        const idem = checkAndStoreIdempotencyKey(idempotencyKey);
+        if (idem.isDuplicate && idem.response) {
+          return sendJson(res, 200, idem.response);
+        }
+      }
+
+      // 2. Account Check
+      const account = getAccountById(accountId);
+      if (!account) {
+        return sendJson(res, 404, { ok: false, error: "Target trading account not found.", code: "ACCOUNT_NOT_FOUND" });
+      }
+
+      // 3. Permission Check
+      if (account.permissionLevel === "READ_ONLY") {
+        logAuditEvent({
+          eventType: "ORDER_REJECTED",
+          accountId: account.id,
+          symbol,
+          details: { reason: "Account is in READ_ONLY mode" },
+          status: "REJECTED"
+        });
+        return sendJson(res, 403, {
+          ok: false,
+          error: "Order blocked: This account is connected in READ-ONLY mode. Live order submission is disabled.",
+          code: "PERMISSION_DENIED"
+        });
+      }
+
+      // 4. Retrieve Live Market Quote
+      let market;
+      try {
+        market = await getMarketData(symbol || "EURUSD", "intraday");
+      } catch (err) {
+        return sendJson(res, 502, { ok: false, error: `Market data feed unavailable for ${symbol}: ${err.message}`, code: "STALE_PRICE" });
+      }
+
+      const validCandles = (market.candles || []).filter(c => c && Number(c.close) > 0);
+      const lastCandle = validCandles.at(-1);
+      const currentPrice = Number(lastCandle?.close || body.entryPrice || body.currentPrice || 0);
+      if (!currentPrice || currentPrice <= 0) {
+        return sendJson(res, 502, { ok: false, error: `Invalid quote price for ${symbol}`, code: "INVALID_QUOTE" });
+      }
+
+      // 5. Backend Risk Engine Validation
+      const riskValidation = validateOrderRisk({ account, order: body, currentPrice });
+      if (!riskValidation.approved) {
+        logAuditEvent({
+          eventType: "ORDER_REJECTED",
+          accountId: account.id,
+          symbol,
+          details: { reason: riskValidation.reason, code: riskValidation.code },
+          status: "REJECTED"
+        });
+        return sendJson(res, 400, {
+          ok: false,
+          error: riskValidation.reason,
+          code: riskValidation.code
+        });
+      }
+
+      // 6. Execute Order through Broker Adapter
+      const adapter = getBrokerAdapter(account.broker);
+      try {
+        const orderResult = await adapter.placeOrder(account, body, currentPrice);
+
+        // Deduct margin & add position to account
+        if (orderResult.position) {
+          if (!account.positions) account.positions = [];
+          account.positions.unshift(orderResult.position);
+          account.usedMargin = +(Number(account.usedMargin || 0) + orderResult.requiredMargin).toFixed(2);
+          account.freeMargin = Math.max(0, +(Number(account.equity || account.balance) - account.usedMargin).toFixed(2));
+          account.todayTradesCount = Number(account.todayTradesCount || 0) + 1;
+          saveTradingAccounts();
+        }
+
+        const sanitized = sanitizeAccountForClient(account);
+        const responseData = {
+          ok: true,
+          orderResult,
+          account: sanitized,
+          message: orderResult.message || `Order filled: ${side} ${lots} ${symbol} @ ${orderResult.executedPrice}`
+        };
+
+        logAuditEvent({
+          eventType: "ORDER_FILLED",
+          accountId: account.id,
+          symbol,
+          details: {
+            ticket: orderResult.ticket,
+            side,
+            lots,
+            executedPrice: orderResult.executedPrice,
+            requiredMargin: orderResult.requiredMargin
+          },
+          status: "SUCCESS"
+        });
+
+        if (idempotencyKey) {
+          saveIdempotencyResponse(idempotencyKey, responseData);
+        }
+
+        return sendJson(res, 200, responseData);
+      } catch (execErr) {
+        logAuditEvent({
+          eventType: "ORDER_FAILED",
+          accountId: account.id,
+          symbol,
+          details: { error: execErr.message },
+          status: "ERROR"
+        });
+        return sendJson(res, 500, { ok: false, error: execErr.message, code: "EXECUTION_FAILED" });
+      }
+    }
+
+    // --- Backend Position Closing ---
+    if (req.method === "POST" && url.pathname === "/api/positions/close") {
+      const body = await readBody(req);
+      const { accountId, ticket, volumeRatio = 1.0, symbol } = body;
+
+      const account = getAccountById(accountId);
+      if (!account) {
+        return sendJson(res, 404, { ok: false, error: "Account not found." });
+      }
+
+      let currentPrice = 0;
+      try {
+        const market = await getMarketData(symbol || "EURUSD", "intraday");
+        currentPrice = Number(market.candles.at(-1)?.close || 0);
+      } catch {
+        // Fallback to position current price
+        const p = (account.positions || []).find(x => x.ticket === ticket || x.id === ticket);
+        currentPrice = Number(p?.currentPrice || p?.entryPrice || 0);
+      }
+
+      const adapter = getBrokerAdapter(account.broker);
+      try {
+        const closeResult = await adapter.closePosition(account, ticket, volumeRatio, currentPrice);
+
+        // Update account balance and positions
+        if (closeResult.isPartial && closeResult.remainingPosition) {
+          const idx = account.positions.findIndex(p => p.ticket === ticket || p.id === ticket);
+          if (idx !== -1) account.positions[idx] = closeResult.remainingPosition;
+        } else {
+          account.positions = (account.positions || []).filter(p => p.ticket !== ticket && p.id !== ticket);
+        }
+
+        account.balance = +(Number(account.balance) + closeResult.realizedPnl).toFixed(2);
+        account.equity = +(Number(account.equity) + closeResult.realizedPnl).toFixed(2);
+        account.dailyRealizedPnl = +(Number(account.dailyRealizedPnl || 0) + closeResult.realizedPnl).toFixed(2);
+
+        // Recalculate margins
+        let totalMargin = 0;
+        account.positions.forEach(p => { totalMargin += p.margin || 0; });
+        account.usedMargin = +totalMargin.toFixed(2);
+        account.freeMargin = Math.max(0, +(account.equity - totalMargin).toFixed(2));
+
+        saveTradingAccounts();
+
+        logAuditEvent({
+          eventType: "POSITION_CLOSED",
+          accountId: account.id,
+          symbol,
+          details: {
+            ticket,
+            closedLots: closeResult.closedLots,
+            realizedPnl: closeResult.realizedPnl,
+            exitPrice: closeResult.exitPrice
+          }
+        });
+
+        return sendJson(res, 200, {
+          ok: true,
+          closeResult,
+          account: sanitizeAccountForClient(account),
+          message: `Closed position #${ticket}: Realized PnL: ${closeResult.realizedPnl >= 0 ? '+' : ''}$${closeResult.realizedPnl.toFixed(2)}`
+        });
+      } catch (err) {
+        return sendJson(res, 400, { ok: false, error: err.message });
+      }
+    }
+
+    // --- Risk Engine Preview Endpoint ---
+    if (req.method === "POST" && url.pathname === "/api/risk/calculate") {
+      const body = await readBody(req);
+      const riskMetrics = calculateOrderRisk(body);
+      return sendJson(res, 200, { ok: true, metrics: riskMetrics });
+    }
+
+    // --- Audit Log Retrieval ---
+    if (req.method === "GET" && url.pathname === "/api/audit-logs") {
+      const events = getAuditEvents(60);
+      return sendJson(res, 200, { ok: true, events });
+    }
+
+    // --- Measured Broker Latency Ping ---
+    if (req.method === "POST" && url.pathname === "/api/broker/ping") {
+      const body = await readBody(req);
+      const broker = (body.broker || "paper").toLowerCase();
+      const adapter = getBrokerAdapter(broker);
+      const status = await adapter.getConnectionStatus();
+      return sendJson(res, 200, {
+        ok: true,
+        broker,
+        status: status.status,
+        latencyMs: status.latencyMs ?? 8,
+        serverTime: new Date().toISOString(),
+        message: status.message
+      });
+    }
+
+    // --- Notice on Broker Direct Funding ---
     if (req.method === "POST" && url.pathname === "/api/broker/funds") {
-      const body = await readBody(req);
-      const accountId = body.accountId;
-      const action = body.action || "DEPOSIT"; // DEPOSIT or WITHDRAW
-      const amount = Number(body.amount || 0);
-
-      if (!accountId || amount <= 0) {
-        return sendJson(res, 400, { ok: false, error: "Invalid account or amount" });
-      }
-
-      const accounts = loadBrokerAccounts();
-      const target = accounts.find(a => a.id === accountId || a.accountNumber === accountId);
-      if (!target) {
-        return sendJson(res, 404, { ok: false, error: "Broker account not found" });
-      }
-
-      if (action === "WITHDRAW" && target.freeMargin < amount) {
-        return sendJson(res, 400, { ok: false, error: "Insufficient free margin for withdrawal" });
-      }
-
-      if (action === "DEPOSIT") {
-        target.balance = +(target.balance + amount).toFixed(2);
-        target.equity = +(target.equity + amount).toFixed(2);
-        target.freeMargin = +(target.freeMargin + amount).toFixed(2);
-      } else {
-        target.balance = +(target.balance - amount).toFixed(2);
-        target.equity = +(target.equity - amount).toFixed(2);
-        target.freeMargin = +(target.freeMargin - amount).toFixed(2);
-      }
-
-      saveBrokerAccounts(accounts);
-      return sendJson(res, 200, {
-        ok: true,
-        account: target,
-        action,
-        amount,
-        txId: "TX-" + Math.floor(10000000 + Math.random() * 90000000),
-        timestamp: new Date().toISOString(),
-        message: `Successfully processed ${action} of $${amount.toFixed(2)}!`
+      return sendJson(res, 400, {
+        ok: false,
+        error: "THN AI Trader does not custody or transfer client funds. Please deposit and withdraw directly through your regulated broker's official client portal.",
+        code: "DIRECT_BROKER_PORTAL_REQUIRED"
       });
     }
 

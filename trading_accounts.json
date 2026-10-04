@@ -1,0 +1,31 @@
+[
+  {
+    "id": "acc_paper_sandbox_01",
+    "broker": "paper",
+    "brokerName": "THN Institutional Paper Trading",
+    "platform": "THN Quantitative Sandbox Engine",
+    "accountAlias": "Institutional Paper Portfolio",
+    "accountNumber": "SBX-885012",
+    "accountNumberMasked": "•••• 5012",
+    "accountType": "paper",
+    "accountTypeName": "Institutional Sandbox (Simulated)",
+    "currency": "USD",
+    "balance": 50000,
+    "equity": 50000,
+    "freeMargin": 50000,
+    "usedMargin": 0,
+    "marginLevel": 999,
+    "leverage": 200,
+    "tradingMode": "PAPER",
+    "permissionLevel": "TRADING_ENABLED",
+    "status": "CONNECTED",
+    "latencyMs": 1,
+    "dailyRealizedPnl": 0,
+    "todayTradesCount": 0,
+    "positions": [],
+    "orders": [],
+    "encryptedCredentials": null,
+    "lastSyncAt": "2026-10-04T13:38:58.249Z",
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]

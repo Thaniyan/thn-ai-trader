@@ -1,4 +1,5 @@
 node_modules/
 .env
+.vault_key
 .DS_Store
 *.log

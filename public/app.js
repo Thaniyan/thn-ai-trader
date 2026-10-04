@@ -4118,17 +4118,17 @@ function renderAccountCertificate() {
   if ($("certServerHost")) $("certServerHost").textContent = acc.server || brand.server;
 
   if ($("certMasterPwd")) {
-    $("certMasterPwd").textContent = masterPwdVisible ? (acc.masterPassword || "Exn#8942$") : "••••••••••••";
+    $("certMasterPwd").textContent = "•••••••••••• (Encrypted in Broker Vault)";
   }
   if ($("toggleMasterPwdBtn")) {
-    $("toggleMasterPwdBtn").textContent = masterPwdVisible ? (currentLang === "ar" ? "إخفاء" : "Hide") : (currentLang === "ar" ? "إظهار" : "Show");
+    $("toggleMasterPwdBtn").style.display = "none";
   }
 
   if ($("certInvestorPwd")) {
-    $("certInvestorPwd").textContent = investorPwdVisible ? (acc.investorPassword || "Inv#3182@") : "••••••••••••";
+    $("certInvestorPwd").textContent = "•••••••••••• (Secured via Session Token)";
   }
   if ($("toggleInvestorPwdBtn")) {
-    $("toggleInvestorPwdBtn").textContent = investorPwdVisible ? (currentLang === "ar" ? "إخفاء" : "Hide") : (currentLang === "ar" ? "إظهار" : "Show");
+    $("toggleInvestorPwdBtn").style.display = "none";
   }
 
   if ($("certAccountType")) {
@@ -4139,8 +4139,7 @@ function renderAccountCertificate() {
 
   if ($("certLeverage")) $("certLeverage").textContent = `1:${acc.leverage || 200} Dynamic Leverage`;
   if ($("certApiKey")) {
-    const rawTok = acc.apiToken || "tok_live_broker_89410ea821b0";
-    $("certApiKey").textContent = `${rawTok.slice(0, 16)}••••••••`;
+    $("certApiKey").textContent = acc.accountNumberMasked ? `Key Vault (${acc.accountNumberMasked})` : "•••••••••••••••• (AES-256 Secured)";
   }
   if ($("certBrokerPortalBtn")) $("certBrokerPortalBtn").href = brand.link || "https://www.exness.com";
 }
@@ -4245,29 +4244,14 @@ function executeWebTraderTicket() {
   setBrokerDeskView("ai-desk");
 }
 
-let activeFundsAction = "DEPOSIT";
-
-function openFundsModal(action = "DEPOSIT") {
-  activeFundsAction = action;
+function openFundsModal() {
   const modal = $("fundsModal");
   if (!modal) return;
   const acc = getBrokerAccount();
-
-  $("fundsDepositTabBtn")?.classList.toggle("active", action === "DEPOSIT");
-  $("fundsWithdrawTabBtn")?.classList.toggle("active", action === "WITHDRAW");
-
-  const bName = acc.brokerName || (brokerBrands[acc.broker || acc.provider]?.name || "Broker");
-  if ($("fundsAccountDisplay")) {
-    $("fundsAccountDisplay").value = `${bName} (#${acc.accountNumber || acc.accountId}) · Balance: ${money(acc.balance)}`;
-  }
-
-  if ($("confirmFundsActionBtn")) {
-    const amt = $("fundsAmountInput")?.value || "5000";
-    if (action === "DEPOSIT") {
-      $("confirmFundsActionBtn").textContent = currentLang === "ar" ? `⚡ تأكيد الإيداع (${money(Number(amt))})` : `⚡ Confirm Deposit (${money(Number(amt))})`;
-    } else {
-      $("confirmFundsActionBtn").textContent = currentLang === "ar" ? `⚡ تأكيد السحب (${money(Number(amt))})` : `⚡ Confirm Withdrawal (${money(Number(amt))})`;
-    }
+  const isPaper = acc.tradingMode === "PAPER" || acc.broker === "paper" || acc.provider === "paper";
+  const sandboxCard = $("sandboxFundingCard");
+  if (sandboxCard) {
+    sandboxCard.style.display = isPaper ? "flex" : "none";
   }
 
   if (typeof modal.showModal === "function") modal.showModal();
@@ -4281,77 +4265,46 @@ function closeFundsModal() {
   else modal.removeAttribute("open");
 }
 
-async function submitFundsAction() {
+async function resetPaperBalance() {
   const acc = getBrokerAccount();
-  const amt = Number($("fundsAmountInput")?.value || 0);
-  if (amt <= 0) {
-    alert("Please enter a valid amount");
-    return;
-  }
-
-  if (activeFundsAction === "WITHDRAW" && amt > acc.freeMargin) {
-    const errText = currentLang === "ar"
-      ? `رصيد الهامش المتاح للسحب غير كافٍ! الحد الأقصى المتاح حالياً: ${money(acc.freeMargin)}`
-      : `Insufficient free margin for withdrawal! Max available: ${money(acc.freeMargin)}`;
-    alert(errText);
-    return;
-  }
-
-  const payMethod = document.querySelector("input[name='payMethod']:checked")?.value || "gcc_instant";
-  const btn = $("confirmFundsActionBtn");
+  const btn = $("resetPaperBalanceBtn");
   if (btn) btn.disabled = true;
 
   try {
-    const res = await fetch("/api/broker/funds", {
+    const res = await fetch("/api/broker/reset-sandbox", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        accountId: acc.id || acc.accountNumber,
-        action: activeFundsAction,
-        amount: amt,
-        payMethod
-      })
+      body: JSON.stringify({ accountId: acc.id || "acc_paper_sandbox_01" })
     });
-
     const data = await res.json();
     if (data.ok && data.account) {
-      const updated = data.account;
-      updated.positions = acc.positions || [];
-      updated.dailyRealizedPnl = acc.dailyRealizedPnl || 0;
-      updated.todayTradesCount = acc.todayTradesCount || 0;
-      updated.riskPct = acc.riskPct || 1.0;
-      updated.connected = true;
-      saveBrokerAccount(updated);
-
-      // Also update in serverBrokerAccounts list
-      const idx = serverBrokerAccounts.findIndex(a => a.id === updated.id);
-      if (idx >= 0) serverBrokerAccounts[idx] = updated;
-
+      saveBrokerAccount(data.account);
+      const idx = serverBrokerAccounts.findIndex(a => a.id === data.account.id);
+      if (idx >= 0) serverBrokerAccounts[idx] = data.account;
+      renderBrokerDesk();
+      renderBrokerAccountSelector();
       closeFundsModal();
       const succMsg = currentLang === "ar"
-        ? `تمت معالجة ${activeFundsAction === "DEPOSIT" ? "الإيداع" : "السحب"} بنجاح! تم قيد ${money(amt)} عبر القناة الفورية (رقم التحويل: ${data.txId}).`
-        : `Successfully processed ${activeFundsAction}! Transferred ${money(amt)} via instant banking (Tx: ${data.txId}).`;
+        ? "تمت إعادة تعيين محفظة التداول الافتراضي (Sandbox) إلى 50,000$ بنجاح."
+        : "Simulated sandbox paper trading portfolio successfully reset to $50,000.00.";
       status(succMsg);
-    } else {
-      alert(data.error || "Transaction error");
+      return;
     }
   } catch (err) {
-    // Offline / fallback immediate credit
-    if (activeFundsAction === "DEPOSIT") {
-      acc.balance = +(acc.balance + amt).toFixed(2);
-      acc.equity = +(acc.equity + amt).toFixed(2);
-      acc.freeMargin = +(acc.freeMargin + amt).toFixed(2);
-    } else {
-      acc.balance = +(acc.balance - amt).toFixed(2);
-      acc.equity = +(acc.equity - amt).toFixed(2);
-      acc.freeMargin = +(acc.freeMargin - amt).toFixed(2);
-    }
-    saveBrokerAccount(acc);
-    closeFundsModal();
-    status(`Processed ${activeFundsAction} of ${money(amt)}!`);
+    console.warn("Sandbox reset server fallback:", err);
   } finally {
     if (btn) btn.disabled = false;
   }
+
+  acc.balance = 50000;
+  acc.equity = 50000;
+  acc.freeMargin = 50000;
+  acc.usedMargin = 0;
+  acc.positions = [];
+  saveBrokerAccount(acc);
+  renderBrokerDesk();
+  closeFundsModal();
+  status("Sandbox portfolio reset to $50,000.");
 }
 
 async function testBrokerPing() {
@@ -4868,8 +4821,60 @@ function closeTradeExecutionModal() {
   else modal.removeAttribute("open");
 }
 
-function executeBrokerOrder(deal) {
+async function executeBrokerOrder(deal) {
   const acc = getBrokerAccount();
+  const idempotencyKey = `ord-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+
+  try {
+    const res = await fetch("/api/orders/execute", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        accountId: acc.id || acc.accountNumber,
+        symbol: deal.symbol,
+        side: deal.decision || "BUY",
+        lots: Number(deal.lots),
+        stopLoss: Number(deal.stopLoss),
+        takeProfit: Number(deal.target1 || deal.tp),
+        idempotencyKey
+      })
+    });
+
+    const data = await res.json();
+    if (!data.ok) {
+      const errReason = data.error || "Order execution rejected by risk engine.";
+      alert(currentLang === "ar" ? `[رفض إدارة المخاطر / الوسيط] ${errReason}` : `[Risk Engine / Broker Rejection] ${errReason}`);
+      status(`⚠️ ${errReason}`);
+      return;
+    }
+
+    if (data.account) {
+      data.account.connected = true;
+      saveBrokerAccount(data.account);
+      const idx = serverBrokerAccounts.findIndex(a => a.id === data.account.id);
+      if (idx >= 0) serverBrokerAccounts[idx] = data.account;
+    }
+
+    const pos = data.orderResult?.position || {
+      ticket: data.orderResult?.ticket || `ORD-${Date.now().toString().slice(-6)}`,
+      symbol: deal.symbol,
+      side: deal.decision || "BUY",
+      lots: Number(deal.lots),
+      entryPrice: Number(data.orderResult?.executedPrice || deal.entry),
+      sl: Number(deal.stopLoss),
+      tp: Number(deal.target1 || deal.tp)
+    };
+
+    renderBrokerDesk();
+    renderWebTrader();
+    showLiveTradeNotification(pos);
+    status(data.message || `Order filled: ${pos.side} ${pos.lots} ${pos.symbol}`);
+    return;
+  } catch (err) {
+    console.warn("Server order execution fallback:", err);
+  }
+
+  // Offline local fallback execution
   const mult = deal.symbol.includes("XAU") ? 100 : deal.symbol.includes("BTC") ? 1 : deal.symbol.includes("US30") ? 1 : 100000;
   const margin = Number(((deal.lots * 100000) / (acc.leverage || 100)).toFixed(2));
 
@@ -4904,43 +4909,100 @@ function executeBrokerOrder(deal) {
   showLiveTradeNotification(pos);
 }
 
-function closeBrokerPosition(ticket, partialFraction = 1.0) {
+async function closeBrokerPosition(ticket, partialFraction = 1.0) {
   const acc = getBrokerAccount();
-  const idx = acc.positions.findIndex(p => p.ticket === ticket);
+  const pos = (acc.positions || []).find(p => p.ticket === ticket || p.id === ticket);
+
+  try {
+    const res = await fetch("/api/positions/close", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        accountId: acc.id || acc.accountNumber,
+        ticket,
+        volumeRatio: partialFraction,
+        symbol: pos?.symbol || "EURUSD"
+      })
+    });
+
+    const data = await res.json();
+    if (data.ok && data.account) {
+      data.account.connected = true;
+      saveBrokerAccount(data.account);
+      const idx = serverBrokerAccounts.findIndex(a => a.id === data.account.id);
+      if (idx >= 0) serverBrokerAccounts[idx] = data.account;
+
+      const finalPnl = Number(data.closeResult?.realizedPnl ?? 0);
+      const journalEntry = {
+        id: "broker-" + Date.now(),
+        date: new Date().toISOString(),
+        symbol: pos?.symbol || "EURUSD",
+        decision: pos?.side || "BUY",
+        confidence: 85,
+        grade: finalPnl >= 0 ? "A+" : "B",
+        entry: pos?.entryPrice || 0,
+        stopLoss: pos?.sl || 0,
+        target1: pos?.tp || 0,
+        exitPrice: Number(data.closeResult?.exitPrice || pos?.currentPrice || 0),
+        risk: +(Math.abs((pos?.entryPrice || 0) - (pos?.sl || 0)) * (pos?.multiplier || 100000) * (pos?.lots || 0.1)).toFixed(2) || 250,
+        status: finalPnl > 0 ? "WIN" : finalPnl < 0 ? "LOSS" : "BE",
+        pnl: finalPnl,
+        pnlR: +(finalPnl / Math.max(1, Math.abs((pos?.entryPrice || 0) - (pos?.sl || 0)) * (pos?.multiplier || 100000) * (pos?.lots || 0.1))).toFixed(1),
+        assetClass: detectAssetClass(pos?.symbol || "EURUSD"),
+        notes: `Closed via ${acc.brokerName || 'Authoritative Broker Gateway'}`
+      };
+
+      const ledger = getJournal();
+      ledger.unshift(journalEntry);
+      localStorage.setItem(journalKey, JSON.stringify(ledger.slice(0, 500)));
+      renderJournal();
+      renderPerformanceAnalytics();
+      renderBrokerDesk();
+
+      status(data.message || t("positionClosed", { pnl: `${finalPnl >= 0 ? '+' : ''}$${finalPnl.toFixed(2)}` }));
+      return;
+    }
+  } catch (err) {
+    console.warn("Server position close fallback:", err);
+  }
+
+  // Offline local fallback close
+  const idx = acc.positions.findIndex(p => p.ticket === ticket || p.id === ticket);
   if (idx < 0) return;
 
-  const pos = acc.positions[idx];
-  const finalPnl = +(pos.floatingPnl * partialFraction).toFixed(2);
+  const pItem = acc.positions[idx];
+  const finalPnl = +(pItem.floatingPnl * partialFraction).toFixed(2);
   acc.balance = +(acc.balance + finalPnl).toFixed(2);
   acc.dailyRealizedPnl = +(acc.dailyRealizedPnl + finalPnl).toFixed(2);
 
   if (partialFraction >= 1.0) {
     acc.positions.splice(idx, 1);
   } else {
-    pos.lots = +(pos.lots * (1 - partialFraction)).toFixed(2);
-    pos.margin = +(pos.margin * (1 - partialFraction)).toFixed(2);
-    pos.floatingPnl = +(pos.floatingPnl * (1 - partialFraction)).toFixed(2);
+    pItem.lots = +(pItem.lots * (1 - partialFraction)).toFixed(2);
+    pItem.margin = +(pItem.margin * (1 - partialFraction)).toFixed(2);
+    pItem.floatingPnl = +(pItem.floatingPnl * (1 - partialFraction)).toFixed(2);
   }
 
   saveBrokerAccount(acc);
+  renderBrokerDesk();
 
   // Automatically log closed trade into Institutional Journal and refresh Performance Analytics!
   const journalEntry = {
     id: "broker-" + Date.now(),
     date: new Date().toISOString(),
-    symbol: pos.symbol,
-    decision: pos.side,
+    symbol: pItem.symbol,
+    decision: pItem.side,
     confidence: 85,
     grade: finalPnl >= 0 ? "A+" : "B",
-    entry: pos.entryPrice,
-    stopLoss: pos.sl,
-    target1: pos.tp,
-    exitPrice: pos.currentPrice,
-    risk: +(Math.abs(pos.entryPrice - pos.sl) * pos.multiplier * pos.lots).toFixed(2) || 250,
+    entry: pItem.entryPrice,
+    stopLoss: pItem.sl,
+    target1: pItem.tp,
+    exitPrice: pItem.currentPrice,
+    risk: +(Math.abs(pItem.entryPrice - pItem.sl) * pItem.multiplier * pItem.lots).toFixed(2) || 250,
     status: finalPnl > 0 ? "WIN" : finalPnl < 0 ? "LOSS" : "BE",
     pnl: finalPnl,
-    pnlR: +(finalPnl / (Math.abs(pos.entryPrice - pos.sl) * pos.multiplier * pos.lots || 250)).toFixed(1),
-    assetClass: detectAssetClass(pos.symbol),
+    pnlR: +(finalPnl / (Math.abs(pItem.entryPrice - pItem.sl) * pItem.multiplier * pItem.lots || 250)).toFixed(1),
+    assetClass: detectAssetClass(pItem.symbol),
     notes: `Closed via ${acc.providerName || 'Broker Gateway'}`
   };
 
@@ -5463,33 +5525,14 @@ function initEvents() {
   $("viewAccountDetailsBtn")?.addEventListener("click", () => setBrokerDeskView("account-details"));
 
   // Desk topbar wallet buttons
-  $("openDepositModalBtn")?.addEventListener("click", () => openFundsModal("DEPOSIT"));
-  $("openWithdrawModalBtn")?.addEventListener("click", () => openFundsModal("WITHDRAW"));
+  $("openDepositModalBtn")?.addEventListener("click", () => openFundsModal());
+  $("openWithdrawModalBtn")?.addEventListener("click", () => openFundsModal());
   $("openNewAccountFromDeskBtn")?.addEventListener("click", () => openBrokerModal("open"));
 
   // Funds modal dialog listeners
   $("closeFundsModalBtn")?.addEventListener("click", closeFundsModal);
   $("cancelFundsModalBtn")?.addEventListener("click", closeFundsModal);
-  $("fundsDepositTabBtn")?.addEventListener("click", () => openFundsModal("DEPOSIT"));
-  $("fundsWithdrawTabBtn")?.addEventListener("click", () => openFundsModal("WITHDRAW"));
-  $("fundsAmountInput")?.addEventListener("input", e => {
-    const amt = Number(e.target.value || 0);
-    if ($("confirmFundsActionBtn")) {
-      const verb = activeFundsAction === "DEPOSIT" ? (currentLang === "ar" ? "تأكيد الإيداع" : "Confirm Deposit") : (currentLang === "ar" ? "تأكيد السحب" : "Confirm Withdrawal");
-      $("confirmFundsActionBtn").textContent = `⚡ ${verb} (${money(amt)})`;
-    }
-  });
-  document.querySelectorAll(".amount-quick-chips .chip-btn").forEach(chip => {
-    chip.addEventListener("click", () => {
-      document.querySelectorAll(".amount-quick-chips .chip-btn").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      const amt = chip.dataset.amount;
-      if ($("fundsAmountInput")) $("fundsAmountInput").value = amt;
-      const verb = activeFundsAction === "DEPOSIT" ? (currentLang === "ar" ? "تأكيد الإيداع" : "Confirm Deposit") : (currentLang === "ar" ? "تأكيد السحب" : "Confirm Withdrawal");
-      if ($("confirmFundsActionBtn")) $("confirmFundsActionBtn").textContent = `⚡ ${verb} (${money(Number(amt))})`;
-    });
-  });
-  $("confirmFundsActionBtn")?.addEventListener("click", submitFundsAction);
+  $("resetPaperBalanceBtn")?.addEventListener("click", resetPaperBalance);
 
   // Tab switching inside Broker Modal
   $("tabOpenBrokerBtn")?.addEventListener("click", () => setBrokerModalTab("open"));

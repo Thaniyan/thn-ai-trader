@@ -1,0 +1,45 @@
+[
+  {
+    "id": "ev_1791121218354_ziiur",
+    "correlationId": "CORR-MUTVBT4I",
+    "timestamp": "2026-10-04T13:40:18.354Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791121215905_iadzr",
+    "correlationId": "CORR-MUTVBR8H",
+    "timestamp": "2026-10-04T13:40:15.905Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-5769199",
+      "closedLots": 0.1,
+      "realizedPnl": -0.54,
+      "exitPrice": 1.1257457733154297
+    }
+  },
+  {
+    "id": "ev_1791121212361_wcmeq",
+    "correlationId": "CORR-MUTVBOI1",
+    "timestamp": "2026-10-04T13:40:12.361Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-5769199",
+      "side": "BUY",
+      "lots": 0.1,
+      "executedPrice": 1.1258,
+      "requiredMargin": 56.29
+    }
+  }
+]
