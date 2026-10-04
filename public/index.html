@@ -3,41 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="THN AI Trader - Professional bilingual multi-school quantitative trading workstation with MTFA, SMC, and risk governance." />
-  <title>THN AI Trader | Institutional Quantitative Workstation</title>
+  <meta name="description" content="Professional bilingual AI-powered trading workstation with multi-school analysis, risk governance, and reporting." />
+  <meta property="og:title" content="THN AI Trader" />
+  <meta property="og:description" content="Professional bilingual AI-powered trading workstation with multi-school analysis, risk governance, and reporting." />
+  <title>THN AI Trader</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-shell">
-    <!-- Left Institutional Dock -->
+    <!-- Left Navigation Dock -->
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand brand-lockup" href="#dashboard" aria-label="THN Terminal Pro dashboard">
-        <img src="logo.svg" alt="THN Terminal Pro logo" />
+      <a class="brand brand-lockup" href="#dashboard" aria-label="THN Trader dashboard">
+        <img src="logo.svg" alt="THN Trader logo" />
         <div class="brand-text">
-          <strong>THN <span>TERMINAL PRO</span></strong>
-          <small data-i18n="brandTagline">Institutional Quantitative Suite</small>
+          <strong>THN <span>TRADER</span></strong>
+          <small data-i18n="brandTagline">Quantitative Trading Suite</small>
         </div>
       </a>
       
-      <div class="sidebar-status-tag">
+      <div class="sidebar-status-tag" id="sidebarBrokerTag">
         <span class="live-pulse"></span>
-        <span>ENGINE: QUANT V6.2 ACTIVE</span>
+        <span id="sidebarBrokerStatus">BROKER: CONNECTED</span>
       </div>
 
       <nav class="nav-stack">
         <button class="nav active" data-jump="dashboard" data-i18n="navDashboard">⚡ Desk Command</button>
-        <button class="nav" data-jump="analysis" data-i18n="navAnalysis">🎯 Quant Decision & Ticket</button>
+        <button class="nav" data-jump="brokerDesk" data-i18n="navBroker">💼 Broker &amp; Capital Desk</button>
+        <button class="nav" data-jump="analysis" data-i18n="navAnalysis">🎯 Quant Decision &amp; Ticket</button>
         <button class="nav" data-jump="mtfa" data-i18n="navMtfa">🌐 Timeframe Matrix (MTFA)</button>
-        <button class="nav" data-jump="smcDeep" data-i18n="navSmc">🏛️ SMC & Order Flow</button>
+        <button class="nav" data-jump="smcDeep" data-i18n="navSmc">🏛️ SMC &amp; Order Flow</button>
         <button class="nav" data-jump="professional-map" data-i18n="navMarketMap">📊 Institutional Dual-Map</button>
         <button class="nav" data-jump="chart" data-i18n="navChart">📈 TradingView Terminal</button>
         <button class="nav" data-jump="schoolsGrid" data-i18n="navSchools">🧠 Multi-School Consensus</button>
-        <button class="nav" data-jump="macroCalendarSection" data-i18n="navMacro">📰 Macro Radar & Calendar</button>
+        <button class="nav" data-jump="macroCalendarSection" data-i18n="navMacro">📰 Macro Radar &amp; Calendar</button>
         <button class="nav" data-jump="watchlist" data-i18n="navWatchlist">📡 Opportunity Scanner</button>
-        <button class="nav" data-jump="risk" data-i18n="navRisk">🛡️ Risk Desk & Exposure</button>
+        <button class="nav" data-jump="risk" data-i18n="navRisk">🛡️ Risk Desk &amp; Exposure</button>
         <button class="nav" data-jump="performanceAnalytics" data-i18n="navPerformance">📈 Performance Analytics</button>
-        <button class="nav" data-jump="journal" data-i18n="navJournal">📑 Audit Log & Journal</button>
+        <button class="nav" data-jump="journal" data-i18n="navJournal">📑 Audit Log &amp; Journal</button>
       </nav>
 
       <div class="side-card">
@@ -57,8 +60,8 @@
         <div class="topbar-brand">
           <span class="brand-mark">THN</span>
           <div class="brand-titles">
-            <b class="wordmark"><span class="wordmark-core">THN</span><span class="wordmark-ai">TERMINAL</span><span class="wordmark-tail">PRO</span></b>
-            <small data-i18n="topbarSub">Institutional Quantitative Market Analysis Workstation</small>
+            <b class="wordmark"><span class="wordmark-core">THN</span> <span class="wordmark-ai">TRADER</span></b>
+            <small data-i18n="topbarSub">Quantitative Market Analysis &amp; Execution Workstation</small>
           </div>
         </div>
 
@@ -71,6 +74,11 @@
         </div>
 
         <div class="topbar-controls">
+          <button class="broker-status-pill" id="openBrokerModalBtn" type="button" title="Manage Trading Broker Account">
+            <span class="broker-live-dot" id="topbarBrokerDot"></span>
+            <span id="topbarBrokerName">Broker: Paper ($25,000)</span>
+          </button>
+
           <div class="utc-clock-badge">
             <span class="pulse-green"></span>
             <b id="terminalUtcClock" class="utc-clock">--:--:-- UTC</b>
@@ -489,6 +497,310 @@
         </article>
       </section>
 
+      <!-- Broker Gateway & Capital Desk -->
+      <section class="panel broker-desk-section" id="brokerDesk">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="brokerEyebrow">LIVE BROKER GATEWAY &amp; CAPITAL SIZING</p>
+            <h2 data-i18n="brokerTitle">Trading Broker &amp; Capital Desk</h2>
+          </div>
+          <div class="broker-head-actions">
+            <button class="ghost small" id="openBrokerDocsBtn" type="button" data-i18n="brokerDocsBtn">📚 API Setup &amp; Tutorials</button>
+            <button class="ghost small" id="openBrokerSettingsBtn" type="button" data-i18n="brokerSettings">⚙️ Gateway Settings</button>
+            <button class="ghost small" id="openBrokerSwitchBtn" type="button" data-i18n="switchBrokerBtn">🔄 Switch Broker</button>
+            <button class="primary small" id="openBrokerConnectBtn" type="button" data-i18n="openBrokerBtn">⚡ Open Broker Account</button>
+          </div>
+        </div>
+
+        <p class="tiny trust-copy" data-i18n="brokerSubtitle">
+          Automatic account size synchronization locks your risk calculators to live capital. Receive AI-powered trading tips and execute high-probability setups directly.
+        </p>
+
+        <!-- Active Broker Account Selector Bar & Live Ping -->
+        <div class="broker-account-bar">
+          <div class="account-picker-group">
+            <span class="picker-label" data-i18n="activeAccountLabel">Active Platform Account:</span>
+            <select id="brokerActiveAccountSelect" class="broker-acc-select">
+              <option value="default">Loading broker accounts...</option>
+            </select>
+          </div>
+
+          <div class="broker-ping-indicator" id="brokerPingIndicator">
+            <span class="ping-dot"></span>
+            <span id="brokerPingText">Ping: 11ms · Live Gateway</span>
+          </div>
+
+          <div class="broker-wallet-actions">
+            <button type="button" class="ghost small" id="openDepositModalBtn" data-i18n="depositFunds">+ Deposit</button>
+            <button type="button" class="ghost small" id="openWithdrawModalBtn" data-i18n="withdrawFunds">- Withdraw</button>
+            <button type="button" class="secondary small" id="openNewAccountFromDeskBtn" data-i18n="newAccountBtn">+ New Broker Account</button>
+          </div>
+        </div>
+
+        <!-- Desk View Switcher Tabs -->
+        <div class="broker-view-switcher">
+          <button type="button" class="broker-view-btn active" id="viewAiDeskBtn" data-view="ai-desk">
+            💼 <span data-i18n="aiDeskView">AI Quantitative Desk</span>
+          </button>
+          <button type="button" class="broker-view-btn" id="viewWebTraderBtn" data-view="webtrader">
+            🖥️ <span data-i18n="webtraderView">Live WebTrader Terminal</span>
+          </button>
+          <button type="button" class="broker-view-btn" id="viewAccountDetailsBtn" data-view="account-details">
+            📑 <span data-i18n="accountDetailsView">Account &amp; Official Certificate</span>
+          </button>
+        </div>
+
+        <!-- Live Broker Capital HUD (Visible across views) -->
+        <div class="broker-hud-grid">
+          <div class="broker-card account-main">
+            <div class="broker-card-top">
+              <div class="broker-identity-lockup">
+                <span class="broker-logo-badge" id="brokerLogoBadge"></span>
+                <div>
+                  <div class="broker-badge-row">
+                    <span class="broker-badge-pill" id="brokerNameBadge">Exness Pro (MT5)</span>
+                    <span class="broker-reg-tag" id="brokerRegTag">GCC Approved · Raw Spread</span>
+                  </div>
+                  <small id="brokerAccId">Acc: #EXN-894210 · Server: Exness-Real14</small>
+                </div>
+              </div>
+            </div>
+            <span class="hud-label" data-i18n="brokerBalance">Account Balance (Auto-Managed)</span>
+            <b class="hud-amount" id="brokerBalanceDisplay">$25,000.00</b>
+            <div class="hud-sub-row">
+              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">$25,000.00</b></span>
+              <span><span data-i18n="unrealizedPnl">Open PnL</span>: <b id="brokerOpenPnlDisplay">$0.00</b></span>
+            </div>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="freeMargin">Free Margin</span>
+            <b class="hud-amount" id="brokerFreeMarginDisplay">$25,000.00</b>
+            <small id="brokerMarginLevel">Margin Level: 100.0% (Safe)</small>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="usedMargin">Used Margin</span>
+            <b class="hud-amount" id="brokerUsedMarginDisplay">$0.00</b>
+            <small id="brokerOpenCount">0 open positions</small>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="dailyRealizedPnl">Today's Realized PnL</span>
+            <b class="hud-amount pnl-green" id="brokerTodayPnlDisplay">+$0.00</b>
+            <small id="brokerPnlRCount">0.0 R generated today</small>
+          </div>
+        </div>
+
+        <!-- VIEW 1: AI QUANTITATIVE DESK -->
+        <div id="brokerAiDeskView" class="broker-view-panel">
+          <!-- AI-Powered Capital Trading Tips & Deals -->
+          <div class="broker-deals-container">
+            <div class="deals-header">
+              <div>
+                <b data-i18n="capitalDealsTitle">AI Capital-Tailored Trade Deals &amp; Tips</b>
+                <small data-i18n="capitalDealsSub">High-conviction setups sized automatically to your capital and risk limits</small>
+              </div>
+              <div class="ai-advisory-pill" id="brokerAiAdvisory">
+                <span>🛡️ AI Capital Advisory: 1.0% single-trade risk rule enforced ($250.00 max risk)</span>
+              </div>
+            </div>
+
+            <div class="deals-grid" id="brokerDealsGrid">
+              <!-- Rendered dynamically by app.js based on current market data and account balance -->
+            </div>
+          </div>
+
+          <!-- Live Broker Active Positions Terminal -->
+          <div class="broker-positions-container">
+            <div class="positions-header">
+              <div>
+                <b data-i18n="activePositionsTitle">Active Broker Positions</b>
+                <small data-i18n="activePositionsSub">Direct execution orders running on linked broker gateway</small>
+              </div>
+              <span class="positions-badge" id="openPositionsBadge">0 Active Orders</span>
+            </div>
+
+            <div class="positions-table-shell">
+              <div class="positions-table-head">
+                <span>Ticket</span>
+                <span>Symbol</span>
+                <span>Side</span>
+                <span>Volume</span>
+                <span>Open Price</span>
+                <span>Mark Price</span>
+                <span>SL / TP</span>
+                <span>Floating PnL</span>
+                <span>Action</span>
+              </div>
+              <div id="brokerPositionsList" class="positions-table-body">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: LIVE WEBTRADER TERMINAL -->
+        <div id="brokerWebTraderView" class="broker-view-panel hidden">
+          <div class="webtrader-grid">
+            <!-- Left: Market Watch Live Quote Board -->
+            <div class="webtrader-quotes-card">
+              <div class="card-head">
+                <b data-i18n="marketWatchQuotes">Market Watch (Live Feeds)</b>
+                <span class="live-tag">LIVE FEED</span>
+              </div>
+              <div class="quotes-list" id="webtraderQuotesList">
+                <!-- Populated dynamically with EURUSD, GBPUSD, XAUUSD, BTCUSDT, US30 -->
+              </div>
+            </div>
+
+            <!-- Right: Direct Order Execution Ticket -->
+            <div class="webtrader-ticket-card">
+              <div class="card-head">
+                <b data-i18n="directOrderTicket">Direct Platform Execution Ticket</b>
+                <span class="execution-badge" id="webtraderBrokerBadge">Exness MT5 Direct</span>
+              </div>
+
+              <div class="ticket-input-grid">
+                <label>
+                  <span>Symbol</span>
+                  <select id="webtraderSymbolSelect">
+                    <option value="XAUUSD">XAUUSD · Gold Spot</option>
+                    <option value="EURUSD">EURUSD · Euro / US Dollar</option>
+                    <option value="GBPUSD">GBPUSD · British Pound / USD</option>
+                    <option value="USDJPY">USDJPY · US Dollar / Japanese Yen</option>
+                    <option value="BTCUSDT">BTCUSDT · Bitcoin Perpetual</option>
+                    <option value="US30">US30 · Wall Street 30 Index</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Order Type</span>
+                  <select id="webtraderOrderTypeSelect">
+                    <option value="BUY">Instant Market Buy</option>
+                    <option value="SELL">Instant Market Sell</option>
+                    <option value="BUY LIMIT">Buy Limit (Pending)</option>
+                    <option value="SELL LIMIT">Sell Limit (Pending)</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Lots / Volume</span>
+                  <input id="webtraderLotsInput" type="number" step="0.01" min="0.01" max="100" value="0.10" />
+                </label>
+
+                <label id="webtraderPriceGroup" class="hidden">
+                  <span>Limit Order Price</span>
+                  <input id="webtraderPriceInput" type="number" step="0.0001" placeholder="Market Price" />
+                </label>
+
+                <label>
+                  <span>Stop Loss (SL)</span>
+                  <input id="webtraderSlInput" type="number" step="0.0001" placeholder="Optional SL" />
+                </label>
+
+                <label>
+                  <span>Take Profit (TP)</span>
+                  <input id="webtraderTpInput" type="number" step="0.0001" placeholder="Optional TP" />
+                </label>
+              </div>
+
+              <div class="ticket-calc-row">
+                <span>Required Margin: <b id="webtraderMarginCalc">$100.00</b></span>
+                <span>Max Risk: <b id="webtraderRiskCalc">$250.00</b></span>
+                <span>Leverage: <b id="webtraderLeverageCalc">1:200</b></span>
+              </div>
+
+              <div class="ticket-actions">
+                <button type="button" class="primary full" id="webtraderTransmitOrderBtn">
+                  ⚡ Transmit Order to Broker
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 3: OFFICIAL ACCOUNT CREDENTIALS & CERTIFICATE -->
+        <div id="brokerAccountDetailsView" class="broker-view-panel hidden">
+          <div class="credentials-card">
+            <div class="cert-header">
+              <div class="cert-brand-lockup">
+                <span class="cert-logo" id="certBrokerLogo"></span>
+                <div>
+                  <h3 id="certBrokerTitle">Exness GCC &amp; Global - MetaTrader 5</h3>
+                  <small id="certRegulationTag">FSA &amp; CySEC Tier-1 · Instant GCC Banking</small>
+                </div>
+              </div>
+              <div class="cert-stamp">
+                <span>OFFICIAL VERIFIED</span>
+                <b>PLATFORM ACCOUNT</b>
+              </div>
+            </div>
+
+            <div class="cert-grid">
+              <div class="cert-item">
+                <span>Account Holder Legal Name</span>
+                <b id="certHolderName">Institutional Trader</b>
+              </div>
+              <div class="cert-item">
+                <span>Registered Email</span>
+                <b id="certHolderEmail">trader@gcc-markets.com</b>
+              </div>
+              <div class="cert-item">
+                <span>Phone / Country</span>
+                <b id="certHolderPhone">+968 9123 4567 (Oman)</b>
+              </div>
+              <div class="cert-item">
+                <span>Platform Login ID</span>
+                <b id="certLoginId" class="code-val">2849104</b>
+              </div>
+              <div class="cert-item">
+                <span>Broker Server Hostname</span>
+                <b id="certServerHost" class="code-val">Exness-Real14.mt5.exness.com:443</b>
+              </div>
+              <div class="cert-item">
+                <span>Master Trading Password</span>
+                <div class="pwd-lockup">
+                  <span id="certMasterPwd" class="code-val">••••••••</span>
+                  <button type="button" class="ghost small toggle-pwd-btn" id="toggleMasterPwdBtn">Show</button>
+                </div>
+              </div>
+              <div class="cert-item">
+                <span>Investor (Read-Only) Password</span>
+                <div class="pwd-lockup">
+                  <span id="certInvestorPwd" class="code-val">••••••••</span>
+                  <button type="button" class="ghost small toggle-pwd-btn" id="toggleInvestorPwdBtn">Show</button>
+                </div>
+              </div>
+              <div class="cert-item">
+                <span>Account Type &amp; Currency</span>
+                <b id="certAccountType">Raw Spread ECN · USD ($)</b>
+              </div>
+              <div class="cert-item">
+                <span>Account Leverage</span>
+                <b id="certLeverage">1:200 Dynamic</b>
+              </div>
+              <div class="cert-item">
+                <span>API Direct Bridge Key</span>
+                <b id="certApiKey" class="code-val">tok_exn_live_89410ea821b0...</b>
+              </div>
+            </div>
+
+            <div class="cert-actions">
+              <button type="button" class="primary" id="downloadCertBtn">
+                📄 Download Official Account Certificate (TXT)
+              </button>
+              <button type="button" class="ghost" id="copyMt5LoginBtn">
+                📋 Copy MT5 Login Details
+              </button>
+              <a class="button ghost" id="certBrokerPortalBtn" href="https://www.exness.com" target="_blank" rel="noopener noreferrer">
+                🌐 Visit Official Broker Portal
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Risk Desk & Exposure Calculator -->
       <section class="risk-grid" id="risk">
         <article class="panel">
@@ -747,6 +1059,885 @@
           <div class="dialog-actions">
             <button type="button" class="ghost" id="cancelBulkImportBtn" data-i18n="cancel">Cancel</button>
             <button type="button" class="primary" id="confirmBulkImportBtn" disabled data-i18n="confirmImport">Import Trades</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Broker Gateway & Account Opening Dialog -->
+      <dialog id="brokerModal" class="log-trade-dialog broker-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <div>
+              <h3 data-i18n="connectBrokerTitle">Trading Broker &amp; Capital Gateway</h3>
+              <p class="tiny trust-copy" data-i18n="connectBrokerSub">
+                Approved and regulated trading brokers in the Arabian Gulf &amp; Global Markets (XTB, Exness, MetaTrader 5, and more). Open or connect your broker account directly.
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeBrokerModalBtn">&times;</button>
+          </div>
+
+          <!-- Quick Help / Documentation Callout Banner -->
+          <div class="broker-docs-callout">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <b data-i18n="needApiKeyHelp">Need help finding your MT5 login, server, or API key?</b>
+              <small data-i18n="needApiKeyHelpSub">Follow our interactive step-by-step connection tutorials for Exness, XTB, and MetaTrader 5.</small>
+            </div>
+            <button type="button" class="ghost small" id="openDocsFromBrokerModalBtn" data-i18n="viewTutorialsBtn">📖 View API Tutorials</button>
+          </div>
+
+          <!-- Mode Selector Tabs: Open New Account vs Connect Existing API -->
+          <div class="broker-modal-tabs">
+            <button type="button" class="broker-modal-tab active" id="tabOpenBrokerBtn" data-tab="open">
+              ⚡ <span data-i18n="tabOpenBroker">Open Broker Account on Site</span>
+            </button>
+            <button type="button" class="broker-modal-tab" id="tabConnectBrokerBtn" data-tab="connect">
+              🔗 <span data-i18n="tabConnectBroker">Connect Existing Broker / MT5</span>
+            </button>
+          </div>
+
+          <!-- Approved Broker Selection Grid with Logos -->
+          <div class="broker-options-grid" id="brokerProviderOptions">
+            <label class="broker-option-card active" data-provider="exness">
+              <input type="radio" name="brokerProvider" value="exness" checked />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#F4AF00"/><path d="M7 16C7 11.0294 11.0294 7 16 7C20.9706 7 25 11.0294 25 16C25 20.9706 20.9706 25 16 25" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20" stroke="#111" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">GCC #1 Choice</span>
+                  <b>Exness (إكسنس)</b>
+                </div>
+                <small>Raw Spread 0.0 · Instant Withdrawals · MT5 API</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="xtb">
+              <input type="radio" name="brokerProvider" value="xtb" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0A0F1D"/><path d="M7 8L15 24M15 8L7 24" stroke="#E50914" stroke-width="3" stroke-linecap="round"/><text x="16" y="21" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#2BF5C7">TB</text></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">DFSA Regulated</span>
+                  <b>XTB MENA (إكس تي بي)</b>
+                </div>
+                <small>xStation 5 Direct API · 0% Comm Stocks &amp; FX</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="mt5">
+              <input type="radio" name="brokerProvider" value="mt5" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0E1B2E"/><rect x="7" y="16" width="4.5" height="9" rx="1.5" fill="#3B82F6"/><rect x="13.5" y="11" width="4.5" height="14" rx="1.5" fill="#10B981"/><rect x="20" y="7" width="4.5" height="18" rx="1.5" fill="#EF4444"/><text x="18" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="900" fill="#FFF">5</text></svg>
+              </div>
+              <div class="option-info">
+                <b>MetaTrader 5 (MT5 Cloud)</b>
+                <small>Connect Exness, IC Markets, Pepperstone, XM</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="ibkr">
+              <input type="radio" name="brokerProvider" value="ibkr" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#C41230"/><text x="7" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="#FFF">IB</text></svg>
+              </div>
+              <div class="option-info">
+                <b>Interactive Brokers (IBKR)</b>
+                <small>Global Equities, Futures &amp; FX Gateway</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="binance">
+              <input type="radio" name="brokerProvider" value="binance" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#1E2329"/><path d="M16 8L20 12L16 16L12 12L16 8Z" fill="#F0B90B"/><path d="M21.5 13.5L25.5 17.5L21.5 21.5L17.5 17.5L21.5 13.5Z" fill="#F0B90B"/><path d="M10.5 13.5L14.5 17.5L10.5 21.5L6.5 17.5L10.5 13.5Z" fill="#F0B90B"/><path d="M16 19L20 23L16 27L12 23L16 19Z" fill="#F0B90B"/></svg>
+              </div>
+              <div class="option-info">
+                <b>Binance Futures &amp; Spot</b>
+                <small>Direct Crypto &amp; Derivatives Liquidity</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="paper">
+              <input type="radio" name="brokerProvider" value="paper" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#042F2E"/><path d="M16 6L24 10V16C24 21 20 25 16 27C12 25 8 21 8 16V10L16 6Z" stroke="#2BF5C7" stroke-width="2" fill="none"/><path d="M16 11L14 17H18L16 22" stroke="#2BF5C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="option-info">
+                <b>Institutional Sandbox</b>
+                <small>Simulated risk-free execution · Live feeds</small>
+              </div>
+            </label>
+          </div>
+
+          <!-- TAB 1: OPEN NEW REAL BROKER ACCOUNT ON PLATFORM -->
+          <div id="openBrokerTabContent" class="broker-tab-panel">
+            <div class="broker-notice-card" id="brokerNoticeCard">
+              <span>⚡ Official Broker Gateway Onboarding: Provision your live trading account with regulated GCC &amp; Global brokers (Exness, XTB, MT5 Cloud). Receive instant server credentials &amp; institutional STP liquidity.</span>
+            </div>
+
+            <div class="dialog-grid broker-form-grid">
+              <label>
+                <span data-i18n="traderFullName">Trader Full Legal Name</span>
+                <input id="brokerRegFullName" required placeholder="e.g. Abdullah Al-Harbi / سلطان المعمري" value="Sultan Al-Mamari" />
+              </label>
+
+              <label>
+                <span data-i18n="traderEmail">Email Address</span>
+                <input id="brokerRegEmail" type="email" required placeholder="trader@domain.com" value="sultan.trader@gcc-markets.com" />
+              </label>
+
+              <label>
+                <span data-i18n="traderPhone">Phone / WhatsApp Number</span>
+                <input id="brokerRegPhone" type="tel" required placeholder="+968 9123 4567" value="+968 9123 4567" />
+              </label>
+
+              <label>
+                <span data-i18n="traderCountry">Country / Region</span>
+                <select id="brokerRegCountry">
+                  <option value="Saudi Arabia" selected>Saudi Arabia (المملكة العربية السعودية)</option>
+                  <option value="United Arab Emirates">United Arab Emirates (الإمارات العربية المتحدة)</option>
+                  <option value="Oman">Sultanate of Oman (سلطنة عُمان)</option>
+                  <option value="Kuwait">Kuwait (دولة الكويت)</option>
+                  <option value="Qatar">Qatar (دولة قطر)</option>
+                  <option value="Bahrain">Bahrain (مملكة البحرين)</option>
+                  <option value="Egypt">Egypt (جمهورية مصر العربية)</option>
+                  <option value="Global">Other International / Global</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="brokerAccountType">Account Type / Tier</span>
+                <select id="brokerAccountTypeSelect">
+                  <option value="raw" selected>Raw Spread ECN (0.0 Pip Spreads · Recommended)</option>
+                  <option value="pro">Pro Account (Zero Commission · Instant Fill)</option>
+                  <option value="standard">Standard Account (Zero Minimum Deposit)</option>
+                  <option value="islamic">Islamic Swap-Free (شريعة إسلامية معتمدة)</option>
+                  <option value="demo">Demo / Trial Account (Risk-Free)</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="preferredPlatform">Trading Platform Terminal</span>
+                <select id="brokerRegPlatform">
+                  <option value="MetaTrader 5 (MT5 Cloud Direct)" selected>MetaTrader 5 (MT5 Cloud Direct)</option>
+                  <option value="xStation 5 Direct Web API">xStation 5 Direct Web API (XTB)</option>
+                  <option value="MetaTrader 5 Universal">MT5 Universal Multi-Broker</option>
+                  <option value="Interactive Brokers TWS">IBKR Trader Workstation / API</option>
+                  <option value="Binance VIP WebSocket">Binance VIP WebSocket Bridge</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="accountLeverage">Trading Leverage</span>
+                <select id="brokerRegLeverage">
+                  <option value="100">1:100 (Conservative)</option>
+                  <option value="200" selected>1:200 (Recommended Standard)</option>
+                  <option value="500">1:500 (High Dynamic Leverage)</option>
+                  <option value="1000">1:1000 (Maximum Dynamic)</option>
+                  <option value="2000">1:2000 (Exness Ultra Dynamic)</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="baseCurrency">Base Account Currency</span>
+                <select id="brokerCurrencySelect">
+                  <option value="USD" selected>USD ($) - Global Standard</option>
+                  <option value="AED">AED (د.إ) - UAE Dirham</option>
+                  <option value="SAR">SAR (ر.س) - Saudi Riyal</option>
+                  <option value="EUR">EUR (€) - Euro</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="accountSize">Initial Account Capital ($)</span>
+                <select id="brokerCapitalPreset">
+                  <option value="5000">$5,000</option>
+                  <option value="10000">$10,000</option>
+                  <option value="25000" selected>$25,000 (Standard Portfolio)</option>
+                  <option value="50000">$50,000</option>
+                  <option value="100000">$100,000 (Institutional Tier)</option>
+                  <option value="250000">$250,000 (Fund Tier)</option>
+                  <option value="custom">Custom Capital...</option>
+                </select>
+              </label>
+
+              <label id="customCapitalLabel" class="hidden">
+                <span data-i18n="customCapital">Enter Custom Balance ($)</span>
+                <input id="brokerCustomCapital" type="number" min="100" max="50000000" value="25000" />
+              </label>
+
+              <label>
+                <span data-i18n="riskPerTrade">Max Risk Per Trade (%)</span>
+                <select id="brokerRiskPctSelect">
+                  <option value="0.5">0.5% (Conservative)</option>
+                  <option value="1.0" selected>1.0% (Standard / Recommended)</option>
+                  <option value="1.5">1.5% (Moderate)</option>
+                  <option value="2.0">2.0% (Aggressive)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="broker-checkbox-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="brokerRegIslamic" checked />
+                <span><b>Islamic Swap-Free Option (حساب إسلامي خالٍ من فوائد التثبيت أو التبييت)</b></span>
+              </label>
+            </div>
+
+            <div class="dialog-actions">
+              <button type="button" class="ghost" id="cancelBrokerModalBtn" data-i18n="cancel">Cancel</button>
+              <a class="button ghost" id="externalBrokerLink" href="https://www.exness.com" target="_blank" rel="noopener noreferrer" data-i18n="visitBrokerPortal">
+                🌐 Visit Broker Portal
+              </a>
+              <button type="button" class="primary" id="openAndActivateBrokerBtn" data-i18n="openAndActivateBtn">
+                ⚡ Open &amp; Activate on Site
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 2: CONNECT EXISTING BROKER ACCOUNT VIA API -->
+          <div id="connectBrokerTabContent" class="broker-tab-panel hidden">
+            <div class="broker-notice-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <span>🔗 Direct Gateway Link: Connect your existing Exness, XTB, IC Markets, or MT5 live account with real-time balance sync and sub-millisecond execution.</span>
+              <button type="button" class="primary small" id="openDocsFromConnectBtn" style="white-space: nowrap; font-size: 11px;">
+                📚 API Connection Tutorials (Exness, XTB, MT5)
+              </button>
+            </div>
+
+            <div class="dialog-grid broker-form-grid">
+              <label>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span data-i18n="brokerServer">Broker Server Hostname</span>
+                  <button type="button" class="text-link-btn" id="docsQuickLinkServer" style="background: none; border: none; font-size: 10px; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0;">Server directory ↗</button>
+                </div>
+                <input id="brokerServerInput" value="Exness-Real14.mt5.exness.com:443" placeholder="E.g. Exness-Real14, XTB-xStation5-Live, ICMarketsSC-Live02" />
+              </label>
+
+              <label>
+                <span data-i18n="accountNumber">Account / Login ID</span>
+                <input id="brokerAccountIdInput" value="2849104" placeholder="E.g. 2849104 or U894210" />
+              </label>
+
+              <label>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span data-i18n="brokerPassword">API Token / Trading Password</span>
+                  <button type="button" class="text-link-btn" id="docsQuickLinkToken" style="background: none; border: none; font-size: 10px; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0;">How to get key? ↗</button>
+                </div>
+                <input id="brokerPasswordInput" type="password" value="Exn#8942$" placeholder="API Key or MT5 Trading Password" />
+              </label>
+
+              <label>
+                <span data-i18n="syncBalance">Verified Account Balance ($)</span>
+                <input id="brokerSyncBalanceInput" type="number" min="100" max="50000000" value="25000" />
+              </label>
+
+              <label>
+                <span data-i18n="accountLeverage">Account Leverage</span>
+                <select id="brokerConnectLeverage">
+                  <option value="100">1:100</option>
+                  <option value="200" selected>1:200</option>
+                  <option value="500">1:500</option>
+                  <option value="1000">1:1000</option>
+                  <option value="2000">1:2000</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="baseCurrency">Account Currency</span>
+                <select id="brokerConnectCurrency">
+                  <option value="USD" selected>USD ($)</option>
+                  <option value="AED">AED (د.إ)</option>
+                  <option value="SAR">SAR (ر.س)</option>
+                  <option value="EUR">EUR (€)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="test-ping-box">
+              <button type="button" class="ghost small" id="testBrokerPingBtn">
+                📡 Test Server Handshake &amp; Ping
+              </button>
+              <span id="testBrokerPingResult" class="tiny">Ready to test connection</span>
+            </div>
+
+            <div class="dialog-actions">
+              <button type="button" class="ghost" id="cancelConnectBrokerModalBtn" data-i18n="cancel">Cancel</button>
+              <button type="button" class="primary" id="saveBrokerConnectionBtn" data-i18n="saveBrokerConnection">
+                🔗 Verify &amp; Connect Gateway
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Broker Funds Management (Deposit / Withdraw) Dialog -->
+      <dialog id="fundsModal" class="log-trade-dialog funds-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <div>
+              <h3 data-i18n="fundsModalTitle">Broker Capital &amp; Banking Gateway</h3>
+              <p class="tiny trust-copy" id="fundsModalSubtitle">
+                Deposit or withdraw capital to your active broker account via GCC instant banking, Apple Pay, or Crypto.
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeFundsModalBtn">&times;</button>
+          </div>
+
+          <!-- Action Switcher: Deposit vs Withdraw -->
+          <div class="funds-tabs">
+            <button type="button" class="funds-tab active" id="fundsDepositTabBtn" data-action="DEPOSIT">
+              + <span data-i18n="deposit">Deposit Capital</span>
+            </button>
+            <button type="button" class="funds-tab" id="fundsWithdrawTabBtn" data-action="WITHDRAW">
+              - <span data-i18n="withdraw">Withdraw Profits</span>
+            </button>
+          </div>
+
+          <div class="dialog-grid broker-form-grid">
+            <label>
+              <span data-i18n="selectedAccount">Target Account</span>
+              <input id="fundsAccountDisplay" readonly value="Exness Pro MT5 (#2849104)" />
+            </label>
+
+            <label>
+              <span data-i18n="amountDollars">Amount ($ USD)</span>
+              <input id="fundsAmountInput" type="number" min="50" max="500000" step="50" value="5000" />
+            </label>
+          </div>
+
+          <!-- Quick Amount Chips -->
+          <div class="amount-quick-chips">
+            <button type="button" class="chip-btn" data-amount="500">+$500</button>
+            <button type="button" class="chip-btn" data-amount="1000">+$1,000</button>
+            <button type="button" class="chip-btn active" data-amount="5000">+$5,000</button>
+            <button type="button" class="chip-btn" data-amount="10000">+$10,000</button>
+            <button type="button" class="chip-btn" data-amount="25000">+$25,000</button>
+          </div>
+
+          <!-- Payment / Funding Method Selection -->
+          <div class="funding-method-group">
+            <span class="funding-label" data-i18n="paymentChannel">Instant Banking / Payment Channel:</span>
+            <div class="payment-methods-grid">
+              <label class="pay-method-card active">
+                <input type="radio" name="payMethod" value="gcc_instant" checked />
+                <span>🏛️ <b>GCC Instant Bank</b> (Mada / KNET / UAE)</span>
+              </label>
+              <label class="pay-method-card">
+                <input type="radio" name="payMethod" value="apple_pay" />
+                <span>🍏 <b>Apple Pay</b> / Google Pay</span>
+              </label>
+              <label class="pay-method-card">
+                <input type="radio" name="payMethod" value="card" />
+                <span>💳 <b>Visa / Mastercard</b> (Instant 0% Fee)</span>
+              </label>
+              <label class="pay-method-card">
+                <input type="radio" name="payMethod" value="usdt" />
+                <span>⚡ <b>USDT (TRC20 / ERC20)</b> Crypto Instant</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelFundsModalBtn" data-i18n="cancel">Cancel</button>
+            <button type="button" class="primary" id="confirmFundsActionBtn" data-i18n="confirmDepositBtn">
+              ⚡ Confirm Deposit ($5,000)
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Instant Trade Execution Confirmation Dialog -->
+      <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="executeOrderTitle">⚡ Transmit Order to Broker Gateway</h3>
+            <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
+          </div>
+          <p class="tiny trust-copy" id="executeOrderDesc">
+            Direct institutional order dispatch with slippage safeguard and automated stop protection.
+          </p>
+
+          <div class="execute-order-card" id="executeOrderCard">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelExecuteBtn" data-i18n="cancel">Cancel</button>
+            <button type="button" class="primary" id="confirmExecuteBtn">⚡ Confirm &amp; Dispatch Order</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Interactive Broker API Connection Documentation & Tutorials Dialog -->
+      <dialog id="brokerDocsModal" class="log-trade-dialog broker-docs-dialog">
+        <div class="log-trade-form docs-form-shell">
+          <div class="dialog-head docs-head">
+            <div>
+              <div class="docs-title-badge">
+                <span class="badge-icon">📖</span>
+                <span class="badge-label">OFFICIAL PLATFORM INTEGRATION GUIDE</span>
+              </div>
+              <h3 data-i18n="brokerDocsTitle">Broker API &amp; Platform Connection Documentation</h3>
+              <p class="tiny trust-copy" data-i18n="brokerDocsSub">
+                Interactive step-by-step walkthroughs to obtain API keys, server endpoints, and connect Exness, XTB, and MetaTrader 5 (MT5).
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeBrokerDocsModalBtn">&times;</button>
+          </div>
+
+          <!-- Documentation Toolbar: Platform Selector Tabs & Search Filter -->
+          <div class="docs-toolbar">
+            <div class="docs-tabs-nav" id="docsTabsNav">
+              <button type="button" class="docs-tab-btn active" data-platform="exness" id="docsTabExness">
+                <span class="tab-icon">🟡</span> <span data-i18n="tabDocsExness">Exness (MT5 &amp; Web API)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="xtb" id="docsTabXtb">
+                <span class="tab-icon">🔴</span> <span data-i18n="tabDocsXtb">XTB MENA (xStation 5)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="mt5" id="docsTabMt5">
+                <span class="tab-icon">🔵</span> <span data-i18n="tabDocsMt5">MetaTrader 5 (Universal)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="troubleshoot" id="docsTabTroubleshoot">
+                <span class="tab-icon">🛠️</span> <span data-i18n="tabDocsTroubleshoot">Troubleshooting &amp; FAQs</span>
+              </button>
+            </div>
+
+            <div class="docs-search-box">
+              <input type="text" id="docsSearchInput" placeholder="🔍 Search tutorial steps, server names, error codes..." />
+            </div>
+          </div>
+
+          <!-- TAB 1: EXNESS TUTORIAL -->
+          <div class="docs-tab-content active" id="docsContentExness" data-platform-section="exness">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#F4AF00"/><path d="M7 16C7 11.0294 11.0294 7 16 7C20.9706 7 25 11.0294 25 16C25 20.9706 20.9706 25 16 25" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20" stroke="#111" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <h4>Exness GCC &amp; Global (إكسنس) - MetaTrader 5 Cloud &amp; Web Bridge</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item green">CySEC &amp; FSA Tier-1 Regulated</span>
+                    <span class="badge-item blue">Raw Spread 0.0 Pip</span>
+                    <span class="badge-item gold">Instant GCC Local Transfers</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.exness.com" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit Exness Portal
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Log into Exness Personal Area &amp; Select MT5 Account</h5>
+                  <p>Log in to your Exness account at <code>my.exness.com</code>. In the <b>"My Accounts"</b> section, select an existing <b>MT5 Real</b> account (Raw Spread or Standard) or click <b>"Open New Account"</b>.</p>
+                  <div class="mock-portal-box">
+                    <span class="mock-tag">EXNESS PERSONAL AREA PREVIEW</span>
+                    <div class="mock-ui-row">
+                      <span>📁 My Accounts &gt; Real &gt; <b>MT5 Raw Spread (#2849104)</b></span>
+                      <span class="status-chip active">ACTIVE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Retrieve Server Hostname &amp; Account / Login ID</h5>
+                  <p>Click the <b>three dots (...)</b> on your account card and select <b>"Account Information"</b>. Note down:</p>
+                  <ul class="docs-checklist">
+                    <li><b>MT5 Login:</b> Your 7 or 8-digit numeric account ID (e.g. <code>2849104</code>).</li>
+                    <li><b>Server:</b> The exact cluster name assigned to your account (e.g. <code>Exness-Real14</code>).</li>
+                    <li><b>Recommended Hostname:</b> <code>Exness-Real14.mt5.exness.com:443</code>.</li>
+                  </ul>
+                  <div class="code-snippet-box">
+                    <div class="snippet-header">
+                      <span>Exness Server Hostname Format</span>
+                      <button type="button" class="copy-snippet-btn" data-copy="Exness-Real14.mt5.exness.com:443">📋 Copy Server</button>
+                    </div>
+                    <code>Exness-Real14.mt5.exness.com:443</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Trading Password vs Investor (Read-Only) Password</h5>
+                  <p>In Account Information, you can set two types of passwords:</p>
+                  <div class="passwords-comparison-grid">
+                    <div class="pwd-type-card">
+                      <b>Trading (Master) Password</b>
+                      <small>Grants order execution permission so THN Trader can place AI deals, stop losses, and take profits automatically.</small>
+                    </div>
+                    <div class="pwd-type-card">
+                      <b>Investor Password</b>
+                      <small>Read-only access. Used if you only want live balance and position synchronization without live trade placement.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive Exness Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Configure your Exness parameters below and click <b>Auto-Fill</b> to transfer them immediately into the Broker Desk Connection form:</p>
+                  
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>Exness Server:</span>
+                      <select id="docExnessServerSelect">
+                        <option value="Exness-Real14.mt5.exness.com:443" selected>Exness-Real14 (GCC Primary)</option>
+                        <option value="Exness-Real15.mt5.exness.com:443">Exness-Real15</option>
+                        <option value="Exness-Real16.mt5.exness.com:443">Exness-Real16</option>
+                        <option value="Exness-Trial10.mt5.exness.com:443">Exness-Trial10 (Demo Sandbox)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>Your MT5 Account Number:</span>
+                      <input id="docExnessAccountInput" value="2849104" placeholder="e.g. 2849104" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docExnessBalanceInput" type="number" value="25000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyExnessConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                    <button type="button" class="ghost small" id="copyExnessConfigBtn">
+                      📋 Copy Full MT5 Config String
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: XTB MENA TUTORIAL -->
+          <div class="docs-tab-content hidden" id="docsContentXtb" data-platform-section="xtb">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0A0F1D"/><path d="M7 8L15 24M15 8L7 24" stroke="#E50914" stroke-width="3" stroke-linecap="round"/><text x="16" y="21" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#2BF5C7">TB</text></svg>
+                </div>
+                <div>
+                  <h4>XTB MENA (إكس تي بي) - DFSA Dubai DIFC Regulated xStation 5 Web API</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item green">DFSA License #F003423</span>
+                    <span class="badge-item blue">0% Commission Equities &amp; FX</span>
+                    <span class="badge-item gold">High-Speed JSON Streaming</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.xtb.com/mena" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit XTB Client Office
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Access XTB Client Office Portal (xStation 5)</h5>
+                  <p>Navigate to <code>co.xtb.com</code> and sign in with your XTB MENA or International credentials. Click on <b>"My Profile"</b> in the top right menu and select <b>"API &amp; Integrations"</b>.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Generate an Application Key &amp; Set Permissions</h5>
+                  <p>Under API Management, click <b>"Create New Application Key"</b>. Enter <code>THN-Trader</code> as the application name and check the following permission scopes:</p>
+                  <ul class="docs-checklist">
+                    <li><b>streamingData:</b> Real-time streaming bid/ask quotes and tick data.</li>
+                    <li><b>tradeOrders:</b> Direct execution of instant market orders and limit entries.</li>
+                    <li><b>getRecords:</b> Read open trades, margin level, and closed trade ledger.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Endpoint &amp; 7-Digit Client ID</h5>
+                  <p>XTB assigns a 7-digit Account ID (e.g. <code>7968062</code>). Use the corresponding gateway server:</p>
+                  <div class="code-snippet-box">
+                    <div class="snippet-header">
+                      <span>XTB Live Gateway Server Host</span>
+                      <button type="button" class="copy-snippet-btn" data-copy="XTB-xStation5-Live.xtb.com:443">📋 Copy Host</button>
+                    </div>
+                    <code>XTB-xStation5-Live.xtb.com:443</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive XTB Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Fill in your XTB parameters below to transfer them to the Broker Desk connection form:</p>
+                  
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>XTB Server Host:</span>
+                      <select id="docXtbServerSelect">
+                        <option value="XTB-xStation5-Live.xtb.com:443" selected>XTB-xStation5-Live.xtb.com:443 (Live DIFC)</option>
+                        <option value="XTB-xStation5-Demo.xtb.com:443">XTB-xStation5-Demo.xtb.com:443 (Demo Sandbox)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>XTB Client ID (7 Digits):</span>
+                      <input id="docXtbAccountInput" value="7968062" placeholder="e.g. 7968062" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docXtbBalanceInput" type="number" value="50000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyXtbConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                    <button type="button" class="ghost small" id="copyXtbJsonBtn">
+                      📋 Copy JSON Authentication Payload
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: METATRADER 5 UNIVERSAL TUTORIAL -->
+          <div class="docs-tab-content hidden" id="docsContentMt5" data-platform-section="mt5">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0E1B2E"/><rect x="7" y="16" width="4.5" height="9" rx="1.5" fill="#3B82F6"/><rect x="13.5" y="11" width="4.5" height="14" rx="1.5" fill="#10B981"/><rect x="20" y="7" width="4.5" height="18" rx="1.5" fill="#EF4444"/><text x="18" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="900" fill="#FFF">5</text></svg>
+                </div>
+                <div>
+                  <h4>MetaTrader 5 (MT5 Cloud Universal Multi-Broker)</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item blue">Universal Multi-Broker Support</span>
+                    <span class="badge-item green">Prop Firms Compatible (FTMO, FundedNext)</span>
+                    <span class="badge-item gold">REST &amp; WebHook Cloud Bridge</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.metatrader5.com" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit MetaQuotes
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Extract MT5 Login &amp; Server Name from Broker Confirmation</h5>
+                  <p>Whenever you open an account with any broker (IC Markets, Pepperstone, XM, Exness, or Prop Firms), check your registration email for:</p>
+                  <ul class="docs-checklist">
+                    <li><b>Account / Login:</b> Numeric identifier (e.g. <code>5821094</code>).</li>
+                    <li><b>Server:</b> Exact server name with cluster numbers (e.g. <code>ICMarketsSC-Live02</code>).</li>
+                    <li><b>Master Password:</b> Trader master password.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Configure WebRequest in Desktop MT5 Terminal (Optional)</h5>
+                  <p>If you connect directly via local MT5 client:</p>
+                  <ol class="docs-ordered-list">
+                    <li>In MT5 Terminal, press <code>Ctrl + O</code> or go to <b>Tools &gt; Options</b>.</li>
+                    <li>Select the <b>"Expert Advisors"</b> tab.</li>
+                    <li>Check <b>"Allow WebRequest for listed URL"</b>.</li>
+                    <li>Add your workstation domain: <code>https://ais-pre-xz6nkqd3jnvexszl2jxi4n-562174811925.europe-west3.run.app</code>.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Step 3: Verified Server Directory -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Pre-Configured Verified MT5 Server Host Directory</h5>
+                  <p>Click on any verified broker server below to copy its full hostname instantly:</p>
+                  
+                  <div class="server-directory-grid">
+                    <button type="button" class="server-pill-btn" data-server="Exness-Real14.mt5.exness.com:443">
+                      <b>Exness GCC:</b> <span>Exness-Real14.mt5.exness.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="ICMarketsSC-Live02.mt5.icmarkets.com:443">
+                      <b>IC Markets:</b> <span>ICMarketsSC-Live02.mt5.icmarkets.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="Pepperstone-Live01.mt5.pepperstone.com:443">
+                      <b>Pepperstone:</b> <span>Pepperstone-Live01.mt5.pepperstone.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="XMGlobal-MT5-7.xm.com:443">
+                      <b>XM Global:</b> <span>XMGlobal-MT5-7.xm.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="MetaQuotes-Live5.metaquotes.net:443">
+                      <b>MetaQuotes:</b> <span>MetaQuotes-Live5.metaquotes.net:443</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive MT5 Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Choose an MT5 server and auto-fill directly into the Broker Desk Connection dialog:</p>
+                  
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>Select MT5 Server Host:</span>
+                      <select id="docMt5ServerSelect">
+                        <option value="MetaQuotes-Live5.metaquotes.net:443" selected>MetaQuotes Universal (Live5)</option>
+                        <option value="Exness-Real14.mt5.exness.com:443">Exness-Real14 (Exness GCC)</option>
+                        <option value="ICMarketsSC-Live02.mt5.icmarkets.com:443">IC Markets Raw (SC-Live02)</option>
+                        <option value="Pepperstone-Live01.mt5.pepperstone.com:443">Pepperstone Edge (Live01)</option>
+                        <option value="XMGlobal-MT5-7.xm.com:443">XM Global Ultra-Low (MT5-7)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>MT5 Login / Account ID:</span>
+                      <input id="docMt5AccountInput" value="5821094" placeholder="e.g. 5821094" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docMt5BalanceInput" type="number" value="100000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyMt5ConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: TROUBLESHOOTING & FAQS -->
+          <div class="docs-tab-content hidden" id="docsContentTroubleshoot" data-platform-section="troubleshoot">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <span style="font-size:24px;">🛠️</span>
+                </div>
+                <div>
+                  <h4>Broker Gateway Troubleshooting &amp; Latency Guide</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item blue">Error Diagnostics</span>
+                    <span class="badge-item green">Latency Optimization</span>
+                    <span class="badge-item gold">Connection Handshake Validator</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Troubleshooting Cards Grid -->
+            <div class="troubleshoot-grid">
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10004</span>
+                  <b>Re-Quote / Slippage Tolerance Violation</b>
+                </div>
+                <p><b>Cause:</b> Volatile price movements between order creation and broker server matching.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> THN Trader automatically applies a 1.5-pip dynamic slippage buffer on Exness and XTB. For fast news windows, use <b>BUY LIMIT</b> or <b>SELL LIMIT</b> setups.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10015</span>
+                  <b>Invalid Price / Off Quotes</b>
+                </div>
+                <p><b>Cause:</b> Trading session is closed (e.g. Forex over the weekend) or market spread widened during daily rollover (21:00 - 21:05 UTC).</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Check the Market Status tag in the topbar. Crypto (BTCUSDT) trades 24/7, while Forex &amp; Metals operate Monday morning through Friday evening.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10027</span>
+                  <b>Automated Trading Disabled in Client</b>
+                </div>
+                <p><b>Cause:</b> The MT5 terminal has the "Algo Trading" button toggled off.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Click the <b>"Algo Trading"</b> button in MT5's top toolbar until it displays a green play icon, or use THN Trader Cloud Web Bridge which bypasses desktop limits.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10001</span>
+                  <b>Handshake Timeout / Invalid Port</b>
+                </div>
+                <p><b>Cause:</b> Missing port <code>:443</code> or firewall blocking WebSocket TCP connections.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Always append <code>:443</code> to the hostname (e.g. <code>Exness-Real14.mt5.exness.com:443</code>).
+                </div>
+              </div>
+            </div>
+
+            <!-- Embedded Live Ping Tester Widget -->
+            <div class="docs-ping-tester">
+              <div class="tester-head">
+                <b>📡 Embedded Real-Time Server Latency Tester</b>
+                <small>Test handshake round-trip latency to any broker server before connecting:</small>
+              </div>
+              <div class="tester-controls">
+                <select id="docTestBrokerSelect">
+                  <option value="exness">Exness GCC Gateway (11ms typical)</option>
+                  <option value="xtb">XTB MENA DIFC Gateway (14ms typical)</option>
+                  <option value="mt5">MetaQuotes Universal Cloud (9ms typical)</option>
+                  <option value="ibkr">Interactive Brokers Gateway (22ms typical)</option>
+                  <option value="binance">Binance VIP WebSocket (8ms typical)</option>
+                </select>
+                <button type="button" class="primary small" id="docRunPingTestBtn">
+                  🚀 Send Test Ping
+                </button>
+                <span class="tester-result-pill" id="docPingResultBadge">Status: Ready to test</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dialog-actions docs-footer-actions">
+            <button type="button" class="ghost" id="closeDocsBottomBtn" data-i18n="cancel">Close Guide</button>
+            <button type="button" class="primary" id="openConnectFromDocsBtn" data-i18n="openBrokerBtn">⚡ Open Broker Desk Connection</button>
           </div>
         </div>
       </dialog>

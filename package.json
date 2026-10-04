@@ -12,5 +12,7 @@
     "build": "node --check server.js && node --check public/app.js",
     "check": "node --check server.js && node --check public/app.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@google/genai": "^2.27.0"
+  }
 }
