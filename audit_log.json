@@ -1,5 +1,355 @@
 [
   {
+    "id": "ev_1791187465355_1fdb3a8d",
+    "correlationId": "CORR-411F1356",
+    "timestamp": "2026-10-05T08:04:25.356Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791187465349_20d9826f",
+    "correlationId": "CORR-514A8C0B",
+    "timestamp": "2026-10-05T08:04:25.350Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791187465344_a7f4ab9e",
+    "correlationId": "CORR-8324D94B",
+    "timestamp": "2026-10-05T08:04:25.344Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-4C03FAB2",
+      "closedLots": 0.2,
+      "realizedPnl": -1.06,
+      "exitPrice": 1.1201971769332886
+    }
+  },
+  {
+    "id": "ev_1791187465319_a64d2c5c",
+    "correlationId": "CORR-0D2B8F80",
+    "timestamp": "2026-10-05T08:04:25.319Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-4C03FAB2",
+      "side": "BUY",
+      "lots": 0.2,
+      "executedPrice": 1.12025,
+      "requiredMargin": 112.03
+    }
+  },
+  {
+    "id": "ev_1791187465302_6014dba6",
+    "correlationId": "CORR-8AEC9ABE",
+    "timestamp": "2026-10-05T08:04:25.302Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.01) must be strictly above current market price (1.1201971769332886).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
+    "id": "ev_1791187452987_66984dfb",
+    "correlationId": "CORR-01CB0E8F",
+    "timestamp": "2026-10-05T08:04:12.988Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791187452978_da6f84bf",
+    "correlationId": "CORR-BFECA811",
+    "timestamp": "2026-10-05T08:04:12.978Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791187452971_51d22c3d",
+    "correlationId": "CORR-B1BF3448",
+    "timestamp": "2026-10-05T08:04:12.971Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-DCEFF6AD",
+      "closedLots": 0.2,
+      "realizedPnl": -1.06,
+      "exitPrice": 1.1201971769332886
+    }
+  },
+  {
+    "id": "ev_1791187452942_60f5b813",
+    "correlationId": "CORR-DF5300DC",
+    "timestamp": "2026-10-05T08:04:12.942Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-DCEFF6AD",
+      "side": "BUY",
+      "lots": 0.2,
+      "executedPrice": 1.12025,
+      "requiredMargin": 112.03
+    }
+  },
+  {
+    "id": "ev_1791187452922_8a728939",
+    "correlationId": "CORR-B898CD7F",
+    "timestamp": "2026-10-05T08:04:12.922Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.01) must be strictly above current market price (1.1201971769332886).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
+    "id": "ev_1791187439787_52710a20",
+    "correlationId": "CORR-7765317F",
+    "timestamp": "2026-10-05T08:03:59.787Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791187439779_c358b394",
+    "correlationId": "CORR-B977792E",
+    "timestamp": "2026-10-05T08:03:59.780Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791187439775_f6db5a5a",
+    "correlationId": "CORR-2F06FBA7",
+    "timestamp": "2026-10-05T08:03:59.775Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-2F43188A",
+      "closedLots": 0.2,
+      "realizedPnl": -1.06,
+      "exitPrice": 1.1201971769332886
+    }
+  },
+  {
+    "id": "ev_1791187439753_5cdb636a",
+    "correlationId": "CORR-433BCB66",
+    "timestamp": "2026-10-05T08:03:59.753Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-2F43188A",
+      "side": "BUY",
+      "lots": 0.2,
+      "executedPrice": 1.12025,
+      "requiredMargin": 112.03
+    }
+  },
+  {
+    "id": "ev_1791187439731_87e33f86",
+    "correlationId": "CORR-9D67B0CF",
+    "timestamp": "2026-10-05T08:03:59.732Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.01) must be strictly above current market price (1.1201971769332886).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
+    "id": "ev_1791187425691_f4276f60",
+    "correlationId": "CORR-34B22B77",
+    "timestamp": "2026-10-05T08:03:45.692Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791187425684_d2e56494",
+    "correlationId": "CORR-6B5C498F",
+    "timestamp": "2026-10-05T08:03:45.684Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791187425677_911edff8",
+    "correlationId": "CORR-315D8293",
+    "timestamp": "2026-10-05T08:03:45.677Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-A9EA7448",
+      "closedLots": 0.2,
+      "realizedPnl": -0.96,
+      "exitPrice": 1.1200717687606812
+    }
+  },
+  {
+    "id": "ev_1791187425657_8ac3573e",
+    "correlationId": "CORR-D6931D24",
+    "timestamp": "2026-10-05T08:03:45.658Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-A9EA7448",
+      "side": "BUY",
+      "lots": 0.2,
+      "executedPrice": 1.12012,
+      "requiredMargin": 112.01
+    }
+  },
+  {
+    "id": "ev_1791187425634_562fa322",
+    "correlationId": "CORR-4864A0F6",
+    "timestamp": "2026-10-05T08:03:45.634Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.01) must be strictly above current market price (1.1200717687606812).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
+    "id": "ev_1791187391136_0c118957",
+    "correlationId": "CORR-9C297AC6",
+    "timestamp": "2026-10-05T08:03:11.136Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791187377971_a4xru",
+    "correlationId": "CORR-MUUYPU7N",
+    "timestamp": "2026-10-05T08:02:57.971Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791187375579_ssyzn",
+    "correlationId": "CORR-MUUYPSD8",
+    "timestamp": "2026-10-05T08:02:55.580Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-9296216",
+      "closedLots": 0.1,
+      "realizedPnl": -0.48,
+      "exitPrice": 1.1200717687606812
+    }
+  },
+  {
+    "id": "ev_1791187373690_hns7n",
+    "correlationId": "CORR-MUUYPQWQ",
+    "timestamp": "2026-10-05T08:02:53.690Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-9296216",
+      "side": "BUY",
+      "lots": 0.1,
+      "executedPrice": 1.12012,
+      "requiredMargin": 56.01
+    }
+  },
+  {
+    "id": "ev_1791187371557_10v8n",
+    "correlationId": "CORR-MUUYPP9H",
+    "timestamp": "2026-10-05T08:02:51.557Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.12) must be strictly above current market price (1.1200717687606812).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
     "id": "ev_1791121218354_ziiur",
     "correlationId": "CORR-MUTVBT4I",
     "timestamp": "2026-10-04T13:40:18.354Z",

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,8 +33,8 @@ loadAuditEvents();
 
 export function logAuditEvent({ eventType, accountId, symbol, details, status = "SUCCESS", correlationId }) {
   const event = {
-    id: `ev_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
-    correlationId: correlationId || `CORR-${Date.now().toString(36).toUpperCase()}`,
+    id: `ev_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`,
+    correlationId: correlationId || `CORR-${crypto.randomBytes(4).toString("hex").toUpperCase()}`,
     timestamp: new Date().toISOString(),
     eventType,
     accountId: accountId || "SYSTEM",

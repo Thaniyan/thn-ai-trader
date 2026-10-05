@@ -41,13 +41,15 @@ export function calculateRequiredMargin({ symbol, lots, price, leverage = 200 })
   return Number(margin.toFixed(2));
 }
 
-export function calculateOrderRisk({ symbol, side, lots, currentPrice, entryPrice, stopLoss, takeProfit }) {
+export function calculateOrderRisk({ symbol, side, lots, currentPrice, entryPrice, stopLoss, takeProfit, leverage = 200 }) {
   const spec = getContractSpec(symbol);
   const isBuy = String(side).toUpperCase().includes("BUY");
   const pLots = Number(lots) || 0.01;
   const pPrice = Number(currentPrice ?? entryPrice) || 0;
   const pSl = Number(stopLoss) || 0;
   const pTp = Number(takeProfit) || 0;
+
+  const requiredMargin = calculateRequiredMargin({ symbol, lots: pLots, price: pPrice, leverage });
 
   let slDistance = 0;
   let slDollars = 0;
@@ -68,6 +70,7 @@ export function calculateOrderRisk({ symbol, side, lots, currentPrice, entryPric
   return {
     contractSize: spec.contractSize,
     notionalValue: +(pLots * spec.contractSize * pPrice).toFixed(2),
+    requiredMargin,
     slDistance: +slDistance.toFixed(spec.digits),
     slDollars: +slDollars.toFixed(2),
     tpDistance: +tpDistance.toFixed(spec.digits),

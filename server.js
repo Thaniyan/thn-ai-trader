@@ -13,8 +13,10 @@ import {
   sanitizeAccountForClient
 } from "./server/accountStore.js";
 import { getBrokerAdapter } from "./server/brokerAdapters.js";
-import { validateOrderRisk, calculateOrderRisk } from "./server/riskEngine.js";
+import { validateOrderRisk, calculateOrderRisk, getContractSpec } from "./server/riskEngine.js";
 import { logAuditEvent, getAuditEvents } from "./server/auditLogger.js";
+import { reconcileAccount } from "./server/reconciliationEngine.js";
+import crypto from "node:crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1310,6 +1312,8 @@ function simulateBacktest({ confidence, rr, riskPct, accountBalance, consensusSc
     maxDrawdown = Math.max(maxDrawdown, ((peak - balance) / peak) * 100);
   }
   return {
+    simulationType: "HEURISTIC_MONTE_CARLO_PROJECTION",
+    isHistoricalBacktest: false,
     trades,
     wins,
     losses: trades - wins,
@@ -1318,7 +1322,8 @@ function simulateBacktest({ confidence, rr, riskPct, accountBalance, consensusSc
     endingBalance: round(balance, 2),
     maxDrawdownPct: round(maxDrawdown, 2),
     profitFactor: round(grossProfit / Math.max(1, grossLoss), 2),
-    note: "Deterministic stress simulator based on the current signal profile; not a guarantee of future performance."
+    provenance: "Heuristic Monte Carlo stress projection derived from signal confluence and position sizing. Not historical tick execution.",
+    note: "Synthetic mathematical scenario projection; not a guarantee or representation of past tick performance."
   };
 }
 
@@ -1509,7 +1514,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.0.0", openaiEnabled, serverTime: new Date().toISOString() });
     }
 
-    if (req.method === "GET" && url.pathname.startsWith("/api/market/")) {
+    if (req.method === "GET" && url.pathname.startsWith("/api/market/") && url.pathname !== "/api/market/quotes") {
       const symbol = decodeURIComponent(url.pathname.replace("/api/market/", ""));
       const timeframe = url.searchParams.get("timeframe") || "intraday";
       const market = await getMarketData(symbol, timeframe);
@@ -1526,6 +1531,41 @@ const server = http.createServer(async (req, res) => {
         last: market.candles.at(-1),
         candles: market.candles.slice(-160)
       });
+    }
+
+    if (req.method === "GET" && (url.pathname === "/api/quotes" || url.pathname === "/api/market/quotes")) {
+      const symbolsToFetch = ["XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "BTCUSDT", "US30"];
+      const quotes = {};
+      await Promise.allSettled(symbolsToFetch.map(async sym => {
+        try {
+          const m = await getMarketData(sym, "intraday");
+          const valid = (m.candles || []).filter(c => c && Number(c.close) > 0);
+          const lastCandle = valid.at(-1);
+          if (lastCandle) {
+            const spec = getContractSpec(sym);
+            const close = Number(lastCandle.close);
+            const prevClose = valid.at(-2)?.close ? Number(valid.at(-2).close) : close;
+            const changePct = prevClose > 0 ? +(((close - prevClose) / prevClose) * 100).toFixed(2) : 0;
+            const spreadOffset = (spec.pipSize || 0.0001) * 0.8;
+            quotes[sym] = {
+              symbol: sym,
+              name: m.symbolInfo.display,
+              assetClass: m.symbolInfo.assetClass,
+              bid: +(close - spreadOffset / 2).toFixed(spec.digits),
+              ask: +(close + spreadOffset / 2).toFixed(spec.digits),
+              close,
+              changePct,
+              digits: spec.digits,
+              contractSize: spec.contractSize,
+              source: m.source,
+              timestamp: lastCandle.time || Date.now()
+            };
+          }
+        } catch (err) {
+          console.warn(`[QUOTES] ${sym} fetch error:`, err.message);
+        }
+      }));
+      return sendJson(res, 200, { ok: true, quotes, timestamp: new Date().toISOString() });
     }
 
     if (req.method === "POST" && url.pathname === "/api/analyze") {
@@ -1659,7 +1699,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "POST" && url.pathname === "/api/broker/register-account") {
       const body = await readBody(req);
       const broker = (body.broker || "exness").toLowerCase();
-      const randomAccNum = `${broker.toUpperCase().slice(0, 3)}-${Math.floor(1000000 + Math.random() * 9000000)}`;
+      const randomAccNum = `${broker.toUpperCase().slice(0, 3)}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
       const newAccount = addTradingAccount({
         broker,
         server: `${broker.toUpperCase()}-Live02`,
@@ -1668,15 +1708,26 @@ const server = http.createServer(async (req, res) => {
         permissionLevel: "TRADING_ENABLED",
         currency: (body.currency || "USD").toUpperCase(),
         leverage: Number(body.leverage || 200),
-        balance: Math.max(0, Number(body.capital || 50000)),
-        tradingMode: "LIVE"
+        balance: broker === "paper" ? 50000 : 0,
+        tradingMode: broker === "paper" ? "PAPER" : "LIVE"
       });
 
       return sendJson(res, 200, {
         ok: true,
         account: newAccount,
-        message: `Registered and linked ${newAccount.accountAlias} with initial balance $${newAccount.balance}.`
+        message: `Linked external ${newAccount.brokerName} (#${newAccount.accountNumberMasked}). Awaiting broker bridge verification.`
       });
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/broker/reconcile") {
+      const body = await readBody(req);
+      const accountId = body.accountId || "acc_paper_sandbox_01";
+      try {
+        const report = await reconcileAccount(accountId);
+        return sendJson(res, 200, report);
+      } catch (err) {
+        return sendJson(res, 400, { ok: false, error: err.message });
+      }
     }
 
     if (req.method === "POST" && url.pathname === "/api/broker/reset-sandbox") {
@@ -1910,7 +1961,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "POST" && url.pathname === "/api/risk/calculate") {
       const body = await readBody(req);
       const riskMetrics = calculateOrderRisk(body);
-      return sendJson(res, 200, { ok: true, metrics: riskMetrics });
+      return sendJson(res, 200, { ok: true, metrics: riskMetrics, riskAnalysis: riskMetrics });
     }
 
     // --- Audit Log Retrieval ---

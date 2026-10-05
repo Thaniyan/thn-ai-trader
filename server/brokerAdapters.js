@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import { getContractSpec, calculateRequiredMargin } from "./riskEngine.js";
 
 /**
@@ -83,7 +84,7 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
       leverage: account.leverage || 200
     });
 
-    const ticketId = `PT-${Math.floor(1000000 + Math.random() * 9000000)}`;
+    const ticketId = `PT-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
 
     const newPosition = {
       ticket: ticketId,

@@ -1216,9 +1216,16 @@
               </label>
 
               <label>
-                <span>Initial Capital ($ USD)</span>
-                <input id="brokerSyncBalanceInput" type="number" min="0" max="50000000" value="50000" />
+                <span>Permission Mode</span>
+                <select id="brokerPermissionSelect">
+                  <option value="TRADING_ENABLED" selected>Trading &amp; Execution Enabled</option>
+                  <option value="READ_ONLY">Read-Only (Advisory / Market Data Only)</option>
+                </select>
               </label>
+            </div>
+
+            <div class="broker-sync-note tiny muted-text" style="margin-top: 8px;">
+              🛡️ <b>Balance &amp; Margin Integrity:</b> Capital balance, used margin, and open positions are retrieved authoritatively from the broker gateway upon handshake. Manual balance entry is prohibited.
             </div>
 
             <div class="test-ping-box">

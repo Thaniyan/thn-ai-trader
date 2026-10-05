@@ -3176,14 +3176,9 @@ function saveJournal() {
 function getJournal() {
   try {
     const raw = localStorage.getItem(journalKey);
-    if (raw === null) {
-      const benchmark = getBenchmarkSampleTrades();
-      localStorage.setItem(journalKey, JSON.stringify(benchmark));
-      return benchmark;
-    }
+    if (!raw) return [];
     const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed) && parsed.length) return parsed;
-    if (Array.isArray(parsed) && parsed.length === 0) return [];
+    if (Array.isArray(parsed)) return parsed;
   } catch {
     localStorage.removeItem(journalKey);
   }
@@ -3964,50 +3959,47 @@ const webtraderQuotes = {
   US30: { name: "Wall Street 30 Index", bid: 42310.0, ask: 42312.0, spread: 2.0, digits: 1, mult: 1 }
 };
 
+const DEFAULT_SANDBOX_ACCOUNT = {
+  id: "acc_paper_sandbox_01",
+  connected: true,
+  provider: "paper",
+  broker: "paper",
+  brokerName: "THN Institutional Paper Trading",
+  providerName: "Institutional Sandbox Engine",
+  platform: "THN Quantitative Sandbox Engine",
+  server: "THN-INTERNAL-SANDBOX",
+  accountNumber: "SBX-885012",
+  accountNumberMasked: "•••• 5012",
+  accountType: "paper",
+  accountTypeName: "Institutional Sandbox (Simulated)",
+  currency: "USD",
+  balance: 50000.00,
+  equity: 50000.00,
+  freeMargin: 50000.00,
+  usedMargin: 0.00,
+  riskPct: 1.0,
+  leverage: 200,
+  tradingMode: "PAPER",
+  permissionLevel: "TRADING_ENABLED",
+  reconciliationStatus: "SYNCHRONIZED",
+  regulation: "Simulated Trading Sandbox · Zero Capital Risk",
+  kycStatus: "SIMULATED",
+  positions: [],
+  dailyRealizedPnl: 0.00,
+  todayTradesCount: 0
+};
+
 function getBrokerAccount() {
   try {
     const raw = localStorage.getItem(brokerKey);
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") return parsed;
+      if (parsed && typeof parsed === "object" && parsed.id && parsed.id !== "acc_exness_live_01") {
+        return parsed;
+      }
     }
   } catch {}
-  return {
-    id: "acc_exness_live_01",
-    connected: true,
-    provider: "exness",
-    broker: "exness",
-    brokerName: "Exness GCC (إكسنس)",
-    providerName: "Exness Pro (MT5 Direct)",
-    platform: "MetaTrader 5 (MT5 Cloud Direct)",
-    server: "Exness-Real14.mt5.exness.com:443",
-    accountNumber: "2849104",
-    accountId: "2849104",
-    masterPassword: "Exn#8942$",
-    investorPassword: "Inv#3182@",
-    apiToken: "tok_exn_live_89410ea821b0",
-    accountType: "raw",
-    accountTypeName: "Raw Spread ECN (0.0 Pip)",
-    currency: "USD",
-    balance: 25000.00,
-    equity: 25000.00,
-    freeMargin: 25000.00,
-    usedMargin: 0.00,
-    riskPct: 1.0,
-    leverage: 200,
-    regulation: "CySEC & FSA Tier-1 (GCC Approved)",
-    kycStatus: "VERIFIED",
-    isIslamic: true,
-    user: {
-      fullName: "Sultan Al-Mamari",
-      email: "sultan.trader@gcc-markets.com",
-      phone: "+968 9123 4567",
-      country: "Oman"
-    },
-    positions: [],
-    dailyRealizedPnl: 0.00,
-    todayTradesCount: 0
-  };
+  return { ...DEFAULT_SANDBOX_ACCOUNT };
 }
 
 function saveBrokerAccount(acc) {
@@ -4028,20 +4020,9 @@ async function loadBrokerAccountsFromServer() {
         const current = getBrokerAccount();
         const matched = serverBrokerAccounts.find(a => (a.id && a.id === current.id) || (a.accountNumber && a.accountNumber === current.accountNumber));
         if (matched) {
-          matched.positions = current.positions || [];
-          matched.dailyRealizedPnl = current.dailyRealizedPnl || 0;
-          matched.todayTradesCount = current.todayTradesCount || 0;
-          matched.riskPct = current.riskPct || 1.0;
-          matched.connected = true;
           saveBrokerAccount(matched);
         } else {
-          const first = serverBrokerAccounts[0];
-          first.positions = current.positions || [];
-          first.dailyRealizedPnl = current.dailyRealizedPnl || 0;
-          first.todayTradesCount = current.todayTradesCount || 0;
-          first.riskPct = current.riskPct || 1.0;
-          first.connected = true;
-          saveBrokerAccount(first);
+          saveBrokerAccount(serverBrokerAccounts[0]);
         }
       }
     }
@@ -4152,9 +4133,18 @@ function renderWebTrader() {
   }
 
   const quotesTarget = $("webtraderQuotesList");
+  const quotesToUse = { ...webtraderQuotes };
+  Object.keys(liveQuotesCache).forEach(sym => {
+    if (quotesToUse[sym] && liveQuotesCache[sym].bid) {
+      quotesToUse[sym].bid = Number(liveQuotesCache[sym].bid);
+      quotesToUse[sym].ask = Number(liveQuotesCache[sym].ask);
+      quotesToUse[sym].spread = +(liveQuotesCache[sym].ask - liveQuotesCache[sym].bid).toFixed(quotesToUse[sym].digits);
+    }
+  });
+
   if (quotesTarget) {
     const activeSym = $("webtraderSymbolSelect")?.value || "XAUUSD";
-    quotesTarget.innerHTML = Object.entries(webtraderQuotes).map(([sym, q]) => {
+    quotesTarget.innerHTML = Object.entries(quotesToUse).map(([sym, q]) => {
       const isAct = sym === activeSym;
       return `
         <div class="quote-row ${isAct ? 'active' : ''}" data-quote-symbol="${sym}">
@@ -4189,10 +4179,10 @@ function updateWebTraderCalculations() {
   const acc = getBrokerAccount();
   const sym = $("webtraderSymbolSelect")?.value || "XAUUSD";
   const lots = Number($("webtraderLotsInput")?.value || 0.1);
-  const q = webtraderQuotes[sym] || webtraderQuotes.XAUUSD;
+  const q = liveQuotesCache[sym] || webtraderQuotes[sym] || webtraderQuotes.XAUUSD;
   const leverage = Number(acc.leverage || 200);
 
-  const contractVal = lots * q.mult * q.ask;
+  const contractVal = lots * (q.mult || q.contractSize || 100) * q.ask;
   const marginReq = +(contractVal / leverage).toFixed(2);
   const maxRisk = +(acc.balance * ((acc.riskPct || 1.0) / 100)).toFixed(2);
 
@@ -4203,7 +4193,7 @@ function updateWebTraderCalculations() {
   const isLimit = $("webtraderOrderTypeSelect")?.value?.includes("LIMIT");
   $("webtraderPriceGroup")?.classList.toggle("hidden", !isLimit);
   if (isLimit && $("webtraderPriceInput") && !$("webtraderPriceInput").value) {
-    $("webtraderPriceInput").value = q.bid.toFixed(q.digits);
+    $("webtraderPriceInput").value = q.bid.toFixed(q.digits || 2);
   }
 }
 
@@ -4311,25 +4301,27 @@ async function testBrokerPing() {
   const acc = getBrokerAccount();
   const label = $("testBrokerPingResult");
   const indicator = $("brokerPingText");
-  if (label) label.textContent = "Pinging broker gateway server...";
+  if (label) label.textContent = currentLang === "ar" ? "جاري فحص الاتصال بالخادم..." : "Pinging broker gateway server...";
 
   try {
     const res = await fetch("/api/broker/ping", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ broker: acc.broker || acc.provider || "exness" })
+      body: JSON.stringify({ broker: acc.broker || acc.provider || "paper" })
     });
     const data = await res.json();
-    if (data.ok) {
-      const pingText = `Ping: ${data.pingMs}ms · Gateway Server Optimal`;
-      if (label) label.textContent = `🟢 Handshake OK: ${data.pingMs}ms latency · Feeds Active`;
+    if (data.ok && (data.status === "CONNECTED" || data.status === "ACTIVE")) {
+      const pingText = `Ping: ${data.latencyMs}ms · Gateway Operational`;
+      if (label) label.textContent = `🟢 Handshake OK: ${data.latencyMs}ms · Feeds Active`;
       if (indicator) indicator.textContent = pingText;
+    } else {
+      const msg = data.message || "Standby / Bridge Offline";
+      if (label) label.textContent = `🟡 ${msg}`;
+      if (indicator) indicator.textContent = `Gateway Standby`;
     }
-  } catch {
-    const randMs = Math.floor(9 + Math.random() * 8);
-    const pingText = `Ping: ${randMs}ms · Live Gateway`;
-    if (label) label.textContent = `🟢 Verified: ${randMs}ms latency to broker gateway`;
-    if (indicator) indicator.textContent = pingText;
+  } catch (err) {
+    if (label) label.textContent = `🔴 Gateway Unreachable: Network error`;
+    if (indicator) indicator.textContent = `Ping: Offline`;
   }
 }
 
@@ -4455,49 +4447,41 @@ function generateCapitalDeals(acc) {
     });
   }
 
-  // Deal 2: Gold Institutional Deal
-  const goldRisk = maxRisk;
-  const goldLots = Math.max(0.01, +(goldRisk / 1600).toFixed(2));
-  const goldProfit = +(goldLots * 4200).toFixed(2);
-  deals.push({
-    symbol: "XAUUSD",
-    decision: "BUY LIMIT",
-    isLimit: true,
-    title: "XAU/USD Gold Institutional Discount Sweep (Buy Limit)",
-    lots: goldLots,
-    entry: 2652.40,
-    stopLoss: 2636.40,
-    target1: 2694.40,
-    maxRisk: goldRisk,
-    targetProfit: goldProfit,
-    targetPct: +((goldProfit / acc.balance) * 100).toFixed(2),
-    rr: 2.63,
-    aiTip: currentLang === "ar"
-      ? `فرصة شراء معلق للذهب عند ارتداد منطقة الخصم 50%. الحجم المقترح: ${goldLots} لوت يحقق نسبة مخاطرة إلى عائد 1:2.6.`
-      : `Gold 50% discount equilibrium limit entry. Suggested sizing: ${goldLots} lots for optimal 1:2.63 payoff ratio.`
-  });
+  // Also build deals from active scanned watchlist items if available
+  if (Array.isArray(watchScanResults) && watchScanResults.length) {
+    const validScans = watchScanResults.filter(r => r.decision && r.decision !== "WAIT" && r.entry && r.stopLoss);
+    for (const scan of validScans.slice(0, 2)) {
+      if (currentAnalysis && currentAnalysis.symbol === scan.symbol) continue;
+      const isBuy = scan.decision.includes("BUY");
+      const isLimit = scan.decision.includes("LIMIT");
+      const slDist = Math.abs(Number(scan.entry) - Number(scan.stopLoss));
+      const target1 = Number(scan.targets?.[0] || scan.optimalEntry || scan.entry);
+      const tpDist = Math.abs(target1 - Number(scan.entry));
+      const mult = scan.symbol.includes("XAU") ? 100 : scan.symbol.includes("BTC") ? 1 : 100000;
+      const lots = Math.max(0.01, +(maxRisk / Math.max(slDist * mult, 1e-6)).toFixed(2));
+      const targetProfit = +(tpDist * mult * lots).toFixed(2);
+      const targetPct = +((targetProfit / acc.balance) * 100).toFixed(2);
+      const rr = slDist > 0 ? +(tpDist / slDist).toFixed(2) : 2.0;
 
-  // Deal 3: Bitcoin Institutional Momentum Deal
-  const btcRisk = maxRisk;
-  const btcUnits = Math.max(0.002, +(btcRisk / 1350).toFixed(3));
-  const btcProfit = +(btcUnits * 4050).toFixed(2);
-  deals.push({
-    symbol: "BTCUSDT",
-    decision: "BUY",
-    isLimit: false,
-    title: "BTC/USDT 4H Fair Value Gap Retest",
-    lots: btcUnits,
-    entry: 64800,
-    stopLoss: 63450,
-    target1: 68850,
-    maxRisk: btcRisk,
-    targetProfit: btcProfit,
-    targetPct: +((btcProfit / acc.balance) * 100).toFixed(2),
-    rr: 3.0,
-    aiTip: currentLang === "ar"
-      ? `فجوة قيمة عادلة FVG مؤكدة على شارت 4 ساعات. الحجم المقترح: ${btcUnits} BTC بمخاطرة ${money(btcRisk)} وعائد متوقع ${money(btcProfit)}.`
-      : `4H Fair Value Gap retest confirmed by RSI momentum. Sized to ${btcUnits} BTC for 1:3.0 R:R profile.`
-  });
+      deals.push({
+        symbol: scan.symbol,
+        decision: scan.decision,
+        isLimit,
+        title: `${scan.symbol} Scanner Opportunity (${scan.decision})`,
+        lots,
+        entry: scan.entry,
+        stopLoss: scan.stopLoss,
+        target1,
+        maxRisk,
+        targetProfit,
+        targetPct,
+        rr,
+        aiTip: currentLang === "ar"
+          ? `فرصة معتمدة من ماسح السوق بنسبة ثقة ${scan.confidence}%. حجم العقد: ${lots} لوت لحصر المخاطرة في ${money(maxRisk)}.`
+          : `Scanner confluence signal (${scan.confidence}% confidence). Sized to ${lots} lots locking risk to ${money(maxRisk)}.`
+      });
+    }
+  }
 
   return deals.slice(0, 3);
 }
@@ -4507,40 +4491,57 @@ function renderBrokerDesk() {
   const dealsGrid = $("brokerDealsGrid");
   if (dealsGrid) {
     const deals = generateCapitalDeals(acc);
-    dealsGrid.innerHTML = deals.map(deal => {
-      const isBuy = deal.decision.includes("BUY");
-      const isLimit = deal.decision.includes("LIMIT");
-      const cardClass = isLimit ? (isBuy ? 'buy-limit' : 'sell-limit') : (isBuy ? 'buy' : 'sell');
-      return `
-        <div class="deal-card ${cardClass}">
-          <div class="deal-card-header">
-            <div>
-              <b>${escapeHtml(deal.title)}</b>
-              <small class="muted-text">${escapeHtml(deal.symbol)} · ${deal.decision}</small>
-            </div>
-            <span class="deal-tag ${cardClass}">${escapeHtml(deal.decision)}</span>
-          </div>
-
-          <div class="deal-metric-row">
-            <div><span>Tailored Sizing</span><b>${deal.lots} ${deal.symbol.includes("BTC") ? 'BTC' : 'Lots'}</b></div>
-            <div><span>Capital Risk</span><b style="color:var(--red)">${money(deal.maxRisk)} (${fmt(acc.riskPct, 1)}%)</b></div>
-            <div><span>Target Profit</span><b style="color:var(--green)">+${money(deal.targetProfit)} (+${deal.targetPct}%)</b></div>
-            <div><span>Reward / Risk</span><b>1 : ${deal.rr}</b></div>
-          </div>
-
-          <p class="deal-notes">${escapeHtml(deal.aiTip)}</p>
-
-          <div class="button-row">
-            <button type="button" class="primary deal-action-btn" data-execute-deal="${encodeURIComponent(JSON.stringify(deal))}">
-              ⚡ ${isLimit ? (currentLang === "ar" ? "تنفيذ الأمر المعلق" : "Execute Limit Order") : t("executeDeal")}
-            </button>
-            <button type="button" class="ghost small inspect-deal-btn" data-inspect-deal="${escapeHtml(deal.symbol)}">
-              🔍 Inspect
-            </button>
-          </div>
+    if (!deals.length) {
+      dealsGrid.innerHTML = `
+        <div class="empty-deals-box" style="grid-column: 1 / -1; padding: 28px; text-align: center; border: 1px dashed var(--border); border-radius: 8px; background: rgba(255,255,255,0.01);">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎯</div>
+          <b style="display:block; margin-bottom: 6px;">${currentLang === "ar" ? "بانتظار تحليل الأصول المالية" : "Awaiting Instrument Analysis"}</b>
+          <p class="tiny muted-text" style="max-width: 480px; margin: 0 auto 14px auto;">
+            ${currentLang === "ar" ? "قم بتحليل أي أصل مالي أعلاه أو تشغيل ماسح السوق لتوليد تذاكر صفقات حقيقية محسوبة المخاطر." : "Analyze an asset above or run the Opportunity Scanner to generate real-time, risk-governed capital allocation tickets."}
+          </p>
+          <button type="button" class="primary small" id="deskAnalyzeNowBtn">⚡ ${currentLang === "ar" ? "تحليل الذهب (XAUUSD) الآن" : "Analyze Gold (XAUUSD) Now"}</button>
         </div>
       `;
-    }).join("");
+      $("deskAnalyzeNowBtn")?.addEventListener("click", () => {
+        $("symbolInput").value = "XAUUSD";
+        analyze();
+      });
+    } else {
+      dealsGrid.innerHTML = deals.map(deal => {
+        const isBuy = deal.decision.includes("BUY");
+        const isLimit = deal.decision.includes("LIMIT");
+        const cardClass = isLimit ? (isBuy ? 'buy-limit' : 'sell-limit') : (isBuy ? 'buy' : 'sell');
+        return `
+          <div class="deal-card ${cardClass}">
+            <div class="deal-card-header">
+              <div>
+                <b>${escapeHtml(deal.title)}</b>
+                <small class="muted-text">${escapeHtml(deal.symbol)} · ${deal.decision}</small>
+              </div>
+              <span class="deal-tag ${cardClass}">${escapeHtml(deal.decision)}</span>
+            </div>
+
+            <div class="deal-metric-row">
+              <div><span>Tailored Sizing</span><b>${deal.lots} ${deal.symbol.includes("BTC") ? 'BTC' : 'Lots'}</b></div>
+              <div><span>Capital Risk</span><b style="color:var(--red)">${money(deal.maxRisk)} (${fmt(acc.riskPct, 1)}%)</b></div>
+              <div><span>Target Profit</span><b style="color:var(--green)">+${money(deal.targetProfit)} (+${deal.targetPct}%)</b></div>
+              <div><span>Reward / Risk</span><b>1 : ${deal.rr}</b></div>
+            </div>
+
+            <p class="deal-notes">${escapeHtml(deal.aiTip)}</p>
+
+            <div class="button-row">
+              <button type="button" class="primary deal-action-btn" data-execute-deal="${encodeURIComponent(JSON.stringify(deal))}">
+                ⚡ ${isLimit ? (currentLang === "ar" ? "تنفيذ الأمر المعلق" : "Execute Limit Order") : t("executeDeal")}
+              </button>
+              <button type="button" class="ghost small inspect-deal-btn" data-inspect-deal="${escapeHtml(deal.symbol)}">
+                🔍 Inspect
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
   }
 
   renderBrokerPositions(acc);
@@ -4775,12 +4776,16 @@ async function runDocPingTest() {
         ? `🟢 ${latency}ms · اتصال خادم ${data.broker || broker.toUpperCase()} نشط ومتحقق منه`
         : `🟢 ${latency}ms · ${data.broker || broker.toUpperCase()} Gateway Verified & Live`;
       resultBadge.style.color = "var(--green)";
+    } else {
+      if (resultBadge) {
+        resultBadge.textContent = currentLang === "ar" ? `🟡 ${data.message || 'خادم الجسر غير متصل'}` : `🟡 ${data.message || 'Bridge Offline'}`;
+        resultBadge.style.color = "var(--yellow)";
+      }
     }
-  } catch {
-    const fallbackLat = Math.floor(10 + Math.random() * 8);
+  } catch (err) {
     if (resultBadge) {
-      resultBadge.textContent = `🟢 ${fallbackLat}ms · Live Cloud Gateway Handshake OK`;
-      resultBadge.style.color = "var(--green)";
+      resultBadge.textContent = currentLang === "ar" ? "🔴 تعذر الوصول إلى الخادم / غير متصل" : "🔴 Gateway Unreachable / Offline";
+      resultBadge.style.color = "var(--red)";
     }
   } finally {
     if (btn) {
@@ -5030,30 +5035,74 @@ function showLiveTradeNotification(pos) {
   setTimeout(() => toast.classList.add("hidden"), 5000);
 }
 
+let liveQuotesCache = {};
+
+async function fetchLiveMarketQuotes() {
+  try {
+    const res = await fetch("/api/quotes");
+    if (res.ok) {
+      const data = await res.json();
+      if (data.ok && data.quotes) {
+        liveQuotesCache = data.quotes;
+        return data.quotes;
+      }
+    }
+  } catch (err) {
+    console.warn("[LIVE QUOTES] Fetch warning:", err.message);
+  }
+  return liveQuotesCache;
+}
+
+async function syncOpenPositionsWithLiveMarket() {
+  const acc = getBrokerAccount();
+  if (!acc.positions || !acc.positions.length) return;
+
+  const quotes = await fetchLiveMarketQuotes();
+  let updatedAny = false;
+
+  for (const pos of acc.positions) {
+    const q = quotes[pos.symbol];
+    if (q && q.close > 0) {
+      const isBuy = pos.side.includes("BUY");
+      const livePrice = isBuy ? (q.bid || q.close) : (q.ask || q.close);
+      if (Math.abs(pos.currentPrice - Number(livePrice)) > 1e-6) {
+        pos.currentPrice = Number(livePrice);
+        updatedAny = true;
+      }
+
+      // Check authoritative TP / SL hits against verified interbank quotes
+      if (pos.tp > 0) {
+        if (isBuy && pos.currentPrice >= pos.tp) {
+          closeBrokerPosition(pos.ticket, 1.0);
+          continue;
+        } else if (!isBuy && pos.currentPrice <= pos.tp) {
+          closeBrokerPosition(pos.ticket, 1.0);
+          continue;
+        }
+      }
+      if (pos.sl > 0) {
+        if (isBuy && pos.currentPrice <= pos.sl) {
+          closeBrokerPosition(pos.ticket, 1.0);
+          continue;
+        } else if (!isBuy && pos.currentPrice >= pos.sl) {
+          closeBrokerPosition(pos.ticket, 1.0);
+          continue;
+        }
+      }
+    }
+  }
+
+  if (updatedAny) {
+    renderBrokerDesk();
+  }
+}
+
 function startBrokerPositionTickTimer() {
   if (brokerTickInterval) clearInterval(brokerTickInterval);
+  // Periodically synchronize mark-to-market valuations with live market quote feed
   brokerTickInterval = setInterval(() => {
-    const acc = getBrokerAccount();
-    if (!acc.positions.length) return;
-
-    acc.positions.forEach(pos => {
-      const tickSize = pos.symbol.includes("BTC") ? 8 : pos.symbol.includes("XAU") ? 0.35 : 0.00008;
-      const delta = (Math.random() - 0.48) * tickSize;
-      pos.currentPrice = +(pos.currentPrice + delta).toFixed(pricePrecision(pos.entryPrice));
-
-      if (pos.side === "BUY" && pos.currentPrice >= pos.tp) {
-        closeBrokerPosition(pos.ticket, 1.0);
-      } else if (pos.side === "BUY" && pos.currentPrice <= pos.sl) {
-        closeBrokerPosition(pos.ticket, 1.0);
-      } else if (pos.side === "SELL" && pos.currentPrice <= pos.tp) {
-        closeBrokerPosition(pos.ticket, 1.0);
-      } else if (pos.side === "SELL" && pos.currentPrice >= pos.sl) {
-        closeBrokerPosition(pos.ticket, 1.0);
-      }
-    });
-
-    renderBrokerDesk();
-  }, 3500);
+    syncOpenPositionsWithLiveMarket();
+  }, 5000);
 }
 
 function initEvents() {
