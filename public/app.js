@@ -25,11 +25,17 @@ const I18N = {
   en: {
     brandTagline: "AI-powered market intelligence",
     navDashboard: "Dashboard",
+    navMarkets: "Markets",
+    navTrading: "Trading Terminal",
+    navAI: "AI Intelligence",
+    navRisk: "Risk Desk",
+    navPortfolio: "Portfolio",
+    navJournal: "Trade Journal",
+    navBrokers: "Broker Accounts",
+    navSettings: "Settings",
     navAnalysis: "AI Analysis",
     navWatchlist: "Watchlist",
     navChart: "TradingView",
-    navRisk: "Risk Desk",
-    navJournal: "Journal & Report",
     apiChecking: "Checking engine...",
     modelInitializing: "THN engine initializing",
     disclaimer: "Educational analysis only. Always verify with your broker, calendar, and risk plan.",
@@ -52,7 +58,7 @@ const I18N = {
     readyRiskTitle: "Risk-first",
     readyRiskText: "Position sizing, SL, TP and scenario planning",
     readyReportTitle: "Exportable reports",
-    readyReportText: "Journal, checklist and institutional report",
+    readyReportText: "Journal, checklist and quantitative report",
     marketCode: "Market / Currency Code",
     symbolPlaceholder: "EURUSD, XAUUSD, BTCUSDT, AAPL",
     analyze: "Analyze",
@@ -235,11 +241,17 @@ const I18N = {
   ar: {
     brandTagline: "ذكاء سوقي مدعوم بالذكاء الاصطناعي",
     navDashboard: "لوحة التحكم",
+    navMarkets: "الأسواق",
+    navTrading: "منصة التداول",
+    navAI: "الذكاء الاصطناعي",
+    navRisk: "إدارة المخاطر",
+    navPortfolio: "المحفظة والأداء",
+    navJournal: "سجل الصفقات",
+    navBrokers: "حسابات الوسيط",
+    navSettings: "الإعدادات",
     navAnalysis: "تحليل الذكاء الاصطناعي",
     navWatchlist: "قائمة المتابعة",
     navChart: "شارت TradingView",
-    navRisk: "إدارة المخاطر",
-    navJournal: "السجل والتقرير",
     apiChecking: "جارٍ فحص المحرك...",
     modelInitializing: "جارٍ تهيئة محرك THN",
     disclaimer: "التحليل تعليمي ومساعد فقط. تحقق دائمًا من الوسيط، والأخبار، وخطة المخاطر.",
@@ -506,11 +518,11 @@ Object.assign(I18N.en, {
   layerTrend: "Trend",
   layerVolume: "Volume",
   layerPatterns: "Patterns",
-  institutionalChart: "Institutional chart",
+  institutionalChart: "Analysis Canvas",
   adaptiveScale: "Adaptive scale enabled",
   layerSmc: "SMC",
   technicalStoryboard: "Technical Storyboard",
-  technicalStoryboardSub: "Institutional reading of the chart and execution context",
+  technicalStoryboardSub: "Technical reading of the chart and execution context",
   marketStructureBoard: "Market Structure Board",
   marketStructureBoardSub: "SMC, order blocks, pivots and liquidity map",
   smcMap: "SMC Map",
@@ -528,7 +540,7 @@ Object.assign(I18N.en, {
   executionProtocol: "Execution Protocol",
   schoolBalance: "School Balance",
   technicalDrawingChart: "Technical Drawing Chart",
-  clearInstitutionalView: "Clean institutional view",
+  clearInstitutionalView: "Clean Technical View",
   skAnalysisChart: "SK / SMC Analysis",
   skAnalysisSub: "Structure, liquidity, BOS/CHoCH and order blocks",
   tradeCompass: "Trade Compass",
@@ -555,12 +567,12 @@ Object.assign(I18N.en, {
   mtfaEyebrow: "MULTI-TIMEFRAME CONFLUENCE",
   mtfaTitle: "Multi-Timeframe Alignment Matrix (MTFA)",
   smcDeepEyebrow: "SMART MONEY CONCEPTS & ORDER FLOW",
-  smcDeepTitle: "Institutional SMC & Liquidity Architecture",
+  smcDeepTitle: "Market Structure & Liquidity Architecture",
   liquidityArchitecture: "Liquidity Pools (BSL / SSL)",
-  orderBlocksDeep: "Institutional Order Blocks (OB)",
+  orderBlocksDeep: "Order Blocks (OB)",
   fvgDeep: "Fair Value Gaps (FVG)",
   dealingRange: "Dealing Range & Equilibrium (50%)",
-  macroEyebrow: "INSTITUTIONAL MACRO RADAR",
+  macroEyebrow: "MACRO RADAR & ECONOMIC CALENDAR",
   macroTitle: "High-Impact Economic Calendar & Central Bank Radar",
   macroSafety: "Risk Filter Active",
   navMtfa: "🌐 Timeframe Matrix (MTFA)",
@@ -1022,7 +1034,146 @@ const escapeHtml = value => String(value ?? "")
   .replace(/'/g, "&#039;");
 
 function status(text) {
-  $("statusMsg").textContent = text;
+  if ($("statusMsg")) $("statusMsg").textContent = text;
+}
+
+function showNotice(msg, type = "info") {
+  status(msg);
+  const toast = $("tradeToast");
+  if (toast) {
+    if ($("toastSignal")) $("toastSignal").textContent = type === "error" ? "⚠️ ALERT" : "ℹ️ NOTICE";
+    if ($("toastPair")) $("toastPair").textContent = msg;
+    if ($("toastConfidence")) $("toastConfidence").textContent = "";
+    toast.classList.remove("hidden");
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => toast.classList.add("hidden"), 5000);
+  }
+}
+
+function switchView(viewName) {
+  if (!viewName) viewName = "dashboard";
+  const jumpMap = {
+    dashboard: "dashboard",
+    analysis: "trading",
+    chart: "trading",
+    trading: "trading",
+    terminal: "trading",
+    brokerDesk: "brokers",
+    brokers: "brokers",
+    mtfa: "ai",
+    smcDeep: "ai",
+    schoolsGrid: "ai",
+    "professional-map": "ai",
+    ai: "ai",
+    watchlist: "markets",
+    macroCalendarSection: "markets",
+    markets: "markets",
+    risk: "risk",
+    performanceAnalytics: "portfolio",
+    portfolio: "portfolio",
+    journal: "journal",
+    settings: "settings"
+  };
+  const resolved = jumpMap[viewName] || viewName;
+
+  const views = document.querySelectorAll(".app-view");
+  const navBtns = document.querySelectorAll(".nav-stack .nav");
+  let targetView = document.getElementById(`view-${resolved}`) || document.getElementById("view-dashboard");
+  const actualViewName = targetView ? targetView.id.replace("view-", "") : "dashboard";
+
+  views.forEach(v => {
+    if (v.id === `view-${actualViewName}`) {
+      v.classList.add("view-active");
+    } else {
+      v.classList.remove("view-active");
+    }
+  });
+
+  navBtns.forEach(btn => {
+    const bView = btn.dataset.view || btn.dataset.jump;
+    if (bView === actualViewName || jumpMap[bView] === actualViewName) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  if (location.hash !== `#${actualViewName}`) {
+    history.replaceState(null, "", `#${actualViewName}`);
+  }
+
+  if (actualViewName === "trading") {
+    setTimeout(() => {
+      loadChart();
+      if (typeof drawChart === "function") drawChart();
+    }, 60);
+  } else if (actualViewName === "dashboard") {
+    updateDashboardMarketOverview();
+  }
+
+  const main = document.querySelector(".terminal-main");
+  if (main) main.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function updateDashboardMarketOverview() {
+  const tbody = $("dashMarketOverviewBody");
+  const symbols = ["XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "BTCUSDT", "US30"];
+  const names = {
+    XAUUSD: "Gold Spot / USD",
+    EURUSD: "Euro / US Dollar",
+    GBPUSD: "British Pound / USD",
+    USDJPY: "US Dollar / Japanese Yen",
+    BTCUSDT: "Bitcoin Perpetual",
+    US30: "Wall Street 30 Index"
+  };
+  const classes = {
+    XAUUSD: "Commodity",
+    EURUSD: "Forex",
+    GBPUSD: "Forex",
+    USDJPY: "Forex",
+    BTCUSDT: "Crypto",
+    US30: "Index"
+  };
+
+  if (tbody) {
+    tbody.innerHTML = symbols.map(sym => {
+      const q = liveQuotesCache[sym] || webtraderQuotes[sym] || { bid: 0, ask: 0, digits: 2 };
+      const bid = q && q.bid ? q.bid.toFixed(q.digits || 2) : "--";
+      const ask = q && q.ask ? q.ask.toFixed(q.digits || 2) : "--";
+      const spread = q && q.spread !== undefined ? q.spread : (q && q.bid && q.ask ? +(q.ask - q.bid).toFixed(q.digits || 2) : "--");
+      const chg = q && q.changePct !== undefined ? q.changePct : 0;
+      const chgClass = chg >= 0 ? "positive" : "negative";
+      const chgText = (chg >= 0 ? "+" : "") + chg.toFixed(2) + "%";
+
+      return `
+        <tr>
+          <td><b>${sym}</b></td>
+          <td>${names[sym] || sym}</td>
+          <td>${classes[sym] || 'Forex'}</td>
+          <td class="font-mono">${bid}</td>
+          <td class="font-mono">${ask}</td>
+          <td>${spread}</td>
+          <td class="${chgClass} font-mono"><b>${chgText}</b></td>
+          <td>
+            <button type="button" class="primary small dash-trade-btn" data-trade-sym="${sym}">Trade ↗</button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }
+
+  const acc = getBrokerAccount();
+  if ($("dashBalance")) $("dashBalance").textContent = money(acc.balance || 50000);
+  if ($("dashEquity")) $("dashEquity").textContent = money(acc.equity || acc.balance || 50000);
+  if ($("dashFreeMargin")) $("dashFreeMargin").textContent = money(acc.freeMargin || acc.balance || 50000);
+  if ($("dashDailyPnl")) {
+    const pnl = acc.dailyRealizedPnl || 0;
+    $("dashDailyPnl").textContent = (pnl >= 0 ? "+" : "") + money(pnl);
+    $("dashDailyPnl").style.color = pnl >= 0 ? "#10b981" : "#ef4444";
+  }
+  if ($("dashTradesCount")) $("dashTradesCount").textContent = String(acc.todayTradesCount || (acc.positions ? acc.positions.length : 0));
+  if ($("tradingPosCount")) $("tradingPosCount").textContent = String((acc.positions || []).length);
 }
 
 function translateStaticDom() {
@@ -3143,7 +3294,7 @@ function loadBenchmarkHistory() {
 
 function saveJournal() {
   if (!currentAnalysis) {
-    alert(t("runAnalysisFirst"));
+    showNotice(t("runAnalysisFirst"), "error");
     return;
   }
   const arr = getJournal();
@@ -3936,10 +4087,10 @@ const brokerBrands = {
   },
   paper: {
     id: "paper",
-    name: "Institutional Sandbox",
-    badge: "Institutional Paper Engine",
-    regTag: "Live Feed · Zero-Risk Execution",
-    server: "THN-SANDBOX-DEMO",
+    name: "THN Paper Sandbox",
+    badge: "Paper Sandbox Engine",
+    regTag: "Simulated Account · Zero Capital Risk",
+    server: "THN-INTERNAL-SANDBOX",
     link: "#",
     logoSvg: `<svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#042F2E"/><path d="M16 6L24 10V16C24 21 20 25 16 27C12 25 8 21 8 16V10L16 6Z" stroke="#2BF5C7" stroke-width="2" fill="none"/><path d="M16 11L14 17H18L16 22" stroke="#2BF5C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
   }
@@ -3964,14 +4115,15 @@ const DEFAULT_SANDBOX_ACCOUNT = {
   connected: true,
   provider: "paper",
   broker: "paper",
-  brokerName: "THN Institutional Paper Trading",
-  providerName: "Institutional Sandbox Engine",
-  platform: "THN Quantitative Sandbox Engine",
+  brokerName: "THN Paper Trading Sandbox",
+  providerName: "Paper Sandbox Engine",
+  platform: "THN Sandbox Engine",
   server: "THN-INTERNAL-SANDBOX",
   accountNumber: "SBX-885012",
   accountNumberMasked: "•••• 5012",
+  accountAlias: "Paper Trading Portfolio",
   accountType: "paper",
-  accountTypeName: "Institutional Sandbox (Simulated)",
+  accountTypeName: "Paper Sandbox (Simulated)",
   currency: "USD",
   balance: 50000.00,
   equity: 50000.00,
@@ -3982,7 +4134,7 @@ const DEFAULT_SANDBOX_ACCOUNT = {
   tradingMode: "PAPER",
   permissionLevel: "TRADING_ENABLED",
   reconciliationStatus: "SYNCHRONIZED",
-  regulation: "Simulated Trading Sandbox · Zero Capital Risk",
+  regulation: "Simulated Account · Zero Capital Risk",
   kycStatus: "SIMULATED",
   positions: [],
   dailyRealizedPnl: 0.00,
@@ -4090,12 +4242,12 @@ function renderAccountCertificate() {
   const brand = brokerBrands[acc.broker || acc.provider] || brokerBrands.exness;
 
   if ($("certBrokerLogo")) $("certBrokerLogo").innerHTML = brand.logoSvg;
-  if ($("certBrokerTitle")) $("certBrokerTitle").textContent = `${acc.brokerName || brand.name} - ${acc.platform || 'MetaTrader 5'}`;
+  if ($("certBrokerTitle")) $("certBrokerTitle").textContent = `${acc.brokerName || brand.name} - ${acc.platform || 'Sandbox Engine'}`;
   if ($("certRegulationTag")) $("certRegulationTag").textContent = acc.regulation || brand.regTag;
-  if ($("certHolderName")) $("certHolderName").textContent = acc.user?.fullName || "Abdullah Al-Harbi (Verified Trader)";
-  if ($("certHolderEmail")) $("certHolderEmail").textContent = acc.user?.email || "trader@gcc-markets.com";
-  if ($("certHolderPhone")) $("certHolderPhone").textContent = `${acc.user?.phone || '+968 9123 4567'} (${acc.user?.country || 'Oman'})`;
-  if ($("certLoginId")) $("certLoginId").textContent = acc.accountNumber || acc.accountId || "2849104";
+  if ($("certHolderName")) $("certHolderName").textContent = acc.accountAlias || (acc.tradingMode === "PAPER" ? "Paper Trading Portfolio" : "Trading Account");
+  if ($("certHolderEmail")) $("certHolderEmail").textContent = acc.user?.email || (acc.tradingMode === "PAPER" ? "Not applicable (Paper Trading)" : "Secured via Gateway Token");
+  if ($("certHolderPhone")) $("certHolderPhone").textContent = acc.user?.phone || (acc.tradingMode === "PAPER" ? "Not applicable (Paper Trading)" : "Secured");
+  if ($("certLoginId")) $("certLoginId").textContent = acc.accountNumberMasked || acc.accountNumber || "SBX-885012";
   if ($("certServerHost")) $("certServerHost").textContent = acc.server || brand.server;
 
   if ($("certMasterPwd")) {
@@ -4216,7 +4368,7 @@ function executeWebTraderTicket() {
     const errText = currentLang === "ar"
       ? `الهامش المتاح غير كافٍ! الهامش المطلوب: ${money(marginReq)} بينما المتاح: ${money(acc.freeMargin)}. يرجى تقليل حجم اللوت.`
       : `Insufficient free margin! Required: ${money(marginReq)}, Free: ${money(acc.freeMargin)}. Please reduce lots.`;
-    alert(errText);
+    showNotice(errText, "error");
     return;
   }
 
@@ -4848,7 +5000,7 @@ async function executeBrokerOrder(deal) {
     const data = await res.json();
     if (!data.ok) {
       const errReason = data.error || "Order execution rejected by risk engine.";
-      alert(currentLang === "ar" ? `[رفض إدارة المخاطر / الوسيط] ${errReason}` : `[Risk Engine / Broker Rejection] ${errReason}`);
+      showNotice(currentLang === "ar" ? `[رفض إدارة المخاطر] ${errReason}` : `[Risk Engine Rejection] ${errReason}`, "error");
       status(`⚠️ ${errReason}`);
       return;
     }
@@ -4876,42 +5028,11 @@ async function executeBrokerOrder(deal) {
     status(data.message || `Order filled: ${pos.side} ${pos.lots} ${pos.symbol}`);
     return;
   } catch (err) {
-    console.warn("Server order execution fallback:", err);
-  }
-
-  // Offline local fallback execution
-  const mult = deal.symbol.includes("XAU") ? 100 : deal.symbol.includes("BTC") ? 1 : deal.symbol.includes("US30") ? 1 : 100000;
-  const margin = Number(((deal.lots * 100000) / (acc.leverage || 100)).toFixed(2));
-
-  if (margin > acc.freeMargin) {
-    alert("Insufficient free margin to open this trade. Please reduce lot size or close existing positions.");
+    console.error("Server order execution failure:", err);
+    showNotice(currentLang === "ar" ? "تعذر تنفيذ الأمر: فشل الاتصال بخادم التداول" : "Order execution failed: Broker server unreachable", "error");
+    status("🔴 Order execution failed: Gateway Unreachable");
     return;
   }
-
-  const prefix = acc.provider ? acc.provider.toUpperCase().slice(0, 3) : "BRK";
-  const pos = {
-    ticket: `${prefix}-${Math.floor(100000 + Math.random() * 900000)}`,
-    symbol: deal.symbol,
-    side: deal.decision || "BUY",
-    lots: Number(deal.lots),
-    entryPrice: Number(deal.entry),
-    currentPrice: Number(deal.entry),
-    sl: Number(deal.stopLoss),
-    tp: Number(deal.target1 || deal.tp),
-    multiplier: mult,
-    margin: margin,
-    floatingPnl: 0,
-    pnlR: 0,
-    openTime: new Date().toISOString()
-  };
-
-  acc.positions.unshift(pos);
-  acc.todayTradesCount = (acc.todayTradesCount || 0) + 1;
-  saveBrokerAccount(acc);
-
-  const msg = t("tradeExecuted", { side: pos.side, symbol: pos.symbol, lots: pos.lots });
-  status(msg);
-  showLiveTradeNotification(pos);
 }
 
 async function closeBrokerPosition(ticket, partialFraction = 1.0) {
@@ -4966,59 +5087,17 @@ async function closeBrokerPosition(ticket, partialFraction = 1.0) {
 
       status(data.message || t("positionClosed", { pnl: `${finalPnl >= 0 ? '+' : ''}$${finalPnl.toFixed(2)}` }));
       return;
+    } else if (!data.ok) {
+      showNotice(data.error || "Failed to close position", "error");
+      status(`⚠️ ${data.error}`);
+      return;
     }
   } catch (err) {
-    console.warn("Server position close fallback:", err);
+    console.error("Server position close error:", err);
+    showNotice(currentLang === "ar" ? "تعذر إغلاق الصفقة: فشل الاتصال بخادم الوسيط" : "Failed to close position: Broker server unreachable", "error");
+    status("🔴 Position close failed: Gateway Unreachable");
+    return;
   }
-
-  // Offline local fallback close
-  const idx = acc.positions.findIndex(p => p.ticket === ticket || p.id === ticket);
-  if (idx < 0) return;
-
-  const pItem = acc.positions[idx];
-  const finalPnl = +(pItem.floatingPnl * partialFraction).toFixed(2);
-  acc.balance = +(acc.balance + finalPnl).toFixed(2);
-  acc.dailyRealizedPnl = +(acc.dailyRealizedPnl + finalPnl).toFixed(2);
-
-  if (partialFraction >= 1.0) {
-    acc.positions.splice(idx, 1);
-  } else {
-    pItem.lots = +(pItem.lots * (1 - partialFraction)).toFixed(2);
-    pItem.margin = +(pItem.margin * (1 - partialFraction)).toFixed(2);
-    pItem.floatingPnl = +(pItem.floatingPnl * (1 - partialFraction)).toFixed(2);
-  }
-
-  saveBrokerAccount(acc);
-  renderBrokerDesk();
-
-  // Automatically log closed trade into Institutional Journal and refresh Performance Analytics!
-  const journalEntry = {
-    id: "broker-" + Date.now(),
-    date: new Date().toISOString(),
-    symbol: pItem.symbol,
-    decision: pItem.side,
-    confidence: 85,
-    grade: finalPnl >= 0 ? "A+" : "B",
-    entry: pItem.entryPrice,
-    stopLoss: pItem.sl,
-    target1: pItem.tp,
-    exitPrice: pItem.currentPrice,
-    risk: +(Math.abs(pItem.entryPrice - pItem.sl) * pItem.multiplier * pItem.lots).toFixed(2) || 250,
-    status: finalPnl > 0 ? "WIN" : finalPnl < 0 ? "LOSS" : "BE",
-    pnl: finalPnl,
-    pnlR: +(finalPnl / (Math.abs(pItem.entryPrice - pItem.sl) * pItem.multiplier * pItem.lots || 250)).toFixed(1),
-    assetClass: detectAssetClass(pItem.symbol),
-    notes: `Closed via ${acc.providerName || 'Broker Gateway'}`
-  };
-
-  const ledger = getJournal();
-  ledger.unshift(journalEntry);
-  localStorage.setItem(journalKey, JSON.stringify(ledger.slice(0, 500)));
-  renderJournal();
-  renderPerformanceAnalytics();
-
-  const msg = t("positionClosed", { pnl: `${finalPnl >= 0 ? '+' : ''}$${finalPnl}` });
-  status(msg);
 }
 
 function showLiveTradeNotification(pos) {
@@ -5118,11 +5197,50 @@ function initEvents() {
   });
   document.querySelectorAll(".nav").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".nav").forEach(x => x.classList.remove("active"));
-      button.classList.add("active");
-      document.getElementById(button.dataset.jump).scrollIntoView({ behavior: "smooth", block: "start" });
+      const view = button.dataset.view || button.dataset.jump;
+      switchView(view);
     });
   });
+
+  document.addEventListener("click", e => {
+    const jumpBtn = e.target.closest("[data-view-jump]");
+    if (jumpBtn) {
+      const v = jumpBtn.dataset.viewJump;
+      if (v) switchView(v);
+    }
+    const tradeBtn = e.target.closest(".dash-trade-btn");
+    if (tradeBtn) {
+      const sym = tradeBtn.dataset.tradeSym;
+      if (sym) {
+        $("symbolInput").value = sym;
+        switchView("trading");
+        analyze();
+      }
+    }
+    const inspectBtn = e.target.closest(".dash-inspect-btn");
+    if (inspectBtn) {
+      const sym = inspectBtn.dataset.inspectSym;
+      if (sym) {
+        $("symbolInput").value = sym;
+        switchView("trading");
+        analyze();
+      }
+    }
+  });
+
+  document.querySelectorAll(".subtab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const parent = btn.closest(".app-view");
+      if (!parent) return;
+      parent.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const targetSubtab = btn.dataset.subtab;
+      parent.querySelectorAll(".subtab-content").forEach(c => {
+        c.style.display = c.dataset.subtab === targetSubtab ? "block" : "none";
+      });
+    });
+  });
+
   $("languageSelect").addEventListener("change", event => setLanguage(event.target.value));
   document.querySelectorAll("[data-language]").forEach(button => {
     button.addEventListener("click", () => setLanguage(button.dataset.language));
@@ -5287,7 +5405,7 @@ function initEvents() {
         try {
           const parsed = parseTradesCSV(ev.target.result);
           if (!parsed.length) {
-            alert(t("noValidTradesInCsv"));
+            showNotice(t("noValidTradesInCsv"), "error");
             return;
           }
           pendingImportTrades = parsed;
@@ -5318,7 +5436,7 @@ function initEvents() {
           $("csvFileInfo")?.classList.remove("hidden");
           $("confirmBulkImportBtn")?.removeAttribute("disabled");
         } catch (err) {
-          alert(t("csvParseError"));
+          showNotice(t("csvParseError"), "error");
         }
       };
       reader.readAsText(file);
@@ -5680,49 +5798,12 @@ function initEvents() {
           : `🎉 Officially opened and activated ${newAcc.brokerName} account! Login #${newAcc.accountNumber}, Capital: ${money(capital)}.`;
         status(succMsg);
       } else {
-        alert(data.error || "Registration error");
+        showNotice(data.error || "Registration error", "error");
+        status(`⚠️ ${data.error || "Registration error"}`);
       }
     } catch (err) {
-      // Offline fallback
-      const prefix = provider ? provider.toUpperCase().slice(0, 3) : "ACC";
-      const newId = `${prefix}-${Math.floor(100000 + Math.random() * 900000)}`;
-      const fallbackAcc = {
-        id: `acc_${provider}_${Date.now()}`,
-        broker: provider,
-        provider,
-        brokerName: brand.name,
-        providerName: brand.badge,
-        platform,
-        server: brand.server,
-        accountNumber: newId,
-        accountId: newId,
-        masterPassword: `${prefix}#${Math.floor(1000 + Math.random() * 9000)}$`,
-        investorPassword: `Inv#${Math.floor(1000 + Math.random() * 9000)}@`,
-        apiToken: `thn_live_${provider}_${Date.now()}`,
-        accountType: tier,
-        accountTypeName: tier === "raw" ? "Raw Spread ECN" : "Standard Account",
-        currency: curr,
-        balance: capital,
-        equity: capital,
-        freeMargin: capital,
-        usedMargin: 0,
-        leverage,
-        regulation: brand.regTag,
-        kycStatus: "VERIFIED",
-        isIslamic,
-        user: { fullName, email, phone, country },
-        positions: [],
-        dailyRealizedPnl: 0,
-        todayTradesCount: 0,
-        riskPct,
-        connected: true
-      };
-      serverBrokerAccounts.unshift(fallbackAcc);
-      saveBrokerAccount(fallbackAcc);
-      renderBrokerAccountSelector();
-      closeBrokerModal();
-      setBrokerDeskView("account-details");
-      status(`Opened and activated ${brand.name} account! Capital: ${money(capital)}.`);
+      showNotice(currentLang === "ar" ? "تعذر إنشاء الحساب على الخادم. يرجى المحاولة لاحقاً." : "Failed to register account on broker server.", "error");
+      status("🔴 Broker registration unreachable");
     } finally {
       btn.disabled = false;
       btn.textContent = origText;
@@ -5780,24 +5861,12 @@ function initEvents() {
           : `Broker gateway connection verified! Latency: ${linked.latencyMs}ms, Account balance: ${money(syncBal)}.`;
         status(succMsg);
       } else {
-        alert(data.error || "Connection error");
+        showNotice(data.error || "Connection error", "error");
+        status(`⚠️ ${data.error || "Connection error"}`);
       }
     } catch (err) {
-      const brand = brokerBrands[provider] || brokerBrands.exness;
-      const acc = getBrokerAccount();
-      acc.provider = provider;
-      acc.broker = provider;
-      acc.server = serverVal;
-      acc.accountNumber = accId;
-      acc.accountId = accId;
-      acc.balance = syncBal;
-      acc.equity = syncBal;
-      acc.freeMargin = syncBal;
-      acc.connected = true;
-      saveBrokerAccount(acc);
-      closeBrokerModal();
-      setBrokerDeskView("account-details");
-      status("Broker gateway linked successfully!");
+      showNotice(currentLang === "ar" ? "تعذر التحقق من خادم الوسيط. يرجى التأكد من البيانات أو تشغيل جسر MT5." : "Broker gateway verification failed. Please verify credentials.", "error");
+      status("🔴 Broker connection failed");
     } finally {
       btn.disabled = false;
       btn.textContent = origText;

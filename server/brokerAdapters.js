@@ -45,7 +45,7 @@ export class BaseBrokerAdapter {
  */
 export class PaperTradingAdapter extends BaseBrokerAdapter {
   constructor() {
-    super("paper", "THN Institutional Paper Trading (Sandbox)");
+    super("paper", "THN Paper Trading Sandbox");
   }
 
   async testConnection() {

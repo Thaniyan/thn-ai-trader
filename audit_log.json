@@ -1,5 +1,75 @@
 [
   {
+    "id": "ev_1791190678632_a6d9b095",
+    "correlationId": "CORR-7D1E4257",
+    "timestamp": "2026-10-05T08:57:58.632Z",
+    "eventType": "RECONCILIATION_COMPLETED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "discrepanciesCount": 0,
+      "discrepancies": [],
+      "status": "SYNCHRONIZED"
+    }
+  },
+  {
+    "id": "ev_1791190678625_5d2ace27",
+    "correlationId": "CORR-BAF95D75",
+    "timestamp": "2026-10-05T08:57:58.625Z",
+    "eventType": "SANDBOX_RESET",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "balance": 50000
+    }
+  },
+  {
+    "id": "ev_1791190678619_f5af2ea8",
+    "correlationId": "CORR-DE42719A",
+    "timestamp": "2026-10-05T08:57:58.619Z",
+    "eventType": "POSITION_CLOSED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": null,
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-A297FE68",
+      "closedLots": 0.2,
+      "realizedPnl": -1.05,
+      "exitPrice": 1.1213276386260986
+    }
+  },
+  {
+    "id": "ev_1791190678595_d88d8ae3",
+    "correlationId": "CORR-C37A01ED",
+    "timestamp": "2026-10-05T08:57:58.595Z",
+    "eventType": "ORDER_FILLED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "SUCCESS",
+    "details": {
+      "ticket": "PT-A297FE68",
+      "side": "BUY",
+      "lots": 0.2,
+      "executedPrice": 1.12138,
+      "requiredMargin": 112.14
+    }
+  },
+  {
+    "id": "ev_1791190678578_a618d263",
+    "correlationId": "CORR-D94188CE",
+    "timestamp": "2026-10-05T08:57:58.579Z",
+    "eventType": "ORDER_REJECTED",
+    "accountId": "acc_paper_sandbox_01",
+    "symbol": "EURUSD",
+    "status": "REJECTED",
+    "details": {
+      "reason": "For BUY orders, Take Profit (1.01) must be strictly above current market price (1.1213276386260986).",
+      "code": "INVALID_TAKE_PROFIT"
+    }
+  },
+  {
     "id": "ev_1791187465355_1fdb3a8d",
     "correlationId": "CORR-411F1356",
     "timestamp": "2026-10-05T08:04:25.356Z",

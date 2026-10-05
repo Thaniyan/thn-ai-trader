@@ -12,18 +12,18 @@ let tradingAccounts = [];
 const idempotencyKeys = new Map();
 
 /**
- * Default Paper Trading Institutional Sandbox Account
+ * Default Paper Trading Sandbox Account
  */
 const DEFAULT_PAPER_ACCOUNT = {
   id: "acc_paper_sandbox_01",
   broker: "paper",
-  brokerName: "THN Institutional Paper Trading",
-  platform: "THN Quantitative Sandbox Engine",
-  accountAlias: "Institutional Paper Portfolio",
+  brokerName: "THN Paper Trading Sandbox",
+  platform: "THN Sandbox Engine",
+  accountAlias: "Paper Trading Portfolio",
   accountNumber: "SBX-885012",
   accountNumberMasked: "•••• 5012",
   accountType: "paper",
-  accountTypeName: "Institutional Sandbox (Simulated)",
+  accountTypeName: "Paper Sandbox (Simulated)",
   currency: "USD",
   balance: 50000.0,
   equity: 50000.0,
@@ -124,17 +124,17 @@ export function addTradingAccount({ broker, server, accountNumber, apiToken, per
   loadTradingAccounts();
 
   const brokerNames = {
-    exness: "Exness GCC (MT5 Bridge)",
+    exness: "Exness (MT5 Bridge)",
     xtb: "XTB MENA (xStation 5)",
     mt5: "MetaTrader 5 (Universal)",
-    paper: "THN Institutional Paper Trading"
+    paper: "THN Paper Trading Sandbox"
   };
 
   const platforms = {
     exness: "MetaTrader 5 Cloud Bridge",
     xtb: "xStation 5 Web API",
     mt5: "MetaTrader 5 Gateway",
-    paper: "THN Quantitative Sandbox Engine"
+    paper: "THN Sandbox Engine"
   };
 
   // Encrypt secrets at rest

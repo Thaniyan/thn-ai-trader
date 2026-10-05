@@ -23,24 +23,19 @@
       </a>
       
       <div class="sidebar-status-tag" id="sidebarBrokerTag">
-        <span class="live-pulse"></span>
-        <span id="sidebarBrokerStatus">BROKER: CONNECTED</span>
+        <span class="paper-badge"><span class="dot"></span><span id="sidebarBrokerStatus">PAPER SANDBOX</span></span>
       </div>
 
       <nav class="nav-stack">
-        <button class="nav active" data-jump="dashboard" data-i18n="navDashboard">⚡ Desk Command</button>
-        <button class="nav" data-jump="brokerDesk" data-i18n="navBroker">💼 Broker &amp; Capital Desk</button>
-        <button class="nav" data-jump="analysis" data-i18n="navAnalysis">🎯 Quant Decision &amp; Ticket</button>
-        <button class="nav" data-jump="mtfa" data-i18n="navMtfa">🌐 Timeframe Matrix (MTFA)</button>
-        <button class="nav" data-jump="smcDeep" data-i18n="navSmc">🏛️ SMC &amp; Order Flow</button>
-        <button class="nav" data-jump="professional-map" data-i18n="navMarketMap">📊 Institutional Dual-Map</button>
-        <button class="nav" data-jump="chart" data-i18n="navChart">📈 TradingView Terminal</button>
-        <button class="nav" data-jump="schoolsGrid" data-i18n="navSchools">🧠 Multi-School Consensus</button>
-        <button class="nav" data-jump="macroCalendarSection" data-i18n="navMacro">📰 Macro Radar &amp; Calendar</button>
-        <button class="nav" data-jump="watchlist" data-i18n="navWatchlist">📡 Opportunity Scanner</button>
-        <button class="nav" data-jump="risk" data-i18n="navRisk">🛡️ Risk Desk &amp; Exposure</button>
-        <button class="nav" data-jump="performanceAnalytics" data-i18n="navPerformance">📈 Performance Analytics</button>
-        <button class="nav" data-jump="journal" data-i18n="navJournal">📑 Audit Log &amp; Journal</button>
+        <button class="nav active" data-view="dashboard" data-i18n="navDashboard">⚡ Dashboard</button>
+        <button class="nav" data-view="markets" data-i18n="navMarkets">📡 Markets</button>
+        <button class="nav" data-view="trading" data-i18n="navTrading">📈 Trading Terminal</button>
+        <button class="nav" data-view="ai" data-i18n="navAI">🧠 AI Intelligence</button>
+        <button class="nav" data-view="risk" data-i18n="navRisk">🛡️ Risk Desk</button>
+        <button class="nav" data-view="portfolio" data-i18n="navPortfolio">📊 Portfolio</button>
+        <button class="nav" data-view="journal" data-i18n="navJournal">📑 Trade Journal</button>
+        <button class="nav" data-view="brokers" data-i18n="navBrokers">💼 Broker Accounts</button>
+        <button class="nav" data-view="settings" data-i18n="navSettings">⚙️ Settings</button>
       </nav>
 
       <div class="side-card">
@@ -77,7 +72,7 @@
           <button class="broker-status-pill" id="openBrokerModalBtn" type="button" title="Manage Trading Broker Account">
             <span class="broker-live-dot" id="topbarBrokerDot"></span>
             <span class="trading-mode-tag" id="topbarTradingModeBadge">PAPER SANDBOX</span>
-            <span id="topbarBrokerName">Institutional Sandbox ($50,000)</span>
+            <span id="topbarBrokerName">Paper Sandbox ($50,000)</span>
           </button>
 
           <div class="utc-clock-badge">
@@ -98,17 +93,210 @@
         </div>
       </header>
 
-      <!-- Institutional Command Desk -->
+      <!-- ============================================== -->
+      <!-- VIEW 1: DASHBOARD                              -->
+      <!-- ============================================== -->
+      <div class="app-view view-active" id="view-dashboard">
+        <!-- Paper Trading Status Banner -->
+        <div class="paper-trading-banner">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="paper-badge"><span class="dot"></span>PAPER TRADING</span>
+            <span><b>Virtual Account:</b> Simulated execution against live interbank market feeds. No real capital at risk.</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="primary small" data-view-jump="trading">📈 Open Trading Terminal</button>
+            <button type="button" class="ghost small" data-view-jump="brokers">💼 Manage Accounts</button>
+          </div>
+        </div>
+
+        <!-- Dashboard Hero Metric Cards -->
+        <div class="dashboard-hero-grid">
+          <div class="dash-metric-card">
+            <small>Account Balance (Virtual)</small>
+            <b id="dashBalance">$50,000.00</b>
+            <span class="subtext">Simulated USD Sandbox</span>
+          </div>
+          <div class="dash-metric-card">
+            <small>Account Equity</small>
+            <b id="dashEquity">$50,000.00</b>
+            <span class="subtext">Free Margin: <span id="dashFreeMargin">$50,000.00</span></span>
+          </div>
+          <div class="dash-metric-card">
+            <small>Today's Realized PnL</small>
+            <b id="dashDailyPnl">$0.00</b>
+            <span class="subtext"><span id="dashTradesCount">0</span> trades closed today</span>
+          </div>
+          <div class="dash-metric-card">
+            <small>Risk Protocol Status</small>
+            <b style="color: #10b981;">● Active &amp; Enforcing</b>
+            <span class="subtext">Max Risk: 1.0% · Daily Cap: 3.0%</span>
+          </div>
+        </div>
+
+        <!-- Live Market Overview -->
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">MARKET SURVEILLANCE</p>
+              <h2>Live Market Overview</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="markets">Open Markets Desk ↗</button>
+          </div>
+          <div class="table-shell" style="margin-top: 10px;">
+            <table class="market-table">
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Name</th>
+                  <th>Asset Class</th>
+                  <th>Bid</th>
+                  <th>Ask</th>
+                  <th>Spread</th>
+                  <th>24h Change</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="dashMarketOverviewBody">
+                <tr>
+                  <td><b>XAUUSD</b></td>
+                  <td>Gold Spot / USD</td>
+                  <td>Commodity</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>0.3</td>
+                  <td class="positive font-mono"><b>+0.42%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="XAUUSD">Trade ↗</button></td>
+                </tr>
+                <tr>
+                  <td><b>EURUSD</b></td>
+                  <td>Euro / US Dollar</td>
+                  <td>Forex</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>0.8</td>
+                  <td class="positive font-mono"><b>+0.11%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="EURUSD">Trade ↗</button></td>
+                </tr>
+                <tr>
+                  <td><b>GBPUSD</b></td>
+                  <td>British Pound / USD</td>
+                  <td>Forex</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>1.1</td>
+                  <td class="negative font-mono"><b>-0.18%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="GBPUSD">Trade ↗</button></td>
+                </tr>
+                <tr>
+                  <td><b>USDJPY</b></td>
+                  <td>US Dollar / Yen</td>
+                  <td>Forex</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>0.9</td>
+                  <td class="positive font-mono"><b>+0.08%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="USDJPY">Trade ↗</button></td>
+                </tr>
+                <tr>
+                  <td><b>BTCUSDT</b></td>
+                  <td>Bitcoin Perpetual</td>
+                  <td>Crypto</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>5.0</td>
+                  <td class="positive font-mono"><b>+1.25%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="BTCUSDT">Trade ↗</button></td>
+                </tr>
+                <tr>
+                  <td><b>US30</b></td>
+                  <td>Wall Street 30 Index</td>
+                  <td>Index</td>
+                  <td class="font-mono">--</td>
+                  <td class="font-mono">--</td>
+                  <td>2.0</td>
+                  <td class="negative font-mono"><b>-0.32%</b></td>
+                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="US30">Trade ↗</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- AI Opportunities Radar -->
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI INTELLIGENCE RADAR</p>
+              <h2>High-Confluence Market Setups</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="ai">View All AI Setups ↗</button>
+          </div>
+          <div class="ai-opps-grid" id="dashAiOppsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 10px;">
+            <div class="card" style="padding: 16px; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <b style="font-size: 1.1rem;">XAUUSD</b>
+                <span class="deal-tag buy">BUY · 78/100</span>
+              </div>
+              <p class="tiny muted-text" style="margin-bottom: 12px;">H1 Bullish Order Block retest in Discount zone with sell-side liquidity sweep completed.</p>
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
+                <span>Target R:R: <b>1:2.7</b></span>
+                <span>Regime: <b>Expansion</b></span>
+              </div>
+              <button type="button" class="primary small full dash-inspect-btn" data-inspect-sym="XAUUSD">Inspect in Terminal ↗</button>
+            </div>
+            <div class="card" style="padding: 16px; background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <b style="font-size: 1.1rem;">EURUSD</b>
+                <span class="deal-tag" style="background: rgba(234, 179, 8, 0.2); color: #eab308;">WAIT · 61/100</span>
+              </div>
+              <p class="tiny muted-text" style="margin-bottom: 12px;">Equilibrium compression between Asian range high and Daily swing low. Awaiting breakout.</p>
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
+                <span>Target R:R: <b>1:2.0</b></span>
+                <span>Regime: <b>Compression</b></span>
+              </div>
+              <button type="button" class="ghost small full dash-inspect-btn" data-inspect-sym="EURUSD">Inspect in Terminal ↗</button>
+            </div>
+            <div class="card" style="padding: 16px; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <b style="font-size: 1.1rem;">GBPUSD</b>
+                <span class="deal-tag sell">SELL · 74/100</span>
+              </div>
+              <p class="tiny muted-text" style="margin-bottom: 12px;">Bearish FVG rejection on 4H structure after London session high sweep. Invalidation above swing high.</p>
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
+                <span>Target R:R: <b>1:2.5</b></span>
+                <span>Regime: <b>Distribution</b></span>
+              </div>
+              <button type="button" class="secondary small full dash-inspect-btn" data-inspect-sym="GBPUSD">Inspect in Terminal ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity Box -->
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">EXECUTION AUDIT</p>
+              <h2>Recent Trading Activity</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="portfolio">View Portfolio ↗</button>
+          </div>
+          <div id="dashRecentActivityTable" style="margin-top: 10px;">
+            <p class="tiny muted-text" style="text-align: center; padding: 24px;">No closed trades in current session. Execute orders in the Paper Sandbox or connect an external broker bridge.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trading Command Desk -->
       <section class="command-desk panel-glow" id="dashboard">
         <div class="desk-header">
           <div class="desk-title">
             <p class="eyebrow" data-i18n="deskEyebrow">QUANTITATIVE EXECUTION DESK</p>
-            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Institutional Command Center</span></h1>
+            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Trading Terminal &amp; Command</span></h1>
           </div>
           <div class="desk-market-stats" id="deskMarketStats">
             <div class="stat-cell"><small>Spread Quality</small><b id="deskSpread">0.3 pips</b></div>
             <div class="stat-cell"><small>Range Volatility</small><b id="deskVol">ATR Normal</b></div>
-            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">Institutional</b></div>
+            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">Multi-TF</b></div>
             <div class="stat-cell"><small>Consensus Bias</small><b id="deskBias">Awaiting Audit</b></div>
           </div>
         </div>
@@ -120,7 +308,7 @@
               <input id="symbolInput" autocomplete="off" value="EURUSD" placeholder="EURUSD, XAUUSD, BTCUSDT, US30, AAPL" data-i18n-placeholder="symbolPlaceholder" />
             </div>
             <button class="primary execute-btn" id="analyzeBtn">
-              <span data-i18n="analyze">Execute Institutional Audit</span>
+              <span data-i18n="analyze">Run Market Analysis</span>
               <span class="kbd-hint">↵</span>
             </button>
           </div>
@@ -156,7 +344,7 @@
               <label><span data-i18n="rewardRisk">Target Reward / Risk</span>
                 <select id="rewardRisk">
                   <option value="1.5">1 : 1.5 (Standard Take-Profit)</option>
-                  <option value="2" selected>1 : 2.0 (Institutional Baseline)</option>
+                  <option value="2" selected>1 : 2.0 (Standard Baseline)</option>
                   <option value="3">1 : 3.0 (Expansion Target)</option>
                   <option value="4">1 : 4.0 (Runner Target)</option>
                 </select>
@@ -177,7 +365,7 @@
         </div>
       </section>
 
-      <!-- Institutional Decision Center & Ticket -->
+      <!-- Decision Center & Order Ticket -->
       <section class="decision-grid" id="analysis">
         <article class="panel decision-card">
           <div class="panel-head">
@@ -188,7 +376,7 @@
             <div>
               <span class="mini" data-i18n="signal">Consensus Decision</span>
               <strong id="decision" class="decision wait">WAIT</strong>
-              <p id="aiNarrative" data-i18n="runAnalysisNarrative">Execute an institutional audit to generate multi-school validation, structural risk levels, and playbook instructions.</p>
+              <p id="aiNarrative" data-i18n="runAnalysisNarrative">Run market analysis to generate multi-school validation, structural risk levels, and playbook instructions.</p>
             </div>
             <div class="confidence-ring" aria-label="Confidence score">
               <span id="confidence">--%</span>
@@ -204,7 +392,7 @@
         </article>
 
         <article class="panel ticket-card">
-          <div class="panel-head"><h2 data-i18n="tradeTicket">Institutional Execution Ticket</h2><span id="marketTime">--</span></div>
+          <div class="panel-head"><h2 data-i18n="tradeTicket">Order Ticket</h2><span id="marketTime">--</span></div>
           <div class="ticket-levels">
             <div><span data-i18n="entry">Market Price</span><b id="entry">--</b></div>
             <div><span data-i18n="optimalEntry">Optimal Entry (OTE)</span><b id="optimalEntry">--</b></div>
@@ -214,7 +402,7 @@
             <div><span data-i18n="takeProfit3">Take Profit 3 (Runner)</span><b id="target3">--</b></div>
             <div><span data-i18n="riskAmount">Risk Allocation</span><b id="riskAmount">--</b></div>
           </div>
-          <button class="ghost full" id="saveJournalBtn" data-i18n="saveSignal">Commit Setup to Institutional Journal</button>
+          <button class="ghost full" id="saveJournalBtn" data-i18n="saveSignal">Commit Setup to Trade Journal</button>
         </article>
       </section>
 
@@ -252,7 +440,7 @@
         <div class="panel-head">
           <div>
             <p class="eyebrow" data-i18n="smcDeepEyebrow">SMART MONEY CONCEPTS & ORDER FLOW</p>
-            <h2 data-i18n="smcDeepTitle">Institutional SMC & Liquidity Architecture</h2>
+            <h2 data-i18n="smcDeepTitle">Market Structure &amp; Liquidity Architecture</h2>
           </div>
           <span class="badge" id="smcZoneBadge">DISCOUNT ZONE</span>
         </div>
@@ -267,7 +455,7 @@
           </div>
 
           <div class="smc-deep-card">
-            <h3><span class="dot blue"></span><span data-i18n="orderBlocksDeep">Institutional Order Blocks (OB)</span></h3>
+            <h3><span class="dot blue"></span><span data-i18n="orderBlocksDeep">Order Blocks (OB)</span></h3>
             <div class="smc-metric-row">
               <div><small>Demand Order Block</small><b id="smcDemandOb">--</b></div>
               <div><small>Supply Order Block</small><b id="smcSupplyOb">--</b></div>
@@ -291,7 +479,7 @@
               <div><small>Current Placement</small><b id="smcRangePos">--</b></div>
             </div>
             <div class="equilibrium-bar"><div class="eq-marker" id="eqMarker" style="left: 50%"></div></div>
-            <p id="smcEqSummary">Institutional rule: Long in Discount; Short in Premium.</p>
+            <p id="smcEqSummary">SMC rule: Long in Discount; Short in Premium.</p>
           </div>
         </div>
       </section>
@@ -313,20 +501,20 @@
       <section class="professional-grid" id="professional-map">
         <article class="panel map-panel">
           <div class="panel-head">
-            <div><p class="eyebrow" data-i18n="professionalMarketMap">INTERACTIVE WORKSTATION</p><h2 data-i18n="professionalMarketMapSub">Dual Institutional Chart: Technical Analysis & SMC Order Flow</h2></div>
+            <div><p class="eyebrow" data-i18n="professionalMarketMap">INTERACTIVE WORKSTATION</p><h2 data-i18n="professionalMarketMapSub">Dual Chart: Technical Analysis &amp; Market Structure</h2></div>
             <button class="ghost" id="exportMapBtn" type="button" data-i18n="exportMap">Export High-Res PNG</button>
           </div>
           <div id="professionalSnapshot" class="professional-snapshot"></div>
           <div class="map-toolbar" aria-label="Professional chart controls">
             <div>
-              <b data-i18n="institutionalChart">Institutional Canvas</b>
+              <b data-i18n="institutionalChart">Analysis Canvas</b>
               <small data-i18n="adaptiveScale">Sub-pixel precision candles · Hover crosshair active</small>
             </div>
             <div id="mapLayerControls" class="map-layer-controls"></div>
           </div>
           <div class="chart-stage-grid">
             <div class="analysis-chart-shell main-chart-shell">
-              <div class="chart-watermark"><b data-i18n="technicalDrawingChart">Technical Drawing Chart</b><span data-i18n="clearInstitutionalView">Clean institutional view</span></div>
+              <div class="chart-watermark"><b data-i18n="technicalDrawingChart">Technical Drawing Chart</b><span data-i18n="clearInstitutionalView">Clean technical view</span></div>
               <canvas id="analysisMapCanvas" class="analysis-map" aria-label="Professional technical analysis map"></canvas>
             </div>
             <div class="sk-analysis-card">
@@ -358,7 +546,7 @@
           </article>
           <article class="panel">
             <div class="panel-head"><div><h2 data-i18n="playbook">Execution Playbook</h2><span data-i18n="playbookSub">Professional action protocol</span></div></div>
-            <ol class="clean-list playbook-list" id="playbookList"><li data-i18n="noProfessionalMap">Execute an audit to generate the institutional playbook.</li></ol>
+            <ol class="clean-list playbook-list" id="playbookList"><li data-i18n="noProfessionalMap">Run market analysis to generate the trading playbook.</li></ol>
           </article>
           <article class="panel">
             <div class="panel-head"><div><h2 data-i18n="deskGovernance">Desk Governance</h2><span data-i18n="deskGovernanceSub">Trust, safety and operational filters</span></div></div>
@@ -370,7 +558,7 @@
       <!-- TradingView Pro Terminal Section -->
       <section class="panel chart-panel" id="chart">
         <div class="panel-head">
-          <div><h2 data-i18n="tradingViewChart">TradingView Pro Institutional Terminal</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Terminal loads upon asset selection.</p></div>
+          <div><h2 data-i18n="tradingViewChart">TradingView Terminal</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Terminal loads upon asset selection.</p></div>
           <div class="button-row"><button class="ghost" id="loadChartBtn" data-i18n="reloadChart">Reload Feed</button></div>
         </div>
         <div id="tvChart" class="tv-chart"></div>
@@ -400,7 +588,7 @@
       <section class="panel macro-section" id="macroCalendarSection">
         <div class="panel-head">
           <div>
-            <p class="eyebrow" data-i18n="macroEyebrow">INSTITUTIONAL MACRO RADAR</p>
+            <p class="eyebrow" data-i18n="macroEyebrow">MACRO RADAR &amp; ECONOMIC CALENDAR</p>
             <h2 data-i18n="macroTitle">High-Impact Economic Calendar & Central Bank Radar</h2>
           </div>
           <span class="badge" data-i18n="macroSafety">Risk Filter Active</span>
@@ -423,7 +611,7 @@
               <button class="ghost small toggle-watch-btn" id="toggleWatchlistBtn" type="button" data-i18n="hideWatchlist">Hide Watchlist</button>
             </div>
           </div>
-          <p class="tiny trust-copy" data-i18n="watchlistIntro">Maintain your primary institutional watch universe. Continuous surveillance evaluates high-confluence opportunities.</p>
+          <p class="tiny trust-copy" data-i18n="watchlistIntro">Maintain your primary watch universe. Continuous surveillance evaluates high-confluence opportunities.</p>
           
           <div id="watchlistCollapsedBar" class="watchlist-collapsed-bar hidden">
             <span id="watchlistCollapsedSummary">Watchlist is currently minimized.</span>
@@ -503,7 +691,7 @@
         <div class="panel-head">
           <div>
             <div class="broker-header-badges">
-              <span class="eyebrow" data-i18n="brokerEyebrow">INSTITUTIONAL EXECUTION &amp; PORTFOLIO GATEWAY</span>
+              <span class="eyebrow" data-i18n="brokerEyebrow">BROKER CONNECTIONS &amp; PORTFOLIO GATEWAY</span>
               <span class="environment-pill" id="deskEnvBadge">🟡 PAPER SANDBOX</span>
               <span class="permission-pill" id="deskPermissionBadge">TRADING ENABLED</span>
             </div>
@@ -730,8 +918,8 @@
               <div class="cert-brand-lockup">
                 <span class="cert-logo" id="certBrokerLogo"></span>
                 <div>
-                  <h3 id="certBrokerTitle">THN Institutional Paper Trading (Sandbox)</h3>
-                  <small id="certRegulationTag">Simulated Institutional Portfolio · Zero Capital Risk</small>
+                  <h3 id="certBrokerTitle">THN Paper Trading Sandbox</h3>
+                  <small id="certRegulationTag">Simulated Virtual Account · Zero Capital Risk</small>
                 </div>
               </div>
               <div class="cert-stamp">
@@ -743,11 +931,11 @@
             <div class="cert-grid">
               <div class="cert-item">
                 <span>Account Alias</span>
-                <b id="certHolderName">Institutional Paper Portfolio</b>
+                <b id="certHolderName">Paper Trading Portfolio</b>
               </div>
               <div class="cert-item">
                 <span>Platform Gateway / Engine</span>
-                <b id="certPlatformName">THN Quantitative Sandbox Engine</b>
+                <b id="certPlatformName">THN Sandbox Engine</b>
               </div>
               <div class="cert-item">
                 <span>Account ID (Masked)</span>
@@ -763,7 +951,7 @@
               </div>
               <div class="cert-item">
                 <span>Account Type &amp; Currency</span>
-                <b id="certAccountType">Institutional Sandbox · USD ($)</b>
+                <b id="certAccountType">Paper Sandbox · USD ($)</b>
               </div>
               <div class="cert-item">
                 <span>Trading Leverage</span>
@@ -1103,7 +1291,7 @@
               <div class="option-info">
                 <div>
                   <span class="broker-tag-popular">Built-in Sandbox</span>
-                  <b>Institutional Paper Sandbox</b>
+                  <b>Paper Trading Sandbox</b>
                 </div>
                 <small>Simulated risk-free execution · Live real-time market feeds</small>
               </div>
@@ -1117,7 +1305,7 @@
               <div class="option-info">
                 <div>
                   <span class="broker-tag-popular">MT5 Bridge</span>
-                  <b>Exness GCC &amp; Global</b>
+                  <b>Exness (MT5 Bridge)</b>
                 </div>
                 <small>MetaTrader 5 Cloud Bridge · Raw Spread ECN</small>
               </div>
@@ -1255,7 +1443,7 @@
                   <b>Exness GCC &amp; Global</b>
                   <span class="ob-badge green">CySEC &amp; FSA Regulated</span>
                 </div>
-                <p>Leading institutional multi-asset broker with 0.0 pip Raw Spread ECN accounts, Islamic swap-free option, and instant local banking.</p>
+                <p>Leading multi-asset broker with 0.0 pip Raw Spread ECN accounts, Islamic swap-free option, and instant local banking.</p>
                 <ul class="ob-features">
                   <li>Supported Platforms: MT5 Cloud, WebTrader</li>
                   <li>Account Types: Raw Spread ECN, Pro, Standard</li>
@@ -1370,7 +1558,7 @@
             <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
           </div>
           <p class="tiny trust-copy" id="executeOrderDesc">
-            Direct institutional order dispatch with slippage safeguard and automated stop protection.
+            Direct order dispatch with pre-trade risk validation and automated stop protection.
           </p>
 
           <div class="execute-order-card" id="executeOrderCard">
@@ -1856,10 +2044,10 @@
         </div>
       </dialog>
 
-      <!-- Institutional Audit & Trade Journal -->
+      <!-- Trade Journal & Audit Log -->
       <section class="journal-grid" id="journal">
         <article class="panel">
-          <div class="panel-head"><h2 data-i18n="tradeJournal">Institutional Trade Journal</h2><span data-i18n="browserStorage">Local storage ledger</span></div>
+          <div class="panel-head"><h2 data-i18n="tradeJournal">Trade Journal</h2><span data-i18n="browserStorage">Local storage ledger</span></div>
           <div class="button-row">
             <button class="ghost" id="clearJournalBtn" data-i18n="clearJournal">Clear Ledger</button>
             <button class="ghost" id="journalBulkImportBtn" data-i18n="bulkImport">Import CSV</button>
@@ -1868,7 +2056,7 @@
           <div id="journalList" class="journal-list"></div>
         </article>
         <article class="panel report-panel">
-          <div class="panel-head"><h2 data-i18n="institutionalReport">Institutional Audit Briefing</h2><span data-i18n="copyOrExport">Copy or export</span></div>
+          <div class="panel-head"><h2 data-i18n="institutionalReport">Trade Audit Briefing</h2><span data-i18n="copyOrExport">Copy or export</span></div>
           <pre id="report" data-i18n="noReportYet">No report generated yet.</pre>
           <div class="button-row">
             <button class="ghost" id="copyReportBtn" data-i18n="copyReport">Copy Briefing</button>

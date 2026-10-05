@@ -5259,3 +5259,187 @@ html[dir="rtl"] .readiness-row b {
   .dialog-grid label.full-col { grid-column: span 1; }
   .analytics-toolbar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ========================================================
+   THN AI TRADER — PRODUCTION VIEW HIERARCHY & NAVIGATION
+   ======================================================== */
+.app-view {
+  display: none;
+  animation: fadeInView 0.16s ease-out;
+}
+.app-view.view-active {
+  display: block;
+}
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+.view-title-group h1, .view-title-group h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.view-title-group p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.view-subtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.subtab-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.subtab-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+.subtab-btn.active {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+}
+
+/* Paper Badge */
+.paper-trading-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 18px;
+  background: rgba(255, 170, 0, 0.08);
+  border: 1px solid rgba(255, 170, 0, 0.25);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  font-size: 0.84rem;
+}
+.paper-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 170, 0, 0.16);
+  border: 1px solid rgba(255, 170, 0, 0.35);
+  color: #ffb700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.paper-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffb700;
+  box-shadow: 0 0 6px #ffb700;
+}
+
+.coming-soon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(130, 140, 160, 0.16);
+  border: 1px solid rgba(130, 140, 160, 0.3);
+  color: #9aa5b8;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dashboard-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.dash-metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dash-metric-card small {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.dash-metric-card b {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.dash-metric-card .subtext {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+.settings-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.settings-card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
+.settings-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 16px 0;
+}
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.settings-row:last-child {
+  border-bottom: none;
+}
+

@@ -176,7 +176,7 @@ export function validateOrderRisk({ account, order, currentPrice }) {
       return {
         approved: false,
         code: "RISK_LIMIT_EXCEEDED",
-        reason: `Single-trade risk (${riskPct.toFixed(1)}% / $${riskMetrics.slDollars}) exceeds maximum institutional risk ceiling (5.0%). Reduce lot size.`
+        reason: `Single-trade risk (${riskPct.toFixed(1)}% / $${riskMetrics.slDollars}) exceeds maximum account risk ceiling (5.0%). Reduce lot size.`
       };
     }
   }
