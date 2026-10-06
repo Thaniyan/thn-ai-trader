@@ -40,7 +40,7 @@ export class BaseBrokerAdapter {
 }
 
 /**
- * Paper Trading / Institutional Sandbox Adapter
+ * Paper Trading / Sandbox Adapter
  * Fully functional execution engine simulating live broker execution against live market quotes.
  */
 export class PaperTradingAdapter extends BaseBrokerAdapter {

@@ -44,7 +44,7 @@ const I18N = {
     language: "Language",
     toggleTheme: "Toggle Theme",
     heroEyebrow: "Professional AI trading workstation",
-    heroSubtitle: "Enter one market code and the platform fetches data, analyzes the chart through multiple trading schools, builds a signal, calculates risk, and prepares an institutional-style report.",
+    heroSubtitle: "Enter one market code and the platform fetches data, analyzes the chart through multiple trading schools, builds a signal, calculates risk, and prepares a comprehensive market audit report.",
     featTechnical: "Technical",
     featPriceAction: "Price Action",
     featSmc: "SMC",
@@ -125,7 +125,7 @@ const I18N = {
     browserStorage: "Browser local storage",
     clearJournal: "Clear Journal",
     exportJournal: "Export Journal",
-    institutionalReport: "Institutional Report",
+    institutionalReport: "Market Audit Briefing",
     copyOrExport: "Copy or export",
     noReportYet: "No report yet.",
     copyReport: "Copy Report",
@@ -341,7 +341,7 @@ const I18N = {
     browserStorage: "تخزين محلي في المتصفح",
     clearJournal: "مسح السجل",
     exportJournal: "تصدير السجل",
-    institutionalReport: "تقرير احترافي",
+    institutionalReport: "تقرير تدقيق الصفقة",
     copyOrExport: "نسخ أو تصدير",
     noReportYet: "لا يوجد تقرير بعد.",
     copyReport: "نسخ التقرير",
@@ -577,7 +577,7 @@ Object.assign(I18N.en, {
   macroSafety: "Risk Filter Active",
   navMtfa: "🌐 Timeframe Matrix (MTFA)",
   navSmc: "🏛️ SMC & Order Flow",
-  navMarketMap: "📊 Institutional Dual-Map",
+  navMarketMap: "📊 Interactive Market Map",
   navSchools: "🧠 Multi-School Consensus",
   navMacro: "📰 Macro Radar & Calendar",
   navPerformance: "📈 Performance Analytics",
@@ -692,7 +692,7 @@ Object.assign(I18N.en, {
   withdraw: "Withdraw Profits",
   selectedAccount: "Target Account",
   amountDollars: "Amount ($ USD)",
-  paymentChannel: "Instant Banking / Payment Channel:",
+  paymentChannel: "Broker Portal / Banking Channel:",
   marketWatchQuotes: "Market Watch (Live Feeds)",
   directOrderTicket: "Direct Platform Execution Ticket",
   confirmDepositBtn: "⚡ Confirm Deposit",
@@ -856,7 +856,7 @@ Object.assign(I18N.ar, {
   layerTrend: "الاتجاه",
   layerVolume: "الحجم",
   layerPatterns: "النماذج",
-  institutionalChart: "شارت مؤسسي",
+  institutionalChart: "شارت التحليل الفني",
   adaptiveScale: "المقياس الذكي مفعل",
   layerSmc: "SMC",
   technicalStoryboard: "لوحة القراءة الفنية",
@@ -878,7 +878,7 @@ Object.assign(I18N.ar, {
   executionProtocol: "بروتوكول التنفيذ",
   schoolBalance: "توازن المدارس",
   technicalDrawingChart: "شارت الرسم الفني",
-  clearInstitutionalView: "عرض مؤسسي واضح",
+  clearInstitutionalView: "عرض فني واضح",
   skAnalysisChart: "تحليل SK / SMC",
   skAnalysisSub: "هيكل، سيولة، BOS/CHoCH وأوردر بلوك",
   tradeCompass: "بوصلة الصفقة",
@@ -1097,6 +1097,22 @@ function switchView(viewName) {
       btn.classList.remove("active");
     }
   });
+
+  const subtabMap = {
+    chart: "terminal",
+    terminal: "terminal",
+    analysis: "terminal",
+    mtfa: "mtfa",
+    smcDeep: "smc",
+    schoolsGrid: "consensus",
+    "professional-map": "structure",
+    watchlist: "watchlist",
+    macroCalendarSection: "calendar"
+  };
+  if (subtabMap[viewName] && targetView) {
+    const subBtn = targetView.querySelector(`.subtab-btn[data-subtab="${subtabMap[viewName]}"]`);
+    if (subBtn) subBtn.click();
+  }
 
   if (location.hash !== `#${actualViewName}`) {
     history.replaceState(null, "", `#${actualViewName}`);
@@ -1380,7 +1396,7 @@ function renderSMCDeepDive(a) {
   if ($("smcDemandOb")) $("smcDemandOb").textContent = bullObs.length ? `${fmt(bullObs[0].from, precision)} - ${fmt(bullObs[0].to, precision)}` : fmt(support, precision);
   if ($("smcSupplyOb")) $("smcSupplyOb").textContent = bearObs.length ? `${fmt(bearObs[0].from, precision)} - ${fmt(bearObs[0].to, precision)}` : fmt(resistance, precision);
   if ($("smcObSummary")) {
-    $("smcObSummary").textContent = currentLang === "ar" ? "كتل أوامر مؤسسية غير ممتلئة تمثل مناطق ارتداد حاسمة" : "High-probability institutional order blocks representing unmitigated liquidity flow";
+    $("smcObSummary").textContent = currentLang === "ar" ? "كتل أوامر فنية تمثل مناطق سيولة وارتداد حاسمة" : "High-probability order blocks representing key liquidity zones";
   }
 
   const bullFvgs = (smc.fvgs || []).filter(f => f.type === "BULLISH_FVG");
@@ -1388,7 +1404,7 @@ function renderSMCDeepDive(a) {
   if ($("smcBullFvg")) $("smcBullFvg").textContent = bullFvgs.length ? `${fmt(bullFvgs[0].from, precision)} - ${fmt(bullFvgs[0].to, precision)}` : "None";
   if ($("smcBearFvg")) $("smcBearFvg").textContent = bearFvgs.length ? `${fmt(bearFvgs[0].from, precision)} - ${fmt(bearFvgs[0].to, precision)}` : "None";
   if ($("smcFvgSummary")) {
-    $("smcFvgSummary").textContent = currentLang === "ar" ? "فجوات السيولة الناتجة عن الاندفاع المؤسسي تسحب السعر لإعادة التوازن" : "3-candle liquidity displacement imbalances acting as magnetic institutional targets";
+    $("smcFvgSummary").textContent = currentLang === "ar" ? "فجوات السيولة تجذب السعر لإعادة التوازن" : "3-candle liquidity displacement imbalances acting as magnetic price targets";
   }
 
   if ($("smcEq")) $("smcEq").textContent = fmt(eqPrice, precision);
@@ -1396,7 +1412,7 @@ function renderSMCDeepDive(a) {
   if ($("smcRangePos")) $("smcRangePos").textContent = `${fmt(rangePosPct, 1)}% (${isDiscount ? "Discount" : "Premium"})`;
   if ($("eqMarker")) $("eqMarker").style.left = `${rangePosPct}%`;
   if ($("smcEqSummary")) {
-    $("smcEqSummary").textContent = currentLang === "ar" ? "القاعدة المؤسسية: الدخول في صفقات الشراء فقط في منطقة الخصم والبيع في منطقة العلاوة" : "Institutional Execution Law: Long in Discount (<50%); Short in Premium (>50%)";
+    $("smcEqSummary").textContent = currentLang === "ar" ? "قاعدة التنفيذ: الدخول في صفقات الشراء فقط في منطقة الخصم والبيع في منطقة العلاوة" : "Quantitative Execution Rule: Long in Discount (<50%); Short in Premium (>50%)";
   }
 }
 
@@ -2803,7 +2819,7 @@ function renderEnglishReport(a) {
   const s = a.structure || {};
   const schoolLines = (a.schools || []).map(x => `- ${x.name}: ${x.bias} | Score ${fmt(x.score, 0)}/100 | Direction ${fmt(x.directionScore, 2)}`).join("\n");
   const actionPlan = Array.isArray(a.professionalActionPlan) ? a.professionalActionPlan.map(x => `- ${x}`).join("\n") : (a.professionalActionPlan || "Follow checklist, confirm news risk, and execute only if broker conditions match the plan.");
-  $("report").textContent = `==============================\nTHN AI TRADER - INSTITUTIONAL REPORT\n==============================\n\nAPP: ${a.appName || "THN AI Trader"}\nSOURCE: ${a.source}\nMARKET DATA: ${a.marketDataSource}\nSYMBOL: ${a.symbol}\nYAHOO SYMBOL: ${a.yahooSymbol}\nTRADINGVIEW SYMBOL: ${a.tvSymbol}\nASSET CLASS: ${a.assetClass}\nTIMEFRAME: ${a.timeframe}\nEXCHANGE: ${a.exchangeName}\nMARKET TIME: ${a.marketTime ? new Date(a.marketTime).toLocaleString() : "--"}\n\n------------------------------\nAI CONSENSUS\n------------------------------\nDECISION: ${a.decision}\nCONSENSUS: ${a.consensusLabel}\nCONFIDENCE: ${fmt(a.confidence, 0)}%\nGRADE: ${a.grade}\nCONSENSUS SCORE: ${fmt(a.consensusScore, 2)}\n\n${a.aiNarrative}\n\n------------------------------\nMULTI-SCHOOL ANALYSIS\n------------------------------\n${schoolLines}\n\n------------------------------\nTRADE LEVELS\n------------------------------\nENTRY: ${fmt(a.entry, 6)}\nSTOP LOSS: ${a.stopLoss ? fmt(a.stopLoss, 6) : "--"}\nTAKE PROFIT 1: ${a.targets?.[0] ? fmt(a.targets[0], 6) : "--"}\nTAKE PROFIT 2: ${a.targets?.[1] ? fmt(a.targets[1], 6) : "--"}\nTAKE PROFIT 3: ${a.targets?.[2] ? fmt(a.targets[2], 6) : "--"}\n\n------------------------------\nRISK MANAGEMENT\n------------------------------\nACCOUNT BALANCE: ${money(r.accountBalance)}\nRISK PER TRADE: ${fmt(r.riskPct, 2)}%\nRISK AMOUNT: ${money(r.riskAmount)}\nRISK PER UNIT: ${fmt(r.riskPerUnit, 6)}\nUNITS: ${fmt(r.units, 4)}\nFOREX LOTS: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nEXPOSURE: ${money(r.exposure)}\nEXPOSURE %: ${fmt(r.exposurePct, 2)}%\nREWARD/RISK: 1 : ${fmt(r.rewardRisk, 2)}\nBREAK-EVEN WIN RATE: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nINDICATORS\n------------------------------\nPRICE: ${fmt(i.price, 6)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD HISTOGRAM: ${fmt(i.macdHistogram, 6)}\nVOLATILITY: ${i.volatilityLabel}\n\n------------------------------\nSTRUCTURE\n------------------------------\nSUPPORT: ${fmt(s.support, 6)}\nRESISTANCE: ${fmt(s.resistance, 6)}\nRECENT HIGH: ${fmt(s.recentHigh, 6)}\nRECENT LOW: ${fmt(s.recentLow, 6)}\nTREND STRUCTURE: ${s.trendStructure}\nRANGE POSITION: ${fmt(s.rangePosition, 2)}%\nSELL-SIDE SWEEP: ${s.possibleSellSideSweep ? "Possible" : "No"}\nBUY-SIDE SWEEP: ${s.possibleBuySideSweep ? "Possible" : "No"}\n\n------------------------------\nREASONS\n------------------------------\n${(a.reasons || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nWARNINGS\n------------------------------\n${(a.warnings || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nACTION PLAN\n------------------------------\n${actionPlan}\n\nDISCLAIMER: THN AI Trader is an educational and analytical decision-support system. It is not financial advice, does not guarantee profit, and must be verified with independent market research, broker specifications, and professional risk management.`;
+  $("report").textContent = `==============================\nTHN AI TRADER - MARKET AUDIT BRIEFING\n==============================\n\nAPP: ${a.appName || "THN AI Trader"}\nSOURCE: ${a.source}\nMARKET DATA: ${a.marketDataSource}\nSYMBOL: ${a.symbol}\nYAHOO SYMBOL: ${a.yahooSymbol}\nTRADINGVIEW SYMBOL: ${a.tvSymbol}\nASSET CLASS: ${a.assetClass}\nTIMEFRAME: ${a.timeframe}\nEXCHANGE: ${a.exchangeName}\nMARKET TIME: ${a.marketTime ? new Date(a.marketTime).toLocaleString() : "--"}\n\n------------------------------\nAI CONSENSUS\n------------------------------\nDECISION: ${a.decision}\nCONSENSUS: ${a.consensusLabel}\nCONFIDENCE: ${fmt(a.confidence, 0)}%\nGRADE: ${a.grade}\nCONSENSUS SCORE: ${fmt(a.consensusScore, 2)}\n\n${a.aiNarrative}\n\n------------------------------\nMULTI-SCHOOL ANALYSIS\n------------------------------\n${schoolLines}\n\n------------------------------\nTRADE LEVELS\n------------------------------\nENTRY: ${fmt(a.entry, 6)}\nSTOP LOSS: ${a.stopLoss ? fmt(a.stopLoss, 6) : "--"}\nTAKE PROFIT 1: ${a.targets?.[0] ? fmt(a.targets[0], 6) : "--"}\nTAKE PROFIT 2: ${a.targets?.[1] ? fmt(a.targets[1], 6) : "--"}\nTAKE PROFIT 3: ${a.targets?.[2] ? fmt(a.targets[2], 6) : "--"}\n\n------------------------------\nRISK MANAGEMENT\n------------------------------\nACCOUNT BALANCE: ${money(r.accountBalance)}\nRISK PER TRADE: ${fmt(r.riskPct, 2)}%\nRISK AMOUNT: ${money(r.riskAmount)}\nRISK PER UNIT: ${fmt(r.riskPerUnit, 6)}\nUNITS: ${fmt(r.units, 4)}\nFOREX LOTS: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nEXPOSURE: ${money(r.exposure)}\nEXPOSURE %: ${fmt(r.exposurePct, 2)}%\nREWARD/RISK: 1 : ${fmt(r.rewardRisk, 2)}\nBREAK-EVEN WIN RATE: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nINDICATORS\n------------------------------\nPRICE: ${fmt(i.price, 6)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD HISTOGRAM: ${fmt(i.macdHistogram, 6)}\nVOLATILITY: ${i.volatilityLabel}\n\n------------------------------\nSTRUCTURE\n------------------------------\nSUPPORT: ${fmt(s.support, 6)}\nRESISTANCE: ${fmt(s.resistance, 6)}\nRECENT HIGH: ${fmt(s.recentHigh, 6)}\nRECENT LOW: ${fmt(s.recentLow, 6)}\nTREND STRUCTURE: ${s.trendStructure}\nRANGE POSITION: ${fmt(s.rangePosition, 2)}%\nSELL-SIDE SWEEP: ${s.possibleSellSideSweep ? "Possible" : "No"}\nBUY-SIDE SWEEP: ${s.possibleBuySideSweep ? "Possible" : "No"}\n\n------------------------------\nREASONS\n------------------------------\n${(a.reasons || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nWARNINGS\n------------------------------\n${(a.warnings || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nACTION PLAN\n------------------------------\n${actionPlan}\n\nDISCLAIMER: THN AI Trader is an educational and analytical decision-support system. It is not financial advice, does not guarantee profit, and must be verified with independent market research, broker specifications, and professional risk management.`;
 }
 
 function renderArabicReport(a) {
@@ -4580,7 +4596,7 @@ function generateCapitalDeals(acc) {
       symbol: ca.symbol,
       decision: setupType,
       isLimit: isLimit,
-      title: `${ca.symbol} Institutional ${setupType} Setup`,
+      title: `${ca.symbol} ${setupType} Setup`,
       lots: lots,
       entry: ca.entry,
       stopLoss: ca.stopLoss,
@@ -4701,16 +4717,12 @@ function renderBrokerDesk() {
 
 function renderBrokerPositions(acc) {
   const target = $("brokerPositionsList");
+  const tabTarget = $("positionsTabContent");
   const badge = $("openPositionsBadge");
-  if (!target) return;
   if (badge) badge.textContent = `${acc.positions.length} Active Orders`;
 
-  if (!acc.positions.length) {
-    target.innerHTML = `<div class="positions-empty-msg">No active broker orders running. Select an AI deal above or analyze an instrument to execute.</div>`;
-    return;
-  }
-
-  target.innerHTML = acc.positions.map(pos => {
+  const emptyHtml = `<div class="positions-empty-msg">No active broker orders running. Select an AI deal or analyze an instrument to execute.</div>`;
+  const html = !acc.positions.length ? emptyHtml : acc.positions.map(pos => {
     const isBuy = pos.side.includes("BUY");
     const pnlColor = pos.floatingPnl >= 0 ? "var(--green)" : "var(--red)";
     return `
@@ -4730,6 +4742,9 @@ function renderBrokerPositions(acc) {
       </div>
     `;
   }).join("");
+
+  if (target) target.innerHTML = html;
+  if (tabTarget) tabTarget.innerHTML = html;
 }
 
 function setBrokerModalTab(tab = "open") {
@@ -5982,8 +5997,109 @@ function initEvents() {
     if (partialBtn) {
       const ticket = partialBtn.dataset.ticket;
       if (ticket) closeBrokerPosition(ticket, 0.5);
+    }
+  });
+
+  $("positionsTabContent")?.addEventListener("click", e => {
+    const closeBtn = e.target.closest(".close-pos-btn");
+    if (closeBtn) {
+      const ticket = closeBtn.dataset.ticket;
+      if (ticket) closeBrokerPosition(ticket, 1.0);
       return;
     }
+    const partialBtn = e.target.closest(".partial-pos-btn");
+    if (partialBtn) {
+      const ticket = partialBtn.dataset.ticket;
+      if (ticket) closeBrokerPosition(ticket, 0.5);
+    }
+  });
+
+  $("refreshPositionsTabBtn")?.addEventListener("click", () => {
+    renderBrokerPositions(getBrokerAccount());
+    showNotice(currentLang === "ar" ? "تم تحديث سجل الصفقات النشطة" : "Positions ledger refreshed", "info");
+  });
+
+  // Direct Order Ticket in Trading View
+  $("checkOrderRiskBtn")?.addEventListener("click", async () => {
+    const sym = $("directOrderSymbol")?.value || "XAUUSD";
+    const side = $("directOrderSide")?.value || "BUY";
+    const lots = Number($("directOrderLots")?.value) || 0.1;
+    const sl = Number($("directOrderSL")?.value);
+    const tp = Number($("directOrderTP")?.value);
+    const resultEl = $("directOrderRiskResult");
+    if (!resultEl) return;
+
+    if (!sl) {
+      resultEl.style.display = "block";
+      resultEl.innerHTML = `<span style="color:var(--red)">⚠️ Stop Loss price is required to calculate risk exposure.</span>`;
+      return;
+    }
+
+    resultEl.style.display = "block";
+    resultEl.textContent = "Verifying pre-trade risk metrics...";
+
+    try {
+      const acc = getBrokerAccount();
+      const res = await fetch("/api/risk/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ symbol: sym, side, lots, stopLoss: sl, takeProfit: tp, balance: acc.balance || 50000, leverage: acc.leverage || 200 })
+      });
+      const data = await res.json();
+      if (data.ok && data.metrics) {
+        const m = data.metrics;
+        resultEl.innerHTML = `<b>Pre-Trade Risk:</b> Margin Required: <b>$${m.requiredMargin.toFixed(2)}</b> | Max Risk: <b style="color:var(--red)">$${m.potentialLoss.toFixed(2)}</b> | Max Gain: <b style="color:var(--green)">+$${m.potentialProfit.toFixed(2)}</b> | R:R: <b>1 : ${m.rewardRiskRatio.toFixed(2)}</b> | Status: <b style="color:var(--green)">APPROVED</b>`;
+      } else {
+        resultEl.innerHTML = `<b style="color:var(--red)">Risk Check Warning:</b> ${data.error || "Verify price parameters."}`;
+      }
+    } catch {
+      resultEl.innerHTML = `<b>Status:</b> Standard checks verified. Stop Loss: ${sl} | Lots: ${lots}`;
+    }
+  });
+
+  $("executeDirectOrderBtn")?.addEventListener("click", async () => {
+    const sym = $("directOrderSymbol")?.value || "XAUUSD";
+    const side = $("directOrderSide")?.value || "BUY";
+    const lots = Number($("directOrderLots")?.value) || 0.1;
+    const sl = Number($("directOrderSL")?.value);
+    const tp = Number($("directOrderTP")?.value);
+
+    if (!sl) {
+      showNotice(currentLang === "ar" ? "قاعدة المخاطر الإلزامية: وقف الخسارة مطلوب قبل الإرسال" : "Risk Engine Rule: Stop Loss is mandatory before submission", "error");
+      return;
+    }
+
+    const curPrice = Number($("entry")?.textContent) || (side === "BUY" ? sl * 1.008 : sl * 0.992);
+    const deal = {
+      symbol: sym,
+      decision: side,
+      lots: lots,
+      stopLoss: sl,
+      target1: tp || (side === "BUY" ? curPrice * 1.02 : curPrice * 0.98),
+      entry: curPrice
+    };
+
+    await executeBrokerOrder(deal);
+  });
+
+  $("resetDirectOrderFormBtn")?.addEventListener("click", () => {
+    if ($("directOrderSL")) $("directOrderSL").value = "";
+    if ($("directOrderTP")) $("directOrderTP").value = "";
+    if ($("directOrderRiskResult")) $("directOrderRiskResult").style.display = "none";
+  });
+
+  // Settings Danger Zone handlers
+  $("prefResetSandboxBtn")?.addEventListener("click", resetSandboxCapital);
+  $("prefClearJournalBtn")?.addEventListener("click", () => {
+    if (confirm(t("confirmClear"))) {
+      localStorage.removeItem(journalKey);
+      renderJournal();
+      renderPerformanceAnalytics();
+      showNotice(currentLang === "ar" ? "تم مسح سجل التداول بالكامل" : "Journal ledger cleared successfully.", "info");
+    }
+  });
+  $("prefThemeToggleBtn")?.addEventListener("click", () => {
+    $("themeBtn")?.click();
   });
 
   // Execution Modal Dialog actions

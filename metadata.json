@@ -1,6 +1,6 @@
 {
   "name": "THN AI Trader",
-  "description": "Professional bilingual AI-powered trading workstation with multi-school analysis, risk governance, and reporting.",
+  "description": "An AI-powered market intelligence and risk-aware trading terminal.",
   "capabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
