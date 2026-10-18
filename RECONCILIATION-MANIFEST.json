@@ -18,5 +18,10 @@
   ],
   "productionRootDeploymentConfiguration": "unchanged: no tracked root provider config or workflows",
   "runtimeSecretsIncluded": false,
-  "candidateCommit": "Use git rev-parse HEAD; self-hashing this source document is not possible"
+  "candidateCommit": "Use git rev-parse HEAD; self-hashing this source document is not possible",
+  "localAdaptations": [
+    "tests/release-tools.test.mjs: portable disposable known-release fixture; shipped tool unchanged",
+    "scripts/reconciliation/baseline-review.py: source-only, loopback/fixture baseline evidence runner",
+    "AGENTS.md and maintained project documents/evidence: reconciliation authority, product/quality/release contracts"
+  ]
 }

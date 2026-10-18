@@ -46,7 +46,10 @@ An unused declared Google SDK remains a separate dependency-cleanup item.
 ## Strategy and provenance
 
 Use reviewed source-tree reconciliation, followed by local integration/review commits
-on original history. Cherry-picking staging's initial unrelated root imports opaque
+on original history. A portable read-only baseline runner is included at
+scripts/reconciliation/baseline-review.py; it exports only original source into
+a temporary directory, blocks non-fixture network and never copies runtime JSON.
+Cherry-picking staging's initial unrelated root imports opaque
 bulk history and offers no conflict advantage. A merge of unrelated histories adds
 irrelevant ancestry and risks runtime artifacts. Copy only tracked reviewed source,
 record per-file source hashes and exclusions, then validate a clean clone. Staging
@@ -73,19 +76,53 @@ exact public-source branch/commit is explicitly authorized.
 
 ## Baseline and candidate validation
 
-Original baseline syntax passes. Its original system suite, run on fresh temporary
-state with provider fixtures and no copied tracked runtime data, gives 8 pass / 2
-fail: order execution expected 200 but got 400 INVALID_TAKE_PROFIT; the close test
-then lacked its prerequisite ticket. This is a fixture-observed original failure,
-not a claim that live execution was tested. Legacy direct probes confirm anonymous
-accounts HTTP200, cross-origin risk POST HTTP200 and no root CSP. Original lacks
-staging's regression, session and browser suites; those cannot be reported as passed.
+Original baseline build/syntax passes on Node24.19.0. Its 10 legacy system tests
+pass with fresh temporary state and correctly configured provider fixtures. During
+preparation, an initially missing THN_DATA_DIR in the external fixture wrapper
+caused upstream fixtures to throw: 8/10 legacy cases passed and the order/close
+chain failed. That setup was corrected and rerun; it is not an unresolved product
+regression. A separate explicit outage probe then confirms the actual product
+hazard: original returns HTTP200 and Algorithmic Pricing Engine Feed analysis
+when the provider is forced unavailable.
 
-Candidate results and clean-clone verification are appended after execution. Local
-fixtures do not verify live quotes, paid AI, real HTTPS/protected Preview, Windows/
-WSL2 or real-world paper fills. Current product gaps: exact spot Gold execution,
-venue calendars/cost models, genuine historical backtesting, real provider observation,
-manual accessibility/usability and multi-process auth/rate coordination.
+| Check | Original baseline | Integrated candidate |
+|---|---|---|
+| Build/syntax | Pass on Node24; original Node18 compatibility not tested | Build + lint pass (17 application/module syntax targets) |
+| Legacy system flow | 10/10 fixture tests | 10/10 authenticated fixture tests |
+| Node regressions | Staging suites absent; cannot claim equivalence | 62/62 pass, 0 failed/skipped |
+| Anonymous account API | HTTP200 | HTTP401 |
+| Cross-origin private risk mutation | HTTP200 | HTTP403 with valid identity and wrong Origin |
+| Root CSP | Absent | Present and enforced in browser runs |
+| Provider-outage analysis | HTTP200, synthetic Algorithmic Pricing Engine Feed | HTTP502 MARKET_UNAVAILABLE, no invented candles |
+| EN/AR navigation/common mobile smoke | 36 view checks visible; 18 mobile overflow findings; resetSandboxCapital undefined page error | Broad CSP browser suite passes EN/AR/mobile, privacy, charts, quota, scanner, notifications, sizing and ledger |
+| Release-blocker browser | Suite absent | 11/11 pass |
+| Static staging routing browser | Builder/suite absent | 130/130 pass; 42 screenshots |
+| Accessibility | Original automated axe suite absent; no compliance claim | 18 EN/AR axe scans, no violations in configured WCAG2A/AA/2.1AA scope; manual review required |
+| Release portability | No equivalent suite | Four focused release/integrity tests pass in clean clone lacking private staging root objects |
+| Local load fixture | Not measured | 20 concurrent three-instrument scans pass; not provider/production capacity evidence |
+
+The candidate's 62 regressions cover isolation/auth, CSRF/session revocation,
+concurrent idempotency, provider failures/freshness, paper risk/order lifecycle,
+SQLite persistence/backup/recovery, key failures, release integrity and rollback
+boundaries. An absent original suite is not counted as a passing baseline check.
+Accessibility initially failed to start due to missing axe-core; installing pinned
+axe-core 4.10.3 outside the repository resolved it. No application checks were
+suppressed. Summary evidence is in reconciliation/validation-results.json; full
+local logs/screenshots are under /workspace/reports/reconciliation.
+
+All 114 tracked candidate files and the complete proposed diff were scanned for
+strong credential patterns and sensitive paths: zero findings; template credential
+values are empty; no workflow, DB, certificate, runtime state or archive is tracked.
+This is not exhaustive secret detection or a purge of historical public Git objects.
+Per-file source hashes allow reviewing every copied/adapted path independently.
+
+Local fixtures do not verify live quotes, paid AI, actual HTTPS/protected Preview,
+Windows/WSL2 or real-world paper fills. Current product gaps: exact spot Gold
+execution, venue calendars/cost models, genuine historical backtesting, real provider
+observation, manual accessibility/usability and multi-process auth/rate coordination.
+The dashboard's generic risk-status wording and instrument labels deserve future
+usability review; passing browser scans do not validate all product copy or realism.
+
 
 ## Proposed branching, CI and release process (not installed)
 
@@ -112,3 +149,12 @@ manual accessibility/usability and multi-process auth/rate coordination.
 
 See PRODUCT-VISION, ARCHITECTURE, DEVELOPMENT-ROADMAP, QUALITY-STANDARDS,
 AI-TRADING-VALIDATION and MIGRATION-AND-ROLLBACK for maintained contracts.
+
+To reproduce baseline observations from this checkout (Playwright/Chromium needed):
+
+```sh
+python scripts/reconciliation/baseline-review.py --output /tmp/thn-original-baseline-review
+```
+
+The source runner pins original 50857df and uses current reviewed provider fixtures;
+its legacy system pass does not establish the missing security invariants.

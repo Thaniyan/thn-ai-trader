@@ -1,0 +1,92 @@
+{
+  "originalCommit": "50857dfc1e45a901515b56ffe2ed914d897671af",
+  "stagingSource": "b05f070c1c9b289bc5b39f833e4591f0bdd8d8ac",
+  "candidateImplementationCommit": "bb0339a408290f6949c7075d91c5122f943c92a7",
+  "candidateFinalCommit": "Read git rev-parse HEAD; later changes are documentation/evidence only",
+  "runtime": "Node24.19.0 Linux, Python3, Playwright1.62.0, Chromium, axe-core4.10.3",
+  "original": {
+    "systemPassed": 10,
+    "systemFailed": 0,
+    "probes": {
+      "legacyOrderStatus": 200,
+      "legacyOrderCode": null,
+      "legacyOrderReason": null,
+      "anonymousAccountsStatus": 200,
+      "rootStatus": 200,
+      "csp": null,
+      "crossOriginRiskStatus": 200
+    },
+    "providerOutage": {
+      "status": 200,
+      "source": "Algorithmic Pricing Engine Feed",
+      "hasAnalysis": true
+    },
+    "commonViewChecks": 36,
+    "mobileOverflowFindings": 18,
+    "pageErrors": [
+      "resetSandboxCapital is not defined"
+    ]
+  },
+  "candidate": {
+    "nodePassed": 62,
+    "nodeFailed": 0,
+    "nodeSkipped": 0,
+    "systemPassed": 10,
+    "systemFailed": 0,
+    "broadBrowser": "PASS actual local CSP",
+    "releaseBrowserPassed": 11,
+    "staticBrowserPassed": 130,
+    "staticBrowserScreenshots": 42,
+    "axeViewScans": 18,
+    "axeViolations": 0,
+    "cleanCloneFocusedPassed": 4,
+    "fixtureLoadConcurrentRequests": 20,
+    "probes": {
+      "anonymousAccountsStatus": 401,
+      "rootStatus": 200,
+      "cspPresent": true,
+      "crossOriginRiskStatus": 403,
+      "liveExecutionEnabled": false,
+      "providerOutageProbe": {
+        "status": 502,
+        "hasAnalysis": false,
+        "code": "MARKET_UNAVAILABLE"
+      }
+    },
+    "portableBaselineRunner": "PASS 10 legacy system tests and common security/outage/browser observations; source-only export"
+  },
+  "scan": {
+    "files": 116,
+    "strongCredentialMatches": [],
+    "sensitivePaths": [],
+    "templateCredentialValues": "all empty",
+    "workflowsTracked": false,
+    "limits": "Pattern and path scan plus manual review; not exhaustive secret detection or a historical credential purge"
+  },
+  "preparationIssuesResolved": [
+    "Initial baseline fixture THN_DATA_DIR missing caused two downstream legacy failures; corrected valid fixture gives 10/10; explicit outage tested separately",
+    "Axe missing: installed pinned tool outside source and reran successfully",
+    "Clean clone first command used parent directory and found no tests; corrected checkout cwd; four intended tests executed and passed"
+  ],
+  "unverified": [
+    "original production hosting branch/preview integration settings",
+    "current repository visibility via metadata API",
+    "actual hosted protected Preview",
+    "real market/provider freshness and quotas",
+    "live AI provider response quality",
+    "real-world paper fills",
+    "Windows/WSL2 and actual owner installation",
+    "manual accessibility/assistive technology"
+  ],
+  "publicationDecision": "NO_GO_UNVERIFIED_ORIGINAL_HOSTING_ISOLATION",
+  "remoteMutations": false,
+  "deployment": false,
+  "setupDraft": {
+    "status": "saved_not_published",
+    "fields": [
+      "install_script",
+      "start_skill"
+    ],
+    "scope": "pinned external axe QA tool and fixture workflow; no hosting settings or runtime credentials changed"
+  }
+}

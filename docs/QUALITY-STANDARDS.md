@@ -4,7 +4,12 @@ Use Node 24.x >=24.5 and Python 3. Runtime dependencies are unchanged; applicati
 and fixture tests use built-ins and need no provider secrets. Where installing
 packages is necessary, use the existing bun.lock in frozen mode rather than create
 an unrelated lockfile. Browser QA requires locally installed Playwright, Chromium
-and axe-core. Keep these test tools outside the source tree.
+and axe-core. Keep these test tools outside the source tree. In this workspace
+Playwright 1.62.0 and Chromium were already available; axe-core was installed with
+`npm install --prefix /workspace/.tools/reconciliation-qa --cache /workspace/.tools/npm-cache --no-save --package-lock=false axe-core@4.10.3`.
+Set `AXE_PATH=/workspace/.tools/reconciliation-qa/node_modules/axe-core/axe.min.js`
+for the accessibility command below. A new machine must supply its own browser
+prerequisites; no root/system changes or paid services are needed by fixtures.
 
 From repository root:
 
