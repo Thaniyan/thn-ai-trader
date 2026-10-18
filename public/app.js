@@ -1247,27 +1247,12 @@ function switchView(viewName) {
   const main = document.querySelector(".terminal-main");
   if (main) main.scrollTop = 0;
   window.scrollTo({ top: 0, behavior: "instant" });
+  renderWorkbench();
 }
 
 function updateDashboardMarketOverview() {
   const tbody = $("dashMarketOverviewBody");
   const symbols = ["XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "BTCUSDT", "US30"];
-  const names = {
-    XAUUSD: "Gold Spot / USD",
-    EURUSD: "Euro / US Dollar",
-    GBPUSD: "British Pound / USD",
-    USDJPY: "US Dollar / Japanese Yen",
-    BTCUSDT: "Bitcoin Perpetual",
-    US30: "Wall Street 30 Index"
-  };
-  const classes = {
-    XAUUSD: "Commodity",
-    EURUSD: "Forex",
-    GBPUSD: "Forex",
-    USDJPY: "Forex",
-    BTCUSDT: "Crypto",
-    US30: "Index"
-  };
 
   if (tbody) {
     tbody.innerHTML = symbols.map(sym => {
@@ -1282,14 +1267,14 @@ function updateDashboardMarketOverview() {
       return `
         <tr>
           <td><b>${sym}</b></td>
-          <td>${names[sym] || sym}</td>
-          <td>${classes[sym] || 'Forex'}</td>
+          <td>${escapeHtml(workspaceInstrument(sym).name)}<small class="dashboard-quote-evidence">${escapeHtml(workspaceQuoteLabel(liveQuotesCache[sym]))}</small></td>
+          <td>${escapeHtml(ux('ux'+workspaceInstrument(sym).asset))}</td>
           <td class="font-mono">${bid}</td>
           <td class="font-mono">${ask}</td>
           <td>${spread}</td>
           <td class="${chgClass} font-mono"><b>${chgText}</b></td>
           <td>
-            <button type="button" class="primary small dash-trade-btn" data-trade-sym="${sym}">Trade ↗</button>
+            <button type="button" class="primary small dash-trade-btn" data-trade-sym="${sym}">${ux('uxAnalyze')}</button>
           </td>
         </tr>
       `;
@@ -1297,25 +1282,26 @@ function updateDashboardMarketOverview() {
   }
 
   const acc = getBrokerAccount();
-  if ($("dashBalance")) $("dashBalance").textContent = money(acc.balance);
-  if ($("dashEquity")) $("dashEquity").textContent = money(acc.equity ?? acc.balance);
-  if ($("dashFreeMargin")) $("dashFreeMargin").textContent = money(acc.freeMargin);
+  if ($("dashBalance")) $("dashBalance").textContent = workspaceMoney(acc.balance,acc.currency);
+  if ($("dashEquity")) $("dashEquity").textContent = workspaceMoney(acc.equity ?? acc.balance,acc.currency);
+  if ($("dashFreeMargin")) $("dashFreeMargin").textContent = workspaceMoney(acc.freeMargin,acc.currency);
   if ($("dashDailyPnl")) {
     const pnl = acc.dailyRealizedPnl;
-    $("dashDailyPnl").textContent = pnl===null?"--":(pnl >= 0 ? "+" : "") + money(pnl);
+    $("dashDailyPnl").textContent = pnl===null?"--":(pnl >= 0 ? "+" : "") + workspaceMoney(pnl,acc.currency);
     $("dashDailyPnl").style.color = pnl >= 0 ? "#10b981" : "#ef4444";
   }
   if ($("dashTradesCount")) $("dashTradesCount").textContent = acc.todayTradesCount==null?"--":String(acc.todayTradesCount);
   if ($("tradingPosCount")) $("tradingPosCount").textContent = String((acc.positions || []).length);
   renderDashboardEvidence();
+  renderWorkbench();
 }
 
 function renderDashboardEvidence(){
   const observed=[currentAnalysis,...watchScanResults].filter(a=>a?.provenance?.fresh&&a.provenance.instrumentMatch&&Date.now()-a.provenance.quoteAt<=120000);
   const unique=[...new Map(observed.map(a=>[a.symbol,a])).values()].slice(0,3);
   if($("dashAiOppsGrid"))$("dashAiOppsGrid").innerHTML=unique.length?unique.map(a=>`<article class="card"><b>${escapeHtml(a.symbol)}</b><p>${escapeHtml(localizedValue(a.decision||"WAIT"))} · ${fmt(a.confidence,0)} / 100</p><p class="tiny muted-text">${currentLang==="ar"?"تحليل تعليمي · ليس أمر تنفيذ":"Educational analysis · not an order"}</p><button type="button" class="ghost small dash-inspect-btn" data-inspect-sym="${escapeHtml(a.symbol)}">${currentLang==="ar"?"عرض التحليل":"Inspect analysis"}</button></article>`).join(""):`<p class="muted-text">${analysisError?escapeHtml(analysisError):t("analysisUnavailable")}</p>`;
-  const fills=serverLedger.filter(f=>f.epoch===(getBrokerAccount().accountEpoch||"legacy")).slice(0,5);
-  if($("dashRecentActivityTable"))$("dashRecentActivityTable").innerHTML=fills.length?fills.map(f=>`<p>${escapeHtml(f.symbol)} · ${escapeHtml(f.side)} · ${money(f.realizedPnl)} · ${escapeHtml(f.closedAt)} · PAPER FILL</p>`).join(""):`<p class="muted-text">${currentLang==="ar"?"لا توجد نتائج تداول تجريبي مسجلة لهذا الحساب":"No recorded paper fills for this account"}</p>`;
+  const fills=workspaceAccount()?serverLedger.filter(f=>f.immutable===true).slice(0,5):[];
+  if($("dashRecentActivityTable"))$("dashRecentActivityTable").innerHTML=fills.length?fills.map(f=>`<p>${escapeHtml(f.symbol)} · ${escapeHtml(localizedValue(f.decision))} · ${workspaceMoney(f.pnl,workspaceAccount()?.currency)} · ${escapeHtml(new Date(f.date).toLocaleString(currentLang==="ar"?"ar-OM":"en-GB"))} · ${currentLang==="ar"?"تنفيذ تجريبي":"PAPER FILL"}</p>`).join(""):`<p class="muted-text">${currentLang==="ar"?"لا توجد نتائج تداول تجريبي مسجلة لهذا الحساب":"No recorded paper fills for this account"}</p>`;
 }
 
 function translateStaticDom() {
@@ -1330,6 +1316,9 @@ function translateStaticDom() {
     el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder));
   });
   document.querySelectorAll("[data-i18n-aria]").forEach(el=>el.setAttribute("aria-label",t(el.dataset.i18nAria)));
+  localizeWorkspaceStatic();
+  renderWorkbench();
+  if(workspaceInitialized)setWorkspaceMenu($("workspaceMenu").getAttribute("aria-expanded")==="true");
   const languageSelect = $("languageSelect");
   if (languageSelect) languageSelect.value = currentLang;
   document.querySelectorAll("[data-language]").forEach(button => {
@@ -1391,13 +1380,16 @@ async function checkHealth() {
     const health = await res.json();
     if(!res.ok||!health.ok)throw Error("Health unavailable");
     providerSnapshot=await(await fetch("/api/readiness")).json();
+    workspaceHealth="online";
     renderProviderStatus();
     $("apiStatus").textContent = health.openaiEnabled ? "OpenAI configured; readiness must be verified" : t("localAiActive");
     $("modelStatus").textContent = `${health.app} v${health.version}`;
   } catch {
+    workspaceHealth="offline";providerSnapshot=null;
     $("apiStatus").textContent = t("serverOffline");
     $("modelStatus").textContent = t("runNpmFirst");
   }
+  renderWorkbench();
 }
 
 function cancelAnalysis(){
@@ -1409,6 +1401,7 @@ async function analyze() {
   if(analysisInFlight)return;
   if(Date.now()<analysisRetryAt){status(`${t("analysisUnavailable")}: ${Math.ceil((analysisRetryAt-Date.now())/1000)}s`);return}
   analysisInFlight=true;analysisError="";
+  renderWorkbench();
   const generation=++analysisGeneration;analysisController=new AbortController();
   try {
   const payload = getPayload();
@@ -1445,6 +1438,7 @@ async function analyze() {
   } finally {
     if(generation!==analysisGeneration)return;
     analysisInFlight=false;analysisController=null;
+    renderWorkbench();
     renderDashboardEvidence();
     $("brokerDealsGrid")?.setAttribute("aria-busy","false");
     renderBrokerDesk();
@@ -3144,8 +3138,8 @@ function renderWatchlist() {
     <span>${escapeHtml(t("alertOnly"))}</span>
     <div class="watch-actions">
       <button class="ghost small" type="button" data-watch-analyze="${escapeHtml(symbol)}">${escapeHtml(t("analyzePair"))}</button>
-      <button class="ghost small" type="button" data-watch-hide="${escapeHtml(symbol)}">${prefs[symbol]?.hidden?"Restore":"Hide"}</button>
-      <label><input type="checkbox" data-watch-scan="${escapeHtml(symbol)}" ${prefs[symbol]?.scanEnabled!==false?"checked":""}> Scan</label>
+      <button class="ghost small" type="button" data-watch-hide="${escapeHtml(symbol)}">${prefs[symbol]?.hidden?(currentLang==="ar"?"استعادة":"Restore"):(currentLang==="ar"?"إخفاء":"Hide")}</button>
+      <label><input type="checkbox" data-watch-scan="${escapeHtml(symbol)}" ${prefs[symbol]?.scanEnabled!==false?"checked":""}> ${currentLang==="ar"?"مسح":"Scan"}</label>
       <button class="ghost small danger" type="button" data-watch-remove="${escapeHtml(symbol)}">${escapeHtml(t("removePair"))}</button>
     </div>
   </div>`).join("") || `<p class="tiny">${escapeHtml(watchSearchTerm ? (currentLang === "ar" ? "لا توجد أزواج مطابقة للبحث." : "No pairs match search.") : t("noPairsYet"))}</p>`;
@@ -4423,18 +4417,19 @@ function renderAccountCertificate() {
 }
 
 function renderProviderStatus(){
+  renderWorkbench();
   if(providerSnapshot?.ok){
-    if($("apiStatus"))$("apiStatus").textContent=providerSnapshot.openai?.configured?`External AI: ${currentAnalysis?.aiStatus||providerSnapshot.openai.state}`:t("localAiActive");
+    if($("apiStatus"))$("apiStatus").textContent=providerSnapshot.openai?.configured?`${ux("uxNarrative")}: ${currentAnalysis?.aiStatus||providerSnapshot.openai.state}`:t("localAiActive");
     if($("modelStatus"))$("modelStatus").textContent="THN deterministic engine · v6.0.0";
   }
   const market=currentAnalysis?.provenance;
   const state=market?.state||providerSnapshot?.marketData?.state||"UNAVAILABLE";
   if($("providerOverallStatus"))$("providerOverallStatus").textContent=state;
-  if($("forexFeedStatus"))$("forexFeedStatus").textContent=market?`${market.provider} · ${market.instrument} · ${market.pricingProxy?"INDICATIVE PROXY":state}`:"No instrument verified";
+  if($("forexFeedStatus"))$("forexFeedStatus").textContent=market?`${market.provider} · ${market.instrument} · ${market.pricingProxy?ux("uxProxy"):state}`:ux("uxNotChecked");
   const cryptoQuote=Object.values(liveQuotesCache).find(q=>q.assetClass==="Crypto");
-  if($("cryptoFeedStatus"))$("cryptoFeedStatus").textContent=cryptoQuote?`${cryptoQuote.source} · ${quoteFresh(cryptoQuote)?"FRESH":"STALE"}`:"Not verified";
-  if($("calendarFeedStatus"))$("calendarFeedStatus").textContent="UNAVAILABLE · no verified calendar";
-  if($("analysisProvenance"))$("analysisProvenance").textContent=market?`${market.provider} · ${market.instrument} · Quote: ${new Date(market.quoteAt).toLocaleString(currentLang==="ar"?"ar-OM":"en-GB")} · Closed candle: ${new Date(market.lastClosedCandleAt).toLocaleString(currentLang==="ar"?"ar-OM":"en-GB")} · ${market.candleStatus} · ${market.pricingProxy?"Analysis only · indicative proxy":"Paper model · no live execution"}`:t("analysisUnavailable");
+  if($("cryptoFeedStatus"))$("cryptoFeedStatus").textContent=cryptoQuote?`${cryptoQuote.source} · ${workspaceQuoteLabel(cryptoQuote)}`:ux("uxNotChecked");
+  if($("calendarFeedStatus"))$("calendarFeedStatus").textContent=currentLang==="ar"?"غير متاح · لا توجد مفكرة متحقق منها":"UNAVAILABLE · no verified calendar";
+  if($("analysisProvenance"))$("analysisProvenance").textContent=market?`${market.provider} · ${market.instrument} · ${currentLang==="ar"?"رصد السعر":"Quote"}: ${new Date(market.quoteAt).toLocaleString(currentLang==="ar"?"ar-OM":"en-GB")} · ${currentLang==="ar"?"الشمعة المغلقة":"Closed candle"}: ${new Date(market.lastClosedCandleAt).toLocaleString(currentLang==="ar"?"ar-OM":"en-GB")} · ${market.candleStatus} · ${market.pricingProxy?ux("uxProxy"):ux("uxPaperEnvironment")}`:t("analysisUnavailable");
 }
 function quoteFresh(q){return Number.isFinite(q?.bid)&&q.bid>0&&Number.isFinite(q?.ask)&&q.ask>=q.bid&&q?.provenance?.state==="REAL"&&q.provenance.fresh===true&&q.provenance.verified===true&&Number.isFinite(q.timestamp)&&Date.now()-q.timestamp<=120000&&q.timestamp<=Date.now()+1000}
 function renderWebTrader() {
@@ -4836,7 +4831,7 @@ function openBrokerModal(defaultTab = "open") {
   const brand = brokerBrands[acc.provider] || brokerBrands.exness;
   if ($("externalBrokerLink")) $("externalBrokerLink").href = brand.link || "https://www.exness.com";
   if ($("brokerServerInput")) $("brokerServerInput").value = acc.server || brand.server;
-  if ($("brokerAccountIdInput")) $("brokerAccountIdInput").value = acc.accountId || "EXN-894210";
+  if ($("brokerAccountIdInput")) $("brokerAccountIdInput").value = acc.accountId || "";
   if ($("brokerSyncBalanceInput")) $("brokerSyncBalanceInput").value = acc.balance;
 
   const preset = $("brokerCapitalPreset");
@@ -4921,6 +4916,7 @@ function filterBrokerDocs(query = "") {
 }
 
 function applyBrokerDocsConfig(platform) {
+  if(platform!=="paper"){showNotice(ux("uxResearchCopy"),"info");return}
   let server = "";
   let accountId = "";
   let balance = 25000;
@@ -5189,24 +5185,26 @@ async function fetchLiveMarketQuotes() {
   if(Date.now()<quoteRetryAt)return liveQuotesCache;
   const symbols=[...new Set([$("webtraderSymbolSelect")?.value,currentAnalysis?.symbol,...(getBrokerAccount().positions||[]).map(p=>p.symbol),"XAUUSD","EURUSD","GBPUSD","USDJPY","BTCUSDT","US30",...getWatchlist()].filter(Boolean))].slice(0,30);
   quoteRequestInFlight=loadQuoteBatch(symbols);
-  try{return await quoteRequestInFlight}finally{quoteRequestInFlight=null}
+  try{return await quoteRequestInFlight}finally{quoteRequestInFlight=null;renderWorkbench()}
 }
 async function loadQuoteBatch(symbols) {
+  workspaceQuoteState="loading";renderWorkbench();
   try {
     const res=await fetch("/api/quotes?symbols="+encodeURIComponent(symbols.join(",")),{signal:AbortSignal.timeout(45000)});
     const data=await res.json();
     if(!res.ok||!data.ok){
-      quoteFailures++;liveQuotesCache={};renderProviderStatus();
+      workspaceQuoteState="error";quoteFailures++;liveQuotesCache={};renderProviderStatus();
       quoteRetryAt=Date.now()+retryDelay(res,data,Math.min(120000,15000*2**Math.min(quoteFailures,3)))+Math.random()*1000;
       return liveQuotesCache;
     }
-    quoteFailures=0;liveQuotesCache=data.quotes||{};
+    workspaceQuoteState="ready";quoteFailures=0;liveQuotesCache=data.quotes||{};
     quoteRetryAt=Date.now()+Math.max(15000,(data.retryAfter||0)*1000);
     renderProviderStatus();
     updateDashboardMarketOverview();
     return liveQuotesCache;
   } catch {
-    quoteFailures++;liveQuotesCache={};
+    workspaceQuoteState="error";quoteFailures++;liveQuotesCache={};
+    renderWorkbench();
     quoteRetryAt=Date.now()+Math.min(120000,15000*2**Math.min(quoteFailures,3))+Math.random()*1000;
     return liveQuotesCache;
   }
@@ -5380,12 +5378,12 @@ function initEvents() {
       date: dateVal,
       symbol: sym,
       decision: direction,
-      confidence: 82,
-      grade: outcome === "WIN" ? "A+" : outcome === "BE" ? "B" : "B-",
+      confidence: null,
+      grade: null,
       entry: entry,
       stopLoss: 0,
       target1: exitPrice,
-      risk: Math.abs(pnl) || 100,
+      risk: null,
       assetClass: detectAssetClass(sym),
       status: outcome,
       pnl: pnl,
@@ -5771,6 +5769,7 @@ function initEvents() {
   // Broker Provider selection in modal with real-time server & link sync
   document.querySelectorAll("#brokerProviderOptions .broker-option-card").forEach(card => {
     card.addEventListener("click", () => {
+      if(card.querySelector("input[type=radio]")?.disabled)return;
       document.querySelectorAll("#brokerProviderOptions .broker-option-card").forEach(c => c.classList.remove("active"));
       card.classList.add("active");
       const radio = card.querySelector("input[type='radio']");
@@ -5782,7 +5781,7 @@ function initEvents() {
       if ($("brokerServerInput")) $("brokerServerInput").value = brand.server || "Live-Server-01";
       if ($("brokerAccountIdInput")) {
         const prefix = provider ? provider.toUpperCase().slice(0, 3) : "ACC";
-        $("brokerAccountIdInput").value = `${prefix}-${Math.floor(100000 + Math.random() * 900000)}`;
+        $("brokerAccountIdInput").value = "";
       }
     });
   });
@@ -6168,6 +6167,347 @@ function restoreTheme() {
   if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
 }
 
+// Product workspace: presentation only. Backend remains the authority for risk,
+// identity and fills; no extra storage, synthetic quotes or execution pathway.
+const WORKSPACE_COPY={
+ en:{
+ uxMenu:'Menu',uxCloseMenu:'Close menu',uxNavigation:'Main navigation',uxWorkspace:'WORKSPACE',uxAccountGroup:'ACCOUNT & RECORDS',uxEnvironment:'WORKSPACE / PAPER ENVIRONMENT',uxPaperOnly:'PAPER ONLY',uxRefresh:'Refresh market data',uxRefreshing:'Refreshing…',uxStatusLabel:'Workspace status',uxBackend:'Backend',uxMarketData:'Market data',uxAccount:'Account access',uxCapabilities:'What works here · capabilities & limitations',uxOperational:'IMPLEMENTED',uxConditional:'BACKEND & ACCOUNT REQUIRED',uxOptional:'OPTIONAL',uxPlanned:'NOT AVAILABLE',uxObservation:'Market observation',uxObservationCopy:'Provider quotes and deterministic analysis. Availability depends on instrument identity, freshness and provider limits.',uxPaperExecution:'Paper execution',uxPaperCopy:'Server-owned accounts, order risk checks and a durable fill ledger. This is a simulation, not a live broker.',uxNarrative:'AI narrative',uxNarrativeCopy:'Available only when configured and verified by the backend. Narrative cannot change numeric trading levels.',uxResearch:'Historical backtesting & live brokers',uxResearchCopy:'Historical strategy validation is planned. Real-money broker execution is disabled. No performance is inferred from a confluence score.',uxObserveFirst:'OBSERVE BEFORE YOU ACT',uxMarketBoard:'Market board',uxQuoteModel:'Bid/ask are backend paper-pricing estimates, not executable broker quotes. Indicative proxies are analysis-only.',uxSearch:'Find an instrument',uxSearchPlaceholder:'Symbol or instrument name',uxAssetClass:'Asset class',uxAllAssets:'All assets',uxForex:'Forex',uxCommodity:'Commodities',uxCrypto:'Crypto',uxIndex:'Indices',uxStock:'Stocks',uxMarketPrices:'Market prices and provider evidence',uxInstrument:'Instrument',uxBid:'Model bid',uxAsk:'Model ask',uxEvidence:'Source & observation',uxAvailability:'Availability',uxAction:'Action',uxViewEvidence:'View evidence',uxChecking:'Checking…',uxReachable:'Reachable',uxDisconnected:'Disconnected',uxNotChecked:'Not checked',uxLocked:'Sign in required',uxNoAccount:'No account selected',uxAccountCount:'accounts',uxCurrent:'Current',uxProxy:'Indicative · analysis only',uxStale:'Stale · unavailable',uxUnavailable:'Unavailable',uxPending:'Loading observations…',uxResults:'instruments',uxNoMatches:'No instruments match your search.',uxClearFilters:'Clear filters',uxNoSource:'No provider observation',uxAnalyze:'Analyze',uxRefreshDone:'Observations updated. Check each instrument’s source and availability.',uxRefreshError:'Market data unavailable. No prices have been substituted. Retry after the provider cooldown.',uxCooldown:'Provider cooldown',uxSeconds:'s',uxSessionReady:'Account selected · server validates every order',uxSessionLocked:'Account required · no order is authorized',uxAccountEmpty:'This identity has no selected paper account. Open Accounts to create or select one.',uxSelectAccount:'Open Accounts',uxReviewData:'Review market data',uxReviewTicket:'Review paper ticket',uxFlow:'ORDER REVIEW',uxFlowCopy:'Observe → analyze → review risk → submit a paper order. The server validates every submission.',uxIdentityCheck:'Account ownership',uxPriceCheck:'Executable instrument evidence',uxRiskCheck:'Final risk decision',uxServerChecks:'Checked by server on submission',uxExactQuote:'Current exact-instrument quote',uxNeedQuote:'Exact, fresh pricing required',uxAnalysisSummary:'ANALYSIS EVIDENCE',uxAnalysisEmpty:'No current analysis to review. Select an instrument and run analysis; an unavailable provider does not imply a signal.',uxHeuristic:'Confluence is a heuristic score, not a win probability or a performance forecast.',uxDecision:'Analysis decision',uxConfluence:'Confluence / 100',uxAiState:'Narrative status',uxAiOff:'Disabled',uxAiVerified:'Verified response',uxAiUnverified:'Not verified / unavailable',uxSource:'Provider instrument',uxObserved:'Quote observed',uxRiskSummary:'ACCOUNT CAPACITY',uxRiskCopy:'These values come from the selected server account. Analysis sizing is educational; order limits are enforced by the server.',uxEquity:'Account equity',uxFreeMargin:'Free margin',uxUsedMargin:'Used margin',uxPortfolioSummary:'SERVER PAPER LEDGER',uxPortfolioCopy:'Balances and closed fills are scoped to the signed-in account. Manual/imported journal entries are not verified fills.',uxBalance:'Account balance',uxPositions:'Open positions',uxClosedFills:'Recorded closed fills',uxNoFills:'No closed paper fills have been recorded for this account.',uxAccountRequired:'Account required',uxRiskServer:'Server checks each order',uxFreshQuotes:'current observations',uxNoPrices:'No current observations',uxAge:'Age',uxGold:'Gold / USD (spot requested)',uxEuro:'Euro / US dollar',uxPound:'Pound / US dollar',uxYen:'US dollar / Japanese yen',uxBitcoin:'Bitcoin / tether',uxDow:'Dow Jones index',uxView_dashboard:'Overview',uxView_markets:'Markets',uxView_trading:'Trading workspace',uxView_ai:'AI Intelligence',uxView_risk:'Risk Desk',uxView_portfolio:'Portfolio',uxView_journal:'Trade Journal',uxView_brokers:'Accounts',uxView_settings:'Settings',uxDesc_dashboard:'A clear view of account access, market evidence and recorded activity.',uxDesc_markets:'Find instruments, inspect provider evidence and build your analysis watchlist.',uxDesc_trading:'Analyze an instrument and review a paper order with server-side safeguards.',uxDesc_ai:'Review the reasoning, source and limitations behind the current analysis.',uxDesc_risk:'Review account capacity before sizing a paper trade.',uxDesc_portfolio:'Separate recorded paper fills from unverified journal entries.',uxDesc_journal:'Review recorded outcomes and keep personal research clearly labeled.',uxDesc_brokers:'Select a server-owned paper account. External broker execution is disabled.',uxDesc_settings:'Manage language, appearance and provider information.',uxPaperEnvironment:'Paper simulation · live execution disabled'
+ },
+ ar:{
+ uxMenu:'القائمة',uxCloseMenu:'إغلاق القائمة',uxNavigation:'التنقل الرئيسي',uxWorkspace:'مساحة العمل',uxAccountGroup:'الحساب والسجلات',uxEnvironment:'مساحة العمل / بيئة التداول التجريبي',uxPaperOnly:'تجريبي فقط',uxRefresh:'تحديث بيانات السوق',uxRefreshing:'جارٍ التحديث…',uxStatusLabel:'حالة مساحة العمل',uxBackend:'الخادم',uxMarketData:'بيانات السوق',uxAccount:'الوصول إلى الحساب',uxCapabilities:'ما المتاح هنا · الإمكانات والقيود',uxOperational:'مُنفّذ',uxConditional:'يتطلب الخادم وحساباً',uxOptional:'اختياري',uxPlanned:'غير متاح',uxObservation:'رصد السوق',uxObservationCopy:'أسعار من مزودي البيانات وتحليل حتمي. يعتمد التوفر على هوية الأداة وحداثة البيانات وحدود المزود.',uxPaperExecution:'تنفيذ تجريبي',uxPaperCopy:'حسابات يديرها الخادم وفحوص مخاطر وسجل تنفيذ دائم. هذه محاكاة وليست وسيطاً حقيقياً.',uxNarrative:'شرح بالذكاء الاصطناعي',uxNarrativeCopy:'متاح فقط عند تهيئته والتحقق منه على الخادم. لا يغيّر الشرح مستويات التداول الرقمية.',uxResearch:'الاختبار التاريخي والوسطاء الحقيقيون',uxResearchCopy:'التحقق التاريخي من الاستراتيجيات مخطط له. التنفيذ بأموال حقيقية معطل. لا تُستنتج نتائج الأداء من درجة التوافق.',uxObserveFirst:'راقب قبل اتخاذ القرار',uxMarketBoard:'لوحة السوق',uxQuoteModel:'أسعار العرض والطلب تقديرات للتسعير التجريبي على الخادم وليست عروض وسيط قابلة للتنفيذ. البدائل الاسترشادية للتحليل فقط.',uxSearch:'ابحث عن أداة',uxSearchPlaceholder:'الرمز أو اسم الأداة',uxAssetClass:'فئة الأصل',uxAllAssets:'جميع الأصول',uxForex:'العملات',uxCommodity:'السلع',uxCrypto:'الأصول الرقمية',uxIndex:'المؤشرات',uxStock:'الأسهم',uxMarketPrices:'أسعار السوق وأدلة المصدر',uxInstrument:'الأداة',uxBid:'عرض نموذجي',uxAsk:'طلب نموذجي',uxEvidence:'المصدر ووقت الرصد',uxAvailability:'التوفر',uxAction:'الإجراء',uxViewEvidence:'أدلة العرض',uxChecking:'جارٍ الفحص…',uxReachable:'متصل',uxDisconnected:'غير متصل',uxNotChecked:'لم يُفحص',uxLocked:'يلزم تسجيل الدخول',uxNoAccount:'لم يُحدد حساب',uxAccountCount:'حسابات',uxCurrent:'حديث',uxProxy:'استرشادي · للتحليل فقط',uxStale:'قديم · غير متاح',uxUnavailable:'غير متاح',uxPending:'جارٍ تحميل الرصد…',uxResults:'أدوات',uxNoMatches:'لا توجد أدوات تطابق البحث.',uxClearFilters:'مسح عوامل التصفية',uxNoSource:'لا يوجد رصد من المزود',uxAnalyze:'تحليل',uxRefreshDone:'تم تحديث الرصد. تحقق من مصدر كل أداة وحالة توفرها.',uxRefreshError:'بيانات السوق غير متاحة. لم تُستبدل الأسعار بقيم مصطنعة. أعد المحاولة بعد مهلة المزود.',uxCooldown:'مهلة المزود',uxSeconds:'ث',uxSessionReady:'تم تحديد حساب · يتحقق الخادم من كل أمر',uxSessionLocked:'يلزم حساب · لم يُعتمد أي أمر',uxAccountEmpty:'لا يوجد حساب تجريبي محدد لهذه الهوية. افتح الحسابات لإنشاء حساب أو تحديده.',uxSelectAccount:'فتح الحسابات',uxReviewData:'مراجعة بيانات السوق',uxReviewTicket:'مراجعة تذكرة تجريبية',uxFlow:'مراجعة الأمر',uxFlowCopy:'راقب ← حلّل ← راجع المخاطر ← أرسل أمراً تجريبياً. يتحقق الخادم من كل إرسال.',uxIdentityCheck:'ملكية الحساب',uxPriceCheck:'دليل تسعير الأداة للتنفيذ',uxRiskCheck:'قرار المخاطر النهائي',uxServerChecks:'يتحقق منه الخادم عند الإرسال',uxExactQuote:'سعر حديث للأداة المطابقة',uxNeedQuote:'يلزم تسعير حديث ومطابق',uxAnalysisSummary:'أدلة التحليل',uxAnalysisEmpty:'لا يوجد تحليل حديث للمراجعة. اختر أداة وشغّل التحليل؛ عدم توفر المزود لا يعني وجود إشارة.',uxHeuristic:'التوافق درجة استرشادية وليس احتمال فوز أو توقعاً للأداء.',uxDecision:'قرار التحليل',uxConfluence:'التوافق / ١٠٠',uxAiState:'حالة الشرح',uxAiOff:'معطل',uxAiVerified:'استجابة متحقق منها',uxAiUnverified:'غير متحقق منه / غير متاح',uxSource:'أداة المزود',uxObserved:'وقت رصد السعر',uxRiskSummary:'قدرة الحساب',uxRiskCopy:'تأتي هذه القيم من الحساب المحدد على الخادم. تقدير حجم الصفقة في التحليل تعليمي؛ يفرض الخادم حدود الأوامر.',uxEquity:'حقوق الحساب',uxFreeMargin:'الهامش المتاح',uxUsedMargin:'الهامش المستخدم',uxPortfolioSummary:'سجل التداول التجريبي على الخادم',uxPortfolioCopy:'الأرصدة والتنفيذات المغلقة تخص الحساب المسجل. الإدخالات اليدوية والمستوردة ليست تنفيذات متحققاً منها.',uxBalance:'رصيد الحساب',uxPositions:'المراكز المفتوحة',uxClosedFills:'التنفيذات المغلقة المسجلة',uxNoFills:'لم تُسجل تنفيذات تجريبية مغلقة لهذا الحساب.',uxAccountRequired:'يلزم حساب',uxRiskServer:'يفحص الخادم كل أمر',uxFreshQuotes:'عمليات رصد حديثة',uxNoPrices:'لا توجد بيانات حديثة',uxAge:'العمر',uxGold:'الذهب / الدولار (طلب سعر فوري)',uxEuro:'اليورو / الدولار الأمريكي',uxPound:'الجنيه / الدولار الأمريكي',uxYen:'الدولار الأمريكي / الين الياباني',uxBitcoin:'بيتكوين / تيثر',uxDow:'مؤشر داو جونز',uxView_dashboard:'نظرة عامة',uxView_markets:'الأسواق',uxView_trading:'مساحة التداول',uxView_ai:'الذكاء الاصطناعي',uxView_risk:'مكتب المخاطر',uxView_portfolio:'المحفظة',uxView_journal:'سجل التداول',uxView_brokers:'الحسابات',uxView_settings:'الإعدادات',uxDesc_dashboard:'رؤية واضحة للوصول إلى الحساب وأدلة السوق والنشاط المسجل.',uxDesc_markets:'ابحث عن الأدوات وراجع مصادرها وأنشئ قائمة متابعة للتحليل.',uxDesc_trading:'حلّل أداة وراجع أمراً تجريبياً بضوابط على الخادم.',uxDesc_ai:'راجع الأسباب والمصدر والقيود وراء التحليل الحالي.',uxDesc_risk:'راجع قدرة الحساب قبل تحديد حجم صفقة تجريبية.',uxDesc_portfolio:'افصل التنفيذات التجريبية المسجلة عن إدخالات السجل غير المتحقق منها.',uxDesc_journal:'راجع النتائج المسجلة وميّز الأبحاث الشخصية بوضوح.',uxDesc_brokers:'اختر حساباً تجريبياً يديره الخادم. تنفيذ الوسطاء الحقيقيين معطل.',uxDesc_settings:'أدر اللغة والمظهر ومعلومات المزود.',uxPaperEnvironment:'محاكاة تجريبية · التنفيذ الحقيقي معطل'
+ }
+};
+Object.assign(I18N.en,WORKSPACE_COPY.en);Object.assign(I18N.ar,WORKSPACE_COPY.ar);
+const ux=key=>WORKSPACE_COPY[currentLang]?.[key]||WORKSPACE_COPY.en[key]||key;
+let workspaceInitialized=false,workspaceHealth='checking',workspaceQuoteState='idle',workspaceRefreshing=false,workspaceMarketFingerprint='';
+const workspaceViewNames=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings'];
+function workspaceInstrument(symbol){
+ const meta={XAUUSD:['uxGold','Commodity'],EURUSD:['uxEuro','Forex'],GBPUSD:['uxPound','Forex'],USDJPY:['uxYen','Forex'],BTCUSDT:['uxBitcoin','Crypto'],US30:['uxDow','Index']}[symbol];
+ return {name:meta?ux(meta[0]):symbol,asset:meta?.[1]||detectAssetClass(symbol)};
+}
+function workspaceAccount(){return workspaceHealth!=='offline'&&privateUser&&!sessionChanging&&selectedBrokerAccount&&serverBrokerAccounts.some(a=>a.id===selectedBrokerAccount.id)?selectedBrokerAccount:null}
+function workspaceMoney(value,currency){
+ if(!Number.isFinite(value)||typeof currency!=='string'||! /^[A-Z]{3}$/.test(currency))return '—';
+ try{return new Intl.NumberFormat(currentLang==='ar'?'ar-OM':'en-US',{style:'currency',currency}).format(value)}catch{return '—'}
+}
+function workspaceTime(value){return Number.isFinite(value)&&value>0?new Date(value).toLocaleString(currentLang==='ar'?'ar-OM':'en-GB'):'—'}
+function workspaceQuoteLabel(q){return quoteFresh(q)?q.provenance.pricingProxy||q.provenance.instrumentMatch!==true?ux('uxProxy'):ux('uxCurrent'):q?ux('uxStale'):ux('uxUnavailable')}
+const workspaceRendered=new WeakMap();
+function setWorkspaceHTML(node,html){
+ if(workspaceRendered.get(node)===html)return;
+ const active=node.contains(document.activeElement)?document.activeElement:null;
+ const key=active?['workspaceJump','workspaceAnalyze','workspaceClear'].find(k=>Object.hasOwn(active.dataset,k)):null;
+ const value=key?active.dataset[key]:null;
+ node.innerHTML=html;workspaceRendered.set(node,html);
+ if(key){const replacement=[...node.querySelectorAll('button')].find(b=>b.dataset[key]===value);replacement?.focus({preventScroll:true})}
+}
+function workspaceMetric(label,value){return `<div class="workspace-metric"><span>${escapeHtml(label)}</span><b dir="auto">${escapeHtml(value)}</b></div>`}
+function renderMarketExplorer(force=false){
+ const target=$('marketExplorerRows');if(!target)return;
+ const query=($('marketSearch')?.value||'').trim().toLocaleLowerCase(),asset=$('marketAssetFilter')?.value||'all';
+ const universe=[...new Set(['XAUUSD','EURUSD','GBPUSD','USDJPY','BTCUSDT','US30',...getWatchlist()])];
+ const rows=universe.filter(symbol=>{const info=workspaceInstrument(symbol);return (asset==='all'||info.asset===asset)&&`${symbol} ${info.name}`.toLocaleLowerCase().includes(query)});
+ const fingerprint=JSON.stringify([currentLang,query,asset,workspaceQuoteState,rows.map(s=>[s,liveQuotesCache[s]?.timestamp,quoteFresh(liveQuotesCache[s]),liveQuotesCache[s]?.bid,liveQuotesCache[s]?.ask])]);
+ if(!force&&fingerprint===workspaceMarketFingerprint)return;workspaceMarketFingerprint=fingerprint;
+ $('marketResultCount').textContent=`${fmt(rows.length,0)} ${ux('uxResults')}`;
+ setWorkspaceHTML(target,rows.length?rows.map(symbol=>{
+  const q=liveQuotesCache[symbol],fresh=quoteFresh(q),info=workspaceInstrument(symbol),digits=Math.max(0,Math.min(8,Number.isInteger(q?.digits)?q.digits:2));
+  const source=q?.source||q?.provenance?.provider;
+  return `<tr><th scope="row"><bdi>${escapeHtml(symbol)}</bdi><small>${escapeHtml(info.name)}</small></th><td dir="auto">${fresh?fmt(q.bid,digits):'—'}</td><td dir="auto">${fresh?fmt(q.ask,digits):'—'}</td><td><bdi>${escapeHtml(source||ux('uxNoSource'))}</bdi><small>${escapeHtml(workspaceTime(q?.timestamp))}</small></td><td><span class="evidence-pill ${fresh&&!q.provenance.pricingProxy&&q.provenance.instrumentMatch===true?'verified':'caution'}">${escapeHtml(workspaceQuoteState==='loading'&&!q?ux('uxPending'):workspaceQuoteLabel(q))}</span></td><td><button type="button" class="ghost small" data-workspace-analyze="${escapeHtml(symbol)}" aria-label="${escapeHtml(ux('uxAnalyze')+' '+symbol)}">${ux('uxAnalyze')}</button></td></tr>`;
+ }).join(''):`<tr><td colspan="6"><div class="workspace-empty"><p>${ux('uxNoMatches')}</p><button type="button" class="ghost" data-workspace-clear>${ux('uxClearFilters')}</button></div></td></tr>`);
+ target.closest('section').setAttribute('aria-busy',String(workspaceQuoteState==='loading'));
+}
+function renderWorkbench(){
+ if(!workspaceInitialized)return;
+ const view=document.querySelector('.app-view.view-active')?.id.replace('view-','')||'dashboard';
+ $('workspaceTitle').textContent=ux('uxView_'+view);$('workspaceDescription').textContent=ux('uxDesc_'+view);
+ $('workspaceBackend').textContent=ux(workspaceHealth==='online'?'uxReachable':workspaceHealth==='offline'?'uxDisconnected':'uxChecking');
+ const fresh=Object.values(liveQuotesCache).filter(quoteFresh).length;
+ $('workspaceData').textContent=workspaceQuoteState==='loading'?ux('uxPending'):fresh?`${fmt(fresh,0)} ${ux('uxFreshQuotes')}`:ux(workspaceQuoteState==='idle'?'uxNotChecked':'uxNoPrices');
+ const account=workspaceAccount();
+ $('workspaceAccount').textContent=account?`${fmt(serverBrokerAccounts.length,0)} ${ux('uxAccountCount')}`:ux(privateUser?'uxNoAccount':'uxLocked');
+ $('dashRiskState').textContent=ux(account?'uxRiskServer':'uxAccountRequired');
+ const cooldown=Math.max(0,Math.ceil((quoteRetryAt-Date.now())/1000));
+ $('workspaceRefresh').disabled=workspaceRefreshing||workspaceQuoteState==='loading'||cooldown>0;
+ $('workspaceRefresh').textContent=workspaceRefreshing?ux('uxRefreshing'):cooldown?`${ux('uxCooldown')} · ${fmt(cooldown,0)} ${ux('uxSeconds')}`:ux('uxRefresh');
+ $('workspaceRefresh').setAttribute('aria-busy',String(workspaceRefreshing||workspaceQuoteState==='loading'));
+ if(!workspaceRefreshing)$('workspaceFeedback').textContent=workspaceQuoteState==='error'?ux('uxRefreshError'):'';
+ const symbol=currentAnalysis?.symbol||$('symbolInput')?.value?.trim().toUpperCase(),quote=liveQuotesCache[symbol];
+ const exact=quoteFresh(quote)&&quote.provenance.instrumentMatch===true&&!quote.provenance.pricingProxy;
+ const actions=`<div class="workspace-actions"><button class="ghost small" type="button" data-workspace-jump="markets">${ux('uxReviewData')}</button><button class="ghost small" type="button" data-workspace-jump="brokers">${ux('uxSelectAccount')}</button></div>`;
+ const trading=$('workspaceContext-trading');
+ setWorkspaceHTML(trading,`<p class="eyebrow">${ux('uxFlow')}</p><h2>${ux(account?'uxSessionReady':'uxSessionLocked')}</h2><p>${ux('uxFlowCopy')}</p><div class="workspace-metrics">${workspaceMetric(ux('uxIdentityCheck'),account?account.accountAlias||account.accountNumberMasked||ux('uxCurrent'):ux('uxLocked'))}${workspaceMetric(ux('uxPriceCheck'),ux(exact?'uxExactQuote':'uxNeedQuote'))}${workspaceMetric(ux('uxRiskCheck'),ux('uxServerChecks'))}</div>${actions}`);
+ const analysis=currentAnalysis,p=analysis?.provenance;
+ const usable=!analysisInFlight&&p?.fresh===true&&p.verified===true&&Number.isFinite(p.quoteAt)&&Date.now()-p.quoteAt<=120000&&p.quoteAt<=Date.now()+1000;
+ $('workspaceContext-ai').setAttribute('aria-busy',String(analysisInFlight));
+ const narrative=analysis?.aiStatus==='DISABLED'?'uxAiOff':/^VERIFIED/.test(analysis?.aiStatus||'')?'uxAiVerified':'uxAiUnverified';
+ setWorkspaceHTML($('workspaceContext-ai'),`<p class="eyebrow">${ux('uxAnalysisSummary')}</p><h2>${usable?escapeHtml(analysis.symbol):ux(analysisInFlight?'uxPending':'uxUnavailable')}</h2><p>${ux('uxHeuristic')}</p>${usable?`<div class="workspace-metrics">${workspaceMetric(ux('uxDecision'),localizedValue(analysis.decision))}${workspaceMetric(ux('uxConfluence'),Number.isFinite(analysis.confidence)?fmt(analysis.confidence,0):'—')}${workspaceMetric(ux('uxAiState'),ux(narrative))}</div><dl class="workspace-provenance"><div><dt>${ux('uxSource')}</dt><dd><bdi>${escapeHtml(p.provider||'—')} · ${escapeHtml(p.instrument||'—')}</bdi>${p.pricingProxy?` · ${ux('uxProxy')}`:''}</dd></div><div><dt>${ux('uxObserved')}</dt><dd>${escapeHtml(workspaceTime(p.quoteAt))}</dd></div></dl>`:`<div class="workspace-empty">${ux('uxAnalysisEmpty')}</div>`}${actions}`);
+ setWorkspaceHTML($('workspaceContext-risk'),`<p class="eyebrow">${ux('uxRiskSummary')}</p><h2>${account?escapeHtml(account.accountAlias||account.accountNumberMasked||ux('uxAccount')):ux('uxAccountRequired')}</h2><p>${ux('uxRiskCopy')}</p><div class="workspace-metrics">${workspaceMetric(ux('uxEquity'),account?workspaceMoney(account.equity,account.currency):'—')}${workspaceMetric(ux('uxFreeMargin'),account?workspaceMoney(account.freeMargin,account.currency):'—')}${workspaceMetric(ux('uxUsedMargin'),account?workspaceMoney(account.usedMargin,account.currency):'—')}</div>${actions}`);
+ setWorkspaceHTML($('workspaceContext-portfolio'),`<p class="eyebrow">${ux('uxPortfolioSummary')}</p><h2>${ux(account?'uxPaperExecution':'uxAccountRequired')}</h2><p>${ux('uxPortfolioCopy')}</p><div class="workspace-metrics">${workspaceMetric(ux('uxBalance'),account?workspaceMoney(account.balance,account.currency):'—')}${workspaceMetric(ux('uxPositions'),account?fmt((account.positions||[]).length,0):'—')}${workspaceMetric(ux('uxClosedFills'),account?fmt(serverLedger.length,0):'—')}</div>${!account?`<div class="workspace-empty">${ux(privateUser?'uxAccountEmpty':'uxLocked')}</div>`:serverLedger.length?'':`<div class="workspace-empty">${ux('uxNoFills')}</div>`}${actions}`);
+ renderMarketExplorer();
+ localizeWorkspaceStatic();
+}
+function setWorkspaceMenu(open,restore=false){
+ const mobile=matchMedia('(max-width: 960px)').matches;
+ $('workspaceNav').hidden=mobile&&!open;$('workspaceMenu').setAttribute('aria-expanded',String(mobile&&open));
+ $('workspaceMenu').textContent=ux(mobile&&open?'uxCloseMenu':'uxMenu');
+ if(restore)$('workspaceMenu').focus();
+}
+async function refreshWorkspace(){
+ if(workspaceRefreshing)return;workspaceRefreshing=true;renderWorkbench();
+ try{await checkHealth();await fetchLiveMarketQuotes()}finally{workspaceRefreshing=false;renderWorkbench()}
+}
+function initializeWorkbench(){
+ workspaceInitialized=true;
+ for(const view of workspaceViewNames){const button=document.querySelector(`.nav-stack [data-view="${view}"]`);button?.setAttribute('aria-controls','view-'+view)}
+ $('workspaceRefresh').addEventListener('click',refreshWorkspace);
+ $('marketSearch').addEventListener('input',()=>renderMarketExplorer());$('marketAssetFilter').addEventListener('change',()=>renderMarketExplorer());
+ $('workspaceMenu').addEventListener('click',()=>setWorkspaceMenu($('workspaceMenu').getAttribute('aria-expanded')!=='true'));
+ matchMedia('(max-width: 960px)').addEventListener('change',()=>setWorkspaceMenu(false));setWorkspaceMenu(false);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('workspaceMenu').getAttribute('aria-expanded')==='true'){setWorkspaceMenu(false,true);e.preventDefault()}});
+ document.querySelector('.nav-stack').addEventListener('keydown',e=>{
+  if(!['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Home','End'].includes(e.key)||!e.target.matches('.nav'))return;
+  const buttons=[...document.querySelectorAll('.nav-stack .nav')],i=buttons.indexOf(e.target),rtl=currentLang==='ar';
+  const step=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:e.key==='ArrowRight'?(rtl?-1:1):(rtl?1:-1);
+  buttons[e.key==='Home'?0:e.key==='End'?buttons.length-1:(i+step+buttons.length)%buttons.length].focus();e.preventDefault();
+ });
+ document.querySelector('.nav-stack').addEventListener('click',e=>{if(e.target.closest('.nav')){setWorkspaceMenu(false);$('workspaceTitle').focus({preventScroll:true})}});
+ document.addEventListener('click',e=>{
+  const jump=e.target.closest('[data-workspace-jump]');if(jump){switchView(jump.dataset.workspaceJump);$('workspaceTitle').focus({preventScroll:true})}
+  const instrument=e.target.closest('[data-workspace-analyze]');if(instrument){$('symbolInput').value=instrument.dataset.workspaceAnalyze;switchView('trading');analyze();$('workspaceTitle').focus({preventScroll:true})}
+  if(e.target.closest('[data-workspace-clear]')){$('marketSearch').value='';$('marketAssetFilter').value='all';renderMarketExplorer(true);$('marketSearch').focus()}
+ });
+ renderWorkbench();
+ // Reuse the existing coalesced, cooldown-aware quote path, never a second feed.
+ void fetchLiveMarketQuotes();
+ setInterval(()=>{if(!document.hidden)renderWorkbench()},10000);
+}
+
+
+const WORKSPACE_STATIC_AR={
+ "Accounts locked · paper only": "الحسابات مقفلة · تداول تجريبي فقط",
+ "Trading accounts locked. Live execution disabled.": "الحسابات مقفلة. التنفيذ الحقيقي معطل.",
+ "No instrument verified · paper only · live execution disabled": "لم تُتحقق أداة · تجريبي فقط · التنفيذ الحقيقي معطل",
+ "London": "لندن",
+ "New York": "نيويورك",
+ "Tokyo": "طوكيو",
+ "Sydney": "سيدني",
+ "Sign in · accounts locked": "سجّل الدخول · الحسابات مقفلة",
+ "Account access": "الوصول إلى الحساب",
+ "Access token": "رمز الوصول",
+ "PAPER TRADING": "تداول تجريبي",
+ "Virtual Account:": "حساب افتراضي:",
+ "Paper simulation with independently checked provider data. Live broker execution disabled.": "محاكاة تجريبية ببيانات مزود تُفحص بشكل مستقل. تنفيذ الوسيط الحقيقي معطل.",
+ "📈 Open Trading Terminal": "فتح مساحة التداول",
+ "💼 Manage Accounts": "إدارة الحسابات",
+ "Simulated USD Sandbox": "حساب محاكاة بالدولار",
+ "Free Margin:": "الهامش المتاح:",
+ "trades closed today": "صفقات مغلقة اليوم",
+ "MARKET SURVEILLANCE": "رصد السوق",
+ "Open Markets Desk ↗": "فتح مكتب الأسواق",
+ "Provider data unavailable": "بيانات المزود غير متاحة",
+ "AI INTELLIGENCE RADAR": "رصد التحليل الذكي",
+ "View All AI Setups ↗": "مراجعة التحليلات",
+ "No verified analysis available.": "لا يوجد تحليل متحقق منه.",
+ "EXECUTION AUDIT": "تدقيق التنفيذ",
+ "View Portfolio ↗": "عرض المحفظة",
+ "No paper fills available. Sign in to view your immutable fill history.": "لا توجد تنفيذات تجريبية متاحة. سجّل الدخول لعرض سجل التنفيذ الدائم.",
+ "Provider observations and watchlist analysis. No verified economic calendar is connected.": "رصد المزود وتحليل قائمة المتابعة. لا توجد مفكرة اقتصادية متحقق منها متصلة.",
+ "Watchlist is currently minimized.": "قائمة المتابعة مصغرة حالياً.",
+ "Show hidden instruments": "إظهار الأدوات المخفية",
+ "Hide controls visibility. The Scan preference controls scanning, including hidden instruments.": "الإخفاء يضبط العرض. إعداد المسح يضبط تحليل الأدوات بما فيها المخفية.",
+ "Browser": "المتصفح",
+ "In-app toast": "إشعار داخل التطبيق",
+ "Sound": "الصوت",
+ "Cooldown minutes": "مهلة التكرار بالدقائق",
+ "Minimum confluence score": "أدنى درجة توافق",
+ "Instruments (blank = all)": "الأدوات (فارغ = الجميع)",
+ "Timeframes": "الأطر الزمنية",
+ "Severities": "مستويات التنبيه",
+ "Quiet hours from": "بداية ساعات الهدوء",
+ "until": "حتى",
+ "Quiet hours use your browser's local time. Notifications require a fresh qualified setup. Cross-tab duplicate protection requires Web Locks.": "تستخدم ساعات الهدوء الوقت المحلي للمتصفح. تتطلب الإشعارات إعداداً مؤهلاً وحديثاً. يتطلب منع التكرار بين علامات التبويب واجهة Web Locks.",
+ "Save notification preferences": "حفظ تفضيلات الإشعارات",
+ "Analyze provider data and review simulated orders. Live broker execution is disabled.": "حلّل بيانات المزود وراجع الأوامر المحاكاة. تنفيذ الوسيط الحقيقي معطل.",
+ "Analysis & paper order workspace": "مساحة التحليل والأوامر التجريبية",
+ "Spread Quality": "جودة الفارق",
+ "Range Volatility": "تقلب النطاق",
+ "Structure Mode": "نمط الهيكل",
+ "Consensus Bias": "اتجاه التوافق",
+ "Awaiting Audit": "بانتظار المراجعة",
+ "TICKER": "الرمز",
+ "XAU/USD (Gold)": "الذهب / الدولار",
+ "US30 (Dow)": "داو جونز",
+ "1 : 1.5 (Standard Take-Profit)": "١ : ١٫٥ (هدف قياسي)",
+ "1 : 2.0 (Standard Baseline)": "١ : ٢٫٠ (أساس قياسي)",
+ "1 : 3.0 (Expansion Target)": "١ : ٣٫٠ (هدف امتداد)",
+ "1 : 4.0 (Runner Target)": "١ : ٤٫٠ (هدف ممتد)",
+ "THN Quant Engine": "محرك THN الكمي",
+ "ORDER ROUTING & POSITION SIZING": "مراجعة الأوامر وحجم الصفقة",
+ "PAPER SANDBOX": "بيئة تجريبية",
+ "EUR/USD (Euro / US Dollar)": "اليورو / الدولار الأمريكي",
+ "GBP/USD (British Pound)": "الجنيه / الدولار",
+ "USD/JPY (Japanese Yen)": "الدولار / الين الياباني",
+ "XAU/USD (Gold Spot)": "الذهب الفوري / الدولار",
+ "BTC/USDT (Bitcoin)": "بيتكوين / تيثر",
+ "US30 (Dow Jones 30)": "مؤشر داو جونز ٣٠",
+ "BUY / LONG": "شراء",
+ "SELL / SHORT": "بيع",
+ "PORTFOLIO EXPOSURE": "انكشاف المحفظة",
+ "🔄 Refresh Ledger": "تحديث السجل",
+ "Loading positions from broker engine...": "جارٍ تحميل المراكز من الخادم…",
+ "Multi-school consensus, multi-timeframe alignment, and algorithmic structure detection": "توافق مدارس التحليل والأطر الزمنية ورصد الهيكل الخوارزمي",
+ "MTFA Timeframes": "الأطر الزمنية المتعددة",
+ "SMC Liquidity": "سيولة SMC",
+ "Structure Map": "خريطة الهيكل",
+ "Risk Governor": "ضوابط المخاطر",
+ "ALIGNED": "متوافق",
+ "D1 Macro": "الإطار اليومي",
+ "Higher-timeframe macro trend & long-term EMA alignment.": "اتجاه الإطار الأعلى وتوافق المتوسط الأسي طويل المدى.",
+ "H4 Intermediate": "الإطار المتوسط لأربع ساعات",
+ "Order flow structure, swing pivots, and trend direction.": "هيكل تدفق الأوامر ونقاط التحول واتجاه الحركة.",
+ "H1 Execution": "إطار الساعة",
+ "Active dealing range, Discount/Premium status, and FVG retest.": "نطاق التداول وحالة الخصم والعلاوة وإعادة اختبار فجوة القيمة.",
+ "M15 Trigger": "إطار التفعيل لربع ساعة",
+ "Micro CHoCH/MSS, momentum confirmation, and entry timing.": "تغير الهيكل القصير وتأكيد الزخم وتوقيت الدخول.",
+ "DISCOUNT ZONE": "منطقة خصم",
+ "Buy-Side Liquidity (BSL)": "سيولة جانب الشراء",
+ "Sell-Side Liquidity (SSL)": "سيولة جانب البيع",
+ "Smart money accumulates orders at liquidity pools.": "تتجمع الأوامر في مناطق السيولة وفق نموذج التحليل.",
+ "Demand Order Block": "كتلة طلب",
+ "Supply Order Block": "كتلة عرض",
+ "Origin of impulsive liquidity displacement.": "منشأ الحركة الدافعة للسيولة.",
+ "Active Bullish FVG": "فجوة قيمة صاعدة",
+ "Active Bearish FVG": "فجوة قيمة هابطة",
+ "3-candle price imbalance requiring rebalancing.": "اختلال سعري بين ثلاث شموع وفق نموذج التحليل.",
+ "Equilibrium (50%)": "التوازن (٥٠٪)",
+ "Current Placement": "الموضع الحالي",
+ "SMC rule: Long in Discount; Short in Premium.": "قاعدة النموذج: شراء في الخصم وبيع في العلاوة.",
+ "Reset chart": "إعادة ضبط الرسم",
+ "Level price": "سعر المستوى",
+ "Label": "التسمية",
+ "Add level": "إضافة مستوى",
+ "Clear levels": "مسح المستويات",
+ "Scroll to zoom; drag or use arrow keys to pan. Levels persist by instrument/timeframe.": "مرّر للتكبير واسحب أو استخدم الأسهم للتحريك. تُحفظ المستويات حسب الأداة والإطار.",
+ "Confluence scores are heuristic, not calibrated win probabilities. Prices are indicative provider data; broker execution remains disabled.": "درجات التوافق استرشادية وليست احتمالات فوز معايرة. الأسعار بيانات مزود استرشادية؛ تنفيذ الوسيط الحقيقي معطل.",
+ "Review analysis sizing and server-owned account capacity. Final validation happens on the server.": "راجع تقدير حجم الصفقة وقدرة الحساب الذي يديره الخادم. التحقق النهائي على الخادم.",
+ "Review account balances and recorded paper fills. Imported and manual entries remain unverified.": "راجع أرصدة الحساب والتنفيذات التجريبية المسجلة. تبقى الإدخالات اليدوية والمستوردة غير متحقق منها.",
+ "Include manual/imported entries (unverified)": "تضمين الإدخالات اليدوية والمستوردة (غير متحقق منها)",
+ "Show actual ledger": "عرض السجل الفعلي",
+ "Execution log, post-trade analysis, and exportable audit records": "سجل التنفيذ وتحليل ما بعد الصفقة وسجلات التدقيق القابلة للتصدير",
+ "Multi-broker management, execution bridges, and account reconciliation": "إدارة الحسابات ومراجعة الربط وتسوية البيانات",
+ "🟡 PAPER SANDBOX": "بيئة تجريبية",
+ "SIGN IN · ACCOUNTS LOCKED": "سجّل الدخول · الحسابات مقفلة",
+ "Check existing-position recovery / فحص استرداد المراكز": "فحص استرداد المراكز الحالية",
+ "Loading trading accounts...": "جارٍ تحميل الحسابات…",
+ "Engine readiness unverified": "جاهزية المحرك غير متحقق منها",
+ "No verified broker account": "لا يوجد حساب وسيط متحقق منه",
+ "Account verification required": "يلزم التحقق من الحساب",
+ "No account selected": "لم يُحدد حساب",
+ "Margin level unavailable": "مستوى الهامش غير متاح",
+ "No verified result": "لا توجد نتيجة متحقق منها",
+ "Server risk validation required before every order": "يلزم تحقق الخادم من المخاطر قبل كل أمر",
+ "Ticket": "التذكرة",
+ "Side": "الاتجاه",
+ "Volume": "الحجم",
+ "Open Price": "سعر الفتح",
+ "Mark Price": "سعر التقييم",
+ "SL / TP": "الوقف / الهدف",
+ "Floating PnL": "الربح والخسارة العائمان",
+ "External broker execution disabled": "تنفيذ الوسيط الحقيقي معطل",
+ "XAUUSD · Gold Spot": "XAUUSD · الذهب الفوري المطلوب",
+ "EURUSD · Euro / US Dollar": "EURUSD · اليورو / الدولار",
+ "GBPUSD · British Pound / USD": "GBPUSD · الجنيه / الدولار",
+ "USDJPY · US Dollar / Japanese Yen": "USDJPY · الدولار / الين",
+ "BTCUSDT · Bitcoin Perpetual": "BTCUSDT · بيتكوين / تيثر",
+ "US30 · Wall Street 30 Index": "US30 · مؤشر داو جونز",
+ "Order Type": "نوع الأمر",
+ "Paper market buy": "شراء سوقي تجريبي",
+ "Paper market sell": "بيع سوقي تجريبي",
+ "Buy Limit (Pending)": "شراء محدد (معلق)",
+ "Sell Limit (Pending)": "بيع محدد (معلق)",
+ "Lots / Volume": "العقود / الحجم",
+ "Limit Order Price": "سعر الأمر المحدد",
+ "Stop Loss (SL)": "وقف الخسارة",
+ "Take Profit (TP)": "جني الربح",
+ "Required Margin:": "الهامش المطلوب:",
+ "Max Risk:": "الحد الأقصى للمخاطر:",
+ "Leverage:": "الرافعة:",
+ "Submit paper order": "إرسال أمر تجريبي",
+ "Paper simulation · no real-money execution": "محاكاة تجريبية · لا تنفيذ بأموال حقيقية",
+ "🟡 PAPER MODE": "وضع تجريبي",
+ "Account Alias": "اسم الحساب",
+ "Paper Trading Portfolio": "محفظة تداول تجريبي",
+ "Platform Gateway / Engine": "بوابة المنصة / المحرك",
+ "THN Sandbox Engine": "محرك THN التجريبي",
+ "Account ID (Masked)": "معرف الحساب (محجوب)",
+ "Server Host / Endpoint": "عنوان الخادم",
+ "Trading Permission Level": "صلاحية التداول",
+ "Trading Enabled (Market Orders)": "تداول مسموح (أوامر سوقية)",
+ "Account Type & Currency": "نوع الحساب والعملة",
+ "Paper Sandbox · USD ($)": "بيئة تجريبية · الدولار",
+ "Trading Leverage": "رافعة التداول",
+ "1:200 Dynamic": "رافعة ١:٢٠٠",
+ "Last Gateway Sync": "آخر مزامنة للبوابة",
+ "Measured Latency": "زمن الاستجابة المقاس",
+ "Security & Secret Protection": "الأمان وحماية الأسرار",
+ "🔐 AES-256-GCM Encrypted at Rest": "تشفير AES-256-GCM عند التخزين",
+ "🌐 Launch Broker Client Portal (Direct Funding / Official Management)": "فتح بوابة الوسيط الرسمية",
+ "📋 Copy Server & Account ID": "نسخ الخادم ومعرف الحساب",
+ "🔴 Disconnect Account": "فصل الحساب",
+ "Trading parameters, data feeds, risk thresholds, and preferences": "معلمات التداول ومصادر البيانات وحدود المخاطر والتفضيلات",
+ "Execution Sizing": "حجم التنفيذ",
+ "Default Risk per Trade (%)": "المخاطرة الافتراضية لكل صفقة (٪)",
+ "0.50% (Conservative)": "٠٫٥٠٪ (متحفظ)",
+ "1.00% (Standard Playbook)": "١٫٠٠٪ (قياسي)",
+ "2.00% (Aggressive Cap)": "٢٫٠٠٪ (الحد الأعلى)",
+ "Default Primary Timeframe": "الإطار الزمني الافتراضي",
+ "M15 Scalp Retest": "إعادة اختبار ربع ساعة",
+ "H1 Intraday Primary": "إطار الساعة اليومي",
+ "H4 Swing Protocol": "إطار أربع ساعات",
+ "D1 Position Macro": "الإطار اليومي",
+ "Target Reward / Risk Minimum": "أدنى عائد إلى مخاطرة مستهدف",
+ "1 : 2.0 (Recommended)": "١ : ٢٫٠ (موصى به)",
+ "Mandatory Rules": "قواعد إلزامية",
+ "UNAVAILABLE": "غير متاح",
+ "Binance with Yahoo fallback": "باينانس مع بديل ياهو",
+ "Not verified": "غير متحقق منه",
+ "Yahoo Finance · instrument identity required": "ياهو فاينانس · يلزم التحقق من هوية الأداة",
+ "Macro Events Feed": "مصدر الأحداث الاقتصادية",
+ "Architecture": "البنية",
+ "Toggle Theme": "تبديل المظهر",
+ "Language selector": "اختيار اللغة",
+ "Global market sessions": "دليل جلسات السوق",
+ "Main navigation": "التنقل الرئيسي",
+ "THN Trader dashboard": "نظرة عامة على THN Trader",
+ "Account required": "يلزم حساب"
+};
+Object.assign(WORKSPACE_STATIC_AR,{"Paper Trading Engine": "محرك التداول التجريبي", "Server-side authoritative virtual execution": "تنفيذ افتراضي يديره الخادم", "Backend required": "يتطلب الخادم", "Disabled · unverified": "معطل · غير متحقق منه", "Not available · external execution disabled": "غير متاح · التنفيذ الخارجي معطل", "Preferences": "التفضيلات", "Interface Language": "لغة الواجهة", "English (LTR)": "الإنجليزية (من اليسار إلى اليمين)", "Color Palette & Theme": "الألوان والمظهر", "Toggle Dark / Light Theme": "تبديل المظهر الداكن والفاتح", "Danger Zone": "منطقة الإجراءات الحساسة", "Reset Virtual Paper Balance": "إعادة ضبط الرصيد التجريبي", "Restores your simulated paper balance back to $50,000.00 and clears virtual positions.": "يعيد الرصيد الافتراضي إلى ٥٠٬٠٠٠ دولار ويمسح المراكز التجريبية.", "🧪 Reset Sandbox to $50,000": "إعادة ضبط المحاكاة إلى ٥٠٬٠٠٠ دولار", "Purge Local Journal Ledger": "مسح السجل المحلي", "Removes client-side journaled notes and cached setups from browser storage.": "يمسح الملاحظات والإعدادات المخزنة محلياً في المتصفح.", "🗑️ Clear Journal Ledger": "مسح السجل المحلي", "WIN (Profit Target)": "ربح (تحقق الهدف)", "LOSS (Stop Hit)": "خسارة (تحقق الوقف)", "BREAKEVEN (Scratch)": "تعادل", "Click to select CSV": "اختر ملف CSV", "or drag & drop file here": "أو اسحب الملف وأفلته هنا", "Supports THN export format and standard broker journal CSVs": "يدعم صيغة تصدير THN وملفات CSV للسجلات", "Built-in Sandbox": "محاكاة مدمجة", "Paper Trading Sandbox": "حساب تداول تجريبي", "Paper simulation · provider freshness required · no live execution": "محاكاة تجريبية · يلزم سعر حديث · لا تنفيذ حقيقي", "MT5 Bridge": "جسر MT5", "Official API": "واجهة برمجية خارجية", "Multi-Broker": "وسطاء متعددون", "Secure Server-Side Gateway:": "بوابة الخادم الآمنة:", "Select Connection Permission Level:": "اختر صلاحية الحساب:", "⚡ Trading Enabled": "التداول التجريبي مسموح", "(Transmit market orders & manage positions)": "(إرسال أوامر تجريبية وإدارة المراكز)", "👁️ Read-Only Mode": "وضع القراءة فقط", "(Synchronize balance, equity & positions only)": "(مزامنة الرصيد والحقوق والمراكز فقط)", "Permission Mode": "نمط الصلاحية", "Trading & Execution Enabled": "التداول والتنفيذ التجريبي مسموحان", "Read-Only (Advisory / Market Data Only)": "قراءة فقط (استشارات وبيانات)", "Accounts locked": "الحسابات مقفلة", "THN deterministic engine · v6.0.0": "محرك THN الحتمي · الإصدار ٦٫٠٫٠"});
+const workspaceTextBindings=new Map();
+function localizeWorkspaceStatic(){
+ // Exact interface copy only: never translate input values, provider numbers or
+ // overwrite a node whose dynamic content has changed since its binding.
+ for(const [node,original] of workspaceTextBindings){
+  if(!node.isConnected){workspaceTextBindings.delete(node);continue}
+  const current=node.textContent.trim();
+  if(current!==original&&current!==WORKSPACE_STATIC_AR[original]){workspaceTextBindings.delete(node);continue}
+  node.textContent=currentLang==='ar'?WORKSPACE_STATIC_AR[original]:original;
+ }
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ while(walker.nextNode()){
+  const node=walker.currentNode,text=node.textContent.trim();
+  if(!WORKSPACE_STATIC_AR[text]||workspaceTextBindings.has(node)||node.parentElement?.closest('[data-i18n],script,style,textarea,pre,code'))continue;
+  workspaceTextBindings.set(node,text);if(currentLang==='ar')node.textContent=WORKSPACE_STATIC_AR[text];
+ }
+ for(const node of document.querySelectorAll('[title],[aria-label],[placeholder]'))for(const attr of ['title','aria-label','placeholder']){
+  const stored='data-workspace-'+attr;
+  const original=node.getAttribute(stored)||node.getAttribute(attr);
+  if(WORKSPACE_STATIC_AR[original]){node.setAttribute(stored,original);node.setAttribute(attr,currentLang==='ar'?WORKSPACE_STATIC_AR[original]:original)}
+ }
+}
+Object.assign(I18N.en,{workstationLabel0:'Market observations',workstationLabel1:'Observed analysis',navDashboard:'Overview',navMarkets:'Markets',navTrading:'Trading workspace',navAI:'AI Intelligence',navRisk:'Risk Desk',navPortfolio:'Portfolio',navJournal:'Trade Journal',navBrokers:'Accounts',navSettings:'Settings'});
+Object.assign(I18N.ar,{workstationLabel0:'رصد السوق',workstationLabel1:'التحليل المرصود',navDashboard:'نظرة عامة',navMarkets:'الأسواق',navTrading:'مساحة التداول',navAI:'الذكاء الاصطناعي',navRisk:'مكتب المخاطر',navPortfolio:'المحفظة',navJournal:'سجل التداول',navBrokers:'الحسابات',navSettings:'الإعدادات'});
+
 browserStore.removeItem(brokerKey);
 restoreTheme();
 translateStaticDom();
@@ -6182,6 +6522,8 @@ startBrokerPositionTickTimer();
 renderWatchlist();
 renderAlerts();
 scannerRunning(false);
+initializeWorkbench();
+switchView(location.hash.slice(1)||"dashboard");
 loadChart();
 startTerminalClock();
 setTimeout(() => {

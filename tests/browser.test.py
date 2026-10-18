@@ -184,6 +184,8 @@ try:
             for width in [390,768,1440]:
                 page.set_viewport_size({'width':width,'height':1000})
                 for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
+                    if page.locator('#workspaceMenu').is_visible() and not page.locator('#workspaceNav').is_visible():
+                        page.locator('#workspaceMenu').click()
                     page.locator('.nav-stack [data-view="'+view+'"]').click()
                     assert page.locator('#view-'+view).is_visible()
                     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(lang,width,view)

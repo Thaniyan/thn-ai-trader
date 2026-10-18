@@ -12,13 +12,10 @@
 </head>
 <body>
   <a class="skip-link" href="#mainContent" data-i18n="workstationLabel56">Skip to workstation</a>
-  <form id="sessionForm" class="panel" style="margin:12px;padding:12px">
-    <label><span data-i18n="accountAccess">Account access</span> <input id="sessionToken" type="password" autocomplete="off" placeholder="Access token" required minlength="16"></label>
-    <button type="submit" data-i18n="signIn">Sign in</button><button id="sessionLogout" type="button" data-i18n="signOut">Sign out</button><span id="sessionStatus" role="status">Trading accounts locked. Live execution disabled.</span>
-  </form>
+  <div class="workspace-mobile-bar"><b>THN <span>TRADER</span></b><button id="workspaceMenu" type="button" aria-controls="workspaceNav" aria-expanded="false" data-i18n="uxMenu">Menu</button></div>
   <div class="app-shell">
     <!-- Left Navigation Dock -->
-    <aside class="sidebar" aria-label="Main navigation">
+    <aside class="sidebar" id="workspaceNav" aria-label="Main navigation" data-i18n-aria="uxNavigation">
       <a class="brand brand-lockup" href="#dashboard" aria-label="THN Trader dashboard">
         <img src="logo.svg" alt="THN Trader logo" />
         <div class="brand-text">
@@ -32,11 +29,13 @@
       </div>
 
       <nav class="nav-stack">
+        <p class="nav-group" data-i18n="uxWorkspace">WORKSPACE</p>
         <button class="nav active" data-view="dashboard" data-i18n="navDashboard">⚡ Dashboard</button>
         <button class="nav" data-view="markets" data-i18n="navMarkets">📡 Markets</button>
         <button class="nav" data-view="trading" data-i18n="navTrading">📈 Trading Terminal</button>
         <button class="nav" data-view="ai" data-i18n="navAI">🧠 AI Intelligence</button>
         <button class="nav" data-view="risk" data-i18n="navRisk">🛡️ Risk Desk</button>
+        <p class="nav-group" data-i18n="uxAccountGroup">ACCOUNT & RECORDS</p>
         <button class="nav" data-view="portfolio" data-i18n="navPortfolio">📊 Portfolio</button>
         <button class="nav" data-view="journal" data-i18n="navJournal">📑 Trade Journal</button>
         <button class="nav" data-view="brokers" data-i18n="navBrokers">💼 Broker Accounts</button>
@@ -55,6 +54,28 @@
     </aside>
 
     <main class="terminal-main" id="mainContent" tabindex="-1">
+      <header class="workspace-heading">
+        <div><p class="eyebrow" data-i18n="uxEnvironment">WORKSPACE / PAPER ENVIRONMENT</p><h1 id="workspaceTitle" tabindex="-1">Overview</h1><p id="workspaceDescription" class="workspace-description"></p></div>
+        <div class="workspace-heading-actions"><span class="workspace-badge" data-i18n="uxPaperOnly">PAPER ONLY</span><button class="ghost" type="button" id="workspaceRefresh" data-i18n="uxRefresh">Refresh market data</button></div>
+      </header>
+      <section class="workspace-status-grid" aria-label="Workspace status" data-i18n-aria="uxStatusLabel">
+        <div class="workspace-status"><span data-i18n="uxBackend">Backend</span><b id="workspaceBackend">Checking</b></div>
+        <div class="workspace-status"><span data-i18n="uxMarketData">Market data</span><b id="workspaceData">Not verified</b></div>
+        <div class="workspace-status"><span data-i18n="uxAccount">Account access</span><b id="workspaceAccount">Locked</b></div>
+      </section>
+      <p id="workspaceFeedback" class="workspace-feedback" role="status" aria-live="polite"></p>
+  <form method="post" action="/api/session" id="sessionForm" class="workspace-access panel">
+    <label><span data-i18n="accountAccess">Account access</span> <input id="sessionToken" type="password" autocomplete="off" placeholder="Access token" required minlength="16"></label>
+    <button type="submit" data-i18n="signIn">Sign in</button><button id="sessionLogout" type="button" data-i18n="signOut">Sign out</button><span id="sessionStatus" role="status">Accounts locked · paper only</span>
+  </form>
+
+      <details id="workspaceCapabilities" class="workspace-capabilities"><summary data-i18n="uxCapabilities">What works here · capabilities & limitations</summary><div class="capability-grid">
+        <article><span class="capability-tag" data-i18n="uxOperational">IMPLEMENTED</span><h2 data-i18n="uxObservation">Market observation</h2><p data-i18n="uxObservationCopy">Provider quotes and deterministic analysis. Availability depends on instrument identity, freshness and provider limits.</p></article>
+        <article><span class="capability-tag" data-i18n="uxConditional">BACKEND & ACCOUNT REQUIRED</span><h2 data-i18n="uxPaperExecution">Paper execution</h2><p data-i18n="uxPaperCopy">Server-owned accounts, order risk checks and a durable fill ledger. This is a simulation, not a live broker.</p></article>
+        <article><span class="capability-tag" data-i18n="uxOptional">OPTIONAL</span><h2 data-i18n="uxNarrative">AI narrative</h2><p data-i18n="uxNarrativeCopy">Available only when configured and verified by the backend. Narrative cannot change numeric trading levels.</p></article>
+        <article><span class="capability-tag planned" data-i18n="uxPlanned">NOT AVAILABLE</span><h2 data-i18n="uxResearch">Historical backtesting & live brokers</h2><p data-i18n="uxResearchCopy">Historical strategy validation is planned. Real-money broker execution is disabled. No performance is inferred from a confluence score.</p></article>
+      </div></details>
+
       <p class="provenance-strip" id="analysisProvenance" role="status" aria-live="polite">No instrument verified · paper only · live execution disabled</p>
       <!-- Top Institutional Status & Global Sessions Bar -->
       <header class="terminal-topbar panel">
@@ -110,7 +131,7 @@
         <!-- Paper Trading Status Banner -->
         <div class="paper-trading-banner">
           <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-            <span class="paper-badge"><span class="dot"></span>PAPER TRADING</span>
+            <span class="paper-badge"><span class="dot"></span><span data-i18n="uxPaperOnly">PAPER ONLY</span></span>
             <span><b>Virtual Account:</b> Paper simulation with independently checked provider data. Live broker execution disabled.</span>
           </div>
           <div style="display: flex; gap: 8px;">
@@ -133,12 +154,12 @@
           </div>
           <div class="dash-metric-card">
             <small data-i18n="workstationLabel15">Today's Realized PnL</small>
-            <b id="dashDailyPnl">$0.00</b>
-            <span class="subtext"><span id="dashTradesCount">0</span> trades closed today</span>
+            <b id="dashDailyPnl">--</b>
+            <span class="subtext"><span id="dashTradesCount">--</span> trades closed today</span>
           </div>
           <div class="dash-metric-card">
             <small data-i18n="workstationLabel16">Risk Protocol Status</small>
-            <b style="color: #10b981;">● Active &amp; Enforcing</b>
+            <b id="dashRiskState">Account required</b>
             <span class="subtext" data-i18n="workstationLabel51">Single trade cap: 2% · Aggregate cap: 6% · Daily loss cap: 5%</span>
           </div>
         </div>
@@ -203,10 +224,18 @@
       <!-- VIEW 2: MARKETS                                -->
       <!-- ============================================== -->
       <div class="app-view" id="view-markets">
+        <section class="panel market-explorer" aria-labelledby="marketExplorerTitle">
+          <div class="panel-head"><div><p class="eyebrow" data-i18n="uxObserveFirst">OBSERVE BEFORE YOU ACT</p><h2 id="marketExplorerTitle" data-i18n="uxMarketBoard">Market board</h2></div><span id="marketResultCount" class="workspace-badge"></span></div>
+          <p class="tiny" data-i18n="uxQuoteModel">Bid/ask are backend paper-pricing estimates, not executable broker quotes. Indicative proxies are analysis-only.</p>
+          <div class="market-explorer-tools"><label><span data-i18n="uxSearch">Find an instrument</span><input id="marketSearch" type="search" autocomplete="off" data-i18n-placeholder="uxSearchPlaceholder" placeholder="Symbol or instrument name" /></label>
+          <label><span data-i18n="uxAssetClass">Asset class</span><select id="marketAssetFilter"><option value="all" data-i18n="uxAllAssets">All assets</option><option value="Forex" data-i18n="uxForex">Forex</option><option value="Commodity" data-i18n="uxCommodity">Commodities</option><option value="Crypto" data-i18n="uxCrypto">Crypto</option><option value="Index" data-i18n="uxIndex">Indices</option><option value="Stock" data-i18n="uxStock">Stocks</option></select></label></div>
+          <div class="table-shell" tabindex="0" role="region" aria-label="Market prices" data-i18n-aria="uxMarketPrices"><table class="market-table workspace-market-table"><caption class="sr-only" data-i18n="uxMarketPrices">Market prices and provider evidence</caption><thead><tr><th scope="col" data-i18n="uxInstrument">Instrument</th><th scope="col" data-i18n="uxBid">Model bid</th><th scope="col" data-i18n="uxAsk">Model ask</th><th scope="col" data-i18n="uxEvidence">Source & observation</th><th scope="col" data-i18n="uxAvailability">Availability</th><th scope="col" data-i18n="uxAction">Action</th></tr></thead><tbody id="marketExplorerRows"></tbody></table></div>
+        </section>
+
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">📡</span> <span data-i18n="navMarkets">Markets Desk &amp; Macro Radar</span></h2>
-            <p>Real-time market watchlists, quotes, and economic calendar</p>
+            <p>Provider observations and watchlist analysis. No verified economic calendar is connected.</p>
           </div>
           <div class="view-subtabs">
             <button type="button" class="subtab-btn active" data-subtab="watchlist" data-i18n="workstationLabel46">📡 Live Watchlist</button>
@@ -340,10 +369,11 @@
       <!-- VIEW 3: TRADING TERMINAL                       -->
       <!-- ============================================== -->
       <div class="app-view" id="view-trading">
+        <section class="workspace-context panel" id="workspaceContext-trading" aria-label="View evidence" data-i18n-aria="uxViewEvidence"></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">📈</span> <span data-i18n="navTrading">Trading Terminal &amp; Order Desk</span></h2>
-            <p>Technical charts, multi-asset order routing, and real-time execution</p>
+            <p>Analyze provider data and review simulated orders. Live broker execution is disabled.</p>
           </div>
           <div class="view-subtabs">
             <button type="button" class="subtab-btn active" data-subtab="terminal" data-i18n="workstationLabel43">📈 Terminal &amp; Chart</button>
@@ -358,12 +388,12 @@
         <div class="desk-header">
           <div class="desk-title">
             <p class="eyebrow" data-i18n="deskEyebrow">QUANTITATIVE EXECUTION DESK</p>
-            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Trading Terminal &amp; Command</span></h1>
+            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Analysis & paper order workspace</span></h1>
           </div>
           <div class="desk-market-stats" id="deskMarketStats">
-            <div class="stat-cell"><small>Spread Quality</small><b id="deskSpread">0.3 pips</b></div>
-            <div class="stat-cell"><small>Range Volatility</small><b id="deskVol">ATR Normal</b></div>
-            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">Multi-TF</b></div>
+            <div class="stat-cell"><small>Spread Quality</small><b id="deskSpread">--</b></div>
+            <div class="stat-cell"><small>Range Volatility</small><b id="deskVol">--</b></div>
+            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">--</b></div>
             <div class="stat-cell"><small>Consensus Bias</small><b id="deskBias">Awaiting Audit</b></div>
           </div>
         </div>
@@ -580,6 +610,7 @@
       <!-- VIEW 4: AI INTELLIGENCE                        -->
       <!-- ============================================== -->
       <div class="app-view" id="view-ai">
+        <section class="workspace-context panel" id="workspaceContext-ai" aria-label="View evidence" data-i18n-aria="uxViewEvidence"></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">🧠</span> <span data-i18n="navAI">AI Intelligence &amp; Strategy Confluence</span></h2>
@@ -763,10 +794,11 @@
       <!-- VIEW 5: RISK DESK                              -->
       <!-- ============================================== -->
       <div class="app-view" id="view-risk">
+        <section class="workspace-context panel" id="workspaceContext-risk" aria-label="View evidence" data-i18n-aria="uxViewEvidence"></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">🛡️</span> <span data-i18n="navRisk">Risk Desk &amp; Capital Preservation</span></h2>
-            <p>Pre-trade lot sizing, exposure limits, and stress testing</p>
+            <p>Review analysis sizing and server-owned account capacity. Final validation happens on the server.</p>
           </div>
         </div>
 
@@ -794,10 +826,11 @@
       <!-- VIEW 6: PORTFOLIO                              -->
       <!-- ============================================== -->
       <div class="app-view" id="view-portfolio">
+        <section class="workspace-context panel" id="workspaceContext-portfolio" aria-label="View evidence" data-i18n-aria="uxViewEvidence"></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">📊</span> <span data-i18n="navPortfolio">Portfolio Intelligence &amp; Analytics</span></h2>
-            <p>Realized equity curve, drawdown distribution, and strategy performance</p>
+            <p>Review account balances and recorded paper fills. Imported and manual entries remain unverified.</p>
           </div>
         </div>
 
@@ -845,33 +878,33 @@
         <div class="kpi-grid">
           <div class="kpi-card" id="kpiNetPnlCard">
             <span data-i18n="kpiNetPnl">Net Realized PnL</span>
-            <b id="kpiNetPnl">$0.00</b>
-            <small id="kpiNetPnlPct">+0.0% return</small>
+            <b id="kpiNetPnl">--</b>
+            <small id="kpiNetPnlPct">--</small>
           </div>
           <div class="kpi-card" id="kpiWinRateCard">
             <span data-i18n="kpiWinRate">Win Rate</span>
-            <b id="kpiWinRate">0.0%</b>
-            <small id="kpiWinLossRatio">0 Wins / 0 Losses</small>
+            <b id="kpiWinRate">--</b>
+            <small id="kpiWinLossRatio">--</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiProfitFactor">Profit Factor</span>
-            <b id="kpiProfitFactor">0.00</b>
-            <small id="kpiGrossProfitLoss">$0 Gross Profit</small>
+            <b id="kpiProfitFactor">--</b>
+            <small id="kpiGrossProfitLoss">--</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiPayoffRatio">Payoff Ratio (Avg W/L)</span>
-            <b id="kpiPayoffRatio">1 : 0.00</b>
-            <small id="kpiAvgWinLoss">Avg W: $0 | Avg L: $0</small>
+            <b id="kpiPayoffRatio">--</b>
+            <small id="kpiAvgWinLoss">--</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiMaxDrawdown">Max Drawdown</span>
-            <b id="kpiMaxDrawdown">$0.00</b>
-            <small id="kpiMaxDrawdownPct">0.0% from peak</small>
+            <b id="kpiMaxDrawdown">--</b>
+            <small id="kpiMaxDrawdownPct">--</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiExpectancy">Expectancy / Trade</span>
-            <b id="kpiExpectancy">$0.00</b>
-            <small id="kpiTotalTrades">0 closed trades</small>
+            <b id="kpiExpectancy">--</b>
+            <small id="kpiTotalTrades">--</small>
           </div>
         </div>
 
@@ -908,9 +941,9 @@
               <div id="donutTooltip" class="d3-tooltip hidden"></div>
             </div>
             <div class="donut-breakdown-row" id="donutBreakdownRow">
-              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">0 (0%)</b></div>
-              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">0 (0%)</b></div>
-              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">0 (0%)</b></div>
+              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">--</b></div>
+              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">--</b></div>
+              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">--</b></div>
             </div>
           </article>
         </div>
@@ -1017,7 +1050,7 @@
 
           <div class="broker-ping-indicator" id="brokerPingIndicator">
             <span class="ping-dot"></span>
-            <span id="brokerPingText">Engine: Operational</span>
+            <span id="brokerPingText">Engine readiness unverified</span>
           </div>
 
           <div class="broker-wallet-actions">
@@ -1047,37 +1080,37 @@
                 <span class="broker-logo-badge" id="brokerLogoBadge"></span>
                 <div>
                   <div class="broker-badge-row">
-                    <span class="broker-badge-pill" id="brokerNameBadge">Exness Pro (MT5)</span>
-                    <span class="broker-reg-tag" id="brokerRegTag">GCC Approved · Raw Spread</span>
+                    <span class="broker-badge-pill" id="brokerNameBadge">No verified broker account</span>
+                    <span class="broker-reg-tag" id="brokerRegTag">Account verification required</span>
                   </div>
-                  <small id="brokerAccId">Acc: #EXN-894210 · Server: Exness-Real14</small>
+                  <small id="brokerAccId">No account selected</small>
                 </div>
               </div>
             </div>
             <span class="hud-label" data-i18n="brokerBalance">Account Balance (Auto-Managed)</span>
-            <b class="hud-amount" id="brokerBalanceDisplay">$25,000.00</b>
+            <b class="hud-amount" id="brokerBalanceDisplay">--</b>
             <div class="hud-sub-row">
-              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">$25,000.00</b></span>
-              <span><span data-i18n="unrealizedPnl">Open PnL</span>: <b id="brokerOpenPnlDisplay">$0.00</b></span>
+              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">--</b></span>
+              <span><span data-i18n="unrealizedPnl">Open PnL</span>: <b id="brokerOpenPnlDisplay">--</b></span>
             </div>
           </div>
 
           <div class="broker-card">
             <span class="hud-label" data-i18n="freeMargin">Free Margin</span>
-            <b class="hud-amount" id="brokerFreeMarginDisplay">$25,000.00</b>
-            <small id="brokerMarginLevel">Margin Level: 100.0% (Safe)</small>
+            <b class="hud-amount" id="brokerFreeMarginDisplay">--</b>
+            <small id="brokerMarginLevel">Margin level unavailable</small>
           </div>
 
           <div class="broker-card">
             <span class="hud-label" data-i18n="usedMargin">Used Margin</span>
-            <b class="hud-amount" id="brokerUsedMarginDisplay">$0.00</b>
-            <small id="brokerOpenCount">0 open positions</small>
+            <b class="hud-amount" id="brokerUsedMarginDisplay">--</b>
+            <small id="brokerOpenCount">--</small>
           </div>
 
           <div class="broker-card">
             <span class="hud-label" data-i18n="dailyRealizedPnl">Today's Realized PnL</span>
-            <b class="hud-amount pnl-green" id="brokerTodayPnlDisplay">+$0.00</b>
-            <small id="brokerPnlRCount">0.0 R generated today</small>
+            <b class="hud-amount pnl-green" id="brokerTodayPnlDisplay">--</b>
+            <small id="brokerPnlRCount">No verified result</small>
           </div>
         </div>
 
@@ -1091,7 +1124,7 @@
                 <small data-i18n="capitalDealsSub">High-conviction setups sized automatically to your capital and risk limits</small>
               </div>
               <div class="ai-advisory-pill" id="brokerAiAdvisory">
-                <span>🛡️ AI Capital Advisory: 1.0% single-trade risk rule enforced ($250.00 max risk)</span>
+                <span>Server risk validation required before every order</span>
               </div>
             </div>
 
@@ -1107,7 +1140,7 @@
                 <b data-i18n="activePositionsTitle">Active Broker Positions</b>
                 <small data-i18n="activePositionsSub">Direct execution orders running on linked broker gateway</small>
               </div>
-              <span class="positions-badge" id="openPositionsBadge">0 Active Orders</span>
+              <span class="positions-badge" id="openPositionsBadge">--</span>
             </div>
 
             <div class="positions-table-shell">
@@ -1147,7 +1180,7 @@
             <div class="webtrader-ticket-card">
               <div class="card-head">
                 <b data-i18n="directOrderTicket">Direct Platform Execution Ticket</b>
-                <span class="execution-badge" id="webtraderBrokerBadge">Exness MT5 Direct</span>
+                <span class="execution-badge" id="webtraderBrokerBadge">External broker execution disabled</span>
               </div>
 
               <div class="ticket-input-grid">
@@ -1166,8 +1199,8 @@
                 <label>
                   <span>Order Type</span>
                   <select id="webtraderOrderTypeSelect">
-                    <option value="BUY">Instant Market Buy</option>
-                    <option value="SELL">Instant Market Sell</option>
+                    <option value="BUY">Paper market buy</option>
+                    <option value="SELL">Paper market sell</option>
                     <option value="BUY LIMIT">Buy Limit (Pending)</option>
                     <option value="SELL LIMIT">Sell Limit (Pending)</option>
                   </select>
@@ -1195,14 +1228,14 @@
               </div>
 
               <div class="ticket-calc-row">
-                <span>Required Margin: <b id="webtraderMarginCalc">$100.00</b></span>
-                <span>Max Risk: <b id="webtraderRiskCalc">$250.00</b></span>
-                <span>Leverage: <b id="webtraderLeverageCalc">1:200</b></span>
+                <span>Required Margin: <b id="webtraderMarginCalc">--</b></span>
+                <span>Max Risk: <b id="webtraderRiskCalc">--</b></span>
+                <span>Leverage: <b id="webtraderLeverageCalc">--</b></span>
               </div>
 
               <div class="ticket-actions">
                 <button type="button" class="primary full" id="webtraderTransmitOrderBtn">
-                  ⚡ Transmit Order to Broker
+                  Submit paper order
                 </button>
               </div>
             </div>
@@ -1217,7 +1250,7 @@
                 <span class="cert-logo" id="certBrokerLogo"></span>
                 <div>
                   <h3 id="certBrokerTitle" data-i18n="workstationLabel6">THN Paper Trading Sandbox</h3>
-                  <small id="certRegulationTag">Simulated Virtual Account · Zero Capital Risk</small>
+                  <small id="certRegulationTag">Paper simulation · no real-money execution</small>
                 </div>
               </div>
               <div class="cert-stamp">
@@ -1237,11 +1270,11 @@
               </div>
               <div class="cert-item">
                 <span>Account ID (Masked)</span>
-                <b id="certLoginId" class="code-val">•••• 5012</b>
+                <b id="certLoginId" class="code-val">--</b>
               </div>
               <div class="cert-item">
                 <span>Server Host / Endpoint</span>
-                <b id="certServerHost" class="code-val">Sandbox-Internal.thn-trader.net</b>
+                <b id="certServerHost" class="code-val">--</b>
               </div>
               <div class="cert-item">
                 <span>Trading Permission Level</span>
@@ -1253,15 +1286,15 @@
               </div>
               <div class="cert-item">
                 <span>Trading Leverage</span>
-                <b id="certLeverage">1:200 Dynamic</b>
+                <b id="certLeverage">--</b>
               </div>
               <div class="cert-item">
                 <span>Last Gateway Sync</span>
-                <b id="certLastSync" class="code-val">Active / Synced (UTC)</b>
+                <b id="certLastSync" class="code-val">--</b>
               </div>
               <div class="cert-item">
                 <span>Measured Latency</span>
-                <b id="certLatencyDisplay" class="code-val">1 ms (Optimal)</b>
+                <b id="certLatencyDisplay" class="code-val">--</b>
               </div>
               <div class="cert-item">
                 <span>Security &amp; Secret Protection</span>
@@ -1298,7 +1331,7 @@
           </div>
         </div>
 
-        <div class="settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+        <div class="settings-grid">
           <!-- Card 1: Trading Defaults -->
           <article class="panel">
             <div class="panel-head">
@@ -1387,15 +1420,15 @@
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
                 <div><b>Paper Trading Engine</b><br><small class="muted-text">Server-side authoritative virtual execution</small></div>
-                <span class="badge" style="color: #10b981;">ACTIVE</span>
+                <span class="badge" style="color: #10b981;">Backend required</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
-                <div><b>Exness REST / MT5 Bridge</b><br><small class="muted-text">Official broker adapter</small></div>
-                <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
+                <div><b>Exness REST / MT5 Bridge</b><br><small class="muted-text">Not available · external execution disabled</small></div>
+                <span class="badge" style="color: #eab308;">Disabled · unverified</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
-                <div><b>XTB xStation Bridge</b><br><small class="muted-text">Direct xAPI streaming</small></div>
-                <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
+                <div><b>XTB xStation Bridge</b><br><small class="muted-text">Not available · external execution disabled</small></div>
+                <span class="badge" style="color: #eab308;">Disabled · unverified</span>
               </div>
             </div>
           </article>
@@ -1605,7 +1638,7 @@
             </label>
 
             <label class="broker-option-card" data-provider="exness">
-              <input type="radio" name="brokerProvider" value="exness" />
+              <input type="radio" name="brokerProvider" value="exness" disabled />
               <div class="broker-option-logo">
                 <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#F4AF00"/><path d="M7 16C7 11.0294 11.0294 7 16 7C20.9706 7 25 11.0294 25 16C25 20.9706 20.9706 25 16 25" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20" stroke="#111" stroke-width="2.5" stroke-linecap="round"/></svg>
               </div>
@@ -1614,12 +1647,12 @@
                   <span class="broker-tag-popular">MT5 Bridge</span>
                   <b>Exness (MT5 Bridge)</b>
                 </div>
-                <small>MetaTrader 5 Cloud Bridge · Raw Spread ECN</small>
+                <small>Not available · external execution disabled</small>
               </div>
             </label>
 
             <label class="broker-option-card" data-provider="xtb">
-              <input type="radio" name="brokerProvider" value="xtb" />
+              <input type="radio" name="brokerProvider" value="xtb" disabled />
               <div class="broker-option-logo">
                 <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0A0F1D"/><path d="M7 8L15 24M15 8L7 24" stroke="#E50914" stroke-width="3" stroke-linecap="round"/><text x="16" y="21" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#2BF5C7">TB</text></svg>
               </div>
@@ -1628,12 +1661,12 @@
                   <span class="broker-tag-popular">Official API</span>
                   <b>XTB MENA (xStation 5)</b>
                 </div>
-                <small>DFSA Regulated · High-Speed WebSocket Gateway</small>
+                <small>Not available · external execution disabled</small>
               </div>
             </label>
 
             <label class="broker-option-card" data-provider="mt5">
-              <input type="radio" name="brokerProvider" value="mt5" />
+              <input type="radio" name="brokerProvider" value="mt5" disabled />
               <div class="broker-option-logo">
                 <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0E1B2E"/><rect x="7" y="16" width="4.5" height="9" rx="1.5" fill="#3B82F6"/><rect x="13.5" y="11" width="4.5" height="14" rx="1.5" fill="#10B981"/><rect x="20" y="7" width="4.5" height="18" rx="1.5" fill="#EF4444"/><text x="18" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="900" fill="#FFF">5</text></svg>
               </div>
@@ -1642,7 +1675,7 @@
                   <span class="broker-tag-popular">Multi-Broker</span>
                   <b>MetaTrader 5 (Universal)</b>
                 </div>
-                <small>IC Markets, Pepperstone, XM, FTMO Bridge</small>
+                <small>Not available · external execution disabled</small>
               </div>
             </label>
           </div>
@@ -1674,7 +1707,7 @@
                   <span data-i18n="brokerServer">Broker Server Hostname / Gateway</span>
                   <button type="button" class="text-link-btn" id="docsQuickLinkServer">Server directory ↗</button>
                 </div>
-                <input id="brokerServerInput" value="Sandbox-Internal.thn-trader.net" placeholder="E.g. Exness-Real14.mt5.exness.com:443" />
+                <input id="brokerServerInput" value="--" placeholder="E.g. Exness-Real14.mt5.exness.com:443" />
               </label>
 
               <label>
@@ -1861,7 +1894,7 @@
       <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog">
         <div class="log-trade-form">
           <div class="dialog-head">
-            <h3 data-i18n="executeOrderTitle">⚡ Transmit Order to Broker Gateway</h3>
+            <h3 data-i18n="executeOrderTitle">Submit paper order Gateway</h3>
             <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
           </div>
           <p class="tiny trust-copy" id="executeOrderDesc">
@@ -1950,7 +1983,7 @@
                     <span class="mock-tag">EXNESS PERSONAL AREA PREVIEW</span>
                     <div class="mock-ui-row">
                       <span>📁 My Accounts &gt; Real &gt; <b>MT5 Raw Spread (#EXAMPLE-ACCOUNT)</b></span>
-                      <span class="status-chip active">ACTIVE</span>
+                      <span class="status-chip active">Backend required</span>
                     </div>
                   </div>
                 </div>
@@ -2358,7 +2391,7 @@
             <span class="toast-signal" id="toastSignal">BUY</span>
             <strong class="toast-symbol" id="toastSymbol">EURUSD</strong>
           </div>
-          <span class="toast-confidence" id="toastConfidence">82%</span>
+          <span class="toast-confidence" id="toastConfidence">--</span>
           <button type="button" class="toast-close-btn" id="toastCloseBtn" aria-label="Dismiss alert">&times;</button>
         </div>
         <div class="toast-body">

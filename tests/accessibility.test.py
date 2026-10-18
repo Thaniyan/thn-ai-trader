@@ -13,6 +13,9 @@ try:
   page=browser.new_page(viewport={'width':1440,'height':1000})
   page.route('**/*',lambda route:route.continue_() if route.request.url.startswith(url) else route.abort())
   page.goto(url);page.wait_for_function('()=>currentAnalysis!==null')
+  theme=os.environ.get('ACCESSIBILITY_THEME','dark')
+  assert theme in ['dark','light']
+  page.evaluate('(theme)=>document.documentElement.dataset.theme=theme',theme)
   from pathlib import Path
   page.route('**/__axe.js',lambda route:route.fulfill(content_type='application/javascript',body=axe_path.read_text()))
   page.add_script_tag(url=url+'/__axe.js')
@@ -21,7 +24,7 @@ try:
    for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
     page.evaluate('(view)=>switchView(view)',view)
     scan=page.evaluate("async()=>{const r=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}});return {violations:r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passes:r.passes.length,incomplete:r.incomplete.map(v=>v.id)}}")
-    results.append({'lang':lang,'view':view,**scan})
+    results.append({'theme':theme,'lang':lang,'view':view,**scan})
   if os.environ.get('WORKSTATION_SCREENSHOT'):
    page.evaluate("setLanguage('en');switchView('dashboard')");page.screenshot(path=os.environ['WORKSTATION_SCREENSHOT'],full_page=True)
   browser.close()
@@ -29,6 +32,6 @@ try:
  for item in results:
   if item['violations']:print(item['lang'],item['view'],[(v['id'],len(v['nodes'])) for v in item['violations']])
  assert all(not item['violations'] for item in results),'Accessibility violations recorded in '+str(output)
- print('Accessibility PASS: 18 EN/AR view scans; CSP enforced, same-origin axe instrumentation; manual review still required.')
+ print('Accessibility PASS: 18 EN/AR view scans; theme='+theme+'; CSP enforced, same-origin axe instrumentation; manual review still required.')
 finally:
  server.terminate();server.wait(timeout=10)

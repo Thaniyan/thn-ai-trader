@@ -1,0 +1,108 @@
+"""Workspace UX under real local CSP; loopback fixtures only, no cloud calls."""
+import json,os,pathlib,shutil,subprocess
+from playwright.sync_api import sync_playwright
+ROOT=pathlib.Path(__file__).resolve().parents[1]
+OUTPUT=pathlib.Path(os.environ.get('WORKSPACE_QA_OUTPUT','/tmp/thn-workspace-ux-review'))
+if OUTPUT.exists():raise SystemExit('Choose a new output directory')
+OUTPUT.mkdir(parents=True);checks=[];errors=[]
+def check(name,condition):
+ checks.append({'name':name,'passed':bool(condition)})
+ assert condition,name
+server=subprocess.Popen(['node','tests/browser-server.mjs'],cwd=ROOT,stdout=subprocess.PIPE,text=True)
+try:
+ url=server.stdout.readline().strip()
+ with sync_playwright() as p:
+  browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH') or shutil.which('chromium') or p.chromium.executable_path,args=['--no-sandbox'])
+  context=browser.new_context();page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+  page.route('**/*',lambda route:route.continue_() if route.request.url.startswith(url) else route.abort())
+  response=page.goto(url);page.wait_for_function('()=>currentAnalysis!==null && workspaceQuoteState==="ready"')
+  check('Workspace translation keys have EN/AR parity',page.evaluate('Object.keys(WORKSPACE_COPY.en).every(k=>typeof WORKSPACE_COPY.ar[k]==="string"&&WORKSPACE_COPY.ar[k].length>0)'))
+  check('Actual CSP retained',"default-src 'self'" in response.headers.get('content-security-policy',''))
+  check('Backend observed reachable',page.locator('#workspaceBackend').inner_text()=='Reachable')
+  check('Account panel honest before login',page.locator('#workspaceAccount').inner_text()=='Sign in required')
+  check('Risk status does not assert authorization',page.locator('#dashRiskState').inner_text()=='Account required')
+  page.evaluate("switchView('markets')")
+  check('Six base market rows present',page.locator('#marketExplorerRows tr').count()>=6)
+  page.locator('#marketSearch').fill('EURUSD');check('Search narrows exact instrument',page.locator('#marketExplorerRows tr').count()==1 and 'EURUSD' in page.locator('#marketExplorerRows').inner_text())
+  page.locator('#marketSearch').fill('NO-SUCH-INSTRUMENT');check('Search has actionable empty state',page.get_by_role('button',name='Clear filters',exact=True).is_visible())
+  page.get_by_role('button',name='Clear filters',exact=True).click();check('Clear restores search and keyboard focus',page.locator('#marketSearch').input_value()=='' and page.locator('#marketSearch').evaluate('(el)=>el===document.activeElement'))
+  page.locator('#marketAssetFilter').select_option('Commodity');check('Asset filter isolates Gold',page.locator('#marketExplorerRows tr').count()==1 and 'XAUUSD' in page.locator('#marketExplorerRows').inner_text())
+  check('Gold proxy identified as analysis-only','analysis only' in page.locator('#marketExplorerRows').inner_text())
+  page.locator('#marketAssetFilter').select_option('all')
+  action=page.locator('[data-workspace-analyze="EURUSD"]');action.focus()
+  page.evaluate('renderWorkbench();renderWorkbench()')
+  check('Status rendering preserves keyboard focus',action.evaluate('(el)=>el===document.activeElement'))
+  original=page.evaluate('liveQuotesCache.EURUSD.timestamp')
+  page.evaluate('liveQuotesCache.EURUSD.timestamp=Date.now()-180000;renderWorkbench()')
+  check('Stale quotes hide model prices', 'Stale' in page.locator('#marketExplorerRows tr').filter(has_text='EURUSD').inner_text() and page.locator('#marketExplorerRows tr').filter(has_text='EURUSD').locator('td').first.inner_text()=='—')
+  page.evaluate('(timestamp)=>{liveQuotesCache.EURUSD.timestamp=timestamp;renderWorkbench()}',original)
+  check('External broker radios are disabled',page.locator('#brokerProviderOptions input[value=exness]').is_disabled() and page.locator('#brokerProviderOptions input[value=xtb]').is_disabled())
+  page.locator('[data-workspace-analyze="EURUSD"]').click();page.wait_for_function('()=>!analysisInFlight && currentAnalysis?.symbol==="EURUSD"')
+  check('Analyze action opens existing trading flow',page.locator('#view-trading').is_visible())
+  check('Navigation moves focus to page heading',page.locator('#workspaceTitle').evaluate('(el)=>el===document.activeElement'))
+  page.evaluate("switchView('ai')");check('AI confluence labeled heuristic','not a win probability' in page.locator('#workspaceContext-ai').inner_text())
+  check('Unconfigured narrative honestly disabled','Disabled' in page.locator('#workspaceContext-ai').inner_text())
+  for lang in ['en','ar']:
+   page.evaluate('(lang)=>setLanguage(lang)',lang)
+   for width in [320,390,768,1280,1440]:
+    page.set_viewport_size({'width':width,'height':1000})
+    for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
+     page.evaluate('(view)=>switchView(view)',view)
+     check(f'{lang}/{width}/{view} visible and no overflow',page.locator('#view-'+view).is_visible() and page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+    check(f'{lang}/{width} language direction',page.locator('html').get_attribute('dir')==('rtl' if lang=='ar' else 'ltr'))
+    if width in [390,1440]:
+     for view in ['dashboard','markets','trading','ai','risk','portfolio']:
+      page.evaluate('(view)=>switchView(view)',view);page.screenshot(path=str(OUTPUT/f'{lang}-{width}-{view}.png'),full_page=True)
+   page.evaluate("switchView('markets')");page.locator('#marketSearch').fill('اليورو' if lang=='ar' else 'Euro')
+   check(f'{lang} localized instrument search','EURUSD' in page.locator('#marketExplorerRows').inner_text())
+   page.locator('#marketSearch').fill('')
+  page.set_viewport_size({'width':390,'height':900});page.evaluate("setLanguage('ar')")
+  page.locator('#workspaceMenu').click();check('Mobile menu exposes navigation',page.locator('#workspaceNav').is_visible() and page.locator('#workspaceMenu').get_attribute('aria-expanded')=='true')
+  first=page.locator('.nav-stack .nav').first;first.focus();page.keyboard.press('End');check('Navigation supports End key',page.locator('.nav-stack .nav').last.evaluate('(el)=>el===document.activeElement'))
+  page.keyboard.press('Escape');check('Escape closes menu and restores focus',not page.locator('#workspaceNav').is_visible() and page.locator('#workspaceMenu').evaluate('(el)=>el===document.activeElement'))
+  page.locator('#workspaceMenu').click();page.locator('.nav-stack [data-view="portfolio"]').click();check('Mobile navigation closes after choice',not page.locator('#workspaceNav').is_visible() and page.locator('#view-portfolio').is_visible())
+  # Session values come from the existing backend and clear immediately on identity change.
+  page.set_viewport_size({'width':1440,'height':1000});page.evaluate("setLanguage('en')")
+  page.locator('#sessionToken').fill('test-only-operator-token');page.locator('#sessionForm button[type=submit]').click();page.wait_for_function('()=>privateUser==="operator"&&!sessionChanging&&serverBrokerAccounts.length>0')
+  page.evaluate("switchView('portfolio');renderWorkbench()")
+  check('Portfolio displays recorded account capacity','$50,000' in page.locator('#workspaceContext-portfolio').inner_text())
+  check('Portfolio empty ledger does not invent fills','No closed paper fills' in page.locator('#workspaceContext-portfolio').inner_text())
+  # Produce a real server-side paper fill against fixture prices, then verify the DTO.
+  account=page.evaluate('selectedBrokerAccount.id')
+  order=page.request.post(url+'/api/orders/execute',headers={'Origin':url},data={'accountId':account,'symbol':'EURUSD','side':'BUY','lots':0.01,'stopLoss':1.08,'takeProfit':1.095,'idempotencyKey':'ux-fixture-order'})
+  check('Fixture paper order accepted by server',order.status==200)
+  ticket=order.json()['orderResult']['ticket']
+  closed=page.request.post(url+'/api/positions/close',headers={'Origin':url},data={'accountId':account,'ticket':ticket,'idempotencyKey':'ux-fixture-close'})
+  check('Fixture paper close accepted by server',closed.status==200)
+  page.evaluate('loadBrokerAccountsFromServer()')
+  page.evaluate("switchView('dashboard')")
+  activity=page.locator('#dashRecentActivityTable').inner_text()
+  check('Dashboard renders actual mapped ledger fields','EURUSD' in activity and 'BUY' in activity and 'PAPER FILL' in activity and 'undefined' not in activity)
+  page.evaluate("switchView('portfolio')")
+  page.locator('#openLogTradeModalBtn').click()
+  page.locator('#manualPnl').fill('10');page.locator('#manualR').fill('1')
+  page.locator('#logTradeForm button[type=submit]').click()
+  check('Manual draft does not invent confidence, grade or risk',page.evaluate('localJournal().every(t=>t.confidence===null&&t.grade===null&&t.risk===null)'))
+  check('Manual draft is not promoted into server fills',page.evaluate('serverLedger.length')==1)
+  privateBalance=page.evaluate('money(selectedBrokerAccount.balance)')
+  page.locator('#sessionToken').fill('test-only-other-token');page.locator('#sessionForm button[type=submit]').click();page.wait_for_function('()=>privateUser==="other"&&!sessionChanging')
+  check('Other identity cannot see previous portfolio balance',privateBalance not in page.locator('#workspaceContext-portfolio').inner_text())
+  page.locator('#sessionLogout').click();page.wait_for_function('()=>privateUser===null&&!sessionChanging')
+  check('Logout clears new private summaries',privateBalance not in page.locator('#workspaceContext-risk').inner_text()+page.locator('#workspaceContext-portfolio').inner_text())
+  # Fault injection affects only loopback API routes, not application implementations.
+  count=[]
+  def quota(route):count.append(1);route.fulfill(status=429,headers={'Retry-After':'60','Content-Type':'application/json'},body='{"ok":false,"error":"fixture quota"}')
+  page.route('**/api/quotes?*',quota)
+  page.evaluate('quoteRetryAt=0;liveQuotesCache={};renderWorkbench()');page.locator('#workspaceRefresh').click();page.wait_for_function('()=>!workspaceRefreshing&&workspaceQuoteState==="error"')
+  check('Quota produces honest error and no substituted prices','No prices have been substituted' in page.locator('#workspaceFeedback').inner_text() and page.evaluate('Object.keys(liveQuotesCache).length')==0)
+  check('Cooldown disables repeat refresh',page.locator('#workspaceRefresh').is_disabled() and len(count)==1)
+  page.unroute('**/api/quotes?*',quota)
+  page.route('**/api/health',lambda route:route.abort())
+  page.evaluate('quoteRetryAt=0;renderWorkbench()');page.locator('#workspaceRefresh').click();page.wait_for_function('()=>!workspaceRefreshing')
+  check('Disconnected backend shown honestly',page.locator('#workspaceBackend').inner_text()=='Disconnected')
+  check('No unexpected JS errors',not errors)
+  browser.close()
+finally:
+ server.terminate();server.wait(timeout=15)
+ (OUTPUT/'results.json').write_text(json.dumps({'checks':checks,'pageErrors':errors},indent=2)+'\n')
+print(json.dumps({'suite':'workspace UX','passed':len(checks),'failed':0,'screenshots':24,'evidence':'loopback providers; actual CSP; no hosted deployment'}))
