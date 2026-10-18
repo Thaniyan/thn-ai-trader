@@ -24,6 +24,8 @@ credentials.json
 # CI workflow is intentionally tracked; deployment/project links remain excluded.
 .vercel/
 vercel.json
+# Track only the intentional repository-root branch deployment guard.
+!/vercel.json
 netlify.toml
 render.yaml
 .browser-venv/

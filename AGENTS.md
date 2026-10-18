@@ -6,6 +6,10 @@ installation supersede historical instructions forbidding any workflow addition.
 No deployment workflow, remote operation or infrastructure/settings change is
 authorized. Run scripts/ci/source-guard.mjs before publication; keep clean ancestry.
 
+The later owner-authorized local root vercel.json contains only a develop Git
+deployment deny rule and explicit main allow. See docs/VERCEL-DEVELOP-ISOLATION.md.
+This narrow source change does not authorize any cloud setting or deployment.
+
 Read docs/PRODUCT-VISION.md, docs/ARCHITECTURE.md, docs/QUALITY-STANDARDS.md and
  docs/REPOSITORY-RECONCILIATION.md before changing behavior.
 

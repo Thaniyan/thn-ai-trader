@@ -4,6 +4,10 @@ Status: LOCAL ONLY, 18 October 2026. CI is implemented; CD is a design requiring
 separate approval. No publication, infrastructure or deployment is authorized.
 This document supersedes historical no-workflow guidance for validation CI only.
 
+Later local isolation change: VERCEL-DEVELOP-ISOLATION.md documents the authorized
+root Git deployment gate and current owner observations. Its root-config and Render
+findings supersede the corresponding historical absence/uncertainty statements below.
+
 ## Architecture and deployment baseline
 
 Original Thaniyan/thn-ai-trader main was rechecked at
