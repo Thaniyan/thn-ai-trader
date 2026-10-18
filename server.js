@@ -21,7 +21,7 @@ import {
 } from "./server/accountStore.js";
 import { getBrokerAdapter } from "./server/brokerAdapters.js";
 import { validateOrderRisk, calculateOrderRisk, getContractSpec, conversionFactor } from "./server/riskEngine.js";
-import { logAuditEvent, getAuditEvents } from "./server/auditLogger.js";
+import { logAuditEvent, getAuditEvents, getOrderHistory } from "./server/auditLogger.js";
 import { reconcileAccount } from "./server/reconciliationEngine.js";
 import crypto from "node:crypto";
 
@@ -1433,6 +1433,13 @@ async function handleRequest(req,res) {
       return sendJson(res,200,{ok:true,...await inspectPaperRecovery(account),correlationId});
     }
 
+    if(req.method==="GET"&&url.pathname==="/api/orders/history"){
+      const account=getAccountById(url.searchParams.get("accountId"));assertAccountOwner(account,req.user);
+      const limit=url.searchParams.has('limit')?Number(url.searchParams.get('limit')):100;
+      const before=url.searchParams.has('before')?Number(url.searchParams.get('before')):undefined;
+      return sendJson(res,200,{ok:true,...getOrderHistory(account.id,{limit,before})});
+    }
+
     // --- Backend-Authoritative Order Execution ---
     if (req.method === "POST" && url.pathname === "/api/orders/execute") {
       const body = await readBody(req);
@@ -1470,13 +1477,17 @@ async function handleRequest(req,res) {
         });
       }
 
-      await refreshPaperRisk(account);
+      try{await refreshPaperRisk(account)}catch(error){logAuditEvent({eventType:'ORDER_REJECTED',accountId:account.id,symbol,details:{code:error.code,reason:error.message},status:'REJECTED'});return sendJson(res,error.status||409,{ok:false,error:error.message,code:error.code})}
       // 4. Retrieve Live Market Quote
-      let market;
+      let market,pricing;
       try {
-        market = await getMarketData(symbol || "EURUSD", "intraday");
+        market = await getMarketData(symbol, "intraday");
+        pricing=await getPaperPricing(market,account.currency);
       } catch (err) {
-        return sendJson(res, 502, { ok: false, error: `Market data feed unavailable for ${symbol}: ${err.message}`, code: "STALE_PRICE" });
+        logAuditEvent({eventType:'ORDER_REJECTED',accountId:account.id,symbol,details:{code:err.code||'STALE_PRICE',reason:err.message},status:'REJECTED'});
+        // A refusal is a durable audited outcome, not a failed state transaction.
+        commitTransaction();
+        return sendJson(res,err.status===400?400:502,{ok:false,error:err.message,code:err.code||'STALE_PRICE',causeStatus:err.status||502});
       }
 
       const validCandles = (market.candles || []).filter(c => c && Number(c.close) > 0);
@@ -1488,7 +1499,6 @@ async function handleRequest(req,res) {
       }
 
       // 5. Backend Risk Engine Validation
-      const pricing=await getPaperPricing(market,account.currency);
       const riskValidation = validateOrderRisk({ account, order: body, currentPrice, ...pricing });
       if (!riskValidation.approved) {
         logAuditEvent({
@@ -1515,8 +1525,9 @@ async function handleRequest(req,res) {
         if (orderResult.position) {
           if (!account.positions) account.positions = [];
           account.positions.unshift(orderResult.position);
+          account.equity=+(account.balance+account.positions.reduce((sum,p)=>sum+Number(p.floatingPnl||0),0)).toFixed(2);
           account.usedMargin = +(Number(account.usedMargin || 0) + orderResult.requiredMargin).toFixed(2);
-          account.freeMargin = Math.max(0, +(Number(account.equity || account.balance) - account.usedMargin - account.orders.reduce((sum,o)=>sum+Number(o.reservedMargin||0),0)).toFixed(2));
+          account.freeMargin = Math.max(0, +(Number(account.equity) - account.usedMargin - account.orders.reduce((sum,o)=>sum+Number(o.reservedMargin||0),0)).toFixed(2));
           account.todayTradesCount = Number(account.todayTradesCount || 0) + 1;
           saveTradingAccounts();
         }
@@ -1534,6 +1545,9 @@ async function handleRequest(req,res) {
           accountId: account.id,
           symbol,
           details: {
+            orderId:orderResult.pendingOrder?.id,
+            executionModel:orderResult.executionModel,
+            marketEvidence:orderResult.marketEvidence,
             ticket: orderResult.ticket,
             side,
             lots,
@@ -1556,7 +1570,7 @@ async function handleRequest(req,res) {
           details: { error: execErr.message },
           status: "ERROR"
         });
-        return sendJson(res, 500, { ok: false, error: execErr.message, code: "EXECUTION_FAILED" });
+        return sendJson(res, execErr.status===400?400:500, { ok: false, error: execErr.message, code: execErr.code||"EXECUTION_FAILED" });
       }
     }
 
@@ -1622,9 +1636,11 @@ async function handleRequest(req,res) {
         logAuditEvent({
           eventType: "POSITION_CLOSED",
           accountId: account.id,
-          symbol,
+          symbol:position.symbol,
           details: {
             ticket,
+            executionModel:closeResult.executionModel,
+            marketEvidence:closeResult.marketEvidence,
             closedLots: closeResult.closedLots,
             realizedPnl: closeResult.realizedPnl,
             exitPrice: closeResult.exitPrice

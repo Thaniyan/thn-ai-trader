@@ -1,5 +1,6 @@
+import {PAPER_EXECUTION_MODEL,paperPrice} from './paperExecution.js';
 import crypto from "node:crypto";
-import { getContractSpec, calculateRequiredMargin, calculateOrderRisk, calculatePnl, validateOrderRisk } from "./riskEngine.js";
+import { getContractSpec, calculateRequiredMargin, calculatePnl, validateOrderRisk } from "./riskEngine.js";
 
 /**
  * Base Abstract Broker Adapter
@@ -41,7 +42,7 @@ export class BaseBrokerAdapter {
 
 /**
  * Paper Trading / Sandbox Adapter
- * Fully functional execution engine simulating live broker execution against live market quotes.
+ * Fully functional execution engine using verified indicative provider quotes. No live broker execution.
  */
 export class PaperTradingAdapter extends BaseBrokerAdapter {
   constructor() {
@@ -52,7 +53,7 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
     return {
       ok: true,
       status: "CONNECTED",
-      latencyMs: 2,
+      latencyMs: null,
       serverTime: new Date().toISOString(),
       provider: "THN Local Sandbox Engine",
       message: "Paper Trading sandbox engine is operational."
@@ -67,16 +68,17 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
   }
 
   async placeOrder(account, order, currentPrice, pricing={}) {
-    if(order.side.includes("LIMIT")){return {ok:true,ticket:`PL-${crypto.randomUUID()}`,status:"PENDING",pendingOrder:{...order,id:crypto.randomUUID(),createdAt:new Date().toISOString(),expiresAt:Date.now()+86400000},message:"Paper limit order pending; no fill yet"}}
-    const symbol = String(order.symbol).toUpperCase();
-    const lots = Number(order.lots || order.volume || 0.01);
-    const side = String(order.side).toUpperCase();
-    const isBuy = side.includes("BUY");
-    const spec = getContractSpec(symbol);
-
-    // Apply 0.5 pip spread / slippage simulation
-    const spreadOffset = (spec.pipSize || 0.0001) * 0.4;
-    const executedPrice = isBuy ? +(currentPrice + spreadOffset).toFixed(spec.digits) : +(currentPrice - spreadOffset).toFixed(spec.digits);
+    const admission=validateOrderRisk({account,order,currentPrice,...pricing});
+    if(!admission.approved)throw Object.assign(Error(admission.reason),{status:400,code:admission.code});
+    const evidence={executionModel:PAPER_EXECUTION_MODEL,marketEvidence:pricing.marketEvidence||null};
+    if(order.side.includes("LIMIT")){
+      const id=crypto.randomUUID(),ticket=`PL-${id}`;
+      // Persist only validated execution fields; never retain arbitrary client payloads.
+      return {ok:true,ticket,status:"PENDING",...evidence,pendingOrder:{id,ticket,symbol:order.symbol,side:order.side,lots:order.lots,entryPrice:order.entryPrice,stopLoss:order.stopLoss,takeProfit:order.takeProfit??0,createdAt:new Date().toISOString(),expiresAt:Date.now()+86400000,...evidence},message:"Paper limit order pending; no fill yet"};
+    }
+    const symbol=order.symbol,lots=order.lots,side=order.side;
+    const spec=getContractSpec(symbol);
+    const executedPrice=paperPrice(symbol,side,currentPrice);
 
     const requiredMargin = calculateRequiredMargin({
       symbol,
@@ -89,21 +91,25 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
     if(!validation.approved)throw Object.assign(Error(validation.reason),{status:400,code:validation.code});
     const ticketId = `PT-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
 
+    const markPrice=paperPrice(symbol,side,currentPrice,true);
+    const floatingPnl=calculatePnl({symbol,side,lots,entryPrice:executedPrice,exitPrice:markPrice,accountCurrency:account.currency,...pricing});
+    if(requiredMargin-Math.min(0,floatingPnl)>account.freeMargin)throw Object.assign(Error('Insufficient free margin including modeled spread cost'),{status:400,code:'INSUFFICIENT_MARGIN'});
     const newPosition = {
+      ...evidence,
       ticket: ticketId,
       id: ticketId,
       symbol,
       side,
       lots,
       entryPrice: executedPrice,
-      currentPrice: executedPrice,
+      currentPrice: markPrice,
       sl: Number(order.stopLoss || 0),
       tp: Number(order.takeProfit || 0),
       margin: requiredMargin,
       riskDollars: validation.riskMetrics.slRiskUpperBound,
       priceCurrency:pricing.priceCurrency,
-      floatingPnl: 0,
-      pnlR: 0,
+      floatingPnl,
+      pnlR: validation.riskMetrics.slRiskUpperBound>0?floatingPnl/validation.riskMetrics.slRiskUpperBound:null,
       multiplier: spec.contractSize,
       openedAt: new Date().toISOString(),
       comment: order.comment || "AI Assisted Paper Execution"
@@ -111,13 +117,15 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
 
     return {
       ok: true,
+      ...evidence,
       ticket: ticketId,
       status: "FILLED",
       symbol,
       side,
       lots,
       executedPrice,
-      slippagePips: 0.4,
+      slippagePips: PAPER_EXECUTION_MODEL.additionalSlippagePips,
+      spreadOffsetPips: PAPER_EXECUTION_MODEL.halfSpreadPips,
       requiredMargin,
       position: newPosition,
       timestamp: new Date().toISOString(),
@@ -139,13 +147,15 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
     if(closingLots<spec.minLot)throw Object.assign(Error("Partial close below minimum lot; close the whole position"),{status:400});
     const remainingLots=Number((originalLots-closingLots).toFixed(8));
     if(remainingLots>0&&remainingLots<spec.minLot)throw Object.assign(Error("Remaining position below minimum lot"),{status:400});
-    const exitPrice=Number((currentPrice+(pos.side==="BUY"?-1:1)*spec.pipSize*0.4).toFixed(spec.digits));
+    const exitPrice=paperPrice(pos.symbol,pos.side,currentPrice,true);
     const realizedPnl=calculatePnl({symbol:pos.symbol,side:pos.side,lots:closingLots,entryPrice:pos.entryPrice,exitPrice,accountCurrency:account.currency,...pricing});
     const isPartial=remainingLots>0;
-    const remainingPosition=isPartial?{...pos,lots:remainingLots,margin:Number((pos.margin*remainingLots/originalLots).toFixed(2)),riskDollars:Number((pos.riskDollars*remainingLots/originalLots).toFixed(2))}:null;
+    const remainingPosition=isPartial?{...pos,lots:remainingLots,currentPrice:exitPrice,floatingPnl:calculatePnl({symbol:pos.symbol,side:pos.side,lots:remainingLots,entryPrice:pos.entryPrice,exitPrice,accountCurrency:account.currency,...pricing}),margin:Number((pos.margin*remainingLots/originalLots).toFixed(2)),riskDollars:Number((pos.riskDollars*remainingLots/originalLots).toFixed(2))}:null;
 
     return {
       ok: true,
+      executionModel:PAPER_EXECUTION_MODEL,
+      marketEvidence:pricing.marketEvidence||null,
       ticket: positionId,
       closedLots: closingLots,
       exitPrice,
@@ -159,7 +169,7 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
   async getConnectionStatus() {
     return {
       status: "CONNECTED",
-      latencyMs: 1,
+      latencyMs: null,
       tradingPermission: "TRADING_ENABLED",
       lastSyncAt: new Date().toISOString(),
       message: "Internal Paper Engine Running"

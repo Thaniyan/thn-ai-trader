@@ -59,11 +59,12 @@ export function normalizeSymbol(rawSymbol = "EURUSD") {
   return { yahoo: raw, tv: raw, display: raw, assetClass: "Stock" };
 }
 
-const MAX_QUOTE_AGE=120000;
+export const MAX_QUOTE_AGE=120000;
+const providerDiagnostics=new Map();
 const intervals={h4:3600000,scalp:900000,intraday:3600000,swing:86400000,position:86400000};
 const cache=new Map(),pending=new Map(),failures=new Map(),queue=[];
 let active=0,lastStatus={state:'UNAVAILABLE',reason:'No provider response observed'};
-export function marketReadiness(){return {...lastStatus,activeRequests:active,cachedInstruments:cache.size}}
+export function marketReadiness(){return {...lastStatus,...(lastStatus.quoteAt&&!classifyQuote(lastStatus.quoteAt)?{state:'STALE'}:{}),lastObservationAgeMs:lastStatus.observedAt?Date.now()-lastStatus.observedAt:null,activeRequests:active,cachedInstruments:cache.size,providers:[...providerDiagnostics.values()].map(d=>({...d,ageMs:Date.now()-d.checkedAt})),quoteMaxAgeMs:MAX_QUOTE_AGE}}
 export function validateCandles(candles,now=Date.now()) {
   if(!Array.isArray(candles)||candles.length<35)throw Error('Insufficient valid candle history');
   let previous=0;
@@ -98,7 +99,7 @@ export function classifyQuote(timestamp,now=Date.now()) {
 }
 export function assertPaperMarket(market){
   if(market?.provenance?.pricingProxy||market?.provenance?.instrumentMatch!==true)throw Object.assign(Error("Exact instrument data required; indicative proxies cannot authorize paper execution"),{status:502,code:"INSTRUMENT_UNVERIFIED"});
-  if(!market?.provenance?.verified||market.provenance.candlesCurrent!==true||market.provenance.state!=='REAL'||!classifyQuote(market.marketTime)||!Number.isFinite(market.quotePrice)||market.quotePrice<=0)throw Object.assign(Error('Fresh verified provider price required; execution unavailable'),{status:502,code:'STALE_PRICE'});
+  if(!market?.provenance?.verified||market.provenance.candlesCurrent!==true||market.provenance.state!=='REAL'||market.provenance.delaySeconds>0||!candleStatus(market.candles,market.timeframe||'intraday',market.symbolInfo.assetClass).current||!classifyQuote(market.marketTime)||!Number.isFinite(market.quotePrice)||market.quotePrice<=0)throw Object.assign(Error('Fresh verified provider price required; execution unavailable'),{status:502,code:'STALE_PRICE'});
 }
 async function limited(fn){
   if(active>=4){if(queue.length>=32)throw Object.assign(Error('Provider request capacity exceeded'),{status:429});await new Promise(resolve=>queue.push(resolve))}else active++;
@@ -110,12 +111,21 @@ export function retryAfterSeconds(value,now=Date.now()) {
   return Number.isFinite(seconds)?Math.max(1,Math.ceil(seconds)):30;
 }
 async function json(url,timeout=7500){
-  const response=await fetch(url,{signal:AbortSignal.timeout(timeout)});
-  if(!response.ok)throw Object.assign(Error(`Provider HTTP ${response.status}`),{status:response.status===429?429:502,code:response.status===429?'PROVIDER_RATE_LIMITED':'MARKET_UNAVAILABLE',retryAfter:response.status===429?retryAfterSeconds(response.headers.get('Retry-After')):15});
-  return response.json();
+  const host=new URL(url).hostname,startedAt=Date.now();
+  try{
+    const response=await fetch(url,{signal:AbortSignal.timeout(timeout)});
+    if(!response.ok)throw Object.assign(Error(`Provider HTTP ${response.status}`),{status:response.status===429?429:502,code:response.status===429?'PROVIDER_RATE_LIMITED':'MARKET_UNAVAILABLE',retryAfter:response.status===429?retryAfterSeconds(response.headers.get('Retry-After')):15});
+    let data;try{data=await response.json()}catch{throw Object.assign(Error('Invalid provider JSON'),{code:'INVALID_PROVIDER_RESPONSE'})}
+    providerDiagnostics.set(host,{host,state:'RESPONDED',checkedAt:Date.now(),latencyMs:Date.now()-startedAt});
+    return data;
+  }catch(error){
+    const code=error.code||(['TimeoutError','AbortError'].includes(error.name)?'PROVIDER_TIMEOUT':'PROVIDER_CONNECTION_FAILED');
+    providerDiagnostics.set(host,{host,state:'UNAVAILABLE',checkedAt:Date.now(),latencyMs:Date.now()-startedAt,code,retryAfter:error.retryAfter||15});
+    throw error;
+  }
 }
 async function load(symbolInfo,timeframe){
-  const cfg=TIMEFRAME_CONFIG[timeframe],step=intervals[timeframe],now=Date.now();
+  const cfg=TIMEFRAME_CONFIG[timeframe],step=intervals[timeframe];let now=Date.now();
   const errors=[],causes=[];
   if(symbolInfo.assetClass==='Crypto'){
     try{
@@ -133,8 +143,12 @@ async function load(symbolInfo,timeframe){
   for(const host of ['query1.finance.yahoo.com','query2.finance.yahoo.com']){
     try{
       const data=await json(`https://${host}/v8/finance/chart/${encodeURIComponent(symbolInfo.yahoo)}?range=${cfg.range}&interval=${cfg.interval}&includePrePost=false`);
+      now=Date.now();
       const result=data.chart?.result?.[0],q=result?.indicators?.quote?.[0];
-      if(!q)throw Error('Missing provider candles');
+      if(!q||!Array.isArray(result.timestamp))throw Error('Missing provider candles');
+      if(typeof result.meta.regularMarketPrice!=='number'||!Number.isFinite(result.meta.regularMarketPrice))throw Error('Missing provider quote price');
+      if(typeof result.meta.currency!=='string'||!/^([A-Z]{3}|USDT)$/.test(result.meta.currency))throw Error('Missing or invalid provider currency');
+      if(symbolInfo.assetClass==='Forex'&&result.meta.currency!==symbolInfo.display.slice(-3))throw Error('Provider quote currency mismatch');
       if(result.meta?.symbol!==symbolInfo.yahoo)throw Error('Provider instrument identity mismatch');
       const all=result.timestamp.map((time,i)=>({time:time*1000,open:q.open[i],high:q.high[i],low:q.low[i],close:q.close[i],volume:q.volume?.[i]??0}));
       for(let i=0;i<all.length;i++)if(!Number.isFinite(all[i].time)||all[i].time>now||(i>0&&all[i].time<=all[i-1].time))throw Error("Invalid provider timestamp order");
@@ -143,30 +157,33 @@ async function load(symbolInfo,timeframe){
       validateCandles(valid,now);
       let closed=valid.filter(c=>c.time+step<=now);
       if(timeframe==="h4"){const buckets=new Map();for(const c of closed){const key=Math.floor(c.time/14400000)*14400000;if(!buckets.has(key))buckets.set(key,[]);buckets.get(key).push(c)}closed=[...buckets].filter(([time,cs])=>cs.length===4&&cs.every((c,i)=>i===0||c.time-cs[i-1].time===3600000)&&cs.at(-1).time+3600000<=now).map(([time,cs])=>({time:cs[0].time,open:cs[0].open,close:cs.at(-1).close,high:Math.max(...cs.map(c=>c.high)),low:Math.min(...cs.map(c=>c.low)),volume:cs.reduce((sum,c)=>sum+c.volume,0)}))}
-      return pack(symbolInfo,timeframe==="h4"?{...cfg,interval:"4h"}:cfg,closed,Number(result.meta.regularMarketTime)*1000,Number(result.meta.regularMarketPrice??all.at(-1).close),'Yahoo Finance',result.meta.currency||'USD',errors,gapsSkipped,timeframe);
-    }catch(error){errors.push(`${host}: ${error.message}`);causes.push(error)}
+      return pack(symbolInfo,timeframe==="h4"?{...cfg,interval:"4h"}:cfg,closed,Number(result.meta.regularMarketTime)*1000,result.meta.regularMarketPrice,'Yahoo Finance',result.meta.currency,errors,gapsSkipped,timeframe,{delaySeconds:result.meta.exchangeDataDelayedBy==null?null:typeof result.meta.exchangeDataDelayedBy==='number'?result.meta.exchangeDataDelayedBy*60:NaN});
+    }catch(error){const d=providerDiagnostics.get(host);if(d?.state==='RESPONDED')providerDiagnostics.set(host,{...d,state:'INVALID_RESPONSE',code:'INVALID_PROVIDER_RESPONSE'});errors.push(`${host}: ${error.message}`);causes.push(error)}
   }
   lastStatus={state:'UNAVAILABLE',observedAt:Date.now(),reason:errors.join('; ')};
   const throttled=causes.filter(error=>error.status===429);
   throw Object.assign(Error('Market data unavailable: '+errors.join('; ')),{status:throttled.length?429:502,code:throttled.length?'PROVIDER_RATE_LIMITED':'MARKET_UNAVAILABLE',retryAfter:throttled.length?Math.max(...throttled.map(error=>error.retryAfter)):15});
 }
-function pack(symbolInfo,cfg,candles,marketTime,quotePrice,provider,currency,errors,gapsSkipped=0,timeframe="intraday"){
+function pack(symbolInfo,cfg,candles,marketTime,quotePrice,provider,currency,errors,gapsSkipped=0,timeframe="intraday",delivery={}){
   validateCandles(candles);
   if(!Number.isFinite(quotePrice)||quotePrice<=0)throw Error('Invalid provider quote');
+  if(!Number.isFinite(marketTime)||marketTime<=0||marketTime>Date.now()+1000)throw Error('Invalid provider quote timestamp');
+  const delaySeconds=delivery.delaySeconds??null;
+  if(delaySeconds!==null&&(!Number.isFinite(delaySeconds)||delaySeconds<0))throw Error('Invalid provider delay');
   const history=candleStatus(candles,timeframe,symbolInfo.assetClass);
   const quoteFresh=classifyQuote(marketTime);
-  const fresh=quoteFresh&&history.current;
+  const fresh=quoteFresh&&history.current&&!(delaySeconds>0);
   const pricingProxy=['Commodity','Index'].includes(symbolInfo.assetClass)||(provider==='Yahoo Finance'&&symbolInfo.display.endsWith('USDT'))||(provider==='Binance'&&symbolInfo.display.endsWith('USD'));
   const instrument=provider==='Binance'?symbolInfo.display.replace(/(?:USDT|USD)$/,'')+'USDT':symbolInfo.yahoo;
-  const provenance={state:fresh?'REAL':'STALE',verified:history.current,fresh,quoteFresh,candlesCurrent:history.current,candleStatus:history.current?'CURRENT':history.closureCompatible?'SESSION_GAP':'STALE',lastClosedCandleAt:history.lastClosedAt,provider,instrument,instrumentMatch:!pricingProxy,pricingProxy,quoteAt:marketTime,observedAt:Date.now(),closedBarsOnly:true,executable:false,pricing:'Indicative provider data; paper execution only',fallbackErrors:errors,gapsSkipped};
-  lastStatus={state:provenance.state,observedAt:Date.now(),provider};
-  return {symbolInfo,candles,quotePrice,marketTime,source:pricingProxy?`${provider} (${instrument} indicative proxy for ${symbolInfo.display})`:provider,currency,exchangeName:provider,...cfg,provenance,warning:!history.current?'Candle history stale or session gap; opportunities and execution blocked':!quoteFresh?'Market quote stale or market closed; opportunities and execution blocked':pricingProxy?'Indicative underlying proxy, not an exact spot/CFD quote; actionable opportunities blocked':null};
+  const provenance={state:fresh?'REAL':'STALE',verified:history.current,fresh,quoteFresh,candlesCurrent:history.current,candleStatus:history.current?'CURRENT':history.closureCompatible?'SESSION_GAP':'STALE',lastClosedCandleAt:history.lastClosedAt,provider,instrument,instrumentMatch:!pricingProxy,pricingProxy,quoteAt:marketTime,observedAt:delivery.observedAt??Date.now(),evaluatedAt:Date.now(),quoteAgeMs:Math.max(0,Date.now()-marketTime),quoteMaxAgeMs:MAX_QUOTE_AGE,candleAgeMs:history.ageMs,delaySeconds,dataType:delaySeconds>0?'DELAYED':provider==='Binance'||delaySeconds===0?'LIVE':'DELAY_UNKNOWN',delivery:delivery.cached?'CACHED':'PROVIDER',simulated:false,closedBarsOnly:true,executable:false,pricing:'Indicative provider data; paper execution only',fallbackErrors:errors,gapsSkipped};
+  lastStatus={state:provenance.state,observedAt:Date.now(),provider,quoteAt:marketTime};
+  return {symbolInfo,timeframe,candles,quotePrice,marketTime,source:pricingProxy?`${provider} (${instrument} indicative proxy for ${symbolInfo.display})`:provider,currency,exchangeName:provider,...cfg,provenance,warning:delaySeconds>0?'Provider reports delayed data; opportunities and execution blocked':!history.current?'Candle history stale or session gap; opportunities and execution blocked':!quoteFresh?'Market quote stale or market closed; opportunities and execution blocked':pricingProxy?'Indicative underlying proxy, not an exact spot/CFD quote; actionable opportunities blocked':null};
 }
 export async function getMarketData(rawSymbol,timeframe='intraday'){
   if(!TIMEFRAME_CONFIG[timeframe])throw Object.assign(Error('Unsupported timeframe'),{status:400});
   if(typeof rawSymbol!=='string'||!/^[-A-Za-z0-9^=:.]{1,32}$/.test(rawSymbol))throw Object.assign(Error('Invalid instrument'),{status:400});
   const info=normalizeSymbol(rawSymbol),key=info.display+':'+timeframe;
-  const hit=cache.get(key);if(hit&&Date.now()-hit.storedAt<5000){const data=hit.data;return pack(data.symbolInfo,{range:data.range,interval:data.interval,tvInterval:data.tvInterval,label:data.label},data.candles,data.marketTime,data.quotePrice,data.provenance.provider,data.currency,data.provenance.fallbackErrors,data.provenance.gapsSkipped,timeframe)}
+  const hit=cache.get(key);if(hit&&Date.now()-hit.storedAt<5000){const data=hit.data;return pack(data.symbolInfo,{range:data.range,interval:data.interval,tvInterval:data.tvInterval,label:data.label},data.candles,data.marketTime,data.quotePrice,data.provenance.provider,data.currency,data.provenance.fallbackErrors,data.provenance.gapsSkipped,timeframe,{delaySeconds:data.provenance.delaySeconds,observedAt:data.provenance.observedAt,cached:true})}
   if(pending.has(key))return pending.get(key);
   const failure=failures.get(key);if(failure&&Date.now()<failure.until)throw Object.assign(Error(failure.message),{status:failure.status,code:failure.code,retryAfter:Math.max(1,Math.ceil((failure.until-Date.now())/1000))});
   failures.delete(key);
@@ -183,5 +200,6 @@ export async function getPaperPricing(market,accountCurrency="USD"){
     if(!["GBP","EUR","JPY","CHF","CAD","AUD","NZD"].includes(priceCurrency))throw Object.assign(Error("Verified settlement conversion unavailable"),{status:502});
     const conversion=await getMarketData(priceCurrency+"USD","intraday");assertPaperMarket(conversion);conversionRates[priceCurrency+"USD"]=conversion.quotePrice;
   }
-  return {priceCurrency,conversionRates};
+  assertPaperMarket(market); // Conversion requests must not let the original quote age past its boundary.
+  return {priceCurrency,conversionRates,marketEvidence:{provider:market.provenance.provider,instrument:market.provenance.instrument,quoteAt:market.marketTime,observedAt:market.provenance.observedAt,quotePrice:market.quotePrice,delivery:market.provenance.delivery,dataType:market.provenance.dataType,simulation:false}};
 }

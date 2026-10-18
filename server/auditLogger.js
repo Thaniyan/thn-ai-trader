@@ -32,3 +32,11 @@ export function logAuditEvent({ eventType, accountId, symbol, details, status = 
 export function getAuditEvents(limit = 50) {
   return db.prepare("SELECT json FROM audit ORDER BY id DESC LIMIT ?").all(limit).map(row=>JSON.parse(row.json));
 }
+
+// Account ownership is checked by the HTTP boundary. Query before limiting so other
+// accounts can neither hide this history nor leak into a page.
+export function getOrderHistory(accountId,{limit=100,before}={}){
+  if(!Number.isInteger(limit)||limit<1||limit>500||before!==undefined&&(!Number.isSafeInteger(before)||before<1))throw Object.assign(Error('Invalid order history pagination'),{status:400});
+  const rows=db.prepare(`SELECT id,json FROM audit WHERE json_extract(json,'$.accountId')=? AND (json_extract(json,'$.eventType') LIKE 'ORDER_%' OR json_extract(json,'$.eventType') LIKE 'PENDING_%' OR json_extract(json,'$.eventType') IN ('SERVER_PROTECTION_CLOSE','POSITION_CLOSED')) ${before===undefined?'':'AND id < ?'} ORDER BY id DESC LIMIT ?`).all(accountId,...(before===undefined?[]:[before]),limit+1);
+  return {events:rows.slice(0,limit).map(r=>JSON.parse(r.json)),nextCursor:rows.length>limit?rows[limit-1].id:null};
+}

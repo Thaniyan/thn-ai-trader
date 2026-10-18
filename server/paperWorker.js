@@ -1,9 +1,10 @@
+import {paperPrice} from './paperExecution.js';
 import crypto from 'node:crypto';
 import {allAccountRecords,saveTradingAccounts} from './accountStore.js';
 import {withTransaction,recordFill} from './storage.js';
-import {getMarketData,getPaperPricing} from './marketData.js';
+import {getMarketData,getPaperPricing,assertPaperMarket} from './marketData.js';
 import {getBrokerAdapter} from './brokerAdapters.js';
-import {calculatePnl,calculateOrderRisk,calculateRequiredMargin,getContractSpec,validateOrderRisk} from './riskEngine.js';
+import {calculatePnl,calculateOrderRisk,calculateRequiredMargin,validateOrderRisk} from './riskEngine.js';
 import {logAuditEvent} from './auditLogger.js';
 export async function processPaperAccounts(){
   return withTransaction(async()=>{
@@ -15,14 +16,13 @@ export async function processPaperAccounts(){
       const adapter=getBrokerAdapter('paper');
       const blocked=[];
       const canOpen=!(await inspectPaperRecovery(account)).openingBlocked;
-      account.orders=(account.orders||[]).filter(order=>order.expiresAt>Date.now());
+      account.orders=(account.orders||[]).filter(order=>{if(order.expiresAt>Date.now())return true;logAuditEvent({eventType:'PENDING_EXPIRED',accountId:account.id,symbol:order.symbol,details:{orderId:order.id,ticket:order.ticket,expiresAt:order.expiresAt},status:'EXPIRED'});return false});
       const symbols=[...new Set([...account.positions.map(p=>p.symbol),...account.orders.map(o=>o.symbol)])];
       for(const symbol of symbols){
         let market,pricing;
         try{market=await getMarketData(symbol,'intraday');pricing=await getPaperPricing(market,account.currency)}catch(error){blocked.push(symbol);for(const position of account.positions.filter(p=>p.symbol===symbol))position.pricingStatus='UNAVAILABLE';continue}
-        const spec=getContractSpec(symbol);
           for(const pos of [...account.positions].filter(p=>p.symbol===symbol)){
-            const price=Number((market.quotePrice+(pos.side==='BUY'?-1:1)*spec.pipSize*0.4).toFixed(spec.digits));
+            const price=paperPrice(symbol,pos.side,market.quotePrice,true);
             pos.pricingStatus='CURRENT';pos.currentPrice=price;pos.floatingPnl=calculatePnl({symbol,side:pos.side,lots:pos.lots,entryPrice:pos.entryPrice,exitPrice:price,accountCurrency:account.currency,...pricing});
             pos.pnlR=pos.riskDollars>0?pos.floatingPnl/pos.riskDollars:null;
             const hit=pos.side==='BUY'?(price<=pos.sl||(pos.tp>0&&price>=pos.tp)):(price>=pos.sl||(pos.tp>0&&price<=pos.tp));
@@ -32,14 +32,16 @@ export async function processPaperAccounts(){
           account.usedMargin=Number(account.positions.reduce((sum,p)=>sum+p.margin,0).toFixed(2));account.freeMargin=Math.max(0,Number((account.equity-account.usedMargin).toFixed(2)));
           if(!canOpen)continue;
           for(const order of [...account.orders].filter(o=>o.symbol===symbol)){
-            const buy=order.side.startsWith('BUY'),crossed=buy?market.quotePrice+spec.pipSize*0.4<=order.entryPrice:market.quotePrice-spec.pipSize*0.4>=order.entryPrice;
+            const buy=order.side.startsWith('BUY'),crossed=buy?paperPrice(symbol,'BUY',market.quotePrice)<=order.entryPrice:paperPrice(symbol,'SELL',market.quotePrice)>=order.entryPrice;
             if(!crossed)continue;
             const payload={...order,side:buy?'BUY':'SELL'};
             const others=account.orders.filter(o=>o.id!==order.id);
-            const risk=validateOrderRisk({account:{...account,orders:others},order:payload,currentPrice:market.quotePrice,...pricing});
-            if(!risk.approved){account.orders=others;logAuditEvent({eventType:'PENDING_REJECTED',accountId:account.id,symbol,details:{code:risk.code}});continue}
-            account.orders=others;account.freeMargin+=order.reservedMargin||0;
-            const fill=await adapter.placeOrder(account,payload,market.quotePrice,pricing);account.positions.push(fill.position);account.orders=others;account.todayTradesCount++;logAuditEvent({eventType:'PENDING_FILLED',accountId:account.id,symbol,details:{ticket:fill.ticket}});
+            account.freeMargin=Math.max(0,account.equity-account.usedMargin-others.reduce((sum,o)=>sum+Number(o.reservedMargin||0),0));
+            const risk=validateOrderRisk({account:{...account,orders:others},order:payload,currentPrice:paperPrice(symbol,payload.side,market.quotePrice),...pricing});
+            if(!risk.approved){account.orders=others;logAuditEvent({eventType:'PENDING_REJECTED',accountId:account.id,symbol,details:{orderId:order.id,ticket:order.ticket,code:risk.code}});continue}
+            account.orders=others;
+            let fill;try{fill=await adapter.placeOrder(account,payload,market.quotePrice,pricing)}catch(error){if(error.status!==400)throw error;logAuditEvent({eventType:'PENDING_REJECTED',accountId:account.id,symbol,details:{orderId:order.id,ticket:order.ticket,code:error.code,reason:error.message},status:'REJECTED'});continue}
+            account.positions.push(fill.position);account.orders=others;account.todayTradesCount++;account.usedMargin=account.positions.reduce((sum,p)=>sum+p.margin,0);account.equity=Number((account.balance+account.positions.reduce((sum,p)=>sum+Number(p.floatingPnl||0),0)).toFixed(2));logAuditEvent({eventType:'PENDING_FILLED',accountId:account.id,symbol,details:{orderId:order.id,ticket:fill.ticket,side:payload.side,lots:payload.lots,executedPrice:fill.executedPrice,executionModel:fill.executionModel,marketEvidence:fill.marketEvidence}});
           }
           account.pricingStatus='VERIFIED_PAPER';account.lastSyncAt=new Date().toISOString();
       }
@@ -73,16 +75,18 @@ export async function inspectPaperRecovery(account){
   return {positions,openingBlocked:account.permissionLevel!=="TRADING_ENABLED"||account.status!=="CONNECTED"||positions.some(p=>!p.canReduce),pendingOrdersCancelable:true,policy:"Reduction only with fresh exact-instrument data. No supplied, stale or proxy fill price is accepted.",recovery:"Cancel pending orders without a fill; retry closes when exact fresh data is available. Preserve database and matching keys. Never reset or fabricate a close to clear a legacy position."};
 }
 export async function refreshPaperRisk(account){
-  const updates=[];
+  const updates=[],markets=[];
   for(const pos of account.positions||[]){
     let market,pricing;
     try{market=await getMarketData(pos.symbol,"intraday");pricing=await getPaperPricing(market,account.currency)}
     catch(error){throw Object.assign(Error("New exposure blocked: an existing position cannot be valued with fresh exact-instrument data. Use account recovery; priced positions can still be reduced independently."),{status:409,code:"EXPOSURE_VALUATION_UNAVAILABLE",causeCode:error.code||"MARKET_UNAVAILABLE"})}
-    const spec=getContractSpec(pos.symbol),price=Number((market.quotePrice+(pos.side==="BUY"?-1:1)*spec.pipSize*0.4).toFixed(spec.digits));
+    markets.push(market);
+    const price=paperPrice(pos.symbol,pos.side,market.quotePrice,true);
     updates.push([pos,{riskDollars:calculateOrderRisk({symbol:pos.symbol,side:pos.side,lots:pos.lots,currentPrice:pos.entryPrice,stopLoss:pos.sl,takeProfit:pos.tp||0,leverage:account.leverage,accountCurrency:account.currency,...pricing}).slRiskUpperBound,
       margin:calculateRequiredMargin({symbol:pos.symbol,lots:pos.lots,price:pos.entryPrice,leverage:account.leverage,accountCurrency:account.currency,...pricing}),currentPrice:price,
       floatingPnl:calculatePnl({symbol:pos.symbol,side:pos.side,lots:pos.lots,entryPrice:pos.entryPrice,exitPrice:price,accountCurrency:account.currency,...pricing})}]);
   }
+  try{for(const market of markets)assertPaperMarket(market)}catch{throw Object.assign(Error('Exposure valuation expired during refresh'),{status:409,code:'EXPOSURE_VALUATION_UNAVAILABLE'})}
   for(const [pos,update] of updates)Object.assign(pos,update);
   const day=new Date().toISOString().slice(0,10);if(account.riskDay!==day){account.riskDay=day;account.dayStartBalance=account.balance;account.dailyRealizedPnl=0}
   account.equity=Number((account.balance+(account.positions||[]).reduce((sum,p)=>sum+Number(p.floatingPnl||0),0)).toFixed(2));
