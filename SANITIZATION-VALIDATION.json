@@ -1,0 +1,58 @@
+{
+  "sourceHead": "3b641fcfac6f4e0f326a0f056529620a2419616d",
+  "candidateBranch": "security/sanitized-development-3b641fc",
+  "build": "PASS",
+  "lint": {
+    "status": "PASS",
+    "targets": 18
+  },
+  "node": {
+    "passed": 86,
+    "failed": 0,
+    "skipped": 0,
+    "newHistoryPrivacyCases": 2
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "broadCSPBrowser": "PASS",
+  "workspaceBrowser": {
+    "passed": 137,
+    "failed": 0
+  },
+  "releaseBrowser": {
+    "passed": 11,
+    "failed": 0
+  },
+  "staticBrowser": {
+    "passed": 130,
+    "failed": 0,
+    "mode": "LOCAL_ROUTING_MODEL_NOT_VERCEL"
+  },
+  "accessibility": {
+    "viewsAcrossThemes": 36,
+    "configuredViolations": 0,
+    "manualReviewRequired": true
+  },
+  "fixtureEvidenceOnly": true,
+  "sourceComparison": {
+    "originalFiles": 125,
+    "byteIdentical": 121,
+    "modified": [
+      "AGENTS.md",
+      "README.md",
+      "public/app.js",
+      "public/index.html"
+    ],
+    "backendDependenciesDeploymentUnchanged": true
+  },
+  "security": {
+    "knownSensitiveBlobIdsExcluded": 10,
+    "knownHistoricalBrokerValuesExcluded": 19,
+    "originalAncestryExcluded": true,
+    "noClaimOfExhaustiveUnknownSecretDetection": true
+  },
+  "publication": "NOT AUTHORIZED; original repository history cleanup and deployment isolation remain separate gates",
+  "durableBackup": "NOT ESTABLISHED; verify outside cloud workspace before any reset"
+}

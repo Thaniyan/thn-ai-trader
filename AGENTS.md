@@ -29,3 +29,14 @@ Read docs/PRODUCT-VISION.md, docs/ARCHITECTURE.md, docs/QUALITY-STANDARDS.md and
   Maintain EN/AR, RTL, nine navigation views, accessibility and mobile behavior.
 - Do not weaken tests or configuration checks to obtain a pass. Document a defect,
   distinguish historical tests from portable fixtures, and fix it within scope.
+
+## Sanitized publication candidate
+
+This separate local copy is an explicitly authorized clean-root reconstruction.
+Its source milestones map to the protected original in SANITIZATION-MAP.json.
+Do not fetch, merge, graft or replace its parents with the unsanitized original
+history. Never add original branches/tags, refs/replace, alternates or full-history
+bundles to a proposed publication. tests/sanitized-history.test.mjs checks all refs.
+No remotes are configured. Publication remains blocked pending private off-workspace
+recovery, provider credential review, deployment isolation and separate approval.
+Historical documents describe prior work; SANITIZED-MIGRATION.md governs this copy.

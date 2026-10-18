@@ -1,3 +1,5 @@
+> Local sanitized candidate: read [SANITIZED-MIGRATION.md](SANITIZED-MIGRATION.md) before any publication or recovery. Original history is intentionally excluded. No publication is authorized.
+
 > Local reconciliation candidate based on original main 50857df and reviewed private
 > staging b05f070. Not published or deployed. Current authority and publication
 > blockers: [Repository reconciliation](docs/REPOSITORY-RECONCILIATION.md).

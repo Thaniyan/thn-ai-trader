@@ -1,0 +1,44 @@
+{
+  "sourceHead": "3b641fcfac6f4e0f326a0f056529620a2419616d",
+  "branch": "security/sanitized-development-3b641fc",
+  "method": "Independent source-only root at reconciliation; replay six reviewed milestones with credential/account defaults removed from each snapshot; original refs/history never imported; neutral truthful reconstruction identity.",
+  "milestones": [
+    {
+      "sourceCommit": "bb0339a408290f6949c7075d91c5122f943c92a7",
+      "sanitizedCommit": "2d6b1cf115b5faff87b57fb9c17ad2f8d52d2ae2",
+      "subject": "Reconcile verified staging improvements onto original repository history"
+    },
+    {
+      "sourceCommit": "c87af55bfa5c492fe017ab72220cd4d32216f905",
+      "sanitizedCommit": "be7a7cdc6f3f7f026147ecf8e210e7341b85bd17",
+      "subject": "Record reconciliation validation and portable baseline review procedure"
+    },
+    {
+      "sourceCommit": "b7ff624bf1aaf5a802e603385d2f045c2b3b6544",
+      "sanitizedCommit": "6c05ac9dbdc1efa4ee2748cc0189c36c2d45290e",
+      "subject": "Preserve owner-verified isolation assessment before frontend sprint"
+    },
+    {
+      "sourceCommit": "f34966c1e61302e7026294edeb827cdb61718ab3",
+      "sanitizedCommit": "b6f8530a99bb657a285d0bec02f5d7737c047096",
+      "subject": "Build bilingual evidence-driven trading workspace and responsive market explorer"
+    },
+    {
+      "sourceCommit": "3bd670e1516a51afe5db1298a3d3b06bfa5b1f1f",
+      "sanitizedCommit": "fd165cf3143c507d9b4e492721e871ef8e07bb12",
+      "subject": "Finalize workspace navigation regression coverage and sprint evidence"
+    },
+    {
+      "sourceCommit": "3b641fcfac6f4e0f326a0f056529620a2419616d",
+      "sanitizedCommit": "a6e0097ac2109508d8693553ac26c9739bf8f28c",
+      "subject": "Harden market provenance and transactional paper execution"
+    }
+  ],
+  "excludedPaths": [
+    "AUDIT_REPORT.md",
+    "audit_log.json",
+    "broker_accounts.json",
+    "trading_accounts.json"
+  ],
+  "note": "Source identifiers are provenance text only; original objects and parents are not imported. No secret values included."
+}
