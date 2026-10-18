@@ -1,0 +1,17 @@
+{
+  "framework": null,
+  "installCommand": null,
+  "buildCommand": null,
+  "outputDirectory": "public",
+  "rewrites": [{ "source": "/api/:path*", "destination": "https://staging-backend.example.invalid/api/:path*" }],
+  "headers": [
+    { "source": "/api/:path*", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
+    { "source": "/:path*", "headers": [
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://s3.tradingview.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://*.tradingview.com; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "X-Frame-Options", "value": "DENY" },
+      { "key": "Referrer-Policy", "value": "no-referrer" },
+      { "key": "Strict-Transport-Security", "value": "max-age=86400" }
+    ] }
+  ]
+}

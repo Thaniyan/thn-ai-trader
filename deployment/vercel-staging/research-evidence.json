@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-17",
+  "timezone": "Asia/Muscat",
+  "evidence": {
+    "configuration": {
+      "url": "https://vercel.com/docs/project-configuration",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "git": {
+      "url": "https://vercel.com/docs/project-configuration/git-configuration",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "hobby": {
+      "url": "https://vercel.com/docs/plans/hobby",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "protection": {
+      "url": "https://vercel.com/docs/deployment-protection",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "rewrites": {
+      "url": "https://vercel.com/docs/rewrites",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "github": {
+      "url": "https://vercel.com/docs/git/vercel-for-github",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    "officialSource": {
+      "repository": "https://github.com/vercel/vercel",
+      "commit": "c628be7835e03a965b93e9cf9e2bd5ac2acbf5eb",
+      "headersAndRewrites": "Both generated configurations pass current packages/routing-utils/src/schemas.ts JSON schemas",
+      "node24": "packages/build-utils/src/fs/node-version.ts contains24.x",
+      "protection": "packages/cli/src/commands/project/protection.ts default mode prod_deployment_urls_and_all_previews; does not establish user entitlement or full production-domain coverage",
+      "limitations": [
+        "CLI config schema allows unknown platform properties: not proof git.deploymentEnabled accepted server-side",
+        "No Vercel account or plan inspected",
+        "Official pricing/plan/private-repo/author/limit pages blocked403"
+      ]
+    }
+  }
+}

@@ -1,0 +1,978 @@
+{
+  "original": "50857dfc1e45a901515b56ffe2ed914d897671af",
+  "staging": "b05f070c1c9b289bc5b39f833e4591f0bdd8d8ac",
+  "files": [
+    {
+      "path": ".env.example",
+      "status": "changed",
+      "originalSha256": "d66ba5d346354796702dd52b3ee0c2d838216fd6eab0ec21f3968b2a0dfc72b6",
+      "stagingSha256": "024eeba38109086b0b2071ba77369cf2aa4c568898e42b8720dd850f261871a8",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": ".gitignore",
+      "status": "changed",
+      "originalSha256": "28613e8a512115567d3d5d85735eddf69be0e79b5ba138fd9050528719260b44",
+      "stagingSha256": "2ee3ea2553b7de2d2fedb2be8f357bec150f4779e92781b3241548af7986c578",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "AUDIT_REPORT.md",
+      "status": "original-only",
+      "originalSha256": "9bac8b0518e139ad17b0cf2e3e5224c5ecea4c58cbdfc512c2bf1008c8443852",
+      "stagingSha256": null,
+      "decision": "exclude",
+      "reason": "Obsolete readiness claims and legacy identifiers; retained in original Git history only",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "PUBLICATION-MANIFEST.json",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8d0e71de7f28c4a788803eecf59687135a2ee897eb77cd021add8a13aa96c510",
+      "decision": "exclude",
+      "reason": "Prior private staging publication destination/status is not authority for this public-repository migration",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "PUBLICATION-REVIEW.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8525dcfcb387410d01d4a743f19a450ce949721bcef60fe5eb5da803b45a3a61",
+      "decision": "exclude",
+      "reason": "Prior private staging publication destination/status is not authority for this public-repository migration",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "README.md",
+      "status": "changed",
+      "originalSha256": "c98e544a9bfaff289dedd17872dba31f47debd21c991399457fa8a2ee2e74966",
+      "stagingSha256": "a32d9f93108450b6a7258c44745b59372af7872894c0d89e330ce84e39c75120",
+      "decision": "adapt",
+      "reason": "Use staged setup instructions with explicit local migration status and authoritative workflow links",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "audit_log.json",
+      "status": "original-only",
+      "originalSha256": "8c179bc190402fdfe8fa230307cbdf0bea9eed5bf360dfc56f0e7652c7245a21",
+      "stagingSha256": null,
+      "decision": "exclude",
+      "reason": "Tracked runtime state; never import into candidate or release",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "bun.lock",
+      "status": "same",
+      "originalSha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c",
+      "stagingSha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/Caddyfile",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "f4d89db5a80e583b431ab1691760770fa763e11abfb426df239dfab1e8c63039",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/inspect-instance.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "e0ceb6ad5f0aab8d9a39985956b805ec054d529173b55628fd9d53a2e99b161c",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/install-tools.sh",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "b85a78e01c1c65b9c46c104930eaa2d757bcac4ed2a7aa6f2415ac56d3548ccd",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/known-releases.json",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8c13987c83b57bc459248d0a91fb4cd44f34301547fc34f34f8a57d9e4494d0f",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/loopback.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "7c7720a5f2e3995a302e350a74d8e6a1c66cd944ad6e7aaf48583184eeb1f165",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/manage.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "55af60e43a427a7b71d5ffe70bfd27c96ffd664e8cb48717daed9be952dc4b8d",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/prepare-package.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "33c91a4d858efb8fb66fba1a2de10f1d9b5eb86ca8f5a841476c5f0a7f5cef2b",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/transition-release.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "e5b2d392915590898b895fd7e91f264b94e5c39462fbabbda762c1f3c9e9ad74",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/local-staging/validate-package.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "a1d9dd763d64b598cbd5e86d56415baa7c6ca98886eca21e0648b08c73cbe686",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/production.env.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4803cdcd2f64bca4df9a30e4d1a4cac0918b46fc434ef70480aa9d52386828c1",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging.env.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "16e4a07c6ede4c97bd60ff337af8d0afb170149597d10fa53b693d30ee1a5162",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging/Caddyfile.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "f9961f0b00ac32c050b0b4ce7633563a3faf2be5b00d381b395d4a577b0ace8a",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging/backend.service.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "31ee6d5cf221b99d877f40ed2b435d4f6972a9066c5481301ed43a5f1ddf67ad",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging/preflight.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8d901130d814a8580ef3fc8e6451f8ea5069b9e209812c4289ff83f73deac8e6",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging/prepare-release.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "85ff278a62925255bcc71611bd1b32637087bc18b1fa3f1392df009577b19ca1",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/staging/vercel.json.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "ca838b8ab0b12fcb531676b259ed6c1dd40fa6b2d56cdec6ccf2d179d8cd1230",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/thn-backend-staging.service.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "0b5ce8998b7ec071a4836f3e7c967d14803a44af8c3a25e1684e74edbc76e13d",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/thn-backend.service.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "e515eb5367d7e33c442d72add8d2775a56bee19e2a24ea0d1b256f8568e75d0b",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/Caddyfile.backend.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "a48b84051a6ffc6d302794fc2566764b790cb937a77bee163963708930dac9cc",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/INTEGRITY-REVIEW.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "44f106a8a01f37c8d525a698bfa5f713ec5123b557cd8b182993efba6f418330",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/README.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "fcf5539d3c39a8ff5a5c8ce88c87f39307765f316ba59d5847ce0f2dd6502862",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/backend-preflight.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "9579f32f23c4bd77872cb744e63ec6afaaff41f711bed8ed0c35baffbc59c1cc",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/backend-preload.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d33805347e8c5176537f8ea4998fdbc1a1f9ac91b5e6d1f328bdb51ce55da86a",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/backend.service.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "25d9d03955049c94d707aee1e53593f5fe5d0377a55c7440220507b7b07d39ea",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/boot.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "21cc33c202edb393db3b1f77e463fb1114e6146c839ffbac98eb8f838a181ba0",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/build.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "6d88da1255fd7da48eba2053d38727a3d8e4726fff5af01491e57dcb400d627b",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/package.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "9ab5a9f9fba6d2c42ec5e98b81e2f420e8a6cdf3b0f44606bc1fd6c309b0749d",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/policy.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "7f93c431fe5a7f3beec29db7582c47c7bf2911ed2fe6a4de4a62a52e32ccdf62",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/research-evidence.json",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "78ce7b4dc63e64141862764fbb59b80ff435ed42bd33f8e706871c9973613610",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/shell.html",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "74bc8617586b0b32cc7c0c7b7a3e1a29783e4dabfc9754f49d1b0de7eca85233",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/staging.css",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "da787d7668650918fb593e3942f65998bd70e53b04f2c38d5a11db2fb2cab2a2",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/vercel.template.json",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4bb9e1a5870dfba7f98140976621928ed00398b96ad180b8d68695a23e8e620c",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel-staging/verify-build.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d2080c7b4efd462c79714e095a4fd1c0fcbdb74436eabb4c9f4df60670818401",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "deployment/vercel.frontend.json.example",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "2e3ccc1bd5639937623672cc78e600b5dc773be85d08956a7eff508c850b67ad",
+      "decision": "retain-inactive",
+      "reason": "Reviewed templates/helpers only; no root configuration, workflow, hosting setting or deployment activated",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/VERCEL-STAGING-ACCESS.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "11de507ad0e4d6a8f844d1564ade688d5d39c2239cca7a7798ac599526410e50",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/VERCEL-STAGING-INTEGRATION.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d8973825d0da12309466f3b49c4be7c19a97ba1132e6a719a5f4ba68c7be9e07",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/VERCEL-STAGING-SETUP.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d56ef32f1dfd15995e2cf225cc1a805a84748495cd218590e279447674d574e9",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/VERCEL-STAGING-VALIDATION.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "58a1e5558d48d2ac62eb46282fbdabaafdf15c8d4bee99d68fc42fc05a159510",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/deployment-operations.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4b30f8339447f53a6ec916e080b0e8fef7ba248a65d48f8c02d2daede814eedc",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/final-readiness.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "e7c7c8ef214c96a89e058bec39ae37e0898b68098115acfc61850adc7c6330e6",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/local-validation-results.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "e09b6b42d6768a76df3e3b990b2392b2b8c46f66711fa04a2d645df5545e1531",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/local-windows-staging.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "99dd3f0c80aba55156f88ac3ccf50365f53fff41453f97e03bf96761ca9de9d5",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/release-blocker-remediation.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "1143edbc025c15f65a42aaaafff596ab2d042532a5b2bb9a7eb7cb640350f161",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/staging-engineering-audit.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "0c62017ea1ac1859291c1ffafe13bb0f29544a489ea158b15e931163a0844d5c",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/staging-upgrade.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "958178fff76910df432c837f4d11870484ed2b7791e0c7b85eff8b13b08804e6",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "docs/staging-validation.md",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "df3730bf6d087194db3068d2522dc8fa558e97b8e40d8c003c3e8f0f5f18fd72",
+      "decision": "retain-contextualize",
+      "reason": "Historical staging operations evidence; current migration authority lives in REPOSITORY-RECONCILIATION.md",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "metadata.json",
+      "status": "changed",
+      "originalSha256": "24996452abe83126788f5f8d627dcfa2ef43f59795b1baa0326649a3b2f4d8c7",
+      "stagingSha256": "63b001e4ccfb520182fd5549b7b3057cee0edb57ce54ce07591abfca2c233b6c",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "package.json",
+      "status": "changed",
+      "originalSha256": "2aa181e3702026881f68981642d1bf41327fc9fd069964da175a02e2ef9538ca",
+      "stagingSha256": "910bbef768c0ef2888cdb1cccb1f1297ba55c87bc7e9804c7bc45a463ecaea63",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/app.js",
+      "status": "changed",
+      "originalSha256": "eaac045298945b4506944daffe9e87345439b2a987393655f8442d07474eecf7",
+      "stagingSha256": "6399b45d9c4b3b7f7a5d2bea27cd4ed0cc47a52994d1cad4439503c66ecd6fbd",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/brand-preview.png",
+      "status": "same",
+      "originalSha256": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+      "stagingSha256": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/d3.min.js",
+      "status": "same",
+      "originalSha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "stagingSha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/index.html",
+      "status": "changed",
+      "originalSha256": "2e75173caa549f2cd1ef31754938f9c48413557ee57c7557a3898b51bc1b1b6b",
+      "stagingSha256": "3aa7e17e2f7bfafc35cde13f9d33c1832706b0e3dfd2bc3ff559150b13320793",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/logo.svg",
+      "status": "same",
+      "originalSha256": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+      "stagingSha256": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/manifest.json",
+      "status": "same",
+      "originalSha256": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+      "stagingSha256": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "public/style.css",
+      "status": "changed",
+      "originalSha256": "3574ed923561932bfeffecaa3757c3b78cd241bcfb662d0ed1e1601f35de1bca",
+      "stagingSha256": "9f1a263d8c0c00e2cf68ecd89ab39026cd740c8267e714a52c370ccd48acb10a",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "scripts/backup-sqlite.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "209bc7cd274a28d69d989e545ce08e800ee05c9de603232fef1648324137e9d3",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "scripts/recover-writer-lock.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "6f4c414f9a1cbf626cefbbf4c012e28b349ce28355a8d02620e2626e90021f80",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "scripts/vercel-staging/browser-model.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "1a704d72bbab5456fa12a7fbe05a3ec929c5dc7be181f5b934b2286700789b44",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "scripts/vercel-staging/serve-model.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8a354b2c999c2af4db8fed100ea376c2b8190dd9a7c2db1e90f155897511cc7b",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server.js",
+      "status": "changed",
+      "originalSha256": "0fb70f426789a80d769c276c19663c7b5ea86db2e16fb292daf8a4bf3d5e01a0",
+      "stagingSha256": "3393b0a3db1f5d38611973eab80255c83265b48db5e5e4f124da5bd6c49cf8a6",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/accountStore.js",
+      "status": "changed",
+      "originalSha256": "598ed4f6f3a713630f0a8b1f560ef61c6fd2d127b1f8bc2d72fd523436614ca0",
+      "stagingSha256": "1e2bfbd488499c3645ebee9f418e90aeb94fd8722fa301fbc0e90c49de3244a1",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/auditLogger.js",
+      "status": "changed",
+      "originalSha256": "391a2a7d8928a85654b785eecbaa074d748f7b6b9aa037b086c88bff7db397c5",
+      "stagingSha256": "1f6c31e6130aef07b89608f9bab60f549d6c74f3a60622e1e3499672cf7ff345",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/auth.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "80eda54f3836e0660b44dac50778e1db8a1f87320c95073c9a926c860702556b",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/brokerAdapters.js",
+      "status": "changed",
+      "originalSha256": "0d5d3771b2c95fabcb79d47004d566ccaa425a9cca46e863efa071e987e0aa3a",
+      "stagingSha256": "896fa622ae534db964acfd890a753167f3d930dd396e1d764b42e2775ab5852f",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/encryption.js",
+      "status": "changed",
+      "originalSha256": "ddda1ede16b97a2d567e1f32ff13c46c752ca9e38abc5f1cfe406fcb7fdd0ca1",
+      "stagingSha256": "1cc9cb76eceba2285bfe721e9f59ab9c76217680d2d0b54f536f7672547e62fc",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/indicators.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "b758d04ec4afde09a2cfe10f73a2d9fb5cc28dfa3a54c25471946fbb813ec8f0",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/limits.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "021f22a190f9d193b33adf2980b7273d0cdbee13e8175e30dfb0bd9ae4319a8b",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/marketData.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "02d2e83f06cf6b27611a58818b315f47db858c3f77aee57e1104e112b3ae6b10",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/openai.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "04301fa084256fae3c9eef626232412075d2d1eeac03a76e35058ca206dbffa8",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/paperWorker.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "f686b9ffa6dfefaaea4397eae39bf0639d07e31f6f4ffe811c96467b931e5810",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/reconciliationEngine.js",
+      "status": "same",
+      "originalSha256": "2f231dfb58d916ea90f907a2de00b9f992328e142271bfdb20ca3f2c47194d5e",
+      "stagingSha256": "2f231dfb58d916ea90f907a2de00b9f992328e142271bfdb20ca3f2c47194d5e",
+      "decision": "retain-original",
+      "reason": "Identical bytes across baselines; no reconciliation conflict",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/riskEngine.js",
+      "status": "changed",
+      "originalSha256": "7e61f82edd514a302b05adbb4ca59ec3dd4718ae3b01852fe265ad7a127ff53e",
+      "stagingSha256": "a4e01ee31516ae140da45c46050fd04e9372602a594937e398013077fceae5b5",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "server/storage.js",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "aa8a0cf0cfc9b77e2301737abd903dcc7f0766881bb040a63fae1bcd8865c20d",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/accessibility.test.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "7f6d984d2f886fd6014e7fcf4d6902edc9f933a8f89e12494976625535a015b9",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/analysis.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "a00c8d847393dc9c522198b368ecb123b708bb40179fcb40747b24d08a4705ec",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/browser-server.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "dd671c7193a540f9e8ba003a20afdd2f798c61606996462f964eec43dd772a56",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/browser.test.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d7c11585c33ede5c443325d60e90199cfbac17221e0996654f034701690ae2e9",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/check-syntax.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "464bb52a0f2782e587acf4f65e76fa366f0ef4f29ffcb5691ef27af303799e18",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/concurrency.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "c838096d30a61cf5c808f5fd187587da0af7406944d0a1f8a0b91cdd658f34f6",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/fixtures/providers.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4660bd7d706a3ecf897c5e094d5a442a361a50e4149024206a6e02aaac51ad37",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/harness.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "f067b6b170c5ca0b383e554bcb32104a3c73989decbbcd3f868843ce96e20fc4",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/incident.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4e8cae3f953d8e85f7b0260b2af8069b02034070754898b67296edc76ce4b35e",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/integrations.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "b7e514d83e7249db01fea9a03f89a6758ed41c113749d35cbb37ea898542dd54",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/load.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "8beca806aec1219cd5e689c2512f2ebf2a1f2cc5e05e85bd0fedc43f2ea1e6bb",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/market.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "060201b31256f0c7cecd763e69c91ff0567e67ac65071865af686fa2f3024cff",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/operations.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "c3adde9c6254303902fdb21fb65a05a9afbb37c1d4ffd37ee01527ef2e62200e",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/p1.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "7da1b097b5110240596616eaea03599743499a378533b1fa70afed11c4aed87f",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/paper.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "737df7f89a5a81d9bc48e0f97a18f99c884b91b437cda97eb1c99d36465ce663",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/predeployment.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "1b560fd99ef891c3ac145bdb5b60f872aaad7d2befddcc2f348a86aed00f600f",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/release-blockers.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "9b5dba58020b046569a46141763cd9030fa22cc4ce5ca1e1cfb76a5c4d317507",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/release-browser.test.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d376a0d5f664227fe0f836eb24282e7af881163e7b07f6e3931c82b1d03e1e54",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/release-tools.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "1c2e0d37d3cfb6a92de9ca899c4bed8079b2026b55ae956928cb61f5ab908ef9",
+      "decision": "adapt",
+      "reason": "Portable synthetic allowlist fixture replaces dependency on unrelated staging Git objects; shipped transition tool unchanged",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/risk.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "d501c521d07f14f709834f7372e8e142b4f60a4419e45c51630c28a1ca7fcafa",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/run-system.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "77145aa5b6edfbf97099bd09489e925461da32444f2da67cd59aabec366dc15b",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/security.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "1a99f66675f4456d9efa5838092e77cc7fe561ec0bca49ae54eda9c15ffab8d7",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/system.test.js",
+      "status": "changed",
+      "originalSha256": "7af1658c8cd461c5d58945b815344662f8da2a4c0f0f31c1b2e07a534289c62e",
+      "stagingSha256": "e62592d9203674c1539e83af7d52c0d1aea621eaa71fd6dadd1b162c40f79c20",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/vercel-integrity.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "4ac216b16bc27b542c71e4f75d761207df295829e0c0db22fe3dd0cee3c9575e",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/vercel-staging.browser.py",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "2e41933226b8c3cc80e69a9b0c4e60e7d2c7e5609ca0f78113911657d2559c39",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "tests/vercel-staging.test.mjs",
+      "status": "staging-only",
+      "originalSha256": null,
+      "stagingSha256": "664ba9bddad81952ee90f1ed3b0a9d23550b7195ae63f5e2ce536764401f0735",
+      "decision": "retain-staging",
+      "reason": "Reviewed hardening or regression coverage; validate locally before readiness claim",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    },
+    {
+      "path": "trading_accounts.json",
+      "status": "original-only",
+      "originalSha256": "e74a4356fcaa76e544af0350ae7eb0ec0c8c015bb5f7906101e67fb60ca75a61",
+      "stagingSha256": null,
+      "decision": "exclude",
+      "reason": "Tracked runtime state; never import into candidate or release",
+      "verification": "byte comparison; candidate tests recorded in docs/REPOSITORY-RECONCILIATION.md"
+    }
+  ]
+}

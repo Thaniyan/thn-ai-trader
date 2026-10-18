@@ -1,0 +1,28 @@
+{
+	admin off
+	servers {
+		protocols h1 h2
+	}
+	auto_https disable_redirects
+	skip_install_trust
+	persist_config off
+}
+https://localhost:8443 {
+	bind 127.0.0.1
+	tls internal
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+		Content-Security-Policy "default-src 'self'; script-src 'self' https://s3.tradingview.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://*.tradingview.com; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'"
+	}
+	handle /api/* {
+		header Cache-Control no-store
+		reverse_proxy 127.0.0.1:3000
+	}
+	handle {
+		root * {$THN_LOCAL_FRONTEND}
+		header Cache-Control no-store
+		file_server
+	}
+}

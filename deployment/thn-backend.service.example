@@ -1,0 +1,26 @@
+[Unit]
+Description=THN AI Trader persistent paper backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=thn
+Group=thn
+WorkingDirectory=/opt/thn-ai-trader/current
+EnvironmentFile=/etc/thn-ai-trader/backend.env
+# Provision a verified Node 24.x executable here; never point to an older system Node.
+ExecStart=/opt/node24/bin/node server.js
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=40
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/thn-ai-trader
+
+[Install]
+WantedBy=multi-user.target

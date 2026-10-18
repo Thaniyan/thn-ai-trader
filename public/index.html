@@ -1,0 +1,2383 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="An AI-powered market intelligence and risk-aware trading terminal." />
+  <meta property="og:title" content="THN AI Trader" />
+  <meta property="og:description" content="An AI-powered market intelligence and risk-aware trading terminal." />
+  <title>THN AI Trader</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-i18n="workstationLabel56">Skip to workstation</a>
+  <form id="sessionForm" class="panel" style="margin:12px;padding:12px">
+    <label><span data-i18n="accountAccess">Account access</span> <input id="sessionToken" type="password" autocomplete="off" placeholder="Access token" required minlength="16"></label>
+    <button type="submit" data-i18n="signIn">Sign in</button><button id="sessionLogout" type="button" data-i18n="signOut">Sign out</button><span id="sessionStatus" role="status">Trading accounts locked. Live execution disabled.</span>
+  </form>
+  <div class="app-shell">
+    <!-- Left Navigation Dock -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand brand-lockup" href="#dashboard" aria-label="THN Trader dashboard">
+        <img src="logo.svg" alt="THN Trader logo" />
+        <div class="brand-text">
+          <strong>THN <span>TRADER</span></strong>
+          <small data-i18n="brandTagline">Quantitative Trading Suite</small>
+        </div>
+      </a>
+
+      <div class="sidebar-status-tag" id="sidebarBrokerTag">
+        <span class="paper-badge"><span class="dot"></span><span id="sidebarBrokerStatus" data-i18n="workstationLabel53">PAPER SANDBOX</span></span>
+      </div>
+
+      <nav class="nav-stack">
+        <button class="nav active" data-view="dashboard" data-i18n="navDashboard">⚡ Dashboard</button>
+        <button class="nav" data-view="markets" data-i18n="navMarkets">📡 Markets</button>
+        <button class="nav" data-view="trading" data-i18n="navTrading">📈 Trading Terminal</button>
+        <button class="nav" data-view="ai" data-i18n="navAI">🧠 AI Intelligence</button>
+        <button class="nav" data-view="risk" data-i18n="navRisk">🛡️ Risk Desk</button>
+        <button class="nav" data-view="portfolio" data-i18n="navPortfolio">📊 Portfolio</button>
+        <button class="nav" data-view="journal" data-i18n="navJournal">📑 Trade Journal</button>
+        <button class="nav" data-view="brokers" data-i18n="navBrokers">💼 Broker Accounts</button>
+        <button class="nav" data-view="settings" data-i18n="navSettings">⚙️ Settings</button>
+      </nav>
+
+      <div class="side-card">
+        <span class="pulse"></span>
+        <div>
+          <b id="apiStatus" data-i18n="apiChecking">Checking engine</b>
+          <small id="modelStatus" data-i18n="modelInitializing">Provider readiness unverified</small>
+        </div>
+      </div>
+
+      <p class="tiny disclaimer" data-i18n="disclaimer">Capital Preservation Protocol: Enforce strict risk limits, verify broker execution conditions, and follow the trading playbook.</p>
+    </aside>
+
+    <main class="terminal-main" id="mainContent" tabindex="-1">
+      <p class="provenance-strip" id="analysisProvenance" role="status" aria-live="polite">No instrument verified · paper only · live execution disabled</p>
+      <!-- Top Institutional Status & Global Sessions Bar -->
+      <header class="terminal-topbar panel">
+        <div class="topbar-brand">
+          <span class="brand-mark">THN</span>
+          <div class="brand-titles">
+            <b class="wordmark"><span class="wordmark-core">THN</span> <span class="wordmark-ai">TRADER</span></b>
+            <small data-i18n="topbarSub">Quantitative Market Analysis &amp; Execution Workstation</small>
+          </div>
+        </div>
+
+        <!-- Global Market Sessions Ticker -->
+        <div class="global-sessions-bar" aria-label="Global market sessions">
+          <div class="session-pill" id="sessLondon"><span class="session-dot"></span><span>London</span></div>
+          <div class="session-pill" id="sessNY"><span class="session-dot"></span><span>New York</span></div>
+          <div class="session-pill" id="sessTokyo"><span class="session-dot"></span><span>Tokyo</span></div>
+          <div class="session-pill" id="sessSydney"><span class="session-dot"></span><span>Sydney</span></div>
+        </div>
+
+        <div class="topbar-controls">
+          <button class="broker-status-pill" id="openBrokerModalBtn" type="button" title="Manage Trading Broker Account">
+            <span class="broker-live-dot" id="topbarBrokerDot"></span>
+            <span class="trading-mode-tag" id="topbarTradingModeBadge" data-i18n="workstationLabel53">PAPER SANDBOX</span>
+            <span id="topbarBrokerName">Sign in · accounts locked</span>
+          </button>
+
+          <div class="utc-clock-badge">
+            <span class="pulse-green"></span>
+            <b id="terminalUtcClock" class="utc-clock">--:--:-- UTC</b>
+          </div>
+
+          <div class="language-switch" role="group" aria-label="Language selector">
+            <button type="button" class="lang-pill active" data-language="en">EN</button>
+            <button type="button" class="lang-pill" data-language="ar">العربية</button>
+          </div>
+          <select id="languageSelect" class="sr-only" aria-label="Language selector">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+
+          <button class="ghost icon-btn" id="themeBtn" type="button" title="Toggle Theme" aria-label="Toggle Theme">🌓</button>
+        </div>
+      </header>
+
+
+      <!-- ============================================== -->
+      <!-- VIEW 1: DASHBOARD                              -->
+      <!-- ============================================== -->
+      <!-- ============================================== -->
+      <!-- VIEW 1: DASHBOARD                              -->
+      <!-- ============================================== -->
+      <div class="app-view view-active" id="view-dashboard">
+        <!-- Paper Trading Status Banner -->
+        <div class="paper-trading-banner">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="paper-badge"><span class="dot"></span>PAPER TRADING</span>
+            <span><b>Virtual Account:</b> Paper simulation with independently checked provider data. Live broker execution disabled.</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="primary small" data-view-jump="trading">📈 Open Trading Terminal</button>
+            <button type="button" class="ghost small" data-view-jump="brokers">💼 Manage Accounts</button>
+          </div>
+        </div>
+
+        <!-- Dashboard Hero Metric Cards -->
+        <div class="dashboard-hero-grid">
+          <div class="dash-metric-card">
+            <small data-i18n="workstationLabel13">Account Balance (Virtual)</small>
+            <b id="dashBalance">--</b>
+            <span class="subtext">Simulated USD Sandbox</span>
+          </div>
+          <div class="dash-metric-card">
+            <small data-i18n="workstationLabel14">Account Equity</small>
+            <b id="dashEquity">--</b>
+            <span class="subtext">Free Margin: <span id="dashFreeMargin">--</span></span>
+          </div>
+          <div class="dash-metric-card">
+            <small data-i18n="workstationLabel15">Today's Realized PnL</small>
+            <b id="dashDailyPnl">$0.00</b>
+            <span class="subtext"><span id="dashTradesCount">0</span> trades closed today</span>
+          </div>
+          <div class="dash-metric-card">
+            <small data-i18n="workstationLabel16">Risk Protocol Status</small>
+            <b style="color: #10b981;">● Active &amp; Enforcing</b>
+            <span class="subtext" data-i18n="workstationLabel51">Single trade cap: 2% · Aggregate cap: 6% · Daily loss cap: 5%</span>
+          </div>
+        </div>
+
+        <!-- Live Market Overview -->
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">MARKET SURVEILLANCE</p>
+              <h2 data-i18n="workstationLabel0">Live Market Overview</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="markets">Open Markets Desk ↗</button>
+          </div>
+          <div class="table-shell" style="margin-top: 10px;">
+            <table class="market-table">
+              <thead>
+                <tr>
+                  <th data-i18n="workstationLabel24">Symbol</th>
+                  <th data-i18n="workstationLabel25">Name</th>
+                  <th data-i18n="workstationLabel26">Asset Class</th>
+                  <th data-i18n="workstationLabel27">Bid</th>
+                  <th data-i18n="workstationLabel28">Ask</th>
+                  <th data-i18n="workstationLabel29">Spread</th>
+                  <th data-i18n="workstationLabel30">Change vs closed candle</th>
+                  <th data-i18n="workstationLabel31">Action</th>
+                </tr>
+              </thead>
+              <tbody id="dashMarketOverviewBody"><tr><td colspan="8">Provider data unavailable</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- AI Opportunities Radar -->
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">AI INTELLIGENCE RADAR</p>
+              <h2 data-i18n="workstationLabel1">Observed Instrument Analysis</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="ai">View All AI Setups ↗</button>
+          </div>
+          <div class="ai-opps-grid" id="dashAiOppsGrid" aria-live="polite" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:10px"><p>No verified analysis available.</p></div>
+        </div>
+
+        <!-- Recent Activity Box -->
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">EXECUTION AUDIT</p>
+              <h2 data-i18n="workstationLabel2">Recent Trading Activity</h2>
+            </div>
+            <button type="button" class="ghost small" data-view-jump="portfolio">View Portfolio ↗</button>
+          </div>
+          <div id="dashRecentActivityTable" style="margin-top: 10px;">
+            <p class="tiny muted-text" style="text-align: center; padding: 24px;">No paper fills available. Sign in to view your immutable fill history.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 2: MARKETS                                -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-markets">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">📡</span> <span data-i18n="navMarkets">Markets Desk &amp; Macro Radar</span></h2>
+            <p>Real-time market watchlists, quotes, and economic calendar</p>
+          </div>
+          <div class="view-subtabs">
+            <button type="button" class="subtab-btn active" data-subtab="watchlist" data-i18n="workstationLabel46">📡 Live Watchlist</button>
+            <button type="button" class="subtab-btn" data-subtab="calendar" data-i18n="workstationLabel47">📅 Economic Calendar</button>
+          </div>
+        </div>
+
+        <div class="subtab-content" data-subtab="watchlist">
+          <!-- Watchlist & Continuous Opportunity Scanner -->
+      <section class="watchlist-grid" id="watchlist">
+        <article class="panel watchlist-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow" data-i18n="watchlistEyebrow">PORTFOLIO SURVEILLANCE</p>
+              <h2 data-i18n="favoritePairs">Favorite Pairs Watchlist</h2>
+            </div>
+            <div class="panel-head-actions">
+              <span id="watchlistCountBadge" class="watchlist-count-badge">0 pairs</span>
+              <button class="ghost small toggle-watch-btn" id="toggleWatchlistBtn" type="button" data-i18n="hideWatchlist">Hide Watchlist</button>
+            </div>
+          </div>
+          <p class="tiny trust-copy" data-i18n="watchlistIntro">Maintain your primary watch universe. Continuous surveillance evaluates high-confluence opportunities.</p>
+
+          <div id="watchlistCollapsedBar" class="watchlist-collapsed-bar hidden">
+            <span id="watchlistCollapsedSummary">Watchlist is currently minimized.</span>
+            <button type="button" class="ghost small" id="expandWatchlistBtn" data-i18n="showWatchlist">Show Watchlist</button>
+          </div>
+
+          <div id="watchlistBody" class="watchlist-body">
+            <div class="watch-command">
+              <input id="favoriteSymbolInput" autocomplete="off" placeholder="EURUSD, GBPUSD, XAUUSD" data-i18n-placeholder="favoritePlaceholder" />
+              <button class="primary" id="addFavoriteBtn" type="button" data-i18n="addPair">Add Instrument</button>
+            </div>
+            <div class="quick-row compact">
+              <button class="chip favorite-chip" data-favorite="EURUSD">EURUSD</button>
+              <button class="chip favorite-chip" data-favorite="GBPUSD">GBPUSD</button>
+              <button class="chip favorite-chip" data-favorite="USDJPY">USDJPY</button>
+              <button class="chip favorite-chip" data-favorite="XAUUSD">XAUUSD</button>
+              <button class="chip favorite-chip" data-favorite="BTCUSDT">BTCUSDT</button>
+            </div>
+            <div class="watch-search-row">
+              <input id="watchSearchInput" autocomplete="off" placeholder="Search saved pairs..." data-i18n-placeholder="searchPairsPlaceholder" />
+              <button class="ghost small" id="resetDefaultPairsBtn" type="button" data-i18n="loadMajors">Load Majors</button>
+            </div>
+            <label><input id="showHiddenInstruments" type="checkbox"> Show hidden instruments</label><p class="tiny">Hide controls visibility. The Scan preference controls scanning, including hidden instruments.</p>
+          <div id="watchlistList" class="watchlist-list"></div>
+          </div>
+        </article>
+
+        <article class="panel alert-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow" data-i18n="alertMode">AUTOMATED RADAR</p>
+              <h2 data-i18n="continuousScanner">Continuous Opportunity Scanner</h2>
+            </div>
+            <div class="scanner-head-status">
+              <button class="ghost small sound-btn active" id="toggleSoundBtn" type="button" data-i18n="soundOn">🔊 Sound: ON</button>
+              <span class="badge" id="scannerBadge" data-i18n="scannerStopped">Stopped</span>
+            </div>
+          </div>
+          <form id="notificationForm" class="panel">
+  <h3 data-i18n="workstationLabel3">Opportunity notifications — opt in</h3>
+  <label><input id="notifybrowser" type="checkbox"> Browser</label>
+  <label><input id="notifytoast" type="checkbox"> In-app toast</label>
+  <label><input id="notifysound" type="checkbox"> Sound</label>
+  <label>Cooldown minutes <input id="notifyCooldown" type="number" min="1" max="1440" value="15"></label>
+  <label>Minimum confluence score <input id="notifyConfidence" type="number" min="50" max="95" value="72"></label>
+  <label>Instruments (blank = all) <input id="notifySymbols" placeholder="EURUSD,XAUUSD"></label>
+  <label>Timeframes <input id="notifyTimeframes" value="scalp,intraday,swing,position"></label>
+  <label>Severities <input id="notifySeverities" value="strong-entry,qualified-entry"></label>
+  <label>Quiet hours from <input id="quietStart" type="time"></label><label>until <input id="quietEnd" type="time"></label>
+  <p class="tiny">Quiet hours use your browser's local time. Notifications require a fresh qualified setup. Cross-tab duplicate protection requires Web Locks.</p>
+  <button type="submit">Save notification preferences</button>
+</form>
+<div class="scanner-controls">
+            <label><span data-i18n="minConfidence">Minimum Confidence (%)</span><input id="minConfidence" type="number" min="50" max="95" step="1" value="72" /></label>
+            <label><span data-i18n="scanEvery">Scan Frequency</span>
+              <select id="scanEvery">
+                <option value="30000" data-i18n="thirtySeconds">30 seconds (High Frequency)</option>
+                <option value="60000" data-i18n="oneMinute">1 minute</option>
+                <option value="120000" data-i18n="twoMinutes">2 minutes</option>
+                <option value="180000" data-i18n="threeMinutes">3 minutes</option>
+                <option value="300000" selected data-i18n="fiveMinutes">5 minutes (Standard)</option>
+                <option value="900000" data-i18n="fifteenMinutes">15 minutes</option>
+                <option value="1800000" data-i18n="thirtyMinutes">30 minutes</option>
+                <option value="3600000" data-i18n="oneHour">1 hour</option>
+                <option value="custom" data-i18n="customInterval">Manual Time...</option>
+              </select>
+            </label>
+            <div id="customScanBox" class="custom-scan-box hidden">
+              <label><span data-i18n="customTime">Custom Interval Duration</span>
+                <div class="custom-time-row">
+                  <input id="customScanValue" type="number" min="10" max="86400" value="45" />
+                  <select id="customScanUnit">
+                    <option value="seconds" data-i18n="seconds">Seconds</option>
+                    <option value="minutes" data-i18n="minutes">Minutes</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="button-row">
+            <button class="primary" id="scanWatchlistBtn" type="button" data-i18n="scanNow">Scan Universe Now</button>
+            <button class="ghost" id="startScannerBtn" type="button" data-i18n="startScanner">Start Radar</button>
+            <button class="ghost" id="stopScannerBtn" type="button" data-i18n="stopScanner">Pause Radar</button>
+          </div>
+          <div class="status-line" id="watchStatus" data-i18n="watchReady">Add instruments to watchlist, then activate radar scan.</div>
+          <div id="alertList" class="alert-list"></div>
+        </article>
+      </section>
+        </div>
+
+        <div class="subtab-content" data-subtab="calendar" style="display: none;">
+          <!-- Macro Economic Calendar Section -->
+      <section class="panel macro-section" id="macroCalendarSection">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="macroEyebrow">MACRO RADAR &amp; ECONOMIC CALENDAR</p>
+            <h2 data-i18n="macroTitle">High-Impact Economic Calendar & Central Bank Radar</h2>
+          </div>
+          <span class="badge" data-i18n="macroSafety">Risk Filter Active</span>
+        </div>
+        <div class="macro-events-table-shell">
+          <div class="table macro-table" id="macroEventsTable"></div>
+        </div>
+      </section>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 3: TRADING TERMINAL                       -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-trading">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">📈</span> <span data-i18n="navTrading">Trading Terminal &amp; Order Desk</span></h2>
+            <p>Technical charts, multi-asset order routing, and real-time execution</p>
+          </div>
+          <div class="view-subtabs">
+            <button type="button" class="subtab-btn active" data-subtab="terminal" data-i18n="workstationLabel43">📈 Terminal &amp; Chart</button>
+            <button type="button" class="subtab-btn" data-subtab="ticket" data-i18n="workstationLabel44">⚡ Order Execution</button>
+            <button type="button" class="subtab-btn" data-subtab="positions" data-i18n="workstationLabel45">📋 Active Positions</button>
+          </div>
+        </div>
+
+        <div class="subtab-content" data-subtab="terminal">
+          <!-- Trading Command Desk -->
+      <section class="command-desk panel-glow" id="dashboard">
+        <div class="desk-header">
+          <div class="desk-title">
+            <p class="eyebrow" data-i18n="deskEyebrow">QUANTITATIVE EXECUTION DESK</p>
+            <h1 class="desk-headline"><span class="title-core">THN</span> <span>Trading Terminal &amp; Command</span></h1>
+          </div>
+          <div class="desk-market-stats" id="deskMarketStats">
+            <div class="stat-cell"><small>Spread Quality</small><b id="deskSpread">0.3 pips</b></div>
+            <div class="stat-cell"><small>Range Volatility</small><b id="deskVol">ATR Normal</b></div>
+            <div class="stat-cell"><small>Structure Mode</small><b id="deskRange">Multi-TF</b></div>
+            <div class="stat-cell"><small>Consensus Bias</small><b id="deskBias">Awaiting Audit</b></div>
+          </div>
+        </div>
+
+        <div class="command-card">
+          <div class="command-line">
+            <div class="symbol-input-lockup">
+              <span class="input-prefix">TICKER</span>
+              <input id="symbolInput" autocomplete="off" value="EURUSD" placeholder="EURUSD, XAUUSD, BTCUSDT, US30, AAPL" data-i18n-placeholder="symbolPlaceholder" />
+            </div>
+            <button class="primary execute-btn" id="analyzeBtn">
+              <span data-i18n="analyze">Run Market Analysis</span>
+              <span class="kbd-hint">↵</span>
+            </button>
+          </div>
+
+          <div class="quick-row">
+            <span class="chips-label" data-i18n="popularAssets">Quick Select:</span>
+            <button class="chip active-chip" data-symbol="EURUSD">EUR/USD</button>
+            <button class="chip" data-symbol="GBPUSD">GBP/USD</button>
+            <button class="chip" data-symbol="USDJPY">USD/JPY</button>
+            <button class="chip" data-symbol="XAUUSD">XAU/USD (Gold)</button>
+            <button class="chip" data-symbol="BTCUSDT">BTC/USDT</button>
+            <button class="chip" data-symbol="US30">US30 (Dow)</button>
+            <button class="chip" data-symbol="NAS100">NAS100</button>
+          </div>
+
+          <details class="advanced-box" open>
+            <summary data-i18n="advancedRisk">Execution Governance & Strategy Configuration</summary>
+            <div class="advanced-grid">
+              <label><span data-i18n="timeframe">Timeframe Strategy</span>
+                <select id="timeframe">
+                  <option value="scalp" data-i18n="tfScalp">M15 Scalp / Micro Retest</option>
+                  <option value="intraday" selected data-i18n="tfIntraday">H1 Intraday (Primary)</option>
+                  <option value="swing" data-i18n="tfSwing">H4 Swing Protocol</option>
+                  <option value="position" data-i18n="tfPosition">D1 Position / Macro</option>
+                </select>
+              </label>
+              <label><span data-i18n="accountBalance">Account Equity ($)</span>
+                <input id="accountBalance" type="number" value="10000" min="1" step="100" />
+              </label>
+              <label><span data-i18n="riskPercent">Risk per Trade (%)</span>
+                <input id="riskPct" type="number" value="1" min="0.05" max="10" step="0.05" />
+              </label>
+              <label><span data-i18n="rewardRisk">Target Reward / Risk</span>
+                <select id="rewardRisk">
+                  <option value="1.5">1 : 1.5 (Standard Take-Profit)</option>
+                  <option value="2" selected>1 : 2.0 (Standard Baseline)</option>
+                  <option value="3">1 : 3.0 (Expansion Target)</option>
+                  <option value="4">1 : 4.0 (Runner Target)</option>
+                </select>
+              </label>
+              <label><span data-i18n="optionalSentiment">Macro / Order Flow Bias</span>
+                <select id="sentiment">
+                  <option value="neutral" selected data-i18n="sentNeutral">Quantitative Pure (Neutral)</option>
+                  <option value="bullish" data-i18n="sentBullish">Bullish Macro Factor</option>
+                  <option value="bearish" data-i18n="sentBearish">Bearish Macro Factor</option>
+                </select>
+              </label>
+              <label><span data-i18n="traderNotes">Desk Execution Notes</span>
+                <input id="notes" placeholder="E.g. Awaiting London sweep of high, verify NY momentum" data-i18n-placeholder="notesPlaceholder" />
+              </label>
+            </div>
+          </details>
+          <div class="status-line" id="statusMsg" data-i18n="readyStatus">Terminal ready. Select an instrument and execute quantitative audit.</div>
+        </div>
+      </section>
+          <section class="panel chart-panel" id="chart">
+        <div class="panel-head">
+          <div><h2 data-i18n="tradingViewChart">TradingView Terminal</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Terminal loads upon asset selection.</p></div>
+          <div class="button-row"><button class="ghost" id="loadChartBtn" data-i18n="reloadChart">Reload Feed</button></div>
+        </div>
+        <div id="tvChart" class="tv-chart"></div>
+      </section>
+          <!-- Decision Center & Order Ticket -->
+      <section class="decision-grid" id="analysis">
+        <article class="panel decision-card">
+          <div class="panel-head">
+            <div><p class="eyebrow" data-i18n="decisionCenter">QUANTITATIVE AUDIT RESULT</p><h2 id="decisionTitle" data-i18n="awaitingAnalysis">Awaiting analysis</h2></div>
+            <span class="badge" id="sourceBadge">THN Quant Engine</span>
+          </div>
+          <div class="decision-main">
+            <div>
+              <span class="mini" data-i18n="signal">Consensus Decision</span>
+              <strong id="decision" class="decision wait">WAIT</strong>
+              <p id="aiNarrative" role="status" aria-live="polite" data-i18n="runAnalysisNarrative">Run market analysis to generate multi-school validation, structural risk levels, and playbook instructions.</p>
+            </div>
+            <div class="confidence-ring" aria-label="Confidence score">
+              <span id="confidence">--%</span>
+              <small data-i18n="confidence">confidence</small>
+            </div>
+          </div>
+          <div class="decision-meta">
+            <div><span data-i18n="grade">Setup Grade</span><b id="grade">--</b></div>
+            <div><span data-i18n="symbol">Instrument</span><b id="symbolOut">--</b></div>
+            <div><span data-i18n="asset">Asset Class</span><b id="assetClass">--</b></div>
+            <div><span data-i18n="data">Data Feed</span><b id="marketDataSource">--</b></div>
+          </div>
+        </article>
+
+        <article class="panel ticket-card">
+          <div class="panel-head"><h2 data-i18n="tradeTicket">Order Ticket</h2><span id="marketTime">--</span></div>
+          <div class="ticket-levels">
+            <div><span data-i18n="entry">Market Price</span><b id="entry">--</b></div>
+            <div><span data-i18n="optimalEntry">Optimal Entry (OTE)</span><b id="optimalEntry">--</b></div>
+            <div><span data-i18n="stopLoss">Invalidation / SL</span><b id="stopLoss">--</b></div>
+            <div><span data-i18n="takeProfit1">Take Profit 1 (Scale 50%)</span><b id="target1">--</b></div>
+            <div><span data-i18n="takeProfit2">Take Profit 2 (Target)</span><b id="target2">--</b></div>
+            <div><span data-i18n="takeProfit3">Take Profit 3 (Runner)</span><b id="target3">--</b></div>
+            <div><span data-i18n="riskAmount">Risk Allocation</span><b id="riskAmount">--</b></div>
+          </div>
+          <button class="ghost full" id="saveJournalBtn" data-i18n="saveSignal">Commit Setup to Trade Journal</button>
+        </article>
+      </section>
+          <!-- Quantitative Technical Indicators & Structure Tables -->
+      <section class="data-grid">
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="technicalIndicators">Quantitative Indicators</h2><span data-i18n="liveCalculation">Live computation</span></div>
+          <div class="table" id="indicatorTable"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="structureSmc">Market Structure & Flow</h2><span data-i18n="supportResistanceLiquidity">Support, resistance, sweeps</span></div>
+          <div class="table" id="structureTable"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="reasons">Confluence Drivers</h2><span data-i18n="whySignal">Why this signal?</span></div>
+          <ul class="clean-list" id="reasonsList"><li data-i18n="noAnalysisYet">No audit executed yet.</li></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="warnings">Risk Governance Flags</h2><span data-i18n="riskFilters">Active risk filters</span></div>
+          <ul class="clean-list warning-list" id="warningsList"><li data-i18n="noAnalysisYet2">No audit executed yet.</li></ul>
+        </article>
+      </section>
+        </div>
+
+        <div class="subtab-content" data-subtab="ticket" style="display: none;">
+          <section class="panel command-desk panel-glow">
+            <div class="desk-header">
+              <div class="desk-title">
+                <p class="eyebrow">ORDER ROUTING &amp; POSITION SIZING</p>
+                <h2 data-i18n="workstationLabel4">Authoritative Pre-Trade Execution Ticket</h2>
+              </div>
+              <div class="badge-row">
+                <span class="paper-badge"><span class="dot"></span>PAPER SANDBOX</span>
+                <span class="badge" data-i18n="workstationLabel55">SERVER RISK ENGINE: ENFORCED</span>
+              </div>
+            </div>
+            <div class="command-card">
+              <p class="trust-copy">
+                Orders are validated authoritatively against your broker portfolio balance and margin constraints. Every execution is assigned a unique idempotency key to prevent double submissions.
+              </p>
+              <div class="advanced-grid" style="margin-top: 14px;">
+                <label>
+                  <span data-i18n="workstationLabel17">Select Instrument</span>
+                  <select id="directOrderSymbol" class="analytics-select">
+                    <option value="EURUSD">EUR/USD (Euro / US Dollar)</option>
+                    <option value="GBPUSD">GBP/USD (British Pound)</option>
+                    <option value="USDJPY">USD/JPY (Japanese Yen)</option>
+                    <option value="XAUUSD" selected>XAU/USD (Gold Spot)</option>
+                    <option value="BTCUSDT">BTC/USDT (Bitcoin)</option>
+                    <option value="US30">US30 (Dow Jones 30)</option>
+                  </select>
+                </label>
+                <label>
+                  <span data-i18n="workstationLabel18">Order Direction</span>
+                  <select id="directOrderSide" class="analytics-select">
+                    <option value="BUY" selected>BUY / LONG</option>
+                    <option value="SELL">SELL / SHORT</option>
+                  </select>
+                </label>
+                <label>
+                  <span data-i18n="workstationLabel19">Lot Size / Volume</span>
+                  <input id="directOrderLots" type="number" min="0.01" max="50" step="0.01" value="0.10" />
+                </label>
+                <label>
+                  <span data-i18n="workstationLabel20">Protective Stop Loss (Price)</span>
+                  <input id="directOrderSL" type="number" step="any" placeholder="Required SL price" />
+                </label>
+                <label>
+                  <span data-i18n="workstationLabel21">Profit Target TP1 (Price)</span>
+                  <input id="directOrderTP" type="number" step="any" placeholder="Target price" />
+                </label>
+                <label>
+                  <span data-i18n="workstationLabel22">Pre-Trade Risk Verification</span>
+                  <button type="button" class="ghost" id="checkOrderRiskBtn" style="height: 40px; margin-top: 4px;" data-i18n="workstationLabel49">🛡️ Verify Margin &amp; Risk</button>
+                </label>
+              </div>
+              <div id="directOrderRiskResult" class="status-line" style="margin-top: 12px; display: none;"></div>
+              <div style="margin-top: 16px; display: flex; gap: 10px;">
+                <button type="button" class="primary execute-btn" id="executeDirectOrderBtn" data-i18n="workstationLabel50">⚡ Transmit Order to Paper Engine</button>
+                <button type="button" class="ghost" id="resetDirectOrderFormBtn" data-i18n="workstationLabel32">Clear</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="subtab-content" data-subtab="positions" style="display: none;">
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">PORTFOLIO EXPOSURE</p>
+                <h2 data-i18n="workstationLabel5">Authoritative Open Positions &amp; Pending Orders</h2>
+              </div>
+              <button type="button" class="ghost small" id="refreshPositionsTabBtn">🔄 Refresh Ledger</button>
+            </div>
+            <div id="positionsTabContent" style="margin-top: 14px;">
+              <p class="tiny muted-text" style="text-align: center; padding: 28px;">Loading positions from broker engine...</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 4: AI INTELLIGENCE                        -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-ai">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">🧠</span> <span data-i18n="navAI">AI Intelligence &amp; Strategy Confluence</span></h2>
+            <p>Multi-school consensus, multi-timeframe alignment, and algorithmic structure detection</p>
+          </div>
+          <div class="view-subtabs">
+            <button type="button" class="subtab-btn active" data-subtab="consensus" data-i18n="workstationLabel48">Multi-School Consensus</button>
+            <button type="button" class="subtab-btn" data-subtab="mtfa">MTFA Timeframes</button>
+            <button type="button" class="subtab-btn" data-subtab="smc">SMC Liquidity</button>
+            <button type="button" class="subtab-btn" data-subtab="structure">Structure Map</button>
+            <button type="button" class="subtab-btn" data-subtab="governor">Risk Governor</button>
+          </div>
+        </div>
+
+        <div class="subtab-content" data-subtab="consensus">
+          <section class="school-grid" id="schoolsGrid" aria-label="Multi-school analysis results"></section>
+        </div>
+
+        <div class="subtab-content" data-subtab="mtfa" style="display: none;">
+          <!-- Multi-Timeframe Alignment Matrix (MTFA) -->
+      <section class="panel mtfa-section" id="mtfa">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="mtfaEyebrow">MULTI-TIMEFRAME CONFLUENCE</p>
+            <h2 data-i18n="mtfaTitle">Multi-Timeframe Alignment Matrix (MTFA)</h2>
+          </div>
+          <span class="badge" id="mtfaVerdictBadge">ALIGNED</span>
+        </div>
+        <div class="mtfa-grid" id="mtfaGrid">
+          <div class="mtfa-card" id="mtfaD1">
+            <div class="mtfa-card-head"><b>D1 Macro</b><span class="trend-badge" id="mtfaD1Trend">--</span></div>
+            <p id="mtfaD1Detail">Higher-timeframe macro trend & long-term EMA alignment.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaH4">
+            <div class="mtfa-card-head"><b>H4 Intermediate</b><span class="trend-badge" id="mtfaH4Trend">--</span></div>
+            <p id="mtfaH4Detail">Order flow structure, swing pivots, and trend direction.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaH1">
+            <div class="mtfa-card-head"><b>H1 Execution</b><span class="trend-badge" id="mtfaH1Trend">--</span></div>
+            <p id="mtfaH1Detail">Active dealing range, Discount/Premium status, and FVG retest.</p>
+          </div>
+          <div class="mtfa-card" id="mtfaM15">
+            <div class="mtfa-card-head"><b>M15 Trigger</b><span class="trend-badge" id="mtfaM15Trend">--</span></div>
+            <p id="mtfaM15Detail">Micro CHoCH/MSS, momentum confirmation, and entry timing.</p>
+          </div>
+        </div>
+      </section>
+        </div>
+
+        <div class="subtab-content" data-subtab="smc" style="display: none;">
+          <!-- Smart Money Concepts & Liquidity Architecture -->
+      <section class="panel smc-deep-section" id="smcDeep">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="smcDeepEyebrow">SMART MONEY CONCEPTS & ORDER FLOW</p>
+            <h2 data-i18n="smcDeepTitle">Market Structure &amp; Liquidity Architecture</h2>
+          </div>
+          <span class="badge" id="smcZoneBadge">DISCOUNT ZONE</span>
+        </div>
+        <div class="smc-deep-grid">
+          <div class="smc-deep-card">
+            <h3><span class="dot gold"></span><span data-i18n="liquidityArchitecture">Liquidity Pools (BSL / SSL)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Buy-Side Liquidity (BSL)</small><b id="smcBsl">--</b></div>
+              <div><small>Sell-Side Liquidity (SSL)</small><b id="smcSsl">--</b></div>
+            </div>
+            <p id="smcLiquiditySummary">Smart money accumulates orders at liquidity pools.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot blue"></span><span data-i18n="orderBlocksDeep">Order Blocks (OB)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Demand Order Block</small><b id="smcDemandOb">--</b></div>
+              <div><small>Supply Order Block</small><b id="smcSupplyOb">--</b></div>
+            </div>
+            <p id="smcObSummary">Origin of impulsive liquidity displacement.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot purple"></span><span data-i18n="fvgDeep">Fair Value Gaps (FVG)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Active Bullish FVG</small><b id="smcBullFvg">--</b></div>
+              <div><small>Active Bearish FVG</small><b id="smcBearFvg">--</b></div>
+            </div>
+            <p id="smcFvgSummary">3-candle price imbalance requiring rebalancing.</p>
+          </div>
+
+          <div class="smc-deep-card">
+            <h3><span class="dot green"></span><span data-i18n="dealingRange">Dealing Range & Equilibrium (50%)</span></h3>
+            <div class="smc-metric-row">
+              <div><small>Equilibrium (50%)</small><b id="smcEq">--</b></div>
+              <div><small>Current Placement</small><b id="smcRangePos">--</b></div>
+            </div>
+            <div class="equilibrium-bar"><div class="eq-marker" id="eqMarker" style="left: 50%"></div></div>
+            <p id="smcEqSummary">SMC rule: Long in Discount; Short in Premium.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Multi-School Analysis Results -->
+        </div>
+
+        <div class="subtab-content" data-subtab="structure" style="display: none;">
+          <!-- Professional Dual-Chart Workstation -->
+      <section class="professional-grid" id="professional-map">
+        <article class="panel map-panel">
+          <div class="panel-head">
+            <div><p class="eyebrow" data-i18n="professionalMarketMap">INTERACTIVE WORKSTATION</p><h2 data-i18n="professionalMarketMapSub">Dual Chart: Technical Analysis &amp; Market Structure</h2></div>
+            <button class="ghost" id="exportMapBtn" type="button" data-i18n="exportMap">Export High-Res PNG</button>
+          </div>
+          <div id="professionalSnapshot" class="professional-snapshot"></div>
+          <div class="button-row"><button id="chartReset" type="button">Reset chart</button><label>Level price <input id="chartLevelPrice" type="number" step="any"></label><label>Label <input id="chartLevelLabel" maxlength="40"></label><button id="chartAddLevel" type="button">Add level</button><button id="chartClearLevels" type="button">Clear levels</button><small>Scroll to zoom; drag or use arrow keys to pan. Levels persist by instrument/timeframe.</small></div>
+          <p class="tiny">Confluence scores are heuristic, not calibrated win probabilities. Prices are indicative provider data; broker execution remains disabled.</p>
+          <div class="map-toolbar" aria-label="Professional chart controls">
+            <div>
+              <b data-i18n="institutionalChart">Technical Drawing Canvas</b>
+              <small data-i18n="adaptiveScale">Sub-pixel precision candles · Hover crosshair active</small>
+            </div>
+            <div id="mapLayerControls" class="map-layer-controls"></div>
+          </div>
+          <div class="chart-stage-grid">
+            <div class="analysis-chart-shell main-chart-shell">
+              <div class="chart-watermark"><b data-i18n="technicalDrawingChart">Technical Drawing Chart</b><span data-i18n="clearInstitutionalView">Clean technical chart</span></div>
+              <canvas id="analysisMapCanvas" class="analysis-map" aria-label="Professional technical analysis map"></canvas>
+            </div>
+            <div class="sk-analysis-card">
+              <div class="sk-card-head"><b data-i18n="skAnalysisChart">SK / SMC Analysis Map</b><span data-i18n="skAnalysisSub">Structure, liquidity, BOS/CHoCH and order blocks</span></div>
+              <canvas id="skAnalysisCanvas" class="sk-analysis-map" aria-label="SK and SMC analysis map"></canvas>
+              <div id="tradeCompass" class="trade-compass"></div>
+            </div>
+          </div>
+          <div id="mapHud" class="map-hud"></div>
+          <div id="analysisLayerBoard" class="analysis-layer-board"></div>
+          <div class="analysis-desk-grid">
+            <div id="technicalStoryboard" class="desk-panel"></div>
+            <div id="marketStructureBoard" class="desk-panel"></div>
+          </div>
+          <div class="map-legend">
+            <span><i class="legend-dot support"></i><b data-i18n="mapLegendSupport">Support</b></span>
+            <span><i class="legend-dot resistance"></i><b data-i18n="mapLegendResistance">Resistance</b></span>
+            <span><i class="legend-dot entry"></i><b data-i18n="mapLegendEntry">Entry</b></span>
+            <span><i class="legend-dot fib"></i><b data-i18n="mapLegendFib">Fibonacci</b></span>
+            <span><i class="legend-dot zone"></i><b data-i18n="mapLegendZone">Supply/Demand</b></span>
+          </div>
+          <div class="table map-details" id="mapDetails"></div>
+        </article>
+
+        <aside class="professional-side">
+          <article class="panel">
+            <div class="panel-head"><div><h2 data-i18n="confluenceMatrix">Confluence Matrix</h2><span data-i18n="confluenceMatrixSub">Execution readiness controls</span></div></div>
+            <div class="confluence-matrix" id="confluenceMatrix"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><h2 data-i18n="playbook">Execution Playbook</h2><span data-i18n="playbookSub">Professional action protocol</span></div></div>
+            <ol class="clean-list playbook-list" id="playbookList"><li data-i18n="noProfessionalMap">Run market analysis to generate the trading playbook.</li></ol>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><h2 data-i18n="deskGovernance">Desk Governance</h2><span data-i18n="deskGovernanceSub">Trust, safety and operational filters</span></div></div>
+            <div class="governance-list" id="governanceList"></div>
+          </article>
+        </aside>
+      </section>
+
+      <!-- TradingView Pro Terminal Section -->
+        </div>
+
+        <div class="subtab-content" data-subtab="governor" style="display: none;">
+          <!-- AI Automation Studio -->
+      <section class="ai-studio panel" id="ai-automation">
+        <div class="panel-head">
+          <div><p class="eyebrow" data-i18n="aiAutomationStudio">QUANTITATIVE GOVERNANCE</p><h2 data-i18n="aiAutomationStudioSub">Automated Execution Protocol, Smart Filters & Risk Governor</h2></div>
+          <span class="badge" id="automationBadge" data-i18n="noAutomationYet">Awaiting analysis</span>
+        </div>
+        <div id="aiStudioGrid" class="ai-studio-grid"></div>
+        <div id="smartAlertList" class="smart-alert-list"></div>
+      </section>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 5: RISK DESK                              -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-risk">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">🛡️</span> <span data-i18n="navRisk">Risk Desk &amp; Capital Preservation</span></h2>
+            <p>Pre-trade lot sizing, exposure limits, and stress testing</p>
+          </div>
+        </div>
+
+        <section class="risk-grid" id="risk">
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="riskDesk">Risk Desk & Position Sizing</h2><span data-i18n="positionSizing">Exact Lot Calculation</span></div>
+          <div class="table" id="riskTable"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="executionChecklist">Pre-Execution Checklist</h2><span data-i18n="beforeEntry">Pre-trade protocol</span></div>
+          <div class="checklist" id="checklist"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="scenarioLab">Scenario & Capital Lab</h2><span data-i18n="riskAlternatives">Risk alternatives</span></div>
+          <div class="scenario-grid" id="scenarioGrid"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="backtestSimulator">Backtest Stress Simulator</h2><span data-i18n="estimatedProfile">Deterministic profile</span></div>
+          <div class="table" id="backtestTable"></div>
+        </article>
+      </section>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 6: PORTFOLIO                              -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-portfolio">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">📊</span> <span data-i18n="navPortfolio">Portfolio Intelligence &amp; Analytics</span></h2>
+            <p>Realized equity curve, drawdown distribution, and strategy performance</p>
+          </div>
+        </div>
+
+        <!-- Performance Analytics Dashboard -->
+      <section class="panel analytics-section" id="performanceAnalytics">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow" data-i18n="analyticsEyebrow">HISTORICAL PERFORMANCE & STATISTICAL EDGE</p>
+            <h2 data-i18n="analyticsTitle">Performance Analytics & Portfolio Intelligence</h2>
+          </div>
+          <div class="analytics-head-actions">
+            <button class="ghost small" id="loadSampleTradesBtn" type="button" data-i18n="loadSampleTrades">Load Benchmark History</button>
+            <button class="ghost small" id="openBulkImportBtn" type="button" data-i18n="bulkImport">📁 Bulk Import CSV</button>
+            <button class="primary small" id="openLogTradeModalBtn" type="button" data-i18n="logClosedTrade">+ Log Closed Trade</button>
+          </div>
+        </div>
+        <p class="tiny trust-copy" data-i18n="analyticsSubtitle">
+          Interactive D3.js visualization of realized equity curves, historical setup win-rates, payout expectancy, and trade profit-loss distribution.
+        </p>
+
+        <!-- Analytics Filter Toolbar -->
+        <label><input id="includeUnverifiedLedger" type="checkbox"> Include manual/imported entries (unverified)</label><button id="exitBenchmarkPreview" type="button">Show actual ledger</button>
+        <div class="analytics-toolbar">
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="filterPeriod">Period:</span>
+            <div class="pill-group" id="analyticsPeriodFilter">
+              <button type="button" class="analytics-pill active" data-period="all" data-i18n="periodAll">All Time</button>
+              <button type="button" class="analytics-pill" data-period="30d" data-i18n="period30d">Last 30 Days</button>
+              <button type="button" class="analytics-pill" data-period="90d" data-i18n="period90d">Last 90 Days</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="filterAsset">Asset Class:</span>
+            <select id="analyticsAssetFilter" aria-label="Filter portfolio by asset" data-i18n-aria="assetFilterLabel" class="analytics-select">
+              <option value="all" data-i18n="assetAll">All Markets</option>
+              <option value="Forex" data-i18n="assetForex">Forex</option>
+              <option value="Crypto" data-i18n="assetCrypto">Crypto</option>
+              <option value="Commodity" data-i18n="assetCommodities">Metals & Commodities</option>
+              <option value="Index" data-i18n="assetIndices">Indices</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Performance KPI Metric Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card" id="kpiNetPnlCard">
+            <span data-i18n="kpiNetPnl">Net Realized PnL</span>
+            <b id="kpiNetPnl">$0.00</b>
+            <small id="kpiNetPnlPct">+0.0% return</small>
+          </div>
+          <div class="kpi-card" id="kpiWinRateCard">
+            <span data-i18n="kpiWinRate">Win Rate</span>
+            <b id="kpiWinRate">0.0%</b>
+            <small id="kpiWinLossRatio">0 Wins / 0 Losses</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiProfitFactor">Profit Factor</span>
+            <b id="kpiProfitFactor">0.00</b>
+            <small id="kpiGrossProfitLoss">$0 Gross Profit</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiPayoffRatio">Payoff Ratio (Avg W/L)</span>
+            <b id="kpiPayoffRatio">1 : 0.00</b>
+            <small id="kpiAvgWinLoss">Avg W: $0 | Avg L: $0</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiMaxDrawdown">Max Drawdown</span>
+            <b id="kpiMaxDrawdown">$0.00</b>
+            <small id="kpiMaxDrawdownPct">0.0% from peak</small>
+          </div>
+          <div class="kpi-card">
+            <span data-i18n="kpiExpectancy">Expectancy / Trade</span>
+            <b id="kpiExpectancy">$0.00</b>
+            <small id="kpiTotalTrades">0 closed trades</small>
+          </div>
+        </div>
+
+        <!-- D3 Visualizations Layout -->
+        <div class="d3-visuals-grid">
+          <!-- Cumulative Equity Curve Chart -->
+          <article class="d3-card equity-curve-card">
+            <div class="d3-card-header">
+              <div>
+                <b data-i18n="equityCurveTitle">Cumulative PnL & Equity Growth Curve</b>
+                <small data-i18n="equityCurveSub">D3.js interactive time-series with high-water mark</small>
+              </div>
+              <div class="d3-legend">
+                <span><i class="legend-line green"></i><span data-i18n="legendEquity">Equity Curve</span></span>
+                <span><i class="legend-line gold dashed"></i><span data-i18n="legendPeak">High Water Mark</span></span>
+              </div>
+            </div>
+            <div id="d3EquityCurveContainer" class="d3-chart-shell">
+              <svg id="d3EquityCurveSvg" aria-label="Cumulative Equity PnL Curve"></svg>
+              <div id="equityTooltip" class="d3-tooltip hidden"></div>
+            </div>
+          </article>
+
+          <!-- Win/Loss Ratio Radial Donut Gauge -->
+          <article class="d3-card donut-gauge-card">
+            <div class="d3-card-header">
+              <div>
+                <b data-i18n="winLossDonutTitle">Win / Loss Ratio & Setup Success</b>
+                <small data-i18n="winLossDonutSub">D3.js radial outcome distribution</small>
+              </div>
+            </div>
+            <div id="d3WinLossContainer" class="d3-donut-shell">
+              <svg id="d3WinLossDonutSvg" aria-label="Win Loss Ratio Donut Chart"></svg>
+              <div id="donutTooltip" class="d3-tooltip hidden"></div>
+            </div>
+            <div class="donut-breakdown-row" id="donutBreakdownRow">
+              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">0 (0%)</b></div>
+              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">0 (0%)</b></div>
+              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">0 (0%)</b></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Trade-by-Trade Return Distribution Waterfall -->
+        <article class="d3-card waterfall-card">
+          <div class="d3-card-header">
+            <div>
+              <b data-i18n="waterfallTitle">Trade-by-Trade PnL Distribution & Return Profile</b>
+              <small data-i18n="waterfallSub">Realized return per closed setup ($)</small>
+            </div>
+            <div class="d3-legend">
+              <span><i class="legend-box green"></i><span data-i18n="legendWin">Profit (+$)</span></span>
+              <span><i class="legend-box red"></i><span data-i18n="legendLoss">Loss (-$)</span></span>
+              <span><i class="legend-line blue dashed"></i><span data-i18n="legendAvgWin">Avg Win</span></span>
+              <span><i class="legend-line red dashed"></i><span data-i18n="legendAvgLoss">Avg Loss</span></span>
+            </div>
+          </div>
+          <div id="d3WaterfallContainer" class="d3-chart-shell">
+            <svg id="d3WaterfallSvg" aria-label="Trade PnL Waterfall Distribution"></svg>
+            <div id="waterfallTooltip" class="d3-tooltip hidden"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Manual Trade Logger Modal -->
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 7: TRADE JOURNAL                          -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-journal">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">📑</span> <span data-i18n="navJournal">Trade Journal &amp; Audit Ledger</span></h2>
+            <p>Execution log, post-trade analysis, and exportable audit records</p>
+          </div>
+        </div>
+
+        <!-- Trade Journal & Audit Log -->
+      <section class="journal-grid" id="journal">
+        <article class="panel">
+          <div class="panel-head"><h2 data-i18n="tradeJournal">Trade Journal</h2><span data-i18n="browserStorage">Local storage ledger</span></div>
+          <div class="button-row">
+            <button class="ghost" id="clearJournalBtn" data-i18n="clearJournal">Clear Ledger</button>
+            <button class="ghost" id="journalBulkImportBtn" data-i18n="bulkImport">Import CSV</button>
+            <button class="ghost" id="exportJournalBtn" data-i18n="exportJournal">Export CSV Ledger</button>
+          </div>
+          <div id="journalList" class="journal-list"></div>
+        </article>
+        <article class="panel report-panel">
+          <div class="panel-head"><h2 data-i18n="institutionalReport">Market Audit Briefing</h2><span data-i18n="copyOrExport">Copy or export</span></div>
+          <pre id="report" tabindex="0" aria-label="Analysis report" data-i18n="noReportYet">No report generated yet.</pre>
+          <div class="button-row">
+            <button class="ghost" id="copyReportBtn" data-i18n="copyReport">Copy Briefing</button>
+            <button class="ghost" id="exportReportBtn" data-i18n="exportTxt">Export TXT File</button>
+          </div>
+        </article>
+      </section>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 8: BROKER ACCOUNTS                        -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-brokers">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">💼</span> <span data-i18n="navBrokers">Broker Accounts &amp; Execution Bridge</span></h2>
+            <p>Multi-broker management, execution bridges, and account reconciliation</p>
+          </div>
+        </div>
+
+        <!-- Broker Gateway & Capital Desk -->
+      <section class="panel broker-desk-section" id="brokerDesk">
+        <div class="panel-head">
+          <div>
+            <div class="broker-header-badges">
+              <span class="eyebrow" data-i18n="brokerEyebrow">BROKER CONNECTIONS &amp; PORTFOLIO GATEWAY</span>
+              <span class="environment-pill" id="deskEnvBadge">🟡 PAPER SANDBOX</span>
+              <span class="permission-pill" id="deskPermissionBadge">SIGN IN · ACCOUNTS LOCKED</span>
+            </div>
+            <h2 data-i18n="brokerTitle">Trading Broker &amp; Portfolio Gateway</h2>
+          </div>
+          <div class="broker-head-actions">
+            <button class="ghost small" id="openBrokerDocsBtn" type="button" data-i18n="brokerDocsBtn">📚 API &amp; Bridge Guides</button>
+            <button class="ghost small" id="openFundingPortalBtn" type="button" data-i18n="brokerFunding">🏛️ Broker Funding &amp; Banking</button>
+            <button class="primary small" id="openBrokerConnectBtn" type="button" data-i18n="openBrokerBtn">➕ Connect / Add Account</button>
+          </div>
+        </div>
+
+        <p class="tiny trust-copy" data-i18n="brokerSubtitle">
+          Authoritative server-side risk controls and account synchronization. AI trade recommendations undergo pre-trade margin, volume, and drawdown checks before dispatch.
+        </p>
+
+        <!-- Active Broker Account Selector Bar & Live Ping -->
+        <div class="panel"><button type="button" id="inspectRecoveryBtn" class="ghost small">Check existing-position recovery / فحص استرداد المراكز</button><p id="accountRecoveryStatus" role="status" aria-live="polite"></p></div>
+        <div class="broker-account-bar">
+          <div class="account-picker-group">
+            <span class="picker-label" data-i18n="activeAccountLabel">Active Platform Account:</span>
+            <select id="brokerActiveAccountSelect" aria-label="Select paper account" data-i18n-aria="paperAccountLabel" class="broker-acc-select">
+              <option value="default">Loading trading accounts...</option>
+            </select>
+          </div>
+
+          <div class="broker-ping-indicator" id="brokerPingIndicator">
+            <span class="ping-dot"></span>
+            <span id="brokerPingText">Engine: Operational</span>
+          </div>
+
+          <div class="broker-wallet-actions">
+            <button type="button" class="ghost small" id="openFundingModalBtn" data-i18n="brokerFunding">🏛️ Broker Portal &amp; Funding</button>
+            <button type="button" class="secondary small" id="openNewAccountFromDeskBtn" data-i18n="newAccountBtn">+ Add Account</button>
+          </div>
+        </div>
+
+        <!-- Desk View Switcher Tabs -->
+        <div class="broker-view-switcher">
+          <button type="button" class="broker-view-btn active" id="viewAiDeskBtn" data-view="ai-desk">
+            💼 <span data-i18n="aiDeskView">AI Quantitative Desk</span>
+          </button>
+          <button type="button" class="broker-view-btn" id="viewWebTraderBtn" data-view="webtrader">
+            🖥️ <span data-i18n="webtraderView">Live WebTrader Terminal</span>
+          </button>
+          <button type="button" class="broker-view-btn" id="viewAccountDetailsBtn" data-view="account-details">
+            📑 <span data-i18n="accountDetailsView">Account &amp; Gateway Details</span>
+          </button>
+        </div>
+
+        <!-- Live Broker Capital HUD (Visible across views) -->
+        <div class="broker-hud-grid">
+          <div class="broker-card account-main">
+            <div class="broker-card-top">
+              <div class="broker-identity-lockup">
+                <span class="broker-logo-badge" id="brokerLogoBadge"></span>
+                <div>
+                  <div class="broker-badge-row">
+                    <span class="broker-badge-pill" id="brokerNameBadge">Exness Pro (MT5)</span>
+                    <span class="broker-reg-tag" id="brokerRegTag">GCC Approved · Raw Spread</span>
+                  </div>
+                  <small id="brokerAccId">Acc: #EXN-894210 · Server: Exness-Real14</small>
+                </div>
+              </div>
+            </div>
+            <span class="hud-label" data-i18n="brokerBalance">Account Balance (Auto-Managed)</span>
+            <b class="hud-amount" id="brokerBalanceDisplay">$25,000.00</b>
+            <div class="hud-sub-row">
+              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">$25,000.00</b></span>
+              <span><span data-i18n="unrealizedPnl">Open PnL</span>: <b id="brokerOpenPnlDisplay">$0.00</b></span>
+            </div>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="freeMargin">Free Margin</span>
+            <b class="hud-amount" id="brokerFreeMarginDisplay">$25,000.00</b>
+            <small id="brokerMarginLevel">Margin Level: 100.0% (Safe)</small>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="usedMargin">Used Margin</span>
+            <b class="hud-amount" id="brokerUsedMarginDisplay">$0.00</b>
+            <small id="brokerOpenCount">0 open positions</small>
+          </div>
+
+          <div class="broker-card">
+            <span class="hud-label" data-i18n="dailyRealizedPnl">Today's Realized PnL</span>
+            <b class="hud-amount pnl-green" id="brokerTodayPnlDisplay">+$0.00</b>
+            <small id="brokerPnlRCount">0.0 R generated today</small>
+          </div>
+        </div>
+
+        <!-- VIEW 1: AI QUANTITATIVE DESK -->
+        <div id="brokerAiDeskView" class="broker-view-panel">
+          <!-- AI-Powered Capital Trading Tips & Deals -->
+          <div class="broker-deals-container">
+            <div class="deals-header">
+              <div>
+                <b data-i18n="capitalDealsTitle">AI Capital-Tailored Trade Deals &amp; Tips</b>
+                <small data-i18n="capitalDealsSub">High-conviction setups sized automatically to your capital and risk limits</small>
+              </div>
+              <div class="ai-advisory-pill" id="brokerAiAdvisory">
+                <span>🛡️ AI Capital Advisory: 1.0% single-trade risk rule enforced ($250.00 max risk)</span>
+              </div>
+            </div>
+
+            <div class="deals-grid" id="brokerDealsGrid" aria-live="polite" aria-busy="false">
+              <!-- Rendered dynamically by app.js based on current market data and account balance -->
+            </div>
+          </div>
+
+          <!-- Live Broker Active Positions Terminal -->
+          <div class="broker-positions-container">
+            <div class="positions-header">
+              <div>
+                <b data-i18n="activePositionsTitle">Active Broker Positions</b>
+                <small data-i18n="activePositionsSub">Direct execution orders running on linked broker gateway</small>
+              </div>
+              <span class="positions-badge" id="openPositionsBadge">0 Active Orders</span>
+            </div>
+
+            <div class="positions-table-shell">
+              <div class="positions-table-head">
+                <span>Ticket</span>
+                <span data-i18n="workstationLabel24">Symbol</span>
+                <span>Side</span>
+                <span>Volume</span>
+                <span>Open Price</span>
+                <span>Mark Price</span>
+                <span>SL / TP</span>
+                <span>Floating PnL</span>
+                <span data-i18n="workstationLabel31">Action</span>
+              </div>
+              <div id="brokerPositionsList" class="positions-table-body">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: LIVE WEBTRADER TERMINAL -->
+        <div id="brokerWebTraderView" class="broker-view-panel hidden">
+          <div class="webtrader-grid">
+            <!-- Left: Market Watch Live Quote Board -->
+            <div class="webtrader-quotes-card">
+              <div class="card-head">
+                <b data-i18n="marketWatchQuotes">Market Watch (Live Feeds)</b>
+                <span class="live-tag" data-i18n="workstationLabel52">PROVIDER DATA · PAPER ONLY</span>
+              </div>
+              <div class="quotes-list" id="webtraderQuotesList">
+                <!-- Populated dynamically with EURUSD, GBPUSD, XAUUSD, BTCUSDT, US30 -->
+              </div>
+            </div>
+
+            <!-- Right: Direct Order Execution Ticket -->
+            <div class="webtrader-ticket-card">
+              <div class="card-head">
+                <b data-i18n="directOrderTicket">Direct Platform Execution Ticket</b>
+                <span class="execution-badge" id="webtraderBrokerBadge">Exness MT5 Direct</span>
+              </div>
+
+              <div class="ticket-input-grid">
+                <label>
+                  <span data-i18n="workstationLabel24">Symbol</span>
+                  <select id="webtraderSymbolSelect">
+                    <option value="XAUUSD">XAUUSD · Gold Spot</option>
+                    <option value="EURUSD">EURUSD · Euro / US Dollar</option>
+                    <option value="GBPUSD">GBPUSD · British Pound / USD</option>
+                    <option value="USDJPY">USDJPY · US Dollar / Japanese Yen</option>
+                    <option value="BTCUSDT">BTCUSDT · Bitcoin Perpetual</option>
+                    <option value="US30">US30 · Wall Street 30 Index</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Order Type</span>
+                  <select id="webtraderOrderTypeSelect">
+                    <option value="BUY">Instant Market Buy</option>
+                    <option value="SELL">Instant Market Sell</option>
+                    <option value="BUY LIMIT">Buy Limit (Pending)</option>
+                    <option value="SELL LIMIT">Sell Limit (Pending)</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Lots / Volume</span>
+                  <input id="webtraderLotsInput" type="number" step="0.01" min="0.01" max="100" value="0.10" />
+                </label>
+
+                <label id="webtraderPriceGroup" class="hidden">
+                  <span>Limit Order Price</span>
+                  <input id="webtraderPriceInput" type="number" step="0.0001" placeholder="Market Price" />
+                </label>
+
+                <label>
+                  <span>Stop Loss (SL)</span>
+                  <input id="webtraderSlInput" type="number" step="0.0001" placeholder="Optional SL" />
+                </label>
+
+                <label>
+                  <span>Take Profit (TP)</span>
+                  <input id="webtraderTpInput" type="number" step="0.0001" placeholder="Optional TP" />
+                </label>
+              </div>
+
+              <div class="ticket-calc-row">
+                <span>Required Margin: <b id="webtraderMarginCalc">$100.00</b></span>
+                <span>Max Risk: <b id="webtraderRiskCalc">$250.00</b></span>
+                <span>Leverage: <b id="webtraderLeverageCalc">1:200</b></span>
+              </div>
+
+              <div class="ticket-actions">
+                <button type="button" class="primary full" id="webtraderTransmitOrderBtn">
+                  ⚡ Transmit Order to Broker
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 3: ACCOUNT PROFILE & SECURE GATEWAY DETAILS -->
+        <div id="brokerAccountDetailsView" class="broker-view-panel hidden">
+          <div class="credentials-card">
+            <div class="cert-header">
+              <div class="cert-brand-lockup">
+                <span class="cert-logo" id="certBrokerLogo"></span>
+                <div>
+                  <h3 id="certBrokerTitle" data-i18n="workstationLabel6">THN Paper Trading Sandbox</h3>
+                  <small id="certRegulationTag">Simulated Virtual Account · Zero Capital Risk</small>
+                </div>
+              </div>
+              <div class="cert-stamp">
+                <span id="certModeStamp">🟡 PAPER MODE</span>
+                <b id="certPermStamp">SIGN IN · ACCOUNTS LOCKED</b>
+              </div>
+            </div>
+
+            <div class="cert-grid">
+              <div class="cert-item">
+                <span>Account Alias</span>
+                <b id="certHolderName">Paper Trading Portfolio</b>
+              </div>
+              <div class="cert-item">
+                <span>Platform Gateway / Engine</span>
+                <b id="certPlatformName">THN Sandbox Engine</b>
+              </div>
+              <div class="cert-item">
+                <span>Account ID (Masked)</span>
+                <b id="certLoginId" class="code-val">•••• 5012</b>
+              </div>
+              <div class="cert-item">
+                <span>Server Host / Endpoint</span>
+                <b id="certServerHost" class="code-val">Sandbox-Internal.thn-trader.net</b>
+              </div>
+              <div class="cert-item">
+                <span>Trading Permission Level</span>
+                <b id="certPermissionLevel">Trading Enabled (Market Orders)</b>
+              </div>
+              <div class="cert-item">
+                <span>Account Type &amp; Currency</span>
+                <b id="certAccountType">Paper Sandbox · USD ($)</b>
+              </div>
+              <div class="cert-item">
+                <span>Trading Leverage</span>
+                <b id="certLeverage">1:200 Dynamic</b>
+              </div>
+              <div class="cert-item">
+                <span>Last Gateway Sync</span>
+                <b id="certLastSync" class="code-val">Active / Synced (UTC)</b>
+              </div>
+              <div class="cert-item">
+                <span>Measured Latency</span>
+                <b id="certLatencyDisplay" class="code-val">1 ms (Optimal)</b>
+              </div>
+              <div class="cert-item">
+                <span>Security &amp; Secret Protection</span>
+                <b class="security-seal-badge">🔐 AES-256-GCM Encrypted at Rest</b>
+              </div>
+            </div>
+
+            <div class="cert-actions">
+              <a class="button primary" id="certBrokerPortalBtn" href="https://www.exness.com" target="_blank" rel="noopener noreferrer">
+                🌐 Launch Broker Client Portal (Direct Funding / Official Management)
+              </a>
+              <button type="button" class="ghost" id="copyMt5LoginBtn">
+                📋 Copy Server &amp; Account ID
+              </button>
+              <button type="button" class="danger small" id="disconnectActiveAccountBtn">
+                🔴 Disconnect Account
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Risk Desk & Exposure Calculator -->
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 9: SETTINGS                               -->
+      <!-- ============================================== -->
+      <div class="app-view" id="view-settings">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h2><span class="icon">⚙️</span> <span data-i18n="navSettings">Terminal Settings &amp; Configuration</span></h2>
+            <p>Trading parameters, data feeds, risk thresholds, and preferences</p>
+          </div>
+        </div>
+
+        <div class="settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+          <!-- Card 1: Trading Defaults -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel7">Trading Defaults</h3>
+              <span class="badge">Execution Sizing</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+              <label>
+                <span class="tiny muted-text">Default Risk per Trade (%)</span>
+                <select id="prefDefaultRisk" class="analytics-select">
+                  <option value="0.5">0.50% (Conservative)</option>
+                  <option value="1.0" selected>1.00% (Standard Playbook)</option>
+                  <option value="2.0">2.00% (Aggressive Cap)</option>
+                </select>
+              </label>
+              <label>
+                <span class="tiny muted-text">Default Primary Timeframe</span>
+                <select id="prefDefaultTf" class="analytics-select">
+                  <option value="scalp">M15 Scalp Retest</option>
+                  <option value="intraday" selected>H1 Intraday Primary</option>
+                  <option value="swing">H4 Swing Protocol</option>
+                  <option value="position">D1 Position Macro</option>
+                </select>
+              </label>
+              <label>
+                <span class="tiny muted-text">Target Reward / Risk Minimum</span>
+                <select id="prefDefaultRR" class="analytics-select">
+                  <option value="1.5">1 : 1.5</option>
+                  <option value="2.0" selected>1 : 2.0 (Recommended)</option>
+                  <option value="3.0">1 : 3.0</option>
+                </select>
+              </label>
+            </div>
+          </article>
+
+          <!-- Card 2: Risk Governor Limits -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel8">Risk Governor Limits</h3>
+              <span class="badge" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Mandatory Rules</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+              <div>
+                <b class="tiny" data-i18n="workstationLabel36">Daily Drawdown Ceiling</b>
+                <p class="tiny muted-text" data-i18n="workstationLabel39">Orders are automatically rejected if daily loss reaches 5.0%.</p>
+              </div>
+              <div>
+                <b class="tiny" data-i18n="workstationLabel37">Mandatory Stop Loss Rule</b>
+                <p class="tiny muted-text" data-i18n="workstationLabel40">Every order must specify an authoritative stop loss price before submission.</p>
+              </div>
+              <div>
+                <b class="tiny" data-i18n="workstationLabel38">Account Leverage Cap</b>
+                <p class="tiny muted-text" data-i18n="workstationLabel41">Maximum authorized leverage is clamped at 1:200 for simulated forex margin.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Market Data Feed Status -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel9">Market Data Feeds</h3>
+              <span class="badge" id="providerOverallStatus">UNAVAILABLE</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
+                <div><b data-i18n="workstationLabel33">Cryptocurrency Feed</b><br><small class="muted-text">Binance with Yahoo fallback</small></div>
+                <span class="badge" id="cryptoFeedStatus">Not verified</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
+                <div><b data-i18n="workstationLabel34">Forex &amp; Commodities</b><br><small class="muted-text">Yahoo Finance · instrument identity required</small></div>
+                <span class="badge" id="forexFeedStatus">Not verified</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
+                <div><b data-i18n="workstationLabel35">Economic Calendar</b><br><small class="muted-text">Macro Events Feed</small></div>
+                <span class="badge" id="calendarFeedStatus">UNAVAILABLE</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Broker Bridge Configuration -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel10">Broker Gateway &amp; Bridge</h3>
+              <span class="badge">Architecture</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
+                <div><b>Paper Trading Engine</b><br><small class="muted-text">Server-side authoritative virtual execution</small></div>
+                <span class="badge" style="color: #10b981;">ACTIVE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border);">
+                <div><b>Exness REST / MT5 Bridge</b><br><small class="muted-text">Official broker adapter</small></div>
+                <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
+                <div><b>XTB xStation Bridge</b><br><small class="muted-text">Direct xAPI streaming</small></div>
+                <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Display & Localization -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel11">Display &amp; Localization</h3>
+              <span class="badge">Preferences</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+              <div>
+                <b class="tiny">Interface Language</b>
+                <div style="display: flex; gap: 8px; margin-top: 6px;">
+                  <button type="button" class="lang-pill active" data-language="en">English (LTR)</button>
+                  <button type="button" class="lang-pill" data-language="ar">العربية (RTL)</button>
+                </div>
+              </div>
+              <div>
+                <b class="tiny">Color Palette &amp; Theme</b>
+                <div style="margin-top: 6px;">
+                  <button type="button" class="ghost small" id="prefThemeToggleBtn">Toggle Dark / Light Theme</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Storage & Reset -->
+          <article class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="workstationLabel12">Data &amp; Sandbox Reset</h3>
+              <span class="badge" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Danger Zone</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+              <div>
+                <b class="tiny">Reset Virtual Paper Balance</b>
+                <p class="tiny muted-text">Restores your simulated paper balance back to $50,000.00 and clears virtual positions.</p>
+                <button type="button" class="ghost small" id="prefResetSandboxBtn" style="margin-top: 4px; color: #ef4444;">🧪 Reset Sandbox to $50,000</button>
+              </div>
+              <div>
+                <b class="tiny">Purge Local Journal Ledger</b>
+                <p class="tiny muted-text">Removes client-side journaled notes and cached setups from browser storage.</p>
+                <button type="button" class="ghost small" id="prefClearJournalBtn" style="margin-top: 4px; color: #ef4444;">🗑️ Clear Journal Ledger</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- SYSTEM DIALOGS & OVERLAYS                   -->
+      <!-- ============================================== -->
+      <dialog id="logTradeModal" class="log-trade-dialog">
+        <form method="dialog" id="logTradeForm" class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="logTradeTitle">Log Closed Trade Outcome</h3>
+            <button type="button" class="toast-close-btn" id="closeLogTradeDialogBtn">&times;</button>
+          </div>
+          <div class="dialog-grid">
+            <label>
+              <span data-i18n="symbol">Symbol</span>
+              <input id="manualSymbol" required value="EURUSD" />
+            </label>
+            <label>
+              <span data-i18n="direction">Direction</span>
+              <select id="manualDirection">
+                <option value="BUY">BUY / LONG</option>
+                <option value="SELL">SELL / SHORT</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="entryPrice">Entry Price</span>
+              <input id="manualEntry" type="number" step="any" value="1.08500" required />
+            </label>
+            <label>
+              <span data-i18n="exitPrice">Exit Price</span>
+              <input id="manualExit" type="number" step="any" value="1.08950" required />
+            </label>
+            <label>
+              <span data-i18n="outcome">Outcome</span>
+              <select id="manualOutcome">
+                <option value="WIN">WIN (Profit Target)</option>
+                <option value="LOSS">LOSS (Stop Hit)</option>
+                <option value="BE">BREAKEVEN (Scratch)</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="realizedPnl">Realized PnL ($)</span>
+              <input id="manualPnl" type="number" step="any" value="250" required />
+            </label>
+            <label>
+              <span data-i18n="rewardRisk">Realized R (Multiple)</span>
+              <input id="manualR" type="number" step="0.1" value="2.0" required />
+            </label>
+            <label>
+              <span data-i18n="date">Close Date</span>
+              <input id="manualDate" type="date" required />
+            </label>
+            <label class="full-col">
+              <span data-i18n="traderNotes">Trade Notes</span>
+              <input id="manualNotes" placeholder="E.g. Clean FVG retest, London expansion, exited at TP1" />
+            </label>
+          </div>
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelLogTradeBtn" data-i18n="cancel">Cancel</button>
+            <button type="submit" class="primary" id="saveManualTradeBtn" data-i18n="saveTrade">Save Trade Record</button>
+          </div>
+        </form>
+      </dialog>
+
+      <!-- Bulk CSV Import Modal -->
+      <dialog id="bulkImportModal" class="log-trade-dialog bulk-import-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="bulkImportTitle">Bulk Import Trades (CSV)</h3>
+            <button type="button" class="toast-close-btn" id="closeBulkImportDialogBtn">&times;</button>
+          </div>
+          <p class="tiny trust-copy" data-i18n="bulkImportSub">
+            Upload your historical trading logs or broker CSV to populate the journal and instantly render D3.js equity curves, win/loss ratios, and drawdowns.
+          </p>
+
+          <div class="bulk-dropzone" id="csvDropzone">
+            <input type="file" id="csvFileInput" accept=".csv,text/csv" class="hidden-file-input" />
+            <div class="dropzone-content">
+              <span class="dropzone-icon">📥</span>
+              <p><b>Click to select CSV</b> or drag &amp; drop file here</p>
+              <small class="muted-text">Supports THN export format and standard broker journal CSVs</small>
+            </div>
+          </div>
+
+          <div id="csvFileInfo" class="csv-file-info hidden">
+            <div class="csv-file-meta">
+              <b id="csvFileName">trades.csv</b>
+              <span id="csvFileMeta">--</span>
+            </div>
+            <div id="csvPreviewGrid" class="csv-preview-grid"></div>
+          </div>
+
+          <div class="import-options-row">
+            <label class="import-radio-label">
+              <input type="radio" name="importMode" value="append" checked />
+              <span data-i18n="importAppend">Append to existing records</span>
+            </label>
+            <label class="import-radio-label">
+              <input type="radio" name="importMode" value="replace" />
+              <span data-i18n="importReplace">Replace current journal</span>
+            </label>
+            <button type="button" class="ghost small download-template-btn" id="downloadTemplateBtn" data-i18n="downloadTemplate">
+              📄 Download Sample CSV Template
+            </button>
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelBulkImportBtn" data-i18n="cancel">Cancel</button>
+            <button type="button" class="primary" id="confirmBulkImportBtn" disabled data-i18n="confirmImport">Import Trades</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Broker Gateway & Account Opening Dialog -->
+      <dialog id="brokerModal" class="log-trade-dialog broker-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <div>
+              <h3 data-i18n="connectBrokerTitle">Trading Broker &amp; Capital Gateway</h3>
+              <p class="tiny trust-copy" data-i18n="connectBrokerSub">
+                Approved and regulated trading brokers in the Arabian Gulf &amp; Global Markets (XTB, Exness, MetaTrader 5, and more). Open or connect your broker account directly.
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeBrokerModalBtn">&times;</button>
+          </div>
+
+          <!-- Quick Help / Documentation Callout Banner -->
+          <div class="broker-docs-callout">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <b data-i18n="needApiKeyHelp">Need help finding your MT5 login, server, or API key?</b>
+              <small data-i18n="needApiKeyHelpSub">Follow our interactive step-by-step connection tutorials for Exness, XTB, and MetaTrader 5.</small>
+            </div>
+            <button type="button" class="ghost small" id="openDocsFromBrokerModalBtn" data-i18n="viewTutorialsBtn">📖 View API Tutorials</button>
+          </div>
+
+          <!-- Mode Selector Tabs: Connect Existing Account vs Open with Broker -->
+          <div class="broker-modal-tabs">
+            <button type="button" class="broker-modal-tab active" id="tabConnectBrokerBtn" data-tab="connect">
+              🔗 <span data-i18n="tabConnectBroker">Connect Trading Account</span>
+            </button>
+            <button type="button" class="broker-modal-tab" id="tabOpenBrokerBtn" data-tab="open">
+              🌐 <span data-i18n="tabOpenBroker">Open Account with Broker</span>
+            </button>
+          </div>
+
+          <!-- Approved Broker Selection Grid -->
+          <div class="broker-options-grid" id="brokerProviderOptions">
+            <label class="broker-option-card active" data-provider="paper">
+              <input type="radio" name="brokerProvider" value="paper" checked />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#042F2E"/><path d="M16 6L24 10V16C24 21 20 25 16 27C12 25 8 21 8 16V10L16 6Z" stroke="#2BF5C7" stroke-width="2" fill="none"/><path d="M16 11L14 17H18L16 22" stroke="#2BF5C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">Built-in Sandbox</span>
+                  <b>Paper Trading Sandbox</b>
+                </div>
+                <small>Paper simulation · provider freshness required · no live execution</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="exness">
+              <input type="radio" name="brokerProvider" value="exness" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#F4AF00"/><path d="M7 16C7 11.0294 11.0294 7 16 7C20.9706 7 25 11.0294 25 16C25 20.9706 20.9706 25 16 25" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20" stroke="#111" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">MT5 Bridge</span>
+                  <b>Exness (MT5 Bridge)</b>
+                </div>
+                <small>MetaTrader 5 Cloud Bridge · Raw Spread ECN</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="xtb">
+              <input type="radio" name="brokerProvider" value="xtb" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0A0F1D"/><path d="M7 8L15 24M15 8L7 24" stroke="#E50914" stroke-width="3" stroke-linecap="round"/><text x="16" y="21" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#2BF5C7">TB</text></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">Official API</span>
+                  <b>XTB MENA (xStation 5)</b>
+                </div>
+                <small>DFSA Regulated · High-Speed WebSocket Gateway</small>
+              </div>
+            </label>
+
+            <label class="broker-option-card" data-provider="mt5">
+              <input type="radio" name="brokerProvider" value="mt5" />
+              <div class="broker-option-logo">
+                <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0E1B2E"/><rect x="7" y="16" width="4.5" height="9" rx="1.5" fill="#3B82F6"/><rect x="13.5" y="11" width="4.5" height="14" rx="1.5" fill="#10B981"/><rect x="20" y="7" width="4.5" height="18" rx="1.5" fill="#EF4444"/><text x="18" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="900" fill="#FFF">5</text></svg>
+              </div>
+              <div class="option-info">
+                <div>
+                  <span class="broker-tag-popular">Multi-Broker</span>
+                  <b>MetaTrader 5 (Universal)</b>
+                </div>
+                <small>IC Markets, Pepperstone, XM, FTMO Bridge</small>
+              </div>
+            </label>
+          </div>
+
+          <!-- TAB 1: CONNECT EXISTING TRADING ACCOUNT -->
+          <div id="connectBrokerTabContent" class="broker-tab-panel">
+            <div class="broker-notice-card">
+              <span>🔗 <b>Secure Server-Side Gateway:</b> Connect an existing broker terminal or sandbox portfolio. Credentials are encrypted at rest with AES-256-GCM on the backend and are never exposed to browser state or public storage.</span>
+            </div>
+
+            <!-- Permission Level Selector -->
+            <div class="permission-selector-card">
+              <span class="selector-title">Select Connection Permission Level:</span>
+              <div class="permission-options-row">
+                <label class="perm-option-label">
+                  <input type="radio" name="brokerPermission" value="TRADING_ENABLED" checked />
+                  <span><b>⚡ Trading Enabled</b> (Transmit market orders &amp; manage positions)</span>
+                </label>
+                <label class="perm-option-label">
+                  <input type="radio" name="brokerPermission" value="READ_ONLY" />
+                  <span><b>👁️ Read-Only Mode</b> (Synchronize balance, equity &amp; positions only)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dialog-grid broker-form-grid">
+              <label>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span data-i18n="brokerServer">Broker Server Hostname / Gateway</span>
+                  <button type="button" class="text-link-btn" id="docsQuickLinkServer">Server directory ↗</button>
+                </div>
+                <input id="brokerServerInput" value="Sandbox-Internal.thn-trader.net" placeholder="E.g. Exness-Real14.mt5.exness.com:443" />
+              </label>
+
+              <label>
+                <span data-i18n="accountNumber">Account / Login ID</span>
+                <input id="brokerAccountIdInput" value="" placeholder="Enter your account ID" />
+              </label>
+
+              <label>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span data-i18n="brokerPassword">API Token / Bridge Password</span>
+                  <button type="button" class="text-link-btn" id="docsQuickLinkToken">How to get key? ↗</button>
+                </div>
+                <input id="brokerPasswordInput" type="password" value="" placeholder="API Token or MT5 Bridge Password" />
+              </label>
+
+              <label>
+                <span data-i18n="baseCurrency">Account Currency</span>
+                <select id="brokerConnectCurrency">
+                  <option value="USD" selected>USD ($) - Standard</option>
+                  <option value="AED">AED (د.إ) - UAE Dirham</option>
+                  <option value="SAR">SAR (ر.س) - Saudi Riyal</option>
+                  <option value="EUR">EUR (€) - Euro</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="accountLeverage">Account Leverage</span>
+                <select id="brokerConnectLeverage">
+                  <option value="100">1:100 (Conservative)</option>
+                  <option value="200" selected>1:200 (Standard)</option>
+                  <option value="500">1:500 (High Dynamic)</option>
+                  <option value="1000">1:1000 (Maximum)</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Permission Mode</span>
+                <select id="brokerPermissionSelect">
+                  <option value="TRADING_ENABLED" selected>Trading &amp; Execution Enabled</option>
+                  <option value="READ_ONLY">Read-Only (Advisory / Market Data Only)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="broker-sync-note tiny muted-text" style="margin-top: 8px;">
+              🛡️ <b>Balance &amp; Margin Integrity:</b> Capital balance, used margin, and open positions are retrieved authoritatively from the broker gateway upon handshake. Manual balance entry is prohibited.
+            </div>
+
+            <div class="test-ping-box">
+              <button type="button" class="ghost small" id="testBrokerPingBtn">
+                📡 Test Server Handshake &amp; Ping
+              </button>
+              <span id="testBrokerPingResult" class="tiny">Ready to test connection</span>
+            </div>
+
+            <div class="dialog-actions">
+              <button type="button" class="ghost" id="cancelConnectBrokerModalBtn" data-i18n="cancel">Cancel</button>
+              <button type="button" class="primary" id="saveBrokerConnectionBtn" data-i18n="saveBrokerConnection">
+                🔗 Verify &amp; Link Gateway
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 2: REGISTER NEW ACCOUNT WITH REGULATED BROKER -->
+          <div id="openBrokerTabContent" class="broker-tab-panel hidden">
+            <div class="broker-notice-card" id="brokerNoticeCard">
+              <span>🏛️ <b>Official Broker Registration:</b> THN AI Trader is an independent analytical workstation and trade execution interface. It does not act as a broker or register brokerage accounts directly. To trade real capital with regulatory investor protection, please register directly with an authorized broker below:</span>
+            </div>
+
+            <div class="official-brokers-grid">
+              <div class="official-broker-card">
+                <div class="ob-header">
+                  <b>Exness GCC &amp; Global</b>
+                  <span class="ob-badge green">CySEC &amp; FSA Regulated</span>
+                </div>
+                <p>Leading multi-asset broker with 0.0 pip Raw Spread ECN accounts, Islamic swap-free option, and instant local banking.</p>
+                <ul class="ob-features">
+                  <li>Supported Platforms: MT5 Cloud, WebTrader</li>
+                  <li>Account Types: Raw Spread ECN, Pro, Standard</li>
+                  <li>Regulation: CySEC (#178/12), FSA (#SD025)</li>
+                </ul>
+                <a class="button primary small" href="https://www.exness.com" target="_blank" rel="noopener noreferrer">
+                  🌐 Open Account at Exness Official Portal ↗
+                </a>
+              </div>
+
+              <div class="official-broker-card">
+                <div class="ob-header">
+                  <b>XTB MENA (xStation 5)</b>
+                  <span class="ob-badge blue">DFSA Dubai Regulated</span>
+                </div>
+                <p>DFSA-regulated broker operating from Dubai International Financial Centre (DIFC). Offers 0% commission equities and high-speed JSON streaming API.</p>
+                <ul class="ob-features">
+                  <li>Supported Platforms: xStation 5 Web API</li>
+                  <li>Account Types: Standard, Pro, Islamic Swap-Free</li>
+                  <li>Regulation: DFSA License #F003423</li>
+                </ul>
+                <a class="button primary small" href="https://www.xtb.com/mena" target="_blank" rel="noopener noreferrer">
+                  🌐 Open Account at XTB MENA Official Portal ↗
+                </a>
+              </div>
+
+              <div class="official-broker-card">
+                <div class="ob-header">
+                  <b>MetaTrader 5 Universal</b>
+                  <span class="ob-badge gold">Universal Multi-Broker</span>
+                </div>
+                <p>Connect your existing trading account from any MT5 broker including IC Markets, Pepperstone, XM, or prop firms (FTMO, FundedNext).</p>
+                <ul class="ob-features">
+                  <li>Supported Platforms: MT5 Terminal &amp; WebRequest Bridge</li>
+                  <li>Account Types: All MT5 ECN &amp; Standard accounts</li>
+                </ul>
+                <a class="button ghost small" href="https://www.metatrader5.com" target="_blank" rel="noopener noreferrer">
+                  🌐 Visit MetaQuotes Official Site ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="dialog-actions">
+              <button type="button" class="ghost" id="cancelBrokerModalBtn" data-i18n="cancel">Close</button>
+              <button type="button" class="primary" id="switchToConnectTabBtn">
+                🔗 Already Have an Account? Connect It Here
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Broker Funding Direct Gateway Dialog -->
+      <dialog id="fundsModal" class="log-trade-dialog funds-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <div>
+              <h3 data-i18n="fundsModalTitle">Broker Direct Capital &amp; Banking Portal</h3>
+              <p class="tiny trust-copy" id="fundsModalSubtitle">
+                THN AI Trader does not custody or transfer client funds. Capital deposits, withdrawals, and bank verifications must be managed through your regulated broker's official client portal.
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeFundsModalBtn">&times;</button>
+          </div>
+
+          <div class="funding-portals-grid">
+            <div class="portal-card">
+              <div class="portal-icon">🏛️</div>
+              <div class="portal-info">
+                <b>Exness Personal Area Banking</b>
+                <small>Manage deposits, withdrawals, and account verification securely in your official Exness client area.</small>
+              </div>
+              <a href="https://my.exness.com" target="_blank" rel="noopener noreferrer" class="button primary small">
+                Launch Exness Portal ↗
+              </a>
+            </div>
+
+            <div class="portal-card">
+              <div class="portal-icon">🏢</div>
+              <div class="portal-info">
+                <b>XTB Client Office Portal</b>
+                <small>Manage account capital, bank accounts, and withdrawals directly in your official XTB client portal.</small>
+              </div>
+              <a href="https://co.xtb.com" target="_blank" rel="noopener noreferrer" class="button primary small">
+                Launch XTB Client Office ↗
+              </a>
+            </div>
+
+            <div class="portal-card sandbox-funding-card" id="sandboxFundingCard">
+              <div class="portal-icon">🧪</div>
+              <div class="portal-info">
+                <b>Paper Trading Portfolio Capital Reset</b>
+                <small>Reset your simulated sandbox balance to $50,000 virtual funds for testing strategies.</small>
+              </div>
+              <button type="button" class="button secondary small" id="resetPaperBalanceBtn">
+                🔄 Reset Sandbox to $50,000
+              </button>
+            </div>
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelFundsModalBtn" data-i18n="cancel">Close</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Instant Trade Execution Confirmation Dialog -->
+      <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog">
+        <div class="log-trade-form">
+          <div class="dialog-head">
+            <h3 data-i18n="executeOrderTitle">⚡ Transmit Order to Broker Gateway</h3>
+            <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
+          </div>
+          <p class="tiny trust-copy" id="executeOrderDesc">
+            Direct order dispatch with pre-trade risk validation and automated stop protection.
+          </p>
+
+          <div class="execute-order-card" id="executeOrderCard">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="ghost" id="cancelExecuteBtn" data-i18n="cancel">Cancel</button>
+            <button type="button" class="primary" id="confirmExecuteBtn">⚡ Confirm &amp; Dispatch Order</button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- Interactive Broker API Connection Documentation & Tutorials Dialog -->
+      <dialog id="brokerDocsModal" class="log-trade-dialog broker-docs-dialog">
+        <div class="log-trade-form docs-form-shell">
+          <div class="dialog-head docs-head">
+            <div>
+              <div class="docs-title-badge">
+                <span class="badge-icon">📖</span>
+                <span class="badge-label">OFFICIAL PLATFORM INTEGRATION GUIDE</span>
+              </div>
+              <h3 data-i18n="brokerDocsTitle">Broker API &amp; Platform Connection Documentation</h3>
+              <p class="tiny trust-copy" data-i18n="brokerDocsSub">
+                Interactive step-by-step walkthroughs to obtain API keys, server endpoints, and connect Exness, XTB, and MetaTrader 5 (MT5).
+              </p>
+            </div>
+            <button type="button" class="toast-close-btn" id="closeBrokerDocsModalBtn">&times;</button>
+          </div>
+
+          <!-- Documentation Toolbar: Platform Selector Tabs & Search Filter -->
+          <div class="docs-toolbar">
+            <div class="docs-tabs-nav" id="docsTabsNav">
+              <button type="button" class="docs-tab-btn active" data-platform="exness" id="docsTabExness">
+                <span class="tab-icon">🟡</span> <span data-i18n="tabDocsExness">Exness (MT5 &amp; Web API)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="xtb" id="docsTabXtb">
+                <span class="tab-icon">🔴</span> <span data-i18n="tabDocsXtb">XTB MENA (xStation 5)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="mt5" id="docsTabMt5">
+                <span class="tab-icon">🔵</span> <span data-i18n="tabDocsMt5">MetaTrader 5 (Universal)</span>
+              </button>
+              <button type="button" class="docs-tab-btn" data-platform="troubleshoot" id="docsTabTroubleshoot">
+                <span class="tab-icon">🛠️</span> <span data-i18n="tabDocsTroubleshoot">Troubleshooting &amp; FAQs</span>
+              </button>
+            </div>
+
+            <div class="docs-search-box">
+              <input type="text" id="docsSearchInput" placeholder="🔍 Search tutorial steps, server names, error codes..." />
+            </div>
+          </div>
+
+          <!-- TAB 1: EXNESS TUTORIAL -->
+          <div class="docs-tab-content active" id="docsContentExness" data-platform-section="exness">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#F4AF00"/><path d="M7 16C7 11.0294 11.0294 7 16 7C20.9706 7 25 11.0294 25 16C25 20.9706 20.9706 25 16 25" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20" stroke="#111" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <h4>Exness GCC &amp; Global (إكسنس) - MetaTrader 5 Cloud &amp; Web Bridge</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item green">CySEC &amp; FSA Tier-1 Regulated</span>
+                    <span class="badge-item blue">Raw Spread 0.0 Pip</span>
+                    <span class="badge-item gold">Instant GCC Local Transfers</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.exness.com" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit Exness Portal
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Log into Exness Personal Area &amp; Select MT5 Account</h5>
+                  <p>Log in to your Exness account at <code>my.exness.com</code>. In the <b>"My Accounts"</b> section, select an existing <b>MT5 Real</b> account (Raw Spread or Standard) or click <b>"Open New Account"</b>.</p>
+                  <div class="mock-portal-box">
+                    <span class="mock-tag">EXNESS PERSONAL AREA PREVIEW</span>
+                    <div class="mock-ui-row">
+                      <span>📁 My Accounts &gt; Real &gt; <b>MT5 Raw Spread (#EXAMPLE-ACCOUNT)</b></span>
+                      <span class="status-chip active">ACTIVE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Retrieve Server Hostname &amp; Account / Login ID</h5>
+                  <p>Click the <b>three dots (...)</b> on your account card and select <b>"Account Information"</b>. Note down:</p>
+                  <ul class="docs-checklist">
+                    <li><b>MT5 Login:</b> Your 7 or 8-digit numeric account ID (e.g. <code>EXAMPLE-ACCOUNT</code>).</li>
+                    <li><b>Server:</b> The exact cluster name assigned to your account (e.g. <code>Exness-Real14</code>).</li>
+                    <li><b>Recommended Hostname:</b> <code>Exness-Real14.mt5.exness.com:443</code>.</li>
+                  </ul>
+                  <div class="code-snippet-box">
+                    <div class="snippet-header">
+                      <span>Exness Server Hostname Format</span>
+                      <button type="button" class="copy-snippet-btn" data-copy="Exness-Real14.mt5.exness.com:443">📋 Copy Server</button>
+                    </div>
+                    <code>Exness-Real14.mt5.exness.com:443</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Trading Password vs Investor (Read-Only) Password</h5>
+                  <p>In Account Information, you can set two types of passwords:</p>
+                  <div class="passwords-comparison-grid">
+                    <div class="pwd-type-card">
+                      <b>Trading (Master) Password</b>
+                      <small>Grants order execution permission so THN Trader can place AI deals, stop losses, and take profits automatically.</small>
+                    </div>
+                    <div class="pwd-type-card">
+                      <b>Investor Password</b>
+                      <small>Read-only access. Used if you only want live balance and position synchronization without live trade placement.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive Exness Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Configure your Exness parameters below and click <b>Auto-Fill</b> to transfer them immediately into the Broker Desk Connection form:</p>
+
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>Exness Server:</span>
+                      <select id="docExnessServerSelect">
+                        <option value="Exness-Real14.mt5.exness.com:443" selected>Exness-Real14 (GCC Primary)</option>
+                        <option value="Exness-Real15.mt5.exness.com:443">Exness-Real15</option>
+                        <option value="Exness-Real16.mt5.exness.com:443">Exness-Real16</option>
+                        <option value="Exness-Trial10.mt5.exness.com:443">Exness-Trial10 (Demo Sandbox)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>Your MT5 Account Number:</span>
+                      <input id="docExnessAccountInput" value="" placeholder="Enter your account ID" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docExnessBalanceInput" type="number" value="25000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyExnessConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                    <button type="button" class="ghost small" id="copyExnessConfigBtn">
+                      📋 Copy Full MT5 Config String
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: XTB MENA TUTORIAL -->
+          <div class="docs-tab-content hidden" id="docsContentXtb" data-platform-section="xtb">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0A0F1D"/><path d="M7 8L15 24M15 8L7 24" stroke="#E50914" stroke-width="3" stroke-linecap="round"/><text x="16" y="21" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#2BF5C7">TB</text></svg>
+                </div>
+                <div>
+                  <h4>XTB MENA (إكس تي بي) - DFSA Dubai DIFC Regulated xStation 5 Web API</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item green">DFSA License #F003423</span>
+                    <span class="badge-item blue">0% Commission Equities &amp; FX</span>
+                    <span class="badge-item gold">High-Speed JSON Streaming</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.xtb.com/mena" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit XTB Client Office
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Access XTB Client Office Portal (xStation 5)</h5>
+                  <p>Navigate to <code>co.xtb.com</code> and sign in with your XTB MENA or International credentials. Click on <b>"My Profile"</b> in the top right menu and select <b>"API &amp; Integrations"</b>.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Generate an Application Key &amp; Set Permissions</h5>
+                  <p>Under API Management, click <b>"Create New Application Key"</b>. Enter <code>THN-Trader</code> as the application name and check the following permission scopes:</p>
+                  <ul class="docs-checklist">
+                    <li><b>streamingData:</b> Real-time streaming bid/ask quotes and tick data.</li>
+                    <li><b>tradeOrders:</b> Direct execution of instant market orders and limit entries.</li>
+                    <li><b>getRecords:</b> Read open trades, margin level, and closed trade ledger.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Endpoint &amp; 7-Digit Client ID</h5>
+                  <p>XTB assigns a 7-digit Account ID (e.g. <code>EXAMPLE-ACCOUNT</code>). Use the corresponding gateway server:</p>
+                  <div class="code-snippet-box">
+                    <div class="snippet-header">
+                      <span>XTB Live Gateway Server Host</span>
+                      <button type="button" class="copy-snippet-btn" data-copy="XTB-xStation5-Live.xtb.com:443">📋 Copy Host</button>
+                    </div>
+                    <code>XTB-xStation5-Live.xtb.com:443</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive XTB Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Fill in your XTB parameters below to transfer them to the Broker Desk connection form:</p>
+
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>XTB Server Host:</span>
+                      <select id="docXtbServerSelect">
+                        <option value="XTB-xStation5-Live.xtb.com:443" selected>XTB-xStation5-Live.xtb.com:443 (Live DIFC)</option>
+                        <option value="XTB-xStation5-Demo.xtb.com:443">XTB-xStation5-Demo.xtb.com:443 (Demo Sandbox)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>XTB Client ID (7 Digits):</span>
+                      <input id="docXtbAccountInput" value="" placeholder="Enter your account ID" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docXtbBalanceInput" type="number" value="50000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyXtbConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                    <button type="button" class="ghost small" id="copyXtbJsonBtn">
+                      📋 Copy JSON Authentication Payload
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: METATRADER 5 UNIVERSAL TUTORIAL -->
+          <div class="docs-tab-content hidden" id="docsContentMt5" data-platform-section="mt5">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0E1B2E"/><rect x="7" y="16" width="4.5" height="9" rx="1.5" fill="#3B82F6"/><rect x="13.5" y="11" width="4.5" height="14" rx="1.5" fill="#10B981"/><rect x="20" y="7" width="4.5" height="18" rx="1.5" fill="#EF4444"/><text x="18" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="900" fill="#FFF">5</text></svg>
+                </div>
+                <div>
+                  <h4>MetaTrader 5 (MT5 Cloud Universal Multi-Broker)</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item blue">Universal Multi-Broker Support</span>
+                    <span class="badge-item green">Prop Firms Compatible (FTMO, FundedNext)</span>
+                    <span class="badge-item gold">REST &amp; WebHook Cloud Bridge</span>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.metatrader5.com" target="_blank" rel="noopener noreferrer" class="button ghost small">
+                🌐 Visit MetaQuotes
+              </a>
+            </div>
+
+            <div class="tutorial-steps-container">
+              <!-- Step 1 -->
+              <div class="tutorial-step-card" data-step="1">
+                <div class="step-badge">STEP 1</div>
+                <div class="step-body">
+                  <h5>Extract MT5 Login &amp; Server Name from Broker Confirmation</h5>
+                  <p>Whenever you open an account with any broker (IC Markets, Pepperstone, XM, Exness, or Prop Firms), check your registration email for:</p>
+                  <ul class="docs-checklist">
+                    <li><b>Account / Login:</b> Numeric identifier (e.g. <code>EXAMPLE-ACCOUNT</code>).</li>
+                    <li><b>Server:</b> Exact server name with cluster numbers (e.g. <code>ICMarketsSC-Live02</code>).</li>
+                    <li><b>Master Password:</b> Trader master password.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tutorial-step-card" data-step="2">
+                <div class="step-badge">STEP 2</div>
+                <div class="step-body">
+                  <h5>Configure WebRequest in Desktop MT5 Terminal (Optional)</h5>
+                  <p>If you connect directly via local MT5 client:</p>
+                  <ol class="docs-ordered-list">
+                    <li>In MT5 Terminal, press <code>Ctrl + O</code> or go to <b>Tools &gt; Options</b>.</li>
+                    <li>Select the <b>"Expert Advisors"</b> tab.</li>
+                    <li>Check <b>"Allow WebRequest for listed URL"</b>.</li>
+                    <li>Add your workstation domain: <code>https://ais-pre-xz6nkqd3jnvexszl2jxi4n-562174811925.europe-west3.run.app</code>.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Step 3: Verified Server Directory -->
+              <div class="tutorial-step-card" data-step="3">
+                <div class="step-badge">STEP 3</div>
+                <div class="step-body">
+                  <h5>Pre-Configured Verified MT5 Server Host Directory</h5>
+                  <p>Click on any verified broker server below to copy its full hostname instantly:</p>
+
+                  <div class="server-directory-grid">
+                    <button type="button" class="server-pill-btn" data-server="Exness-Real14.mt5.exness.com:443">
+                      <b>Exness GCC:</b> <span>Exness-Real14.mt5.exness.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="ICMarketsSC-Live02.mt5.icmarkets.com:443">
+                      <b>IC Markets:</b> <span>ICMarketsSC-Live02.mt5.icmarkets.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="Pepperstone-Live01.mt5.pepperstone.com:443">
+                      <b>Pepperstone:</b> <span>Pepperstone-Live01.mt5.pepperstone.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="XMGlobal-MT5-7.xm.com:443">
+                      <b>XM Global:</b> <span>XMGlobal-MT5-7.xm.com:443</span>
+                    </button>
+                    <button type="button" class="server-pill-btn" data-server="MetaQuotes-Live5.metaquotes.net:443">
+                      <b>MetaQuotes:</b> <span>MetaQuotes-Live5.metaquotes.net:443</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Interactive Configurator -->
+              <div class="tutorial-step-card interactive-config-card" data-step="4">
+                <div class="step-badge highlight">⚡ QUICK APPLY</div>
+                <div class="step-body">
+                  <h5>Interactive MT5 Configurator &amp; 1-Click Desk Fill</h5>
+                  <p>Choose an MT5 server and auto-fill directly into the Broker Desk Connection dialog:</p>
+
+                  <div class="interactive-config-grid">
+                    <label>
+                      <span>Select MT5 Server Host:</span>
+                      <select id="docMt5ServerSelect">
+                        <option value="MetaQuotes-Live5.metaquotes.net:443" selected>MetaQuotes Universal (Live5)</option>
+                        <option value="Exness-Real14.mt5.exness.com:443">Exness-Real14 (Exness GCC)</option>
+                        <option value="ICMarketsSC-Live02.mt5.icmarkets.com:443">IC Markets Raw (SC-Live02)</option>
+                        <option value="Pepperstone-Live01.mt5.pepperstone.com:443">Pepperstone Edge (Live01)</option>
+                        <option value="XMGlobal-MT5-7.xm.com:443">XM Global Ultra-Low (MT5-7)</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      <span>MT5 Login / Account ID:</span>
+                      <input id="docMt5AccountInput" value="" placeholder="Enter your account ID" />
+                    </label>
+
+                    <label>
+                      <span>Account Balance ($):</span>
+                      <input id="docMt5BalanceInput" type="number" value="100000" />
+                    </label>
+                  </div>
+
+                  <div class="config-actions">
+                    <button type="button" class="primary small" id="applyMt5ConfigBtn" data-i18n="applyConfigToDesk">
+                      ⚡ Auto-Fill in Broker Connection Form
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: TROUBLESHOOTING & FAQS -->
+          <div class="docs-tab-content hidden" id="docsContentTroubleshoot" data-platform-section="troubleshoot">
+            <div class="docs-platform-hero">
+              <div class="hero-brand">
+                <div class="hero-logo-box">
+                  <span style="font-size:24px;">🛠️</span>
+                </div>
+                <div>
+                  <h4>Broker Gateway Troubleshooting &amp; Latency Guide</h4>
+                  <div class="hero-badges">
+                    <span class="badge-item blue">Error Diagnostics</span>
+                    <span class="badge-item green">Latency Optimization</span>
+                    <span class="badge-item gold">Connection Handshake Validator</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Troubleshooting Cards Grid -->
+            <div class="troubleshoot-grid">
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10004</span>
+                  <b>Re-Quote / Slippage Tolerance Violation</b>
+                </div>
+                <p><b>Cause:</b> Volatile price movements between order creation and broker server matching.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> THN Trader automatically applies a 1.5-pip dynamic slippage buffer on Exness and XTB. For fast news windows, use <b>BUY LIMIT</b> or <b>SELL LIMIT</b> setups.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10015</span>
+                  <b>Invalid Price / Off Quotes</b>
+                </div>
+                <p><b>Cause:</b> Trading session is closed (e.g. Forex over the weekend) or market spread widened during daily rollover (21:00 - 21:05 UTC).</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Check the Market Status tag in the topbar. Crypto (BTCUSDT) trades 24/7, while Forex &amp; Metals operate Monday morning through Friday evening.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10027</span>
+                  <b>Automated Trading Disabled in Client</b>
+                </div>
+                <p><b>Cause:</b> The MT5 terminal has the "Algo Trading" button toggled off.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Click the <b>"Algo Trading"</b> button in MT5's top toolbar until it displays a green play icon, or use THN Trader Cloud Web Bridge which bypasses desktop limits.
+                </div>
+              </div>
+
+              <div class="trouble-card">
+                <div class="trouble-head">
+                  <span class="err-badge">ERROR 10001</span>
+                  <b>Handshake Timeout / Invalid Port</b>
+                </div>
+                <p><b>Cause:</b> Missing port <code>:443</code> or firewall blocking WebSocket TCP connections.</p>
+                <div class="fix-box">
+                  <b>Solution:</b> Always append <code>:443</code> to the hostname (e.g. <code>Exness-Real14.mt5.exness.com:443</code>).
+                </div>
+              </div>
+            </div>
+
+            <!-- Embedded Live Ping Tester Widget -->
+            <div class="docs-ping-tester">
+              <div class="tester-head">
+                <b>📡 Embedded Real-Time Server Latency Tester</b>
+                <small>Test handshake round-trip latency to any broker server before connecting:</small>
+              </div>
+              <div class="tester-controls">
+                <select id="docTestBrokerSelect">
+                  <option value="exness">Exness GCC Gateway (11ms typical)</option>
+                  <option value="xtb">XTB MENA DIFC Gateway (14ms typical)</option>
+                  <option value="mt5">MetaQuotes Universal Cloud (9ms typical)</option>
+                  <option value="ibkr">Interactive Brokers Gateway (22ms typical)</option>
+                  <option value="binance">Binance VIP WebSocket (8ms typical)</option>
+                </select>
+                <button type="button" class="primary small" id="docRunPingTestBtn">
+                  🚀 Send Test Ping
+                </button>
+                <span class="tester-result-pill" id="docPingResultBadge">Status: Ready to test</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dialog-actions docs-footer-actions">
+            <button type="button" class="ghost" id="closeDocsBottomBtn" data-i18n="cancel">Close Guide</button>
+            <button type="button" class="primary" id="openConnectFromDocsBtn" data-i18n="openBrokerBtn">⚡ Open Broker Desk Connection</button>
+          </div>
+        </div>
+      </dialog>
+
+<!-- Floating Live Trade Alert Toast Notification -->
+      <div id="tradeToast" class="trade-toast hidden" role="alert" aria-live="assertive">
+        <div class="toast-header">
+          <div class="toast-title-lockup">
+            <span class="toast-signal" id="toastSignal">BUY</span>
+            <strong class="toast-symbol" id="toastSymbol">EURUSD</strong>
+          </div>
+          <span class="toast-confidence" id="toastConfidence">82%</span>
+          <button type="button" class="toast-close-btn" id="toastCloseBtn" aria-label="Dismiss alert">&times;</button>
+        </div>
+        <div class="toast-body">
+          <div class="toast-metrics">
+            <div><small data-i18n="entry">Entry</small><b id="toastEntry">--</b></div>
+            <div><small data-i18n="stopLoss">SL</small><b id="toastSL">--</b></div>
+            <div><small data-i18n="takeProfit1">TP1</small><b id="toastTP1">--</b></div>
+          </div>
+          <p class="toast-reason" id="toastReason">Scanner detected a high-probability opportunity setup.</p>
+        </div>
+        <div class="toast-actions">
+          <button type="button" class="primary small" id="toastInspectBtn" data-i18n="inspectTrade">Inspect Chart & Analysis</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="d3.min.js"></script>
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

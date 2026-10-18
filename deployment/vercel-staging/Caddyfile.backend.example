@@ -1,0 +1,23 @@
+# INACTIVE. Dedicated persistent staging host only. Never replace a production proxy.
+{
+    admin off
+}
+{$THN_STAGING_BACKEND_HOST} {
+    header {
+        Cache-Control "private, no-store, max-age=0"
+        CDN-Cache-Control "no-store"
+        Vercel-CDN-Cache-Control "no-store"
+        X-Content-Type-Options "nosniff"
+        Strict-Transport-Security "max-age=86400"
+    }
+    basic_auth {
+        owner {$THN_STAGING_GATE_HASH}
+    }
+    handle /api/* {
+        # Keep original browser Origin, Cookie and Authorization. Set-Cookie remains host-only.
+        reverse_proxy 127.0.0.1:3000
+    }
+    handle {
+        respond "Not found" 404
+    }
+}

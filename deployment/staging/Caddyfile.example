@@ -1,0 +1,11 @@
+# Inactive template: replace only with the isolated staging backend hostname.
+# Caddy obtains a certificate after approved DNS/provisioning; do not run yet.
+staging-backend.example.invalid {
+    header Strict-Transport-Security "max-age=86400"
+    handle /api/* {
+        reverse_proxy 127.0.0.1:3000
+    }
+    handle {
+        respond "Not found" 404
+    }
+}

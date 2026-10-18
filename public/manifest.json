@@ -1,0 +1,16 @@
+{
+  "name": "THN AI Trader Professional",
+  "short_name": "THN Trader",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050814",
+  "theme_color": "#2bf5c7",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "description": "Professional multi-school AI trading workstation with market map and risk governance."
+}

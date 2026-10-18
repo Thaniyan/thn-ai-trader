@@ -1,0 +1,22 @@
+{
+  "purpose": "LOCAL_SOURCE_RECONCILIATION_NOT_PUBLISHED_OR_DEPLOYED",
+  "originalRepository": "Thaniyan/thn-ai-trader",
+  "originalBaseCommit": "50857dfc1e45a901515b56ffe2ed914d897671af",
+  "stagingRepository": "Thaniyan/thn-ai-trader-staging",
+  "stagingMainCommit": "75110ec2ca317ae0a873268f42a577636f250dbd",
+  "reviewedStagingSource": "b05f070c1c9b289bc5b39f833e4591f0bdd8d8ac",
+  "strategy": "Source-tree reconciliation on original history; no unrelated-history merge",
+  "fileProvenance": "docs/reconciliation/file-assessment.json",
+  "localBranch": "reconciliation/unified-development-local",
+  "publicationGate": "BLOCKED_UNVERIFIED_ORIGINAL_HOSTING_ISOLATION",
+  "excluded": [
+    "trading_accounts.json",
+    "audit_log.json",
+    "AUDIT_REPORT.md",
+    "PUBLICATION-MANIFEST.json",
+    "PUBLICATION-REVIEW.md"
+  ],
+  "productionRootDeploymentConfiguration": "unchanged: no tracked root provider config or workflows",
+  "runtimeSecretsIncluded": false,
+  "candidateCommit": "Use git rev-parse HEAD; self-hashing this source document is not possible"
+}

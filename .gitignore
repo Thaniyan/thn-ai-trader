@@ -1,0 +1,30 @@
+node_modules/
+.env
+.vault_key
+.DS_Store
+*.log
+
+.runtime/
+
+# Private local staging state; never commit generated secrets, certificates or data.
+.local-staging/
+THN-local-root.crt
+
+# Clean staging publication: forbid runtime data and automation artifacts.
+trading_accounts.json
+audit_log.json
+credentials.json
+*.sqlite*
+*.db
+*.key
+*.pem
+*.zip
+*.tar.gz
+*.bundle
+.github/
+.vercel/
+vercel.json
+netlify.toml
+render.yaml
+.browser-venv/
+tools/

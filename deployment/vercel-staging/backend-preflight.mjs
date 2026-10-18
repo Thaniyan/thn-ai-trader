@@ -1,0 +1,12 @@
+import fs from 'node:fs';import path from 'node:path';
+const [major,minor]=process.versions.node.split('.').map(Number);if(major!==24||minor<5)throw Error('Node 24.x >=24.5 required');
+const u=new URL(process.env.THN_PUBLIC_ORIGIN);
+if(u.protocol!=='https:'||u.origin!==process.env.THN_PUBLIC_ORIGIN||u.username||u.password||u.port||u.hostname==='thn-ai-trader.vercel.app'||!(u.hostname.startsWith('staging.')||u.hostname.startsWith('thn-ai-trader-staging-')&&u.hostname.endsWith('.vercel.app'))||u.hostname.endsWith('.invalid'))throw Error('Exact approved staging frontend HTTPS origin required');
+const dir=process.env.THN_DATA_DIR;
+if(!dir||!path.isAbsolute(dir)||!path.basename(dir).includes('staging')||!fs.statSync(dir).isDirectory()||fs.realpathSync(dir)!==dir||fs.statSync(dir).mode&0o077)throw Error('Dedicated private unredirected persistent staging directory required');
+if(!/^[a-f0-9]{64}$/.test(process.env.APP_ENCRYPTION_KEY||''))throw Error('Fresh dedicated encryption key required');
+const users=JSON.parse(process.env.THN_AUTH_USERS||'[]');if(!Array.isArray(users)||users.length!==2||new Set(users.map(u=>u.id)).size!==2||new Set(users.map(u=>u.token)).size!==2||users.some(u=>typeof u.id!=='string'||!u.id||!/^[a-f0-9]{64}$/.test(u.token||''))||process.env.THN_AUTH_TOKEN)throw Error('Two fresh staging identities required; no inherited operator token');
+if(process.env.PORT!=='3000')throw Error('Dedicated loopback port3000 required');
+for(const name of ['.env','.vault_key','trading_accounts.json','audit_log.json'])if(fs.existsSync(name))throw Error('Legacy local data/config excluded from dedicated backend');
+if(process.env.OPENAI_API_KEY)throw Error('Initial staging integration must not enable paid AI calls; separate review required');
+console.log('Staging backend preflight PASS; verify exact external origin, access protection and durable disk separately');

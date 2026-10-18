@@ -1,0 +1,27 @@
+[Unit]
+Description=THN AI Trader persistent paper backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=thn-staging
+Group=thn-staging
+WorkingDirectory=/opt/thn-ai-trader-staging/current
+EnvironmentFile=/etc/thn-ai-trader/staging.env
+# Provision a verified Node 24.x executable here; never point to an older system Node.
+ExecStartPre=/opt/node24/bin/node deployment/staging/preflight.mjs
+ExecStart=/opt/node24/bin/node server.js
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=40
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/thn-ai-trader-staging
+
+[Install]
+WantedBy=multi-user.target

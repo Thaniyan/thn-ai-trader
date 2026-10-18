@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>THN Trader — Private Staging</title><link rel="icon" href="/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/staging.css"></head>
+<body>
+<div id="stagingShell" class="staging-shell">
+ <a class="skip-link" href="#stagingMain">Skip to staging status</a>
+ <header class="panel staging-header"><img src="/logo.svg" width="54" height="54" alt="THN Trader"><div><h1>THN Trader · Staging</h1><p id="stagingLabel">Frontend review · backend unavailable · paper only</p></div><div class="button-row"><button type="button" data-staging-language="en">English</button><button type="button" data-staging-language="ar">العربية</button></div></header>
+ <nav id="stagingNav" class="panel staging-nav" aria-label="Staging pages"></nav>
+ <main id="stagingMain" class="panel" tabindex="-1"><h2 id="stagingPageTitle">Dashboard</h2><p id="stagingState" role="status" aria-live="polite">Backend unavailable. No accounts, market prices, signals, AI results or execution are available.</p><p id="stagingExplanation">Navigation, language and layout review work. Trading features require a separately approved persistent backend.</p><ul id="stagingCapabilities"></ul><div class="button-row"><button id="stagingRetry" type="button">Check backend</button><a id="stagingGateLink" href="/api/staging-contract" target="_blank" rel="noopener">Open backend access check</a></div><p id="stagingAccessNotice">This interface is not an access-control layer. Deployment protection must be verified before exposure.</p></main>
+ <noscript><p class="panel">JavaScript is disabled. Backend state is unverified; trading and account features remain unavailable.</p></noscript>
+</div>
+<div id="stagingWorkstation" hidden></div>
+<template id="stagingWorkstationTemplate"><!--WORKSTATION--></template>
+<script src="/boot.js"></script>
+</body></html>
