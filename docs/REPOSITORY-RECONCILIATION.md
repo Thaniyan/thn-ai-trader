@@ -4,7 +4,7 @@
 
 | Repository/ref | SHA | Visibility evidence |
 |---|---|---|
-| Thaniyan/thn-ai-trader main | 50857dfc1e45a901515b56ffe2ed914d897671af | Owner states PUBLIC; metadata API Forbidden here |
+| Thaniyan/thn-ai-trader main | 50857dfc1e45a901515b56ffe2ed914d897671af | PUBLIC independently confirmed by GitHub repository page; metadata API Forbidden |
 | Thaniyan/thn-ai-trader-staging main | 75110ec2ca317ae0a873268f42a577636f250dbd | Owner previously independently verified PRIVATE; API Forbidden here |
 | staging review/vercel-name-fix-b05f070 | b05f070c1c9b289bc5b39f833e4591f0bdd8d8ac | Remote Git ref verified |
 
@@ -73,6 +73,62 @@ production project's connection. Generated staging git.deploymentEnabled:false
 also cannot control that separate project. Publication of this candidate is NO-GO
 until original repository/project isolation is independently established and the
 exact public-source branch/commit is explicitly authorized.
+
+## Follow-up isolation verification (read-only)
+
+The 2026-10-17 follow-up rechecked the existing c87af55 candidate and both remote
+main SHAs; no implementation work or test suites were repeated. Nine original
+GitHub settings/API checks (including Actions permissions, protections, rulesets and
+environments) all returned Forbidden. A read-only GitHub public-page check did
+independently confirm original repository visibility as PUBLIC (HTTP200, repository
+public metadata=true). That page does not expose hosting settings. No authenticated
+Vercel metadata capability
+is available. Original project's connected repository, Production/Preview/custom
+branch tracking, domain overrides and external promotion triggers remain unverified.
+
+[Deployment isolation checklist](DEPLOYMENT-ISOLATION-CHECKLIST.md) gives the minimum
+owner UI observations, precise navigation and explicit GO/NO-GO criteria. Non-main
+Preview builds are still deployments; Vercel Authentication is not deployment
+suppression. Publication remains NO-GO until the exact ref has verified isolation
+from both Production and unauthorized Preview/custom deployments, followed by
+separate exact-commit/ref publication approval. Branch protections are also unknown;
+absence of tracked workflows is not proof against app/organization automation.
+
+The reviewed candidate remains c87af55bfa5c492fe017ab72220cd4d32216f905. This follow-up
+changes reports only; no push, deployment, settings change or credential access.
+
+### Latest owner evidence and readiness assessment
+
+The owner verified thn-ai-trader.vercel.app is assigned to Production, Production
+tracks main, Preview tracks All unassigned branches, and Vercel Authentication uses
+Standard Protection. Vercel Deploy Hooks and GitHub repository Webhooks are empty;
+no GitHub Rulesets exist. Actions are allowed with default GITHUB_TOKEN read-only.
+Installed GitHub Apps are ChatGPT Codex Connector, Google AI Studio, Render and
+Vercel. No settings changed. These observations supersede earlier broad statements
+that the corresponding facts were wholly unknown; they are owner evidence, not API
+verification. Prior auto-assign-custom-production-domain observation remains recorded.
+
+A non-main push is expected to create Vercel Preview, not directly Production through
+observed branch tracking. Publication remains NO-GO because that Preview is not
+approved, and external integration behavior is unresolved. Standard Protection is
+not All Deployments protection or proof against exceptions. Empty repository hooks
+do not clear GitHub Apps: their own event subscriptions are separate. Default
+read-only GITHUB_TOKEN does not restrict Render/Vercel app credentials or every
+workflow's cloud access. No Rulesets does not establish legacy branch protection.
+
+The remaining-only checklist covers Render service/branch/auto-deploy and preview
+mapping, other Vercel project/custom-environment/domain overrides, Standard Protection
+exceptions, and Google AI Studio/app/workflow automation. These need read-only owner
+evidence because cloud metadata access is unavailable. No product code change is
+needed to document the risk; completed tests remain applicable.
+
+Minimum approval gates after verification: separately authorize either a narrowly
+specified isolation change (no automatic deployments of the exact review ref) OR
+explicitly authorize its verified protected Preview deployment scope. Then approve
+one exact source SHA and absent non-main GitHub ref, with other services excluded
+and Production promotion prohibited. Neither approval is provided by this task.
+Candidate c87af55bfa5c492fe017ab72220cd4d32216f905 is unchanged; only local report
+edits are prepared. No push, deployment, production change or test repetition.
 
 ## Baseline and candidate validation
 

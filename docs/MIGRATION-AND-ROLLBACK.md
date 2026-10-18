@@ -24,6 +24,57 @@ Do not infer these settings from private staging's separate project. A dry-run
 push does not prove hosting isolation. Do not push all branches/tags or import
 unrelated staging history. Do not deploy root source to a static-only project.
 
+## Minimum remaining isolation evidence
+
+Use [Deployment isolation checklist](DEPLOYMENT-ISOLATION-CHECKLIST.md), which records
+the current API failures and exact owner UI paths. Confirm every original-repository
+Vercel connection, Production/Preview/custom branch tracking, live-domain assignment,
+GitHub/Vercel hooks/apps and required automation. Check applicable branch and
+environment protections without modifying them. The independent staging project's
+previous settings are not evidence for the original production project.
+
+GO for repository-only publication requires no automatic deployment of the exact
+review ref, including Preview; no production promotion/alias path; applicable rule
+compliance; fresh SHA/remote/security checks; and separate publication approval.
+Unknown metadata or default automatic Preview means NO-GO under the current scope.
+Any needed isolation setting change or protected Preview requires a separate approval.
+Do not use a trial push, PR or deployment to discover triggers. Existing candidate
+c87af55 and reproducible artifacts remain local; no migration or rollback action
+has been performed. This follow-up is documentation only.
+
+### Latest owner evidence and readiness assessment
+
+The owner verified thn-ai-trader.vercel.app is assigned to Production, Production
+tracks main, Preview tracks All unassigned branches, and Vercel Authentication uses
+Standard Protection. Vercel Deploy Hooks and GitHub repository Webhooks are empty;
+no GitHub Rulesets exist. Actions are allowed with default GITHUB_TOKEN read-only.
+Installed GitHub Apps are ChatGPT Codex Connector, Google AI Studio, Render and
+Vercel. No settings changed. These observations supersede earlier broad statements
+that the corresponding facts were wholly unknown; they are owner evidence, not API
+verification. Prior auto-assign-custom-production-domain observation remains recorded.
+
+A non-main push is expected to create Vercel Preview, not directly Production through
+observed branch tracking. Publication remains NO-GO because that Preview is not
+approved, and external integration behavior is unresolved. Standard Protection is
+not All Deployments protection or proof against exceptions. Empty repository hooks
+do not clear GitHub Apps: their own event subscriptions are separate. Default
+read-only GITHUB_TOKEN does not restrict Render/Vercel app credentials or every
+workflow's cloud access. No Rulesets does not establish legacy branch protection.
+
+The remaining-only checklist covers Render service/branch/auto-deploy and preview
+mapping, other Vercel project/custom-environment/domain overrides, Standard Protection
+exceptions, and Google AI Studio/app/workflow automation. These need read-only owner
+evidence because cloud metadata access is unavailable. No product code change is
+needed to document the risk; completed tests remain applicable.
+
+Minimum approval gates after verification: separately authorize either a narrowly
+specified isolation change (no automatic deployments of the exact review ref) OR
+explicitly authorize its verified protected Preview deployment scope. Then approve
+one exact source SHA and absent non-main GitHub ref, with other services excluded
+and Production promotion prohibited. Neither approval is provided by this task.
+Candidate c87af55bfa5c492fe017ab72220cd4d32216f905 is unchanged; only local report
+edits are prepared. No push, deployment, production change or test repetition.
+
 ## Review and promotion proposal
 
 1. Review the complete original-base diff and provenance offline. Reproduce tests
