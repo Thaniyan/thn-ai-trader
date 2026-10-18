@@ -1,5 +1,11 @@
 # THN AI Trader development contract
 
+The explicitly authorized local CI foundation is documented in
+docs/ENGINEERING-FOUNDATION.md. Its validation-only workflow and pinned QA tool
+installation supersede historical instructions forbidding any workflow addition.
+No deployment workflow, remote operation or infrastructure/settings change is
+authorized. Run scripts/ci/source-guard.mjs before publication; keep clean ancestry.
+
 Read docs/PRODUCT-VISION.md, docs/ARCHITECTURE.md, docs/QUALITY-STANDARDS.md and
  docs/REPOSITORY-RECONCILIATION.md before changing behavior.
 

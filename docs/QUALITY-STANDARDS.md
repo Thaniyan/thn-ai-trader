@@ -44,8 +44,9 @@ objects. It is not proof of upgrading any actual WSL2 installation.
 Before public-source publication, scan all proposed commits and tree for private
 keys, tokens, environment values, certificate/DB/runtime paths, legacy user state,
 archives and source maps. Pattern scans are incomplete: manual review is required.
-Do not add Actions workflows or active deployment config in this reconciliation.
-A future CI proposal is in REPOSITORY-RECONCILIATION.md; implement only after approval.
+The authorized local foundation implements validation-only Actions in
+.github/workflows/ci.yml; see ENGINEERING-FOUNDATION.md for pinned tools and policy.
+Do not add deployment workflows or active hosting config without separate approval.
 
 Release claims must distinguish local fixtures, browser routing models, real
 providers, actual HTTPS/protected Preview, Windows/WSL2 and real-world paper fills.

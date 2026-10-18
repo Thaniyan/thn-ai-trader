@@ -32,5 +32,6 @@ integration. No framework, ORM, cloud database or paid service was introduced.
 
 The generated static project is separate from the connected original production
 project. Its git.deploymentEnabled:false and validated project name cannot control
-the original project's hosting settings. Original root has no vercel.json or CI
-workflow, and that absence is preserved. Hosting isolation remains unverified.
+the original project's hosting settings. Original root has no vercel.json. The
+local foundation adds validation-only CI (ENGINEERING-FOUNDATION.md), with no
+deployment credentials or permissions. Hosting isolation remains unverified.

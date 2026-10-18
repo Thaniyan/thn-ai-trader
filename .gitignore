@@ -21,7 +21,7 @@ credentials.json
 *.zip
 *.tar.gz
 *.bundle
-.github/
+# CI workflow is intentionally tracked; deployment/project links remain excluded.
 .vercel/
 vercel.json
 netlify.toml
