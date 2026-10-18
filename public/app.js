@@ -6263,7 +6263,7 @@ function initializeWorkbench(){
  $('workspaceRefresh').addEventListener('click',refreshWorkspace);
  $('marketSearch').addEventListener('input',()=>renderMarketExplorer());$('marketAssetFilter').addEventListener('change',()=>renderMarketExplorer());
  $('workspaceMenu').addEventListener('click',()=>setWorkspaceMenu($('workspaceMenu').getAttribute('aria-expanded')!=='true'));
- matchMedia('(max-width: 960px)').addEventListener('change',()=>setWorkspaceMenu(false));setWorkspaceMenu(false);
+ matchMedia('(max-width: 960px)').addEventListener('change',()=>setWorkspaceMenu($('workspaceMenu').getAttribute('aria-expanded')==='true'));setWorkspaceMenu(false);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('workspaceMenu').getAttribute('aria-expanded')==='true'){setWorkspaceMenu(false,true);e.preventDefault()}});
  document.querySelector('.nav-stack').addEventListener('keydown',e=>{
   if(!['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Home','End'].includes(e.key)||!e.target.matches('.nav'))return;

@@ -109,22 +109,28 @@ try:
         assert hp.evaluate("()=>{const c=document.getElementById('analysisMapCanvas');return Math.abs(c.width/devicePixelRatio-c.getBoundingClientRect().width)<2}")
         dpr.close();high.close()
         # The journal must follow server cursors without losing realized fills.
+        # Isolate the pagination fixture from the ordinary 15-second account poll.
+        # Keep exact request-count assertions; do not race a second ledger loader.
+        page.evaluate('clearTimeout(brokerTickInterval);brokerTickGeneration++')
+        page.wait_for_function('()=>!brokerSyncInFlight&&!sessionChanging')
         ledger_pages=[]
         def ledger_route(route):
             ledger_pages.append(route.request.url)
             second_page='before=10' in route.request.url
             route.fulfill(json={"ok":True,"fills":[{"id":"page-2" if second_page else "page-1","epoch":"pagination-test","closedAt":"2026-01-01T00:00:00Z","symbol":"EURUSD","side":"BUY","realizedPnl":5,"riskDollars":10}],"nextCursor":None if second_page else 10,"epoch":"pagination-test","startingBalance":12345})
         page.locator('#sessionToken').fill('test-only-operator-token');page.locator('#sessionForm button[type="submit"]').click();page.wait_for_function('()=>serverBrokerAccounts.length>0')
+        page.wait_for_function('()=>!sessionChanging&&!brokerSyncInFlight')
         page.route('**/api/ledger?*',ledger_route)
         page.evaluate('async()=>{await loadServerLedger()}')
         assert len(ledger_pages)==2
         assert page.evaluate('serverLedger.map(f=>f.id)')==['page-1','page-2']
         assert page.evaluate('ledgerStartingBalance')==12345
         # Actual zero equity/free margin must survive dashboard rendering.
-        zero=page.evaluate("()=>{const saved=selectedBrokerAccount;const original=serverBrokerAccounts;const zero={id:'zero-test',balance:1000,equity:0,freeMargin:0,usedMargin:0};serverBrokerAccounts=[zero];selectedBrokerAccount=zero;updateDashboardMarketOverview();const result={equity:document.getElementById('dashEquity').textContent,margin:document.getElementById('dashFreeMargin').textContent,expected:money(0)};serverBrokerAccounts=original;selectedBrokerAccount=saved;return result}")
+        zero=page.evaluate("()=>{const saved=selectedBrokerAccount;const original=serverBrokerAccounts;const zero={id:'zero-test',currency:'USD',balance:1000,equity:0,freeMargin:0,usedMargin:0};serverBrokerAccounts=[zero];selectedBrokerAccount=zero;updateDashboardMarketOverview();const result={equity:document.getElementById('dashEquity').textContent,margin:document.getElementById('dashFreeMargin').textContent,expected:money(0)};serverBrokerAccounts=original;selectedBrokerAccount=saved;return result}")
         assert zero['equity']==zero['expected']
         assert zero['margin']==zero['expected']
         page.unroute('**/api/ledger?*',ledger_route)
+        page.evaluate('startBrokerPositionTickTimer()')
         # Real browser cookie authentication and paper ticket against isolated fixtures.
         page.locator('#sessionToken').fill('test-only-operator-token')
         page.locator('#sessionForm button[type="submit"]').click()
@@ -183,6 +189,7 @@ try:
             assert page.locator('html').get_attribute('dir')==('rtl' if lang=='ar' else 'ltr')
             for width in [390,768,1440]:
                 page.set_viewport_size({'width':width,'height':1000})
+                page.wait_for_function('()=>{const nav=document.getElementById("workspaceNav"),open=document.getElementById("workspaceMenu").getAttribute("aria-expanded")==="true";return matchMedia("(max-width: 960px)").matches?nav.hidden===!open:!nav.hidden}')
                 for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
                     if page.locator('#workspaceMenu').is_visible() and not page.locator('#workspaceNav').is_visible():
                         page.locator('#workspaceMenu').click()

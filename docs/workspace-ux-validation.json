@@ -1,0 +1,39 @@
+{
+  "baseline": "c87af55bfa5c492fe017ab72220cd4d32216f905",
+  "branch": "feature/workstation-ux",
+  "applicationSha256": "6636353979dcbdb8f6ac9eb4ec08061a6993a32481eb89a1d359410fed7c1c17",
+  "nodePassed": 65,
+  "nodeFailed": 0,
+  "systemPassed": 10,
+  "broadBrowser": "PASS actual CSP, including EN/AR responsive navigation, charts, sizing, scanner, notifications, quota and privacy",
+  "productBrowserPassed": 137,
+  "productScreenshots": 24,
+  "releaseBrowserPassed": 11,
+  "staticBrowserPassed": 130,
+  "accessibilityViewScans": 36,
+  "accessibilityViolations": 0,
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "productViewportWidths": [
+    320,
+    390,
+    768,
+    1280,
+    1440
+  ],
+  "workspaceTranslationPairs": 133,
+  "legacyCopyPairs": 236,
+  "strongCredentialFindings": 0,
+  "sensitiveArtifacts": 0,
+  "backendRiskDependenciesAndDeploymentConfigUnchanged": true,
+  "evidence": "local provider fixtures and actual local CSP; no live market, hosted deployment or real-world fill validation",
+  "publication": "NO_GO_UNCHANGED",
+  "remoteMutations": false,
+  "deployed": false
+}
