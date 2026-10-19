@@ -1,0 +1,73 @@
+"""Complete v6.5 journey, visual comparison, recovery and reliability acceptance."""
+from playwright.sync_api import sync_playwright
+import os,json,subprocess
+BASE=os.environ.get('TEST_URL','http://127.0.0.1:3026')
+with sync_playwright() as p:
+ b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1050});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ page.goto(BASE);page.wait_for_function('window.THNLibrary && THNDecision.brief()?.selected && THNResearch.series()',timeout=45000)
+ result={'checks':[],'a11y':[],'mobile':[],'provider':page.evaluate('THNResearch.series().provenance')}
+ # Seed a compatible old source; migration must not change its bytes.
+ legacy=page.evaluate('THNDecision.snapshot()');page.evaluate('(r)=>{localStorage.setItem("thn_decision_reports_v64",JSON.stringify([r]));localStorage.setItem("thn_research_notes_v62",JSON.stringify([{id:"old-note",createdAt:Date.now(),title:"Legacy note",body:"Preserved v6.2 research",context:{symbol:"EURUSD",interval:"1h"}}]));}',legacy)
+ original_legacy=page.evaluate('localStorage.getItem("thn_decision_reports_v64")')
+ page.locator('#qInterval').select_option('15m');page.wait_for_function('THNDecision.brief()?.interval==="15m" && THNResearch.series()?.provenance.interval==="15m"',timeout=45000)
+ page.locator('.q-context [data-qgoto="trading"]').click();page.wait_for_timeout(250);canvas=page.locator('#qCandles');canvas.focus();page.keyboard.press('ArrowLeft');assert page.evaluate('THNResearch.chart.offset')>0;page.keyboard.press('Home');page.keyboard.press('Shift+ArrowLeft');assert 'Open' in page.locator('#qTooltip').inner_text();page.locator('[data-qlayer="smc"]').click();assert page.evaluate('THNResearch.chart.layers.smc');page.locator('#qClear').click();page.locator('#qDrawingMode').select_option('line');canvas.click(position={'x':100,'y':100});canvas.click(position={'x':200,'y':150});assert page.evaluate('THNResearch.chart.drawings.length')==1;page.locator('#qDrawingMode').select_option('pan')
+ page.locator('.q-context [data-qgoto="portfolio"]').click();page.locator('#qDirection').select_option('long_short');page.locator('#qMinimumTrades').fill('5')
+ for field,value in {'capital':'20000','riskPct':'0.5','leverage':'5','spread':'3','slippage':'2','commission':'1'}.items():page.locator('#qParam_'+field).fill(value)
+ page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=45000);first=page.evaluate('THNResearch.evaluation()');page.locator('#qSaveExperiment').click()
+ page.locator('#qRun').click();page.wait_for_function('THNLineage.inspectionCount(THNResearch.evaluation())>=2',timeout=45000);assert '2 times' in page.locator('#m65Holdout').inner_text();assert page.evaluate('THNResearch.evaluation().dataset.interval')=='15m'
+ page.locator('#m65ReviewEvidence').click();assert page.locator('#view-ai').is_visible();assert page.locator('[data-brief-plan]').count()>0;page.locator('[data-brief-plan]').first.click();assert page.locator('#view-risk').is_visible();assert page.evaluate('THNContext.get().interval')=='15m'
+ for field,value in {'planCapital':'20000','planRisk':'0.5','planLeverage':'5','qRisk_spread':'3','qRisk_slippage':'2','qRisk_commission':'1'}.items():assert float(page.locator('#'+field).input_value())==float(value)
+ page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);page.locator('[data-decision="savePlan"]').click();page.locator('[data-decision="planChart"]').click();assert page.evaluate('THNResearch.chart.planLevels.symbol')=='EURUSD';assert page.evaluate('THNContext.get().interval')=='15m'
+ page.locator('.q-context [data-qgoto="ai"]').click();page.locator('#d64Thesis').fill('EURUSD investigation <img src=x onerror=alert(1)>');page.locator('#d64Conclusion').fill('Wait; provider gaps limit inference.');page.locator('#d64Notes').fill('User assumptions are separate from observed candles.');page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');saved=page.evaluate('THNLibrary.entries()[0].record');assert saved['quantitative']['parameters']['capital']==20000;assert saved['plan']['capital']==20000;assert saved['lineage']['holdoutInspections']==2;assert saved['plan']['context']['sourceInterval']=='1h'
+ result['checks'].append('one-context market→chart/SMC/drawing→holdout→scenario→risk→complete report with 15m and nondefault costs/capital carried through without reentry')
+ page.locator('#m65Library').click();page.locator('[data-lib="snapshot"]').click();page.wait_for_function('THNLibrary.state().snapshots.length===1');assert 'SHA-256 verified' in page.locator('#d64ImportStatus').inner_text()
+ # A second actual experiment/report changes costs; compare records by input lineage.
+ page.locator('.q-context [data-qgoto="portfolio"]').click();page.locator('#qParam_spread').fill('5');page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation().parameters.spreadBps===5',timeout=45000);page.locator('#qSaveExperiment').click()
+ for box in page.locator('[data-experiment]').all():box.check()
+ page.locator('#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
+ page.locator('#m65ReviewEvidence').click();page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===2');page.locator('#m65Library').click()
+ for box in page.locator('[data-lib-select]').all():box.check()
+ page.locator('[data-lib="compare"]').click();assert 'Parameters / costs' in page.locator('#l65Comparison').inner_text()
+ page.locator('[data-lib-edit]').first.click();page.locator('#l65Title').fill('Renamed investigation');page.locator('#l65EditStatus').select_option('reviewed');page.locator('[data-lib-save-edit]').click();page.locator('#l65Search').fill('Renamed');assert page.locator('.l65-record').count()==1;page.locator('#l65Status').select_option('reviewed');assert page.locator('.l65-record').count()==1;page.locator('#l65Search').fill('');page.locator('#l65Status').select_option('all');page.locator('#l65Sort').select_option('oldest')
+ result['checks'].append('matched lineage and optional exact snapshot retention; side-by-side changed costs, experiment comparison, rename/status/search/filter/sort')
+ page.locator('[data-lib="legacy"]').click();assert page.locator('#l65Preview').inner_text();assert page.evaluate('THNLibrary.entries().length')==2;assert page.evaluate('localStorage.getItem("thn_decision_reports_v64")')==original_legacy
+ page.locator('[data-lib="restore"]').click();assert page.evaluate('THNLibrary.entries().length')==3;assert page.evaluate('THNLibrary.state().archives.length')>=4;assert page.evaluate('localStorage.getItem("thn_decision_reports_v64")')==original_legacy
+ with page.expect_download() as d:page.locator('[data-lib="backup"]').click()
+ backup=json.load(open(d.value.path()));assert backup['schema']=='THN-BACKUP-6.5';assert len(backup['library']['snapshots'])==1;open('work/v65-library-backup.json','w').write(json.dumps(backup));replay=subprocess.run(['node','scripts/replay-research.mjs','work/v65-library-backup.json'],capture_output=True,text=True);assert replay.returncode==0,replay.stderr;replayed=json.loads(replay.stdout);assert replayed['matches']=={'development':True,'holdout':True};result['offlineReplay']=replayed['matches']
+ # Restore into a separate blank browser storage on the same existing local application.
+ restore=b.new_page();restore.goto(BASE);restore.wait_for_function('window.THNLibrary',timeout=45000);restore.locator('#m65Library').click();restore.locator('#d64Import').set_input_files({'name':'backup.json','mimeType':'application/json','buffer':json.dumps(backup).encode()});restore.wait_for_selector('[data-lib="restore"]');assert restore.evaluate('THNLibrary.entries().length')==0;restore.locator('[data-lib="cancel"]').click();assert restore.evaluate('THNLibrary.entries().length')==0
+ restore.locator('#d64Import').set_input_files({'name':'backup.json','mimeType':'application/json','buffer':json.dumps(backup).encode()});restore.wait_for_selector('[data-lib="restore"]');restore.locator('[data-lib="restore"]').click();assert restore.evaluate('THNLibrary.entries().every(e=>e.record.unverified)');assert restore.evaluate('THNLibrary.state().snapshots.length')==1
+ restore.reload();restore.wait_for_function('window.THNLibrary',timeout=45000);assert restore.evaluate('THNLibrary.entries().length')>=3;restore.close()
+ result['checks'].append('non-destructive legacy recovery, full backup, explicit restore/cancel preview, persisted recovery, and exact numerical offline replay from retained real candles')
+ # Malicious and oversized imports do not alter the library; previews do not execute user HTML.
+ before=page.evaluate('localStorage.getItem("thn_research_library_v65")');bad=json.loads(json.dumps(backup));bad['library']['snapshots'][0]['candles'][0]['volume']+=1;page.locator('#d64Import').set_input_files({'name':'tampered.json','mimeType':'application/json','buffer':json.dumps(bad).encode()});page.wait_for_timeout(300);assert 'rejected' in page.locator('#d64ImportStatus').inner_text();assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==before
+ with page.expect_download() as d:page.locator('.l65-record').filter(has_text='Renamed investigation').locator('[data-lib-html]').click()
+ html=open(d.value.path()).read();assert '&lt;img' in html;assert '<img src=x' not in html;assert 'Content-Security-Policy' in html;assert page.locator('#decisionReports img').count()==0
+ page.locator('[data-lib-delete]').first.click();assert page.evaluate('THNLibrary.entries().length')==3;page.locator('[data-lib-confirm-delete]').click();assert page.evaluate('THNLibrary.entries().length')==2
+ # Simulated write failure leaves current storage byte-for-byte intact.
+ page.evaluate('()=>{window.originalStorageSet=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==="thn_research_library_v65")throw new DOMException("Quota exceeded","QuotaExceededError");return window.originalStorageSet.call(this,k,v)}}')
+ before=page.evaluate('localStorage.getItem("thn_research_library_v65")');page.locator('.q-context [data-qgoto="ai"]').click();page.locator('#decisionWorkspace [data-decision="save"]').click();assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==before;page.locator('#m65Library').click();assert 'preserved' in page.locator('#d64ImportStatus').inner_text();page.evaluate('()=>{Storage.prototype.setItem=window.originalStorageSet}')
+ result['checks'].append('tampered snapshot rejection, HTML injection defenses, confirmed deletion and quota failure preserving existing work')
+ # Rapid old-response checks and provider failure are explicit rather than stale briefs.
+ page.evaluate('''(()=>{const native=fetch;window.fetch=(url,o={})=>{if(String(url).includes('/api/research/brief')&&String(url).includes('symbol=EURUSD')){const safe={...o};delete safe.signal;return native(url,safe).then(r=>new Promise(resolve=>setTimeout(()=>resolve(r),900)));}return native(url,o)}})()''');page.evaluate('THNDecision.reload()');page.locator('#qSymbol').fill('GBPUSD');page.locator('#qSymbol').press('Tab');page.wait_for_function('THNDecision.brief()?.symbol==="GBPUSD"',timeout=45000);page.wait_for_timeout(1100);assert page.evaluate('THNDecision.brief().symbol')=='GBPUSD'
+ for interval in ['1d','1h','15m']:
+  page.locator('#qInterval').select_option(interval);page.wait_for_function('(i)=>THNDecision.brief()?.interval===i',arg=interval,timeout=45000)
+ page.route('**/api/research/brief?**',lambda route:route.fulfill(status=503,content_type='application/json',body='{"ok":false}'));page.evaluate('THNDecision.reload()');page.wait_for_timeout(400);assert page.evaluate('THNDecision.brief()') is None;page.unroute('**/api/research/brief?**');page.evaluate('THNDecision.reload()');page.wait_for_function('THNDecision.brief()',timeout=45000)
+ result['checks'].append('repeat holdout-use warning, delayed brief rejection, repeated selection changes and unavailable-data clearing')
+ views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
+ for lang in ['en','ar']:
+  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(300);page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path='work/node_modules/axe-core/axe.min.js')
+  assert '6.5.0' in page.locator('#modelStatus').inner_text()
+  if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl'
+  for view in views:
+   page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':lang,'view':view,'violations':v})
+  for view in ['dashboard','ai','portfolio','journal']:
+   page.locator('.nav-stack [data-view="'+view+'"]').click();page.screenshot(path='work/v65-after-'+view+'-'+lang+'.png',full_page=True)
+  page.set_viewport_size({'width':390,'height':844})
+  for view in views:
+   page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);result['mobile'].append({'lang':lang,'view':view,'overflow':page.evaluate('document.documentElement.scrollWidth>innerWidth')})
+  page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path='work/v65-mobile-'+lang+'.png',full_page=True)
+ page.set_viewport_size({'width':1440,'height':1050});page.locator('#themeBtn').click();page.wait_for_timeout(400)
+ for view in ['dashboard','ai','portfolio','journal','risk']:
+  page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':'ar-light','view':view,'violations':v})
+ page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path='work/v65-light.png',full_page=True);result['errors']=errors;open('work/v65-browser-results.json','w').write(json.dumps(result,indent=2));print(json.dumps(result,indent=2));assert not errors;assert not any(v['overflow'] for v in result['mobile']);assert not any(v['violations'] for v in result['a11y']);b.close()

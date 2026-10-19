@@ -1,4 +1,4 @@
-# THN AI Trader 6.4
+# THN AI Trader 6.5
 
 Bilingual trading intelligence and research workstation, developed directly from the original `main` application. The terminal, indicators, drawing overlays, SMC map, scanner, journal and local paper engine remain in the original Node/HTML/JavaScript stack.
 
@@ -74,7 +74,7 @@ Research depends on finite provider history, proxy instruments and stated costs.
 
 A verified economic calendar, external broker connectivity and durable hosted account records remain unavailable. Optional OpenAI narrative enhancement uses the existing configuration only; no new model provisioning or model calls were added to research APIs.
 
-Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.4 evidence and limitations; RELEASE-6.3.md, RELEASE-6.2.md and RELEASE-6.1.md preserve earlier release records. No production push is authorized until the owner approves the exact v6.4 commit.
+Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.5 evidence and limitations; RELEASE-6.4.md and earlier release records are preserved. No production push is authorized until the owner approves the exact v6.5 commit.
 
 USD capital results require USD-quoted or supported USD-base Forex provider history. USDT-only Binance history remains chartable, but USD backtesting/scenario transfer is unavailable rather than assuming USD/USDT parity. Dollar-base Forex risk is converted at the planning price; other quote-currency conversions are unsupported.
 
@@ -116,3 +116,44 @@ TEST_URL=http://127.0.0.1:3000 python tests/browser_decision.py
 TEST_URL=http://127.0.0.1:3000 python tests/browser_quality.py
 TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
 ```
+
+## v6.5 workflow and research preservation
+
+The shared selection ribbon now links chart, independent evidence, evaluation, risk and the unified research library. Copilot opens as a compact scenario brief with expandable timeframe audit, quality criteria and uncertainty checks. The Dashboard keeps selected-market observations and the watchlist prominent while moving the introductory process/capability panels into disclosure. Original advanced charts, drawings, SMC maps, notebook and independent-frame controls remain available. A research-to-plan action transfers explicit capital, risk, leverage and friction assumptions; scenario transfer preserves the selected candle timeframe while recording the hourly source hash used for scenario levels.
+
+The Research Lab retains the numerical engine and adds a compact development/holdout summary, plain-language next steps, and a bounded browser-local count of repeated inspections of the exact dataset/holdout window. Counts ignore parameter differences to expose repeated tuning. Clearing browser data, another device or a revised dataset resets that local record; the unconditional holdout-reuse warning still applies. No significance statistic or predictive probability was added.
+
+### Unified library and recovery
+
+The canonical `thn_research_library_v65` record contains up to 24 complete reports, 120 compatible legacy archives and two selected-timeframe raw candle snapshots, within a 1.8 MB UTF-8 content budget. Physical browser quotas may be smaller, especially when old records also remain. Save failures and capacity limits preserve previous work; saves do not silently trim it. Records can be searched, filtered, sorted, compared, renamed, marked draft/reviewed/archived, opened, printed and explicitly deleted. Review status is user-authored, not a claim of verified profitability.
+
+Full JSON backup includes canonical reports/snapshots and compatible v6.2 notes, v6.3 experiments, v6.4 plans/reports and up to ten drawing sets. Limits are 100 legacy notes, four experiments, four plans, eight old reports and 50 drawings per set. Preview/export reports the number of invalid or over-limit legacy records not included; their original browser keys remain untouched. Recovery stores old notes/experiments/plans/drawings as readable unverified archives rather than rewriting active historical formats. Existing original interfaces remain available for the unchanged active records.
+
+Import accepts the new `THN-BACKUP-6.5` format (2.1 MB maximum) or existing `THN-DECISIONS-6.4` report exports. It stages a validated preview first; explicit confirmation appends records without overwriting existing work. Capacity failures reject the entire restore. All imported content is unverified. Unknown fields, including credential fields, are removed recursively; shape, bounds and OHLCV hashes are validated. User content is escaped in the interface and printable HTML. No accounts, ledgers, authentication tokens or arbitrary localStorage keys are collected.
+
+Writes use one synchronous localStorage update and reject stale expected state; storage events reload changes from other tabs. This is not a durable multi-user database or a cross-tab transaction service. Unreadable library storage blocks writes rather than overwriting the original bytes. Restore a valid backup in clean browser storage if the original is corrupt. No encryption, sign-in or cross-device synchronization is provided. Do not put secrets in research free text.
+
+### Candle snapshots and offline replay
+
+A dataset hash identifies observed content; it does not promise future retrieval from a provider. Select **Retain current candle snapshot** in the library to keep the current selected timeframe's actual closed OHLCV rows (60–2,000 bars). SHA-256 is recomputed before retention and on restore. It verifies content integrity, not source authenticity. At most two snapshots are retained; capacity does not automatically evict earlier snapshots. Confirm deletion explicitly after exporting any needed backup.
+
+Complete reports record product analysis version, evaluation engine version, parameters (including optional start/end dates), chronological windows, risk/cost assumptions, observation coverage, provider symbol, creation time, hash and raw-retention limitation. Comparing two records highlights changed datasets, coverage, parameters/costs, windows, risk, engine version and observed holdout outcome without implying a controlled experiment when inputs differ.
+
+Offline replay is a local-only command, with no network access or public client-candle endpoint:
+
+```sh
+npm run replay -- path/to/THN-library-backup-6.5.json [report-id]
+```
+
+It validates the bounded backup and candle hash, reruns the existing 6.3 evaluator using saved parameters and split, and compares recorded development/holdout metric fields. It refuses missing snapshots or unsupported engines instead of refetching potentially revised history. Only the selected timeframe is retained; other timeframe observations remain summarized in the report. The replay does not authenticate imported provenance or simulate unobserved gap prices.
+
+Current acceptance checks:
+
+```sh
+TEST_URL=http://127.0.0.1:3000 python tests/browser_maturity.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_library_reliability.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_quality.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
+```
+
+The older `browser_decision.py` is retained as the v6.4 historical UI harness; its immediate-import expectations are superseded by the explicit v6.5 restoration preview. Before/after captures and test results are stored under ignored `work/v65-*`.

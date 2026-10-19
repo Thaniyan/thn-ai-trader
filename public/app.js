@@ -1216,6 +1216,7 @@ function setLanguage(lang) {
   currentLang = lang === "ar" ? "ar" : "en";
   localStorage.setItem(langKey, currentLang);
   translateStaticDom();
+  renderHealthStatus();
   renderJournal();
   renderWatchlist();
   renderAlerts();
@@ -1257,16 +1258,19 @@ function restoreSetup() {
   }
 }
 
+let cachedHealth;
+function renderHealthStatus() {
+  if (cachedHealth === undefined) return;
+  $("apiStatus").textContent = cachedHealth ? (cachedHealth.openaiEnabled ? t("openaiEnhanced") : t("localAiActive")) : t("serverOffline");
+  $("modelStatus").textContent = cachedHealth ? `${cachedHealth.app} v${cachedHealth.version}` : t("runNpmFirst");
+}
 async function checkHealth() {
   try {
     const res = await fetch("/api/health");
-    const health = await res.json();
-    $("apiStatus").textContent = health.openaiEnabled ? t("openaiEnhanced") : t("localAiActive");
-    $("modelStatus").textContent = `${health.app} v${health.version}`;
-  } catch {
-    $("apiStatus").textContent = t("serverOffline");
-    $("modelStatus").textContent = t("runNpmFirst");
-  }
+    if (!res.ok) throw Error("Health unavailable");
+    cachedHealth = await res.json();
+  } catch { cachedHealth = null; }
+  renderHealthStatus();
 }
 
 async function analyze() {

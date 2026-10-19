@@ -1481,7 +1481,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.4.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.5.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if (req.method === "GET" && url.pathname === "/api/research/brief") {

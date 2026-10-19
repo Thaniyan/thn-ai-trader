@@ -1,5 +1,5 @@
 /* Shared deterministic interpretation. Labels are criteria, never future probabilities. */
-export const ANALYSIS_VERSION='6.4.0';
+export const ANALYSIS_VERSION='6.5.0';
 export function researchQuality(evaluation){
   if(!evaluation)return {label:'insufficient',criteriaVersion:'6.4-Q1',checks:[],probability:null};
   const e=evaluation,a=e.development.metrics,b=e.holdout.metrics;

@@ -9,7 +9,7 @@
     if(p.dataTimestamp===null||finite(p.dataTimestamp,0,1e15))out.dataTimestamp=p.dataTimestamp;
     if(finite(p.analysisTimestamp,0,1e15))out.analysisTimestamp=p.analysisTimestamp;
     if(p.scenario===null)out.scenario=null;
-    else if(p.scenario&&['bullish','bearish','neutral'].includes(p.scenario.direction))out.scenario={direction:p.scenario.direction,invalidation:finite(p.scenario.invalidation,0,1e12)?p.scenario.invalidation:null,sourceTimestamp:finite(p.scenario.sourceTimestamp,0,1e15)?p.scenario.sourceTimestamp:null};
+    else if(p.scenario&&['bullish','bearish','neutral'].includes(p.scenario.direction))out.scenario={direction:p.scenario.direction,invalidation:finite(p.scenario.invalidation,0,1e12)?p.scenario.invalidation:null,sourceTimestamp:finite(p.scenario.sourceTimestamp,0,1e15)?p.scenario.sourceTimestamp:null,sourceInterval:['15m','1h','1d'].includes(p.scenario.sourceInterval)?p.scenario.sourceInterval:null,sourceDatasetHash:typeof p.scenario.sourceDatasetHash==='string'&&/^[a-f0-9]{64}$/.test(p.scenario.sourceDatasetHash)?p.scenario.sourceDatasetHash:null};
     if(p.riskAssumptions&&typeof p.riskAssumptions==='object'){
       out.riskAssumptions={};for(const k of ['capital','riskPct','leverage','spreadBps','slippageBps','commissionBps'])if(finite(p.riskAssumptions[k],0,1e8))out.riskAssumptions[k]=p.riskAssumptions[k];
     }
