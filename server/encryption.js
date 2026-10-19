@@ -5,9 +5,12 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const KEY_FILE = path.join(__dirname, "..", ".vault_key");
+const KEY_DIR = process.env.THN_DATA_DIR || path.join(__dirname, "..", ".runtime");
+const KEY_FILE = path.join(KEY_DIR, ".vault_key");
 
 function getOrCreateSecretKey() {
+  if (process.env.VERCEL) return crypto.randomBytes(32);
+  fs.mkdirSync(KEY_DIR, { recursive: true, mode: 0o700 });
   if (process.env.APP_ENCRYPTION_KEY) {
     return crypto.scryptSync(process.env.APP_ENCRYPTION_KEY, "thn_ai_salt", 32);
   }

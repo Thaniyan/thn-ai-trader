@@ -126,18 +126,22 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
       throw new Error(`Position #${positionId} not found in active account.`);
     }
 
-    const pos = account.positions[posIndex];
+    const pos = { ...account.positions[posIndex] };
+    const originalLots = pos.lots;
     const spec = getContractSpec(pos.symbol);
-    const closingLots = +(pos.lots * Math.min(1.0, Math.max(0.1, volumeRatio))).toFixed(2);
+    if (!Number.isFinite(Number(volumeRatio)) || volumeRatio <= 0 || volumeRatio > 1) throw new Error("Invalid close ratio");
+    const closingLots = +(Math.floor((originalLots * volumeRatio + 1e-10) / spec.lotStep) * spec.lotStep).toFixed(2);
+    const remainingLots = +(originalLots - closingLots).toFixed(2);
+    if (closingLots < spec.minLot || (remainingLots > 0 && remainingLots < spec.minLot)) throw new Error("Close volume violates contract minimum");
     const isBuy = pos.side.includes("BUY");
 
     const priceDiff = isBuy ? (currentPrice - pos.entryPrice) : (pos.entryPrice - currentPrice);
-    const realizedPnl = +(priceDiff * spec.contractSize * closingLots).toFixed(2);
+    const realizedPnl = +(priceDiff * spec.contractSize * closingLots / (/^USD[A-Z]{3}$/.test(pos.symbol) ? currentPrice : 1)).toFixed(2);
 
     let remainingPosition = null;
     if (closingLots < pos.lots) {
       pos.lots = +(pos.lots - closingLots).toFixed(2);
-      pos.margin = +(pos.margin * (1 - volumeRatio)).toFixed(2);
+      pos.margin = +(pos.margin * (remainingLots / originalLots)).toFixed(2);
       remainingPosition = pos;
     }
 
@@ -147,7 +151,7 @@ export class PaperTradingAdapter extends BaseBrokerAdapter {
       closedLots: closingLots,
       exitPrice: currentPrice,
       realizedPnl,
-      isPartial: closingLots < pos.lots,
+      isPartial: closingLots < originalLots,
       remainingPosition,
       timestamp: new Date().toISOString()
     };

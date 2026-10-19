@@ -3,3 +3,12 @@ node_modules/
 .vault_key
 .DS_Store
 *.log
+
+.runtime/
+work/
+trading_accounts.json
+audit_log.json
+*.db
+*.sqlite*
+.env.*
+!.env.example

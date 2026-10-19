@@ -3,6 +3,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  releaseIdempotencyKey,
+  updateAccountStateWithQuotes,
   getAllSanitizedAccounts,
   getAccountById,
   addTradingAccount,
@@ -34,6 +36,8 @@ function loadEnvFile() {
 }
 
 loadEnvFile();
+const hosted = Boolean(process.env.VERCEL);
+const localPaperEnabled = !hosted && process.env.THN_LOCAL_PAPER === "1";
 const PORT = Number(process.env.PORT || 3000);
 const openaiEnabled = Boolean(process.env.OPENAI_API_KEY);
 
@@ -113,7 +117,7 @@ function normalizeSymbol(rawSymbol = "EURUSD") {
 
 async function fetchBinanceCandles(symbolInfo, timeframe = "intraday") {
   const binanceSymbol = symbolInfo.display.replace(/[^A-Z0-9]/g, "").toUpperCase();
-  const symbol = binanceSymbol.endsWith("USDT") ? binanceSymbol : `${binanceSymbol}USDT`;
+  const symbol = binanceSymbol.endsWith("USDT") ? binanceSymbol : `${binanceSymbol.replace(/USD$/, "")}USDT`;
   const intervalMap = { scalp: "15m", intraday: "1h", swing: "4h", position: "1d" };
   const interval = intervalMap[String(timeframe || "intraday").toLowerCase()] || "1h";
   const url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=160`;
@@ -135,9 +139,10 @@ async function fetchBinanceCandles(symbolInfo, timeframe = "intraday") {
     const cfg = TIMEFRAME_CONFIG[String(timeframe || "intraday").toLowerCase()] || TIMEFRAME_CONFIG.intraday;
     return {
       candles,
-      source: "Binance Real-Time Liquidity Feed",
+      source: "Binance spot candles",
+      providerSymbol: symbol,
       currency: "USDT",
-      exchangeName: "Binance Institutional",
+      exchangeName: "Binance",
       marketTime: candles.at(-1)?.time || Date.now(),
       interval: cfg.interval,
       range: cfg.range,
@@ -183,7 +188,8 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
       if (candles.length < 35) throw new Error("Not enough valid candles");
       return {
         candles,
-        source: "Global Institutional Market Feed",
+        source: "Yahoo Finance chart data",
+        providerSymbol: symbolInfo.yahoo,
         currency: result?.meta?.currency || "USD",
         exchangeName: result?.meta?.exchangeName || "Primary Exchange",
         marketTime: result?.meta?.regularMarketTime ? result.meta.regularMarketTime * 1000 : Date.now(),
@@ -200,43 +206,38 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
   throw lastError || new Error("Failed to fetch market data from primary feeds");
 }
 
-function syntheticCandles(symbolInfo, timeframe = "intraday") {
-  const now = Date.now();
-  const cfg = TIMEFRAME_CONFIG[String(timeframe || "intraday").toLowerCase()] || TIMEFRAME_CONFIG.intraday;
-  const count = cfg.interval.includes("m") ? 160 : 220;
-  const step = cfg.interval.includes("m") ? 15 * 60 * 1000 : cfg.interval.includes("h") ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
-  const baseMap = { Forex: 1.085, Crypto: 84000, Commodity: symbolInfo.display.includes("XAU") ? 2735 : 82, Index: 5850, Stock: 185 };
-  let price = baseMap[symbolInfo.assetClass] || 100;
-  const candles = [];
-  for (let i = 0; i < count; i++) {
-    const wave = Math.sin(i / 9) * price * 0.002;
-    const drift = i * price * 0.000012;
-    const noise = Math.sin(i * 12.9898) * price * 0.0012;
-    const open = price + wave + noise + drift;
-    const close = open + Math.sin((i + 3) / 7) * price * 0.0015;
-    const high = Math.max(open, close) + price * (0.001 + Math.abs(Math.sin(i)) * 0.0012);
-    const low = Math.min(open, close) - price * (0.001 + Math.abs(Math.cos(i)) * 0.0012);
-    candles.push({ time: now - (count - i) * step, open, high, low, close, volume: Math.round(150000 + Math.abs(Math.sin(i)) * 600000) });
-    price = close;
-  }
-  return { candles, source: "Algorithmic Pricing Engine Feed", currency: "USD", exchangeName: "Institutional Aggregator", marketTime: now, interval: cfg.interval, range: cfg.range, tvInterval: cfg.tvInterval };
-}
-
-async function getMarketData(rawSymbol, timeframe) {
+async function fetchMarketData(rawSymbol, timeframe) {
   const symbolInfo = normalizeSymbol(rawSymbol);
   if (symbolInfo.assetClass === "Crypto") {
     try {
       const data = await fetchBinanceCandles(symbolInfo, timeframe);
-      return { symbolInfo, ...data, warning: null };
+      return { symbolInfo, ...data, warning: Date.now() - data.marketTime > 7200000 ? "Provider data is stale or the market session is closed." : null };
     } catch {}
   }
   try {
     const data = await fetchYahooCandles(symbolInfo, timeframe);
-    return { symbolInfo, ...data, warning: null };
+    return { symbolInfo, ...data, warning: Date.now() - data.marketTime > 7200000 ? "Provider data is stale or the market session is closed." : null };
   } catch {
-    const data = syntheticCandles(symbolInfo, timeframe);
-    return { symbolInfo, ...data, warning: null };
+    const error = new Error("Verified market data is unavailable. No synthetic prices are substituted.");
+    error.status = 503; error.code = "MARKET_DATA_UNAVAILABLE";
+    throw error;
   }
+}
+
+// Bounded per-process cache coalesces terminal/watchlist requests without resetting provider time.
+const marketCache = new Map();
+async function getMarketData(rawSymbol, timeframe = "intraday") {
+  if (!/^[A-Za-z0-9^=:.\-]{1,32}$/.test(String(rawSymbol)) || !Object.hasOwn(TIMEFRAME_CONFIG, timeframe)) {
+    const error = new Error("Invalid instrument or timeframe"); error.status = 400; error.code = "INVALID_MARKET_REQUEST"; throw error;
+  }
+  const key = `${String(rawSymbol).toUpperCase()}:${timeframe}`;
+  const cached = marketCache.get(key);
+  if (cached && Date.now() - cached.at < 30000) return cached.promise;
+  const promise = fetchMarketData(rawSymbol, timeframe);
+  const record = { at: Date.now(), promise };
+  if (marketCache.size >= 100) marketCache.delete(marketCache.keys().next().value);
+  marketCache.set(key, record);
+  try { return await promise; } catch (error) { if (marketCache.get(key) === record) marketCache.delete(key); throw error; }
 }
 
 function values(candles, key) {
@@ -1076,7 +1077,7 @@ function buildAnalysis(market, request = {}) {
       entry + riskDist * Math.max(desiredRR, 2.4),
       entry + riskDist * (desiredRR * 1.5)
     ];
-  } else {
+  } else if (isSell) {
     const rawSL = nearestHigh + atr14 * 0.28;
     const distance = rawSL - entry;
     if (distance < atr14 * 0.85) {
@@ -1093,11 +1094,13 @@ function buildAnalysis(market, request = {}) {
       entry - riskDist * (desiredRR * 1.5)
     ];
   }
-  const riskPerUnit = stopLoss ? Math.abs(entry - stopLoss) : null;
+  const usdBase = /^USD[A-Z]{3}$/.test(symbol);
+  const sizingSupported = market.symbolInfo.assetClass !== "Forex" || /USD$/.test(symbol) || usdBase;
+  const riskPerUnit = stopLoss && sizingSupported ? Math.abs(entry - stopLoss) / (usdBase ? entry : 1) : null;
   const riskAmount = accountBalance * (riskPct / 100);
   const units = riskPerUnit ? riskAmount / riskPerUnit : 0;
   const forexLots = market.symbolInfo.assetClass === "Forex" ? units / 100000 : null;
-  const exposure = units * entry;
+  const exposure = units * (usdBase ? 1 : entry);
   const exposurePct = (exposure / accountBalance) * 100;
   const breakEvenWinRate = 100 / (1 + desiredRR);
   const riskWarnings = [];
@@ -1128,7 +1131,7 @@ function buildAnalysis(market, request = {}) {
   const allReasons = schools.flatMap(s => s.reasons.slice(0, 2));
   const allWarnings = [...riskWarnings, ...schools.flatMap(s => s.warnings)].filter(Boolean);
 
-  const mtfa = buildMTFA({ candles, price, structure, ema20, ema50, ema200, rsi14, atr14 });
+  const mtfa = { available: false, reason: "Independent timeframe candles are required." };
   const macroCalendar = buildMacroCalendar(market.symbolInfo);
 
   return {
@@ -1158,6 +1161,8 @@ function buildAnalysis(market, request = {}) {
     mtfa,
     macroCalendar,
     risk: {
+      hypothetical: true,
+      sizingAvailable: sizingSupported,
       accountBalance: round(accountBalance, 2),
       riskPct: round(riskPct, 2),
       riskAmount: round(riskAmount, 2),
@@ -1249,31 +1254,7 @@ function buildMTFA({ candles, price, structure, ema20, ema50, ema200, rsi14, atr
   };
 }
 
-function buildMacroCalendar(symbolInfo) {
-  const asset = symbolInfo.assetClass;
-  const now = Date.now();
-  const events = [];
-  if (asset === "Forex" || asset === "Commodity" || asset === "Index") {
-    events.push(
-      { time: now + 3600000 * 3.5, event: "US Core Inflation CPI MoM", currency: "USD", impact: "HIGH", forecast: "0.3%", previous: "0.2%", bias: "Volatility Expansion Expected" },
-      { time: now + 3600000 * 14.2, event: "Federal Reserve FOMC Policy Rate & Guidance", currency: "USD", impact: "CRITICAL", forecast: "5.25%", previous: "5.25%", bias: "Macro Yield Curve Anchor" },
-      { time: now + 3600000 * 24.0, event: "US Non-Farm Payrolls (NFP) & Unemployment", currency: "USD", impact: "HIGH", forecast: "185K", previous: "172K", bias: "Labor Health & Wage Pressure" },
-      { time: now + 3600000 * 38.5, event: "ECB Interest Rate Benchmark Statement", currency: "EUR", impact: "HIGH", forecast: "3.75%", previous: "3.75%", bias: "European Monetary Stance" }
-    );
-  } else if (asset === "Crypto") {
-    events.push(
-      { time: now + 3600000 * 4.0, event: "Global Institutional Spot ETF Net Flow Audit", currency: "BTC", impact: "HIGH", forecast: "+$280M", previous: "+$195M", bias: "Institutional Accumulation" },
-      { time: now + 3600000 * 18.0, event: "Stablecoin Net Supply Delta (USDT/USDC M2)", currency: "USD", impact: "HIGH", forecast: "+1.4%", previous: "+0.9%", bias: "Fiat Inflow & Market Depth" },
-      { time: now + 3600000 * 28.0, event: "Derivatives CME Futures & Options Max-Pain Open Interest", currency: "DERIV", impact: "MEDIUM", forecast: "Neutral", previous: "Bearish", bias: "Options Pinning Factor" }
-    );
-  } else {
-    events.push(
-      { time: now + 3600000 * 6.0, event: "S&P 500 Quarterly Earnings Aggregate & Margin Health", currency: "USD", impact: "HIGH", forecast: "Beat 72%", previous: "Beat 68%", bias: "Valuation Multiples" },
-      { time: now + 3600000 * 22.0, event: "US Real GDP Annualized Growth (QoQ Advance)", currency: "USD", impact: "HIGH", forecast: "2.9%", previous: "2.8%", bias: "Macro Economic Health" }
-    );
-  }
-  return events;
-}
+function buildMacroCalendar() { return []; }
 
 function buildChecklist({ decision, riskPct, volatilityLabel, confidence, market, rsi14, stopLoss }) {
   return [
@@ -1286,46 +1267,7 @@ function buildChecklist({ decision, riskPct, volatilityLabel, confidence, market
   ];
 }
 
-function simulateBacktest({ confidence, rr, riskPct, accountBalance, consensusScore }) {
-  const trades = 60;
-  const expectedWinRate = clamp(38 + confidence * 0.38 + Math.abs(consensusScore) * 0.12, 38, 76);
-  let balance = accountBalance;
-  let peak = accountBalance;
-  let maxDrawdown = 0;
-  let wins = 0;
-  let grossProfit = 0;
-  let grossLoss = 0;
-  for (let i = 0; i < trades; i++) {
-    const pseudo = Math.abs(Math.sin((i + 1) * 19.131 + confidence * 0.071 + consensusScore) * 10000) % 1;
-    const risk = balance * (riskPct / 100);
-    if (pseudo * 100 < expectedWinRate) {
-      const profit = risk * rr * (0.65 + pseudo * 0.58);
-      balance += profit;
-      grossProfit += profit;
-      wins++;
-    } else {
-      const loss = risk * (0.78 + pseudo * 0.42);
-      balance -= loss;
-      grossLoss += loss;
-    }
-    peak = Math.max(peak, balance);
-    maxDrawdown = Math.max(maxDrawdown, ((peak - balance) / peak) * 100);
-  }
-  return {
-    simulationType: "HEURISTIC_MONTE_CARLO_PROJECTION",
-    isHistoricalBacktest: false,
-    trades,
-    wins,
-    losses: trades - wins,
-    estimatedWinRate: round((wins / trades) * 100, 1),
-    estimatedReturnPct: round(((balance - accountBalance) / accountBalance) * 100, 2),
-    endingBalance: round(balance, 2),
-    maxDrawdownPct: round(maxDrawdown, 2),
-    profitFactor: round(grossProfit / Math.max(1, grossLoss), 2),
-    provenance: "Heuristic Monte Carlo stress projection derived from signal confluence and position sizing. Not historical tick execution.",
-    note: "Synthetic mathematical scenario projection; not a guarantee or representation of past tick performance."
-  };
-}
+function simulateBacktest() { return { available: false, isHistoricalBacktest: false, note: "Reproducible historical backtesting is unavailable." }; }
 
 function buildNarrative({ symbol, decision, confidence, grade, consensusLabel, schools, allWarnings, timeframe, market }) {
   const leaders = schools
@@ -1335,7 +1277,7 @@ function buildNarrative({ symbol, decision, confidence, grade, consensusLabel, s
     .map(s => `${s.name}: ${s.bias} (${s.score}/100)`)
     .join("; ");
   const caution = allWarnings.length ? allWarnings[0] : "No major internal warning was detected.";
-  return `THN AI Trader classifies ${symbol} as ${decision} on the ${timeframe} profile with ${confidence}% confidence and grade ${grade}. The multi-school consensus is ${consensusLabel}. Strongest modules: ${leaders || "no directional module dominance"}. Data source: ${market.source}. Main caution: ${caution} This output is an analytical decision-support report, not financial advice.`;
+  return `THN AI Trader classifies ${symbol} as ${decision} on the ${timeframe} profile with ${confidence}/100 heuristic confluence (not a win probability) and grade ${grade}. The multi-school consensus is ${consensusLabel}. Strongest modules: ${leaders || "no directional module dominance"}. Data source: ${market.source}. Main caution: ${caution} This output is an analytical decision-support report, not financial advice.`;
 }
 
 
@@ -1446,7 +1388,8 @@ const MIME_TYPES = {
 };
 
 function setBaseHeaders(res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -1486,7 +1429,7 @@ function safeStaticPath(urlPath) {
   const cleanPath = decoded === "/" ? "/index.html" : decoded;
   const target = path.normalize(path.join(__dirname, "public", cleanPath));
   const publicRoot = path.join(__dirname, "public");
-  if (!target.startsWith(publicRoot)) return null;
+  if (!target.startsWith(publicRoot + path.sep)) return null;
   return target;
 }
 
@@ -1500,6 +1443,7 @@ function serveFile(res, filePath) {
   fs.createReadStream(filePath).pipe(res);
 }
 
+const activeAccounts = new Set();
 const server = http.createServer(async (req, res) => {
   setBaseHeaders(res);
   if (req.method === "OPTIONS") {
@@ -1510,8 +1454,23 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
 
   try {
+    // Public deployments have no authenticated account isolation or durable ledger.
+    // Preserve the full local engine, but never expose shared financial records.
+    const financial = /^\/api\/(accounts|broker|orders|positions|audit-logs)(\/|$)/.test(url.pathname);
+    if (financial && !localPaperEnabled) {
+      if (req.method === "GET" && ["/api/accounts", "/api/broker/accounts"].includes(url.pathname))
+        return sendJson(res, 200, { ok: true, accounts: [], available: false, code: "LOCAL_PAPER_ONLY" });
+      return sendJson(res, 503, { ok: false, code: "LOCAL_PAPER_ONLY", error: "Account operations require the opt-in local paper engine. Hosted account persistence is unavailable; live trading is disabled." });
+    }
+    if (req.method === "POST" && req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`)
+      return sendJson(res, 403, { ok: false, code: "ORIGIN_REJECTED" });
+    if (financial && req.method === "POST" && /connect|register|test-connection/.test(url.pathname)) {
+      const body = await readBody(req);
+      if (body.broker !== "paper") return sendJson(res, 503, { ok: false, code: "BROKER_UNAVAILABLE", error: "External broker connectivity is unavailable. Live trading is disabled." });
+      return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
+    }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.0.0", openaiEnabled, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.1.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if (req.method === "GET" && url.pathname.startsWith("/api/market/") && url.pathname !== "/api/market/quotes") {
@@ -1521,6 +1480,8 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, {
         symbolInfo: market.symbolInfo,
         source: market.source,
+        providerSymbol: market.providerSymbol,
+        observationType: ["XAUUSD", "XAGUSD", "USOIL", "BRENT"].includes(market.symbolInfo.display) ? "Futures proxy, not executable spot" : "Provider candle observation",
         warning: market.warning,
         currency: market.currency,
         exchangeName: market.exchangeName,
@@ -1551,10 +1512,16 @@ const server = http.createServer(async (req, res) => {
               symbol: sym,
               name: m.symbolInfo.display,
               assetClass: m.symbolInfo.assetClass,
-              bid: +(close - spreadOffset / 2).toFixed(spec.digits),
-              ask: +(close + spreadOffset / 2).toFixed(spec.digits),
+              bid: null,
+              ask: null,
               close,
               changePct,
+              changePeriod: "previous candle",
+              status: Date.now() - m.marketTime > 2 * 3600000 ? "stale" : "recent",
+              quoteType: "candle close; executable bid/ask unavailable",
+              providerSymbol: m.providerSymbol,
+              instrumentNote: ["XAUUSD", "XAGUSD", "USOIL", "BRENT"].includes(sym) ? "Futures proxy, not spot" : "Provider instrument",
+              marketTime: m.marketTime,
               digits: spec.digits,
               contractSize: spec.contractSize,
               source: m.source,
@@ -1562,7 +1529,7 @@ const server = http.createServer(async (req, res) => {
             };
           }
         } catch (err) {
-          console.warn(`[QUOTES] ${sym} fetch error:`, err.message);
+          quotes[sym] = { symbol: sym, status: "unavailable", close: null, source: null, timestamp: null };
         }
       }));
       return sendJson(res, 200, { ok: true, quotes, timestamp: new Date().toISOString() });
@@ -1572,6 +1539,8 @@ const server = http.createServer(async (req, res) => {
       const body = await readBody(req);
       const market = await getMarketData(body.symbol || "EURUSD", body.timeframe || "intraday");
       const analysis = buildAnalysis(market, body);
+      analysis.mtfa = { available: false, reason: "Independent multi-timeframe data is not fetched by this endpoint." };
+      analysis.methodology = { type: "deterministic", score: "Heuristic confluence /100; not a probability of profit", generatedAt: new Date().toISOString() };
       const enhanced = await enhanceWithOpenAI(analysis);
       return sendJson(res, 200, enhanced);
     }
@@ -1772,15 +1741,27 @@ const server = http.createServer(async (req, res) => {
     // --- Backend-Authoritative Order Execution ---
     if (req.method === "POST" && url.pathname === "/api/orders/execute") {
       const body = await readBody(req);
-      const { accountId, symbol, side, lots, stopLoss, takeProfit, idempotencyKey } = body;
+      const { accountId, symbol, side, lots, stopLoss, takeProfit, idempotencyKey: submittedKey } = body;
+      if (typeof submittedKey !== "string" || !submittedKey || submittedKey.length > 128) return sendJson(res, 400, { ok: false, code: "IDEMPOTENCY_KEY_REQUIRED" });
+      const idempotencyKey = `${accountId}:${submittedKey}`;
+      const fingerprint = crypto.createHash("sha256").update(JSON.stringify([accountId, symbol, side, lots, stopLoss, takeProfit])).digest("hex");
 
       // 1. Idempotency Check
       if (idempotencyKey) {
-        const idem = checkAndStoreIdempotencyKey(idempotencyKey);
+        const idem = checkAndStoreIdempotencyKey(idempotencyKey, fingerprint);
+        if (idem.conflict) return sendJson(res, 409, { ok: false, code: "IDEMPOTENCY_CONFLICT" });
+        if (idem.isDuplicate && !idem.response) return sendJson(res, 409, { ok: false, code: "ORDER_PENDING" });
         if (idem.isDuplicate && idem.response) {
           return sendJson(res, 200, idem.response);
         }
       }
+
+      if (activeAccounts.has(accountId)) {
+        releaseIdempotencyKey(idempotencyKey);
+        return sendJson(res, 409, { ok: false, code: "ACCOUNT_BUSY" });
+      }
+      activeAccounts.add(accountId);
+      res.once("close", () => { activeAccounts.delete(accountId); if (res.statusCode >= 400) releaseIdempotencyKey(idempotencyKey); });
 
       // 2. Account Check
       const account = getAccountById(accountId);
@@ -1814,7 +1795,9 @@ const server = http.createServer(async (req, res) => {
 
       const validCandles = (market.candles || []).filter(c => c && Number(c.close) > 0);
       const lastCandle = validCandles.at(-1);
-      const currentPrice = Number(lastCandle?.close || body.entryPrice || body.currentPrice || 0);
+      const currentPrice = Number(lastCandle?.close || 0);
+      if (Date.now() - market.marketTime > 2 * 3600000) return sendJson(res, 409, { ok: false, code: "STALE_PRICE", error: "Paper execution requires a recent provider price." });
+      if (account.broker !== "paper" || account.tradingMode !== "PAPER") return sendJson(res, 403, { ok: false, code: "LIVE_TRADING_DISABLED" });
       if (!currentPrice || currentPrice <= 0) {
         return sendJson(res, 502, { ok: false, error: `Invalid quote price for ${symbol}`, code: "INVALID_QUOTE" });
       }
@@ -1894,21 +1877,22 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "POST" && url.pathname === "/api/positions/close") {
       const body = await readBody(req);
       const { accountId, ticket, volumeRatio = 1.0, symbol } = body;
+      if (activeAccounts.has(accountId)) return sendJson(res, 409, { ok: false, code: "ACCOUNT_BUSY" });
+      activeAccounts.add(accountId);
+      res.once("close", () => activeAccounts.delete(accountId));
 
       const account = getAccountById(accountId);
       if (!account) {
         return sendJson(res, 404, { ok: false, error: "Account not found." });
       }
 
-      let currentPrice = 0;
-      try {
-        const market = await getMarketData(symbol || "EURUSD", "intraday");
-        currentPrice = Number(market.candles.at(-1)?.close || 0);
-      } catch {
-        // Fallback to position current price
-        const p = (account.positions || []).find(x => x.ticket === ticket || x.id === ticket);
-        currentPrice = Number(p?.currentPrice || p?.entryPrice || 0);
-      }
+      const position = (account.positions || []).find(p => p.ticket === ticket || p.id === ticket);
+      if (!position) return sendJson(res, 404, { ok: false, code: "POSITION_NOT_FOUND" });
+      if (!Number.isFinite(Number(volumeRatio)) || volumeRatio <= 0 || volumeRatio > 1) return sendJson(res, 400, { ok: false, code: "INVALID_VOLUME_RATIO" });
+      if (account.broker !== "paper" || account.tradingMode !== "PAPER") return sendJson(res, 403, { ok: false, code: "LIVE_TRADING_DISABLED" });
+      const market = await getMarketData(position.symbol, "intraday");
+      if (Date.now() - market.marketTime > 7200000) return sendJson(res, 409, { ok: false, code: "STALE_PRICE" });
+      const currentPrice = Number(market.candles.at(-1)?.close);
 
       const adapter = getBrokerAdapter(account.broker);
       try {
@@ -1923,7 +1907,7 @@ const server = http.createServer(async (req, res) => {
         }
 
         account.balance = +(Number(account.balance) + closeResult.realizedPnl).toFixed(2);
-        account.equity = +(Number(account.equity) + closeResult.realizedPnl).toFixed(2);
+        updateAccountStateWithQuotes(account, { [position.symbol]: { price: currentPrice } });
         account.dailyRealizedPnl = +(Number(account.dailyRealizedPnl || 0) + closeResult.realizedPnl).toFixed(2);
 
         // Recalculate margins
@@ -1960,6 +1944,14 @@ const server = http.createServer(async (req, res) => {
     // --- Risk Engine Preview Endpoint ---
     if (req.method === "POST" && url.pathname === "/api/risk/calculate") {
       const body = await readBody(req);
+      if (![body.lots, body.entryPrice ?? body.currentPrice, body.stopLoss, body.takeProfit].every(v => Number.isFinite(Number(v)) && Number(v) > 0)) return sendJson(res, 400, { ok: false, code: "INVALID_RISK_INPUT", error: "Positive finite lots, entry, stop and target are required." });
+      const supported = /^(EURUSD|GBPUSD|AUDUSD|NZDUSD|USDJPY|USDCHF|USDCAD|XAUUSD|XAGUSD|USOIL|BRENT|BTCUSD|BTCUSDT|ETHUSD|ETHUSDT|SPX|NAS100|US30)$/.test(String(body.symbol));
+      const side = body.side || "BUY";
+      if (!supported || !["BUY", "SELL"].includes(side)) return sendJson(res, 400, { ok: false, code: "UNSUPPORTED_RISK_CONTRACT" });
+      const entry = Number(body.entryPrice ?? body.currentPrice), stop = Number(body.stopLoss), target = Number(body.takeProfit);
+      if (side === "BUY" ? !(stop < entry && target > entry) : !(stop > entry && target < entry)) return sendJson(res, 400, { ok: false, code: "INVALID_PROTECTION_DIRECTION" });
+      const spec = getContractSpec(body.symbol), volume = Number(body.lots);
+      if (volume < spec.minLot || volume > spec.maxLot || Math.abs(volume / spec.lotStep - Math.round(volume / spec.lotStep)) > 1e-7) return sendJson(res, 400, { ok: false, code: "INVALID_VOLUME" });
       const riskMetrics = calculateOrderRisk(body);
       return sendJson(res, 200, { ok: true, metrics: riskMetrics, riskAnalysis: riskMetrics });
     }
@@ -2001,11 +1993,11 @@ const server = http.createServer(async (req, res) => {
 
     return sendJson(res, 405, { ok: false, error: "Method not allowed" });
   } catch (error) {
-    return sendJson(res, 500, { ok: false, error: "Server error", detail: error.message });
+    return sendJson(res, error.status || 500, { ok: false, code: error.code || "REQUEST_FAILED", error: error.status ? error.message : "Request could not be completed." });
   }
 });
 
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(`THN AI Trader running on http://0.0.0.0:${PORT}`);
+server.listen(PORT, process.env.VERCEL ? "0.0.0.0" : "127.0.0.1", () => {
+  console.log(`THN AI Trader running locally on port ${PORT}`);
   console.log(`OpenAI enabled: ${openaiEnabled ? "yes" : "no"}`);
 });

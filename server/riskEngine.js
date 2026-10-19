@@ -36,7 +36,8 @@ export function getContractSpec(rawSymbol = "EURUSD") {
 export function calculateRequiredMargin({ symbol, lots, price, leverage = 200 }) {
   const spec = getContractSpec(symbol);
   const safeLev = Math.max(1, Math.min(2000, Number(leverage) || 200));
-  const notionalValue = Number(lots) * spec.contractSize * Number(price);
+  const baseUSD = /^USD[A-Z]{3}$/.test(String(symbol));
+  const notionalValue = Number(lots) * spec.contractSize * (baseUSD ? 1 : Number(price));
   const margin = notionalValue / safeLev;
   return Number(margin.toFixed(2));
 }
@@ -65,11 +66,13 @@ export function calculateOrderRisk({ symbol, side, lots, currentPrice, entryPric
     tpDollars = tpDistance * spec.contractSize * pLots;
   }
 
+  if (/^USD[A-Z]{3}$/.test(String(symbol)) && pPrice > 0) { slDollars /= pPrice; tpDollars /= pPrice; }
+
   const rrRatio = slDistance > 0 && tpDistance > 0 ? Number((tpDistance / slDistance).toFixed(2)) : null;
 
   return {
     contractSize: spec.contractSize,
-    notionalValue: +(pLots * spec.contractSize * pPrice).toFixed(2),
+    notionalValue: +(pLots * spec.contractSize * (/^USD[A-Z]{3}$/.test(String(symbol)) ? 1 : pPrice)).toFixed(2),
     requiredMargin,
     slDistance: +slDistance.toFixed(spec.digits),
     slDollars: +slDollars.toFixed(2),
@@ -87,6 +90,8 @@ export function validateOrderRisk({ account, order, currentPrice }) {
     return { approved: false, code: "ACCOUNT_REQUIRED", reason: "Active trading account is required." };
   }
 
+  if (account.currency && account.currency !== "USD") return { approved: false, code: "UNSUPPORTED_CURRENCY", reason: "USD paper accounts only." };
+
   if (account.permissionLevel === "READ_ONLY") {
     return {
       approved: false,
@@ -95,7 +100,12 @@ export function validateOrderRisk({ account, order, currentPrice }) {
     };
   }
 
+  if (!["BUY", "SELL"].includes(order.side) || !Number.isFinite(Number(currentPrice)) || Number(currentPrice) <= 0)
+    return { approved: false, code: "INVALID_ORDER", reason: "Valid side and positive provider price required." };
+  if (![order.stopLoss, order.takeProfit].every(v => Number.isFinite(Number(v)) && Number(v) > 0))
+    return { approved: false, code: "PROTECTION_REQUIRED", reason: "Positive stop loss and target are required." };
   const symbol = String(order.symbol || "").toUpperCase();
+  if (!/^(EURUSD|GBPUSD|AUDUSD|NZDUSD|USDJPY|USDCHF|USDCAD|XAUUSD|XAGUSD|USOIL|BRENT|BTCUSD|BTCUSDT|ETHUSD|ETHUSDT|SPX|NAS100|US30)$/.test(symbol)) return { approved: false, code: "UNSUPPORTED_CONTRACT", reason: "No verified USD contract conversion is available." };
   const spec = getContractSpec(symbol);
   const lots = Number(order.lots || order.volume || 0);
 
@@ -115,6 +125,9 @@ export function validateOrderRisk({ account, order, currentPrice }) {
       reason: `Order volume ${lots} exceeds maximum single order cap (${spec.maxLot}) for ${symbol}.`
     };
   }
+
+  if (Math.abs(lots / spec.lotStep - Math.round(lots / spec.lotStep)) > 1e-7)
+    return { approved: false, code: "INVALID_LOT_STEP", reason: "Volume must follow the contract lot step." };
 
   // Margin validation
   const leverage = account.leverage || 200;

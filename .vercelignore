@@ -1,0 +1,13 @@
+.git
+.runtime
+work
+attachments
+node_modules
+trading_accounts.json
+audit_log.json
+.vault_key
+.env
+.env.*
+*.db
+*.sqlite*
+tests/provider-fixture.js

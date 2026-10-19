@@ -6,7 +6,9 @@ import { logAuditEvent } from "./auditLogger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ACCOUNTS_FILE = path.join(__dirname, "..", "trading_accounts.json");
+const runtimeDir = process.env.THN_DATA_DIR || path.join(__dirname, "..", ".runtime");
+if (!process.env.VERCEL) fs.mkdirSync(runtimeDir, { recursive: true, mode: 0o700 });
+const ACCOUNTS_FILE = path.join(runtimeDir, "trading_accounts.json");
 
 let tradingAccounts = [];
 const idempotencyKeys = new Map();
@@ -79,18 +81,19 @@ export function sanitizeAccountForClient(account) {
   if (!account) return null;
   return {
     id: account.id,
+    connected: account.broker === "paper" && account.status === "CONNECTED",
     broker: account.broker,
     brokerName: account.brokerName,
     platform: account.platform,
     accountAlias: account.accountAlias || account.brokerName,
-    accountNumber: account.accountNumber,
+
     accountNumberMasked: account.accountNumberMasked || maskAccountNumber(account.accountNumber),
     accountType: account.accountType,
     accountTypeName: account.accountTypeName,
     currency: account.currency || "USD",
     balance: Number(account.balance || 0),
-    equity: Number(account.equity || account.balance || 0),
-    freeMargin: Number(account.freeMargin || account.balance || 0),
+    equity: Number(account.equity ?? account.balance ?? 0),
+    freeMargin: Number(account.freeMargin ?? account.balance ?? 0),
     usedMargin: Number(account.usedMargin || 0),
     marginLevel: Number(account.marginLevel || 999),
     leverage: Number(account.leverage || 200),
@@ -215,16 +218,16 @@ export function removeTradingAccount(accountId) {
 /**
  * Idempotency validation to prevent double-execution
  */
-export function checkAndStoreIdempotencyKey(key, ttlMs = 300000) {
+export function checkAndStoreIdempotencyKey(key, fingerprint, ttlMs = 300000) {
   if (!key) return { isDuplicate: false };
   const now = Date.now();
   if (idempotencyKeys.has(key)) {
     const record = idempotencyKeys.get(key);
     if (now - record.timestamp < ttlMs) {
-      return { isDuplicate: true, response: record.response };
+      return { isDuplicate: true, conflict: record.fingerprint !== fingerprint, response: record.response };
     }
   }
-  idempotencyKeys.set(key, { timestamp: now, response: null });
+  idempotencyKeys.set(key, { timestamp: now, fingerprint, response: null });
 
   // Clean stale keys periodically
   if (idempotencyKeys.size > 1000) {
@@ -256,7 +259,7 @@ export function updateAccountStateWithQuotes(account, currentQuotesMap = {}) {
       const mult = pos.multiplier || 100000;
       const isBuy = pos.side.includes("BUY");
       const diff = isBuy ? (pos.currentPrice - pos.entryPrice) : (pos.entryPrice - pos.currentPrice);
-      pos.floatingPnl = Number((diff * mult * pos.lots).toFixed(2));
+      pos.floatingPnl = Number((diff * mult * pos.lots / (/^USD[A-Z]{3}$/.test(pos.symbol) ? pos.currentPrice : 1)).toFixed(2));
       const riskDollars = Math.abs(pos.entryPrice - pos.sl) * mult * pos.lots;
       pos.pnlR = riskDollars > 0 ? Number((pos.floatingPnl / riskDollars).toFixed(1)) : 0;
     }
@@ -272,3 +275,5 @@ export function updateAccountStateWithQuotes(account, currentQuotesMap = {}) {
 
   return account;
 }
+
+export function releaseIdempotencyKey(key) { idempotencyKeys.delete(key); }

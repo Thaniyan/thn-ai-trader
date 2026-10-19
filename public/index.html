@@ -9,8 +9,10 @@
   <title>THN AI Trader</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="workstation.css" />
 </head>
 <body>
+<a class="work-skip" href="#main-content">Skip to workspace</a>
   <div class="app-shell">
     <!-- Left Navigation Dock -->
     <aside class="sidebar" aria-label="Main navigation">
@@ -49,7 +51,7 @@
       <p class="tiny disclaimer" data-i18n="disclaimer">Capital Preservation Protocol: Enforce strict risk limits, verify broker execution conditions, and follow the trading playbook.</p>
     </aside>
 
-    <main class="terminal-main">
+    <main class="terminal-main" id="main-content" tabindex="-1">
       <!-- Top Institutional Status & Global Sessions Bar -->
       <header class="terminal-topbar panel">
         <div class="topbar-brand">
@@ -72,7 +74,7 @@
           <button class="broker-status-pill" id="openBrokerModalBtn" type="button" title="Manage Trading Broker Account">
             <span class="broker-live-dot" id="topbarBrokerDot"></span>
             <span class="trading-mode-tag" id="topbarTradingModeBadge">PAPER SANDBOX</span>
-            <span id="topbarBrokerName">Paper Sandbox ($50,000)</span>
+            <span id="topbarBrokerName">Account unavailable</span>
           </button>
 
           <div class="utc-clock-badge">
@@ -101,199 +103,14 @@
       <!-- VIEW 1: DASHBOARD                              -->
       <!-- ============================================== -->
       <div class="app-view view-active" id="view-dashboard">
-        <!-- Paper Trading Status Banner -->
-        <div class="paper-trading-banner">
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-            <span class="paper-badge"><span class="dot"></span>PAPER TRADING</span>
-            <span><b>Virtual Account:</b> Simulated execution against live interbank market feeds. No real capital at risk.</span>
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <button type="button" class="primary small" data-view-jump="trading">📈 Open Trading Terminal</button>
-            <button type="button" class="ghost small" data-view-jump="brokers">💼 Manage Accounts</button>
-          </div>
-        </div>
-
-        <!-- Dashboard Hero Metric Cards -->
-        <div class="dashboard-hero-grid">
-          <div class="dash-metric-card">
-            <small>Account Balance (Virtual)</small>
-            <b id="dashBalance">$50,000.00</b>
-            <span class="subtext">Simulated USD Sandbox</span>
-          </div>
-          <div class="dash-metric-card">
-            <small>Account Equity</small>
-            <b id="dashEquity">$50,000.00</b>
-            <span class="subtext">Free Margin: <span id="dashFreeMargin">$50,000.00</span></span>
-          </div>
-          <div class="dash-metric-card">
-            <small>Today's Realized PnL</small>
-            <b id="dashDailyPnl">$0.00</b>
-            <span class="subtext"><span id="dashTradesCount">0</span> trades closed today</span>
-          </div>
-          <div class="dash-metric-card">
-            <small>Risk Protocol Status</small>
-            <b style="color: #10b981;">● Active &amp; Enforcing</b>
-            <span class="subtext">Max Risk: 1.0% · Daily Cap: 3.0%</span>
-          </div>
-        </div>
-
-        <!-- Live Market Overview -->
-        <div class="panel" style="margin-bottom: 20px;">
-          <div class="panel-head">
-            <div>
-              <p class="eyebrow">MARKET SURVEILLANCE</p>
-              <h2>Live Market Overview</h2>
-            </div>
-            <button type="button" class="ghost small" data-view-jump="markets">Open Markets Desk ↗</button>
-          </div>
-          <div class="table-shell" style="margin-top: 10px;">
-            <table class="market-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Name</th>
-                  <th>Asset Class</th>
-                  <th>Bid</th>
-                  <th>Ask</th>
-                  <th>Spread</th>
-                  <th>24h Change</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="dashMarketOverviewBody">
-                <tr>
-                  <td><b>XAUUSD</b></td>
-                  <td>Gold Spot / USD</td>
-                  <td>Commodity</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>0.3</td>
-                  <td class="positive font-mono"><b>+0.42%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="XAUUSD">Trade ↗</button></td>
-                </tr>
-                <tr>
-                  <td><b>EURUSD</b></td>
-                  <td>Euro / US Dollar</td>
-                  <td>Forex</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>0.8</td>
-                  <td class="positive font-mono"><b>+0.11%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="EURUSD">Trade ↗</button></td>
-                </tr>
-                <tr>
-                  <td><b>GBPUSD</b></td>
-                  <td>British Pound / USD</td>
-                  <td>Forex</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>1.1</td>
-                  <td class="negative font-mono"><b>-0.18%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="GBPUSD">Trade ↗</button></td>
-                </tr>
-                <tr>
-                  <td><b>USDJPY</b></td>
-                  <td>US Dollar / Yen</td>
-                  <td>Forex</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>0.9</td>
-                  <td class="positive font-mono"><b>+0.08%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="USDJPY">Trade ↗</button></td>
-                </tr>
-                <tr>
-                  <td><b>BTCUSDT</b></td>
-                  <td>Bitcoin Perpetual</td>
-                  <td>Crypto</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>5.0</td>
-                  <td class="positive font-mono"><b>+1.25%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="BTCUSDT">Trade ↗</button></td>
-                </tr>
-                <tr>
-                  <td><b>US30</b></td>
-                  <td>Wall Street 30 Index</td>
-                  <td>Index</td>
-                  <td class="font-mono">--</td>
-                  <td class="font-mono">--</td>
-                  <td>2.0</td>
-                  <td class="negative font-mono"><b>-0.32%</b></td>
-                  <td><button type="button" class="primary small dash-trade-btn" data-trade-sym="US30">Trade ↗</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- AI Opportunities Radar -->
-        <div class="panel" style="margin-bottom: 20px;">
-          <div class="panel-head">
-            <div>
-              <p class="eyebrow">AI INTELLIGENCE RADAR</p>
-              <h2>High-Confluence Market Setups</h2>
-            </div>
-            <button type="button" class="ghost small" data-view-jump="ai">View All AI Setups ↗</button>
-          </div>
-          <div class="ai-opps-grid" id="dashAiOppsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 10px;">
-            <div class="card" style="padding: 16px; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <b style="font-size: 1.1rem;">XAUUSD</b>
-                <span class="deal-tag buy">BUY · 78/100</span>
-              </div>
-              <p class="tiny muted-text" style="margin-bottom: 12px;">H1 Bullish Order Block retest in Discount zone with sell-side liquidity sweep completed.</p>
-              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
-                <span>Target R:R: <b>1:2.7</b></span>
-                <span>Regime: <b>Expansion</b></span>
-              </div>
-              <button type="button" class="primary small full dash-inspect-btn" data-inspect-sym="XAUUSD">Inspect in Terminal ↗</button>
-            </div>
-            <div class="card" style="padding: 16px; background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <b style="font-size: 1.1rem;">EURUSD</b>
-                <span class="deal-tag" style="background: rgba(234, 179, 8, 0.2); color: #eab308;">WAIT · 61/100</span>
-              </div>
-              <p class="tiny muted-text" style="margin-bottom: 12px;">Equilibrium compression between Asian range high and Daily swing low. Awaiting breakout.</p>
-              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
-                <span>Target R:R: <b>1:2.0</b></span>
-                <span>Regime: <b>Compression</b></span>
-              </div>
-              <button type="button" class="ghost small full dash-inspect-btn" data-inspect-sym="EURUSD">Inspect in Terminal ↗</button>
-            </div>
-            <div class="card" style="padding: 16px; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <b style="font-size: 1.1rem;">GBPUSD</b>
-                <span class="deal-tag sell">SELL · 74/100</span>
-              </div>
-              <p class="tiny muted-text" style="margin-bottom: 12px;">Bearish FVG rejection on 4H structure after London session high sweep. Invalidation above swing high.</p>
-              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px;">
-                <span>Target R:R: <b>1:2.5</b></span>
-                <span>Regime: <b>Distribution</b></span>
-              </div>
-              <button type="button" class="secondary small full dash-inspect-btn" data-inspect-sym="GBPUSD">Inspect in Terminal ↗</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Activity Box -->
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <p class="eyebrow">EXECUTION AUDIT</p>
-              <h2>Recent Trading Activity</h2>
-            </div>
-            <button type="button" class="ghost small" data-view-jump="portfolio">View Portfolio ↗</button>
-          </div>
-          <div id="dashRecentActivityTable" style="margin-top: 10px;">
-            <p class="tiny muted-text" style="text-align: center; padding: 24px;">No closed trades in current session. Execute orders in the Paper Sandbox or connect an external broker bridge.</p>
-          </div>
-        </div>
+        <div class="work-heading"><div><p class="eyebrow">THN / INTELLIGENCE WORKSPACE</p><h1 data-w="command">Market command center</h1><p data-w="commandSub">Observe the market. Test the evidence. Define your risk.</p></div><span class="work-mode" data-w="research">RESEARCH · LIVE EXECUTION DISABLED</span></div>
+        <div class="work-stats"><div><small data-w="coverage">Provider coverage</small><b id="workCoverage">— / 6</b><span data-w="verifiedOnly">Verified observations only</span></div><div><small data-w="selected">Selected instrument</small><b id="workSelected">EURUSD</b><span data-w="shared">Shared across your workspace</span></div><div><small data-w="method">Analysis methodology</small><b data-w="deterministic">Deterministic</b><span data-w="scoreNote">Confluence scores are not probabilities</span></div><div><small data-w="accountState">Account availability</small><b id="workAccount" data-w="unavailable">Unavailable</b><span data-w="noLedger">No hosted account ledger</span></div></div>
+        <div class="work-grid"><section class="panel work-market"><div class="panel-head"><div><p class="eyebrow" data-w="observation">MARKET OBSERVATION</p><h2 data-w="watch">Instrument watch</h2></div><button class="ghost small" type="button" id="workRefresh" data-w="refresh">Refresh quotes</button></div><p class="work-caption" data-w="closeNote">Provider candle closes · indicative observations, no executable bid/ask</p><div id="workQuoteState" class="work-state" role="status" aria-live="polite"></div><div class="table-shell"><table class="work-table"><thead><tr><th data-w="instrument">Instrument</th><th data-w="last">Last close</th><th data-w="change">Candle change</th><th data-w="provenance">Provider / freshness</th><th></th></tr></thead><tbody id="workQuotes"></tbody></table></div></section>
+        <section class="panel work-focus"><p class="eyebrow" data-w="focus">INSTRUMENT FOCUS</p><div class="work-focus-title"><h2 id="focusSymbol">EURUSD</h2><span id="focusState" class="work-mode">—</span></div><b id="focusPrice" class="work-price">—</b><p id="focusProvider" class="work-caption"></p><div id="focusChart" class="work-spark" aria-label="Provider candle close history"></div><p id="focusTimestamp" class="work-caption"></p><div class="work-actions"><button class="primary" id="workAnalyze" data-w="analyze">Open analytical terminal ↗</button><button class="ghost" type="button" data-view-jump="risk" data-w="plan">Plan position risk</button></div></section></div>
+        <div class="work-grid"><section class="panel"><div class="panel-head"><div><p class="eyebrow" data-w="process">RESEARCH PROCESS</p><h2 data-w="workflow">From observation to a defensible plan</h2></div></div><div class="work-steps"><button data-view-jump="markets"><span>01</span><b data-w="discover">Discover</b><small data-w="discoverSub">Search instruments and verify their source.</small></button><button data-view-jump="ai"><span>02</span><b data-w="evidence">Inspect evidence</b><small data-w="evidenceSub">Review structure, conflicts and invalidation.</small></button><button data-view-jump="risk"><span>03</span><b data-w="size">Size the risk</b><small data-w="sizeSub">Set a stop, a target and a capital budget.</small></button></div></section><section class="panel"><p class="eyebrow" data-w="availability">CAPABILITIES</p><h2 data-w="honestState">Know your operating state</h2><dl class="work-capabilities"><div><dt data-w="marketData">Market data</dt><dd data-w="onRequest">Provider requests, no continuous feed guarantee</dd></div><div><dt data-w="aiModel">AI model</dt><dd id="workModel" data-w="localEngine">Deterministic engine; no model output claimed</dd></div><div><dt data-w="paper">Paper trading</dt><dd id="workPaper" data-w="localOnly">Opt-in local engine only</dd></div><div><dt data-w="journal">Journal</dt><dd data-w="browserOnly">Browser-local research notes, not broker records</dd></div></dl></section></div>
       </div>
 
-      <!-- ============================================== -->
-      <!-- VIEW 2: MARKETS                                -->
-      <!-- ============================================== -->
-      <div class="app-view" id="view-markets">
+      <div class="app-view" id="view-markets"><section class="panel work-discovery"><div class="panel-head"><div><p class="eyebrow" data-w="discovery">INSTRUMENT DISCOVERY</p><h2 data-w="verifiedWatch">Provider observations</h2></div><label><span class="sr-only" data-w="search">Search instruments</span><input id="workSearch" type="search" placeholder="Search symbol or asset class" /></label></div><div class="work-filters" role="group" aria-label="Asset class"><button class="ghost small active" data-asset="all" data-w="all">All</button><button class="ghost small" data-asset="Forex">Forex</button><button class="ghost small" data-asset="Commodity" data-w="commodities">Commodities</button><button class="ghost small" data-asset="Crypto" data-w="crypto">Crypto</button><button class="ghost small" data-asset="Index" data-w="indices">Indices</button></div><div id="workDiscovery" class="work-discovery-grid"></div></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">📡</span> <span data-i18n="navMarkets">Markets Desk &amp; Macro Radar</span></h2>
@@ -527,8 +344,8 @@
               <strong id="decision" class="decision wait">WAIT</strong>
               <p id="aiNarrative" data-i18n="runAnalysisNarrative">Run market analysis to generate multi-school validation, structural risk levels, and playbook instructions.</p>
             </div>
-            <div class="confidence-ring" aria-label="Confidence score">
-              <span id="confidence">--%</span>
+            <div class="confidence-ring" aria-label="Heuristic confluence score">
+              <span id="confidence">—/100</span>
               <small data-i18n="confidence">confidence</small>
             </div>
           </div>
@@ -836,7 +653,7 @@
       <!-- ============================================== -->
       <!-- VIEW 5: RISK DESK                              -->
       <!-- ============================================== -->
-      <div class="app-view" id="view-risk">
+      <div class="app-view" id="view-risk"><section class="panel work-planner"><div class="panel-head"><div><p class="eyebrow" data-w="pretrade">PRE-TRADE RESEARCH</p><h2 data-w="planner">Position sizing laboratory</h2></div><span class="work-mode" data-w="hypothetical">HYPOTHETICAL CAPITAL · USD</span></div><p class="work-caption" data-w="plannerNote">Planning inputs are estimates, never authoritative account balances. USD-quoted instruments only; broker contract terms may differ.</p><form id="workRiskForm" class="work-risk-form"><label><span data-w="instrument">Instrument</span><select id="planSymbol"><option>EURUSD</option><option>GBPUSD</option><option>XAUUSD</option><option>BTCUSDT</option><option>US30</option></select></label><label><span data-w="direction">Direction</span><select id="planSide"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></label><label><span data-w="capital">Planning capital (USD)</span><input id="planCapital" type="number" min="1" step="any" value="10000" required /></label><label><span data-w="riskPercent">Risk budget (%)</span><input id="planRisk" type="number" min="0.01" max="5" step="any" value="1" required /></label><label><span data-w="entry">Entry price</span><input id="planEntry" type="number" min="0.000001" step="any" required /></label><label><span data-w="stop">Stop loss</span><input id="planStop" type="number" min="0.000001" step="any" required /></label><label><span data-w="target">Target</span><input id="planTarget" type="number" min="0.000001" step="any" required /></label><label><span data-w="leverage">Planning leverage</span><input id="planLeverage" type="number" min="1" max="200" value="20" required /></label><button class="primary" type="submit" data-w="calculate">Calculate position</button></form><div id="planResult" class="work-plan-result" role="status" aria-live="polite" data-w="fillPlan">Enter a complete trade plan to calculate volume, risk and margin.</div></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">🛡️</span> <span data-i18n="navRisk">Risk Desk &amp; Capital Preservation</span></h2>
@@ -904,7 +721,7 @@
           </div>
           <div class="filter-group">
             <span class="filter-label" data-i18n="filterAsset">Asset Class:</span>
-            <select id="analyticsAssetFilter" class="analytics-select">
+            <select id="analyticsAssetFilter" aria-label="Filter analytics by asset class" class="analytics-select">
               <option value="all" data-i18n="assetAll">All Markets</option>
               <option value="Forex" data-i18n="assetForex">Forex</option>
               <option value="Crypto" data-i18n="assetCrypto">Crypto</option>
@@ -1036,7 +853,7 @@
         </article>
         <article class="panel report-panel">
           <div class="panel-head"><h2 data-i18n="institutionalReport">Market Audit Briefing</h2><span data-i18n="copyOrExport">Copy or export</span></div>
-          <pre id="report" data-i18n="noReportYet">No report generated yet.</pre>
+          <pre tabindex="0" id="report" data-i18n="noReportYet">No report generated yet.</pre>
           <div class="button-row">
             <button class="ghost" id="copyReportBtn" data-i18n="copyReport">Copy Briefing</button>
             <button class="ghost" id="exportReportBtn" data-i18n="exportTxt">Export TXT File</button>
@@ -1082,7 +899,7 @@
         <div class="broker-account-bar">
           <div class="account-picker-group">
             <span class="picker-label" data-i18n="activeAccountLabel">Active Platform Account:</span>
-            <select id="brokerActiveAccountSelect" class="broker-acc-select">
+            <select id="brokerActiveAccountSelect" aria-label="Active local paper account" class="broker-acc-select">
               <option value="default">Loading trading accounts...</option>
             </select>
           </div>
@@ -2430,7 +2247,7 @@
             <span class="toast-signal" id="toastSignal">BUY</span>
             <strong class="toast-symbol" id="toastSymbol">EURUSD</strong>
           </div>
-          <span class="toast-confidence" id="toastConfidence">82%</span>
+          <span class="toast-confidence" id="toastConfidence">—</span>
           <button type="button" class="toast-close-btn" id="toastCloseBtn" aria-label="Dismiss alert">&times;</button>
         </div>
         <div class="toast-body">
@@ -2451,5 +2268,6 @@
   <script src="d3.min.js"></script>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <script src="app.js"></script>
+  <script src="workstation.js"></script>
 </body>
 </html>

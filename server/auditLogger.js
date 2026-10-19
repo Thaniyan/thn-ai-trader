@@ -5,7 +5,9 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const AUDIT_FILE = path.join(__dirname, "..", "audit_log.json");
+const runtimeDir = process.env.THN_DATA_DIR || path.join(__dirname, "..", ".runtime");
+if (!process.env.VERCEL) fs.mkdirSync(runtimeDir, { recursive: true, mode: 0o700 });
+const AUDIT_FILE = path.join(runtimeDir, "audit_log.json");
 
 let auditEvents = [];
 
