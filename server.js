@@ -1,3 +1,5 @@
+import { buildBrief } from './public/decision-core.js';
+import { createPlan } from './server/decision.js';
 import { evaluateResearch } from "./server/evaluation.js";
 import { prepareSeries, multiTimeframe, INTERVAL_MS } from "./server/research.js";
 import { runBacktest, normalizeParameters, numericParameter } from "./server/backtest.js";
@@ -1479,7 +1481,19 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.3.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.4.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/research/brief") {
+      const symbol=url.searchParams.get("symbol")||"EURUSD", interval=url.searchParams.get("interval")||"1h";
+      if(!Object.hasOwn(INTERVAL_MS,interval)||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))) return sendJson(res,400,{ok:false,code:"INVALID_MARKET_REQUEST"});
+      const asOf=Date.now();
+      const [mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+      const brief=buildBrief(series,mtf,symbol,interval);
+      return sendJson(res,mtf.available?200:503,{ok:mtf.available,...brief});
+    }
+    if (req.method === "POST" && url.pathname === "/api/research/plan") {
+      return sendJson(res,200,{ok:true,plan:createPlan(await readBody(req))});
     }
 
     if (req.method === "GET" && url.pathname === "/api/research/series") {

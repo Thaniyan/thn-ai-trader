@@ -1,4 +1,4 @@
-# THN AI Trader 6.3
+# THN AI Trader 6.4
 
 Bilingual trading intelligence and research workstation, developed directly from the original `main` application. The terminal, indicators, drawing overlays, SMC map, scanner, journal and local paper engine remain in the original Node/HTML/JavaScript stack.
 
@@ -74,7 +74,7 @@ Research depends on finite provider history, proxy instruments and stated costs.
 
 A verified economic calendar, external broker connectivity and durable hosted account records remain unavailable. Optional OpenAI narrative enhancement uses the existing configuration only; no new model provisioning or model calls were added to research APIs.
 
-Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.3 evidence and limitations; RELEASE-6.2.md and RELEASE-6.1.md preserve earlier release records. No production push is authorized until the owner approves the exact v6.3 commit.
+Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.4 evidence and limitations; RELEASE-6.3.md, RELEASE-6.2.md and RELEASE-6.1.md preserve earlier release records. No production push is authorized until the owner approves the exact v6.4 commit.
 
 USD capital results require USD-quoted or supported USD-base Forex provider history. USDT-only Binance history remains chartable, but USD backtesting/scenario transfer is unavailable rather than assuming USD/USDT parity. Dollar-base Forex risk is converted at the planning price; other quote-currency conversions are unsupported.
 
@@ -91,6 +91,28 @@ Shared context carries dataset, scenario and explicit hypothetical risk assumpti
 Current end-to-end checks:
 
 ```sh
+TEST_URL=http://127.0.0.1:3000 python tests/browser_quality.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
+```
+
+## v6.4 decision workflow
+
+Dashboard opens with a selected-market briefing, closed-candle OHLC, provider coverage, independent timeframe completeness/conflict, observed ATR and recent complete research reports. Intelligence presents a structured deterministic brief: per-frame provider/hash/time, EMA inputs, Wilder RSI/ATR, prior-range levels, causal structure observations, directional and opposing evidence, scenario confirmation/invalidation references and explicit unknowns. Original technical panels remain under a separate-snapshot disclosure. Their heuristic scores are not predictive confidence.
+
+`GET /api/research/brief?symbol=EURUSD&interval=1h` composes existing independently fetched/cached histories. It never generates synthetic prices, news, sentiment, probabilities or model narrative. No new LLM calls are made. Selected-history failure is disclosed even when other timeframes remain available. Provider recency is the existing interval-aware heuristic, not a verified exchange-session calendar.
+
+Research-quality interpretation `6.4-Q1` attaches only when evaluation symbol, timeframe and dataset hash match the current brief and chart context. The ten displayed checks are: minimum trades in both main windows; positive holdout return/expectancy; positive development return/expectancy; retained mean realized R; positive development and holdout returns for all three friction stresses; positive returns in both parameter variants and windows; three positive subsequent folds each meeting the configured minimum trade count; largest-trade concentration within 40% absolute PnL and 25% risk share; recent history without observed gaps/omitted rows; and defined holdout profit factor, Sharpe and mean R.
+
+Label rules are deterministic: missing evaluation or insufficient main-window trades → **Insufficient evidence**; nonpositive holdout return/expectancy → **Limited historical support**; positive sufficient holdout but any remaining criterion unmet → **Mixed evidence**; every criterion met → **Historical evidence more consistent across tests**. These intentionally conservative operational criteria are not statistical significance, calibration or probabilities. History can still overfit, especially through repeated manual holdout use. Existing evaluation rules and 18-run computation cap are unchanged.
+
+Risk Desk accepts up to three independent full-position target outcomes, hypothetical USD capital, nominal risk, adverse friction assumptions and explicit user notes. `POST /api/research/plan` uses the existing server contract/risk engine, floors lots, estimates margin, discloses costs above the nominal stop budget and supports proper USD-base Forex conversion. Native USDT is rejected for USD planning. Stops never guarantee fills. Save up to four independent plans locally, compare assumptions and show entry/stop/target references on the existing candle chart. Target outcomes do not model partial scale-out allocations. No account mutation occurs.
+
+Complete reports capture deterministic evidence, provider identities/timestamps, matched development/holdout summaries, sensitivity and walk-forward summaries, quality diagnostics, a matching hypothetical plan, user thesis/notes and conclusion. Save eight reports in this browser, export JSON or a standalone printable HTML document. User text is escaped, HTML forbids active/network content, unknown imported keys are stripped recursively, JSON is limited to 400 KB and eight bounded records, imports are labeled unverified and never drive calculations. Exports contain whitelisted research only; never enter credentials in notes. Browser storage is unencrypted and may be cleared or reach capacity. Existing notes, experiments and drawings are preserved.
+
+Current full workflow verification (same browser prerequisites as above):
+
+```sh
+TEST_URL=http://127.0.0.1:3000 python tests/browser_decision.py
 TEST_URL=http://127.0.0.1:3000 python tests/browser_quality.py
 TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
 ```

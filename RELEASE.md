@@ -1,37 +1,48 @@
-# THN AI Trader 6.3 — local release candidate
+# THN AI Trader 6.4 — integrated intelligence release candidate
 
-Built from original `Thaniyan/thn-ai-trader` main at `0afd76f2e5d93773144105d09fb1bb7b5e7e9ee3`. This cycle authorizes local implementation and commit only. No push, deployment, hosting change or additional environment was made.
+Base: original `Thaniyan/thn-ai-trader` main, `5a318cf90056ccff029ff33c48ff157aabb294f7`. Implementation, tests and local commit only. Production push requires approval of the resulting exact commit.
 
-## Delivered
+## Visible and functional changes
 
-- Chronological development/holdout evaluation with prefix-only development data, common warmup and independent flat-start windows. User rules remain fixed; the development window is not an automatically fitted model.
-- Long-only, short-only and symmetric long/short EMA, RSI and breakout strategies. Signals use completed bars and next-open fills. Shorts have directional PnL, adverse costs, correct stops/targets and no artificial cash from sale proceeds. Supported USD-base Forex quote conversion is explicit; USD/USDT parity is rejected.
-- Default gap handling cancels pending entries and closes held positions at the next observed open; an alternative rejects gapped samples. Neither reconstructs unavailable prices or anticipates future gaps.
-- Side-by-side actual UTC windows, equity/drawdown curves, per-bar returns, trade counts, exposure, holding times, realized R distribution, concentration and drawdown contributors. Undefined metrics explain their denominator limitations.
-- Five bounded parameter/cost sensitivity variants and three fixed-parameter expanding-development test folds when sufficient data exists, with at most 18 engine runs. Every variant is disclosed; no winner is automatically selected.
-- Integrated dataset/scenario/strategy/risk context, explicit retained-report and dirty-input labels, request identity guards, four browser-local experiment records, comparison curves, validated research-only import/export and journal conclusions.
-- English/Arabic research, risk and privacy help replaces misleading legacy broker instructions. Original nine sections and chart features remain; retained Portfolio panels now have readable light-theme backgrounds.
+- Dashboard selected-market briefing with observed closed-candle OHLC/time, provider identity, timeframe completeness/conflicts, observed ATR, matching research-quality label, recent saved reports and direct chart/research/risk navigation. Existing curated watchlist and provider coverage remain.
+- Explainable Intelligence brief from independent 15m/1h/daily observations. Every directional claim contains source, provider symbol, dataset SHA-256, observation time, EMA/RSI/ATR inputs and documented rule. It retains opposing evidence, observed ranges, causal structure events, bullish/bearish/wait hypotheses and explicit invalidation/uncertainty. No news, sentiment, economic events or model narrative is invented.
+- The shared context adds provider symbol, data time, analysis version, selected-frame levels, matched evaluation period and research quality without metadata-triggered chart reloads. New requests have identity/selection guards and bounded timeouts. Outage/refresh clears current intelligence rather than presenting an old snapshot as fresh.
+- Research-quality `6.4-Q1` interprets the existing evaluator without rerunning or changing numerical strategies. Ten conservative checks cover both windows, costs/parameters, fold consistency/sample counts, concentrations, history gaps and undefined metrics. Exact criteria and four label rules are documented in README. Labels never represent a probability or significance test.
+- Risk Desk now uses the existing authoritative risk engine through a bounded hypothetical-plan endpoint. Up to three independent target outcomes, lot rounding, contract/currency rules, explicit friction, cost-adjusted stop risk and margin are shown. Four local plans can be compared; current plan levels overlay the preserved candle chart. Input/selection changes invalidate old results; delayed plan responses cannot overwrite newer assumptions.
+- Eight complete local research reports combine computed brief, matching historical results and quality diagnostics, a matching risk plan, and separately labeled user thesis/notes/conclusion. JSON import/export and standalone printable HTML require no dependencies. Unknown nested keys are stripped; schema, nesting, arrays, finite numbers, hashes, strings, file size and record count are bounded. Imports are explicitly unverified and never become computational inputs. HTML escapes user content and blocks scripts/network access.
+- EN/AR labels, RTL, keyboard operation, responsive tables and dark/light themes cover the connected workflow. Original nine sections, drawings, indicator/SMC layers, local research notes/experiments and financial engine remain. Original single-snapshot technical panels are retained under progressive disclosure with an explicit heuristic-score limitation.
 
 ## Verification
 
-- 60 unit/integration tests: chronological isolation under altered future candles, direct engine equivalence, common variant boundaries, disjoint walk-forward windows, repeatability, numerical metrics, all direction modes, explicit short cash flows/costs, stop collisions and price gaps, missing-data policies, currencies, bounds and insufficient history, metadata event isolation, provider outages and existing financial guards.
-- Build and lint are JavaScript syntax checks; no bundler compilation is required by this application.
-- Chromium real-provider acceptance covers evaluation, two-run comparison, bounded imports, removal of unknown credential fields, invalid timestamp rejection, export, journal metadata, delayed old evaluation rejection and Risk Desk assumptions transfer.
-- All nine active view regions scanned in Arabic dark mode; Portfolio also scanned in English light mode. Zero axe violations in those scans. Both languages checked at 390×844 across all nine sections without page overflow. No browser JavaScript errors. Automated checks are not a complete accessibility audit.
-- Real Yahoo Finance EURUSD hourly history supplied 2,000 closed provider observations. Missing Forex volume and 18 observed session/data gaps were disclosed. Captured default long/short results were negative in both development and holdout; the interface presents adverse evidence without manufacturing success.
-- Separate browser outage coverage checks unavailable chart/evaluation states in EN/AR and the existing USDJPY hypothetical risk calculation.
-- Runtime/credential patterns remain excluded from Git and deployment inputs; research endpoints cannot enable financial mutation. No dependencies, paid services, AI calls, live execution or broker integrations were added.
+- 71 unit/integration tests pass, 0 fail: deterministic claims and provenance, stale/unavailable/conflicting evidence, all quality labels and negative cases, long/short numerical regressions, USDJPY stop-risk/margin conversion, directional/cost/contract limits, imports/XSS/active-content defenses, actual public API behavior and existing financial-operation blocks.
+- Build and lint pass. Both are syntax checks, as appropriate to the original unbundled Node/HTML/JS stack.
+- Chromium genuine-provider acceptance: 2,000 hourly Yahoo Finance observations, independently observed 15m/hourly/daily evidence, chart navigation/zoom/keyboard inspection/drawings/undo, matched evaluation, scenario transfer, server risk plans, chart overlays, local comparisons, JSON/HTML export, safe/unverified import, persistence/reload, repeated symbol/timeframe changes, delayed old brief and plan response rejection, and explicit provider outage.
+- All nine sections checked in EN and AR at 390×844: 18 layout checks, no page overflow. 22 axe scans (nine views in each language plus four changed views in Arabic light mode): zero violations. No browser JavaScript errors. Automated checks are not comprehensive accessibility certification.
+- Existing v6.3 browser research/experiment/export/journal acceptance and EN/AR outage/USDJPY risk regressions pass. Unit/provider fixtures stay test-only; genuine browser observations are not substituted with synthetic prices.
+- No actual credential signatures or tracked runtime financial records were introduced. A private-key marker in the rejection test is deliberately invalid test input. Existing Git/deployment exclusions and hosted financial guards remain. Production dependencies, hosting settings and lockfile are unchanged. No paid resources, background workers, accounts, environments or projects were created. No generative-model call is added.
 
-Runnable checks: `npm test`, `npm run build`, `npm run lint`, `tests/browser_quality.py`, `tests/browser_research_outage.py`. Browser prerequisites are documented in README. Local screenshots/results are ignored under `work/v63-*`.
+Runnable checks: `npm test`, `npm run build`, `npm run lint`, `tests/browser_decision.py`, `tests/browser_quality.py`, `tests/browser_research_outage.py`. Browser prerequisites are in README. Captures/results remain ignored under `work/v64-*`.
 
-## Limits and release procedure
+## Limits
 
-Holdout reuse permits manual overfitting. There is no statistical significance test, strategy optimizer or calibrated probability. Three walk-forward tests use fixed parameters and fresh capital; mean fold returns are not a compounded portfolio. Sample-normalized chart progress does not align different calendar windows.
+Finite provider coverage, history revisions, missing rows/session gaps, futures proxies and unadjusted corporate actions still limit inference. Recency is interval-aware, not a verified exchange-session calendar. Structure detection is heuristic. Brief refresh is on selection or explicit request, not continuous streaming. News, verified economic calendar, sentiment and generative narrative remain unavailable. No new model/budget is configured.
 
-Finite provider history, revisions, omitted inconsistent rows, session/data gaps, proxies and lack of corporate-action normalization limit inference. Intrabar sequencing is unknown; stop-first collisions are conservative, but hidden gap excursions can still be worse. Funding, borrowing, actual short availability, liquidation and broker execution are not modeled. Drawdown contributors list closed trades overlapping a period, not complete causal attribution. Historical performance is not evidence of future profitability.
+Holdout reuse permits manual overfitting. No statistical significance, future win probability or optimization is claimed. Fixed-parameter fold results reset capital and do not form one continuous portfolio. Positive criteria are historical observations only; gaps and undefined metrics prevent the strongest label. No branch of the quality engine overrides risk validation.
 
-Saved experiments and notes are browser-local, unencrypted and capacity-limited. Imported metrics are labeled unverified, not recomputed or authenticated. Some legacy analytics remain separate from the quantitative evaluator. Four-hour research history and a verified economic calendar remain unavailable.
+Planning capital is hypothetical. Stops do not guarantee execution, and gap losses can exceed nominal stop budgets. Friction estimates use entry notional and omit financing, borrowing, actual short availability and liquidation. Targets are alternative full-position outcomes, not partial-exit schedules. Native USDT is not treated as USD. Broker terms require independent verification.
 
-Production-domain access is blocked by the execution environment; local checks do not establish Production verification. The existing v6.2 READY deployment remains the release/rollback reference: `dpl_GnHaevGxBWmUQayXnTBerznPnb7w`, commit `0afd76f2e5d93773144105d09fb1bb7b5e7e9ee3`. After explicit exact-commit approval, fetch and verify a clean fast-forward from original main, push normally, and monitor the existing Vercel project. Stop on rejection or failure. A necessary rollback should promote the retained deployment through Vercel without rewriting Git history.
+Reports/notes/plans are unencrypted browser-local records, bounded to eight reports/four plans and 400 KB report storage/import. Clearing storage loses them. Do not enter secrets in free text. Imported reports cannot be authenticated or treated as verified performance. Attached quantitative/plan evidence requires matching instrument, timeframe and dataset; otherwise the report explicitly lacks it. Existing notes and experiments remain separate and preserved.
 
-Prior release evidence remains in RELEASE-6.2.md and RELEASE-6.1.md. Intended original Production URL: https://thn-ai-trader.vercel.app/.
+These are local candidate verification results, not verification of unreleased Production functionality. Optional Production browser access was not used as a development prerequisite.
+
+## Safe release references
+
+Original website: https://thn-ai-trader.vercel.app/
+
+Original existing Vercel project: `prj_IFLYEB85CRNBjDEGO69xcW4O55Wd`, team `team_MOU3JztK2qXaXBQNFYDx1dX6`.
+
+Retained v6.3 Production/rollback deployment: `dpl_59isH5V8B4rgEi1CqBsBFp7zxZun`, commit `5a318cf90056ccff029ff33c48ff157aabb294f7`. Prior v6.2 reference remains `dpl_GnHaevGxBWmUQayXnTBerznPnb7w`.
+
+After exact-commit approval, fetch original main, require clean work and verified ancestry, push the approved commit normally to main, monitor the existing Production deployment and verify the original domain where accessible. Stop on rejection or critical failure. If needed, restore the retained deployment via Vercel's safe deployment promotion/rollback; never rewrite Git history. Account for Vercel rollback potentially pausing subsequent automatic domain assignments. Do not change hosting settings or create another environment.
+
+Prior release records are preserved in RELEASE-6.3.md, RELEASE-6.2.md and RELEASE-6.1.md.

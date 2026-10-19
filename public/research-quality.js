@@ -57,7 +57,7 @@
       const data=await response.json();if(id!==requestId||context.symbol!==THNContext.get().symbol||context.interval!==THNContext.get().interval)return;
       if(!response.ok||!data.ok){lastAttemptFailed=true;lastFailureCode=data.code;status.textContent=statusText(data.code);renderReport();return;}
       report=data;reportContext={symbol:context.symbol,interval:context.interval,provider:data.dataset.source,datasetId:data.dataset.hash,analysisTimestamp:Date.now(),scenario:context.scenario??null,riskAssumptions:{capital:data.parameters.capital,riskPct:data.parameters.riskPct,leverage:data.parameters.leverage,spreadBps:data.parameters.spreadBps,slippageBps:data.parameters.slippageBps,commissionBps:data.parameters.commissionBps},strategy:{name:data.parameters.strategy,direction:data.parameters.direction}};
-      THNContext.set(reportContext,'evaluation');dirty=false;lastAttemptFailed=false;status.textContent='';save.disabled=false;note.disabled=false;$('qExport').disabled=false;renderReport();
+      THNContext.set(reportContext,'evaluation');dirty=false;lastAttemptFailed=false;status.textContent='';save.disabled=false;note.disabled=false;$('qExport').disabled=false;renderReport();window.dispatchEvent(new CustomEvent('thn:evaluation'));
     }catch(error){if(id===requestId&&error.name!=='AbortError'){lastAttemptFailed=true;lastFailureCode=null;status.textContent=t('failure');renderReport();}}
     finally{if(id===requestId){busy=false;$('qRun').disabled=false;}}
   },{capture:true});

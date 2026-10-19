@@ -24,6 +24,10 @@ test('public mode: data provenance, truthful analysis and protected financial en
  const [,data]=await get('/api/quotes');assert.equal(Object.keys(data.quotes).length,6);
  for(const q of Object.values(data.quotes)){assert.ok(q.close>0);assert.match(q.source,/Yahoo/);assert.equal(q.bid,null);assert.equal(q.ask,null);assert.equal(q.changePeriod,'previous candle');assert.ok(q.timestamp);}
  const [,research]=await get('/api/research/series?symbol=EURUSD&interval=1h');assert.ok(research.candles.length>=60);assert.equal(research.provenance.interval,'1h');
+ const [briefResponse,brief]=await get('/api/research/brief?symbol=EURUSD&interval=1h');assert.equal(briefResponse.status,200);assert.equal(brief.method,'deterministic');assert.equal(brief.claims.length,3);assert.equal(brief.selected.provenance.hash,research.provenance.hash);assert.equal(brief.narrative,null);
+ const [planResponse,planResult]=await post('/api/research/plan',{symbol:'USDJPY',side:'BUY',capital:10000,riskPct:1,entry:150,stop:149,targets:[152],leverage:20,spreadBps:2,slippageBps:1,commissionBps:1});assert.equal(planResponse.status,200);assert.equal(planResult.plan.metrics.slDollars,100);assert.equal(planResult.plan.metrics.requiredMargin,750);
+ assert.equal((await post('/api/research/plan',{symbol:'BTCUSDT'}))[0].status,400);
+ assert.equal((await get('/api/research/brief?symbol=EURUSD&interval=4h'))[0].status,400);
  const [,mtf]=await get('/api/research/mtf?symbol=EURUSD');assert.equal(mtf.frames.length,3);assert.ok(mtf.frames.every(f=>f.available));assert.equal(new Set(mtf.frames.map(f=>f.provenance.hash)).size,3);
  const [evaluationResponse,evaluation]=await post('/api/research/evaluate',{symbol:'EURUSD',interval:'1h',parameters:{direction:'long_short'},validation:{trainFraction:.7,minimumTrades:10}});assert.equal(evaluationResponse.status,200);assert.equal(evaluation.version,'6.3');assert.ok(evaluation.development.sample.lastTime<evaluation.holdout.sample.firstTime);assert.ok(evaluation.limits.runsExecuted<=18);
  assert.equal((await post('/api/research/evaluate',{symbol:'EURUSD',validation:{trainFraction:.99}}))[0].status,400);
@@ -42,6 +46,7 @@ test('provider outage never substitutes synthetic candles or analysis',()=>withS
  const [r,d]=await get('/api/market/EURUSD');assert.equal(r.status,503);assert.equal(d.code,'MARKET_DATA_UNAVAILABLE');assert.equal(d.candles,undefined);
  assert.equal((await post('/api/analyze',{symbol:'EURUSD'}))[0].status,503);
  assert.equal((await get('/api/research/series?symbol=EURUSD&interval=1h'))[0].status,503);
+ const [briefResponse,brief]=await get('/api/research/brief?symbol=EURUSD&interval=1h');assert.equal(briefResponse.status,503);assert.equal(brief.claims.length,0);assert.equal(brief.selected,null);
  assert.equal((await get('/api/research/mtf?symbol=EURUSD'))[0].status,503);
  assert.equal((await post('/api/research/backtest',{symbol:'EURUSD'}))[0].status,503);
  assert.equal((await post('/api/research/evaluate',{symbol:'EURUSD'}))[0].status,503);

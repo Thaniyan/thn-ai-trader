@@ -1,6 +1,6 @@
 {
   "name": "thn-ai-trader",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "THN AI Trader - professional bilingual AI-powered trading workstation with automated copilot, clear technical drawing chart, dedicated SK/SMC analysis map, watchlist patrol, risk governance, journaling and reports.",
   "type": "module",
   "engines": {
@@ -9,10 +9,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "build": "node --check server.js && node --check public/app.js && node --check public/workstation.js && node --check public/research-state.js && node --check public/research-chart.js && node --check public/research-workstation.js && node --check server/research.js && node --check server/backtest.js && node --check public/locale-secondary.js && node --check server/evaluation.js && node --check public/research-quality.js",
-    "lint": "node --check server.js && node --check public/app.js && node --check public/workstation.js && node --check public/research-state.js && node --check public/research-chart.js && node --check public/research-workstation.js && node --check public/locale-secondary.js && node --check server/research.js && node --check server/backtest.js && node --check server/evaluation.js && node --check public/research-quality.js",
+    "build": "node --check server.js && node --check public/app.js && node --check public/workstation.js && node --check public/research-state.js && node --check public/research-chart.js && node --check public/research-workstation.js && node --check server/research.js && node --check server/backtest.js && node --check public/locale-secondary.js && node --check server/evaluation.js && node --check public/research-quality.js && node --check public/decision-core.js && node --check public/decision-records.js && node --check public/decision-workspace.js && node --check server/decision.js",
+    "lint": "node --check server.js && node --check public/app.js && node --check public/workstation.js && node --check public/research-state.js && node --check public/research-chart.js && node --check public/research-workstation.js && node --check public/locale-secondary.js && node --check server/research.js && node --check server/backtest.js && node --check server/evaluation.js && node --check public/research-quality.js && node --check public/decision-core.js && node --check public/decision-records.js && node --check public/decision-workspace.js && node --check server/decision.js",
     "check": "node --check server.js && node --check public/app.js",
-    "test": "node --test tests/risk.test.js tests/integration.test.js tests/research.test.js tests/evaluation.test.js tests/context.test.js",
+    "test": "node --test tests/risk.test.js tests/integration.test.js tests/research.test.js tests/evaluation.test.js tests/context.test.js tests/decision.test.js",
     "test:legacy": "node tests/legacy-system.test.js"
   },
   "dependencies": {
