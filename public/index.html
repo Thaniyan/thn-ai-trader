@@ -10,6 +10,7 @@
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="workstation.css" />
+  <link rel="stylesheet" href="research.css" />
 </head>
 <body>
 <a class="work-skip" href="#main-content">Skip to workspace</a>
@@ -653,7 +654,7 @@
       <!-- ============================================== -->
       <!-- VIEW 5: RISK DESK                              -->
       <!-- ============================================== -->
-      <div class="app-view" id="view-risk"><section class="panel work-planner"><div class="panel-head"><div><p class="eyebrow" data-w="pretrade">PRE-TRADE RESEARCH</p><h2 data-w="planner">Position sizing laboratory</h2></div><span class="work-mode" data-w="hypothetical">HYPOTHETICAL CAPITAL · USD</span></div><p class="work-caption" data-w="plannerNote">Planning inputs are estimates, never authoritative account balances. USD-quoted instruments only; broker contract terms may differ.</p><form id="workRiskForm" class="work-risk-form"><label><span data-w="instrument">Instrument</span><select id="planSymbol"><option>EURUSD</option><option>GBPUSD</option><option>XAUUSD</option><option>BTCUSDT</option><option>US30</option></select></label><label><span data-w="direction">Direction</span><select id="planSide"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></label><label><span data-w="capital">Planning capital (USD)</span><input id="planCapital" type="number" min="1" step="any" value="10000" required /></label><label><span data-w="riskPercent">Risk budget (%)</span><input id="planRisk" type="number" min="0.01" max="5" step="any" value="1" required /></label><label><span data-w="entry">Entry price</span><input id="planEntry" type="number" min="0.000001" step="any" required /></label><label><span data-w="stop">Stop loss</span><input id="planStop" type="number" min="0.000001" step="any" required /></label><label><span data-w="target">Target</span><input id="planTarget" type="number" min="0.000001" step="any" required /></label><label><span data-w="leverage">Planning leverage</span><input id="planLeverage" type="number" min="1" max="200" value="20" required /></label><button class="primary" type="submit" data-w="calculate">Calculate position</button></form><div id="planResult" class="work-plan-result" role="status" aria-live="polite" data-w="fillPlan">Enter a complete trade plan to calculate volume, risk and margin.</div></section>
+      <div class="app-view" id="view-risk"><section class="panel work-planner"><div class="panel-head"><div><p class="eyebrow" data-w="pretrade">PRE-TRADE RESEARCH</p><h2 data-w="planner">Position sizing laboratory</h2></div><span class="work-mode" data-w="hypothetical">HYPOTHETICAL CAPITAL · USD</span></div><p class="work-caption" data-w="plannerNote">Planning inputs are estimates, never authoritative account balances. USD-quoted instruments only; broker contract terms may differ.</p><form id="workRiskForm" class="work-risk-form"><label><span data-w="instrument">Instrument</span><select id="planSymbol"><option>USDJPY</option><option>EURUSD</option><option>GBPUSD</option><option>XAUUSD</option><option>BTCUSDT</option><option>US30</option></select></label><label><span data-w="direction">Direction</span><select id="planSide"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></label><label><span data-w="capital">Planning capital (USD)</span><input id="planCapital" type="number" min="1" step="any" value="10000" required /></label><label><span data-w="riskPercent">Risk budget (%)</span><input id="planRisk" type="number" min="0.01" max="5" step="any" value="1" required /></label><label><span data-w="entry">Entry price</span><input id="planEntry" type="number" min="0.000001" step="any" required /></label><label><span data-w="stop">Stop loss</span><input id="planStop" type="number" min="0.000001" step="any" required /></label><label><span data-w="target">Target</span><input id="planTarget" type="number" min="0.000001" step="any" required /></label><label><span data-w="leverage">Planning leverage</span><input id="planLeverage" type="number" min="1" max="200" value="20" required /></label><button class="primary" type="submit" data-w="calculate">Calculate position</button></form><div id="planResult" class="work-plan-result" role="status" aria-live="polite" data-w="fillPlan">Enter a complete trade plan to calculate volume, risk and margin.</div></section>
         <div class="view-header">
           <div class="view-title-group">
             <h2><span class="icon">🛡️</span> <span data-i18n="navRisk">Risk Desk &amp; Capital Preservation</span></h2>
@@ -2267,7 +2268,11 @@
 
   <script src="d3.min.js"></script>
   <script src="https://s3.tradingview.com/tv.js"></script>
+  <script src="research-state.js"></script>
   <script src="app.js"></script>
   <script src="workstation.js"></script>
+  <script src="research-chart.js"></script>
+  <script src="research-workstation.js"></script>
+  <script src="locale-secondary.js"></script>
 </body>
 </html>

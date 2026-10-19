@@ -1228,7 +1228,7 @@ function setLanguage(lang) {
 function getPayload() {
   return {
     symbol: $("symbolInput").value.trim() || "EURUSD",
-    timeframe: $("timeframe").value,
+    timeframe: window.THNContext?.get().interval || $("timeframe").value,
     accountBalance: Number($("accountBalance").value || 10000),
     riskPct: Number($("riskPct").value || 1),
     rewardRisk: Number($("rewardRisk").value || 2),
@@ -1270,6 +1270,7 @@ async function checkHealth() {
 }
 
 async function analyze() {
+  window.THNContext?.set({symbol: $("symbolInput").value.trim().toUpperCase(), interval: ({scalp:"15m",intraday:"1h",swing:"1d",position:"1d"})[$("timeframe").value] || "1h"}, "analysis");
   const payload = getPayload();
   saveSetup();
   status(t("analyzingStatus", { symbol: payload.symbol.toUpperCase() }));
@@ -1283,6 +1284,7 @@ async function analyze() {
     });
     const data = await res.json();
     if (!res.ok || data.error) throw new Error(data.detail || data.error || "Analysis failed");
+    if (window.THNContext && (payload.symbol.toUpperCase() !== window.THNContext.get().symbol || payload.timeframe !== window.THNContext.get().interval)) return;
     currentAnalysis = data;
     document.querySelectorAll(".work-analysis-error").forEach(el => el.remove());
     renderAnalysis(data);
@@ -3023,7 +3025,7 @@ function renderWatchlist() {
 function watchlistPayload() {
   return {
     symbols: getWatchlist(),
-    timeframe: $("timeframe").value,
+    timeframe: window.THNContext?.get().interval || $("timeframe").value,
     accountBalance: Number($("accountBalance").value || 10000),
     riskPct: Number($("riskPct").value || 1),
     rewardRisk: Number($("rewardRisk").value || 2),

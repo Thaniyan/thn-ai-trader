@@ -1,3 +1,5 @@
+import { prepareSeries, multiTimeframe, INTERVAL_MS } from "./server/research.js";
+import { runBacktest } from "./server/backtest.js";
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
@@ -42,6 +44,9 @@ const PORT = Number(process.env.PORT || 3000);
 const openaiEnabled = Boolean(process.env.OPENAI_API_KEY);
 
 const TIMEFRAME_CONFIG = {
+  "15m": { range: "1mo", interval: "15m", tvInterval: "15", label: "15m" },
+  "1h": { range: "6mo", interval: "1h", tvInterval: "60", label: "1h" },
+  "1d": { range: "5y", interval: "1d", tvInterval: "D", label: "1d" },
   scalp: { range: "5d", interval: "15m", tvInterval: "15", label: "Scalp" },
   intraday: { range: "1mo", interval: "1h", tvInterval: "60", label: "Intraday" },
   swing: { range: "6mo", interval: "1d", tvInterval: "D", label: "Swing" },
@@ -118,9 +123,9 @@ function normalizeSymbol(rawSymbol = "EURUSD") {
 async function fetchBinanceCandles(symbolInfo, timeframe = "intraday") {
   const binanceSymbol = symbolInfo.display.replace(/[^A-Z0-9]/g, "").toUpperCase();
   const symbol = binanceSymbol.endsWith("USDT") ? binanceSymbol : `${binanceSymbol.replace(/USD$/, "")}USDT`;
-  const intervalMap = { scalp: "15m", intraday: "1h", swing: "4h", position: "1d" };
+  const intervalMap = { "15m": "15m", "1h": "1h", "1d": "1d", scalp: "15m", intraday: "1h", swing: "1d", position: "1d" };
   const interval = intervalMap[String(timeframe || "intraday").toLowerCase()] || "1h";
-  const url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=160`;
+  const url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000`;
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 6500);
   try {
@@ -135,16 +140,17 @@ async function fetchBinanceCandles(symbolInfo, timeframe = "intraday") {
       low: parseFloat(k[3]),
       close: parseFloat(k[4]),
       volume: parseFloat(k[5])
-    })).filter(c => [c.open, c.high, c.low, c.close].every(Number.isFinite));
+    })).filter(c => [c.open, c.high, c.low, c.close].every(Number.isFinite) && c.low > 0 && c.high >= Math.max(c.open, c.close) && c.low <= Math.min(c.open, c.close));
     const cfg = TIMEFRAME_CONFIG[String(timeframe || "intraday").toLowerCase()] || TIMEFRAME_CONFIG.intraday;
     return {
       candles,
+      discardedRows: data.length - candles.length,
       source: "Binance spot candles",
       providerSymbol: symbol,
       currency: "USDT",
       exchangeName: "Binance",
       marketTime: candles.at(-1)?.time || Date.now(),
-      interval: cfg.interval,
+      interval,
       range: cfg.range,
       tvInterval: cfg.tvInterval
     };
@@ -184,10 +190,12 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
         close: quote.close?.[i],
         volume: quote.volume?.[i] || 0
       })).filter(c => c.open != null && c.high != null && c.low != null && c.close != null &&
-                      [c.open, c.high, c.low, c.close].every(v => typeof v === "number" && Number.isFinite(v) && v > 0));
+                      [c.open, c.high, c.low, c.close].every(v => typeof v === "number" && Number.isFinite(v) && v > 0) &&
+                      c.high >= Math.max(c.open, c.close) && c.low <= Math.min(c.open, c.close));
       if (candles.length < 35) throw new Error("Not enough valid candles");
       return {
         candles,
+        discardedRows: timestamps.length - candles.length,
         source: "Yahoo Finance chart data",
         providerSymbol: symbolInfo.yahoo,
         currency: result?.meta?.currency || "USD",
@@ -1470,7 +1478,30 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.1.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.2.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/research/series") {
+      const symbol = url.searchParams.get("symbol") || "EURUSD";
+      const interval = url.searchParams.get("interval") || "1h";
+      if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
+      const market = await getMarketData(symbol, interval);
+      return sendJson(res, 200, { ok: true, symbol: market.symbolInfo.display, ...prepareSeries(market, interval) });
+    }
+    if (req.method === "GET" && url.pathname === "/api/research/mtf") {
+      const symbol = url.searchParams.get("symbol") || "EURUSD";
+      if (!/^[A-Za-z0-9^=:.\-]{1,32}$/.test(symbol)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
+      const result = await multiTimeframe(symbol, getMarketData);
+      return sendJson(res, result.available ? 200 : 503, { ok: result.available, ...result });
+    }
+    if (req.method === "POST" && url.pathname === "/api/research/backtest") {
+      const body = await readBody(req);
+      if (!body || typeof body !== "object" || Array.isArray(body)) return sendJson(res, 400, { ok: false, code: "INVALID_RESEARCH_PARAMETERS" });
+      const symbol = body.symbol || "EURUSD", interval = body.interval || "1h";
+      if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
+      const market = await getMarketData(symbol, interval);
+      const series = prepareSeries(market, interval);
+      return sendJson(res, 200, { ok: true, ...runBacktest(series, market.symbolInfo.display, body.parameters || {}) });
     }
 
     if (req.method === "GET" && url.pathname.startsWith("/api/market/") && url.pathname !== "/api/market/quotes") {

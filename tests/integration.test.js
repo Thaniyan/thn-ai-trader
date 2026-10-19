@@ -23,6 +23,12 @@ test('public mode: data provenance, truthful analysis and protected financial en
  assert.equal((await get('/api/audit-logs'))[0].status,503);
  const [,data]=await get('/api/quotes');assert.equal(Object.keys(data.quotes).length,6);
  for(const q of Object.values(data.quotes)){assert.ok(q.close>0);assert.match(q.source,/Yahoo/);assert.equal(q.bid,null);assert.equal(q.ask,null);assert.equal(q.changePeriod,'previous candle');assert.ok(q.timestamp);}
+ const [,research]=await get('/api/research/series?symbol=EURUSD&interval=1h');assert.ok(research.candles.length>=60);assert.equal(research.provenance.interval,'1h');
+ const [,mtf]=await get('/api/research/mtf?symbol=EURUSD');assert.equal(mtf.frames.length,3);assert.ok(mtf.frames.every(f=>f.available));assert.equal(new Set(mtf.frames.map(f=>f.provenance.hash)).size,3);
+ const [,backtest]=await post('/api/research/backtest',{symbol:'EURUSD',interval:'1h',parameters:{strategy:'ema'}});assert.equal(backtest.available,true);assert.ok(Array.isArray(backtest.equity));
+ const [,repeated]=await post('/api/research/backtest',{symbol:'EURUSD',interval:'1h',parameters:{strategy:'ema'},candles:[{close:999999}],balance:999999});assert.deepEqual(repeated.metrics,backtest.metrics);
+ assert.equal((await post('/api/research/backtest',{symbol:'EURUSD',interval:'5m'}))[0].status,400);
+ assert.equal((await post('/api/research/backtest',{symbol:'EURUSD',parameters:[]}))[0].status,400);
  const [,analysis]=await post('/api/analyze',{symbol:'EURUSD',timeframe:'intraday'});assert.equal(analysis.methodology.type,'deterministic');assert.equal(analysis.backtest.available,false);assert.equal(analysis.mtfa.available,false);assert.deepEqual(analysis.macroCalendar,[]);assert.ok(Number.isFinite(analysis.indicators.rsi14));assert.ok(analysis.schools.length);
  assert.equal((await post('/api/risk/calculate',{lots:-1}))[0].status,400);
  assert.equal((await post('/api/risk/calculate',{symbol:'EURUSD',lots:.1,entryPrice:1.1,stopLoss:1.2,takeProfit:1.3}))[1].code,'INVALID_PROTECTION_DIRECTION');
@@ -33,6 +39,9 @@ test('public mode: data provenance, truthful analysis and protected financial en
 test('provider outage never substitutes synthetic candles or analysis',()=>withServer('down',false,async({get,post})=>{
  const [r,d]=await get('/api/market/EURUSD');assert.equal(r.status,503);assert.equal(d.code,'MARKET_DATA_UNAVAILABLE');assert.equal(d.candles,undefined);
  assert.equal((await post('/api/analyze',{symbol:'EURUSD'}))[0].status,503);
+ assert.equal((await get('/api/research/series?symbol=EURUSD&interval=1h'))[0].status,503);
+ assert.equal((await get('/api/research/mtf?symbol=EURUSD'))[0].status,503);
+ assert.equal((await post('/api/research/backtest',{symbol:'EURUSD'}))[0].status,503);
  const [,data]=await get('/api/quotes');for(const q of Object.values(data.quotes)){assert.equal(q.status,'unavailable');assert.equal(q.close,null);}
 }));
 test('stale data remains inspectable but cannot execute',()=>withServer('stale',true,async({get,post})=>{
@@ -52,3 +61,5 @@ test('local paper lifecycle: sanitization, concurrent idempotency, settlement an
  assert.equal((await post('/api/broker/connect-account',{broker:'mt5',balance:999999}))[1].code,'BROKER_UNAVAILABLE');
  const [,reset]=await post('/api/broker/reset-sandbox',{accountId:account.id});assert.equal(reset.account.balance,50000);
 }));
+
+test('partial independent provider outage remains visible and never becomes complete',()=>withServer('partial',false,async({get})=>{const [r,data]=await get('/api/research/mtf?symbol=EURUSD');assert.equal(r.status,200);assert.equal(data.complete,false);assert.equal(data.frames.filter(f=>f.available).length,2);assert.equal(data.frames.find(f=>f.interval==='1d').available,false);}));
