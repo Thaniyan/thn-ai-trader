@@ -1,5 +1,6 @@
+import { evaluateResearch } from "./server/evaluation.js";
 import { prepareSeries, multiTimeframe, INTERVAL_MS } from "./server/research.js";
-import { runBacktest } from "./server/backtest.js";
+import { runBacktest, normalizeParameters, numericParameter } from "./server/backtest.js";
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
@@ -245,7 +246,7 @@ async function getMarketData(rawSymbol, timeframe = "intraday") {
   const record = { at: Date.now(), promise };
   if (marketCache.size >= 100) marketCache.delete(marketCache.keys().next().value);
   marketCache.set(key, record);
-  try { return await promise; } catch (error) { if (marketCache.get(key) === record) marketCache.delete(key); throw error; }
+  try { return await promise; } catch (error) { if (marketCache.get(key) === record) record.at = Date.now() - 25000; throw error; }
 }
 
 function values(candles, key) {
@@ -1478,7 +1479,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.2.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.3.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if (req.method === "GET" && url.pathname === "/api/research/series") {
@@ -1494,6 +1495,21 @@ const server = http.createServer(async (req, res) => {
       const result = await multiTimeframe(symbol, getMarketData);
       return sendJson(res, result.available ? 200 : 503, { ok: result.available, ...result });
     }
+    if (req.method === "POST" && url.pathname === "/api/research/evaluate") {
+      const body = await readBody(req);
+      if (!body || typeof body !== "object" || Array.isArray(body)) return sendJson(res, 400, { ok: false, code: "INVALID_RESEARCH_PARAMETERS" });
+      normalizeParameters(body.parameters || {});
+      const validation = body.validation || {};
+      if (typeof validation !== "object" || Array.isArray(validation)) return sendJson(res, 400, { ok: false, code: "INVALID_RESEARCH_PARAMETERS" });
+      numericParameter(validation, "trainFraction", .7, .5, .8);
+      numericParameter(validation, "minimumTrades", 20, 5, 100, true);
+      const symbol = body.symbol || "EURUSD", interval = body.interval || "1h";
+      if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
+      const market = await getMarketData(symbol, interval);
+      const series = prepareSeries(market, interval);
+      return sendJson(res, 200, { ok: true, ...evaluateResearch(series, market.symbolInfo.display, body.parameters || {}, body.validation || {}) });
+    }
+
     if (req.method === "POST" && url.pathname === "/api/research/backtest") {
       const body = await readBody(req);
       if (!body || typeof body !== "object" || Array.isArray(body)) return sendJson(res, 400, { ok: false, code: "INVALID_RESEARCH_PARAMETERS" });

@@ -1,17 +1,32 @@
-/* One non-financial context shared by the original nine-section application. */
+/* A single research context. Metadata changes never reload symbol/timeframe data. */
 (() => {
-  const key = 'thn_research_context_v62';
-  const validSymbol = value => typeof value === 'string' && /^[A-Z0-9^=:.\-]{1,32}$/.test(value);
-  let saved; try { saved = JSON.parse(localStorage.getItem(key)); } catch { /* use defaults */ }
-  let state = { symbol: validSymbol(saved?.symbol) ? saved.symbol : 'EURUSD', interval: ['15m','1h','1d'].includes(saved?.interval) ? saved.interval : '1h' };
-  window.THNContext = {
-    get: () => ({ ...state }),
-    set(patch, source = 'user') {
-      const next = { ...state, ...patch };
-      if (!validSymbol(next.symbol) || !['15m','1h','1d'].includes(next.interval)) return false;
-      if (next.symbol === state.symbol && next.interval === state.interval) return true;
-      state = next; localStorage.setItem(key, JSON.stringify(state));
-      window.dispatchEvent(new CustomEvent('thn:context', { detail: { ...state, source } })); return true;
+  const key='thn_research_context_v63';
+  const validSymbol=v=>typeof v==='string'&&/^[A-Z0-9^=:.\-]{1,32}$/.test(v);
+  const finite=(v,min,max)=>Number.isFinite(v)&&v>=min&&v<=max;
+  function cleanMetadata(p){
+    const out={};
+    for(const k of ['provider','datasetId'])if(typeof p[k]==='string'&&p[k].length<=160)out[k]=p[k];
+    if(finite(p.analysisTimestamp,0,1e15))out.analysisTimestamp=p.analysisTimestamp;
+    if(p.scenario===null)out.scenario=null;
+    else if(p.scenario&&['bullish','bearish','neutral'].includes(p.scenario.direction))out.scenario={direction:p.scenario.direction,invalidation:finite(p.scenario.invalidation,0,1e12)?p.scenario.invalidation:null,sourceTimestamp:finite(p.scenario.sourceTimestamp,0,1e15)?p.scenario.sourceTimestamp:null};
+    if(p.riskAssumptions&&typeof p.riskAssumptions==='object'){
+      out.riskAssumptions={};for(const k of ['capital','riskPct','leverage','spreadBps','slippageBps','commissionBps'])if(finite(p.riskAssumptions[k],0,1e8))out.riskAssumptions[k]=p.riskAssumptions[k];
+    }
+    if(p.strategy&&['ema','rsi','breakout'].includes(p.strategy.name))out.strategy={name:p.strategy.name,direction:['long_only','short_only','long_short'].includes(p.strategy.direction)?p.strategy.direction:'long_only'};
+    return out;
+  }
+  let saved;try{saved=JSON.parse(localStorage.getItem(key)||localStorage.getItem('thn_research_context_v62'));}catch{}
+  let state={symbol:validSymbol(saved?.symbol)?saved.symbol:'EURUSD',interval:['15m','1h','1d'].includes(saved?.interval)?saved.interval:'1h',...cleanMetadata(saved||{})};
+  window.THNContext={
+    get:()=>structuredClone(state),
+    set(patch,source='user'){
+      const symbol=patch.symbol??state.symbol,interval=patch.interval??state.interval;
+      if(!validSymbol(symbol)||!['15m','1h','1d'].includes(interval))return false;
+      const changed=symbol!==state.symbol||interval!==state.interval;
+      const next={...state,symbol,interval,...(changed?{provider:'',datasetId:'',analysisTimestamp:null,scenario:null}:{}),...cleanMetadata(patch)};
+      if(JSON.stringify(next)===JSON.stringify(state))return true;
+      state=next;try{localStorage.setItem(key,JSON.stringify(state));}catch{/* session memory remains available */}
+      window.dispatchEvent(new CustomEvent(changed?'thn:context':'thn:research-context',{detail:{...structuredClone(state),source}}));return true;
     }
   };
 })();

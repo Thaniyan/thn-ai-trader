@@ -25,6 +25,8 @@ test('public mode: data provenance, truthful analysis and protected financial en
  for(const q of Object.values(data.quotes)){assert.ok(q.close>0);assert.match(q.source,/Yahoo/);assert.equal(q.bid,null);assert.equal(q.ask,null);assert.equal(q.changePeriod,'previous candle');assert.ok(q.timestamp);}
  const [,research]=await get('/api/research/series?symbol=EURUSD&interval=1h');assert.ok(research.candles.length>=60);assert.equal(research.provenance.interval,'1h');
  const [,mtf]=await get('/api/research/mtf?symbol=EURUSD');assert.equal(mtf.frames.length,3);assert.ok(mtf.frames.every(f=>f.available));assert.equal(new Set(mtf.frames.map(f=>f.provenance.hash)).size,3);
+ const [evaluationResponse,evaluation]=await post('/api/research/evaluate',{symbol:'EURUSD',interval:'1h',parameters:{direction:'long_short'},validation:{trainFraction:.7,minimumTrades:10}});assert.equal(evaluationResponse.status,200);assert.equal(evaluation.version,'6.3');assert.ok(evaluation.development.sample.lastTime<evaluation.holdout.sample.firstTime);assert.ok(evaluation.limits.runsExecuted<=18);
+ assert.equal((await post('/api/research/evaluate',{symbol:'EURUSD',validation:{trainFraction:.99}}))[0].status,400);
  const [,backtest]=await post('/api/research/backtest',{symbol:'EURUSD',interval:'1h',parameters:{strategy:'ema'}});assert.equal(backtest.available,true);assert.ok(Array.isArray(backtest.equity));
  const [,repeated]=await post('/api/research/backtest',{symbol:'EURUSD',interval:'1h',parameters:{strategy:'ema'},candles:[{close:999999}],balance:999999});assert.deepEqual(repeated.metrics,backtest.metrics);
  assert.equal((await post('/api/research/backtest',{symbol:'EURUSD',interval:'5m'}))[0].status,400);
@@ -42,6 +44,7 @@ test('provider outage never substitutes synthetic candles or analysis',()=>withS
  assert.equal((await get('/api/research/series?symbol=EURUSD&interval=1h'))[0].status,503);
  assert.equal((await get('/api/research/mtf?symbol=EURUSD'))[0].status,503);
  assert.equal((await post('/api/research/backtest',{symbol:'EURUSD'}))[0].status,503);
+ assert.equal((await post('/api/research/evaluate',{symbol:'EURUSD'}))[0].status,503);
  const [,data]=await get('/api/quotes');for(const q of Object.values(data.quotes)){assert.equal(q.status,'unavailable');assert.equal(q.close,null);}
 }));
 test('stale data remains inspectable but cannot execute',()=>withServer('stale',true,async({get,post})=>{
