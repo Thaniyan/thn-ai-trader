@@ -1,3 +1,4 @@
+import {replayFixture} from './replay-fixture.js';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -71,3 +72,13 @@ test('local paper lifecycle: sanitization, concurrent idempotency, settlement an
 }));
 
 test('partial independent provider outage remains visible and never becomes complete',()=>withServer('partial',false,async({get})=>{const [r,data]=await get('/api/research/mtf?symbol=EURUSD');assert.equal(r.status,200);assert.equal(data.complete,false);assert.equal(data.frames.filter(f=>f.available).length,2);assert.equal(data.frames.find(f=>f.interval==='1d').available,false);}));
+
+test('snapshot-only replay remains available during provider outage and cannot mutate finances',()=>withServer('down',false,async({get,post,base})=>{
+ const fixture=replayFixture();const [r,data]=await post('/api/research/replay',{...fixture,includeChart:true});assert.equal(r.status,200);assert.equal(data.status,'reproduced');assert.equal(data.providerFetched,false);assert.equal(data.financialMutation,false);assert.equal(data.chart.candles.length,600);
+ const [,accounts]=await get('/api/accounts');assert.deepEqual(accounts.accounts,[]);assert.equal((await post('/api/orders/execute',{}))[0].status,503);
+ const altered=structuredClone(fixture);altered.snapshot.candles[0].volume++;assert.equal((await post('/api/research/replay',altered))[1].code,'SNAPSHOT_INTEGRITY_FAILURE');
+ const invalid=await fetch(base+'/api/research/replay',{method:'POST',headers:{'Content-Type':'application/json'},body:'{broken'});assert.equal(invalid.status,400);assert.equal((await invalid.json()).code,'INVALID_JSON');
+ const oversized=await fetch(base+'/api/research/replay',{method:'POST',headers:{'Content-Type':'application/json'},body:'x'.repeat(1000001)});assert.equal(oversized.status,413);assert.equal((await oversized.json()).code,'PAYLOAD_TOO_LARGE');
+ assert.equal((await post('/api/research/replay',fixture,{Origin:'https://attacker.invalid'}))[0].status,403);
+}));
+test('curated market catalog discloses candidate coverage and correct instrument mappings',()=>withServer('down',false,async({get})=>{const [r,data]=await get('/api/research/catalog');assert.equal(r.status,200);assert.equal(data.instruments.length,18);assert.equal(new Set(data.instruments.map(v=>v.category)).size,5);assert.equal(data.instruments.find(v=>v.symbol==='NAS100').providerSymbol,'^NDX');assert.equal(data.instruments.find(v=>v.symbol==='USOIL').proxy,true);assert.ok(data.instruments.every(v=>v.contract.contractSize>0));assert.match(data.availability,/Candidate/);}));

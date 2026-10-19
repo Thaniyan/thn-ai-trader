@@ -1,3 +1,4 @@
+import { reproduceReport } from './server/replay.js';
 import { buildBrief } from './public/decision-core.js';
 import { createPlan } from './server/decision.js';
 import { evaluateResearch } from "./server/evaluation.js";
@@ -72,7 +73,7 @@ const SYMBOL_ALIASES = new Map([
   ["ETHUSD", { yahoo: "ETH-USD", tv: "BINANCE:ETHUSDT", display: "ETHUSD", assetClass: "Crypto" }],
   ["ETHUSDT", { yahoo: "ETH-USD", tv: "BINANCE:ETHUSDT", display: "ETHUSDT", assetClass: "Crypto" }],
   ["SPX", { yahoo: "^GSPC", tv: "SP:SPX", display: "SPX", assetClass: "Index" }],
-  ["NAS100", { yahoo: "^IXIC", tv: "OANDA:NAS100USD", display: "NAS100", assetClass: "Index" }],
+  ["NAS100", { yahoo: "^NDX", tv: "OANDA:NAS100USD", display: "NAS100", assetClass: "Index" }],
   ["US30", { yahoo: "^DJI", tv: "OANDA:US30USD", display: "US30", assetClass: "Index" }]
 ]);
 
@@ -1414,24 +1415,12 @@ function sendJson(res, statusCode, data) {
 }
 
 function readBody(req) {
-  return new Promise((resolve, reject) => {
-    let body = "";
-    req.on("data", chunk => {
-      body += chunk;
-      if (body.length > 1_000_000) {
-        reject(new Error("Request body too large"));
-        req.destroy();
-      }
-    });
-    req.on("end", () => {
-      if (!body) return resolve({});
-      try {
-        resolve(JSON.parse(body));
-      } catch {
-        reject(new Error("Invalid JSON body"));
-      }
-    });
-    req.on("error", reject);
+  return new Promise((resolve,reject)=>{
+    let body="",received=0,oversized=false;
+    req.setEncoding("utf8");
+    req.on("data",chunk=>{received+=Buffer.byteLength(chunk,"utf8");if(received>1_000_000){oversized=true;body="";}else if(!oversized)body+=chunk;});
+    req.on("end",()=>{if(oversized){const e=new Error("Request body exceeds 1 MB.");e.status=413;e.code="PAYLOAD_TOO_LARGE";return reject(e);}if(!body)return resolve({});try{resolve(JSON.parse(body));}catch{const e=new Error("Invalid JSON body.");e.status=400;e.code="INVALID_JSON";reject(e);}});
+    req.on("error",reject);
   });
 }
 
@@ -1455,6 +1444,7 @@ function serveFile(res, filePath) {
 }
 
 const activeAccounts = new Set();
+let activeReplays = 0;
 const server = http.createServer(async (req, res) => {
   setBaseHeaders(res);
   if (req.method === "OPTIONS") {
@@ -1481,7 +1471,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.5.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.6.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if (req.method === "GET" && url.pathname === "/api/research/brief") {
@@ -1491,6 +1481,18 @@ const server = http.createServer(async (req, res) => {
       const [mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
       const brief=buildBrief(series,mtf,symbol,interval);
       return sendJson(res,mtf.available?200:503,{ok:mtf.available,...brief});
+    }
+    if (req.method === "POST" && url.pathname === "/api/research/replay") {
+      if(activeReplays>=2)return sendJson(res,429,{ok:false,code:"REPLAY_BUSY",error:"Replay capacity reached; retry after the current request completes."});
+      activeReplays++;
+      try{const input=await readBody(req);const result=await reproduceReport(input,()=>req.aborted||res.destroyed);if(!res.destroyed)return sendJson(res,200,result);}
+      finally{activeReplays--;}
+      return;
+    }
+    if (req.method === "GET" && url.pathname === "/api/research/catalog") {
+      const forex=["EURUSD","GBPUSD","AUDUSD","NZDUSD","USDJPY","USDCHF","USDCAD"].map(symbol=>({symbol,category:"Forex",providerSymbol:symbol+"=X",proxy:false,contract:getContractSpec(symbol)}));
+      const others=[...new Map([...SYMBOL_ALIASES.values()].map(v=>[v.display,v])).values()].map(v=>({symbol:v.display,category:["XAUUSD","XAGUSD"].includes(v.display)?"Metals":["USOIL","BRENT"].includes(v.display)?"Oil":v.assetClass,providerSymbol:v.yahoo,proxy:v.assetClass==="Commodity",contract:getContractSpec(v.display)}));
+      return sendJson(res,200,{ok:true,instruments:[...forex,...others],provider:"Yahoo Finance; Binance fallback where supported",intervals:["15m","1h","1d"],availability:"Candidate mappings only; requested observations must be fetched and verified. No live bid/ask or streaming claim."});
     }
     if (req.method === "POST" && url.pathname === "/api/research/plan") {
       return sendJson(res,200,{ok:true,plan:createPlan(await readBody(req))});

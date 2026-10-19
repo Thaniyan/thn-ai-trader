@@ -1,4 +1,4 @@
-# THN AI Trader 6.5
+# THN AI Trader 6.6
 
 Bilingual trading intelligence and research workstation, developed directly from the original `main` application. The terminal, indicators, drawing overlays, SMC map, scanner, journal and local paper engine remain in the original Node/HTML/JavaScript stack.
 
@@ -74,7 +74,7 @@ Research depends on finite provider history, proxy instruments and stated costs.
 
 A verified economic calendar, external broker connectivity and durable hosted account records remain unavailable. Optional OpenAI narrative enhancement uses the existing configuration only; no new model provisioning or model calls were added to research APIs.
 
-Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.5 evidence and limitations; RELEASE-6.4.md and earlier release records are preserved. No production push is authorized until the owner approves the exact v6.5 commit.
+Runtime records remain excluded from Git and deployment inputs. See RELEASE.md for v6.6 evidence and limitations; RELEASE-6.5.md and earlier release records are preserved. No production push is authorized until the owner approves the exact v6.6 commit.
 
 USD capital results require USD-quoted or supported USD-base Forex provider history. USDT-only Binance history remains chartable, but USD backtesting/scenario transfer is unavailable rather than assuming USD/USDT parity. Dollar-base Forex risk is converted at the planning price; other quote-currency conversions are unsupported.
 
@@ -157,3 +157,42 @@ TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
 ```
 
 The older `browser_decision.py` is retained as the v6.4 historical UI harness; its immediate-import expectations are superseded by the explicit v6.5 restoration preview. Before/after captures and test results are stored under ignored `work/v65-*`.
+
+## v6.6 browser replay and research terminal
+
+Markets now provides 18 curated mappings across Forex, metals, oil, indices and crypto, with search/category filters and consistent symbol selection. These are candidate mappings, not guarantees of current history. Inspecting a market fetches the existing independent provider observations; it does not scan every candidate in the background. Selected Dashboard observations include source time/recency, change versus the previous observed candle with actual comparison timestamps, EMA/ATR context and a mini-chart of observed closes with real time spacing. The six-instrument provider watchlist remains separate.
+
+The Data Quality panel distinguishes application API health, provider availability, stale frames, insufficient history and cadence errors. It shows requested/actual interval, source/provider symbol, quote currency, coverage/count, provider time, hash, gaps, omitted rows, volume and proxy disclosures. Retry is bounded and explicit; no cloud monitoring worker or claimed streaming feed is added. Dashboard focus reuses accepted shared history when available. `NAS100` now maps to Yahoo `^NDX` (Nasdaq-100), correcting the old `^IXIC` Composite mapping. Old saved data retains its original provider identity and is never silently relabeled.
+
+### Replay inside the website
+
+Library → Open report → Verify & reproduce evaluation. It requires a retained matching snapshot and supported engine `6.3`. The browser verifies SHA-256, then sends the whitelisted report and candles to the same-origin `POST /api/research/replay` endpoint. The server verifies the dataset again and invokes the identical evaluator used by offline replay. It never fetches fresh provider history, imports an account balance, writes financial state or logs/stores the submitted dataset. The app reports exact recorded-field differences and chronological boundary differences as **Reproduced**, **Numerical mismatch**, **Cannot reproduce** or **Dataset integrity failure**. Cancellation/disposal prevents late results from modifying newer UI or completed records; computation already submitted may finish within its fixed budget.
+
+Replay requests are limited to 1 MB UTF-8, 2,000 candles, 18 engine runs, bounded metric shapes and two in-flight replay requests per server process. This is not platform-wide rate limiting. Unsupported engines, missing snapshots, malformed/oversized input, tampered OHLCV, mismatched instrument/hash/interval and invalid strategy settings fail explicitly. Imported reports remain unverified after numerical reproduction: SHA-256 is not provider authentication. Local reproduction stamps do not survive import as trusted status. Recomputed metrics do not overwrite the stored original report.
+
+A replay can open a separately labeled, read-only retained historical chart using the existing candle-chart component and authoritative server indicator/structure formulas. It has pan/zoom, keyboard inspection and an optional structure overlay; only the most recent 200 causal events are returned. The current chart and research selection stay independent, so retained observations are never passed off as current data. Open the saved report's instrument/timeframe on the current chart separately; hash mismatch is disclosed if newly retrieved history differs. Copilot frame claims have the same explicit chart navigation. Hypothetical plan overlays can be toggled without deleting the plan.
+
+The Node CLI now delegates to the same replay service. It remains local-only and network-free:
+
+```sh
+npm run replay -- path/to/backup.json [report-id]
+```
+
+### Quantitative comparison
+
+Select two to four Library cases. The workstation compares symbol/timeframe, provider/hash, coverage, actual recorded evaluation boundaries, rules/direction, parameters and costs, development/holdout returns, drawdown, trade count, exposure, defined profit factor/mean R, sensitivity and walk-forward summaries. Compatibility and imported/sample/gap warnings remain explicit. Aggregate return bars have independent recorded windows; no misaligned equity curves are presented as simultaneous performance. A deterministic summary describes changed inputs and observed return/drawdown deltas without ranking a winner or asserting significance. Legacy reports lacking an actual holdout end show it as unrecorded rather than substituting the last provider timestamp.
+
+Risk Desk exposes cost-adjusted risk-budget and insufficient-margin warnings, independent alternative-plan exposure bars, authoritative contract rules for the supported catalog mappings, and the existing hypothetical entry/stop/target overlay. Costs/gaps may exceed the nominal stop budget; the visual is neither executable capital nor aggregate portfolio risk. Native USDT is not assumed equal to USD.
+
+The v6.5 library schema/capacity, snapshots, append-only restore previews, quota/corruption protections, unencrypted local storage and older note/experiment formats remain. Reproduction status is supplementary local metadata. New reports include actual development-first and holdout-last timestamps and preserve RSI/ATR period parameters. The v6.3 numerical strategy formulas and conservative execution model are unchanged.
+
+Current acceptance checks (same browser prerequisites):
+
+```sh
+TEST_URL=http://127.0.0.1:3000 python tests/browser_terminal.py
+TEST_URL=http://127.0.0.1:3000 TEST_OUTPUT_PREFIX=work/v66-maturity python tests/browser_maturity.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_library_reliability.py
+TEST_URL=http://127.0.0.1:3000 python tests/browser_research_outage.py
+```
+
+Screenshots, real-provider response summaries and acceptance results remain ignored under `work/v66-*`. Generative AI, paid resources and hosted financial execution remain disabled/unprovisioned. Production has not been changed by this development cycle.

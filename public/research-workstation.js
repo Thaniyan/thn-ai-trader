@@ -123,7 +123,7 @@
     const [entry,stop,capital,risk]=['planEntry','planStop','planCapital','planRisk'].map(id=>Number($(id).value));
     if(!entry||!stop||entry===stop||!capital||!risk){$('qRiskCost').textContent='';return;}
     const specs={EURUSD:[100000,.01,.01,100],GBPUSD:[100000,.01,.01,100],XAUUSD:[100,.01,.01,50],BTCUSDT:[1,.01,.01,10],US30:[1,.1,.1,50],USDJPY:[100000,.01,.01,100]};
-    const symbol=$('planSymbol').value,[contract,step,min,max]=specs[symbol];
+    const symbol=$('planSymbol').value,spec=specs[symbol]||window.THNContractSpecs?.[symbol];if(!spec){$('qRiskCost').textContent=t('planningCostNote');return;}const [contract,step,min,max]=spec;
     const baseUSD=symbol.startsWith('USD'),conversion=baseUSD?1/entry:1;
     const lots=Math.min(max,Math.floor((capital*risk/100/(Math.abs(entry-stop)*contract*conversion)+1e-10)/step)*step);
     const [spread,slippage,commission]=['spread','slippage','commission'].map(k=>Number($('qRisk_'+k).value));

@@ -43,6 +43,7 @@
     $('focusState').textContent=t(state(quotes[selected]));
     $('focusProvider').textContent=quotes[selected]?.source ? `${quotes[selected].source} · ${quotes[selected].providerSymbol || ''}` : t('unavailable');
     $('focusTimestamp').textContent=quotes[selected]?.timestamp ? `${t('timestamp')}: ${new Date(quotes[selected].marketTime || quotes[selected].timestamp).toISOString()}` : t('noChart');
+    const focusSeries=window.THNResearch?.series?.();if(focusSeries?.symbol===selected&&focusSeries.provenance.interval===window.THNContext?.get().interval){const p=focusSeries.provenance;$('focusPrice').textContent=number(focusSeries.candles.at(-1)?.close);$('focusState').textContent=t(p.status);$('focusProvider').textContent=p.source+' · '+p.providerSymbol+' · '+p.interval;$('focusTimestamp').textContent=t('timestamp')+': '+new Date(p.lastTime).toISOString();}
     document.querySelectorAll('.nav-stack .nav').forEach(b=> b.setAttribute('aria-current',b.classList.contains('active')?'page':'false'));
   }
   async function refresh() {
@@ -69,8 +70,7 @@
     const request=++focusRequest;const sym=selected;const interval=window.THNContext?.get().interval || '1h';
     $('focusChart').textContent=t('chartLoading');
     try {
-      const r=await fetch(`/api/research/series?symbol=${encodeURIComponent(sym)}&interval=${interval}`,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error();
-      const data=await r.json();if(request!==focusRequest)return;
+      const shared=window.THNResearch?.series?.();let data;if(shared?.symbol===sym&&shared.provenance.interval===interval)data=shared;else{const r=await fetch(`/api/research/series?symbol=${encodeURIComponent(sym)}&interval=${interval}`,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error();data=await r.json();}if(request!==focusRequest)return;
       const candles=(data.candles||[]).filter(c=>Number.isFinite(c.close)).slice(-160);
       if(data.provenance){$('focusPrice').textContent=number(candles.at(-1)?.close);$('focusProvider').textContent=`${data.provenance.source} · ${data.provenance.providerSymbol} · ${interval}`;$('focusTimestamp').textContent=`${t('timestamp')}: ${new Date(data.provenance.lastTime).toISOString()}`;$('focusState').textContent=t(data.provenance.status);} if(candles.length<2)throw Error();
       const values=candles.map(c=>c.close), min=Math.min(...values),max=Math.max(...values),range=max-min || 1;
@@ -78,6 +78,7 @@
       $('focusChart').innerHTML=`<svg viewBox="0 0 480 120" role="img" aria-label="${esc(sym)} ${esc(data.provenance?.source || data.source)}"><path d="M0 110H480 M0 60H480 M0 10H480" class="work-chart-grid"/><polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
     } catch {if(request===focusRequest)$('focusChart').textContent=t('noChart');}
   }
+  window.addEventListener('thn:series',()=>{render();loadFocus();});
   $('workRefresh').addEventListener('click',refresh);
   $('workSearch').addEventListener('input',render);
   document.addEventListener('click',e=>{

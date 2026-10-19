@@ -59,7 +59,7 @@ window.THNCandleChart = class {
     if(!this.data){ctx.fillText(this.describe('noData'),16,40);return;}
     const all=this.data.candles;this.count=Math.min(all.length,Math.max(20,this.count));this.offset=Math.max(0,Math.min(all.length-this.count,this.offset));
     const end=all.length-this.offset,start=Math.max(0,end-this.count);this.visible=all.slice(start,end);const bars=this.visible;
-    let min=Math.min(...bars.map(c=>c.low)),max=Math.max(...bars.map(c=>c.high));if(this.planLevels?.symbol===this.context.symbol){min=Math.min(min,this.planLevels.stop,this.planLevels.entry,...this.planLevels.targets);max=Math.max(max,this.planLevels.stop,this.planLevels.entry,...this.planLevels.targets);}const pad=(max-min)*.08||max*.01;min-=pad;max+=pad;
+    let min=Math.min(...bars.map(c=>c.low)),max=Math.max(...bars.map(c=>c.high));if(this.showPlanOverlay!==false&&this.planLevels?.symbol===this.context.symbol){min=Math.min(min,this.planLevels.stop,this.planLevels.entry,...this.planLevels.targets);max=Math.max(max,this.planLevels.stop,this.planLevels.entry,...this.planLevels.targets);}const pad=(max-min)*.08||max*.01;min-=pad;max+=pad;
     const plot={left:12,right:width-72,top:24,bottom:height-(this.layers.rsi?140:60),min,max};plot.width=plot.right-plot.left;plot.height=plot.bottom-plot.top;this.plot=plot;
     const x=i=>plot.left+(i+.5)*plot.width/bars.length,y=v=>plot.top+(max-v)/(max-min)*plot.height;
     const price=v=>new Intl.NumberFormat(document.documentElement.lang==='ar'?'ar-OM':'en-US',{maximumFractionDigits:v>100?2:5}).format(v);
@@ -81,7 +81,7 @@ window.THNCandleChart = class {
         ctx.fillText(e.type,px,Math.max(plot.top+10,Math.min(plot.bottom-4,py-6)));ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(Math.min(plot.right,px+40),py);ctx.stroke();
       });
     }
-    if(this.planLevels?.symbol===this.context.symbol){
+    if(this.showPlanOverlay!==false&&this.planLevels?.symbol===this.context.symbol){
       const plan=this.planLevels,arabic=document.documentElement.lang==='ar';
       [[plan.entry,arabic?'دخول افتراضي':'Hypothetical entry',bull],[plan.stop,arabic?'وقف غير مضمون':'Stop (not guaranteed)',bear],...plan.targets.map((v,i)=>[v,(arabic?'هدف ':'Target ')+(i+1),light?'#6d28d9':'#c4b5fd'])].forEach(([v,label,color])=>{if(v<min||v>max)return;ctx.strokeStyle=color;ctx.fillStyle=color;ctx.setLineDash([8,4]);ctx.beginPath();ctx.moveTo(plot.left,y(v));ctx.lineTo(plot.right,y(v));ctx.stroke();ctx.setLineDash([]);ctx.fillText(label+' '+price(v),plot.left+8,y(v)-5);});
     }

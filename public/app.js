@@ -1271,7 +1271,9 @@ async function checkHealth() {
     cachedHealth = await res.json();
   } catch { cachedHealth = null; }
   renderHealthStatus();
+  window.dispatchEvent(new CustomEvent('thn:service-health'));
 }
+window.THNServiceHealth={get:()=>cachedHealth,refresh:checkHealth};
 
 async function analyze() {
   window.THNContext?.set({symbol: $("symbolInput").value.trim().toUpperCase(), interval: ({scalp:"15m",intraday:"1h",swing:"1d",position:"1d"})[$("timeframe").value] || "1h"}, "analysis");

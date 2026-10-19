@@ -9,7 +9,9 @@ export function cleanEntry(value,imported=false){
   const record=cleanReport(value.record,imported);
   const id=text(value.id,100),title=text(cleanResearchValue(value.title),120),status=value.status;
   if(!id||!['draft','reviewed','archived'].includes(status))throw Error('entry');
-  return {id,title,status,record};
+  const out={id,title,status,record};
+  if(!imported&&value.reproduction&&['reproduced','mismatch'].includes(value.reproduction.status)&&value.reproduction.snapshotHash===record.brief.selected.provenance.hash&&value.reproduction.engineVersion==='6.3'&&Number.isFinite(value.reproduction.checkedAt)&&value.reproduction.checkedAt>1e12&&value.reproduction.checkedAt<1e15)out.reproduction={status:value.reproduction.status,snapshotHash:value.reproduction.snapshotHash,engineVersion:'6.3',checkedAt:value.reproduction.checkedAt};
+  return out;
 }
 function cleanArchive(a){
   if(!a||!['note','experiment','plan','drawings'].includes(a.type))throw Error('archive');
@@ -60,7 +62,7 @@ export async function decodeBackup(raw,cryptoAPI=globalThis.crypto){
 }
 export function mergeRestore(current,incoming,newId){
   const out=structuredClone(validateLibrary(current)),source=validateLibrary(incoming);
-  for(const item of source.reports){const fingerprint=r=>JSON.stringify({...r,imported:false,unverified:false});const duplicate=out.reports.some(v=>fingerprint(v.record)===fingerprint(item.record));if(!duplicate)out.reports.push({...item,id:newId(),record:{...item.record,imported:true,unverified:true}});}
+  for(const item of source.reports){const fingerprint=r=>JSON.stringify({...r,imported:false,unverified:false});const duplicate=out.reports.some(v=>fingerprint(v.record)===fingerprint(item.record));if(!duplicate)out.reports.push({...item,reproduction:undefined,id:newId(),record:{...item.record,imported:true,unverified:true}});}
   for(const item of source.archives)if(!out.archives.some(v=>v.type===item.type&&JSON.stringify(v.record)===JSON.stringify(item.record)))out.archives.push({...item,id:newId()});
   for(const s of source.snapshots)if(!out.snapshots.some(v=>v.hash===s.hash))out.snapshots.push(s);
   return validateLibrary(out); // Capacity failure rejects the whole merge; never trim old work.

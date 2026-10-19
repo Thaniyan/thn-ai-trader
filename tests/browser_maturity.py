@@ -2,6 +2,7 @@
 from playwright.sync_api import sync_playwright
 import os,json,subprocess
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3026')
+PREFIX=os.environ.get('TEST_OUTPUT_PREFIX','work/v65')
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1050});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto(BASE);page.wait_for_function('window.THNLibrary && THNDecision.brief()?.selected && THNResearch.series()',timeout=45000)
@@ -27,13 +28,13 @@ with sync_playwright() as p:
  page.locator('#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
  page.locator('#m65ReviewEvidence').click();page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===2');page.locator('#m65Library').click()
  for box in page.locator('[data-lib-select]').all():box.check()
- page.locator('[data-lib="compare"]').click();assert 'Parameters / costs' in page.locator('#l65Comparison').inner_text()
+ page.locator('[data-lib="compare"]').click();assert 'Costs: spread / slip / commission bps' in page.locator('#l65Comparison').inner_text()
  page.locator('[data-lib-edit]').first.click();page.locator('#l65Title').fill('Renamed investigation');page.locator('#l65EditStatus').select_option('reviewed');page.locator('[data-lib-save-edit]').click();page.locator('#l65Search').fill('Renamed');assert page.locator('.l65-record').count()==1;page.locator('#l65Status').select_option('reviewed');assert page.locator('.l65-record').count()==1;page.locator('#l65Search').fill('');page.locator('#l65Status').select_option('all');page.locator('#l65Sort').select_option('oldest')
  result['checks'].append('matched lineage and optional exact snapshot retention; side-by-side changed costs, experiment comparison, rename/status/search/filter/sort')
  page.locator('[data-lib="legacy"]').click();assert page.locator('#l65Preview').inner_text();assert page.evaluate('THNLibrary.entries().length')==2;assert page.evaluate('localStorage.getItem("thn_decision_reports_v64")')==original_legacy
  page.locator('[data-lib="restore"]').click();assert page.evaluate('THNLibrary.entries().length')==3;assert page.evaluate('THNLibrary.state().archives.length')>=4;assert page.evaluate('localStorage.getItem("thn_decision_reports_v64")')==original_legacy
  with page.expect_download() as d:page.locator('[data-lib="backup"]').click()
- backup=json.load(open(d.value.path()));assert backup['schema']=='THN-BACKUP-6.5';assert len(backup['library']['snapshots'])==1;open('work/v65-library-backup.json','w').write(json.dumps(backup));replay=subprocess.run(['node','scripts/replay-research.mjs','work/v65-library-backup.json'],capture_output=True,text=True);assert replay.returncode==0,replay.stderr;replayed=json.loads(replay.stdout);assert replayed['matches']=={'development':True,'holdout':True};result['offlineReplay']=replayed['matches']
+ backup=json.load(open(d.value.path()));assert backup['schema']=='THN-BACKUP-6.5';assert len(backup['library']['snapshots'])==1;open(PREFIX+'-library-backup.json','w').write(json.dumps(backup));replay=subprocess.run(['node','scripts/replay-research.mjs',PREFIX+'-library-backup.json'],capture_output=True,text=True);assert replay.returncode==0,replay.stderr;replayed=json.loads(replay.stdout);assert replayed['matches']=={'development':True,'holdout':True};result['offlineReplay']=replayed['matches']
  # Restore into a separate blank browser storage on the same existing local application.
  restore=b.new_page();restore.goto(BASE);restore.wait_for_function('window.THNLibrary',timeout=45000);restore.locator('#m65Library').click();restore.locator('#d64Import').set_input_files({'name':'backup.json','mimeType':'application/json','buffer':json.dumps(backup).encode()});restore.wait_for_selector('[data-lib="restore"]');assert restore.evaluate('THNLibrary.entries().length')==0;restore.locator('[data-lib="cancel"]').click();assert restore.evaluate('THNLibrary.entries().length')==0
  restore.locator('#d64Import').set_input_files({'name':'backup.json','mimeType':'application/json','buffer':json.dumps(backup).encode()});restore.wait_for_selector('[data-lib="restore"]');restore.locator('[data-lib="restore"]').click();assert restore.evaluate('THNLibrary.entries().every(e=>e.record.unverified)');assert restore.evaluate('THNLibrary.state().snapshots.length')==1
@@ -57,17 +58,17 @@ with sync_playwright() as p:
  views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
  for lang in ['en','ar']:
   page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(300);page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path='work/node_modules/axe-core/axe.min.js')
-  assert '6.5.0' in page.locator('#modelStatus').inner_text()
+  assert page.evaluate('THNServiceHealth.get().version') in page.locator('#modelStatus').inner_text()
   if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl'
   for view in views:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':lang,'view':view,'violations':v})
   for view in ['dashboard','ai','portfolio','journal']:
-   page.locator('.nav-stack [data-view="'+view+'"]').click();page.screenshot(path='work/v65-after-'+view+'-'+lang+'.png',full_page=True)
+   page.locator('.nav-stack [data-view="'+view+'"]').click();page.screenshot(path=PREFIX+'-after-'+view+'-'+lang+'.png',full_page=True)
   page.set_viewport_size({'width':390,'height':844})
   for view in views:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);result['mobile'].append({'lang':lang,'view':view,'overflow':page.evaluate('document.documentElement.scrollWidth>innerWidth')})
-  page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path='work/v65-mobile-'+lang+'.png',full_page=True)
+  page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path=PREFIX+'-mobile-'+lang+'.png',full_page=True)
  page.set_viewport_size({'width':1440,'height':1050});page.locator('#themeBtn').click();page.wait_for_timeout(400)
  for view in ['dashboard','ai','portfolio','journal','risk']:
   page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':'ar-light','view':view,'violations':v})
- page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path='work/v65-light.png',full_page=True);result['errors']=errors;open('work/v65-browser-results.json','w').write(json.dumps(result,indent=2));print(json.dumps(result,indent=2));assert not errors;assert not any(v['overflow'] for v in result['mobile']);assert not any(v['violations'] for v in result['a11y']);b.close()
+ page.locator('.nav-stack [data-view="journal"]').click();page.screenshot(path=PREFIX+'-light.png',full_page=True);result['errors']=errors;open(PREFIX+'-browser-results.json','w').write(json.dumps(result,indent=2));print(json.dumps(result,indent=2));assert not errors;assert not any(v['overflow'] for v in result['mobile']);assert not any(v['violations'] for v in result['a11y']);b.close()
