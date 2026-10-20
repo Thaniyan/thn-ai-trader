@@ -3,3 +3,5 @@
 .i7-committee strong,.i7-committee small{display:block;margin-block:8px}.i7-panel input,.i7-panel select{min-height:42px;margin-block:6px 14px}
 
 .i7-panel{min-width:0;overflow-wrap:anywhere}
+
+.i71-pilot,.i71-generation{border:1px solid var(--border);border-radius:10px;padding:14px;margin-block:12px}.i71-pilot input,.i71-pilot select{display:block;width:100%;max-width:100%}.i71-pilot summary{cursor:pointer;min-height:32px}.i71-generation{border-inline-start:3px solid var(--accent);overflow-wrap:anywhere}

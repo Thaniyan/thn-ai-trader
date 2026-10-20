@@ -1,0 +1,25 @@
+// Shared output contract. Model prose is interpretation, never authoritative facts.
+const roles=['technical','quantitative','bull','bear','risk','manager'];
+const tickers=['EURUSD','GBPUSD','USDJPY','AUDUSD','NZDUSD','USDCHF','USDCAD','XAUUSD','XAGUSD','BTCUSD','BTCUSDT','ETHUSD','ETHUSDT','US30','NAS100','SPX','SPX500','USOIL','BRENT'];
+export function conflictsWithInstrument(text,symbol){return tickers.some(t=>t!==symbol&&(String(text).toUpperCase().match(/[A-Z][A-Z0-9]{2,9}/g)||[]).includes(t));}
+const secret=/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/;
+export function safeInterpretation(value,max=1000){
+ if(typeof value!=='string'||!value.trim()||value.length>max||secret.test(value)||/\p{N}|[%٪]/u.test(value.normalize('NFKC'))||/\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|hundred|thousand|million|percent|probability|guaranteed|news|earnings|announcement|execute|buy now|sell now)\b|احتمال|مضمون|أخبار|اخبار|أرباح مؤكدة|نفذ|اشتر الآن|بع الآن/i.test(value))throw Error('Unsupported model prose');
+ return value;
+}
+export function evidenceState(snapshot){const trends=new Set(snapshot.refs.filter(r=>r.interval).map(r=>r.trend));return !snapshot.fresh?'insufficient':trends.has('bullish')&&trends.has('bearish')?'conflicting':'consistent';}
+export function validateGeneration(value,snapshot,{strict=false,expectedRoles=null}={}){
+ if(!value||typeof value.summary!=='string'||value.summary.length>4000||!Array.isArray(value.citations)||!value.citations.length||value.citations.length>12||new Set(value.citations).size!==value.citations.length||value.citations.some(c=>!snapshot.refs.some(r=>r.id===c)))throw Error('Invalid model schema or citation');
+ if(/[0-9٠-٩]/.test(value.summary))throw Error('Unverified numeric model statement');
+ if(!strict)return {summary:value.summary,citations:[...value.citations]};
+ if(Object.keys(value).some(k=>!['schema','snapshotId','symbol','interval','summary','citations','claims','roles','evidenceState','uncertainties'].includes(k)))throw Error('Unexpected model field');
+ if(value.schema!=='THN-GENERATION-7.1'||value.snapshotId!==snapshot.id||value.symbol!==snapshot.symbol||value.interval!==snapshot.interval||value.evidenceState!==evidenceState(snapshot))throw Error('Model context or contradiction mismatch');
+ if(!Array.isArray(value.roles)||!value.roles.length||value.roles.length>6||new Set(value.roles).size!==value.roles.length||value.roles.some(r=>!roles.includes(r))||expectedRoles&&JSON.stringify(value.roles)!==JSON.stringify(expectedRoles))throw Error('Unrequested specialist roles');
+ const summary=safeInterpretation(value.summary);if(conflictsWithInstrument(summary,snapshot.symbol))throw Error('Conflicting instrument');
+ if(!Array.isArray(value.claims)||!value.claims.length||value.claims.length>6)throw Error('Grounded claims required');
+ const claims=value.claims.map(c=>{if(!c||Object.keys(c).some(k=>!['reference','field','value'].includes(k)))throw Error('Unexpected claim field');const ref=snapshot.refs.find(r=>r.id===c.reference);if(!ref||!value.citations.includes(c.reference))throw Error('Uncited claim');const allowed={...ref.inputs,trend:ref.trend,source:ref.source,availableAt:ref.availableAt};if(!Object.hasOwn(allowed,c.field)||allowed[c.field]==null||!['string','number'].includes(typeof allowed[c.field])||c.value!==allowed[c.field])throw Error('Invented fact or calculation');return {reference:ref.id,field:c.field,value:allowed[c.field]};});
+ if(!Array.isArray(value.uncertainties)||!value.uncertainties.length||value.uncertainties.length>4)throw Error('Uncertainty required');
+ const uncertainties=value.uncertainties.map(v=>safeInterpretation(v,300));if(uncertainties.some(v=>conflictsWithInstrument(v,snapshot.symbol)))throw Error('Conflicting instrument');
+ return {schema:value.schema,snapshotId:snapshot.id,symbol:snapshot.symbol,interval:snapshot.interval,summary,citations:[...value.citations],claims,roles:[...value.roles],evidenceState:value.evidenceState,uncertainties,interpretationUnverified:true};
+}
+export const GENERATION_FORMAT={"type":"object","additionalProperties":false,"required":["schema","snapshotId","symbol","interval","summary","citations","claims","roles","evidenceState","uncertainties"],"properties":{"schema":{"const":"THN-GENERATION-7.1"},"snapshotId":{"type":"string"},"symbol":{"type":"string"},"interval":{"type":"string"},"summary":{"type":"string","maxLength":1000},"citations":{"type":"array","items":{"type":"string"},"minItems":1,"maxItems":12},"claims":{"type":"array","minItems":1,"maxItems":6,"items":{"type":"object","additionalProperties":false,"required":["reference","field","value"],"properties":{"reference":{"type":"string"},"field":{"type":"string"},"value":{"type":["string","number"]}}}},"roles":{"type":"array","items":{"enum":["technical","quantitative","bull","bear","risk","manager"]},"minItems":1,"maxItems":6},"evidenceState":{"enum":["consistent","conflicting","insufficient"]},"uncertainties":{"type":"array","minItems":1,"maxItems":4,"items":{"type":"string","maxLength":300}}}};

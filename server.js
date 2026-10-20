@@ -1,7 +1,10 @@
+import {createConversations} from './server/intelligence-conversation.js';
+import {localPilotRequest,authenticated,localConfiguration,loopbackJSON} from './server/intelligence-local.js';
 import {cleanCommittee,reflectCommittee} from './public/intelligence-memory.js';
 import {evidenceSnapshot,committee} from './server/intelligence.js';
 import {providerAvailability,createProvider} from './server/intelligence-provider.js';
 const intelligenceProvider=createProvider();let activeIntelligence=0;
+const intelligenceConversations=createConversations({provider:intelligenceProvider});let lastModelProbe=0;
 import { reproduceReport } from './server/replay.js';
 import { buildBrief } from './public/decision-core.js';
 import { createPlan } from './server/decision.js';
@@ -1475,7 +1478,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "7.0.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "7.1.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if(req.method==='POST'&&url.pathname==='/api/intelligence/saved'){
@@ -1492,6 +1495,20 @@ const server = http.createServer(async (req, res) => {
       const series=prepareSeries(await getMarketData(symbol,interval),interval,Date.now());
       return sendJson(res,200,{ok:true,reflection:reflectCommittee(input.original,{...series,symbol},{horizonHours:Number(input.horizonHours)})});
     }
+    if(req.method==='POST'&&url.pathname==='/api/intelligence/provider/check'){
+      if(!localPilotRequest(req)||!providerAvailability().available)return sendJson(res,503,{ok:false,code:'LOCAL_GENERATION_DISABLED'});
+      if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
+      if(Date.now()-lastModelProbe<3000)return sendJson(res,429,{ok:false,code:'PROBE_COOLDOWN'});lastModelProbe=Date.now();
+      if(providerAvailability().provider!=='ollama')return sendJson(res,400,{ok:false,code:'LOCAL_PROVIDER_REQUIRED'});
+      try{const data=await loopbackJSON(localConfiguration().endpoint,'/api/tags',{timeout:2000});const installed=Array.isArray(data.models)&&data.models.some(m=>m.name===process.env.THN_AI_MODEL);return sendJson(res,200,{ok:true,reachable:true,installed,model:process.env.THN_AI_MODEL,generationTested:false});}
+      catch{return sendJson(res,200,{ok:true,reachable:false,installed:false,generationTested:false});}
+    }
+    if(req.method==='POST'&&url.pathname==='/api/intelligence/conversation/delete'){
+      if(!localPilotRequest(req))return sendJson(res,503,{ok:false,code:'LOCAL_GENERATION_DISABLED'});
+      if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
+      const body=await readBody(req);if(typeof body.sessionId!=='string'||!/^[a-f0-9]{48}$/.test(body.sessionId))return sendJson(res,400,{ok:false});
+      intelligenceConversations.remove(body.sessionId);return sendJson(res,200,{ok:true});
+    }
     if(req.method==='GET'&&url.pathname==='/api/intelligence/provider')return sendJson(res,200,providerAvailability());
     if(req.method==='POST'&&url.pathname==='/api/intelligence'){
       if(activeIntelligence>=2)return sendJson(res,429,{ok:false,code:'RESEARCH_BUSY'});
@@ -1501,6 +1518,12 @@ const server = http.createServer(async (req, res) => {
       try{
         const input=await readBody(req),symbol=input.symbol,interval=input.interval;
         if(JSON.stringify(input).length>16000||typeof input.question!=='string'||/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/.test(input.question)||input.question.length>1500||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_REQUEST'});
+        if(input.mode==='llm'){
+          if(!localPilotRequest(req)||!providerAvailability().available)return sendJson(res,503,{ok:false,code:'LOCAL_GENERATION_DISABLED'});
+          if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
+          if(['record','snapshot','history','messages','tools','endpoint','model'].some(k=>Object.hasOwn(input,k)))return sendJson(res,400,{ok:false,code:'UNTRUSTED_GENERATIVE_INPUT'});
+          if(input.sessionId){const result=await intelligenceConversations.respond(input.sessionId,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...result});return;}
+        }
         const asOf=Date.now(),[mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
         let evaluation=null;
         if(input.evaluationParameters&&series&&input.expectedHash===series.provenance.hash){try{evaluation=evaluateResearch(series,symbol,input.evaluationParameters,{trainFraction:input.trainFraction??0.7,minimumTrades:input.minimumTrades??5});}catch{}}
@@ -1508,10 +1531,16 @@ const server = http.createServer(async (req, res) => {
         const snapshot=evidenceSnapshot(buildBrief(series,{...mtf,asOf:Date.now()},symbol,interval),{evaluation,riskPlan}),result=committee(snapshot,input.question,input.language);
         if(input.expectedHash&&input.expectedHash!==snapshot.selectedHash)result.contextWarning='Dataset differs from the chart selection; review evidence before use.';
         if(input.mode==='llm'&&result.outcome!=='context_mismatch'){
-          const before=intelligenceProvider.stats().requests;
-          try{result.generation=await intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:cancellation.signal});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
-          catch{result.providerFallback='Generative response unavailable or rejected; deterministic evidence retained.';}
-          finally{result.modelCalls=intelligenceProvider.stats().requests-before;}
+          if(input.expectedHash&&input.expectedHash!==snapshot.selectedHash)return sendJson(res,409,{ok:false,code:'CHART_CONTEXT_CHANGED'});
+          if(providerAvailability().provider==='ollama'){
+            try{const id=intelligenceConversations.start(snapshot,input);const generated=await intelligenceConversations.respond(id,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...generated});return;}
+            catch(error){if(cancellation.signal.aborted)throw error;result.providerFallback='Local conversation unavailable: fresh complete evidence is required.';}
+          }else{
+            const before=intelligenceProvider.stats().requests;
+            try{result.generation=await intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:cancellation.signal});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
+            catch{result.providerFallback='Generative response unavailable or rejected; deterministic evidence retained.';}
+            finally{result.modelCalls=intelligenceProvider.stats().requests-before;}
+          }
         }
         if(!req.aborted&&!res.destroyed)return sendJson(res,200,{ok:true,...result});
       }finally{activeIntelligence--;req.off('aborted',abort);res.off('close',closed);}

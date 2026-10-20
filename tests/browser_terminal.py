@@ -1,7 +1,7 @@
 """v6.6 real-provider market discovery, browser replay, comparison and reliability acceptance."""
 from playwright.sync_api import sync_playwright
 import os,json,subprocess
-BASE=os.environ.get('TEST_URL','http://127.0.0.1:3027')
+BASE=os.environ.get('TEST_URL','http://127.1.0.1:3027')
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1600,'height':1050});errors=[];requests=[];page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:requests.append(r.url))
  page.goto(BASE);page.wait_for_function('window.THNMarketTerminal?.catalog().length && THNDecision.brief()?.selected && THNResearch.series()',timeout=45000)
@@ -48,7 +48,7 @@ with sync_playwright() as p:
  page.wait_for_function('THNDecision.brief()?.symbol==="EURUSD"&&THNResearch.series()?.symbol==="EURUSD"',timeout=45000);assert page.evaluate('THNContext.get().symbol')=='EURUSD'
  views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
  for lang in ['en','ar']:
-  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(250);page.set_viewport_size({'width':1600,'height':1050});page.add_script_tag(path=os.environ.get('AXE_PATH','work/node_modules/axe-core/axe.min.js'));assert '7.0.0' in page.locator('#modelStatus').inner_text()
+  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(250);page.set_viewport_size({'width':1600,'height':1050});page.add_script_tag(path=os.environ.get('AXE_PATH','work/node_modules/axe-core/axe.min.js'));assert '7.1.0' in page.locator('#modelStatus').inner_text()
   if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl'
   for view in views:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':lang,'view':view,'violations':v})
