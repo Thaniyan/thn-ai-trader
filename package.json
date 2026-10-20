@@ -17,7 +17,7 @@
     "replay": "node scripts/replay-research.mjs",
     "package:production": "node scripts/release/package-production.mjs",
     "test:system": "node tests/run-system.mjs",
-    "test:security": "node --test tests/ci-foundation.test.mjs tests/release-security.test.mjs",
+    "test:security": "node --test --test-concurrency=1 tests/ci-foundation.test.mjs tests/release-security.test.mjs tests/pilot.test.mjs tests/pilot-http.test.mjs",
     "test:browser": "python3 scripts/ci/run-browsers.py"
   },
   "dependencies": {

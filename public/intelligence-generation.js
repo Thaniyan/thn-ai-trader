@@ -4,13 +4,13 @@ const tickers=['EURUSD','GBPUSD','USDJPY','AUDUSD','NZDUSD','USDCHF','USDCAD','X
 export function conflictsWithInstrument(text,symbol){return tickers.some(t=>t!==symbol&&(String(text).toUpperCase().match(/[A-Z][A-Z0-9]{2,9}/g)||[]).includes(t));}
 const secret=/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/;
 export function safeInterpretation(value,max=1000){
- if(typeof value!=='string'||!value.trim()||value.length>max||secret.test(value)||/\p{N}|[%٪]/u.test(value.normalize('NFKC'))||/\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|hundred|thousand|million|percent|probability|guaranteed|news|earnings|announcement|execute|buy now|sell now)\b|احتمال|مضمون|أخبار|اخبار|أرباح مؤكدة|نفذ|اشتر الآن|بع الآن/i.test(value))throw Error('Unsupported model prose');
+ if(typeof value!=='string'||!value.trim()||value.length>max||secret.test(value)||/\p{N}|[%٪]/u.test(value.normalize('NFKC'))||/\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|hundred|thousand|million|percent|probability|guaranteed|news|earnings|announcement|execute|buy now|sell now)\b|صفر|واحد|اثنان|ثلاثة|أربعة|خمسة|ستة|سبعة|ثمانية|تسعة|عشرة|مئة|ألف|احتمال|مضمون|أخبار|اخبار|أرباح مؤكدة|نفذ|اشتر الآن|بع الآن/i.test(value))throw Error('Unsupported model prose');
  return value;
 }
 export function evidenceState(snapshot){const trends=new Set(snapshot.refs.filter(r=>r.interval).map(r=>r.trend));return !snapshot.fresh?'insufficient':trends.has('bullish')&&trends.has('bearish')?'conflicting':'consistent';}
 export function validateGeneration(value,snapshot,{strict=false,expectedRoles=null}={}){
  if(!value||typeof value.summary!=='string'||value.summary.length>4000||!Array.isArray(value.citations)||!value.citations.length||value.citations.length>12||new Set(value.citations).size!==value.citations.length||value.citations.some(c=>!snapshot.refs.some(r=>r.id===c)))throw Error('Invalid model schema or citation');
- if(/[0-9٠-٩]/.test(value.summary))throw Error('Unverified numeric model statement');
+ if(/\p{N}|[%٪]/u.test(value.summary.normalize('NFKC')))throw Error('Unverified numeric model statement');
  if(!strict)return {summary:value.summary,citations:[...value.citations]};
  if(Object.keys(value).some(k=>!['schema','snapshotId','symbol','interval','summary','citations','claims','roles','evidenceState','uncertainties'].includes(k)))throw Error('Unexpected model field');
  if(value.schema!=='THN-GENERATION-7.1'||value.snapshotId!==snapshot.id||value.symbol!==snapshot.symbol||value.interval!==snapshot.interval||value.evidenceState!==evidenceState(snapshot))throw Error('Model context or contradiction mismatch');

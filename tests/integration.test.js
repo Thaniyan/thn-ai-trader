@@ -8,10 +8,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 async function withServer(mode,local,run){
- const dir=await mkdtemp(path.join(tmpdir(),'thn-test-'));const port=3400+Math.floor(Math.random()*1000);const base=`http://127.0.0.1:${port}`;
- const child=spawn(process.execPath,['--import','./tests/provider-fixture.js','server.js'],{cwd:root,env:{...process.env,PORT:String(port),THN_DATA_DIR:dir,THN_LOCAL_PAPER:local?'1':'0',TEST_PROVIDER_MODE:mode},stdio:['ignore','pipe','pipe']});
+ const dir=await mkdtemp(path.join(tmpdir(),'thn-test-'));let base;
+ const child=spawn(process.execPath,['--import','./tests/provider-fixture.js','tests/source-launch.mjs'],{cwd:root,env:{...process.env,THN_DATA_DIR:dir,THN_LOCAL_PAPER:local?'1':'0',TEST_PROVIDER_MODE:mode},stdio:['ignore','pipe','pipe']});
  try {
-  await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('server startup timed out')),5000);child.once('error',reject);child.stdout.on('data',d=>{if(String(d).includes('running locally')){clearTimeout(timer);resolve();}});});
+  await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('server startup timed out')),5000);child.once('error',reject);child.stdout.on('data',d=>{const match=String(d).match(/THN_TEST_PORT=(\d+)/);if(match){base='http://127.0.0.1:'+match[1];clearTimeout(timer);resolve();}});});
   const get=async route=>{const res=await fetch(base+route);return [res,await res.json()]};
   const post=async(route,body,headers={})=>{const res=await fetch(base+route,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)});return [res,await res.json()]};
   await run({get,post,base});

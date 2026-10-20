@@ -16,7 +16,7 @@ try:
  line=server.stdout.readline().strip()
  if not line.startswith('THN_TEST_PORT='):raise RuntimeError('Packaged browser server failed: '+line)
  env['TEST_URL']='http://127.0.0.1:'+line.split('=')[1]
- suites=['workstation','research','research_outage','quality','decision','library_reliability','maturity','terminal','intelligence','intelligence_memory','layout']
+ suites=['workstation','research','research_outage','quality','decision','library_reliability','maturity','terminal','intelligence','intelligence_memory','layout','pilot']
  failures=[]
  for name in suites:
   target='tests/browser_'+name+'.py';log=out/('ci-browser-'+name+'.log')

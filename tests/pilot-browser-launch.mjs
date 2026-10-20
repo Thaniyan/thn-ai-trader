@@ -1,0 +1,10 @@
+import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
+import {pilotEnv} from './pilot-fixture.mjs';
+import {startMockOllama} from './pilot-ollama.mjs';
+const dir=fs.mkdtempSync(path.join(os.tmpdir(),'thn-pilot-browser-'));
+const cleanup=()=>fs.rmSync(dir,{recursive:true,force:true});
+process.on('exit',cleanup);process.on('SIGTERM',()=>{cleanup();process.exit(0)});
+Object.assign(process.env,pilotEnv,{VERCEL:'',THN_LOCAL_PAPER:'0',THN_DATA_DIR:dir});
+await startMockOllama();
+await import('./browser-provider.js');
+await import('./packaged-launch.mjs');

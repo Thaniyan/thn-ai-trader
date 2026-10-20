@@ -1,5 +1,5 @@
 import {createConversations} from './server/intelligence-conversation.js';
-import {localPilotRequest,authenticated,localConfiguration,loopbackJSON} from './server/intelligence-local.js';
+import {localPilotRequest,authenticated,inspectLocalModel} from './server/intelligence-local.js';
 import {cleanCommittee,reflectCommittee} from './public/intelligence-memory.js';
 import {evidenceSnapshot,committee} from './server/intelligence.js';
 import {providerAvailability,createProvider} from './server/intelligence-provider.js';
@@ -1500,7 +1500,7 @@ const server = http.createServer(async (req, res) => {
       if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
       if(Date.now()-lastModelProbe<3000)return sendJson(res,429,{ok:false,code:'PROBE_COOLDOWN'});lastModelProbe=Date.now();
       if(providerAvailability().provider!=='ollama')return sendJson(res,400,{ok:false,code:'LOCAL_PROVIDER_REQUIRED'});
-      try{const data=await loopbackJSON(localConfiguration().endpoint,'/api/tags',{timeout:2000});const installed=Array.isArray(data.models)&&data.models.some(m=>m.name===process.env.THN_AI_MODEL);return sendJson(res,200,{ok:true,reachable:true,installed,model:process.env.THN_AI_MODEL,generationTested:false});}
+      try{const model=await inspectLocalModel();return sendJson(res,200,{ok:true,reachable:true,...model});}
       catch{return sendJson(res,200,{ok:true,reachable:false,installed:false,generationTested:false});}
     }
     if(req.method==='POST'&&url.pathname==='/api/intelligence/conversation/delete'){
@@ -1518,6 +1518,7 @@ const server = http.createServer(async (req, res) => {
       try{
         const input=await readBody(req),symbol=input.symbol,interval=input.interval;
         if(JSON.stringify(input).length>16000||typeof input.question!=='string'||/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/.test(input.question)||input.question.length>1500||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_REQUEST'});
+        if(input.mode!=null&&!['llm','deterministic'].includes(input.mode))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_MODE'});
         if(input.mode==='llm'){
           if(!localPilotRequest(req)||!providerAvailability().available)return sendJson(res,503,{ok:false,code:'LOCAL_GENERATION_DISABLED'});
           if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
@@ -1536,10 +1537,10 @@ const server = http.createServer(async (req, res) => {
             try{const id=intelligenceConversations.start(snapshot,input);const generated=await intelligenceConversations.respond(id,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...generated});return;}
             catch(error){if(cancellation.signal.aborted)throw error;result.providerFallback='Local conversation unavailable: fresh complete evidence is required.';}
           }else{
-            const before=intelligenceProvider.stats().requests;
+            const before=intelligenceProvider.stats().modelCalls;
             try{result.generation=await intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:cancellation.signal});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
             catch{result.providerFallback='Generative response unavailable or rejected; deterministic evidence retained.';}
-            finally{result.modelCalls=intelligenceProvider.stats().requests-before;}
+            finally{result.modelCalls=intelligenceProvider.stats().modelCalls-before;}
           }
         }
         if(!req.aborted&&!res.destroyed)return sendJson(res,200,{ok:true,...result});

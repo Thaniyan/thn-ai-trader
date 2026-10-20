@@ -12,10 +12,10 @@ export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessi
   if(s.context!==contextKey(input)||input.snapshotId&&input.snapshotId!==s.snapshot.id)throw Object.assign(Error('Conversation context changed'),{status:409});
   if(s.busy||s.turns>=maxTurns)throw Object.assign(Error('Conversation busy or turn ceiling reached'),{status:429});validateLocalSnapshot(s.snapshot,now());
   const result=committee(s.snapshot,input.question,input.language);if(result.outcome==='context_mismatch')return result;
-  s.busy=true;s.turns++;const before=provider.stats().requests;
+  s.busy=true;s.turns++;const before=provider.stats().modelCalls;
   try{result.generation=await provider(s.snapshot,input.question,{authorization,signal,history:s.history.slice(-4),language:input.language});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;s.history.push({role:'user',content:input.question},{role:'assistant',content:result.summary});s.history=s.history.slice(-4);}
   catch(error){if(signal?.aborted)throw error;result.providerFallback='Generative answer unavailable or rejected; deterministic evidence retained.';}
-  finally{result.modelCalls=provider.stats().requests-before;s.busy=false;}
+  finally{result.modelCalls=provider.stats().modelCalls-before;s.busy=false;}
   return {...result,conversation:{id,snapshotId:s.snapshot.id,turn:s.turns,maxTurns,expiresAt:s.createdAt+ttl,debateRounds:1}};
  }
  return {start,respond,remove:id=>sessions.delete(id),count:()=>{expire();return sessions.size;}};
