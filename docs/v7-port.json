@@ -1,0 +1,99 @@
+{
+  "source": "9a7342d116d14354498898c8f7ae0b0d7c6a6086",
+  "base": "ddd13c298103d93ced74fdb8bbf8c43f4579369c",
+  "method": "reviewed source-only delta, no Git objects or runtime data copied",
+  "paths": [
+    {
+      "path": ".env.example",
+      "sha256": "024eeba38109086b0b2071ba77369cf2aa4c568898e42b8720dd850f261871a8"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "c4240c2a8c4d3dea5a3cbb21a7ddf2fba99cbf87c74e8c2ecac81ecdbb749293"
+    },
+    {
+      "path": "README.md",
+      "sha256": "3b4219d3cf5a3ea483afe2107a41076a7d3b6fbd40fa93a1be2496982ed475d2"
+    },
+    {
+      "path": "package.json",
+      "sha256": "0a615a9ced13cf29510e2782d82cb42ec74950b0d71b8049830fb742869d6c42"
+    },
+    {
+      "path": "public/app.js",
+      "sha256": "0805be10d55903afc6e39eec30fa583ab2bf39d23480c86a534df9261254b9f7"
+    },
+    {
+      "path": "public/decision-records.js",
+      "sha256": "bfa21cc15d2ece94b8d22c5548c575f33450a6c267d9324dd15187af880b8565"
+    },
+    {
+      "path": "public/index.html",
+      "sha256": "b0003ecfd1550780a4b48b446ebd989f50c67cef21e312293e3451567189a385"
+    },
+    {
+      "path": "public/research-library.js",
+      "sha256": "f4189788c52fd97fea4a74a53769a535540933be2e2225d0d766275c34ac18b0"
+    },
+    {
+      "path": "public/style.css",
+      "sha256": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8"
+    },
+    {
+      "path": "server.js",
+      "sha256": "ce9a09e04250b64c65df72391dcc8691566cdb7fb6b2e18909c1208da7f27cf7"
+    },
+    {
+      "path": "tests/browser_terminal.py",
+      "sha256": "d42549ede74806e50c216169f2e1510c5bf123e05be2d8335069b9d348f18abd"
+    },
+    {
+      "path": "tests/decision.test.js",
+      "sha256": "afbde40895c40af487d68d39c8cfabb374212a3f84b68f36dda060cde97bbb08"
+    },
+    {
+      "path": "RELEASE-7.0.md",
+      "sha256": "75381517cc56400a7e7f6568a1e5704117709f6a28ccce25a5cab36459b18e73"
+    },
+    {
+      "path": "docs/v7-validation.json",
+      "sha256": "e2d9087f1ba4af393cf468b58f2aa859d649b653a85cf054bceb5ba550696060"
+    },
+    {
+      "path": "server/intelligence.js",
+      "sha256": "5996f6d9fab64b56b7ee42ce897079f95fdb34f176d586b317b81fc871542d17"
+    },
+    {
+      "path": "server/intelligence-provider.js",
+      "sha256": "5d25085b1dfd8d066c34a38ca9e5ab1091cd023243514e08616fc3e3424c1b39"
+    },
+    {
+      "path": "public/intelligence-memory.js",
+      "sha256": "b2f3dca07393e842e6d59db12b73230298fb9c7878625fc0e0d208edf87e11cb"
+    },
+    {
+      "path": "public/intelligence-workspace.js",
+      "sha256": "95690117ae7795701a312450be26822fb8d0e8a3b870553299fb87c47714702c"
+    },
+    {
+      "path": "public/intelligence.css",
+      "sha256": "06048fb8a66cc2b89dcc5cd8349557b556300752fe5390d087fac747b2c221fc"
+    },
+    {
+      "path": "tests/intelligence.test.js",
+      "sha256": "3f666be92e3a0c24e471305672c4b6c21bb7be2a1941671b6eb20993a8151c4b"
+    },
+    {
+      "path": "tests/browser_intelligence.py",
+      "sha256": "de4e367b89c2487a36dae8888d2c468a7c9a7f7b1626a0395fa365566adde718"
+    },
+    {
+      "path": "tests/browser_intelligence_memory.py",
+      "sha256": "3bc6fe0c7a4fe1f5a1fa251005159dcad475e361d6bb4d73f74b24f2d0bd4257"
+    },
+    {
+      "path": "scripts/evaluate-intelligence.mjs",
+      "sha256": "fd454d7b17ba571d7ae76d63a205ae847501b20579f530cb19c7dc25242d4786"
+    }
+  ]
+}

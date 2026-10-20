@@ -2,7 +2,7 @@ from playwright.sync_api import sync_playwright
 import os,json
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3021')
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+ b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
  page=b.new_page(viewport={'width':1440,'height':1050});errors=[];requests=[];page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:requests.append(r.url))
  page.goto(BASE);page.wait_for_function('window.THNResearch?.series() && THNContext.get().datasetId',timeout=40000)
  report={'checks':[],'a11y':[],'mobile':[],'data':page.evaluate('THNResearch.series().provenance')}
@@ -37,12 +37,12 @@ with sync_playwright() as p:
  page.evaluate('openBrokerDocsModal()');assert 'لا تدخل كلمات مرور' in page.locator('#qualityHelp').inner_text();page.locator('#qCloseQualityHelp').click()
  for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
   page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(450)
-  page.add_script_tag(path='work/node_modules/axe-core/axe.min.js');v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');report['a11y'].append({'view':view,'violations':v})
+  page.add_script_tag(path=os.environ['AXE_PATH']);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');report['a11y'].append({'view':view,'violations':v})
  page.locator('.nav-stack [data-view="portfolio"]').click();page.screenshot(path='work/v63-arabic.png')
  for lang in ['ar','en']:
   page.locator('[data-language="'+lang+'"]').first.click();page.set_viewport_size({'width':390,'height':844})
   for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(450);report['mobile'].append({'lang':lang,'view':view,'overflow':page.evaluate('document.documentElement.scrollWidth > innerWidth')})
   page.locator('.nav-stack [data-view="portfolio"]').click();page.wait_for_timeout(400);page.screenshot(path='work/v63-mobile-'+lang+'.png')
- page.set_viewport_size({'width':1440,'height':1050});page.locator('#themeBtn').click();page.wait_for_timeout(400);page.add_script_tag(path='work/node_modules/axe-core/axe.min.js');report['lightA11y']=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-portfolio"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');page.screenshot(path='work/v63-light.png')
+ page.set_viewport_size({'width':1440,'height':1050});page.locator('#themeBtn').click();page.wait_for_timeout(400);page.add_script_tag(path=os.environ['AXE_PATH']);report['lightA11y']=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-portfolio"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');page.screenshot(path='work/v63-light.png')
  report['errors']=errors;open('work/v63-browser-results.json','w').write(json.dumps(report,indent=2));print(json.dumps(report,indent=2));assert not errors;assert not any(v['overflow'] for v in report['mobile']);assert not any(v['violations'] for v in report['a11y']);assert not report['lightA11y'];b.close()

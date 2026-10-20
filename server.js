@@ -1,3 +1,7 @@
+import {cleanCommittee,reflectCommittee} from './public/intelligence-memory.js';
+import {evidenceSnapshot,committee} from './server/intelligence.js';
+import {providerAvailability,createProvider} from './server/intelligence-provider.js';
+const intelligenceProvider=createProvider();let activeIntelligence=0;
 import { reproduceReport } from './server/replay.js';
 import { buildBrief } from './public/decision-core.js';
 import { createPlan } from './server/decision.js';
@@ -45,7 +49,7 @@ loadEnvFile();
 const hosted = Boolean(process.env.VERCEL);
 const localPaperEnabled = !hosted && process.env.THN_LOCAL_PAPER === "1";
 const PORT = Number(process.env.PORT || 3000);
-const openaiEnabled = Boolean(process.env.OPENAI_API_KEY);
+const openaiEnabled = false; // Legacy unbudgeted narrative path disabled; use the explicit authenticated provider adapter.
 
 const TIMEFRAME_CONFIG = {
   "15m": { range: "1mo", interval: "15m", tvInterval: "15", label: "15m" },
@@ -1237,7 +1241,7 @@ function buildMTFA({ candles, price, structure, ema20, ema50, ema200, rsi14, atr
   const d1Ema = ema(lastCloses, 90) || ema200 || price;
   const d1Trend = price >= d1Ema ? "BULLISH" : "BEARISH";
   const d1Structure = price > (structure.support + structure.resistance) / 2 ? "High Value Range" : "Discount Range";
-  
+
   const h4Ema = ema50 || price;
   const h4Trend = price >= h4Ema ? "BULLISH" : "BEARISH";
   const h4Bias = h4Trend === d1Trend ? "ALIGNED" : "COUNTER-TREND";
@@ -1471,9 +1475,48 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "6.6.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "7.0.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
+    if(req.method==='POST'&&url.pathname==='/api/intelligence/saved'){
+      const input=await readBody(req);if(JSON.stringify(input).length>32000)return sendJson(res,413,{ok:false,code:'PAYLOAD_TOO_LARGE'});
+      const record=cleanCommittee(input.record,true),{id:originalEvidenceId,...fields}=record.snapshot;
+      const material={...fields,originalEvidenceId,fresh:false,refs:fields.refs.map(ref=>({...ref,status:'unverified_saved'}))};
+      const snapshot={...material,id:crypto.createHash('sha256').update(JSON.stringify(material)).digest('hex')};
+      return sendJson(res,200,{ok:true,...committee(snapshot,input.question,input.language),unverified:true,contextWarning:'Explicitly selected saved evidence; not fresh provider observations. No provider was fetched.'});
+    }
+    if(req.method==='POST'&&url.pathname==='/api/intelligence/reflect'){
+      const input=await readBody(req);if(JSON.stringify(input).length>32000)return sendJson(res,413,{ok:false,code:'PAYLOAD_TOO_LARGE'});
+      const symbol=input.original?.snapshot?.symbol,interval=input.original?.snapshot?.interval;
+      if(!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_REFLECTION_CONTEXT'});
+      const series=prepareSeries(await getMarketData(symbol,interval),interval,Date.now());
+      return sendJson(res,200,{ok:true,reflection:reflectCommittee(input.original,{...series,symbol},{horizonHours:Number(input.horizonHours)})});
+    }
+    if(req.method==='GET'&&url.pathname==='/api/intelligence/provider')return sendJson(res,200,providerAvailability());
+    if(req.method==='POST'&&url.pathname==='/api/intelligence'){
+      if(activeIntelligence>=2)return sendJson(res,429,{ok:false,code:'RESEARCH_BUSY'});
+      if(Number(req.headers['content-length'])>16000)return sendJson(res,413,{ok:false,code:'PAYLOAD_TOO_LARGE'});
+      activeIntelligence++;
+      const cancellation=new AbortController(),abort=()=>cancellation.abort(),closed=()=>{if(!res.writableEnded)abort()};req.on('aborted',abort);res.on('close',closed);
+      try{
+        const input=await readBody(req),symbol=input.symbol,interval=input.interval;
+        if(JSON.stringify(input).length>16000||typeof input.question!=='string'||/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/.test(input.question)||input.question.length>1500||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_REQUEST'});
+        const asOf=Date.now(),[mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+        let evaluation=null;
+        if(input.evaluationParameters&&series&&input.expectedHash===series.provenance.hash){try{evaluation=evaluateResearch(series,symbol,input.evaluationParameters,{trainFraction:input.trainFraction??0.7,minimumTrades:input.minimumTrades??5});}catch{}}
+        let riskPlan=null;if(input.hypotheticalPlan&&series&&input.expectedHash===series.provenance.hash){try{riskPlan=createPlan(input.hypotheticalPlan);}catch{}}
+        const snapshot=evidenceSnapshot(buildBrief(series,{...mtf,asOf:Date.now()},symbol,interval),{evaluation,riskPlan}),result=committee(snapshot,input.question,input.language);
+        if(input.expectedHash&&input.expectedHash!==snapshot.selectedHash)result.contextWarning='Dataset differs from the chart selection; review evidence before use.';
+        if(input.mode==='llm'&&result.outcome!=='context_mismatch'){
+          const before=intelligenceProvider.stats().requests;
+          try{result.generation=await intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:cancellation.signal});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
+          catch{result.providerFallback='Generative response unavailable or rejected; deterministic evidence retained.';}
+          finally{result.modelCalls=intelligenceProvider.stats().requests-before;}
+        }
+        if(!req.aborted&&!res.destroyed)return sendJson(res,200,{ok:true,...result});
+      }finally{activeIntelligence--;req.off('aborted',abort);res.off('close',closed);}
+      return;
+    }
     if (req.method === "GET" && url.pathname === "/api/research/brief") {
       const symbol=url.searchParams.get("symbol")||"EURUSD", interval=url.searchParams.get("interval")||"1h";
       if(!Object.hasOwn(INTERVAL_MS,interval)||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))) return sendJson(res,400,{ok:false,code:"INVALID_MARKET_REQUEST"});
@@ -2060,7 +2103,9 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, process.env.VERCEL ? "0.0.0.0" : "127.0.0.1", () => {
+export default server;
+
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) server.listen(PORT, process.env.VERCEL ? "0.0.0.0" : "127.0.0.1", () => {
   console.log(`THN AI Trader running locally on port ${PORT}`);
   console.log(`OpenAI enabled: ${openaiEnabled ? "yes" : "no"}`);
 });

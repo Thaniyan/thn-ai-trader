@@ -1,0 +1,106 @@
+{
+  "status": "LOCAL_VALIDATION_COMPLETE; owner release approval required",
+  "base": "ddd13c298103d93ced74fdb8bbf8c43f4579369c",
+  "recoveryCandidate": "9a7342d116d14354498898c8f7ae0b0d7c6a6086",
+  "branch": "release/v7-integrated",
+  "unitIntegrationGuardAndPackage": {
+    "tests": 119,
+    "pass": 119,
+    "fail": 0,
+    "skipped": 0
+  },
+  "system": {
+    "pass": 10,
+    "fail": 0,
+    "unchangedAssertionSHA256": "e62592d9203674c1539e83af7d52c0d1aea621eaa71fd6dadd1b162c40f79c20"
+  },
+  "security": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browserSuites": {
+    "workstation": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-workstation.log"
+    },
+    "research": {
+      "passed": true,
+      "evidence": "/workspace/work/v7-research-final.log"
+    },
+    "research_outage": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-research_outage.log"
+    },
+    "quality": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-quality.log"
+    },
+    "decision": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-decision.log"
+    },
+    "library_reliability": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-library_reliability.log"
+    },
+    "maturity": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-maturity.log"
+    },
+    "terminal": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-terminal.log"
+    },
+    "intelligence": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-intelligence.log"
+    },
+    "intelligence_memory": {
+      "passed": true,
+      "evidence": "/workspace/work/thn-v7-integrated/work/ci-browser-intelligence_memory.log"
+    }
+  },
+  "browserResultNote": "Nine suites passed complete packaged run; research compatibility failure resolved and focused rerun passed. No final suite skipped.",
+  "intelligenceBrowser": {
+    "checks": 85,
+    "fail": 0,
+    "screenshots": 9
+  },
+  "memoryBrowser": {
+    "checks": 5,
+    "fail": 0
+  },
+  "canonicalBrowserAxeScans": 96,
+  "canonicalLayoutCases": 144,
+  "artifact": {
+    "path": "/workspace/work/thn-v7-integrated/.vercel/output",
+    "manifestSHA256": "dfa4420a1b08e32296582421456328c06585080815ca38318c7189c2e7e54e5f",
+    "runtimeFiles": 47,
+    "hashedFiles": 51,
+    "repeatedBuildIdentical": true,
+    "rawNodeRequestStreams": true
+  },
+  "build": "PASS",
+  "lint": "PASS",
+  "workflowActionlint": "PASS",
+  "frozenInstall": "PASS",
+  "dependencyAudit": {
+    "policy": "Block high/critical; report lower severity; errors block",
+    "counts": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0,
+      "info": 0
+    },
+    "blocking": false
+  },
+  "realLLMConfigured": false,
+  "realProviderRepeated": false,
+  "hostedVerification": false,
+  "publication": false,
+  "deployment": false,
+  "spend": 0
+}

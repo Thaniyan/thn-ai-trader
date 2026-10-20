@@ -4,7 +4,7 @@ import os,json,subprocess
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3026')
 PREFIX=os.environ.get('TEST_OUTPUT_PREFIX','work/v65')
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1050});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1050});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto(BASE);page.wait_for_function('window.THNLibrary && THNDecision.brief()?.selected && THNResearch.series()',timeout=45000)
  result={'checks':[],'a11y':[],'mobile':[],'provider':page.evaluate('THNResearch.series().provenance')}
  # Seed a compatible old source; migration must not change its bytes.
@@ -57,7 +57,7 @@ with sync_playwright() as p:
  result['checks'].append('repeat holdout-use warning, delayed brief rejection, repeated selection changes and unavailable-data clearing')
  views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
  for lang in ['en','ar']:
-  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(300);page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path='work/node_modules/axe-core/axe.min.js')
+  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(300);page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path=os.environ['AXE_PATH'])
   assert page.evaluate('THNServiceHealth.get().version') in page.locator('#modelStatus').inner_text()
   if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl'
   for view in views:

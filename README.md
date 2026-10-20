@@ -1,3 +1,34 @@
+# THN AI Trader 7.0 — integrated local release candidate
+
+One original product: `Thaniyan/thn-ai-trader`, planned website `thn-ai-trader.vercel.app`.
+See [RELEASE-7.0.md](RELEASE-7.0.md) for the delivered assistant, safeguards, test evidence,
+provider limitations and preserved implementation evidence. See
+[docs/V7-RELEASE-READINESS.md](docs/V7-RELEASE-READINESS.md) for current integration, CI and packaging results.
+No push or deployment is authorized.
+
+- AI Intelligence now contains a contextual rule-based conversation and a six-role Research Committee.
+- Evidence comes from existing provider, indicator, structure, evaluation and hypothetical-risk engines.
+- Live data is distinct from explicitly selected, unverified saved research; reflections do not rewrite originals.
+- The optional authenticated local LLM adapter is inactive unless explicitly configured with budgets.
+- No real LLM was used in this release validation. No ChatGPT subscription/token is reused.
+- Hosted financial execution, mutations and durable accounts remain unavailable.
+
+```sh
+npm run build
+npm run lint
+npm test
+node scripts/evaluate-intelligence.mjs
+npm start
+```
+
+Use Node 24.5+ and existing browser prerequisites. Source code was transferred from verified
+v6.6 `ddd13c298103d93ced74fdb8bbf8c43f4579369c` onto the existing sanitized history, without
+merging its legacy ancestors or copying runtime/audit records. The prior local release remains
+at `a0a75a493b565747d26fc0ef4bf9a22cffec33d6`. Older deployment tools and tests are historical;
+they have not been silently removed or disabled. Existing CI remains an explicit release gate.
+
+## v6.6 engine and research workflow reference (preserved)
+
 # THN AI Trader 6.6
 
 Bilingual trading intelligence and research workstation, developed directly from the original `main` application. The terminal, indicators, drawing overlays, SMC map, scanner, journal and local paper engine remain in the original Node/HTML/JavaScript stack.

@@ -58,7 +58,7 @@ export function createResearchLibrary({root,storage=localStorage,onChange=()=>{}
     }catch{fail();}
   });
   window.addEventListener('storage',e=>{if(e.key!==LIBRARY_KEY&&e.key!==null)return;const latest=readLibrary(storage);state=latest.state;error=latest.error;selected.clear();message=tr('Library changed in another tab; current records were reloaded.','تغيرت المكتبة في علامة تبويب أخرى؛ أُعيد تحميل السجلات الحالية.');render();onChange();});
-  return {render,open,records:()=>state.reports.map(e=>e.record),entries:()=>structuredClone(state.reports),state:()=>structuredClone(state),legacy,
+  return {saveReflection(evidenceId,symbol,reflection){try{const note={id:crypto.randomUUID(),type:'note',unverified:true,record:{title:'Research reflection · '+symbol,body:JSON.stringify({originalEvidenceId:evidenceId,reflection}),createdAt:Date.now()}};change({...state,archives:[...state.archives,note]});return true;}catch{fail();return false;}},render,open,records:()=>state.reports.map(e=>e.record),entries:()=>structuredClone(state.reports),state:()=>structuredClone(state),legacy,
     save(record){try{const item={id:record.id,title:(record.user.thesis||record.symbol+' / '+record.interval).slice(0,120),status:'draft',record};change({...state,reports:[...state.reports,cleanEntry(item)]});message=tr('Research saved without replacing earlier work.','حُفظ البحث دون استبدال العمل السابق.');return true;}catch{fail();return false;}},
     export:()=>download('THN-library-backup-6.5.json',makeBackup(state)),hasSnapshot:hash=>state.snapshots.some(s=>s.hash===hash)};
 }

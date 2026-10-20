@@ -1,0 +1,39 @@
+{
+  "scope": "Local v7 candidate; no hosted publication or real LLM",
+  "sourceV66": "ddd13c298103d93ced74fdb8bbf8c43f4579369c",
+  "cleanParent": "a0a75a493b565747d26fc0ef4bf9a22cffec33d6",
+  "build": "PASS",
+  "lint": "PASS",
+  "node": {
+    "passed": 114,
+    "failed": 0
+  },
+  "intelligenceBrowser": {
+    "passed": 85,
+    "failed": 0,
+    "a11yScans": 5
+  },
+  "memoryBrowser": {
+    "passed": 5,
+    "failed": 0
+  },
+  "realProviderTerminal": {
+    "workflows": 5,
+    "layouts": 54,
+    "a11yScans": 24,
+    "violations": 0,
+    "errors": []
+  },
+  "unchangedV66NumericalEngineHashes": {
+    "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+    "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+    "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+    "server/decision.js": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+    "server/replay.js": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b"
+  },
+  "realLLMConfigured": false,
+  "additionalSpend": 0,
+  "hostedExecution": "DISABLED",
+  "ci": "Existing legacy gates unchanged; alignment blocked by automatic approval review; no hosted CI green claim"
+}

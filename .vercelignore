@@ -11,3 +11,9 @@ audit_log.json
 *.db
 *.sqlite*
 tests/provider-fixture.js
+
+AUDIT_REPORT.md
+metadata.json
+tests/
+docs/
+.github/

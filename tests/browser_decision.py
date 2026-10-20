@@ -3,7 +3,7 @@ from playwright.sync_api import sync_playwright
 import os,json
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3024')
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+ b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
  page=b.new_page(viewport={'width':1440,'height':1050});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto(BASE);page.wait_for_function('window.THNDecision?.brief()?.selected && THNResearch.series()',timeout=45000)
  result={'checks':[],'a11y':[],'mobile':[],'provider':page.evaluate('THNDecision.brief().selected.provenance')}
@@ -15,15 +15,15 @@ with sync_playwright() as p:
  page.locator('.nav-stack [data-view="portfolio"]').click();page.locator('#qDirection').select_option('long_short');page.locator('#qMinimumTrades').fill('5');page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=45000)
  assert page.evaluate('THNDecision.quality().checks.length===10');assert page.evaluate('THNDecision.quality().probability===null')
  page.locator('.nav-stack [data-view="ai"]').click();page.locator('#d64Thesis').fill('Research thesis <img src=x onerror=alert(1)>');page.locator('#d64Conclusion').fill('Wait for evidence');page.locator('#d64Notes').fill('User notes remain separate')
- page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('JSON.parse(localStorage.getItem("thn_decision_reports_v64")||"[]").length===1');saved=page.evaluate('JSON.parse(localStorage.getItem("thn_decision_reports_v64"))[0]');assert saved['quantitative']['quality']['checks'];assert saved['brief']['selected']['provenance']['hash']==result['provider']['hash']
+ page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');saved=page.evaluate('THNLibrary.entries()[0].record');assert saved['quantitative']['quality']['checks'];assert saved['brief']['selected']['provenance']['hash']==result['provider']['hash']
  with page.expect_download() as d:page.locator('#decisionWorkspace [data-decision="export"]').click()
  exported=json.load(open(d.value.path()));assert exported['records'][0]['quantitative']['holdout']['trades']>=0
  with page.expect_download() as d:page.locator('#decisionWorkspace [data-decision="html"]').click()
  html=open(d.value.path()).read();assert '&lt;img' in html;assert '<img src=x' not in html;assert 'Content-Security-Policy' in html
- page.locator('.nav-stack [data-view="journal"]').click();exported['records'][0]['credentials']={'password':'DROP_ME'};page.locator('#d64Import').set_input_files({'name':'report.json','mimeType':'application/json','buffer':json.dumps(exported).encode()});page.wait_for_timeout(300)
- assert page.evaluate('JSON.parse(localStorage.getItem("thn_decision_reports_v64"))[1].unverified');assert 'DROP_ME' not in page.evaluate('localStorage.getItem("thn_decision_reports_v64")');assert page.locator('#decisionReports img').count()==0
+ page.locator('.nav-stack [data-view="journal"]').click();exported['records'][0]['credentials']={'password':'DROP_ME'};page.locator('#d64Import').set_input_files({'name':'report.json','mimeType':'application/json','buffer':json.dumps(exported).encode()});page.wait_for_selector('[data-lib="restore"]');assert page.evaluate('THNLibrary.entries().length')==1;page.locator('[data-lib="restore"]').click()
+ assert page.evaluate('THNLibrary.entries()[1].record.unverified');assert 'DROP_ME' not in page.evaluate('localStorage.getItem("thn_research_library_v65")');assert page.locator('#decisionReports img').count()==0
  exported['records'][0]['savedAt']=1e100;page.locator('#d64Import').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':json.dumps(exported).encode()});page.wait_for_timeout(200);assert 'rejected' in page.locator('#d64ImportStatus').inner_text()
- page.reload();page.wait_for_function('window.THNDecision?.brief()',timeout=45000);assert page.evaluate('JSON.parse(localStorage.getItem("thn_decision_reports_v64")).length')==2
+ page.reload();page.wait_for_function('window.THNDecision?.brief()',timeout=45000);assert page.evaluate('THNLibrary.entries().length')==2
  result['checks'].append('matched quantitative evidence, saved reports/reload, JSON/HTML export, escaped injection and bounded unverified imports')
  page.locator('.nav-stack [data-view="ai"]').click();scenario=page.locator('[data-brief-plan]');assert scenario.count()>0;scenario.first.click();assert page.locator('#view-risk').is_visible();assert page.locator('#planEntry').input_value();assert page.locator('#planStop').input_value()
  page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);assert page.evaluate('THNDecision.plan().plannedStopLossWithCosts>=THNDecision.plan().metrics.slDollars')
@@ -48,7 +48,7 @@ with sync_playwright() as p:
  for lang in ['en','ar']:
   page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(300)
   if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl';assert 'ذكاء تداول' in page.locator('#decisionWorkspace').inner_text()
-  page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path='work/node_modules/axe-core/axe.min.js')
+  page.set_viewport_size({'width':1440,'height':1050});page.add_script_tag(path=os.environ['AXE_PATH'])
   for view in views:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(250);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':lang,'view':view,'violations':v})
   page.locator('.nav-stack [data-view="ai"]').click();page.screenshot(path='work/v64-intelligence-'+lang+'.png',full_page=True)

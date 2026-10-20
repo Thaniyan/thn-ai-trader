@@ -1464,7 +1464,7 @@ function startTerminalClock() {
     const utcHours = d.getUTCHours();
     const utcTimeStr = d.toUTCString().slice(17, 25) + " UTC";
     if ($("terminalUtcClock")) $("terminalUtcClock").textContent = utcTimeStr;
-    
+
     const isLondon = utcHours >= 8 && utcHours < 16.5;
     const isNY = utcHours >= 13.5 && utcHours < 20;
     const isTokyo = utcHours >= 0 && utcHours < 9;
@@ -3102,12 +3102,12 @@ function showTradeToast(item) {
   }
   if ($("toastSymbol")) $("toastSymbol").textContent = item.symbol || item.requestedSymbol || "--";
   if ($("toastConfidence")) $("toastConfidence").textContent = `${fmt(item.confidence, 0)}/100`;
-  
+
   const precision = pricePrecision(item.entry);
   if ($("toastEntry")) $("toastEntry").textContent = fmt(item.entry, precision);
   if ($("toastSL")) $("toastSL").textContent = item.stopLoss ? fmt(item.stopLoss, precision) : "--";
   if ($("toastTP1")) $("toastTP1").textContent = item.targets?.[0] ? fmt(item.targets[0], precision) : "--";
-  
+
   const reasonText = item.reasons?.[0] || item.aiNarrative || item.automation?.summary || (currentLang === "ar" ? "اكتشف الماسح فرصة تداول عالية الاحتمالية." : "Scanner detected a heuristic confluence setup.");
   if ($("toastReason")) $("toastReason").textContent = reasonText;
 
@@ -3158,20 +3158,20 @@ async function scanWatchlist() {
     if (!res.ok || data.error) throw new Error(data.detail || data.error || "Watchlist scan failed");
     watchScanResults = data.results || [];
     renderAlerts(data.scannedAt);
-    
+
     // Opportunities triggering alert sound, floating toast, and browser notification
-    const actionableAlerts = watchScanResults.filter(item => 
-      item.automation?.active || 
+    const actionableAlerts = watchScanResults.filter(item =>
+      item.automation?.active ||
       (Number(item.confidence || 0) >= (payload.minConfidence || 70) && (String(item.decision || "").includes("BUY") || String(item.decision || "").includes("SELL")))
     );
-    
+
     if (actionableAlerts.length) {
       const topAlert = actionableAlerts[0];
       playTradeAlertSound(topAlert.decision);
       showTradeToast(topAlert);
       notifyStrongAlerts(actionableAlerts);
     }
-    
+
     const msg = t("scanComplete", { alerts: data.strongAlertCount || actionableAlerts.length, count: data.count || payload.symbols.length });
     setWatchStatus(msg);
     status(msg);
@@ -4779,7 +4779,7 @@ function switchBrokerDocsTab(platform = "exness") {
 function filterBrokerDocs(query = "") {
   const q = String(query).trim().toLowerCase();
   const allCards = document.querySelectorAll("#brokerDocsModal .tutorial-step-card, #brokerDocsModal .trouble-card");
-  
+
   if (!q) {
     allCards.forEach(card => card.style.display = "");
     return;
@@ -4845,8 +4845,8 @@ function applyBrokerDocsConfig(platform) {
     balInp.classList.add("field-highlight");
   }
 
-  status(currentLang === "ar" 
-    ? `⚡ تم تطبيق إعدادات ${platform.toUpperCase()} وتعبئتها في نموذج الربط!` 
+  status(currentLang === "ar"
+    ? `⚡ تم تطبيق إعدادات ${platform.toUpperCase()} وتعبئتها في نموذج الربط!`
     : `⚡ ${platform.toUpperCase()} configuration auto-filled into Broker Connection form!`);
 }
 
@@ -4875,7 +4875,7 @@ async function runDocPingTest() {
     const elapsed = Date.now() - startMs;
     const latency = data.latencyMs || Math.max(8, elapsed);
     if (resultBadge) {
-      resultBadge.textContent = currentLang === "ar" 
+      resultBadge.textContent = currentLang === "ar"
         ? `🟢 ${latency}ms · اتصال خادم ${data.broker || broker.toUpperCase()} نشط ومتحقق منه`
         : `🟢 ${latency}ms · ${data.broker || broker.toUpperCase()} Gateway Verified & Live`;
       resultBadge.style.color = "var(--green)";

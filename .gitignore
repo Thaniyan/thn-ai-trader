@@ -12,3 +12,6 @@ audit_log.json
 *.sqlite*
 .env.*
 !.env.example
+__pycache__/
+
+.vercel/

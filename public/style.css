@@ -5443,3 +5443,4 @@ html[dir="rtl"] .readiness-row b {
   border-bottom: none;
 }
 
+:root[data-theme="light"] .stale.work-fresh{color:#765610;background:#fff5d8}
