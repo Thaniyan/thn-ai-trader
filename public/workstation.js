@@ -1,6 +1,12 @@
 /* Integrated research workstation. All displayed market observations carry provenance. */
 (() => {
   const $ = id => document.getElementById(id);
+  // Keep the whole keyboard-focused tab visible in the horizontal mobile dock.
+  document.querySelector('.nav-stack').addEventListener('focusin', event => {
+    if (matchMedia('(max-width:760px)').matches && event.target.matches('.nav')) {
+      event.target.scrollIntoView({block:'nearest', inline:'nearest'});
+    }
+  });
   const symbols = ['XAUUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'BTCUSDT', 'US30'];
   const classes = {XAUUSD:'Commodity',EURUSD:'Forex',GBPUSD:'Forex',USDJPY:'Forex',BTCUSDT:'Crypto',US30:'Index'};
   const en = {

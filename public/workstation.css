@@ -110,3 +110,48 @@ html[dir="rtl"] .sidebar { border-right:0; border-inline-end:1px solid var(--bor
 #view-settings .badge { color:var(--text)!important; background:var(--bg-2)!important; }
 #prefResetSandboxBtn,#prefClearJournalBtn { color:#fca5a5!important; }
 [data-theme="light"] #prefResetSandboxBtn,[data-theme="light"] #prefClearJournalBtn { color:#b91c1c!important; }
+
+/* Shared shell: override the legacy five-column navigation breakpoint.
+   Keep one sidebar column until the explicit horizontal mobile navigation. */
+@media (min-width:761px) {
+ .sidebar { position:sticky; top:0; height:100dvh; overflow-y:auto; min-width:0; }
+ .sidebar > * { flex-shrink:0; }
+ .nav-stack { grid-template-columns:minmax(0,1fr); }
+}
+.brand-lockup { grid-template-columns:48px minmax(0,1fr); gap:10px; min-width:0; }
+.brand-text,.brand-titles { min-width:0; overflow-wrap:anywhere; }
+.brand-text strong { font-size:18px; }
+.nav-stack .nav { white-space:normal; overflow-wrap:anywhere; line-height:1.5; min-height:44px; }
+.terminal-topbar { flex-wrap:wrap; min-width:0; }
+.topbar-brand { flex:1 1 18rem; min-width:0; }
+.brand-mark { flex-shrink:0; }
+.topbar-controls { flex:1 1 27rem; flex-wrap:wrap; justify-content:flex-end; min-width:0; }
+.topbar-controls > * { flex-shrink:0; max-width:100%; }
+.global-sessions-bar { flex-wrap:wrap; min-width:0; }
+.session-pill,.utc-clock-badge,.language-switch { flex-shrink:0; }
+.broker-status-pill { flex-wrap:wrap; white-space:normal; }
+@media (max-width:760px) {
+ .terminal-topbar { position:relative; top:auto; }
+ .nav-stack .nav { white-space:nowrap; overflow-wrap:normal; }
+ .topbar-brand { flex:1 1 100%; }
+ .topbar-brand .brand-titles { display:flex; }
+ .topbar-controls { flex:1 1 100%; justify-content:flex-start; }
+}
+.topbar-brand .wordmark { flex-wrap:wrap; white-space:normal; }
+@media (max-width:360px) {
+ .topbar-brand { flex-wrap:wrap; }
+ .work-stats,.work-discovery-grid,.work-risk-form,.work-result-grid,.work-steps { grid-template-columns:minmax(0,1fr); }
+ .work-stats > div { min-width:0; overflow-wrap:anywhere; }
+ .q-context label { flex-wrap:wrap; min-width:0; max-width:100%; }
+ .q-context input,.q-context select { min-width:0; max-width:100%; }
+ .work-focus-title,.work-grid .panel-head { flex-wrap:wrap; }
+ .work-capabilities div { grid-template-columns:minmax(0,1fr); }
+ .work-capabilities dd { min-width:0; overflow-wrap:anywhere; }
+}
+/* The Latin wordmark keeps consistent metrics when the surrounding UI is RTL. */
+.brand-text strong,.topbar-brand .wordmark { font-family:system-ui,sans-serif; line-height:1.6; direction:ltr; unicode-bidi:isolate; }
+.brand-text small,.topbar-brand small { line-height:2; }
+/* Status labels and UTC clock must remain readable on light surfaces. */
+[data-theme="light"] .sidebar .paper-badge { color:#785000; background:#fff4d6; }
+[data-theme="light"] .topbar-controls .trading-mode-tag { color:#785000; background:#fff4d6; }
+[data-theme="light"] .utc-clock-badge { background:#eef4fb; color:#0f172a; }
