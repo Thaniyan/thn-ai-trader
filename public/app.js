@@ -3365,6 +3365,8 @@ function deleteJournalTrade(tradeId) {
 }
 
 function renderJournal() {
+  // Refresh same-tab readers synchronously after saves, imports, deletes and clears.
+  window.dispatchEvent(new Event("thn:journal"));
   if(!$('journalList'))return;
   $('journalList').innerHTML=getJournal().map(raw=>{
     const item=raw&&typeof raw==='object'?raw:{},c=THNRecords.classify(item);

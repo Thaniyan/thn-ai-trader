@@ -1,6 +1,6 @@
 """Full workstation journeys and all-nine-view geometry; providers are explicit offline fixtures."""
 import os,json,pathlib,itertools
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY
 out=pathlib.Path(os.environ.get('PRO_OUTPUT','work/professional'));out.mkdir(parents=True,exist_ok=True)
 results={'journeys':[],'layouts':[],'accessibility':[],'errors':[],'zoom':[],'touchTargets':[],'externalWidget':'External TradingView network not asserted by offline protocol tests'}
@@ -37,7 +37,7 @@ with sync_playwright() as p:
  page.locator('#proAnalyzeContext').click();page.wait_for_function('currentAnalysis?.symbol===THNContext.get().symbol&&!document.getElementById("proAnalyzeContext").disabled');go('trading')
  # Genuine deterministic engine -> saved report -> Library; ideas remain unverified.
  page.evaluate('THNLibrary.save(THNDecision.snapshot())');assert page.evaluate('THNLibrary.records().length')>0
- page.evaluate('saveJournal()');go('journal');assert page.locator('#proRecords').get_by_text('EURUSD · Research idea',exact=True).count()>=1
+ page.evaluate('saveJournal()');go('journal');expect(page.locator('#proRecords').get_by_text('EURUSD · Research idea',exact=True).first).to_be_visible()
  page.locator('#proRecordKind').select_option('research_idea');page.locator('#proRecords').get_by_role('button',name='Inspect original record').first.click();assert 'research_idea' in page.locator('#proRecordDetail').inner_text()
  assert page.evaluate('THNRecords.select(getJournal()).length')==0
  results['journeys']+=['Markets search/favorite, cached closes, <=6 requests and <=2 concurrency','Explicit TradingView widget configuration and source switch (shim only)','Horizontal level draw/reload and keyboard chart pan/zoom','Deterministic snapshot saved in Library; idea inspected without financial outcome']
