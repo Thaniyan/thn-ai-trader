@@ -1,4 +1,4 @@
-"""Full workstation journeys and all-nine-view geometry; providers are explicit offline fixtures."""
+"""Journal readiness, immediate rendering and persistence using genuine fixture-backed analysis."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright,expect
 from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY
@@ -45,12 +45,37 @@ with sync_playwright() as p:
   for populated in [0,35]:
    for iteration in range(5):
     page.evaluate('(n)=>{writeJournal(Array.from({length:n},(_,i)=>({symbol:"OLD"+i,notes:"legacy"})));renderJournal();switchView("trading")}',populated)
+    # Hold real analysis requests across reload: reproduce CI latency without fake analysis.
+    held=[]
+    def hold_analysis(route):held.append(route)
+    page.route('**/api/analyze',hold_analysis)
+    with page.expect_request(lambda r:'/api/analyze' in r.url and r.method=='POST'):
+     page.reload();page.wait_for_function('window.THNProfessional&&window.THNRecords')
+    page.wait_for_function('document.getElementById("analyzeBtn").disabled')
+    page.locator('.terminal-topbar [data-language="'+lang+'"]').click()
+    unavailable=page.evaluate("()=>{const before=localStorage.getItem(journalKey);saveJournal();return {analysisReady:!!currentAnalysis,unchanged:before===localStorage.getItem(journalKey),count:getJournal().length,notice:document.getElementById('statusMsg').textContent,toast:document.getElementById('toastReason').textContent,toastVisible:!document.getElementById('tradeToast').classList.contains('hidden')}}")
+    assert not unavailable['analysisReady'] and unavailable['unchanged'] and unavailable['count']==populated,unavailable
+    assert unavailable['notice']==('Run analysis first.' if lang=='en' else 'شغّل التحليل أولًا.'),unavailable
+    assert unavailable['toastVisible'] and unavailable['toast']==unavailable['notice'],unavailable
+    page.unroute('**/api/analyze',hold_analysis)
+    for route in held:route.continue_()
+    page.wait_for_function('!document.getElementById("analyzeBtn").disabled')
+    # Explicit user action runs the authoritative deterministic engine for the current context.
+    page.evaluate('switchView("trading")')
+    with page.expect_response(lambda r:'/api/analyze' in r.url and r.request.method=='POST') as analysis_response:
+     page.locator('#proAnalyzeContext').click()
+    assert analysis_response.value.status==200
+    page.wait_for_function('currentAnalysis?.symbol===THNContext.get().symbol&&!document.getElementById("proAnalyzeContext").disabled')
     # One JS task: no timer or browser automation delay can hide a stale render.
     state=page.evaluate("()=>{saveJournal();switchView('journal');const rows=getJournal();return {count:rows.length,kind:THNRecords.classify(rows[0]).kind,symbol:rows[0].symbol,selected:THNRecords.select(rows).length,rendered:document.querySelector('.pro-record-row b')?.textContent,stored:JSON.parse(localStorage.getItem(journalKey))[0]}}")
-    diagnostics.append({'language':lang,'populated':populated,'iteration':iteration,**state})
+    diagnostics.append({'language':lang,'populated':populated,'iteration':iteration,'unavailable':unavailable,**state})
     print(json.dumps(diagnostics[-1]),flush=True)
     assert state['count']==populated+1 and state['kind']=='research_idea' and state['symbol']=='EURUSD' and state['selected']==0 and state['rendered']==label,state
     expect(page.locator('#proRecords').get_by_text(label,exact=True)).to_be_visible()
+    inspect='Inspect original record' if lang=='en' else 'فحص السجل الأصلي'
+    page.locator('#proRecords').get_by_role('button',name=inspect,exact=True).first.click()
+    assert 'research_idea' in page.locator('#proRecordDetail').inner_text()
+    assert state['stored']['verification']=='unverified' and 'pnl' not in state['stored']
     page.reload();page.wait_for_function('window.THNProfessional&&window.THNRecords')
     page.evaluate('switchView("journal")');expect(page.locator('#proRecords').get_by_text(label,exact=True)).to_be_visible()
     assert page.evaluate('THNRecords.select(getJournal()).length')==0

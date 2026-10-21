@@ -1043,7 +1043,7 @@ function showNotice(msg, type = "info") {
   const toast = $("tradeToast");
   if (toast) {
     if ($("toastSignal")) $("toastSignal").textContent = type === "error" ? "⚠️ ALERT" : "ℹ️ NOTICE";
-    if ($("toastPair")) $("toastPair").textContent = msg;
+    if ($("toastReason")) $("toastReason").textContent = msg;
     if ($("toastConfidence")) $("toastConfidence").textContent = "";
     toast.classList.remove("hidden");
     if (toastTimeout) clearTimeout(toastTimeout);
