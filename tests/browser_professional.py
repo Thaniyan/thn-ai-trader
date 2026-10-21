@@ -1,6 +1,7 @@
 """Full workstation journeys and all-nine-view geometry; providers are explicit offline fixtures."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright
+from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY
 out=pathlib.Path(os.environ.get('PRO_OUTPUT','work/professional'));out.mkdir(parents=True,exist_ok=True)
 results={'journeys':[],'layouts':[],'accessibility':[],'errors':[],'zoom':[],'touchTargets':[],'externalWidget':'External TradingView network not asserted by offline protocol tests'}
 views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
@@ -24,9 +25,9 @@ with sync_playwright() as p:
  page.locator('#proObserve').click();page.wait_for_function('!THNMarketObservations.busy()');assert len(batch)<=6 and peak[0]<=2,(len(batch),peak[0])
  page.remove_listener('request',began);page.remove_listener('requestfinished',ended);page.remove_listener('requestfailed',ended)
  page.locator('#r66Search').fill('EURUSD')
- # Widget contract shim is explicitly not proof of the real remote iframe.
- page.evaluate('window.TradingView={widget:function(config){window.__widgetConfig=config;}}');page.locator('[data-pro-tv="EURUSD"]').click();assert page.locator('#chart').is_visible();assert not page.locator('.q-chart-panel').is_visible();config=page.evaluate('__widgetConfig');assert config['symbol']=='FX:EURUSD' and config['interval']=='60' and config['hide_side_toolbar']==False and config['enable_publishing']==False
- page.locator('#loadChartBtn').click();assert page.evaluate('__widgetConfig.symbol')=='FX:EURUSD'
+ # Public embed script protocol fixture is explicitly not proof of the real remote iframe.
+ page.route(EMBED_URL,lambda r:r.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY));page.locator('[data-pro-tv="EURUSD"]').click();assert page.locator('#chart').is_visible();assert not page.locator('.q-chart-panel').is_visible();page.wait_for_function('window.__widgets?.length>0');config=page.evaluate('__widgets.at(-1)');assert config['symbol']=='FX:EURUSD' and config['interval']=='60' and config['hide_side_toolbar']==False and config['hide_top_toolbar']==False and config['studies']==[] and config['support_host']=='https://www.tradingview.com'
+ count=page.evaluate('__widgets.length');page.locator('#loadChartBtn').click();page.wait_for_function('(n)=>__widgets.length===n+1',arg=count);assert page.evaluate('__widgets.at(-1).symbol')=='FX:EURUSD'
  page.locator('#proResearchMode').click();assert page.locator('.q-chart-panel').is_visible()
  page.locator('#qDrawingMode').select_option('horizontal');canvas=page.locator('#qCandles');canvas.scroll_into_view_if_needed();canvas.click(position={'x':150,'y':130});assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')
  page.reload();page.wait_for_function('window.THNProfessional&&THNResearch.series()');assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')

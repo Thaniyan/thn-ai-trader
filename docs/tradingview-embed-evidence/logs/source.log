@@ -1,0 +1,5 @@
+{
+  "base": "ddd13c298103d93ced74fdb8bbf8c43f4579369c",
+  "policy": "canonical descendant; current and added source exclusions; numerical parity",
+  "problems": []
+}

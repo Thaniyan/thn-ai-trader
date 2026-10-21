@@ -1,0 +1,242 @@
+[
+  {
+    "path": "package.json",
+    "sha256": "ed724293d55101140eb85a9bdec88161685e61c5f69916f1e57f8321889a81f1"
+  },
+  {
+    "path": "public/app.js",
+    "sha256": "19db5cd0b1b358cfb69e7bce3796a8acd4216b72c63832f58ace80e0200819e8"
+  },
+  {
+    "path": "public/brand-mark.png",
+    "sha256": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567"
+  },
+  {
+    "path": "public/brand-preview.png",
+    "sha256": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9"
+  },
+  {
+    "path": "public/comparison-core.js",
+    "sha256": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849"
+  },
+  {
+    "path": "public/d3.min.js",
+    "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+  },
+  {
+    "path": "public/decision-core.js",
+    "sha256": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3"
+  },
+  {
+    "path": "public/decision-records.js",
+    "sha256": "bfa21cc15d2ece94b8d22c5548c575f33450a6c267d9324dd15187af880b8565"
+  },
+  {
+    "path": "public/decision-workspace.css",
+    "sha256": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382"
+  },
+  {
+    "path": "public/decision-workspace.js",
+    "sha256": "6ddf39ac5b1faa3d72811e35913e8ab8c3b022b34b65d1b2d80350c78a244571"
+  },
+  {
+    "path": "public/index.html",
+    "sha256": "ef40d93292bb27d08ea0c81f9090468707042f5a1d31977852358cca5cfb53c1"
+  },
+  {
+    "path": "public/intelligence-generation.js",
+    "sha256": "d3f0bab49d343a0243f77bd47dcd0b60546a4a900ce74a2e8011ec0801f2677d"
+  },
+  {
+    "path": "public/intelligence-memory.js",
+    "sha256": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6"
+  },
+  {
+    "path": "public/intelligence-workspace.js",
+    "sha256": "8893879ca1a36e6124639f398f09b07e583ff781e348dcc82c77a58343568551"
+  },
+  {
+    "path": "public/intelligence.css",
+    "sha256": "22be21cd6ec2a0617b193d8563a714cfeb67124683b65ce849aff6737dbe583e"
+  },
+  {
+    "path": "public/library-core.js",
+    "sha256": "5b0fb66e1b7d960c52a2164cdb90ae9c3d78193527dee56d59e2184f9ad7f25c"
+  },
+  {
+    "path": "public/locale-secondary.js",
+    "sha256": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521"
+  },
+  {
+    "path": "public/logo.svg",
+    "sha256": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b"
+  },
+  {
+    "path": "public/manifest.json",
+    "sha256": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4"
+  },
+  {
+    "path": "public/market-terminal.js",
+    "sha256": "54c98e417a126dba2e58be8deefd156e5578c02a6f693f1f1dc09789b0eb8306"
+  },
+  {
+    "path": "public/preferences.js",
+    "sha256": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2"
+  },
+  {
+    "path": "public/professional-chart.js",
+    "sha256": "e6eac24aab6039c6eea7976929ec6ac35d520430f57fcddf95dc42c5d9f2d9d2"
+  },
+  {
+    "path": "public/professional-markets.js",
+    "sha256": "2f6e260f17d1c7d2357b307e209e469c3e9507fc243f98385378394410a144dd"
+  },
+  {
+    "path": "public/professional-records.js",
+    "sha256": "0d03b854c5a707ab6a7f98530c21bbeb9a4401932b83f53780615f9496af55c1"
+  },
+  {
+    "path": "public/professional-workspace.js",
+    "sha256": "3c16ecb95ca6365e80fc6172d993664c18faed69c9ec86f8e32500122647ed27"
+  },
+  {
+    "path": "public/professional.css",
+    "sha256": "0827263ef63eaca3ee4c4fc66a6b1bdd310f732f08640c195fbdd596a277741b"
+  },
+  {
+    "path": "public/replay-contract.js",
+    "sha256": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9"
+  },
+  {
+    "path": "public/research-chart.js",
+    "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b"
+  },
+  {
+    "path": "public/research-library.js",
+    "sha256": "83ac82b86e2fd5d3ab365307a43927dc2acdf429be743e3e16d02867153952e2"
+  },
+  {
+    "path": "public/research-quality.css",
+    "sha256": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a"
+  },
+  {
+    "path": "public/research-quality.js",
+    "sha256": "19c96b7b2d1c2f50e125c091286e42ff97d6a91d889fa4d14d667431e1e36a9c"
+  },
+  {
+    "path": "public/research-records.js",
+    "sha256": "b14f22c9631d797c3a3d991e23dc9021caf4519c1fa67230f2d6032096b8a289"
+  },
+  {
+    "path": "public/research-state.js",
+    "sha256": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253"
+  },
+  {
+    "path": "public/research-terminal.css",
+    "sha256": "249b8fa397a31e3bce8aaff18c9a91f6569e2ff17e35be4312a20802562d4f71"
+  },
+  {
+    "path": "public/research-workstation.js",
+    "sha256": "f3a0d17f3fd8522f856577dc24855c99f8ddec31ae292d8a79cb34ff26bb8b7a"
+  },
+  {
+    "path": "public/research.css",
+    "sha256": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c"
+  },
+  {
+    "path": "public/style.css",
+    "sha256": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8"
+  },
+  {
+    "path": "public/terminal-research.js",
+    "sha256": "c9e23bb3be955fa22e45dfbf3bc643dbb526fbe8309da36741af07fccf6cb24a"
+  },
+  {
+    "path": "public/workflow-maturity.css",
+    "sha256": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b"
+  },
+  {
+    "path": "public/workflow-maturity.js",
+    "sha256": "95e13b714a869d8d090b3777d064501e420d2ed59604e324cd91f28a69901355"
+  },
+  {
+    "path": "public/workstation.css",
+    "sha256": "2e207fb8fbd3f475050e3d85d1acbab5a9731dc04607f1ec448e7134a1ceae29"
+  },
+  {
+    "path": "public/workstation.js",
+    "sha256": "8f9c71c53edec128f3ea70cd61f2de7124edfb87e0964c4749136d3de869e021"
+  },
+  {
+    "path": "server.js",
+    "sha256": "523e95fa493d059298376d930e6223831d8554714daaee27980333901915884b"
+  },
+  {
+    "path": "server/accountStore.js",
+    "sha256": "a4852a6af1c95fd9dfee80b5c226472cbaa833782dc4e129bd8380883556d10e"
+  },
+  {
+    "path": "server/auditLogger.js",
+    "sha256": "737638cd542bf3bbd1638e3fe8612d33bfdebbaa335a349e8728f71c6117833f"
+  },
+  {
+    "path": "server/backtest.js",
+    "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637"
+  },
+  {
+    "path": "server/brokerAdapters.js",
+    "sha256": "97c15e706ca0874a78c82f3557d470cc448328c03713e1613accb9db1dc27462"
+  },
+  {
+    "path": "server/decision.js",
+    "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a"
+  },
+  {
+    "path": "server/encryption.js",
+    "sha256": "b0c9d01abd278cad5e859e8ab2cad5ab5fcfd564f14b4b0c981ee82637b5d833"
+  },
+  {
+    "path": "server/evaluation.js",
+    "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a"
+  },
+  {
+    "path": "server/intelligence-conversation.js",
+    "sha256": "87ccbdb5c9f87dbe3385d94c0bd744b68d4949fad0cf23b071833a7e21192aa5"
+  },
+  {
+    "path": "server/intelligence-local.js",
+    "sha256": "0ddca33bc71dc847e4472e1f4416d5d80afc341eaf0c95e500ff1adf72224e97"
+  },
+  {
+    "path": "server/intelligence-provider.js",
+    "sha256": "01b220e608350a582bf75cd0fa6d18d6dd53a4886315b1dfad97156800c0d5ea"
+  },
+  {
+    "path": "server/intelligence.js",
+    "sha256": "55bc55e56c81d6a5a55aed25baa72d52805e7772bca12b4bad70135550da3e33"
+  },
+  {
+    "path": "server/market-evidence.js",
+    "sha256": "5b9a2a2969490fdbff27f682745bb8fbd1de8b5c30b623fcb3c92a9c8dbcc3f4"
+  },
+  {
+    "path": "server/paper-intents.js",
+    "sha256": "92126c2d60c2a0ac1082d4da7cb65ac89dbdf2b3c2c904d62c3754f97d8aaf96"
+  },
+  {
+    "path": "server/reconciliationEngine.js",
+    "sha256": "2f231dfb58d916ea90f907a2de00b9f992328e142271bfdb20ca3f2c47194d5e"
+  },
+  {
+    "path": "server/replay.js",
+    "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90"
+  },
+  {
+    "path": "server/research.js",
+    "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b"
+  },
+  {
+    "path": "server/riskEngine.js",
+    "sha256": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a"
+  }
+]

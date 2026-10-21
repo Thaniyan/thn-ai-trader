@@ -1,0 +1,3476 @@
+{
+  "journeys": [
+    "Markets search/favorite, cached closes, <=6 requests and <=2 concurrency",
+    "Explicit TradingView widget configuration and source switch (shim only)",
+    "Horizontal level draw/reload and keyboard chart pan/zoom",
+    "Deterministic snapshot saved in Library; idea inspected without financial outcome",
+    "Client lost-response retry reuses one intent (protocol fixture); hosted broker UI asks for no credentials",
+    "Storage entirely denied: all nine views, language and theme initialize without uncaught errors"
+  ],
+  "layouts": [
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1920,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1280,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "issues": []
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "view": "settings",
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "zoom": [
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 2061,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1319,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 1099,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 1649,
+      "cssWidth": 824,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "en",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "en",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "en",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "en",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "dark",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "dark",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 450,
+      "zoom": 0.8,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 288,
+      "zoom": 1.25,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 240,
+      "zoom": 1.5,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "light",
+      "view": "trading",
+      "issues": []
+    },
+    {
+      "width": 360,
+      "cssWidth": 180,
+      "zoom": 2,
+      "language": "ar",
+      "theme": "light",
+      "view": "risk",
+      "issues": []
+    }
+  ],
+  "touchTargets": [
+    {
+      "width": 390,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "settings",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "dashboard",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "markets",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "trading",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "ai",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "risk",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "portfolio",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "journal",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "brokers",
+      "failures": []
+    },
+    {
+      "width": 360,
+      "view": "settings",
+      "failures": []
+    }
+  ],
+  "externalWidget": "External TradingView network not asserted by offline protocol tests"
+}

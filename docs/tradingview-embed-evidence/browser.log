@@ -1,0 +1,57 @@
+
+> thn-ai-trader@7.1.0 test:browser
+> python3 scripts/ci/run-browsers.py
+
+tests/browser_workstation.py: PASS
+tests/browser_research.py: PASS
+tests/browser_research_outage.py: PASS
+tests/browser_quality.py: PASS
+tests/browser_decision.py: PASS
+tests/browser_library_reliability.py: PASS
+tests/browser_maturity.py: PASS
+tests/browser_terminal.py: PASS
+tests/browser_intelligence.py: PASS
+tests/browser_intelligence_memory.py: PASS
+tests/browser_layout.py: PASS
+tests/browser_pilot.py: PASS
+tests/browser_trust.py: PASS
+tests/browser_professional.py: PASS
+tests/browser_trading_remediation.py: FAIL (1)
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539>
+Traceback (most recent call last):
+  File "/workspace/work/thn-v71-resumed/tests/browser_trading_remediation.py", line 63, in <module>
+    page.evaluate('THNContext.set({symbol:"GBPUSD"},"reverse-response-test")');page.wait_for_timeout(150);assert len(late)==2
+                                                                                                                 ^^^^^^^^^^^^
+AssertionError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 540, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_page.py", line 308, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 484, in _handle_internal
+    return await handled_future
+           ^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+Traceback (most recent call last):
+  File "/workspace/work/thn-v71-resumed/tests/browser_trading_remediation.py", line 63, in <module>
+    page.evaluate('THNContext.set({symbol:"GBPUSD"},"reverse-response-test")');page.wait_for_timeout(150);assert len(late)==2
+                                                                                                                 ^^^^^^^^^^^^
+AssertionError
+
+Failed browser suites: trading_remediation
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

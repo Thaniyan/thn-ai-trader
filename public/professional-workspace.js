@@ -27,20 +27,7 @@ function syncTV(force=false){if(mode!=='manual')return;const c=THNContext.get(),
  renderTradingView(symbol,({'15m':'15','1h':'60','1d':'D'})[c.interval],force);
 }
 function setMode(value){mode=value==='manual'?'manual':'research';chartPanel.hidden=mode!=='research';tv.hidden=mode!=='manual';$('proResearchMode').setAttribute('aria-pressed',String(mode==='research'));$('proTradingViewMode').setAttribute('aria-pressed',String(mode==='manual'));syncTV();requestAnimationFrame(()=>THNResearch.chart.draw());}
-document.querySelector('script[src="https://s3.tradingview.com/tv.js"]')?.addEventListener('load',()=>syncTV());
-let scriptRetry=false;
-function retryTV(){
- if(typeof window.TradingView?.widget==='function'){syncTV(true);return;}
- if(scriptRetry)return;scriptRetry=true;$('loadChartBtn').disabled=true;tradingViewStatus('loading');
- const old=document.querySelector('script[src="https://s3.tradingview.com/tv.js"]');
- const script=document.createElement('script');script.src='https://s3.tradingview.com/tv.js';script.async=true;script.referrerPolicy='no-referrer';
- let settled=false;
- const finish=()=>{if(settled)return;settled=true;clearTimeout(timeout);scriptRetry=false;$('loadChartBtn').disabled=false;if(typeof window.TradingView?.widget==='function')syncTV();else tradingViewStatus('unavailable');};
- const timeout=setTimeout(finish,18000);script.onload=finish;script.onerror=finish;
- old?.remove();document.body.append(script);
-}
-
-$('loadChartBtn').addEventListener('click',e=>{if(mode==='manual'){e.preventDefault();e.stopImmediatePropagation();retryTV();}},true);
+$('loadChartBtn').addEventListener('click',e=>{if(mode==='manual'){e.preventDefault();e.stopImmediatePropagation();syncTV(true);}},true);
 $('proTVFallback').onclick=()=>{setMode('research');$('proResearchMode').focus();};
 $('proResearchMode').onclick=()=>setMode('research');$('proTradingViewMode').onclick=()=>setMode('manual');
 // Research links always reveal the owned chart; the external embed has no private overlay API.

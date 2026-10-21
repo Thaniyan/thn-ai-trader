@@ -2867,14 +2867,16 @@ function loadChart() {
   window.THNProfessional?.requestTV();
 }
 let tvGeneration = 0, tvTimer, tvObserver, tvSignature = "";
-let tvState = {phase:"idle", iframeLoaded:false, uiReady:false, candleReady:false};
+const initialTVState=phase=>({phase,scriptLoaded:false,iframeLoaded:false,uiReady:false,candleReady:false,providerData:"unverified"});
+let tvState = initialTVState("idle");
 function tradingViewStatus(phase) {
   tvState.phase = phase;
   const el=$("proTVStatus");
   if (!el) return;
-  el.dataset.phase=phase;
+  el.dataset.phase=phase;$("loadChartBtn").disabled=phase==="loading";
   const messages={
     loading:["Requesting the external chart. THN Research is available immediately.","جار طلب الرسم الخارجي. بحث THN متاح فوراً."],
+    script:["TradingView embed script loaded. Frame and market data are not yet verified.","تم تحميل سكربت TradingView. لم يتم التحقق من الإطار أو بيانات السوق بعد."],
     frame:["External frame loaded; this does not confirm chart data. If candles are blank, use THN Research or open TradingView.","تم تحميل الإطار الخارجي؛ هذا لا يؤكد بيانات الرسم. إذا لم تظهر الشموع فاستخدم بحث THN أو افتح TradingView."],
     unavailable:["TradingView could not initialize. Retry, open TradingView, or use THN Research.","تعذر بدء TradingView. أعد المحاولة أو افتح TradingView أو استخدم بحث THN."],
     unverified:["Candle availability cannot be verified through this public embed. If it is still blank or spinning, switch to THN Research. No substitute TradingView data is shown.","لا يمكن التحقق من الشموع عبر هذا التضمين العام. إذا بقي فارغاً أو قيد التحميل فانتقل إلى بحث THN. لا نعرض بيانات TradingView بديلة."]
@@ -2884,7 +2886,7 @@ function tradingViewStatus(phase) {
 function invalidateTradingView() {
   ++tvGeneration;clearTimeout(tvTimer);tvObserver?.disconnect();tvSignature="";
   $("tvChart").replaceChildren();$("tvChart").hidden=true;tvWidget=null;
-  tvState={phase:"unavailable",iframeLoaded:false,uiReady:false,candleReady:false};
+  tvState=initialTVState("unavailable");
   $("proTVExternal").href='https://www.tradingview.com/chart/';tradingViewStatus('unavailable');
 }
 function renderTradingView(chartSymbol, chartInterval, force=false) {
@@ -2896,31 +2898,43 @@ function renderTradingView(chartSymbol, chartInterval, force=false) {
   if (!force && signature===tvSignature && tvWidget) return true;
   tvSignature=signature;const generation=++tvGeneration;
   clearTimeout(tvTimer);tvObserver?.disconnect();
-  // Removing our own embed container tears down the old public widget. No private
-  // API, cross-origin DOM inspection, or untrusted postMessage readiness signals.
+  // Each official embed owns a detached-on-replacement parent. A late script
+  // retains its old parent; it cannot resolve a shared ID into the current chart.
   host.hidden=false;host.replaceChildren();tvWidget=null;
-  tvState={phase:"loading",iframeLoaded:false,uiReady:false,candleReady:false};tradingViewStatus('loading');
-  tvTimer=setTimeout(()=>{if(generation===tvGeneration)tradingViewStatus('unverified');},18000);
-  if(typeof window.TradingView?.widget!=="function"){tradingViewStatus('unavailable');host.hidden=true;clearTimeout(tvTimer);return false;}
+  tvState=initialTVState("loading");tradingViewStatus('loading');
+  tvTimer=setTimeout(()=>{
+    if(generation!==tvGeneration)return;
+    tradingViewStatus(tvState.scriptLoaded||tvState.iframeLoaded?'unverified':'unavailable');
+  },18000);
   const observer=new MutationObserver(()=>{
     if(generation!==tvGeneration){observer.disconnect();return;}
     const frame=host.querySelector('iframe');if(!frame)return;
     frame.title=currentLang==='ar'?'رسم TradingView الخارجي':'TradingView external chart';
-    frame.addEventListener('load',()=>{if(generation!==tvGeneration)return;tvState.iframeLoaded=true;if(tvState.phase==='loading')tradingViewStatus('frame');},{once:true});
+    frame.addEventListener('load',()=>{if(generation!==tvGeneration)return;tvState.iframeLoaded=true;tradingViewStatus('frame');},{once:true});
     observer.disconnect();
   });
   tvObserver=observer;observer.observe(host,{childList:true,subtree:true});
-  const container=document.createElement("div");container.id="thn-tv-"+generation;container.style.cssText="height:100%;width:100%";host.append(container);
-  try {
-    tvWidget=new TradingView.widget({
-      autosize:true,symbol:chartSymbol,interval:chartInterval,timezone:"Etc/UTC",
-      theme:document.documentElement.dataset.theme==="light"?"light":"dark",
-      style:"1",locale:currentLang==="ar"?"ar":"en",enable_publishing:false,
-      withdateranges:true,hide_side_toolbar:false,allow_symbol_change:true,
-      details:false,hotlist:false,calendar:false,container_id:container.id,studies:[]
-    });
-    return true;
-  } catch {clearTimeout(tvTimer);tvObserver.disconnect();tradingViewStatus('unavailable');host.hidden=true;return false;}
+  const container=document.createElement("div");container.id="thn-tv-"+generation;
+  container.className="tradingview-widget-container";container.style.cssText="height:100%;width:100%";
+  const surface=document.createElement("div");surface.className="tradingview-widget-container__widget";
+  surface.style.cssText="height:calc(100% - 32px);width:100%";
+  const credit=document.createElement("div");credit.className="tradingview-widget-copyright";
+  const creditLink=document.createElement("a");creditLink.href=$("proTVExternal").href;creditLink.target="_blank";creditLink.rel="noopener nofollow noreferrer";
+  creditLink.textContent=chartSymbol+" chart";credit.append(creditLink,document.createTextNode(" by TradingView"));
+  const script=document.createElement("script");script.type="text/javascript";script.async=true;
+  script.src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+  script.textContent=JSON.stringify({
+    autosize:true,symbol:chartSymbol,interval:chartInterval,timezone:"Etc/UTC",
+    theme:document.documentElement.dataset.theme==="light"?"light":"dark",
+    style:"1",locale:currentLang==="ar"?"ar":"en",allow_symbol_change:true,
+    hide_top_toolbar:false,hide_side_toolbar:false,hide_legend:false,hide_volume:false,
+    withdateranges:true,save_image:true,details:false,hotlist:false,calendar:false,
+    studies:[],support_host:"https://www.tradingview.com"
+  });
+  script.onload=()=>{if(generation!==tvGeneration)return;tvState.scriptLoaded=true;if(!tvState.iframeLoaded)tradingViewStatus('script');};
+  script.onerror=()=>{if(generation!==tvGeneration)return;clearTimeout(tvTimer);observer.disconnect();host.hidden=true;tradingViewStatus('unavailable');};
+  container.append(surface,credit,script);host.append(container);tvWidget=container;
+  return true;
 }
 window.THNTradingViewStatus=()=>({...tvState});
 

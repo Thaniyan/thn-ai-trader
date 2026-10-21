@@ -1,0 +1,365 @@
+{
+  "network": "Inherited mandatory proxy; localhost only bypass for local test servers",
+  "ownerObservation": "Direct official EURUSD candles work in owner Chrome; THN Production embed toolbar loads but candles do not. Not independently reproduced here.",
+  "profiles": "Clean Playwright Chromium, no extensions loaded. Owner cookie/storage/extension settings unobservable.",
+  "experiments": [
+    {
+      "name": "minimal",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "failedRequests": [
+        {
+          "host": "s3.tradingview.com",
+          "path": "/external-embedding/embed-widget-advanced-chart.js",
+          "type": "script",
+          "error": "net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "responses": [
+        {
+          "host": "127.0.0.1:42569",
+          "path": "/minimal",
+          "status": 200
+        }
+      ],
+      "scriptLoaded": false,
+      "iframeLoaded": false,
+      "toolbarLoaded": "unverified",
+      "marketCandles": "unverified",
+      "providerUnavailable": "unverified",
+      "headers": {},
+      "iframeCount": 0
+    },
+    {
+      "name": "legacy",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "failedRequests": [
+        {
+          "host": "s3.tradingview.com",
+          "path": "/tv.js",
+          "type": "script",
+          "error": "net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "responses": [
+        {
+          "host": "127.0.0.1:42569",
+          "path": "/legacy",
+          "status": 200
+        }
+      ],
+      "scriptLoaded": false,
+      "iframeLoaded": false,
+      "toolbarLoaded": "unverified",
+      "marketCandles": "unverified",
+      "providerUnavailable": "unverified",
+      "headers": {},
+      "iframeCount": 0
+    },
+    {
+      "name": "candidate",
+      "console": [
+        {
+          "type": "verbose",
+          "text": "[DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "failedRequests": [
+        {
+          "host": "s3.tradingview.com",
+          "path": "/external-embedding/embed-widget-advanced-chart.js",
+          "type": "script",
+          "error": "net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ],
+      "responses": [
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/style.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/workstation.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-quality.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/decision-workspace.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/workflow-maturity.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-terminal.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/intelligence.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/professional.css",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/market-terminal.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/professional-records.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/brand-mark.png",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/intelligence-workspace.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/professional-workspace.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-state.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/preferences.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-records.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/app.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-quality.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/professional-chart.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/workstation.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-workstation.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-chart.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/locale-secondary.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/d3.min.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/health",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/broker/accounts",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/series",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/quotes",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/health",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/series",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/mtf",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/terminal-research.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/professional-markets.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/workflow-maturity.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/decision-records.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/intelligence-memory.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/series",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/replay-contract.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/comparison-core.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/library-core.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/intelligence-generation.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/decision-workspace.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/decision-core.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/research-library.js",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/analyze",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/brief",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/research/catalog",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/api/intelligence/provider",
+          "status": 200
+        },
+        {
+          "host": "127.0.0.1:37803",
+          "path": "/brand-mark.png",
+          "status": 200
+        }
+      ],
+      "scriptLoaded": false,
+      "iframeLoaded": false,
+      "toolbarLoaded": "unverified",
+      "marketCandles": "unverified",
+      "providerUnavailable": "unverified",
+      "headers": {
+        "referrer-policy": "no-referrer",
+        "x-frame-options": "DENY"
+      },
+      "state": {
+        "phase": "unavailable",
+        "scriptLoaded": false,
+        "iframeLoaded": false,
+        "uiReady": false,
+        "candleReady": false,
+        "providerData": "unverified"
+      },
+      "iframeCount": 0
+    }
+  ]
+}

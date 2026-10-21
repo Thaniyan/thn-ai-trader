@@ -1,0 +1,33 @@
+{
+  "parent": "2cec0458c8659c6c7f2d72da1a77f02ee895ad9d",
+  "gates": {
+    "build": 0,
+    "lint": 0,
+    "unit": 0,
+    "security": 0,
+    "system": 0,
+    "workflow": 0,
+    "dependency": 0,
+    "source": 0
+  },
+  "fullBrowserSuitesPassedOverall": 15,
+  "initialFullRunPassed": 14,
+  "initialFullRunFailure": "trading_remediation: request-count assumption before support for shared in-flight asset fetch",
+  "correctedTargetedRerunExitCode": 0,
+  "unitTestsPassed": 155,
+  "securityTestsPassed": 21,
+  "systemAssertionsPassed": 10,
+  "workstationLayouts": 288,
+  "workstationAccessibilityScans": 72,
+  "workstationZoomCases": 64,
+  "terminalLayouts": 24,
+  "terminalAccessibilityScans": 24,
+  "realCandles": "UNVERIFIED",
+  "verifiedRootCause": "NOT ESTABLISHED; actual local external-script failure is managed proxy denial",
+  "externalExperiments": [
+    "minimal official",
+    "isolated legacy",
+    "updated candidate"
+  ],
+  "productionChanged": false
+}

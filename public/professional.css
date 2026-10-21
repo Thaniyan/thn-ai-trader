@@ -38,3 +38,5 @@ input,select,textarea{border-radius:5px;min-width:0}button{border-radius:5px!imp
 @media(max-width:600px){.pro-context-bar{gap:8px}.pro-context-bar label{min-width:110px}.pro-workflow-actions>*{flex:1 1 42%;white-space:normal}.pro-terminal .tv-chart{height:520px}.pro-terminal-head h1{font-size:20px}}
 
 .pro-terminal-evidence{margin-top:12px;padding:12px;border:1px solid var(--pro-line);border-radius:6px}.pro-terminal-evidence p{line-height:1.7;overflow-wrap:anywhere}
+
+#tvChart .tradingview-widget-copyright{height:32px;line-height:32px;font-size:11px;color:var(--muted)}#tvChart .tradingview-widget-copyright a{color:var(--accent)}

@@ -1,18 +1,18 @@
 """Owned terminal lifecycle/recovery tests. Protocol frames never establish real TV candles."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright
+from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY,SCRIPT_ONLY
 out=pathlib.Path(os.environ.get('REMEDIATION_OUTPUT','work/trading-remediation'));out.mkdir(parents=True,exist_ok=True)
 result={'network':'offline protocol fixtures; actual TradingView candles NOT verified','checks':[],'layouts':[],'accessibility':[],'errors':[]}
-shim="""window.__widgets=[];window.TradingView={widget:function(c){__widgets.push(c);const f=document.createElement('iframe');f.srcdoc='<p>Protocol toolbar only. No chart data.</p>';document.getElementById(c.container_id).append(f);}}"""
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000});page.on('pageerror',lambda e:result['errors'].append(str(e)))
- page.route('https://s3.tradingview.com/**',lambda r:r.abort())
+ page.route(EMBED_URL,lambda r:r.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY))
  page.goto(os.environ['TEST_URL']);page.wait_for_function('window.THNProfessional&&THNResearch.series()&&THNDecision.brief()')
  def go(v):
   button=page.locator('.nav-stack [data-view="'+v+'"]');button.focus();button.press('Enter');page.wait_for_timeout(100)
- page.evaluate(shim);go('markets');page.locator('#r66Search').fill('GBPUSD');page.locator('[data-pro-tv="GBPUSD"]').click();page.wait_for_function('THNTradingViewStatus().iframeLoaded')
+ go('markets');page.locator('#r66Search').fill('GBPUSD');page.locator('[data-pro-tv="GBPUSD"]').click();page.wait_for_function('THNTradingViewStatus().iframeLoaded&&THNTradingViewStatus().scriptLoaded')
  assert page.evaluate('__widgets.length')==1 and page.evaluate('__widgets[0].symbol')=='FX:GBPUSD'
- assert page.evaluate('THNTradingViewStatus()')=={'phase':'frame','iframeLoaded':True,'uiReady':False,'candleReady':False}
+ assert page.evaluate('THNTradingViewStatus()')=={'phase':'frame','scriptLoaded':True,'iframeLoaded':True,'uiReady':False,'candleReady':False,'providerData':'unverified'}
  page.wait_for_timeout(18050)
  assert page.evaluate('THNTradingViewStatus().phase')=='unverified'
  page.evaluate('window.dispatchEvent(new MessageEvent("message",{data:{event:"onChartReady",ready:true}}))');assert not page.evaluate('THNTradingViewStatus().candleReady')
@@ -22,28 +22,62 @@ with sync_playwright() as p:
  assert page.evaluate('__widgets.length')==1
  for symbol,tv in [('GBPUSD','FX:GBPUSD'),('XAUUSD','OANDA:XAUUSD'),('BTCUSDT','BINANCE:BTCUSDT'),('EURUSD','FX:EURUSD')]:
   for interval,expected in [('15m','15'),('1d','D'),('1h','60')]:
-   page.locator('#qSymbol').fill(symbol);page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option(interval);page.wait_for_timeout(100)
+   page.locator('#qSymbol').fill(symbol);page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option(interval);page.wait_for_function('(v)=>window.__widgets?.at(-1).symbol===v[0]&&__widgets.at(-1).interval===v[1]',arg=[tv,expected])
    c=page.evaluate('__widgets.at(-1)');assert c['symbol']==tv and c['interval']==expected and c['studies']==[] and not c['details'] and not c['hotlist'] and not c['calendar']
    assert page.locator('#proTVExternal').get_attribute('href').startswith('https://www.tradingview.com/chart/?symbol=')
  ids=page.evaluate('__widgets.map(c=>c.container_id)');assert len(set(ids))==len(ids)
  old=page.evaluate('__widgets.length');page.evaluate('THNContext.set({datasetId:"metadata-only"},"test")');page.wait_for_timeout(150);assert page.evaluate('__widgets.length')==old
- page.locator('#loadChartBtn').click();assert page.evaluate('__widgets.length')==old+1
+ page.locator('#loadChartBtn').click();page.wait_for_function('(n)=>__widgets.length===n+1',arg=old)
  result['checks'].append('12 symbol/timeframe combinations, repeated navigation, metadata-only updates and explicit retry; shim configuration only')
  # Unknown context never leaves an old instrument visible or an old external link.
  page.evaluate('THNContext.set({symbol:"UNKNOWN"},"test")');assert page.locator('#tvChart iframe').count()==0;assert page.locator('#proTVExternal').get_attribute('href')=='https://www.tradingview.com/chart/'
  page.evaluate('THNContext.set({symbol:"EURUSD"},"test")');page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
  page.wait_for_function('THNResearch.series()&&THNResearch.series().symbol==="EURUSD"')
- page.evaluate('()=>{delete window.TradingView;THNContext.set({interval:"15m"},"missing-library-test")}');page.locator('#proTradingViewMode').click();assert page.evaluate('THNTradingViewStatus().phase')=='unavailable'
- # Hold the real script request boundary, then deliver a protocol-only constructor.
+ # Fail a changed-context script request; no global constructor exists to shim.
+ def missing_library(route):route.abort()
+ page.route(EMBED_URL,missing_library);page.evaluate('THNContext.set({interval:"15m"},"missing-embed-test")');page.locator('#proTradingViewMode').click();page.wait_for_function('THNTradingViewStatus().phase==="unavailable"')
+ assert not page.evaluate('THNTradingViewStatus().scriptLoaded') and page.locator('#tvChart').is_hidden()
+ page.unroute(EMBED_URL,missing_library)
  pending=[]
  def delayed_library(route):pending.append(route)
- page.route('https://s3.tradingview.com/tv.js',delayed_library);page.locator('#loadChartBtn').click();page.wait_for_timeout(150)
+ page.route(EMBED_URL,delayed_library);old=page.evaluate('__widgets.length');page.locator('#loadChartBtn').click();page.wait_for_timeout(150)
  assert page.locator('#loadChartBtn').is_disabled() and len(pending)==1
  page.evaluate('document.getElementById("loadChartBtn").click()');assert len(pending)==1
- pending[0].fulfill(status=200,content_type='application/javascript',body=shim)
- page.wait_for_function('window.__widgets?.length===1&&!document.getElementById("loadChartBtn").disabled');assert page.evaluate('THNTradingViewStatus().candleReady')==False
- page.evaluate('()=>{window.TradingView.widget=function(){throw Error("protocol failure")}}');page.locator('#loadChartBtn').click();assert page.evaluate('THNTradingViewStatus().phase')=='unavailable';page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
- result['checks'].append('Missing script, delayed real-script boundary, duplicate-retry lock, constructor failure, unique generation containers, unsupported mapping and keyboard fallback')
+ assert not page.evaluate('THNTradingViewStatus().scriptLoaded')
+ pending[0].fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY)
+ page.wait_for_function('(n)=>__widgets.length===n+1&&THNTradingViewStatus().iframeLoaded',arg=old);page.unroute(EMBED_URL,delayed_library)
+ assert not page.evaluate('THNTradingViewStatus().candleReady')
+ # Script success without a frame must never establish toolbar or market data.
+ def script_only(route):route.fulfill(status=200,content_type='application/javascript',body=SCRIPT_ONLY)
+ page.route(EMBED_URL,script_only);page.locator('#loadChartBtn').click();page.wait_for_function('THNTradingViewStatus().scriptLoaded')
+ assert not page.evaluate('THNTradingViewStatus().iframeLoaded') and not page.evaluate('THNTradingViewStatus().uiReady')
+ page.wait_for_timeout(18050);assert page.evaluate('THNTradingViewStatus().phase')=='unverified'
+ page.unroute(EMBED_URL,script_only)
+ page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
+ result['checks'].append('Network failure, delayed official-embed boundary, retry lock, script-only versus frame-only readiness, generation containers and keyboard fallback')
+ # Browsers may coalesce two requests for this SAME public script URL.
+ # Cover both fetch behaviors without cache-busting undocumented provider URLs.
+ late=[];release=[False]
+ def late_library(route):
+  if release[0]:route.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY)
+  else:late.append(route)
+ page.route(EMBED_URL,late_library);page.locator('#proTradingViewMode').click();page.locator('#loadChartBtn').click();page.wait_for_timeout(200);assert len(late)==1
+ old_generation=page.locator('#tvChart .tradingview-widget-container').get_attribute('id')
+ page.evaluate('window.__oldEmbedScript=document.querySelector("#tvChart script")')
+ page.evaluate('THNContext.set({symbol:"GBPUSD"},"late-response-test")');page.wait_for_timeout(250)
+ generation=page.locator('#tvChart .tradingview-widget-container').get_attribute('id');assert generation!=old_generation
+ assert page.locator('#tvChart script').evaluate('s=>JSON.parse(s.textContent).symbol')=='FX:GBPUSD'
+ page.evaluate('window.__oldEmbedScript.dispatchEvent(new Event("load"))')
+ assert not page.evaluate('THNTradingViewStatus().scriptLoaded') and page.evaluate('THNTradingViewStatus().phase')=='loading'
+ release[0]=True
+ for request in reversed(late):request.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY)
+ page.wait_for_function('THNTradingViewStatus().scriptLoaded&&THNTradingViewStatus().iframeLoaded')
+ assert page.locator('#tvChart .tradingview-widget-container').get_attribute('id')==generation
+ assert page.locator('#tvChart iframe').count()==1
+ assert page.locator('#tvChart script').evaluate('s=>JSON.parse(s.textContent).symbol')=='FX:GBPUSD'
+ assert not page.evaluate('THNTradingViewStatus().candleReady')
+ page.unroute(EMBED_URL,late_library);page.evaluate('THNContext.set({symbol:"EURUSD",interval:"1h"},"restore-context-test")');page.wait_for_function('THNTradingViewStatus().iframeLoaded');page.locator('#proTVFallback').click();page.wait_for_function('THNResearch.series()?.symbol==="EURUSD"&&THNResearch.series().provenance.interval==="1h"&&THNDecision.brief()?.symbol==="EURUSD"&&THNDecision.brief().interval==="1h"')
+ result['checks'].append('Late old-generation events and shared/reverse-order asset completion cannot restore a stale instrument or readiness')
  # Selected-context original analysis opens existing evidence, never a second analysis engine.
  with page.expect_response(lambda r:r.url.endswith('/api/analyze') and r.request.method=='POST') as analysis_response:
   page.locator('#proAnalyzeContext').click()
@@ -56,7 +90,6 @@ with sync_playwright() as p:
  page.locator('#proEvidenceLink').click();page.wait_for_function('THNDecision.brief()&&THNDecision.brief().symbol==="EURUSD"');page.evaluate('THNLibrary.save(THNDecision.snapshot())');go('trading');page.locator('#proLibraryLink').click();assert page.locator('#decisionReports').is_visible();assert page.evaluate('THNLibrary.records().length')>0
  result['checks'].append('Risk API validated plan -> THN entry/stop/target overlay; evidence -> complete saved Library research')
  page.add_script_tag(content=pathlib.Path(os.environ['AXE_PATH']).read_text())
- page.evaluate(shim)
  for width,lang,theme in itertools.product([1440,768,390],['en','ar'],['dark','light']):
   page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language="'+lang+'"]').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme);go('trading')
   for mode in ['research','manual']:
