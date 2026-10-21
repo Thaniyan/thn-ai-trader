@@ -1,0 +1,968 @@
+{
+  "schema": "THN-CORE-AUDIT-1",
+  "reportDate": "2026-10-21",
+  "evidenceDates": [
+    "2026-10-20",
+    "2026-10-21"
+  ],
+  "repository": "Thaniyan/thn-ai-trader",
+  "auditedSHA": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+  "remoteMainVerifiedOnResume": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+  "codeModified": false,
+  "publicationsOrCloudMutations": false,
+  "establishedGates": [
+    {
+      "gate": "build",
+      "exitCode": 0,
+      "seconds": 1.37,
+      "log": "build.log"
+    },
+    {
+      "gate": "lint",
+      "exitCode": 0,
+      "seconds": 1.32,
+      "log": "lint.log"
+    },
+    {
+      "gate": "package",
+      "exitCode": 0,
+      "seconds": 0.42,
+      "log": "package.log"
+    },
+    {
+      "gate": "source",
+      "exitCode": 0,
+      "seconds": 0.77,
+      "log": "source.log"
+    },
+    {
+      "gate": "workflow",
+      "exitCode": 0,
+      "seconds": 1.32,
+      "log": "workflow.log"
+    },
+    {
+      "gate": "unit",
+      "exitCode": 0,
+      "seconds": 4.52,
+      "log": "unit.log"
+    },
+    {
+      "gate": "system",
+      "exitCode": 0,
+      "seconds": 0.57,
+      "log": "system.log"
+    },
+    {
+      "gate": "security",
+      "exitCode": 0,
+      "seconds": 1.78,
+      "log": "security.log"
+    },
+    {
+      "gate": "dependencies",
+      "exitCode": 1,
+      "seconds": 0.07,
+      "log": "dependencies.log"
+    },
+    {
+      "gate": "browser",
+      "exitCode": 0,
+      "seconds": 402.53,
+      "log": "browser.log"
+    }
+  ],
+  "dependencyAuditResolution": {
+    "initialFailure": "Installed Bun missing from PATH; audit failed closed",
+    "rerunLog": "dependencies-supported-tool.log",
+    "result": "success",
+    "advisories": 0
+  },
+  "testCounts": {
+    "unitIntegrationNumerical": 136,
+    "security": 21,
+    "legacySystem": 10,
+    "browserSuites": 12,
+    "shellGeometry": 202,
+    "unitSecurityOverlap": true
+  },
+  "package": {
+    "manifestSHA256": "adf8138f39546517620c4f7a9686ddd59f279158d3be22f3b5a58c278a3dae25",
+    "runtimeSourceFiles": 50,
+    "inventoriedFilesExcludingArtifactManifest": 54
+  },
+  "supplementaryBrowser": {
+    "fixture": true,
+    "production": false,
+    "caseCount": 108,
+    "widths": [
+      1440,
+      820,
+      390
+    ],
+    "languages": [
+      "en",
+      "ar"
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "casesWithPageOverflow": 0,
+    "pageErrors": [],
+    "casesWithAxeViolations": 10,
+    "ordinaryNavigationOnly": true,
+    "storageDenied": {
+      "errors": [
+        "audit storage unavailable",
+        "Cannot access 'liveQuotesCache' before initialization"
+      ],
+      "state": {
+        "contextReady": true,
+        "researchReady": true,
+        "language": "en"
+      }
+    }
+  },
+  "settledBrokerAccessibility": {
+    "waitMs": 1000,
+    "actualThemeControl": true,
+    "caseCount": 12,
+    "casesWithViolations": 10,
+    "cases": [
+      {
+        "width": 1440,
+        "language": "en",
+        "theme": "dark",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "language": "en",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#openNewAccountFromDeskBtn"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #05251e, background color: #087c6c, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"capitalDealsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"capitalDealsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > b"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #0f172a, background color: #6d727a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > .muted-text.tiny"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.37 (foreground color: #4b5e76, background color: #6d727a, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"activePositionsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"activePositionsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#openPositionsBadge"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.51 (foreground color: #4b5e76, background color: #757980, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(1)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(3)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(4)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(5)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "span:nth-child(6)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "span:nth-child(7)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "span:nth-child(8)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "span:nth-child(9)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerPositionsList > .positions-empty-msg"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "language": "ar",
+        "theme": "dark",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "language": "ar",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 820,
+        "language": "en",
+        "theme": "dark",
+        "violations": [
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 820,
+        "language": "en",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#openNewAccountFromDeskBtn"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #05251e, background color: #087c6c, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"capitalDealsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"capitalDealsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > b"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #0f172a, background color: #6d727a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > .muted-text.tiny"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.37 (foreground color: #4b5e76, background color: #6d727a, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"activePositionsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"activePositionsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#openPositionsBadge"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.51 (foreground color: #4b5e76, background color: #757980, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(1)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(3)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(4)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(5)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerPositionsList > .positions-empty-msg"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 820,
+        "language": "ar",
+        "theme": "dark",
+        "violations": [
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 820,
+        "language": "ar",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "language": "en",
+        "theme": "dark",
+        "violations": [
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "language": "en",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#openNewAccountFromDeskBtn"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #05251e, background color: #087c6c, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"capitalDealsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"capitalDealsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > b"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #0f172a, background color: #6d727a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".empty-deals-box > .muted-text.tiny"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.37 (foreground color: #4b5e76, background color: #6d727a, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "b[data-i18n=\"activePositionsTitle\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.63 (foreground color: #0f172a, background color: #6c7178, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "small[data-i18n=\"activePositionsSub\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.35 (foreground color: #4b5e76, background color: #6c7178, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#openPositionsBadge"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.51 (foreground color: #4b5e76, background color: #757980, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(1)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(2)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  ".positions-table-head > span:nth-child(3)"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "target": [
+                  "#brokerPositionsList > .positions-empty-msg"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.13 (foreground color: #4b5e76, background color: #51555a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "language": "ar",
+        "theme": "dark",
+        "violations": [
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "language": "ar",
+        "theme": "light",
+        "violations": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "#brokerAiAdvisory > span"
+                ],
+                "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.15 (foreground color: #087c6c, background color: #677c7e, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ]
+          },
+          {
+            "id": "scrollable-region-focusable",
+            "nodes": [
+              {
+                "target": [
+                  ".positions-table-shell"
+                ],
+                "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "legacyJournal": {
+    "testDataSynthetic": true,
+    "savedIdeaResult": {
+      "symbol": "EURUSD",
+      "decision": "BUY",
+      "entry": 1.1,
+      "status": "WIN",
+      "pnl": 200,
+      "pnlR": 2,
+      "exitPrice": 1.12
+    },
+    "oneColumnCSV": [
+      {
+        "id": "csv-1792563818327-1",
+        "date": "2026-10-20T06:23:38.326Z",
+        "symbol": "EURUSD",
+        "decision": "BUY",
+        "confidence": 80,
+        "grade": "B",
+        "entry": 1,
+        "stopLoss": 0,
+        "target1": 1,
+        "risk": 100,
+        "assetClass": "Forex",
+        "status": "BE",
+        "pnl": 0,
+        "pnlR": 0,
+        "exitPrice": 1,
+        "notes": ""
+      }
+    ]
+  },
+  "apiProbes": {
+    "fixture": true,
+    "production": false,
+    "results": [
+      {
+        "label": "hosted health",
+        "status": 200,
+        "type": "application/json; charset=utf-8",
+        "version": "7.1.0",
+        "capabilities": {
+          "paperExecution": false,
+          "liveTrading": false,
+          "durableHostedAccounts": false,
+          "analysis": "deterministic",
+          "independentTimeframes": [
+            "15m",
+            "1h",
+            "1d"
+          ],
+          "historicalBacktesting": true,
+          "chronologicalValidation": true,
+          "browserSnapshotReplay": true,
+          "confidence": "uncalibrated confluence score"
+        }
+      },
+      {
+        "label": "hosted provider",
+        "status": 200,
+        "type": "application/json; charset=utf-8",
+        "available": false,
+        "hostedDisabled": true
+      },
+      {
+        "label": "hosted generation denied",
+        "status": 503,
+        "type": "application/json; charset=utf-8",
+        "code": "LOCAL_GENERATION_DISABLED"
+      },
+      {
+        "label": "hosted paper denied",
+        "status": 503,
+        "type": "application/json; charset=utf-8",
+        "code": "LOCAL_PAPER_ONLY"
+      },
+      {
+        "label": "hosted accounts unavailable",
+        "status": 200,
+        "type": "application/json; charset=utf-8",
+        "code": "LOCAL_PAPER_ONLY",
+        "available": false
+      },
+      {
+        "label": "missing asset returns HTML",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "label": "unimplemented auth returns HTML",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "label": "invalid leverage accepted",
+        "status": 200,
+        "type": "application/json; charset=utf-8",
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 1100,
+          "requiredMargin": 1100,
+          "slDistance": 0.01,
+          "slDollars": 10,
+          "tpDistance": 0.02,
+          "tpDollars": 20,
+          "rrRatio": 2
+        }
+      },
+      {
+        "label": "cross-origin request rejected",
+        "status": 403,
+        "type": "application/json; charset=utf-8",
+        "code": "ORIGIN_REJECTED"
+      },
+      {
+        "label": "JSON null input",
+        "status": 500,
+        "type": "application/json; charset=utf-8",
+        "code": "REQUEST_FAILED"
+      },
+      {
+        "label": "catalog",
+        "status": 200,
+        "type": "application/json; charset=utf-8"
+      },
+      {
+        "label": "paper intent first",
+        "status": 200,
+        "type": "application/json; charset=utf-8"
+      },
+      {
+        "label": "paper same key replay",
+        "status": 200,
+        "type": "application/json; charset=utf-8"
+      },
+      {
+        "label": "paper new-key retry duplicates intent",
+        "status": 200,
+        "type": "application/json; charset=utf-8"
+      },
+      {
+        "label": "duplicate-order comparison",
+        "positions": 2,
+        "sameKeyReturnsOriginalTicket": true,
+        "newKeyCreatesDistinctTicket": true
+      }
+    ]
+  },
+  "provisionalBarProbe": {
+    "syntheticProvider": true,
+    "production": false,
+    "provisionalClose": 1.2,
+    "legacyAnalysisPrice": 1.2,
+    "legacyLastCandle": {
+      "time": 1792563906000,
+      "open": 1.2,
+      "high": 1.21,
+      "low": 1.19,
+      "close": 1.2,
+      "volume": 100
+    },
+    "legacyAnalysisEntry": 1.196561,
+    "closedResearchClose": 1.0859034349929308,
+    "closedResearchBars": 600,
+    "closedBarsOnly": true
+  },
+  "realProviderLocalProbes": [
+    {
+      "label": "production-health",
+      "url": "https://thn-ai-trader.vercel.app/api/health",
+      "realProvider": true,
+      "production": true,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "seconds": 0.04
+    },
+    {
+      "label": "EURUSD",
+      "url": "http://127.0.0.1:34199/api/research/series?symbol=EURUSD&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "EURUSD=X",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1781899200000,
+        "lastTime": 1792508400000,
+        "providerTime": 1792512985000,
+        "status": "recent",
+        "discardedRows": 97,
+        "gapCount": 18,
+        "hash": "06ced146fd4a299b0b468f735cb9ea5e864e796ac9e40d6d74f271e2b00fe78a",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": false
+      },
+      "candles": 2000,
+      "seconds": 0.9
+    },
+    {
+      "label": "XAUUSD",
+      "url": "http://127.0.0.1:34199/api/research/series?symbol=XAUUSD&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "GC=F",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1781258400000,
+        "lastTime": 1792508400000,
+        "providerTime": 1792512386000,
+        "status": "recent",
+        "discardedRows": 812,
+        "gapCount": 85,
+        "hash": "9e96983c9208dabd3e65cec04276bc19717959a7097390678e991f223ed1c397",
+        "closedBarsOnly": true,
+        "observation": "Futures proxy, not executable spot",
+        "volumeAvailable": true
+      },
+      "candles": 2000,
+      "seconds": 0.99
+    },
+    {
+      "label": "BTCUSDT",
+      "url": "http://127.0.0.1:34199/api/research/series?symbol=BTCUSDT&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "BTC-USD",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1785312000000,
+        "lastTime": 1792508400000,
+        "providerTime": 1792512987000,
+        "status": "recent",
+        "discardedRows": 1,
+        "gapCount": 0,
+        "hash": "5950a08b4c8a31781d01767de78ddc44926d32341d2f34bfd714b10b37f7ffe0",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": true
+      },
+      "candles": 2000,
+      "seconds": 1.73
+    }
+  ],
+  "localPerformance": {
+    "navigation": [
+      {
+        "domContentLoadedMs": 1788,
+        "startupLoadMs": 1837.5
+      }
+    ],
+    "largestAsset": {
+      "path": "/logo.svg",
+      "requests": 110,
+      "decodedBytes": 442998380,
+      "fileBytes": 4027258
+    },
+    "allSectionProbeResourceBytes": 443999161,
+    "notCoreWebVitalsOrProduction": true
+  },
+  "productionMetadata": {
+    "verifiedDate": "2026-10-20",
+    "deploymentId": "dpl_FnAvZx4CKVFYtY9dze8Z9Gry9BEL",
+    "state": "READY",
+    "projectId": "prj_IFLYEB85CRNBjDEGO69xcW4O55Wd",
+    "sourceSHA": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+    "alias": "thn-ai-trader.vercel.app",
+    "functionalVerification": "blocked by managed proxy; HTTP CONNECT 403; no live feature/POST pass claimed"
+  },
+  "realModelRun": false,
+  "brokerConnected": false,
+  "paidServicesActivated": false,
+  "limitations": [
+    "No live Production functional/browser/POST verification",
+    "No real-model quality/performance validation",
+    "No real brokerage connectivity or order test",
+    "No sustained load, independent penetration test or physical assistive/mobile-device certification",
+    "Branch-rule enforcement and integration inventory unverified",
+    "Some expanded legacy/modal/error states inspected by source but not exhaustively tested"
+  ],
+  "rawEvidenceDirectory": "/workspace/work/core-audit-20261020",
+  "rawEvidenceHashes": {
+    "build.log": "fd803a4533435e5405e35a54176c1bce0b36868bae1f01f1d2668d5e1257967e",
+    "browser-audit.log": "87810f152503c0e850c24fa36afcc47118a8ab7a953463c61d7659e1ad0f1063",
+    "provisional-fixture.mjs": "d52c81213327d7d909bb037414f719a3f67ee90fd90aa29cc7b13e3084fd4281",
+    "focused-browser.py": "19a74bfc7f7d37c28b6cbb41c945190f6aeaf646ab54ae1e38e5b1dead0a216f",
+    "provider-probes.py": "55f0f708eaad7303820e7b9aae50ca74b290584ecd6520544debd70b08adfe64",
+    "dependencies.log": "53b618ba72148ba3864210a4fb2dca875591045269e2aac95592caa03d95064e",
+    "focused-browser.log": "019fb3e35e4196f90be3260f44fd39a8b88a7728e9cd221d18d32c07338c4bc9",
+    "unit.log": "d59c36d4abdb50225bc157f3fc64cdf4136a6413d674ec71321bfb8280304cb7",
+    "gates.json": "8dcdfdc66e1f2e9a6f1b067438cf5caae906044f8f47b9cfd794ce29c4a33207",
+    "real-provider-probes.log": "5b32d43bfdefa423479b0906910f50bc3666f7370dd714a0c750546ca5570edd",
+    "provisional-probe.json": "950baa94dcc35910fe3802a5610c3b861160f1ca630170811f164deee5bbcb36",
+    "security.log": "58275f99627d9ec3da28be80df5f62ea76a4728f527eff71e51e358dfaff0b52",
+    "browser.log": "42ebd9b48acb54b3bdad26079fda6971a0fb0563706095d6e967df474e2d2916",
+    "run-gates.py": "8b6559bbb257b54256b0f0263374d20fa51f4d6b1c2e48a1867a528c47bd9cfe",
+    "browser-audit.json": "84f9e88ec3c56449b9bd0f137835d8f0e0312a7932c722d58e4aaa4a4316370e",
+    "system.log": "4c6fb0d2a42984d97eafd1f6a0f035a78677633a087f50edc34b852efd3e7a97",
+    "api-probes.mjs": "1b5decf131af640c334cd1c89d1c67773ab7a905f0685b8d162f9552660d74f4",
+    "package.log": "5db8f42d611db47e6f682b8bfeffefe9f82b03a3ab14b77db683927f6e2bffce",
+    "real-launch.mjs": "22c05e5cfa1188b3a6471faa1f63bac017713ae60994c5a2a3a3ac4983e4a903",
+    "real-provider-probes.json": "7cfdb862156b69096c22a232d03004a32d15a56ce858b7ab6bf16feccf7c189d",
+    "focused-browser.json": "58a9504f644f212b3bc7de33c7b8578f522325a64ba74139e4eb403f1a003e7c",
+    "dependencies-supported-tool.log": "3d4d6438c86c09cdc323c757ab634aae5fe05bf748eb8786dfb3ae9debb2db45",
+    "provisional-probe.mjs": "7882d7148aa3367853b37826e80ca3fa6d512c959c826b4d54795d920254934d",
+    "source.log": "c6d3e1f85a8fd64aa0a3671f3409fce54d57f0db0a679523f0802c5398a69698",
+    "lint.log": "b2ba5fffc91a449188d43269ff24c55744ed32b4844a8b0218d6f00f471c9120",
+    "browser-audit.py": "74f4991cc652ca6144b5dcf97bb94b73916f53cddb3f47deed12e2a88e80e2bd",
+    "workflow.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "api-probes.json": "eacbfb1932157ab425da90f68473efc340d6e80f749d1d0ea4d00f5ee6f74203"
+  }
+}

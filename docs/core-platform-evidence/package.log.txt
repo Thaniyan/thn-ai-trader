@@ -1,0 +1,5 @@
+
+> thn-ai-trader@7.1.0 package:production
+> node scripts/release/package-production.mjs
+
+{"output":"/workspace/work/thn-v71-resumed/.vercel/output","runtimeFiles":50,"artifactFiles":54,"manifestSHA256":"adf8138f39546517620c4f7a9686ddd59f279158d3be22f3b5a58c278a3dae25"}

@@ -1,0 +1,1 @@
+Dependency audit failed or returned unsupported data; investigate registry/tool access.
