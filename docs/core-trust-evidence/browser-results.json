@@ -1,0 +1,84 @@
+{
+  "checks": [
+    "Ten ideas produce no WIN, exit or realized profit; legacy bytes interpreted without promotion",
+    "Manual outcome requires explicit fields, stays unverified, excluded by default; no fake capital/PF",
+    "File preview rejects incomplete CSV atomically; append/JSON export preserve old records and no verification authority",
+    "Existing research Library survives reload unchanged"
+  ],
+  "a11y": [
+    {
+      "language": "en",
+      "theme": "dark",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "language": "en",
+      "theme": "dark",
+      "width": 820,
+      "violations": []
+    },
+    {
+      "language": "en",
+      "theme": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "language": "en",
+      "theme": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "language": "en",
+      "theme": "light",
+      "width": 820,
+      "violations": []
+    },
+    {
+      "language": "en",
+      "theme": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "dark",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "dark",
+      "width": 820,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "light",
+      "width": 820,
+      "violations": []
+    },
+    {
+      "language": "ar",
+      "theme": "light",
+      "width": 390,
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "fixtureOnly": true
+}

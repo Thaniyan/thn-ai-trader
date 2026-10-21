@@ -1,3 +1,4 @@
+import {closedMarket} from './server/market-evidence.js';
 import {createConversations} from './server/intelligence-conversation.js';
 import {localPilotRequest,authenticated,inspectLocalModel} from './server/intelligence-local.js';
 import {cleanCommittee,reflectCommittee} from './public/intelligence-memory.js';
@@ -211,6 +212,8 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
         providerSymbol: symbolInfo.yahoo,
         currency: result?.meta?.currency || "USD",
         exchangeName: result?.meta?.exchangeName || "Primary Exchange",
+        // Preserve the local-paper adapter contract; analytical use separately rejects absent provider time.
+        providerTimePresent: Number.isFinite(result?.meta?.regularMarketTime) && result.meta.regularMarketTime > 0,
         marketTime: result?.meta?.regularMarketTime ? result.meta.regularMarketTime * 1000 : Date.now(),
         interval: cfg.interval,
         range: cfg.range,
@@ -257,6 +260,13 @@ async function getMarketData(rawSymbol, timeframe = "intraday") {
   if (marketCache.size >= 100) marketCache.delete(marketCache.keys().next().value);
   marketCache.set(key, record);
   try { return await promise; } catch (error) { if (marketCache.get(key) === record) record.at = Date.now() - 25000; throw error; }
+}
+
+// All analytical aliases use the same independent interval/cache and closed data boundary.
+async function getResearchMarketData(symbol,timeframe='1h',asOf=Date.now()) {
+  const interval=TIMEFRAME_CONFIG[timeframe]?.interval;
+  if(!interval){const e=new Error('Invalid analytical interval');e.status=400;e.code='INVALID_MARKET_REQUEST';throw e;}
+  return closedMarket(await getMarketData(symbol,interval),asOf);
 }
 
 function values(candles, key) {
@@ -1168,6 +1178,7 @@ function buildAnalysis(market, request = {}) {
     exchangeName: market.exchangeName,
     currency: market.currency,
     marketTime: market.marketTime,
+    evidence: market.evidence || null,
     decision,
     consensusLabel,
     consensusScore: round(consensusScore, 2),
@@ -1492,7 +1503,7 @@ const server = http.createServer(async (req, res) => {
       const input=await readBody(req);if(JSON.stringify(input).length>32000)return sendJson(res,413,{ok:false,code:'PAYLOAD_TOO_LARGE'});
       const symbol=input.original?.snapshot?.symbol,interval=input.original?.snapshot?.interval;
       if(!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_REFLECTION_CONTEXT'});
-      const series=prepareSeries(await getMarketData(symbol,interval),interval,Date.now());
+      const series=prepareSeries(await getResearchMarketData(symbol,interval),interval,Date.now());
       return sendJson(res,200,{ok:true,reflection:reflectCommittee(input.original,{...series,symbol},{horizonHours:Number(input.horizonHours)})});
     }
     if(req.method==='POST'&&url.pathname==='/api/intelligence/provider/check'){
@@ -1525,7 +1536,7 @@ const server = http.createServer(async (req, res) => {
           if(['record','snapshot','history','messages','tools','endpoint','model'].some(k=>Object.hasOwn(input,k)))return sendJson(res,400,{ok:false,code:'UNTRUSTED_GENERATIVE_INPUT'});
           if(input.sessionId){const result=await intelligenceConversations.respond(input.sessionId,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...result});return;}
         }
-        const asOf=Date.now(),[mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+        const asOf=Date.now(),[mtf,series]=await Promise.all([multiTimeframe(symbol,getResearchMarketData,asOf),getResearchMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
         let evaluation=null;
         if(input.evaluationParameters&&series&&input.expectedHash===series.provenance.hash){try{evaluation=evaluateResearch(series,symbol,input.evaluationParameters,{trainFraction:input.trainFraction??0.7,minimumTrades:input.minimumTrades??5});}catch{}}
         let riskPlan=null;if(input.hypotheticalPlan&&series&&input.expectedHash===series.provenance.hash){try{riskPlan=createPlan(input.hypotheticalPlan);}catch{}}
@@ -1551,7 +1562,7 @@ const server = http.createServer(async (req, res) => {
       const symbol=url.searchParams.get("symbol")||"EURUSD", interval=url.searchParams.get("interval")||"1h";
       if(!Object.hasOwn(INTERVAL_MS,interval)||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))) return sendJson(res,400,{ok:false,code:"INVALID_MARKET_REQUEST"});
       const asOf=Date.now();
-      const [mtf,series]=await Promise.all([multiTimeframe(symbol,getMarketData,asOf),getMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+      const [mtf,series]=await Promise.all([multiTimeframe(symbol,getResearchMarketData,asOf),getResearchMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
       const brief=buildBrief(series,mtf,symbol,interval);
       return sendJson(res,mtf.available?200:503,{ok:mtf.available,...brief});
     }
@@ -1575,13 +1586,13 @@ const server = http.createServer(async (req, res) => {
       const symbol = url.searchParams.get("symbol") || "EURUSD";
       const interval = url.searchParams.get("interval") || "1h";
       if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
-      const market = await getMarketData(symbol, interval);
+      const market = await getResearchMarketData(symbol, interval);
       return sendJson(res, 200, { ok: true, symbol: market.symbolInfo.display, ...prepareSeries(market, interval) });
     }
     if (req.method === "GET" && url.pathname === "/api/research/mtf") {
       const symbol = url.searchParams.get("symbol") || "EURUSD";
       if (!/^[A-Za-z0-9^=:.\-]{1,32}$/.test(symbol)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
-      const result = await multiTimeframe(symbol, getMarketData);
+      const result = await multiTimeframe(symbol, getResearchMarketData);
       return sendJson(res, result.available ? 200 : 503, { ok: result.available, ...result });
     }
     if (req.method === "POST" && url.pathname === "/api/research/evaluate") {
@@ -1594,7 +1605,7 @@ const server = http.createServer(async (req, res) => {
       numericParameter(validation, "minimumTrades", 20, 5, 100, true);
       const symbol = body.symbol || "EURUSD", interval = body.interval || "1h";
       if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
-      const market = await getMarketData(symbol, interval);
+      const market = await getResearchMarketData(symbol, interval);
       const series = prepareSeries(market, interval);
       return sendJson(res, 200, { ok: true, ...evaluateResearch(series, market.symbolInfo.display, body.parameters || {}, body.validation || {}) });
     }
@@ -1604,7 +1615,7 @@ const server = http.createServer(async (req, res) => {
       if (!body || typeof body !== "object" || Array.isArray(body)) return sendJson(res, 400, { ok: false, code: "INVALID_RESEARCH_PARAMETERS" });
       const symbol = body.symbol || "EURUSD", interval = body.interval || "1h";
       if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
-      const market = await getMarketData(symbol, interval);
+      const market = await getResearchMarketData(symbol, interval);
       const series = prepareSeries(market, interval);
       return sendJson(res, 200, { ok: true, ...runBacktest(series, market.symbolInfo.display, body.parameters || {}) });
     }
@@ -1612,9 +1623,10 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname.startsWith("/api/market/") && url.pathname !== "/api/market/quotes") {
       const symbol = decodeURIComponent(url.pathname.replace("/api/market/", ""));
       const timeframe = url.searchParams.get("timeframe") || "intraday";
-      const market = await getMarketData(symbol, timeframe);
+      const market = await getResearchMarketData(symbol, timeframe);
       return sendJson(res, 200, {
         symbolInfo: market.symbolInfo,
+        evidence: market.evidence,
         source: market.source,
         providerSymbol: market.providerSymbol,
         observationType: ["XAUUSD", "XAGUSD", "USOIL", "BRENT"].includes(market.symbolInfo.display) ? "Futures proxy, not executable spot" : "Provider candle observation",
@@ -1630,12 +1642,13 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    if (req.method === "GET" && (url.pathname === "/api/quotes" || url.pathname === "/api/market/quotes")) {
+    if (req.method === "GET" && (url.pathname === "/api/quotes" || url.pathname === "/api/market/quotes" || url.pathname === "/api/broker/paper-quotes")) {
+      const paperMarks = url.pathname === "/api/broker/paper-quotes"; // existing financial gate: opt-in local only
       const symbolsToFetch = ["XAUUSD", "EURUSD", "GBPUSD", "USDJPY", "BTCUSDT", "US30"];
       const quotes = {};
       await Promise.allSettled(symbolsToFetch.map(async sym => {
         try {
-          const m = await getMarketData(sym, "intraday");
+          const m = await (paperMarks ? getMarketData : getResearchMarketData)(sym, "intraday");
           const valid = (m.candles || []).filter(c => c && Number(c.close) > 0);
           const lastCandle = valid.at(-1);
           if (lastCandle) {
@@ -1661,7 +1674,9 @@ const server = http.createServer(async (req, res) => {
               digits: spec.digits,
               contractSize: spec.contractSize,
               source: m.source,
-              timestamp: lastCandle.time || Date.now()
+              evidence: m.evidence,
+              availableAt: m.evidence?.availableAt,
+              timestamp: paperMarks ? (lastCandle.time || Date.now()) : lastCandle.time
             };
           }
         } catch (err) {
@@ -1673,10 +1688,10 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === "POST" && url.pathname === "/api/analyze") {
       const body = await readBody(req);
-      const market = await getMarketData(body.symbol || "EURUSD", body.timeframe || "intraday");
+      const market = await getResearchMarketData(body.symbol || "EURUSD", body.timeframe || "intraday");
       const analysis = buildAnalysis(market, body);
       analysis.mtfa = { available: false, reason: "Independent multi-timeframe data is not fetched by this endpoint." };
-      analysis.methodology = { type: "deterministic", score: "Heuristic confluence /100; not a probability of profit", generatedAt: new Date().toISOString() };
+      analysis.methodology = { type: "deterministic", score: "Heuristic confluence /100; not a probability of profit", closedBarsOnly:true, generatedAt: new Date().toISOString() };
       const enhanced = await enhanceWithOpenAI(analysis);
       return sendJson(res, 200, enhanced);
     }
@@ -1693,7 +1708,7 @@ const server = http.createServer(async (req, res) => {
       const results = [];
       for (const symbol of uniqueSymbols) {
         try {
-          const market = await getMarketData(symbol, body.timeframe || "intraday");
+          const market = await getResearchMarketData(symbol, body.timeframe || "intraday");
           const analysis = buildAnalysis(market, body);
           const automation = buildAutomationSignal(analysis, minConfidence);
           results.push({

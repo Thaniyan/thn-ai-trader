@@ -1,0 +1,255 @@
+{
+  "schema": "THN-TRUST-VALIDATION-1",
+  "baseline": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+  "branch": "feature/core-research-trust",
+  "auditCheckpoint": "2c91a42",
+  "scope": "local Core Research Trust only",
+  "fullGates": [
+    {
+      "gate": "build",
+      "exitCode": 0,
+      "seconds": 1.23,
+      "log": "build.log"
+    },
+    {
+      "gate": "lint",
+      "exitCode": 0,
+      "seconds": 1.38,
+      "log": "lint.log"
+    },
+    {
+      "gate": "package",
+      "exitCode": 0,
+      "seconds": 0.42,
+      "log": "package.log"
+    },
+    {
+      "gate": "source",
+      "exitCode": 0,
+      "seconds": 0.98,
+      "log": "source.log"
+    },
+    {
+      "gate": "workflow",
+      "exitCode": 0,
+      "seconds": 1.12,
+      "log": "workflow.log"
+    },
+    {
+      "gate": "unit",
+      "exitCode": 0,
+      "seconds": 4.94,
+      "log": "unit.log"
+    },
+    {
+      "gate": "system",
+      "exitCode": 0,
+      "seconds": 0.52,
+      "log": "system.log"
+    },
+    {
+      "gate": "security",
+      "exitCode": 0,
+      "seconds": 1.57,
+      "log": "security.log"
+    },
+    {
+      "gate": "dependencies",
+      "exitCode": 0,
+      "seconds": 0.16,
+      "log": "dependencies.log"
+    },
+    {
+      "gate": "browser",
+      "exitCode": 0,
+      "seconds": 373.02,
+      "log": "browser.log"
+    }
+  ],
+  "finalRevalidation": [
+    {
+      "gate": "build",
+      "exitCode": 0,
+      "seconds": 1.27
+    },
+    {
+      "gate": "lint",
+      "exitCode": 0,
+      "seconds": 1.32
+    },
+    {
+      "gate": "package",
+      "exitCode": 0,
+      "seconds": 0.37
+    },
+    {
+      "gate": "unit",
+      "exitCode": 0,
+      "seconds": 5.01
+    },
+    {
+      "gate": "system",
+      "exitCode": 0,
+      "seconds": 0.62
+    },
+    {
+      "gate": "security",
+      "exitCode": 0,
+      "seconds": 1.58
+    },
+    {
+      "gate": "source",
+      "exitCode": 0,
+      "seconds": 0.77
+    },
+    {
+      "gate": "workflow",
+      "exitCode": 0,
+      "seconds": 1.07
+    },
+    {
+      "gate": "dependencies",
+      "exitCode": 0,
+      "seconds": 0.22
+    },
+    {
+      "gate": "trust-browser",
+      "exitCode": 0,
+      "seconds": 40.77
+    }
+  ],
+  "validationNote": "All original twelve browser suites plus the trust suite passed in the full run. Final compatibility/label/record refinements were then rebuilt and revalidated with all non-browser gates and the focused trust browser suite; expanded-visible outcomes were additionally checked. Hosted CI has not run for this local candidate.",
+  "finalUnitTests": 147,
+  "securityTests": 21,
+  "systemAssertions": 10,
+  "preservedBrowserSuitesPlusTrust": 13,
+  "newPopulatedOutcomesA11yProfiles": 12,
+  "layoutGeometryCases": 202,
+  "sourceAndPackageIntegrity": true,
+  "unchangedFiles": [
+    "server/research.js",
+    "server/backtest.js",
+    "server/evaluation.js",
+    "server/decision.js",
+    "server/replay.js",
+    "public/research-chart.js",
+    "public/workstation.css",
+    "public/workstation.js",
+    "public/style.css",
+    ".github/workflows/ci.yml",
+    "server/accountStore.js",
+    "server/brokerAdapters.js",
+    "server/riskEngine.js",
+    "server/reconciliationEngine.js",
+    "vercel.json",
+    "bun.lock"
+  ],
+  "artifactManifestSHA256": "39ee3d6608c1d80746e29a0b43de937c08e30f2bdf9ec99835340dd3b11c3e9f",
+  "artifactRuntimeSourceFiles": 52,
+  "realProviderLocalProbes": [
+    {
+      "label": "EURUSD",
+      "url": "http://127.0.0.1:36807/api/research/series?symbol=EURUSD&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "EURUSD=X",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1782129600000,
+        "lastTime": 1792562400000,
+        "providerTime": 1792567528000,
+        "status": "recent",
+        "discardedRows": 97,
+        "gapCount": 17,
+        "hash": "81406aced5d0e5d64b0e6e46cb8f474650eed9201aa9746d08a2d7585985e377",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": false
+      },
+      "candles": 2000,
+      "seconds": 0.75
+    },
+    {
+      "label": "XAUUSD",
+      "url": "http://127.0.0.1:36807/api/research/series?symbol=XAUUSD&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "GC=F",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1781485200000,
+        "lastTime": 1792562400000,
+        "providerTime": 1792566961000,
+        "status": "recent",
+        "discardedRows": 812,
+        "gapCount": 85,
+        "hash": "c0639881beb131a0ec03befc05316373166bc1067b63350b7b79391411318b2c",
+        "closedBarsOnly": true,
+        "observation": "Futures proxy, not executable spot",
+        "volumeAvailable": true
+      },
+      "candles": 2000,
+      "seconds": 0.78
+    },
+    {
+      "label": "BTCUSDT",
+      "url": "http://127.0.0.1:36807/api/research/series?symbol=BTCUSDT&interval=1h",
+      "realProvider": true,
+      "production": false,
+      "status": 200,
+      "ok": true,
+      "code": null,
+      "version": null,
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "BTC-USD",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 2000,
+        "firstTime": 1785366000000,
+        "lastTime": 1792562400000,
+        "providerTime": 1792567560000,
+        "status": "recent",
+        "discardedRows": 1,
+        "gapCount": 0,
+        "hash": "815def715c03dab4a4bb3f16e486665636c17b30568a9fd1296eecd273786de4",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": true
+      },
+      "candles": 2000,
+      "seconds": 1.39
+    }
+  ],
+  "paperRisk": {
+    "reproduced": true,
+    "sameKeyReplaysOriginal": true,
+    "newKeySameIntentCreatesSecondPosition": true,
+    "fixed": false,
+    "hostedOrdersDisabled": true,
+    "localRawMarksPreservedThroughGatedRoute": true
+  },
+  "realModelRun": false,
+  "productionTested": false,
+  "remotePublication": false,
+  "deployment": false,
+  "paidServiceActivated": false,
+  "rawEvidenceDirectory": "/workspace/work/core-trust-evidence"
+}

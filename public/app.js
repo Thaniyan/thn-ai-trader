@@ -100,7 +100,7 @@ const I18N = {
     takeProfit2: "Take Profit 2",
     takeProfit3: "Take Profit 3",
     riskAmount: "Risk Amount",
-    saveSignal: "Save Signal to Journal",
+    saveSignal: "Save research idea (not executed)",
     technicalIndicators: "Technical Indicators",
     liveCalculation: "Live calculation",
     structureSmc: "Structure & SMC",
@@ -316,7 +316,7 @@ const I18N = {
     takeProfit2: "الهدف الثاني",
     takeProfit3: "الهدف الثالث",
     riskAmount: "مبلغ المخاطرة",
-    saveSignal: "حفظ الإشارة في السجل",
+    saveSignal: "حفظ فكرة بحثية (غير منفذة)",
     technicalIndicators: "المؤشرات الفنية",
     liveCalculation: "حساب مباشر",
     structureSmc: "الهيكل والسمارت موني",
@@ -354,7 +354,7 @@ const I18N = {
     analyzingStatus: "جارٍ تحليل {symbol} عبر وحدات THN متعددة المدارس...",
     completedStatus: "اكتمل تحليل {symbol}.",
     errorPrefix: "خطأ",
-    savedStatus: "تم حفظ الإشارة في السجل.",
+    savedStatus: "تم حفظ فكرة بحثية (غير منفذة).",
     reportCopied: "تم نسخ التقرير إلى الحافظة.",
     runAnalysisFirst: "شغّل التحليل أولًا.",
     confirmClear: "هل تريد مسح كل إدخالات السجل؟",
@@ -582,11 +582,11 @@ Object.assign(I18N.en, {
   navSchools: "🧠 Multi-School Consensus",
   navMacro: "📰 Macro Radar & Calendar",
   navPerformance: "📈 Performance Analytics",
-  analyticsEyebrow: "HISTORICAL PERFORMANCE & STATISTICAL EDGE",
-  analyticsTitle: "Performance Analytics & Portfolio Intelligence",
-  analyticsSubtitle: "Interactive D3.js visualization of realized equity curves, historical setup win-rates, payout expectancy, and trade profit-loss distribution.",
+  analyticsEyebrow: "SOURCE-CLASSIFIED REPORTED OUTCOMES",
+  analyticsTitle: "Reported outcomes · provenance required",
+  analyticsSubtitle: "Ideas are excluded. Choose one reported outcome source; browser records do not verify broker execution or account growth.",
   loadSampleTrades: "Load Benchmark History",
-  logClosedTrade: "+ Log Closed Trade",
+  logClosedTrade: "+ Enter unverified reported outcome",
   filterPeriod: "Period:",
   periodAll: "All Time",
   period30d: "Last 30 Days",
@@ -597,15 +597,15 @@ Object.assign(I18N.en, {
   assetCrypto: "Crypto",
   assetCommodities: "Metals & Commodities",
   assetIndices: "Indices",
-  kpiNetPnl: "Net Realized PnL",
+  kpiNetPnl: "Reported net outcome",
   kpiWinRate: "Win Rate",
   kpiProfitFactor: "Profit Factor",
   kpiPayoffRatio: "Payoff Ratio (Avg W/L)",
   kpiMaxDrawdown: "Max Drawdown",
   kpiExpectancy: "Expectancy / Trade",
-  equityCurveTitle: "Cumulative PnL & Equity Growth Curve",
+  equityCurveTitle: "Reported cumulative PnL · not account growth",
   equityCurveSub: "D3.js interactive time-series with high-water mark",
-  legendEquity: "Equity Curve",
+  legendEquity: "Reported cumulative PnL",
   legendPeak: "High Water Mark",
   winLossDonutTitle: "Win / Loss Ratio & Setup Success",
   winLossDonutSub: "D3.js radial outcome distribution",
@@ -618,12 +618,12 @@ Object.assign(I18N.en, {
   legendLoss: "Loss (-$)",
   legendAvgWin: "Avg Win",
   legendAvgLoss: "Avg Loss",
-  logTradeTitle: "Log Closed Trade Outcome",
+  logTradeTitle: "Enter unverified reported outcome",
   direction: "Direction",
   entryPrice: "Entry Price",
   exitPrice: "Exit Price",
   outcome: "Outcome",
-  realizedPnl: "Realized PnL ($)",
+  realizedPnl: "Reported net PnL (USD) · unverified",
   cancel: "Cancel",
   saveTrade: "Save Trade Record",
   bulkImport: "📁 Bulk Import CSV",
@@ -631,9 +631,9 @@ Object.assign(I18N.en, {
   bulkImportSub: "Upload your historical trading logs or broker CSV to populate the journal and instantly render D3.js equity curves, win/loss ratios, and drawdowns.",
   downloadTemplate: "📄 Download Sample CSV Template",
   importAppend: "Append to existing records",
-  importReplace: "Replace current journal",
+  importReplace: "Replacement disabled · append only",
   confirmImport: "Import Trades",
-  tradesImported: "Successfully imported {count} trades!",
+  tradesImported: "Appended {count} unverified records.",
   noValidTradesInCsv: "No valid trade records found in CSV file.",
   csvParseError: "Could not parse CSV file. Please check format.",
   navBroker: "💼 Broker & Capital Desk",
@@ -792,9 +792,9 @@ Object.assign(I18N.ar, {
   bulkImportSub: "ارفع سجل صفقاتك السابقة لتحديث دفتر الصفقات ورسم منحنى رأس المال ونسب النجاح تفاعلياً بواسطة D3.js.",
   downloadTemplate: "📄 تحميل نموذج CSV تجريبي",
   importAppend: "إضافة إلى السجلات الحالية",
-  importReplace: "استبدال السجل الحالي بالكامل",
+  importReplace: "الاستبدال معطل · إضافة فقط",
   confirmImport: "تأكيد واستيراد الصفقات",
-  tradesImported: "تم استيراد {count} صفقة بنجاح وتحديث التحليلات!",
+  tradesImported: "أُضيف {count} من السجلات غير الموثقة.",
   noValidTradesInCsv: "لم يتم العثور على صفقات صالحة في ملف CSV.",
   csvParseError: "تعذر قراءة ملف CSV. يرجى التحقق من الملف.",
   professionalMarketMap: "خريطة السوق الاحترافية",
@@ -920,11 +920,11 @@ Object.assign(I18N.ar, {
   navSchools: "🧠 توافق المدارس",
   navMacro: "📰 الرادار الكلي والمفكرة",
   navPerformance: "📈 تحليلات الأداء (D3)",
-  analyticsEyebrow: "الأداء التاريخي والميزة الإحصائية",
-  analyticsTitle: "تحليلات الأداء وذكاء المحفظة",
-  analyticsSubtitle: "تصور تفاعلي بواسطة D3.js لمنحنيات الأرباح المتراكمة ونسب النجاح والتوزيع الإحصائي للصفقات.",
+  analyticsEyebrow: "نتائج مُبلغ عنها حسب المصدر",
+  analyticsTitle: "نتائج مُبلغ عنها · تتطلب المصدر",
+  analyticsSubtitle: "الأفكار مستبعدة. اختر مصدراً واحداً للنتائج المسجلة؛ سجلات المتصفح لا تثبت تنفيذ وسيط أو نمو حساب.",
   loadSampleTrades: "تحميل بيانات تجريبية مؤسسية",
-  logClosedTrade: "+ تسجيل صفقة مغلقة",
+  logClosedTrade: "+ إدخال نتيجة مُبلغ عنها غير موثقة",
   filterPeriod: "الفترة:",
   periodAll: "كامل الفترة",
   period30d: "آخر 30 يومًا",
@@ -941,7 +941,7 @@ Object.assign(I18N.ar, {
   kpiPayoffRatio: "نسبة العائد إلى الخسارة",
   kpiMaxDrawdown: "أقصى تراجع (Drawdown)",
   kpiExpectancy: "العائد المتوقع لكل صفقة",
-  equityCurveTitle: "منحنى نمو رأس المال والأرباح التراكمية",
+  equityCurveTitle: "الأرباح المُبلغ عنها · ليست نمو رأس المال",
   equityCurveSub: "سلسلة زمنية تفاعلية D3.js مع خط الذروة",
   legendEquity: "منحنى الأرباح",
   legendPeak: "أعلى نقطة رصيد",
@@ -956,12 +956,12 @@ Object.assign(I18N.ar, {
   legendLoss: "خسارة (-$)",
   legendAvgWin: "متوسط الربح",
   legendAvgLoss: "متوسط الخسارة",
-  logTradeTitle: "تسجيل نتيجة صفقة مغلقة",
+  logTradeTitle: "إدخال نتيجة مُبلغ عنها غير موثقة",
   direction: "الاتجاه",
   entryPrice: "سعر الدخول",
   exitPrice: "سعر الخروج",
   outcome: "النتيجة",
-  realizedPnl: "الربح المحقق ($)",
+  realizedPnl: "صافي نتيجة مُبلغ عنها (دولار) · غير موثقة",
   cancel: "إلغاء",
   saveTrade: "حفظ الصفقة"
 });
@@ -1181,12 +1181,12 @@ function updateDashboardMarketOverview() {
   }
 
   const acc = getBrokerAccount();
-  if ($("dashBalance")) $("dashBalance").textContent = money(acc.balance || 50000);
-  if ($("dashEquity")) $("dashEquity").textContent = money(acc.equity || acc.balance || 50000);
-  if ($("dashFreeMargin")) $("dashFreeMargin").textContent = money(acc.freeMargin || acc.balance || 50000);
+  if ($("dashBalance")) $("dashBalance").textContent = acc.connected ? money(acc.balance) : (currentLang==='ar'?'غير متاح':'Unavailable');
+  if ($("dashEquity")) $("dashEquity").textContent = acc.connected ? money(acc.equity) : (currentLang==='ar'?'غير متاح':'Unavailable');
+  if ($("dashFreeMargin")) $("dashFreeMargin").textContent = acc.connected ? money(acc.freeMargin) : (currentLang==='ar'?'غير متاح':'Unavailable');
   if ($("dashDailyPnl")) {
     const pnl = acc.dailyRealizedPnl || 0;
-    $("dashDailyPnl").textContent = (pnl >= 0 ? "+" : "") + money(pnl);
+    $('dashDailyPnl').textContent = acc.connected ? (pnl >= 0 ? '+' : '') + money(pnl) : (currentLang==='ar'?'غير متاح':'Unavailable');
     $("dashDailyPnl").style.color = pnl >= 0 ? "#10b981" : "#ef4444";
   }
   if ($("dashTradesCount")) $("dashTradesCount").textContent = String(acc.todayTradesCount || (acc.positions ? acc.positions.length : 0));
@@ -1218,6 +1218,7 @@ function setLanguage(lang) {
   translateStaticDom();
   renderHealthStatus();
   renderJournal();
+  renderPerformanceAnalytics();
   renderWatchlist();
   renderAlerts();
   scannerRunning(Boolean(watchScanTimer));
@@ -3287,116 +3288,44 @@ function loadBenchmarkHistory() {
 }
 
 function saveJournal() {
-  if (!currentAnalysis) {
-    showNotice(t("runAnalysisFirst"), "error");
-    return;
-  }
-  const arr = getJournal();
-  const riskAmt = Number(currentAnalysis.risk?.riskAmount || 100);
-  const rr = Number(currentAnalysis.risk?.rewardRisk || 2);
-  const simulatedPnl = currentAnalysis.decision === "BUY" || currentAnalysis.decision === "SELL" ? riskAmt * rr : 0;
-  arr.unshift({
-    id: "trade-" + Date.now(),
-    date: new Date().toISOString(),
-    symbol: currentAnalysis.symbol,
-    decision: currentAnalysis.decision,
-    confidence: currentAnalysis.confidence,
-    grade: currentAnalysis.grade,
-    entry: currentAnalysis.entry,
-    stopLoss: currentAnalysis.stopLoss,
-    target1: currentAnalysis.targets?.[0],
-    risk: riskAmt,
-    assetClass: currentAnalysis.symbolInfo?.assetClass || currentAnalysis.assetClass || detectAssetClass(currentAnalysis.symbol),
-    status: currentAnalysis.decision === "WAIT" ? "BE" : "WIN",
-    pnl: simulatedPnl,
-    pnlR: rr,
-    exitPrice: currentAnalysis.targets?.[0] || currentAnalysis.entry
-  });
-  localStorage.setItem(journalKey, JSON.stringify(arr.slice(0, 100)));
-  renderJournal();
-  renderPerformanceAnalytics();
-  status(t("savedStatus"));
+  if (!currentAnalysis) return showNotice(t('runAnalysisFirst'), 'error');
+  if (!writeJournal([THNRecords.idea(currentAnalysis), ...getJournal()])) return;
+  renderJournal(); renderPerformanceAnalytics();
+  status(currentLang==='ar'?'حُفظت فكرة بحثية؛ لا توجد أرباح محققة.':'Research idea saved; no realized outcome recorded.');
 }
 
 function getJournal() {
+  try {const raw=localStorage.getItem(journalKey);if(!raw)return [];const value=JSON.parse(raw);if(!Array.isArray(value))throw Error();return value;}
+  catch {return []; /* unreadable original bytes are retained; writes must fail closed */}
+}
+function writeJournal(records) {
   try {
-    const raw = localStorage.getItem(journalKey);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed)) return parsed;
-  } catch {
-    localStorage.removeItem(journalKey);
-  }
-  return [];
+    const raw=localStorage.getItem(journalKey);
+    if(raw && !Array.isArray(JSON.parse(raw)))throw Error();
+    if(records.length>500 || new TextEncoder().encode(JSON.stringify(records)).length>1800000)throw Error();
+    localStorage.setItem(journalKey,JSON.stringify(records));return true;
+  }catch{showNotice(currentLang==='ar'?'لم يُحفظ السجل؛ التخزين غير متاح أو غير مقروء أو ممتلئ. حُفظت البيانات السابقة.':'Record not saved: storage unreadable, unavailable or full. Previous data preserved.','error');return false;}
 }
 
-function cycleTradeOutcome(tradeId) {
-  const arr = getJournal();
-  const trade = arr.find(t => t.id === tradeId);
-  if (!trade) return;
-  const riskAmt = Number(trade.risk || 100);
-  const rr = Number(trade.pnlR && trade.pnlR > 0 ? trade.pnlR : 2);
-  if (trade.status === "WIN") {
-    trade.status = "LOSS";
-    trade.pnl = -riskAmt;
-    trade.pnlR = -1;
-  } else if (trade.status === "LOSS") {
-    trade.status = "BE";
-    trade.pnl = 0;
-    trade.pnlR = 0;
-  } else {
-    trade.status = "WIN";
-    trade.pnl = riskAmt * rr;
-    trade.pnlR = rr;
-  }
-  localStorage.setItem(journalKey, JSON.stringify(arr));
-  renderJournal();
-  renderPerformanceAnalytics();
+function cycleTradeOutcome() {
+  showNotice(currentLang==='ar'?'لا يمكن تحويل فكرة إلى نتيجة تنفيذ. أضف نتيجة مسجلة صراحةً مع مصدرها.':'An idea cannot become an execution outcome. Enter a separately sourced reported outcome.','info');
 }
 
 function deleteJournalTrade(tradeId) {
-  const arr = getJournal().filter(t => t.id !== tradeId);
-  localStorage.setItem(journalKey, JSON.stringify(arr));
-  renderJournal();
-  renderPerformanceAnalytics();
+  if(!writeJournal(getJournal().filter(t=>t?.id!==tradeId)))return;
+  renderJournal();renderPerformanceAnalytics();
 }
 
 function renderJournal() {
-  const arr = getJournal();
-  if (!$("journalList")) return;
-  $("journalList").innerHTML = arr.map(item => {
-    const date = new Date(item.date).toLocaleString(currentLang === "ar" ? "ar-OM" : undefined);
-    const pnlNum = Number(item.pnl || 0);
-    const pnlText = pnlNum >= 0 ? `+$${pnlNum.toFixed(2)}` : `-$${Math.abs(pnlNum).toFixed(2)}`;
-    const statusClass = item.status === "WIN" ? "win" : item.status === "LOSS" ? "loss" : "be";
-    const statusLabel = item.status === "WIN" ? (currentLang === "ar" ? "ربح" : "WIN") :
-                        item.status === "LOSS" ? (currentLang === "ar" ? "خسارة" : "LOSS") : (currentLang === "ar" ? "تعادل" : "BE");
-    return `<div class="journal-item">
-      <div class="journal-item-head">
-        <div>
-          <b>${escapeHtml(item.symbol)} · <span class="decision-sub ${String(item.decision).toLowerCase()}">${escapeHtml(localizedValue(item.decision))}</span> | ${escapeHtml(item.grade || 'A')}</b>
-          <small class="journal-date">${date}</small>
-        </div>
-        <div class="journal-actions-row">
-          <span class="journal-pnl ${pnlNum >= 0 ? 'pnl-green' : 'pnl-red'}">${pnlText} (${item.pnlR >= 0 ? '+' : ''}${item.pnlR || 0}R)</span>
-          <button type="button" class="outcome-badge-btn ${statusClass}" data-cycle-trade="${escapeHtml(item.id)}" title="Click to cycle WIN / LOSS / BE">${statusLabel}</button>
-          <button type="button" class="ghost small danger icon-del-btn" data-delete-trade="${escapeHtml(item.id)}" title="Delete trade">&times;</button>
-        </div>
-      </div>
-      <p class="journal-metrics-line">${escapeHtml(t("journalLine", {
-        date: "",
-        confidence: fmt(item.confidence, 0),
-        entry: fmt(item.entry, 6),
-        sl: item.stopLoss ? fmt(item.stopLoss, 6) : "--",
-        tp1: item.target1 ? fmt(item.target1, 6) : "--",
-        risk: money(item.risk)
-      }))}</p>
-    </div>`;
-  }).join("") || `<p class="tiny">${t("noSavedSignals")}</p>`;
+  if(!$('journalList'))return;
+  $('journalList').innerHTML=getJournal().map(raw=>{
+    const item=raw&&typeof raw==='object'?raw:{},c=THNRecords.classify(item);
+    return `<article class="journal-item"><div class="journal-item-head"><div><b>${escapeHtml(item.symbol||'—')} · ${escapeHtml(item.decision||'—')}</b><small>${escapeHtml(THNRecords.label(item,currentLang))}</small><small>${escapeHtml(item.date||'—')}</small></div><button type="button" class="ghost small danger" data-delete-trade="${escapeHtml(item.id||'')}">${currentLang==='ar'?'حذف':'Delete'}</button></div><p>${c.closed?`${currentLang==='ar'?'صافي نتيجة مُبلغ عنها (دولار)، غير موثقة':'Reported net outcome (USD), unverified'}: ${escapeHtml(item.pnl)}`:(currentLang==='ar'?'لا توجد نتيجة محققة مدعومة؛ مستبعد من الأداء.':'No supported realized outcome; excluded from performance.')}</p><details><summary>${currentLang==='ar'?'السجل الأصلي · غير موثق':'Original record · unverified'}</summary><pre>${escapeHtml(JSON.stringify(raw,null,2))}</pre></details></article>`;
+  }).join('')||`<p>${currentLang==='ar'?'لا توجد سجلات محفوظة.':'No saved records.'}</p>`;
 }
 
 function getFilteredJournalTrades() {
-  const all = getJournal();
+  const all = THNRecords.select(getJournal(), $('trustPerformanceSource')?.value || 'verified');
   const now = Date.now();
   return all.filter(t => {
     // Period filter
@@ -3414,6 +3343,12 @@ function getFilteredJournalTrades() {
 }
 
 function computePerformanceKPIs(trades) {
+  trades=trades.filter(r=>THNRecords.classify(r).eligible);
+  const empty=trades.length===0;
+  if(empty){
+    for(const id of ['kpiNetPnl','kpiNetPnlPct','kpiWinRate','kpiWinLossRatio','kpiProfitFactor','kpiGrossProfitLoss','kpiPayoffRatio','kpiAvgWinLoss','kpiMaxDrawdown','kpiMaxDrawdownPct','kpiExpectancy','kpiTotalTrades'])if($(id))$(id).textContent=currentLang==='ar'?'غير متاح':'Unavailable';
+    return;
+  }
   const total = trades.length;
   const wins = trades.filter(t => Number(t.pnl || 0) > 0);
   const losses = trades.filter(t => Number(t.pnl || 0) < 0);
@@ -3422,12 +3357,12 @@ function computePerformanceKPIs(trades) {
   const netPnl = trades.reduce((sum, t) => sum + Number(t.pnl || 0), 0);
   const grossProfit = wins.reduce((sum, t) => sum + Number(t.pnl || 0), 0);
   const grossLoss = Math.abs(losses.reduce((sum, t) => sum + Number(t.pnl || 0), 0));
-  const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : (grossProfit > 0 ? 9.99 : 0);
+  const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : null;
 
   const winRate = total ? (wins.length / total) * 100 : 0;
   const avgWin = wins.length ? grossProfit / wins.length : 0;
   const avgLoss = losses.length ? grossLoss / losses.length : 0;
-  const payoffRatio = avgLoss > 0 ? avgWin / avgLoss : (avgWin > 0 ? avgWin : 0);
+  const payoffRatio = wins.length && losses.length ? avgWin / avgLoss : null;
   const expectancy = total ? (winRate / 100 * avgWin) - ((1 - winRate / 100) * avgLoss) : 0;
 
   // Peak to trough max drawdown
@@ -3443,17 +3378,17 @@ function computePerformanceKPIs(trades) {
     $("kpiNetPnl").textContent = `${netPnl >= 0 ? '+' : '-'}$${Math.abs(netPnl).toFixed(2)}`;
     $("kpiNetPnl").style.color = netPnl >= 0 ? "var(--green)" : "var(--red)";
   }
-  if ($("kpiNetPnlPct")) $("kpiNetPnlPct").textContent = `${netPnl >= 0 ? '+' : ''}${((netPnl / 10000) * 100).toFixed(1)}% on $10k base`;
+  if ($("kpiNetPnlPct")) $("kpiNetPnlPct").textContent = currentLang==='ar'?'العائد غير متاح؛ أساس رأس المال غير موثق':'Return unavailable: no authenticated capital basis';
   if ($("kpiWinRate")) $("kpiWinRate").textContent = `${winRate.toFixed(1)}%`;
   if ($("kpiWinLossRatio")) $("kpiWinLossRatio").textContent = `${wins.length} W / ${losses.length} L (${be.length} BE)`;
-  if ($("kpiProfitFactor")) $("kpiProfitFactor").textContent = profitFactor.toFixed(2);
+  if ($("kpiProfitFactor")) $("kpiProfitFactor").textContent = profitFactor==null?'—':profitFactor.toFixed(2);
   if ($("kpiGrossProfitLoss")) $("kpiGrossProfitLoss").textContent = `+$${grossProfit.toFixed(0)} / -$${grossLoss.toFixed(0)}`;
-  if ($("kpiPayoffRatio")) $("kpiPayoffRatio").textContent = `1 : ${payoffRatio.toFixed(2)}`;
+  if ($("kpiPayoffRatio")) $("kpiPayoffRatio").textContent = payoffRatio==null?'—':`1 : ${payoffRatio.toFixed(2)}`;
   if ($("kpiAvgWinLoss")) $("kpiAvgWinLoss").textContent = `Avg W: $${avgWin.toFixed(0)} | Avg L: $${avgLoss.toFixed(0)}`;
   if ($("kpiMaxDrawdown")) $("kpiMaxDrawdown").textContent = `-$${maxDd.toFixed(2)}`;
-  if ($("kpiMaxDrawdownPct")) $("kpiMaxDrawdownPct").textContent = `${maxDdPct.toFixed(1)}% from peak`;
+  if ($("kpiMaxDrawdownPct")) $("kpiMaxDrawdownPct").textContent = currentLang==='ar'?'نسبة التراجع غير متاحة دون رأس مال موثق':'Drawdown % unavailable without capital basis';
   if ($("kpiExpectancy")) $("kpiExpectancy").textContent = `${expectancy >= 0 ? '+' : '-'}$${Math.abs(expectancy).toFixed(2)}`;
-  if ($("kpiTotalTrades")) $("kpiTotalTrades").textContent = `${total} closed trades`;
+  if ($("kpiTotalTrades")) $("kpiTotalTrades").textContent = `${total} ${currentLang==='ar'?'نتائج مُبلغ عنها غير موثقة':'reported outcomes · unverified'}`;
 }
 
 function renderD3EquityCurve(trades) {
@@ -3484,7 +3419,7 @@ function renderD3EquityCurve(trades) {
       date: new Date(t.date),
       symbol: t.symbol,
       tradePnl: Number(t.pnl || 0),
-      pnlR: t.pnlR || (t.pnl > 0 ? 2 : -1),
+      pnlR: THNRecords.reportedR(t),
       cumulativePnl: running,
       peakEquity: peak,
       drawdown: peak - running,
@@ -3636,8 +3571,8 @@ function renderD3EquityCurve(trades) {
         tooltip.innerHTML = `
           <div class="tooltip-header"><b>#${d.idx} ${escapeHtml(d.symbol)}</b><span>${d.date.toLocaleDateString()}</span></div>
           <div class="tooltip-row"><span>Trade PnL:</span><b style="color:${d.tradePnl >= 0 ? 'var(--green)' : 'var(--red)'}">${d.tradePnl >= 0 ? '+' : ''}$${d.tradePnl.toFixed(2)} (${d.pnlR >= 0 ? '+' : ''}${d.pnlR}R)</b></div>
-          <div class="tooltip-row"><span>Cumulative Equity:</span><b>$${d.cumulativePnl.toFixed(2)}</b></div>
-          <div class="tooltip-row"><span>Drawdown from Peak:</span><b style="color:var(--yellow)">-$${d.drawdown.toFixed(2)} (${d.drawdownPct.toFixed(1)}%)</b></div>
+          <div class="tooltip-row"><span>Reported cumulative PnL:</span><b>$${d.cumulativePnl.toFixed(2)}</b></div>
+          <div class="tooltip-row"><span>Drawdown from Peak:</span><b style="color:var(--yellow)">-$${d.drawdown.toFixed(2)} </b></div>
         `;
         const rectBox = container.getBoundingClientRect();
         tooltip.style.left = `${Math.min(rectBox.width - 200, Math.max(10, px + margin.left - 90))}px`;
@@ -3665,9 +3600,9 @@ function renderD3WinLossDonut(trades) {
   const total = trades.length;
   const winRate = total ? (wins / total) * 100 : 0;
 
-  if ($("donutWinCount")) $("donutWinCount").textContent = `${wins} (${total ? ((wins/total)*100).toFixed(0) : 0}%)`;
-  if ($("donutLossCount")) $("donutLossCount").textContent = `${losses} (${total ? ((losses/total)*100).toFixed(0) : 0}%)`;
-  if ($("donutBeCount")) $("donutBeCount").textContent = `${be} (${total ? ((be/total)*100).toFixed(0) : 0}%)`;
+  if ($("donutWinCount")) $("donutWinCount").textContent = total?`${wins} (${((wins/total)*100).toFixed(0)}%)`:(currentLang==='ar'?'غير متاح':'Unavailable');
+  if ($("donutLossCount")) $("donutLossCount").textContent = total?`${losses} (${((losses/total)*100).toFixed(0)}%)`:(currentLang==='ar'?'غير متاح':'Unavailable');
+  if ($("donutBeCount")) $("donutBeCount").textContent = total?`${be} (${((be/total)*100).toFixed(0)}%)`:(currentLang==='ar'?'غير متاح':'Unavailable');
 
   const width = 280, height = 280;
   svg.attr("viewBox", `0 0 ${width} ${height}`);
@@ -3819,7 +3754,7 @@ function renderD3Waterfall(trades) {
         const pnlNum = Number(d.pnl || 0);
         tooltip.innerHTML = `
           <div class="tooltip-header"><b>${escapeHtml(d.symbol)} (${d.decision || 'TRADE'})</b><span>${new Date(d.date).toLocaleDateString()}</span></div>
-          <div class="tooltip-row"><span>Realized PnL:</span><b style="color:${pnlNum >= 0 ? 'var(--green)' : 'var(--red)'}">${pnlNum >= 0 ? '+' : ''}$${pnlNum.toFixed(2)} (${d.pnlR >= 0 ? '+' : ''}${d.pnlR || 0}R)</b></div>
+          <div class="tooltip-row"><span>Reported net PnL:</span><b style="color:${pnlNum >= 0 ? 'var(--green)' : 'var(--red)'}">${pnlNum >= 0 ? '+' : ''}$${pnlNum.toFixed(2)} (${d.pnlR >= 0 ? '+' : ''}${THNRecords.reportedR(d)}R)</b></div>
           <div class="tooltip-row"><span>Status:</span><b>${d.status || (pnlNum >= 0 ? 'WIN' : 'LOSS')}</b></div>
         `;
         const [xPos, yPos] = d3.pointer(event, container);
@@ -3838,6 +3773,19 @@ function renderD3Waterfall(trades) {
 }
 
 function renderPerformanceAnalytics() {
+  document.querySelectorAll('#performanceAnalytics .d3-tooltip').forEach(e=>e.classList.add('hidden'));
+  const parent=$('performanceAnalytics');
+  if(parent&&!$('trustPerformanceSource')){
+    const box=document.createElement('div');box.className='panel';box.innerHTML='<label id="trustSourceLabel" for="trustPerformanceSource"></label><select id="trustPerformanceSource"><option value="verified"></option><option value="paper"></option><option value="manual"></option><option value="import"></option></select><p id="trustPerformanceState" role="status"></p>';
+    parent.prepend(box);$('trustPerformanceSource').addEventListener('change',renderPerformanceAnalytics);
+  }
+  const ar=currentLang==='ar',select=$('trustPerformanceSource');
+  if(select){
+    $('trustSourceLabel').textContent=ar?'مصدر النتائج · لا تُجمع المصادر':'Outcome source · sources never combined';
+    [...select.options].forEach((o,i)=>o.textContent=(ar?['تنفيذ وسيط موثق · غير متاح','محاكاة ورقية مُبلغ عنها · غير موثقة','إدخال يدوي · غير موثق','استيراد · غير موثق']:['Verified broker execution · unavailable','Reported paper simulation · unverified','Manual reports · unverified','Imported reports · unverified'])[i]);
+    const eligible=THNRecords.select(getJournal(),select.value).length;
+    $('trustPerformanceState').textContent=(ar?'لا يوجد تحقق من وسيط. الأفكار والسجلات المجهولة مستبعدة. نتائج المصدر المختار: ':'No broker verification exists. Ideas and unknown records are excluded. Selected-source outcomes: ')+eligible;
+  }
   const filtered = getFilteredJournalTrades();
   computePerformanceKPIs(filtered);
   renderD3EquityCurve(filtered);
@@ -3856,27 +3804,21 @@ function download(filename, text, type = "text/plain") {
 }
 
 function exportJournal() {
-  const arr = getJournal();
-  const csv = ["id,date,symbol,decision,confidence,grade,entry,stopLoss,target1,riskAmount,status,pnl,pnlR,assetClass"].concat(arr.map(x => [
-    x.id,
-    x.date,
-    x.symbol,
-    x.decision,
-    x.confidence,
-    x.grade,
-    x.entry,
-    x.stopLoss,
-    x.target1,
-    x.risk,
-    x.status,
-    x.pnl,
-    x.pnlR,
-    x.assetClass
-  ].map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(","))).join("\n");
-  download(t("journalFilename"), csv, "text/csv");
+  let raw;
+  try {raw=localStorage.getItem(journalKey);}catch{return showNotice(currentLang==='ar'?'التخزين غير متاح للتصدير.':'Storage unavailable for export.','error');}
+  try {if(raw&&!Array.isArray(JSON.parse(raw)))throw Error();}
+  catch{return download('THN-unreadable-journal-recovery.txt',raw);}
+  download('THN-research-records.json',JSON.stringify({schema:'THN-RECORDS-1',records:getJournal()},null,2),'application/json');
 }
 
+function exportJournalCSV() {
+  const keys=['id','kind','source','verification','date','symbol','decision','entry','exitPrice','risk','pnl','currency'];
+  const csv=[keys.join(','),...getJournal().map(r=>keys.map(k=>THNRecords.csvCell(r?.[k])).join(','))].join('\n');
+  download('THN-unverified-records.csv',csv,'text/csv');
+}
 let pendingImportTrades = [];
+let lastCSVResult = {records:[],issues:[]};
+
 
 function parseCSVLine(line) {
   const result = [];
@@ -3902,128 +3844,12 @@ function parseCSVLine(line) {
   return result;
 }
 
-function parseTradesCSV(csvText) {
-  if (!csvText || typeof csvText !== "string") return [];
-  const lines = csvText.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-  if (lines.length < 2) return [];
-
-  const rawHeaders = parseCSVLine(lines[0]);
-  const headers = rawHeaders.map(h => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
-
-  const findIdx = patterns => headers.findIndex(h => patterns.some(p => h.includes(p)));
-
-  const dateIdx = findIdx(["date", "time", "timestamp", "datetime", "closedate"]);
-  const symIdx = findIdx(["symbol", "pair", "ticker", "instrument", "market", "asset"]);
-  const dirIdx = findIdx(["decision", "direction", "side", "type", "action"]);
-  const entryIdx = findIdx(["entry", "openprice", "price", "open"]);
-  const exitIdx = findIdx(["exit", "target", "closeprice", "close"]);
-  const slIdx = findIdx(["stoploss", "sl", "stop"]);
-  const pnlIdx = findIdx(["pnl", "profit", "gain", "return", "netpnl", "realizedpnl"]);
-  const rIdx = findIdx(["pnlr", "rmultiple", "rr", "rewardrisk"]);
-  const statusIdx = findIdx(["status", "outcome", "result"]);
-  const riskIdx = findIdx(["risk", "riskamount", "initialrisk"]);
-  const gradeIdx = findIdx(["grade", "quality", "setup"]);
-  const assetIdx = findIdx(["assetclass", "category", "class", "markettype"]);
-  const notesIdx = findIdx(["notes", "comment", "reason"]);
-
-  const trades = [];
-  const now = Date.now();
-
-  for (let i = 1; i < lines.length; i++) {
-    const row = parseCSVLine(lines[i]);
-    if (!row || row.length === 0 || row.every(val => val === "")) continue;
-
-    const rawSym = symIdx >= 0 && row[symIdx] ? row[symIdx] : "EURUSD";
-    const symbol = normalizeSymbolInput(rawSym);
-
-    let decision = "BUY";
-    if (dirIdx >= 0 && row[dirIdx]) {
-      const dUpper = row[dirIdx].toUpperCase();
-      if (dUpper.includes("SELL") || dUpper.includes("SHORT")) decision = "SELL";
-      else if (dUpper.includes("WAIT") || dUpper.includes("HOLD")) decision = "WAIT";
-      else decision = "BUY";
-    }
-
-    const entry = entryIdx >= 0 && !isNaN(Number(row[entryIdx])) ? Number(row[entryIdx]) : 1.0;
-    const exitPrice = exitIdx >= 0 && !isNaN(Number(row[exitIdx])) ? Number(row[exitIdx]) : entry;
-    const stopLoss = slIdx >= 0 && !isNaN(Number(row[slIdx])) ? Number(row[slIdx]) : 0;
-    const risk = riskIdx >= 0 && !isNaN(Number(row[riskIdx])) ? Number(row[riskIdx]) : 100;
-
-    let pnl = 0;
-    if (pnlIdx >= 0 && !isNaN(Number(row[pnlIdx]))) {
-      pnl = Number(row[pnlIdx]);
-    } else if (exitIdx >= 0 && entryIdx >= 0) {
-      const diff = decision === "SELL" ? entry - exitPrice : exitPrice - entry;
-      pnl = Number(((diff / (Math.abs(entry) || 1)) * 1000).toFixed(2));
-    }
-
-    let pnlR = 0;
-    if (rIdx >= 0 && !isNaN(Number(row[rIdx]))) {
-      pnlR = Number(row[rIdx]);
-    } else if (risk > 0) {
-      pnlR = Number((pnl / risk).toFixed(2));
-    }
-
-    let status = "WIN";
-    if (statusIdx >= 0 && row[statusIdx]) {
-      const sUpper = row[statusIdx].toUpperCase();
-      if (sUpper.includes("WIN") || sUpper.includes("PROFIT") || sUpper.includes("GAIN")) status = "WIN";
-      else if (sUpper.includes("LOSS") || sUpper.includes("STOP")) status = "LOSS";
-      else if (sUpper.includes("BE") || sUpper.includes("BREAKEVEN") || sUpper.includes("SCRATCH")) status = "BE";
-      else status = pnl > 0 ? "WIN" : (pnl < 0 ? "LOSS" : "BE");
-    } else {
-      status = pnl > 0 ? "WIN" : (pnl < 0 ? "LOSS" : "BE");
-    }
-
-    let dateStr = new Date(now - (lines.length - i) * 86400000).toISOString();
-    if (dateIdx >= 0 && row[dateIdx]) {
-      const parsedD = new Date(row[dateIdx]);
-      if (!isNaN(parsedD.getTime())) {
-        dateStr = parsedD.toISOString();
-      }
-    }
-
-    const assetClass = (assetIdx >= 0 && row[assetIdx]) ? row[assetIdx] : detectAssetClass(symbol);
-    const grade = (gradeIdx >= 0 && row[gradeIdx]) ? row[gradeIdx] : (status === "WIN" ? "A+" : "B");
-    const notes = (notesIdx >= 0 && row[notesIdx]) ? row[notesIdx] : "";
-
-    trades.push({
-      id: "csv-" + Date.now() + "-" + i,
-      date: dateStr,
-      symbol: symbol,
-      decision: decision,
-      confidence: 80,
-      grade: grade,
-      entry: entry,
-      stopLoss: stopLoss,
-      target1: exitPrice,
-      risk: risk,
-      assetClass: assetClass,
-      status: status,
-      pnl: pnl,
-      pnlR: pnlR,
-      exitPrice: exitPrice,
-      notes: notes
-    });
-  }
-
-  return trades;
+function parseTradesCSV(text) {
+  lastCSVResult=text.trimStart().startsWith('{')?THNRecords.parseBackup(text):THNRecords.parseCSV(text);return lastCSVResult.records;
 }
 
 function downloadSampleCsvTemplate() {
-  const sampleCsv = [
-    "date,symbol,decision,entry,exitPrice,stopLoss,status,pnl,pnlR,risk,assetClass",
-    "2026-09-01,EURUSD,BUY,1.0820,1.0870,1.0795,WIN,250.00,2.5,100,Forex",
-    "2026-09-04,BTCUSDT,BUY,63500,65800,62700,WIN,420.00,4.2,100,Crypto",
-    "2026-09-08,GBPUSD,SELL,1.3020,1.3060,1.3060,LOSS,-100.00,-1.0,100,Forex",
-    "2026-09-12,XAUUSD,BUY,2675.0,2705.0,2665.0,WIN,300.00,3.0,100,Commodity",
-    "2026-09-15,US30,BUY,42000,42450,41850,WIN,225.00,2.25,100,Index",
-    "2026-09-19,USDJPY,SELL,154.50,154.50,154.00,BE,0.00,0.0,100,Forex",
-    "2026-09-22,EURUSD,SELL,1.0910,1.0945,1.0945,LOSS,-100.00,-1.0,100,Forex",
-    "2026-09-26,BTCUSDT,BUY,68200,70500,67400,WIN,380.00,3.8,100,Crypto",
-    "2026-09-29,XAUUSD,BUY,2720.0,2752.0,2710.0,WIN,320.00,3.2,100,Commodity"
-  ].join("\n");
-  download("thn-historical-trades-template.csv", sampleCsv, "text/csv");
+  download('THN-reported-outcomes-template.csv','date,symbol,decision,entry,exitPrice,risk,pnl,currency,kind\n', 'text/csv');
 }
 
 // =========================================================
@@ -5009,29 +4835,30 @@ async function closeBrokerPosition(ticket, partialFraction = 1.0) {
       const idx = serverBrokerAccounts.findIndex(a => a.id === data.account.id);
       if (idx >= 0) serverBrokerAccounts[idx] = data.account;
 
-      const finalPnl = Number(data.closeResult?.realizedPnl ?? 0);
+      const finalPnl = data.closeResult?.realizedPnl;
       const journalEntry = {
-        id: "broker-" + Date.now(),
+        schema:'THN-RECORD-1',kind:'paper_trade',source:'local_paper',verification:'unverified',currency:'USD',
+        execution:{mode:'PAPER',ticket:data.closeResult?.ticket,closedLots:data.closeResult?.closedLots,realizedPnl:data.closeResult?.realizedPnl,exitPrice:data.closeResult?.exitPrice},
+        id: 'paper-'+crypto.randomUUID(),
         date: new Date().toISOString(),
-        symbol: pos?.symbol || "EURUSD",
-        decision: pos?.side || "BUY",
-        confidence: 85,
-        grade: finalPnl >= 0 ? "A+" : "B",
-        entry: pos?.entryPrice || 0,
-        stopLoss: pos?.sl || 0,
-        target1: pos?.tp || 0,
-        exitPrice: Number(data.closeResult?.exitPrice || pos?.currentPrice || 0),
-        risk: +(Math.abs((pos?.entryPrice || 0) - (pos?.sl || 0)) * (pos?.multiplier || 100000) * (pos?.lots || 0.1)).toFixed(2) || 250,
-        status: finalPnl > 0 ? "WIN" : finalPnl < 0 ? "LOSS" : "BE",
+        symbol: pos?.symbol,
+        decision: pos?.side,
+
+        entry: pos?.entryPrice,
+        stopLoss: pos?.sl,
+        target1: pos?.tp,
+        exitPrice: data.closeResult?.exitPrice,
+        risk: pos?.sl>0 ? Math.abs(pos.entryPrice-pos.sl)*pos.multiplier*data.closeResult?.closedLots/(/^USD[A-Z]{3}$/.test(pos.symbol)?pos.entryPrice:1) : null,
+        status: Number.isFinite(finalPnl) ? (finalPnl > 0 ? "WIN" : finalPnl < 0 ? "LOSS" : "BE") : undefined,
         pnl: finalPnl,
-        pnlR: +(finalPnl / Math.max(1, Math.abs((pos?.entryPrice || 0) - (pos?.sl || 0)) * (pos?.multiplier || 100000) * (pos?.lots || 0.1))).toFixed(1),
+        pnlR: null,
         assetClass: detectAssetClass(pos?.symbol || "EURUSD"),
         notes: `Closed via ${acc.brokerName || 'Authoritative Broker Gateway'}`
       };
 
       const ledger = getJournal();
       ledger.unshift(journalEntry);
-      localStorage.setItem(journalKey, JSON.stringify(ledger.slice(0, 500)));
+      writeJournal(ledger);
       renderJournal();
       renderPerformanceAnalytics();
       renderBrokerDesk();
@@ -5069,7 +4896,7 @@ let liveQuotesCache = {};
 
 async function fetchLiveMarketQuotes() {
   try {
-    const res = await fetch("/api/quotes");
+    const res = await fetch("/api/broker/paper-quotes");
     if (res.ok) {
       const data = await res.json();
       if (data.ok && data.quotes) {
@@ -5220,12 +5047,7 @@ function initEvents() {
     const modal = $("logTradeModal");
     if (!modal) return;
     if ($("manualDate")) $("manualDate").value = new Date().toISOString().split("T")[0];
-    if (currentAnalysis) {
-      if ($("manualSymbol")) $("manualSymbol").value = currentAnalysis.symbol || "EURUSD";
-      if ($("manualDirection")) $("manualDirection").value = currentAnalysis.decision === "SELL" ? "SELL" : "BUY";
-      if ($("manualEntry")) $("manualEntry").value = currentAnalysis.entry || 1.085;
-      if ($("manualExit")) $("manualExit").value = currentAnalysis.targets?.[0] || currentAnalysis.entry || 1.0895;
-    }
+    for(const id of ['manualEntry','manualExit','manualPnl','manualR'])if($(id))$(id).value='';
     if (typeof modal.showModal === "function") {
       modal.showModal();
     } else {
@@ -5246,65 +5068,30 @@ function initEvents() {
   $("closeLogTradeDialogBtn")?.addEventListener("click", closeLogModal);
   $("cancelLogTradeBtn")?.addEventListener("click", closeLogModal);
 
-  $("manualOutcome")?.addEventListener("change", event => {
-    const val = event.target.value;
-    const pnlInput = $("manualPnl");
-    const rInput = $("manualR");
-    if (!pnlInput || !rInput) return;
-    if (val === "WIN") {
-      pnlInput.value = String(Math.abs(Number(pnlInput.value || 250)));
-      rInput.value = String(Math.abs(Number(rInput.value || 2.0)));
-    } else if (val === "LOSS") {
-      pnlInput.value = String(-Math.abs(Number(pnlInput.value || 100)));
-      rInput.value = "-1.0";
-    } else {
-      pnlInput.value = "0";
-      rInput.value = "0";
-    }
-  });
-
   $("logTradeForm")?.addEventListener("submit", event => {
     event.preventDefault();
     const sym = normalizeSymbolInput($("manualSymbol")?.value || "EURUSD");
     const direction = $("manualDirection")?.value || "BUY";
     const entry = Number($("manualEntry")?.value || 0);
     const exitPrice = Number($("manualExit")?.value || 0);
-    const outcome = $("manualOutcome")?.value || "WIN";
-    const pnl = Number($("manualPnl")?.value || 0);
-    const pnlR = Number($("manualR")?.value || 0);
-    const dateVal = $("manualDate")?.value ? new Date($("manualDate").value).toISOString() : new Date().toISOString();
+    const pnl = $('manualPnl')?.value===''?NaN:Number($('manualPnl')?.value);
+    const dateVal = $('manualDate')?.value || '';
     const notes = $("manualNotes")?.value || "";
 
-    const trade = {
-      id: "trade-" + Date.now(),
-      date: dateVal,
-      symbol: sym,
-      decision: direction,
-      confidence: 82,
-      grade: outcome === "WIN" ? "A+" : outcome === "BE" ? "B" : "B-",
-      entry: entry,
-      stopLoss: 0,
-      target1: exitPrice,
-      risk: Math.abs(pnl) || 100,
-      assetClass: detectAssetClass(sym),
-      status: outcome,
-      pnl: pnl,
-      pnlR: pnlR,
-      exitPrice: exitPrice,
-      notes: notes
-    };
-
-    const arr = getJournal();
-    arr.unshift(trade);
-    localStorage.setItem(journalKey, JSON.stringify(arr.slice(0, 150)));
-    renderJournal();
-    renderPerformanceAnalytics();
+    let trade;
+    try {
+      trade=THNRecords.outcome({id:'manual-'+crypto.randomUUID(),date:dateVal,symbol:sym,decision:direction,entry,exitPrice,
+        risk:Number($('manualRisk')?.value),pnl, currency:'USD',assetClass:detectAssetClass(sym),notes});
+    }catch{return showNotice(currentLang==='ar'?'أدخل تاريخاً وأسعاراً ومخاطرة وصافي نتيجة مُبلغ عنها صراحةً.':'Explicit date, prices, risk and reported net outcome required.','error');}
+    if(!writeJournal([trade,...getJournal()]))return;
+    renderJournal();renderPerformanceAnalytics();
     closeLogModal();
     status(currentLang === "ar" ? "تم تسجيل الصفقة المغلقة بنجاح." : "Logged closed trade outcome successfully.");
   });
 
   // Bulk Import Handlers
   const openBulkModal = () => {
+    importRead++;
     const modal = $("bulkImportModal");
     if (!modal) return;
     pendingImportTrades = [];
@@ -5315,12 +5102,16 @@ function initEvents() {
     else modal.setAttribute("open", "");
   };
 
+  let importRead=0;
   const closeBulkModal = () => {
+    importRead++;pendingImportTrades=[];
     const modal = $("bulkImportModal");
     if (!modal) return;
     if (typeof modal.close === "function") modal.close();
     else modal.removeAttribute("open");
   };
+
+  for(const event of ['cancel','close'])$('bulkImportModal')?.addEventListener(event,()=>{importRead++;pendingImportTrades=[];$('confirmBulkImportBtn')?.setAttribute('disabled','true');});
 
   $("openBulkImportBtn")?.addEventListener("click", openBulkModal);
   $("journalBulkImportBtn")?.addEventListener("click", openBulkModal);
@@ -5351,11 +5142,14 @@ function initEvents() {
     });
 
     const handleFile = file => {
-      if (!file) return;
+      const read=++importRead;pendingImportTrades=[];$('confirmBulkImportBtn')?.setAttribute('disabled','true');
+      if (!file || file.size>2100000)return showNotice('CSV 1 MB / JSON 2.1 MB','error');
       const reader = new FileReader();
       reader.onload = ev => {
         try {
+          if(read!==importRead)return;
           const parsed = parseTradesCSV(ev.target.result);
+          if(lastCSVResult.issues.length)throw Error(lastCSVResult.issues.map(v=>'Row '+v.row+': '+v.reason).join('; '));
           if (!parsed.length) {
             showNotice(t("noValidTradesInCsv"), "error");
             return;
@@ -5366,7 +5160,7 @@ function initEvents() {
 
           if ($("csvFileName")) $("csvFileName").textContent = file.name;
           if ($("csvFileMeta")) {
-            $("csvFileMeta").textContent = `${parsed.length} trades · ${wins}W (${((wins / parsed.length) * 100).toFixed(0)}%) · Net: ${netPnl >= 0 ? '+' : ''}$${netPnl.toFixed(0)}`;
+            $('csvFileMeta').textContent=`${parsed.length} · ${currentLang==='ar'?'سجلات مستوردة غير موثقة؛ لا تثبت التنفيذ':'Unverified imported records; no execution verified'}`;
           }
 
           if ($("csvPreviewGrid")) {
@@ -5376,11 +5170,11 @@ function initEvents() {
               </div>
             ` + parsed.slice(0, 5).map(t => `
               <div class="csv-preview-row">
-                <span>${t.date.split("T")[0]}</span>
+                <span>${escapeHtml(t.date||'—')}</span>
                 <b>${escapeHtml(t.symbol)}</b>
-                <span class="${t.decision.toLowerCase()}">${t.decision}</span>
-                <span style="color:${t.pnl >= 0 ? 'var(--green)' : 'var(--red)'}">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(0)}</span>
-                <span>${t.status}</span>
+                <span class="${escapeHtml(t.decision?.toLowerCase()||'')}">${escapeHtml(t.decision||'—')}</span>
+                <span style="color:${t.pnl >= 0 ? 'var(--green)' : 'var(--red)'}">${Number.isFinite(t.pnl)?escapeHtml(t.pnl):'—'}</span>
+                <span>${escapeHtml(THNRecords.label(t,currentLang))}</span>
               </div>
             `).join("");
           }
@@ -5388,9 +5182,10 @@ function initEvents() {
           $("csvFileInfo")?.classList.remove("hidden");
           $("confirmBulkImportBtn")?.removeAttribute("disabled");
         } catch (err) {
-          showNotice(t("csvParseError"), "error");
+          pendingImportTrades=[];showNotice((currentLang==='ar'?'لم تُستورد أي سجلات: ':'No records imported: ')+err.message,'error');
         }
       };
+      reader.onerror=()=>{if(read!==importRead)return;pendingImportTrades=[];$('confirmBulkImportBtn')?.setAttribute('disabled','true');};
       reader.readAsText(file);
     };
 
@@ -5406,20 +5201,13 @@ function initEvents() {
 
   $("confirmBulkImportBtn")?.addEventListener("click", () => {
     if (!pendingImportTrades.length) return;
-    const mode = document.querySelector('input[name="importMode"]:checked')?.value || "append";
-    let finalLedger = [];
-    if (mode === "replace") {
-      finalLedger = [...pendingImportTrades];
-    } else {
-      const existing = getJournal();
-      finalLedger = [...pendingImportTrades, ...existing];
-    }
-
-    localStorage.setItem(journalKey, JSON.stringify(finalLedger.slice(0, 500)));
+    // Always append; imported records cannot overwrite historical source bytes.
+    const count=pendingImportTrades.length;
+    if(!writeJournal([...pendingImportTrades,...getJournal()]))return;
     renderJournal();
     renderPerformanceAnalytics();
     closeBulkModal();
-    const msg = t("tradesImported", { count: pendingImportTrades.length });
+    const msg = t("tradesImported", { count });
     status(msg);
   });
 

@@ -5,6 +5,8 @@ export const ROLES=['technical','quantitative','bull','bear','risk','manager'];
 export function evidenceSnapshot(brief,{asOf=brief.asOf,evaluation=null,riskPlan=null}={}){
  if(!brief||!/^[A-Z0-9^=:.\-]{1,32}$/.test(brief.symbol)||!INTERVAL_MS[brief.interval]||!Number.isFinite(asOf)||asOf>brief.asOf)throw Error('Invalid evidence context');
  const refs=[],missing=[];
+ // Structure timestamps identify confirmation-bar OPEN; evidence is available only at its close.
+ const eventAvailableAt=e=>e.confirmedAt+INTERVAL_MS[brief.interval];
  for(const f of brief.frames||[]){
   const p=f.provenance,selectedIdentity=brief.selected?.provenance;
   if(selectedIdentity?.providerSymbol&&p?.providerSymbol&&selectedIdentity.providerSymbol!==p.providerSymbol||selectedIdentity?.currency&&p?.currency&&selectedIdentity.currency!==p.currency){missing.push('provider-identity:'+f.interval);continue;}
@@ -17,10 +19,10 @@ export function evidenceSnapshot(brief,{asOf=brief.asOf,evaluation=null,riskPlan
  const selected=brief.selected?.provenance;if(!selected)missing.push('selected-history');
  let quant=null;
  if(evaluation&&evaluation.dataset.hash===selected?.hash){const a=evaluation.development.metrics,b=evaluation.holdout.metrics;quant={datasetHash:evaluation.dataset.hash,development:a,holdout:b,minimumTrades:evaluation.split.minimumTrades,parameters:evaluation.parameters,walkForward:evaluation.walkForward.summary};refs.push({id:'evaluation',source:'THN deterministic evaluator',datasetHash:evaluation.dataset.hash,availableAt:asOf,status:'evaluated',inputs:{trades:b.trades,returnPct:b.returnPct,maxDrawdownPct:b.maxDrawdownPct}});}
- if(selected?.hash){for(const [index,event]of (brief.selected?.events||[]).filter(e=>Number.isFinite(e.confirmedAt)&&e.confirmedAt<=asOf).slice(-6).entries())refs.push({id:'event-'+index,kind:'structure',label:String(event.type).slice(0,80),source:'THN causal structure engine',datasetHash:selected.hash,availableAt:event.confirmedAt,status:'historical_observation',inputs:Number.isFinite(event.price)?{price:event.price}:{}});}
+ if(selected?.hash){for(const [index,event]of (brief.selected?.events||[]).filter(e=>Number.isFinite(e.confirmedAt)&&eventAvailableAt(e)<=asOf).slice(-6).entries())refs.push({id:'event-'+index,kind:'structure',label:String(event.type).slice(0,80),source:'THN causal structure engine',datasetHash:selected.hash,availableAt:eventAvailableAt(event),status:'historical_observation',inputs:Number.isFinite(event.price)?{price:event.price}:{}});}
  if(riskPlan&&riskPlan.symbol===brief.symbol&&selected?.hash)refs.push({id:'risk-plan',source:'THN deterministic hypothetical planner; user assumptions',datasetHash:selected.hash,availableAt:asOf,status:'hypothetical',inputs:{capital:riskPlan.capital,riskPct:riskPlan.riskPct,entry:riskPlan.entry,stop:riskPlan.stop,lots:riskPlan.lots,budget:riskPlan.budget,lossWithCosts:riskPlan.plannedStopLossWithCosts,requiredMargin:riskPlan.metrics.requiredMargin}});
  const value={schema:'THN-EVIDENCE-7',symbol:brief.symbol,interval:brief.interval,asOf,engineVersion:'6.6/6.3',selectedHash:selected?.hash||null,refs,missing,
-  events:(brief.selected?.events||[]).filter(e=>Number.isFinite(e.confirmedAt)&&e.confirmedAt<=asOf).slice(-12).map(e=>({type:e.type,time:e.confirmedAt})),
+  events:(brief.selected?.events||[]).filter(e=>Number.isFinite(e.confirmedAt)&&eventAvailableAt(e)<=asOf).slice(-12).map(e=>({type:e.type,time:eventAvailableAt(e)})),
   limitations:['No predictive probabilities','No verified news, sentiment or macro publications','Historical evaluation and risk plans require explicitly selected verified records'],
   quantitative:quant,fresh:missing.length===0&&refs.some(r=>r.interval)&&refs.filter(r=>r.interval).every(r=>r.status==='recent')};
  return {...value,id:hash(value)};

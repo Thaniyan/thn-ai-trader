@@ -1,0 +1,25 @@
+
+> thn-ai-trader@7.1.0 test:system
+> node tests/run-system.mjs
+
+=================================================
+   THN AI TRADER — AUTOMATED SYSTEM TEST SUITE
+=================================================
+• System Health & Server Info ... [32mPASSED[0m
+• Account Store & Security Vault ... [32mPASSED[0m
+• Authoritative Risk Calculation Endpoint ... [32mPASSED[0m
+• Risk Engine Pre-Trade Rejection (Negative TP for Buy) ... [32mPASSED[0m
+• Authoritative Order Execution & Idempotency ... [32mPASSED[0m
+• Position Closing & PnL Settlement ... [32mPASSED[0m
+• Sandbox Reset Authoritative Balance Recovery ... [32mPASSED[0m
+• Reconciliation Engine & Integrity Audit ... [32mPASSED[0m
+• Immutable Server Audit Logger Retrieval ... [32mPASSED[0m
+• Multi-Asset Live Quotes Aggregator ... [32mPASSED[0m
+-------------------------------------------------
+Results: 10 passed, 0 failed.
+=================================================
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

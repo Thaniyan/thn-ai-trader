@@ -741,39 +741,39 @@
         <div class="kpi-grid">
           <div class="kpi-card" id="kpiNetPnlCard">
             <span data-i18n="kpiNetPnl">Net Realized PnL</span>
-            <b id="kpiNetPnl">$0.00</b>
-            <small id="kpiNetPnlPct">+0.0% return</small>
+            <b id="kpiNetPnl">Unavailable</b>
+            <small id="kpiNetPnlPct">Unavailable</small>
           </div>
           <div class="kpi-card" id="kpiWinRateCard">
             <span data-i18n="kpiWinRate">Win Rate</span>
-            <b id="kpiWinRate">0.0%</b>
-            <small id="kpiWinLossRatio">0 Wins / 0 Losses</small>
+            <b id="kpiWinRate">Unavailable</b>
+            <small id="kpiWinLossRatio">Unavailable</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiProfitFactor">Profit Factor</span>
-            <b id="kpiProfitFactor">0.00</b>
-            <small id="kpiGrossProfitLoss">$0 Gross Profit</small>
+            <b id="kpiProfitFactor">Unavailable</b>
+            <small id="kpiGrossProfitLoss">Unavailable</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiPayoffRatio">Payoff Ratio (Avg W/L)</span>
-            <b id="kpiPayoffRatio">1 : 0.00</b>
-            <small id="kpiAvgWinLoss">Avg W: $0 | Avg L: $0</small>
+            <b id="kpiPayoffRatio">Unavailable</b>
+            <small id="kpiAvgWinLoss">Unavailable</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiMaxDrawdown">Max Drawdown</span>
-            <b id="kpiMaxDrawdown">$0.00</b>
-            <small id="kpiMaxDrawdownPct">0.0% from peak</small>
+            <b id="kpiMaxDrawdown">Unavailable</b>
+            <small id="kpiMaxDrawdownPct">Unavailable</small>
           </div>
           <div class="kpi-card">
             <span data-i18n="kpiExpectancy">Expectancy / Trade</span>
-            <b id="kpiExpectancy">$0.00</b>
-            <small id="kpiTotalTrades">0 closed trades</small>
+            <b id="kpiExpectancy">Unavailable</b>
+            <small id="kpiTotalTrades">Unavailable</small>
           </div>
         </div>
 
         <!-- D3 Visualizations Layout -->
         <div class="d3-visuals-grid">
-          <!-- Cumulative Equity Curve Chart -->
+          <!-- Reported cumulative PnL, never account equity -->
           <article class="d3-card equity-curve-card">
             <div class="d3-card-header">
               <div>
@@ -781,7 +781,7 @@
                 <small data-i18n="equityCurveSub">D3.js interactive time-series with high-water mark</small>
               </div>
               <div class="d3-legend">
-                <span><i class="legend-line green"></i><span data-i18n="legendEquity">Equity Curve</span></span>
+                <span><i class="legend-line green"></i><span data-i18n="legendEquity">Reported cumulative PnL (not account equity)</span></span>
                 <span><i class="legend-line gold dashed"></i><span data-i18n="legendPeak">High Water Mark</span></span>
               </div>
             </div>
@@ -804,9 +804,9 @@
               <div id="donutTooltip" class="d3-tooltip hidden"></div>
             </div>
             <div class="donut-breakdown-row" id="donutBreakdownRow">
-              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">0 (0%)</b></div>
-              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">0 (0%)</b></div>
-              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">0 (0%)</b></div>
+              <div class="breakdown-item win"><span class="dot-color green"></span><span data-i18n="wins">Wins</span><b id="donutWinCount">Unavailable</b></div>
+              <div class="breakdown-item loss"><span class="dot-color red"></span><span data-i18n="losses">Losses</span><b id="donutLossCount">Unavailable</b></div>
+              <div class="breakdown-item be"><span class="dot-color yellow"></span><span data-i18n="breakeven">Breakeven</span><b id="donutBeCount">Unavailable</b></div>
             </div>
           </article>
         </div>
@@ -853,7 +853,7 @@
           <div class="button-row">
             <button class="ghost" id="clearJournalBtn" data-i18n="clearJournal">Clear Ledger</button>
             <button class="ghost" id="journalBulkImportBtn" data-i18n="bulkImport">Import CSV</button>
-            <button class="ghost" id="exportJournalBtn" data-i18n="exportJournal">Export CSV Ledger</button>
+            <button class="ghost" id="exportJournalBtn" data-i18n="exportJournal">Export original records JSON</button>
           </div>
           <div id="journalList" class="journal-list"></div>
         </article>
@@ -1363,28 +1363,19 @@
             </label>
             <label>
               <span data-i18n="entryPrice">Entry Price</span>
-              <input id="manualEntry" type="number" step="any" value="1.08500" required />
+              <input id="manualEntry" type="number" step="any" required />
             </label>
             <label>
               <span data-i18n="exitPrice">Exit Price</span>
-              <input id="manualExit" type="number" step="any" value="1.08950" required />
+              <input id="manualExit" type="number" step="any" required />
             </label>
-            <label>
-              <span data-i18n="outcome">Outcome</span>
-              <select id="manualOutcome">
-                <option value="WIN">WIN (Profit Target)</option>
-                <option value="LOSS">LOSS (Stop Hit)</option>
-                <option value="BE">BREAKEVEN (Scratch)</option>
-              </select>
-            </label>
+
+            <label><span>Reported initial risk (USD) / المخاطرة المسجلة</span><input id="manualRisk" type="number" min="0.000001" step="any" required /></label>
             <label>
               <span data-i18n="realizedPnl">Realized PnL ($)</span>
-              <input id="manualPnl" type="number" step="any" value="250" required />
+              <input id="manualPnl" type="number" step="any" required />
             </label>
-            <label>
-              <span data-i18n="rewardRisk">Realized R (Multiple)</span>
-              <input id="manualR" type="number" step="0.1" value="2.0" required />
-            </label>
+
             <label>
               <span data-i18n="date">Close Date</span>
               <input id="manualDate" type="date" required />
@@ -1413,7 +1404,7 @@
           </p>
 
           <div class="bulk-dropzone" id="csvDropzone">
-            <input type="file" id="csvFileInput" accept=".csv,text/csv" class="hidden-file-input" />
+            <input type="file" id="csvFileInput" accept=".csv,.json,text/csv,application/json" class="hidden-file-input" />
             <div class="dropzone-content">
               <span class="dropzone-icon">📥</span>
               <p><b>Click to select CSV</b> or drag &amp; drop file here</p>
@@ -1435,7 +1426,7 @@
               <span data-i18n="importAppend">Append to existing records</span>
             </label>
             <label class="import-radio-label">
-              <input type="radio" name="importMode" value="replace" />
+              <input type="radio" name="importMode" value="replace" disabled />
               <span data-i18n="importReplace">Replace current journal</span>
             </label>
             <button type="button" class="ghost small download-template-btn" id="downloadTemplateBtn" data-i18n="downloadTemplate">
@@ -1756,7 +1747,7 @@
       <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog">
         <div class="log-trade-form">
           <div class="dialog-head">
-            <h3 data-i18n="executeOrderTitle">⚡ Transmit Order to Broker Gateway</h3>
+            <h3 data-i18n="executeOrderTitle">⚡ Paper execution · local only</h3>
             <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
           </div>
           <p class="tiny trust-copy" id="executeOrderDesc">
@@ -1805,6 +1796,7 @@
   <script src="d3.min.js"></script>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <script src="research-state.js"></script>
+  <script src="research-records.js"></script>
   <script src="app.js"></script>
   <script src="workstation.js"></script>
   <script src="research-chart.js"></script>
