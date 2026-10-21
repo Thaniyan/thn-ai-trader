@@ -1,0 +1,109 @@
+{
+  "source": "ab910a5cb7d46e52a08421b688f8caee7130fc29",
+  "fixture": "Constructor recording only; no actual TradingView data",
+  "initialNavigationCalls": [
+    {
+      "symbol": "FX:GBPUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:EURUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    }
+  ],
+  "callsAfterThreeUnchangedReturns": [
+    {
+      "symbol": "FX:GBPUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:EURUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:GBPUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:EURUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:GBPUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:EURUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:GBPUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    },
+    {
+      "symbol": "FX:EURUSD",
+      "interval": "60",
+      "studies": [
+        "RSI@tv-basicstudies",
+        "MACD@tv-basicstudies",
+        "ATR@tv-basicstudies",
+        "BB@tv-basicstudies"
+      ]
+    }
+  ],
+  "total": 8
+}

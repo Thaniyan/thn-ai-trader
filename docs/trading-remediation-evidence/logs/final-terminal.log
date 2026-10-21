@@ -1,0 +1,494 @@
+{
+  "checks": [
+    "curated discovery/search, actual Nasdaq-100 ^NDX observations, independent frame provenance, evidence-to-chart navigation and chart/SMC/drawing keyboard interactions",
+    "browser/CLI authoritative snapshot replay with exact recorded metrics, no provider refresh, retained historical chart and persisted numerical reproduction status",
+    "changed-parameter mismatch, imported/unverified preservation, missing-snapshot and incompatible-engine reasons, and bounded four-case quantitative comparison with incompatible-data warnings",
+    "tampered-candle integrity failure, interrupted response protection, unchanged records after cancellation and snapshot-only replay during provider failure",
+    "authoritative risk-plan costs, explicit exceeded-budget warning, independent plan exposure visualization and chart overlay visibility toggle"
+  ],
+  "a11y": [
+    {
+      "lang": "en",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "view": "settings",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "lang": "ar-light",
+      "view": "journal",
+      "violations": []
+    }
+  ],
+  "layouts": [
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 390,
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "view": "settings",
+      "overflow": false
+    }
+  ],
+  "initialProvider": {
+    "source": "Yahoo Finance chart data",
+    "providerSymbol": "EURUSD=X",
+    "interval": "1h",
+    "requestedInterval": "1h",
+    "currency": "USD",
+    "count": 600,
+    "firstTime": 1790433865000,
+    "lastTime": 1792590265000,
+    "providerTime": 1792593865000,
+    "status": "recent",
+    "discardedRows": 0,
+    "gapCount": 0,
+    "hash": "18e124dc829d74d0418d3394d8d5d30993defabe6b0667f1a7d9bc94441a017b",
+    "closedBarsOnly": true,
+    "observation": "Provider OHLCV observations",
+    "volumeAvailable": true
+  },
+  "nasdaqProvider": {
+    "source": "Yahoo Finance chart data",
+    "providerSymbol": "^NDX",
+    "interval": "1h",
+    "requestedInterval": "1h",
+    "currency": "USD",
+    "count": 600,
+    "firstTime": 1790433865000,
+    "lastTime": 1792590265000,
+    "providerTime": 1792593865000,
+    "status": "recent",
+    "discardedRows": 0,
+    "gapCount": 0,
+    "hash": "18e124dc829d74d0418d3394d8d5d30993defabe6b0667f1a7d9bc94441a017b",
+    "closedBarsOnly": true,
+    "observation": "Provider OHLCV observations",
+    "volumeAvailable": true
+  },
+  "errors": []
+}

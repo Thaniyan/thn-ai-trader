@@ -32,6 +32,8 @@ with sync_playwright() as p:
  page.reload();page.wait_for_function('window.THNProfessional&&THNResearch.series()');assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')
  go('trading');canvas=page.locator('#qCandles');canvas.focus();page.keyboard.press('ArrowLeft');page.keyboard.press('+');page.keyboard.press('Home')
  assert page.evaluate('THNResearch.chart.offset')==0
+ # Explicitly complete original analysis; series readiness alone does not promise it.
+ page.locator('#proAnalyzeContext').click();page.wait_for_function('currentAnalysis?.symbol===THNContext.get().symbol&&!document.getElementById("proAnalyzeContext").disabled');go('trading')
  # Genuine deterministic engine -> saved report -> Library; ideas remain unverified.
  page.evaluate('THNLibrary.save(THNDecision.snapshot())');assert page.evaluate('THNLibrary.records().length')>0
  page.evaluate('saveJournal()');go('journal');assert page.locator('#proRecords').get_by_text('EURUSD · Research idea',exact=True).count()>=1

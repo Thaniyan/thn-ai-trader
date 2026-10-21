@@ -1,0 +1,148 @@
+{
+  "coverage": "6 / 6",
+  "views": [
+    "dashboard",
+    "markets",
+    "trading",
+    "ai",
+    "risk",
+    "portfolio",
+    "journal",
+    "brokers",
+    "settings"
+  ],
+  "accessibility": [
+    {
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "view": "markets",
+      "violations": []
+    },
+    {
+      "view": "trading",
+      "violations": []
+    },
+    {
+      "view": "ai",
+      "violations": []
+    },
+    {
+      "view": "risk",
+      "violations": []
+    },
+    {
+      "view": "portfolio",
+      "violations": []
+    },
+    {
+      "view": "journal",
+      "violations": []
+    },
+    {
+      "view": "brokers",
+      "violations": []
+    },
+    {
+      "view": "settings",
+      "violations": []
+    }
+  ],
+  "mobile": [
+    {
+      "lang": "ar",
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "ar",
+      "view": "settings",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "dashboard",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "markets",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "trading",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "ai",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "risk",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "portfolio",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "journal",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "brokers",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "view": "settings",
+      "overflow": false
+    }
+  ],
+  "risk": "100 USD stop / 200 USD target / 550 USD margin",
+  "chart": "layer toggle and keyboard crosshair exercised",
+  "lightA11y": [],
+  "errors": []
+}

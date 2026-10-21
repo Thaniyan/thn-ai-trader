@@ -1,0 +1,17 @@
+{
+  "external": {
+    "production": {
+      "url": "https://thn-ai-trader.vercel.app/#trading",
+      "error": "Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://thn-ai-trader.vercel.app/#trading"
+    },
+    "script": {
+      "url": "https://s3.tradingview.com/tv.js",
+      "error": "Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://s3.tradingview.com/tv.js"
+    },
+    "widget": {
+      "url": "https://www.tradingview.com/widget/",
+      "error": "Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.tradingview.com/widget/"
+    }
+  },
+  "errors": []
+}

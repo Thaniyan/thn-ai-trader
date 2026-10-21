@@ -1,0 +1,40 @@
+{
+  "base": "ab910a5cb7d46e52a08421b688f8caee7130fc29",
+  "localOnly": true,
+  "externalCandles": "UNVERIFIED \u2014 managed proxy denial; no real TradingView data tested",
+  "fullBrowserSuites": 15,
+  "fullBrowserResult": "PASS",
+  "finalAffectedRerun": {
+    "workstation": 0,
+    "terminal": 0,
+    "professional": 0,
+    "trading_remediation": 0
+  },
+  "unit": 155,
+  "security": 21,
+  "system": 10,
+  "fullWorkstation": {
+    "geometry": 288,
+    "accessibility": 72,
+    "zoom": 64,
+    "failures": 0
+  },
+  "packageManifestSHA256": "8a432793318ed45ecfafc79367617e53b07a00ca5fcd4ab262052005c542f658",
+  "baselineLifecycle": {
+    "initialMappedSymbol": "FX:GBPUSD",
+    "unrequestedReplacement": "FX:EURUSD",
+    "constructionsAfterThreeReturns": 8
+  },
+  "terminal": {
+    "layouts": 24,
+    "accessibilityScans": 24,
+    "errors": 0
+  },
+  "packageIntegrity": {
+    "artifactFiles": 64,
+    "runtimeFiles": 60,
+    "artifactMismatches": [],
+    "sourceMismatches": [],
+    "manifestSHA256": "8a432793318ed45ecfafc79367617e53b07a00ca5fcd4ab262052005c542f658"
+  }
+}

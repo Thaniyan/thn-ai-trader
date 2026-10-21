@@ -2861,34 +2861,68 @@ function renderArabicReport(a) {
   $("report").textContent = `==============================\nTHN AI TRADER - تقرير احترافي\n==============================\n\nالتطبيق: ${a.appName || "THN AI Trader"}\nالمصدر: ${a.source}\nبيانات السوق: ${a.marketDataSource}\nالرمز: ${a.symbol}\nرمز Yahoo: ${a.yahooSymbol}\nرمز TradingView: ${a.tvSymbol}\nنوع الأصل: ${localizedValue(a.assetClass)}\nالإطار الزمني: ${a.timeframe}\nوقت السوق: ${a.marketTime ? new Date(a.marketTime).toLocaleString("ar-OM") : "--"}\n\n------------------------------\nتوافق الذكاء الاصطناعي\n------------------------------\nالقرار: ${localizedValue(a.decision)}\nتوافق الأدلة: ${fmt(a.confidence, 0)}/100\nالتقييم: ${a.grade}\nدرجة التوافق: ${fmt(a.consensusScore, 2)}\n\n${localizedNarrative(a)}\n\n------------------------------\nتحليل المدارس\n------------------------------\n${schoolLines}\n\n------------------------------\nمستويات الصفقة\n------------------------------\nالدخول: ${fmt(a.entry, 6)}\nوقف الخسارة: ${a.stopLoss ? fmt(a.stopLoss, 6) : "--"}\nالهدف الأول: ${a.targets?.[0] ? fmt(a.targets[0], 6) : "--"}\nالهدف الثاني: ${a.targets?.[1] ? fmt(a.targets[1], 6) : "--"}\nالهدف الثالث: ${a.targets?.[2] ? fmt(a.targets[2], 6) : "--"}\n\n------------------------------\nإدارة المخاطر\n------------------------------\nرصيد الحساب: ${money(r.accountBalance)}\nنسبة المخاطرة: ${fmt(r.riskPct, 2)}%\nمبلغ المخاطرة: ${money(r.riskAmount)}\nالمخاطرة لكل وحدة: ${fmt(r.riskPerUnit, 6)}\nالوحدات: ${fmt(r.units, 4)}\nلوتات الفوركس: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nالتعرض: ${money(r.exposure)}\nنسبة التعرض: ${fmt(r.exposurePct, 2)}%\nالعائد/المخاطرة: 1 : ${fmt(r.rewardRisk, 2)}\nنسبة التعادل: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nالمؤشرات\n------------------------------\nالسعر: ${fmt(i.price, 6)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD: ${fmt(i.macdHistogram, 6)}\nالتذبذب: ${i.volatilityLabel}\n\n------------------------------\nالهيكل\n------------------------------\nالدعم: ${fmt(s.support, 6)}\nالمقاومة: ${fmt(s.resistance, 6)}\nآخر قمة: ${fmt(s.recentHigh, 6)}\nآخر قاع: ${fmt(s.recentLow, 6)}\nهيكل الاتجاه: ${s.trendStructure}\nموقع النطاق: ${fmt(s.rangePosition, 2)}%\nسحب سيولة القيعان: ${s.possibleSellSideSweep ? t("possible") : t("no")}\nسحب سيولة القمم: ${s.possibleBuySideSweep ? t("possible") : t("no")}\n\n------------------------------\nخطة التنفيذ\n------------------------------\n- لا تدخل قبل تأكيد الأخبار والسبريد والسيولة.\n- التزم بنسبة المخاطرة المحددة ولا ترفع حجم الصفقة بسبب الثقة العالية.\n- استخدم الوقف والأهداف كما هي أو عدلها فقط حسب خطة واضحة.\n\nتنبيه: THN AI Trader نظام تحليلي وتعليمي مساعد، وليس نصيحة مالية ولا يضمن الربح. يجب التحقق من التحليل وإدارة المخاطر ومواصفات الوسيط قبل أي تنفيذ.`;
 }
 
-function loadChart(symbol, interval) {
-  const chartSymbol = symbol || currentAnalysis?.tvSymbol || $("symbolInput").value.trim() || "FX:EURUSD";
-  const chartInterval = interval || currentAnalysis?.tvInterval || "60";
-  $("tvSymbolText").textContent = t("chartSymbolLine", { symbol: chartSymbol, interval: chartInterval });
-  $("tvChart").innerHTML = "";
-  if (typeof TradingView === "undefined") {
-    $("tvChart").innerHTML = `<div class="chart-error">${t("chartError")}</div>`;
-    return;
-  }
-  tvWidget = new TradingView.widget({
-    autosize: true,
-    symbol: chartSymbol,
-    interval: chartInterval,
-    timezone: "Etc/UTC",
-    theme: document.documentElement.dataset.theme === "light" ? "light" : "dark",
-    style: "1",
-    locale: currentLang === "ar" ? "ar_AE" : "en",
-    enable_publishing: false,
-    withdateranges: true,
-    hide_side_toolbar: false,
-    allow_symbol_change: true,
-    details: true,
-    hotlist: true,
-    calendar: true,
-    container_id: "tvChart",
-    studies: ["RSI@tv-basicstudies", "MACD@tv-basicstudies", "ATR@tv-basicstudies", "BB@tv-basicstudies"]
-  });
+// All historical chart callers share the terminal's selected context. Hidden views
+// never create an iframe. Public widget events do NOT establish candle readiness.
+function loadChart() {
+  window.THNProfessional?.requestTV();
 }
+let tvGeneration = 0, tvTimer, tvObserver, tvSignature = "";
+let tvState = {phase:"idle", iframeLoaded:false, uiReady:false, candleReady:false};
+function tradingViewStatus(phase) {
+  tvState.phase = phase;
+  const el=$("proTVStatus");
+  if (!el) return;
+  el.dataset.phase=phase;
+  const messages={
+    loading:["Requesting the external chart. THN Research is available immediately.","جار طلب الرسم الخارجي. بحث THN متاح فوراً."],
+    frame:["External frame loaded; this does not confirm chart data. If candles are blank, use THN Research or open TradingView.","تم تحميل الإطار الخارجي؛ هذا لا يؤكد بيانات الرسم. إذا لم تظهر الشموع فاستخدم بحث THN أو افتح TradingView."],
+    unavailable:["TradingView could not initialize. Retry, open TradingView, or use THN Research.","تعذر بدء TradingView. أعد المحاولة أو افتح TradingView أو استخدم بحث THN."],
+    unverified:["Candle availability cannot be verified through this public embed. If it is still blank or spinning, switch to THN Research. No substitute TradingView data is shown.","لا يمكن التحقق من الشموع عبر هذا التضمين العام. إذا بقي فارغاً أو قيد التحميل فانتقل إلى بحث THN. لا نعرض بيانات TradingView بديلة."]
+  };
+  el.textContent=(messages[phase]||messages.unavailable)[currentLang==='ar'?1:0];
+}
+function invalidateTradingView() {
+  ++tvGeneration;clearTimeout(tvTimer);tvObserver?.disconnect();tvSignature="";
+  $("tvChart").replaceChildren();$("tvChart").hidden=true;tvWidget=null;
+  tvState={phase:"unavailable",iframeLoaded:false,uiReady:false,candleReady:false};
+  $("proTVExternal").href='https://www.tradingview.com/chart/';tradingViewStatus('unavailable');
+}
+function renderTradingView(chartSymbol, chartInterval, force=false) {
+  const host=$("tvChart");
+  if (!host || !$("chart").getClientRects().length) return false;
+  const signature=JSON.stringify([chartSymbol,chartInterval,currentLang,document.documentElement.dataset.theme]);
+  $("tvSymbolText").textContent=t("chartSymbolLine",{symbol:chartSymbol,interval:({'15':'15 min','60':'1 h','D':'1 day'})[chartInterval]||chartInterval});
+  $("proTVExternal").href='https://www.tradingview.com/chart/?symbol='+encodeURIComponent(chartSymbol)+'&interval='+encodeURIComponent(chartInterval);
+  if (!force && signature===tvSignature && tvWidget) return true;
+  tvSignature=signature;const generation=++tvGeneration;
+  clearTimeout(tvTimer);tvObserver?.disconnect();
+  // Removing our own embed container tears down the old public widget. No private
+  // API, cross-origin DOM inspection, or untrusted postMessage readiness signals.
+  host.hidden=false;host.replaceChildren();tvWidget=null;
+  tvState={phase:"loading",iframeLoaded:false,uiReady:false,candleReady:false};tradingViewStatus('loading');
+  tvTimer=setTimeout(()=>{if(generation===tvGeneration)tradingViewStatus('unverified');},18000);
+  if(typeof window.TradingView?.widget!=="function"){tradingViewStatus('unavailable');host.hidden=true;clearTimeout(tvTimer);return false;}
+  const observer=new MutationObserver(()=>{
+    if(generation!==tvGeneration){observer.disconnect();return;}
+    const frame=host.querySelector('iframe');if(!frame)return;
+    frame.title=currentLang==='ar'?'رسم TradingView الخارجي':'TradingView external chart';
+    frame.addEventListener('load',()=>{if(generation!==tvGeneration)return;tvState.iframeLoaded=true;if(tvState.phase==='loading')tradingViewStatus('frame');},{once:true});
+    observer.disconnect();
+  });
+  tvObserver=observer;observer.observe(host,{childList:true,subtree:true});
+  const container=document.createElement("div");container.id="thn-tv-"+generation;container.style.cssText="height:100%;width:100%";host.append(container);
+  try {
+    tvWidget=new TradingView.widget({
+      autosize:true,symbol:chartSymbol,interval:chartInterval,timezone:"Etc/UTC",
+      theme:document.documentElement.dataset.theme==="light"?"light":"dark",
+      style:"1",locale:currentLang==="ar"?"ar":"en",enable_publishing:false,
+      withdateranges:true,hide_side_toolbar:false,allow_symbol_change:true,
+      details:false,hotlist:false,calendar:false,container_id:container.id,studies:[]
+    });
+    return true;
+  } catch {clearTimeout(tvTimer);tvObserver.disconnect();tradingViewStatus('unavailable');host.hidden=true;return false;}
+}
+window.THNTradingViewStatus=()=>({...tvState});
 
 
 function normalizeSymbolInput(value) {

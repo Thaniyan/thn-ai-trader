@@ -1,0 +1,351 @@
+{
+  "network": "offline protocol fixtures; actual TradingView candles NOT verified",
+  "checks": [
+    "iframe load and toolbar-only protocol frame never prove UI or candle readiness; 18-second bounded feedback",
+    "12 symbol/timeframe combinations, repeated navigation, metadata-only updates and explicit retry; shim configuration only",
+    "Missing script, delayed real-script boundary, duplicate-retry lock, constructor failure, unique generation containers, unsupported mapping and keyboard fallback",
+    "Terminal -> original analysis API -> selected-context AI evidence",
+    "Risk API validated plan -> THN entry/stop/target overlay; evidence -> complete saved Library research"
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "issues": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "issues": []
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "violations": []
+    }
+  ],
+  "errors": []
+}
