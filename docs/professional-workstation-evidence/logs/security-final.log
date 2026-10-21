@@ -1,0 +1,39 @@
+
+> thn-ai-trader@7.1.0 test:security
+> node --test --test-concurrency=1 tests/ci-foundation.test.mjs tests/release-security.test.mjs tests/pilot.test.mjs tests/pilot-http.test.mjs
+
+Switched to a new branch 'other'
+✔ dependency policy blocks high/critical and unavailable audits without blocking advisory-only low findings (1.646582ms)
+✔ source guard rejects runtime material while permitting inert templates and fixture source (1.0452ms)
+✔ history guard detects deleted artifacts, unrelated roots and physically excluded objects (157.765224ms)
+✔ actual packaged HTTP route authenticates, freezes followups and blocks hosted generation/finance (331.283426ms)
+✔ literal loopback wire transport closes rejected responses and enforces redirect/body/JSON bounds (94.110116ms)
+✔ local endpoint rejects external, cloud, credentials, alternate ports, paths and rebinding forms (3.089401ms)
+✔ hosted flags and remote/forwarded callers cannot expose a local model proxy (0.422046ms)
+✔ inventory requires installed local weights and rejects cloud-backed metadata; never pulls (1.641474ms)
+✔ authenticated mock generation sends bounded structured messages and validates exact factual claims (3.706346ms)
+✔ immutable conversations retain server evidence and bounded followups, cancellation and context checks (2.890176ms)
+✔ six-role requests stay selective and one bounded model call per turn; execution never reaches runtime (4.549536ms)
+✔ malformed, unsupported numeric/news, secret and conflicting structured output fail closed (0.979532ms)
+✔ stale, mutated and future evidence never reaches generation (0.806636ms)
+✔ unavailable models fall back honestly without a chat call; attempts and token ceilings still apply (1.459494ms)
+✔ timeouts and explicit cancellation bound even an uncooperative mocked transport (102.555115ms)
+✔ concurrent calls and oversized/malformed/tool-calling responses are rejected (12.483862ms)
+✔ credential strings, imported context injection and excessive history cannot leak to model (0.812765ms)
+✔ generated Library records survive backup with verified claims and remain imported/unverified (31.984068ms)
+✔ expired/capacity-bound sessions and rejected-answer records remain bounded and honest (0.97134ms)
+✔ packaged runtime contains all v7 assets and only declared source (24.695248ms)
+✔ hosted package starts without credentials and rejects all financial mutations despite local opt-in (186.900335ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1252.740768
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

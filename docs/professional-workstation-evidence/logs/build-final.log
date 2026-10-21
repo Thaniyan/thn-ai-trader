@@ -1,0 +1,9 @@
+
+> thn-ai-trader@7.1.0 build
+> node --check server.js && node --check public/app.js && node --check public/workstation.js && node --check public/research-state.js && node --check public/research-chart.js && node --check public/research-workstation.js && node --check server/research.js && node --check server/backtest.js && node --check public/locale-secondary.js && node --check server/evaluation.js && node --check public/research-quality.js && node --check public/decision-core.js && node --check public/decision-records.js && node --check public/decision-workspace.js && node --check server/decision.js && node --check public/library-core.js && node --check public/research-library.js && node --check public/workflow-maturity.js && node --check scripts/replay-research.mjs && node --check server/replay.js && node --check public/replay-contract.js && node --check public/comparison-core.js && node --check public/terminal-research.js && node --check public/market-terminal.js && node --check server/intelligence.js && node --check server/intelligence-provider.js && node --check public/intelligence-workspace.js && node --check public/intelligence-memory.js && node --check server/intelligence-local.js && node --check server/intelligence-conversation.js && node --check public/intelligence-generation.js && node --check public/research-records.js && node --check server/market-evidence.js && node --check public/professional-chart.js && node --check public/professional-records.js && node --check public/preferences.js && node --check public/professional-markets.js && node --check public/professional-workspace.js && node --check server/paper-intents.js
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

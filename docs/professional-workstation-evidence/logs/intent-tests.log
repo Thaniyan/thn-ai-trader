@@ -1,0 +1,16 @@
+✔ paper intent survives a lost response/restart and rejects a changed payload (3.234086ms)
+✔ uncertain persisted intent blocks all new keys for its account across restart (0.638207ms)
+✔ malformed journal and storage failure fail closed without trading (0.354665ms)
+✔ private state replacement is complete JSON with restrictive permissions (1.689887ms)
+✔ preference refusal never prevents initialization and cannot impersonate successful writes (1.36209ms)
+✔ HTTP lost response retry remains one position after process restart (255.105485ms)
+✔ another local process cannot reserve against the same private paper directory (38.303561ms)
+✔ an orphaned exclusive-writer marker requires recovery, never automatic deletion (0.405782ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 369.45009
