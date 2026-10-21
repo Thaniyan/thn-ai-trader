@@ -5,7 +5,7 @@ const tr=(a,b)=>document.documentElement.lang==='ar'?b:a;
 const date=n=>Number.isFinite(n)?new Date(n).toISOString().slice(0,16).replace('T',' ')+' UTC':'—';
 const statusName=s=>({draft:tr('Draft','مسودة'),reviewed:tr('Reviewed by user','راجعه المستخدم'),archived:tr('Archived','مؤرشف')})[s];
 const download=(name,data,type='application/json')=>{const url=URL.createObjectURL(new Blob([typeof data==='string'?data:JSON.stringify(data,null,2)],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-export function createResearchLibrary({root,storage=localStorage,onChange=()=>{}}){
+export function createResearchLibrary({root,storage={getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value),removeItem:key=>localStorage.removeItem(key),key:index=>localStorage.key(index),get length(){return localStorage.length;}},onChange=()=>{}}){
   let state=readLibrary(storage).state,error=readLibrary(storage).error,filter='',status='all',sort='newest',selected=new Set(),opened=null,preview=null,message='',previewRequest=0,replayHandle=null,comparisonOpen=false;const replayCache=new Map();
   const change=next=>{state=writeLibrary(storage,next,state);onChange();};
   const fail=()=>{message=tr('Operation rejected. Storage may be full/unreadable or the file exceeds safe bounds. Existing work was preserved.','رُفضت العملية. قد يكون التخزين ممتلئاً/غير مقروء أو الملف يتجاوز الحدود الآمنة. حُفظ العمل السابق.');render();};

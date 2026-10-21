@@ -1,3 +1,4 @@
+import {atomicPrivateJSON,ensurePaperWriter} from './paper-intents.js';
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,9 +52,9 @@ export function loadTradingAccounts() {
     try {
       const raw = fs.readFileSync(ACCOUNTS_FILE, "utf8");
       tradingAccounts = JSON.parse(raw);
-      if (!Array.isArray(tradingAccounts)) tradingAccounts = [];
+      if (!Array.isArray(tradingAccounts)) throw Error("LOCAL_ACCOUNT_RECOVERY_REQUIRED");
     } catch {
-      tradingAccounts = [];
+      throw Error("LOCAL_ACCOUNT_RECOVERY_REQUIRED: preserve account file and recover before local paper startup");
     }
   }
 
@@ -68,9 +69,11 @@ export function loadTradingAccounts() {
 
 export function saveTradingAccounts() {
   try {
-    fs.writeFileSync(ACCOUNTS_FILE, JSON.stringify(tradingAccounts, null, 2));
+    if(!ensurePaperWriter(runtimeDir))throw Error("PAPER_WRITER_RECOVERY_REQUIRED");
+    atomicPrivateJSON(ACCOUNTS_FILE,tradingAccounts);
   } catch (err) {
     console.error("Failed to persist trading accounts:", err.message);
+    throw err;
   }
 }
 

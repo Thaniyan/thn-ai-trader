@@ -1,3 +1,4 @@
+import {createPaperIntents,ensurePaperWriter} from './server/paper-intents.js';
 import {closedMarket} from './server/market-evidence.js';
 import {createConversations} from './server/intelligence-conversation.js';
 import {localPilotRequest,authenticated,inspectLocalModel} from './server/intelligence-local.js';
@@ -1461,6 +1462,8 @@ function serveFile(res, filePath) {
   fs.createReadStream(filePath).pipe(res);
 }
 
+let paperIntents;
+function paperIntentStore(){return paperIntents ||= createPaperIntents(process.env.THN_DATA_DIR || path.join(__dirname,'.runtime'));}
 const activeAccounts = new Set();
 let activeReplays = 0;
 const server = http.createServer(async (req, res) => {
@@ -1483,6 +1486,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (req.method === "POST" && req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`)
       return sendJson(res, 403, { ok: false, code: "ORIGIN_REJECTED" });
+    if(financial&&req.method==='POST'&&!ensurePaperWriter(process.env.THN_DATA_DIR||path.join(__dirname,'.runtime')))return sendJson(res,409,{ok:false,code:'PAPER_WRITER_RECOVERY_REQUIRED'});
     if (financial && req.method === "POST" && /connect|register|test-connection/.test(url.pathname)) {
       const body = await readBody(req);
       if (body.broker !== "paper") return sendJson(res, 503, { ok: false, code: "BROKER_UNAVAILABLE", error: "External broker connectivity is unavailable. Live trading is disabled." });
@@ -1897,6 +1901,10 @@ const server = http.createServer(async (req, res) => {
       const idempotencyKey = `${accountId}:${submittedKey}`;
       const fingerprint = crypto.createHash("sha256").update(JSON.stringify([accountId, symbol, side, lots, stopLoss, takeProfit])).digest("hex");
 
+      const retained=paperIntentStore().check(accountId,submittedKey,fingerprint);
+      if(retained.blocked)return sendJson(res,409,{ok:false,code:retained.blocked});
+      if(retained.response)return sendJson(res,200,retained.response);
+
       // 1. Idempotency Check
       if (idempotencyKey) {
         const idem = checkAndStoreIdempotencyKey(idempotencyKey, fingerprint);
@@ -1970,6 +1978,9 @@ const server = http.createServer(async (req, res) => {
         });
       }
 
+      const reservation=paperIntentStore().reserve(accountId,submittedKey,fingerprint);
+      if(reservation.blocked)return sendJson(res,409,{ok:false,code:reservation.blocked});
+
       // 6. Execute Order through Broker Adapter
       const adapter = getBrokerAdapter(account.broker);
       try {
@@ -2007,6 +2018,7 @@ const server = http.createServer(async (req, res) => {
           status: "SUCCESS"
         });
 
+        paperIntentStore().complete(accountId,submittedKey,responseData);
         if (idempotencyKey) {
           saveIdempotencyResponse(idempotencyKey, responseData);
         }

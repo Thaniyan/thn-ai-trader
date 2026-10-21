@@ -16,12 +16,12 @@ try:
  line=server.stdout.readline().strip()
  if not line.startswith('THN_TEST_PORT='):raise RuntimeError('Packaged browser server failed: '+line)
  env['TEST_URL']='http://127.0.0.1:'+line.split('=')[1]
- suites=['workstation','research','research_outage','quality','decision','library_reliability','maturity','terminal','intelligence','intelligence_memory','layout','pilot','trust']
+ suites=['workstation','research','research_outage','quality','decision','library_reliability','maturity','terminal','intelligence','intelligence_memory','layout','pilot','trust','professional']
  failures=[]
  for name in suites:
   target='tests/browser_'+name+'.py';log=out/('ci-browser-'+name+'.log')
   with log.open('w') as stream:
-   try:result=subprocess.run([sys.executable,target],env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=240);code=result.returncode
+   try:result=subprocess.run([sys.executable,target],env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=360 if name=='professional' else 240);code=result.returncode
    except subprocess.TimeoutExpired:code=124
   print(target+': '+('PASS' if code==0 else 'FAIL ('+str(code)+')'),flush=True)
   if code:failures.append(name);print(log.read_text()[-2500:],flush=True)

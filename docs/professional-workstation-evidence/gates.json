@@ -1,0 +1,62 @@
+[
+  {
+    "gate": "build",
+    "exitCode": 0,
+    "seconds": 1.54,
+    "log": "build.log"
+  },
+  {
+    "gate": "lint",
+    "exitCode": 0,
+    "seconds": 1.75,
+    "log": "lint.log"
+  },
+  {
+    "gate": "package",
+    "exitCode": 0,
+    "seconds": 0.38,
+    "log": "package.log"
+  },
+  {
+    "gate": "source",
+    "exitCode": 0,
+    "seconds": 1.29,
+    "log": "source.log"
+  },
+  {
+    "gate": "workflow",
+    "exitCode": 0,
+    "seconds": 1.23,
+    "log": "workflow.log"
+  },
+  {
+    "gate": "unit",
+    "exitCode": 0,
+    "seconds": 10.51,
+    "log": "unit.log"
+  },
+  {
+    "gate": "system",
+    "exitCode": 0,
+    "seconds": 1.14,
+    "log": "system.log"
+  },
+  {
+    "gate": "security",
+    "exitCode": 0,
+    "seconds": 2.71,
+    "log": "security.log"
+  },
+  {
+    "gate": "dependencies",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "dependencies.log"
+  },
+  {
+    "gate": "browser",
+    "exitCode": 0,
+    "seconds": 543.38,
+    "log": "browser.log"
+  }
+]

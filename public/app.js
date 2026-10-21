@@ -14,9 +14,9 @@ let watchScanTimer = null;
 let watchScanResults = [];
 let currentAnalysis = null;
 let tvWidget = null;
-let currentLang = localStorage.getItem(langKey) || "en";
-let soundEnabled = localStorage.getItem(soundKey) !== "false";
-let watchHidden = localStorage.getItem(watchHiddenKey) === "true";
+let currentLang = THNPreferences.getItem(langKey) || "en";
+let soundEnabled = THNPreferences.getItem(soundKey) !== "false";
+let watchHidden = THNPreferences.getItem(watchHiddenKey) === "true";
 let watchSearchTerm = "";
 let chartHover = { active: false, x: 0, y: 0 };
 let audioCtx = null;
@@ -637,9 +637,9 @@ Object.assign(I18N.en, {
   noValidTradesInCsv: "No valid trade records found in CSV file.",
   csvParseError: "Could not parse CSV file. Please check format.",
   navBroker: "💼 Broker & Capital Desk",
-  brokerEyebrow: "LIVE BROKER GATEWAY & CAPITAL SIZING",
+  brokerEyebrow: "LOCAL PAPER ENGINE & RISK RESEARCH",
   brokerTitle: "Trading Broker & Capital Desk",
-  brokerSubtitle: "Automatic account size synchronization locks your risk calculators to live capital. Receive AI-powered trading tips and execute high-probability setups directly.",
+  brokerSubtitle: "Account synchronization and hosted execution are unavailable. Research plans are hypothetical; local paper simulation is available only with explicit operator opt-in.",
   brokerSettings: "⚙️ Gateway Settings",
   connectBrokerBtn: "🔗 Connect Broker Account",
   brokerBalance: "Account Balance (Auto-Managed)",
@@ -648,10 +648,10 @@ Object.assign(I18N.en, {
   freeMargin: "Free Margin",
   usedMargin: "Used Margin",
   dailyRealizedPnl: "Today's Realized PnL",
-  capitalDealsTitle: "AI Capital-Tailored Trade Deals & Tips",
+  capitalDealsTitle: "Hypothetical paper scenarios",
   capitalDealsSub: "High-conviction setups sized automatically to your capital and risk limits",
   activePositionsTitle: "Active Broker Positions",
-  activePositionsSub: "Direct execution orders running on linked broker gateway",
+  activePositionsSub: "Local paper positions only; no connected live broker",
   connectBrokerTitle: "Trading Broker & Capital Gateway",
   connectBrokerSub: "Approved and regulated trading brokers in the Arabian Gulf & Global Markets (XTB, Exness, MetaTrader 5, and more). Open or connect your broker account directly.",
   tabOpenBroker: "Open Broker Account on Site",
@@ -686,8 +686,8 @@ Object.assign(I18N.en, {
   withdrawFunds: "- Withdraw",
   newAccountBtn: "+ New Broker Account",
   aiDeskView: "AI Quantitative Desk",
-  webtraderView: "Live WebTrader Terminal",
-  accountDetailsView: "Account & Official Certificate",
+  webtraderView: "Local Paper Terminal",
+  accountDetailsView: "Local account metadata",
   fundsModalTitle: "Broker Capital & Banking Gateway",
   deposit: "Deposit Capital",
   withdraw: "Withdraw Profits",
@@ -716,7 +716,7 @@ Object.assign(I18N.ar, {
   navBroker: "💼 حساب الوسيط ورأس المال",
   brokerEyebrow: "بوابة الوسيط وإدارة رأس المال التلقائية",
   brokerTitle: "منصة الوسيط وحجم المحفظة",
-  brokerSubtitle: "مزامنة تلقائية لحجم الحساب مع وسيط التداول لإلغاء الإدخال اليدوي، مع صفقات ونصائح ذكية مخصصة لرأس مالك وتنفيذ مباشر.",
+  brokerSubtitle: "مزامنة الحساب والتنفيذ المستضاف غير متاحين. الخطط البحثية افتراضية؛ تتطلب المحاكاة المحلية تفعيل المشغل.",
   brokerSettings: "⚙️ إعدادات البوابة",
   connectBrokerBtn: "🔗 ربط حساب الوسيط",
   brokerBalance: "رصيد الحساب (مُدار تلقائياً)",
@@ -725,10 +725,10 @@ Object.assign(I18N.ar, {
   freeMargin: "الهامش المتاح",
   usedMargin: "الهامش المحجوز",
   dailyRealizedPnl: "أرباح اليوم المحققة",
-  capitalDealsTitle: "صفقات ونصائح الذكاء الاصطناعي المخصصة لرأس مالك",
+  capitalDealsTitle: "سيناريوهات المحاكاة الافتراضية",
   capitalDealsSub: "فرص تداول عالية الاحتمالية محسوبة أحجامها بدقة حسب رأس مالك الحالي",
   activePositionsTitle: "الصفقات المفتوحة لدى الوسيط",
-  activePositionsSub: "أوامر التداول النشطة والمنفذة مباشرة عبر الوسيط",
+  activePositionsSub: "مراكز محاكاة محلية فقط؛ دون وسيط حقيقي متصل",
   connectBrokerTitle: "ربط وفتح حساب وسيط التداول",
   connectBrokerSub: "أبرز الوسطاء المعتمدين والموثوقين في الخليج العربي والعالم (Exness, XTB, MetaTrader 5). افتح أو اربط حسابك لتفعيل التنفيذ المباشر.",
   tabOpenBroker: "⚡ فتح حساب وسيط في المنصة",
@@ -763,8 +763,8 @@ Object.assign(I18N.ar, {
   withdrawFunds: "- سحب",
   newAccountBtn: "+ فتح حساب وسيط جديد",
   aiDeskView: "مكتب الذكاء الاصطناعي الكمي",
-  webtraderView: "منصة ويب تريدر المباشرة",
-  accountDetailsView: "بيانات الحساب والشهادة الرسمية",
+  webtraderView: "منصة المحاكاة المحلية",
+  accountDetailsView: "بيانات الحساب المحلي",
   fundsModalTitle: "بوابة إيداع وسحب رأس المال",
   deposit: "إيداع رأس المال",
   withdraw: "سحب الأرباح",
@@ -1214,7 +1214,7 @@ function translateStaticDom() {
 
 function setLanguage(lang) {
   currentLang = lang === "ar" ? "ar" : "en";
-  localStorage.setItem(langKey, currentLang);
+  THNPreferences.setItem(langKey, currentLang);
   translateStaticDom();
   renderHealthStatus();
   renderJournal();
@@ -1240,12 +1240,12 @@ function getPayload() {
 }
 
 function saveSetup() {
-  localStorage.setItem(setupKey, JSON.stringify(getPayload()));
+  THNPreferences.setItem(setupKey, JSON.stringify(getPayload()));
 }
 
 function restoreSetup() {
   try {
-    const saved = JSON.parse(localStorage.getItem(setupKey) || "null");
+    const saved = JSON.parse(THNPreferences.getItem(setupKey) || "null");
     if (!saved) return;
     if (saved.symbol) $("symbolInput").value = saved.symbol;
     if (saved.timeframe) $("timeframe").value = saved.timeframe;
@@ -1255,7 +1255,7 @@ function restoreSetup() {
     if (saved.sentiment) $("sentiment").value = saved.sentiment;
     if (saved.notes) $("notes").value = saved.notes;
   } catch {
-    localStorage.removeItem(setupKey);
+    THNPreferences.removeItem(setupKey);
   }
 }
 
@@ -1861,7 +1861,7 @@ function getDefaultMapLayers() {
 function getMapLayers() {
   if (mapLayerPrefs) return mapLayerPrefs;
   try {
-    const saved = JSON.parse(localStorage.getItem(mapLayerKey) || "null");
+    const saved = JSON.parse(THNPreferences.getItem(mapLayerKey) || "null");
     mapLayerPrefs = { ...getDefaultMapLayers(), ...(saved && typeof saved === "object" ? saved : {}) };
   } catch {
     mapLayerPrefs = getDefaultMapLayers();
@@ -1873,7 +1873,7 @@ function setMapLayer(name, value) {
   const current = getMapLayers();
   current[name] = Boolean(value);
   mapLayerPrefs = current;
-  localStorage.setItem(mapLayerKey, JSON.stringify(current));
+  THNPreferences.setItem(mapLayerKey, JSON.stringify(current));
   renderMapLayerButtons();
   if (currentAnalysis) renderProfessionalLayer(currentAnalysis);
 }
@@ -2897,30 +2897,30 @@ function normalizeSymbolInput(value) {
 
 function getWatchlist() {
   try {
-    const raw = localStorage.getItem(watchlistKey);
+    const raw = THNPreferences.getItem(watchlistKey);
     if (raw === null) {
       const defaults = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSDT"];
-      localStorage.setItem(watchlistKey, JSON.stringify(defaults));
+      THNPreferences.setItem(watchlistKey, JSON.stringify(defaults));
       return defaults;
     }
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) return parsed.map(normalizeSymbolInput).filter(Boolean).slice(0, 30);
   } catch {
-    localStorage.removeItem(watchlistKey);
+    THNPreferences.removeItem(watchlistKey);
   }
   return [];
 }
 
 function setWatchlist(items) {
   const clean = [...new Set((items || []).map(normalizeSymbolInput).filter(Boolean))].slice(0, 30);
-  localStorage.setItem(watchlistKey, JSON.stringify(clean));
+  THNPreferences.setItem(watchlistKey, JSON.stringify(clean));
   renderWatchlist();
   return clean;
 }
 
 function getWatchSettings() {
   try {
-    const saved = JSON.parse(localStorage.getItem(watchSettingsKey) || "{}");
+    const saved = JSON.parse(THNPreferences.getItem(watchSettingsKey) || "{}");
     return {
       minConfidence: Number(saved.minConfidence || $("minConfidence")?.value || 72),
       scanEvery: saved.scanEvery || $("scanEvery")?.value || "300000",
@@ -2939,7 +2939,7 @@ function saveWatchSettings() {
     customScanValue: Number($("customScanValue")?.value || 45),
     customScanUnit: $("customScanUnit")?.value || "seconds"
   };
-  localStorage.setItem(watchSettingsKey, JSON.stringify(settings));
+  THNPreferences.setItem(watchSettingsKey, JSON.stringify(settings));
   return settings;
 }
 
@@ -2990,7 +2990,7 @@ function removeFavoriteSymbol(symbol) {
 
 function toggleWatchlist(forceState) {
   watchHidden = typeof forceState === "boolean" ? forceState : !watchHidden;
-  localStorage.setItem(watchHiddenKey, String(watchHidden));
+  THNPreferences.setItem(watchHiddenKey, String(watchHidden));
   renderWatchlist();
 }
 
@@ -3128,7 +3128,7 @@ function hideTradeToast() {
 
 function toggleSound() {
   soundEnabled = !soundEnabled;
-  localStorage.setItem(soundKey, String(soundEnabled));
+  THNPreferences.setItem(soundKey, String(soundEnabled));
   updateSoundButton();
   if (soundEnabled) playTradeAlertSound("BUY");
 }
@@ -3222,7 +3222,7 @@ function renderAlerts(scannedAt) {
 
 function getNotifyCache() {
   try {
-    return JSON.parse(localStorage.getItem(watchNotifyKey) || "{}");
+    return JSON.parse(THNPreferences.getItem(watchNotifyKey) || "{}");
   } catch {
     return {};
   }
@@ -3240,7 +3240,7 @@ function notifyStrongAlerts(alerts) {
       body: t("browserNotificationBody", { symbol: item.symbol, decision: localizedValue(item.decision), confidence: fmt(item.confidence, 0) })
     });
   }
-  localStorage.setItem(watchNotifyKey, JSON.stringify(cache));
+  THNPreferences.setItem(watchNotifyKey, JSON.stringify(cache));
 }
 
 function startScanner() {
@@ -3917,6 +3917,7 @@ const brokerBrands = {
 };
 
 let serverBrokerAccounts = [];
+let brokerStateVerified=false;
 let activeBrokerDeskView = "ai-desk";
 let masterPwdVisible = false;
 let investorPwdVisible = false;
@@ -3956,11 +3957,11 @@ const DEFAULT_SANDBOX_ACCOUNT = {
 
 function getBrokerAccount() {
   try {
-    const raw = localStorage.getItem(brokerKey);
+    const raw = THNPreferences.getItem(brokerKey);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed && typeof parsed === "object" && parsed.id && parsed.id !== "acc_exness_live_01") {
-        return parsed;
+        return {...parsed,connected:Boolean(brokerStateVerified&&parsed.connected)};
       }
     }
   } catch {}
@@ -3968,7 +3969,7 @@ function getBrokerAccount() {
 }
 
 function saveBrokerAccount(acc) {
-  localStorage.setItem(brokerKey, JSON.stringify(acc));
+  THNPreferences.setItem(brokerKey, JSON.stringify(acc));
   syncAccountSizeWithBroker();
   renderBrokerDesk();
   renderAccountCertificate();
@@ -3976,8 +3977,10 @@ function saveBrokerAccount(acc) {
 }
 
 async function loadBrokerAccountsFromServer() {
+  brokerStateVerified=false;
   try {
-    const res = await fetch("/api/broker/accounts");
+    const res = await fetch("/api/broker/accounts",{signal:AbortSignal.timeout(10000)});
+    if(!res.ok)throw Error("Account service unavailable");
     if (res.ok) {
       const data = await res.json();
       if (data.ok && data.available === false) {
@@ -3986,6 +3989,7 @@ async function loadBrokerAccountsFromServer() {
       }
       if (data.ok && Array.isArray(data.accounts) && data.accounts.length) {
         serverBrokerAccounts = data.accounts;
+        brokerStateVerified=true;
         const current = getBrokerAccount();
         const matched = serverBrokerAccounts.find(a => (a.id && a.id === current.id) || (a.accountNumber && a.accountNumber === current.accountNumber));
         if (matched) {
@@ -4009,6 +4013,8 @@ function renderBrokerAccountSelector() {
   const select = $("brokerActiveAccountSelect");
   if (!select) return;
   const current = getBrokerAccount();
+  if(!current.connected && !serverBrokerAccounts.length){select.replaceChildren(new Option(currentLang==='ar'?'لا يوجد حساب متصل':'No connected account',''));select.disabled=true;return;}
+  select.disabled=false;
   const accounts = (serverBrokerAccounts && serverBrokerAccounts.length) ? serverBrokerAccounts : [current];
 
   select.innerHTML = accounts.map(acc => {
@@ -4017,7 +4023,7 @@ function renderBrokerAccountSelector() {
     const accNum = acc.accountNumber || acc.accountId || "ACC";
     const cur = acc.currency || "USD";
     const bal = money(acc.balance || 0);
-    const tag = acc.accountType === "demo" ? "DEMO" : "LIVE REAL";
+    const tag = acc.tradingMode === "PAPER" || acc.broker === "paper" ? "LOCAL PAPER" : "UNVERIFIED";
     return `<option value="${escapeHtml(acc.id || accNum)}" ${isSel ? "selected" : ""}>[${tag}] ${escapeHtml(bName)} #${escapeHtml(accNum)} · ${bal} ${cur}</option>`;
   }).join("");
 }
@@ -4056,6 +4062,8 @@ function setBrokerDeskView(view = "ai-desk") {
 
 function renderAccountCertificate() {
   const acc = getBrokerAccount();
+  if(!acc.connected){for(const id of ['certBrokerTitle','certRegulationTag','certHolderName','certHolderEmail','certHolderPhone','certLoginId','certServerHost','certMasterPwd','certInvestorPwd'])if($(id))$(id).textContent=currentLang==='ar'?'غير متاح — لا يوجد حساب':'Unavailable — no account';return;}
+
   const brand = brokerBrands[acc.broker || acc.provider] || brokerBrands.exness;
 
   if ($("certBrokerLogo")) $("certBrokerLogo").innerHTML = brand.logoSvg;
@@ -4279,6 +4287,8 @@ function syncAccountSizeWithBroker() {
 
 function updateBrokerHud() {
   const acc = getBrokerAccount();
+  if(!acc.connected){const unavailable=currentLang==='ar'?'غير متاح':'Unavailable';for(const id of ['brokerBalanceDisplay','brokerEquityDisplay','brokerOpenPnlDisplay','brokerFreeMarginDisplay','brokerMarginLevel','brokerUsedMarginDisplay','brokerOpenCount','brokerTodayPnlDisplay','brokerPnlRCount'])if($(id))$(id).textContent=unavailable;if($('brokerAiAdvisory'))$('brokerAiAdvisory').textContent=currentLang==='ar'?'لا توجد بيانات حساب؛ استخدم التخطيط الافتراضي.':'No account data; use hypothetical risk planning.';return acc;}
+
   let openPnl = 0;
   let totalMargin = 0;
 
@@ -4518,6 +4528,7 @@ function setBrokerModalTab(tab = "open") {
 }
 
 function openBrokerModal(defaultTab = "open") {
+  if (!getBrokerAccount().connected) {switchView('brokers');showNotice(currentLang==='ar'?'ربط الحسابات المستضافة غير متاح. لا تُدخل بيانات اعتماد حقيقية.':'Hosted account connections are unavailable. Do not enter real credentials.','info');return;}
   const modal = $("brokerModal");
   if (!modal) return;
   const acc = getBrokerAccount();
@@ -4757,11 +4768,17 @@ function closeTradeExecutionModal() {
 
 async function executeBrokerOrder(deal) {
   const acc = getBrokerAccount();
-  const idempotencyKey = `ord-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  // Persist the logical intent BEFORE sending. Uncertain replies never mint a new key.
+  const intentPayload={accountId:acc.id||acc.accountNumber,symbol:deal.symbol,side:deal.decision||'BUY',lots:Number(deal.lots),stopLoss:Number(deal.stopLoss),takeProfit:Number(deal.target1||deal.tp)};
+  const intentFingerprint=JSON.stringify(intentPayload),intentStorage='thn_pending_paper_intent_v1';let intent;
+  try{if(!navigator.locks?.request)throw Error('Safe intent locking unavailable');await navigator.locks.request('thn-paper-intent-create',()=>{intent=JSON.parse(localStorage.getItem(intentStorage)||'null');if(intent&&(intent.fingerprint!==intentFingerprint||typeof intent.key!=='string'))throw Error('Unresolved prior intent');if(!intent){intent={fingerprint:intentFingerprint,key:crypto.randomUUID()};localStorage.setItem(intentStorage,JSON.stringify(intent));}});}
+  catch{showNotice(currentLang==='ar'?'يلزم استرداد الأمر السابق أو إتاحة التخزين قبل المحاولة.':'Paper order blocked: storage unavailable or a prior intent requires recovery.','error');return;}
+  const idempotencyKey=intent.key;
 
   try {
     const res = await fetch("/api/orders/execute", {
       method: "POST",
+      signal: AbortSignal.timeout(15000),
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         accountId: acc.id || acc.accountNumber,
@@ -4776,12 +4793,14 @@ async function executeBrokerOrder(deal) {
 
     const data = await res.json();
     if (!data.ok) {
-      const errReason = data.error || "Order execution rejected by risk engine.";
+      const errReason = ['PAPER_RECOVERY_REQUIRED','PAPER_WRITER_RECOVERY_REQUIRED'].includes(data.code)?(currentLang==='ar'?'التداول التجريبي متوقف: يلزم مراجعة سجل الأمر والحساب محلياً قبل إعادة المحاولة.':'Paper trading paused: reconcile the retained order/account locally before submitting a new intent.'):(data.error || data.code || 'Order execution rejected by risk engine.');
       showNotice(currentLang === "ar" ? `[رفض إدارة المخاطر] ${errReason}` : `[Risk Engine Rejection] ${errReason}`, "error");
       status(`⚠️ ${errReason}`);
       return;
     }
 
+    // A definitive successful response resolves this logical intent. Lost/error responses retain it.
+    if(data.ok && data.orderResult?.ticket){try{await navigator.locks.request('thn-paper-intent-create',()=>{const pending=JSON.parse(localStorage.getItem(intentStorage)||'null');if(pending?.key===idempotencyKey)localStorage.removeItem(intentStorage);});}catch{/* retain safely on refusal */}}
     if (data.account) {
       data.account.connected = true;
       saveBrokerAccount(data.account);
@@ -4806,7 +4825,7 @@ async function executeBrokerOrder(deal) {
     return;
   } catch (err) {
     console.error("Server order execution failure:", err);
-    showNotice(currentLang === "ar" ? "تعذر تنفيذ الأمر: فشل الاتصال بخادم التداول" : "Order execution failed: Broker server unreachable", "error");
+    showNotice(currentLang === "ar" ? "تعذر تنفيذ الأمر: فشل الاتصال بخادم التداول" : "Paper order response unknown. Retry the same plan to recover its original intent; do not submit a new order.", "error");
     status("🔴 Order execution failed: Gateway Unreachable");
     return;
   }
@@ -5027,13 +5046,13 @@ function initEvents() {
   $("loadChartBtn").addEventListener("click", () => loadChart());
   $("themeBtn").addEventListener("click", () => {
     document.documentElement.dataset.theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    localStorage.setItem("thn_ai_trader_theme_v3", document.documentElement.dataset.theme);
+    THNPreferences.setItem("thn_ai_trader_theme_v3", document.documentElement.dataset.theme);
     loadChart();
   });
   $("saveJournalBtn").addEventListener("click", saveJournal);
   $("clearJournalBtn").addEventListener("click", () => {
     if (confirm(t("confirmClear"))) {
-      localStorage.removeItem(journalKey);
+      try{localStorage.removeItem(journalKey);}catch{showNotice(currentLang==='ar'?'تعذر مسح السجل؛ بقيت البيانات محفوظة.':'Journal could not be cleared; existing data was preserved.','error');return;}
       renderJournal();
       renderPerformanceAnalytics();
     }
@@ -5559,9 +5578,10 @@ function initEvents() {
 
     const selRadio = document.querySelector("#brokerProviderOptions input[name='brokerProvider']:checked");
     const provider = selRadio?.value || "exness";
-    const serverVal = $("brokerServerInput")?.value?.trim() || "Live-Server";
-    const accId = $("brokerAccountIdInput")?.value?.trim() || "2849104";
-    const token = $("brokerPasswordInput")?.value?.trim() || "Exn#8942$";
+    if(provider!=='paper'){btn.disabled=false;btn.textContent=origText;showNotice(currentLang==='ar'?'ربط وسيط خارجي غير متاح.':'External broker integration is unavailable.','error');return;}
+    const serverVal = "LOCAL-PAPER";
+    const accId = $("brokerAccountIdInput")?.value?.trim() || "LOCAL-PAPER";
+    const token = ""; // Local paper simulation never accepts broker credentials.
     const syncBal = Number($("brokerSyncBalanceInput")?.value || 25000);
     const leverage = Number($("brokerConnectLeverage")?.value || 200);
     const curr = $("brokerConnectCurrency")?.value || "USD";
@@ -5817,7 +5837,7 @@ function initEvents() {
   $("prefResetSandboxBtn")?.addEventListener("click", resetPaperBalance);
   $("prefClearJournalBtn")?.addEventListener("click", () => {
     if (confirm(t("confirmClear"))) {
-      localStorage.removeItem(journalKey);
+      try{localStorage.removeItem(journalKey);}catch{showNotice(currentLang==='ar'?'تعذر مسح السجل؛ بقيت البيانات محفوظة.':'Journal could not be cleared; existing data was preserved.','error');return;}
       renderJournal();
       renderPerformanceAnalytics();
       showNotice(currentLang === "ar" ? "تم مسح سجل التداول بالكامل" : "Journal ledger cleared successfully.", "info");
@@ -5845,7 +5865,7 @@ function initEvents() {
 }
 
 function restoreTheme() {
-  const saved = localStorage.getItem("thn_ai_trader_theme_v3");
+  const saved = THNPreferences.getItem("thn_ai_trader_theme_v3");
   if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
 }
 

@@ -1,0 +1,42 @@
+{
+  "foundation": "2ed5b20a465ccf524692e301ac7228d76490e4c6",
+  "releasedBase": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+  "branch": "feature/professional-workstation",
+  "unitIntegrationNumerical": {
+    "passed": 155,
+    "failed": 0
+  },
+  "dedicatedSecurity": {
+    "passed": 21,
+    "failed": 0
+  },
+  "legacySystem": {
+    "passed": 10,
+    "failed": 0
+  },
+  "browserSuites": {
+    "passed": 14,
+    "failed": 0
+  },
+  "professionalLayouts": 288,
+  "professionalLayoutFailures": 0,
+  "accessibilityScans": 72,
+  "accessibilityFailures": 0,
+  "zoomChecks": 64,
+  "zoomFailures": 0,
+  "touchProfiles": 72,
+  "touchFailures": 0,
+  "uncaughtPageErrors": [],
+  "sharedShellGeometryCases": 202,
+  "artifactManifestSHA256": "25c17dc86eb0a4e6b5445c0125dc2517716e1ef098eceac2ea29183e582ceb8e",
+  "externalTradingViewIframe": "unverified; offline widget configuration shim only",
+  "hostedCandidate": "not deployed",
+  "newModelOrBrokerActivation": false,
+  "newSpend": false,
+  "productionObservation": {
+    "scope": "read-only observation from preceding implementation session; not a new hosted candidate test",
+    "deployment": "dpl_FnAvZx4CKVFYtY9dze8Z9Gry9BEL",
+    "sha": "fad7fe6d03f799bc699401e9fc31004e9b6c1087",
+    "state": "READY"
+  }
+}

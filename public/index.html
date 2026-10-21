@@ -7,7 +7,7 @@
   <meta property="og:title" content="THN AI Trader" />
   <meta property="og:description" content="An AI-powered market intelligence and risk-aware trading terminal." />
   <title>THN AI Trader</title>
-  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="brand-mark.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="workstation.css" />
   <link rel="stylesheet" href="research.css" />
@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="workflow-maturity.css" />
   <link rel="stylesheet" href="research-terminal.css" />
 <link rel="stylesheet" href="intelligence.css">
+<link rel="stylesheet" href="professional.css">
 </head>
 <body>
 <a class="work-skip" href="#main-content">Skip to workspace</a>
@@ -23,7 +24,7 @@
     <!-- Left Navigation Dock -->
     <aside class="sidebar" aria-label="Main navigation">
       <a class="brand brand-lockup" href="#dashboard" aria-label="THN Trader dashboard">
-        <img src="logo.svg" alt="THN Trader logo" />
+        <img src="brand-mark.png" alt="THN Trader logo" />
         <div class="brand-text">
           <strong>THN <span>TRADER</span></strong>
           <small data-i18n="brandTagline">Quantitative Trading Suite</small>
@@ -912,7 +913,7 @@
 
           <div class="broker-ping-indicator" id="brokerPingIndicator">
             <span class="ping-dot"></span>
-            <span id="brokerPingText">Engine: Operational</span>
+            <span id="brokerPingText">Engine: checking availability</span>
           </div>
 
           <div class="broker-wallet-actions">
@@ -942,24 +943,24 @@
                 <span class="broker-logo-badge" id="brokerLogoBadge"></span>
                 <div>
                   <div class="broker-badge-row">
-                    <span class="broker-badge-pill" id="brokerNameBadge">Exness Pro (MT5)</span>
-                    <span class="broker-reg-tag" id="brokerRegTag">GCC Approved · Raw Spread</span>
+                    <span class="broker-badge-pill" id="brokerNameBadge">Account unavailable</span>
+                    <span class="broker-reg-tag" id="brokerRegTag">No connected broker</span>
                   </div>
-                  <small id="brokerAccId">Acc: #EXN-894210 · Server: Exness-Real14</small>
+                  <small id="brokerAccId">No broker session</small>
                 </div>
               </div>
             </div>
             <span class="hud-label" data-i18n="brokerBalance">Account Balance (Auto-Managed)</span>
-            <b class="hud-amount" id="brokerBalanceDisplay">$25,000.00</b>
+            <b class="hud-amount" id="brokerBalanceDisplay">—</b>
             <div class="hud-sub-row">
-              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">$25,000.00</b></span>
+              <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">—</b></span>
               <span><span data-i18n="unrealizedPnl">Open PnL</span>: <b id="brokerOpenPnlDisplay">$0.00</b></span>
             </div>
           </div>
 
           <div class="broker-card">
             <span class="hud-label" data-i18n="freeMargin">Free Margin</span>
-            <b class="hud-amount" id="brokerFreeMarginDisplay">$25,000.00</b>
+            <b class="hud-amount" id="brokerFreeMarginDisplay">—</b>
             <small id="brokerMarginLevel">Margin Level: 100.0% (Safe)</small>
           </div>
 
@@ -986,7 +987,7 @@
                 <small data-i18n="capitalDealsSub">High-conviction setups sized automatically to your capital and risk limits</small>
               </div>
               <div class="ai-advisory-pill" id="brokerAiAdvisory">
-                <span>🛡️ AI Capital Advisory: 1.0% single-trade risk rule enforced ($250.00 max risk)</span>
+                <span>🛡️ Research only · no connected account</span>
               </div>
             </div>
 
@@ -1573,7 +1574,7 @@
                   <span data-i18n="brokerPassword">API Token / Bridge Password</span>
                   <button type="button" class="text-link-btn" id="docsQuickLinkToken">How to get key? ↗</button>
                 </div>
-                <input id="brokerPasswordInput" type="password" value="" placeholder="API Token or MT5 Bridge Password" />
+                <input id="brokerPasswordInput" type="password" value="" disabled autocomplete="off" placeholder="Unavailable — do not enter credentials" />
               </label>
 
               <label>
@@ -1794,16 +1795,20 @@
   </div>
 
   <script src="d3.min.js"></script>
-  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script async src="https://s3.tradingview.com/tv.js" referrerpolicy="no-referrer"></script>
   <script src="research-state.js"></script>
   <script src="research-records.js"></script>
+  <script src="preferences.js"></script>
   <script src="app.js"></script>
   <script src="workstation.js"></script>
   <script src="research-chart.js"></script>
+  <script src="professional-chart.js"></script>
   <script src="research-workstation.js"></script>
   <script src="research-quality.js"></script>
   <script src="locale-secondary.js"></script>
   <script type="module" src="market-terminal.js"></script>
 <script type="module" src="intelligence-workspace.js"></script>
+<script type="module" src="professional-workspace.js"></script>
+<script type="module" src="professional-records.js"></script>
 </body>
 </html>

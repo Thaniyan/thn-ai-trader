@@ -64,7 +64,7 @@
     finally {busy=false;$('workRefresh').disabled=false;render();loadFocus();}
   }
   function select(sym) {
-    if(!/^[A-Z0-9^=:.\-]{1,32}$/.test(sym))return;selected=sym;localStorage.setItem('thn_focus',sym);
+    if(!/^[A-Z0-9^=:.\-]{1,32}$/.test(sym))return;selected=sym;THNPreferences.setItem('thn_focus',sym);
     window.THNContext?.set({symbol:sym},'markets');
     $('symbolInput').value=sym;
     if([...$('planSymbol').options].some(o=>o.value===sym))$('planSymbol').value=sym;
