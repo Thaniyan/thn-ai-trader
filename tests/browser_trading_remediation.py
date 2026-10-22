@@ -1,13 +1,26 @@
 """Owned terminal lifecycle/recovery tests. Protocol frames never establish real TV candles."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright
-from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY,SCRIPT_ONLY
+from tradingview_protocol import EMBED_URL,TOOLBAR_ONLY,SCRIPT_ONLY,DEFER_DETACHED
 out=pathlib.Path(os.environ.get('REMEDIATION_OUTPUT','work/trading-remediation'));out.mkdir(parents=True,exist_ok=True)
 result={'network':'offline protocol fixtures; actual TradingView candles NOT verified','checks':[],'layouts':[],'accessibility':[],'errors':[]}
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000});page.on('pageerror',lambda e:result['errors'].append(str(e)))
  page.route(EMBED_URL,lambda r:r.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY))
  page.goto(os.environ['TEST_URL']);page.wait_for_function('window.THNProfessional&&THNResearch.series()&&THNDecision.brief()')
+ def widget_state():
+  return page.evaluate("()=>{const parent=document.querySelector('#tvChart .tradingview-widget-container'),script=parent?.querySelector('script');return {context:THNContext.get(),controls:{symbol:document.getElementById('qSymbol').value,interval:document.getElementById('qInterval').value},container:parent?.id||null,activeConfig:script?JSON.parse(script.textContent):null,activeWidget:window.__widgets?.findLast(w=>w.container_id===parent?.id)||null,history:window.__widgets?.slice(-8)||[],status:THNTradingViewStatus(),frames:parent?.querySelectorAll('iframe').length||0,mode:THNProfessional.mode()}}")
+ def wait_widget(symbol,interval):
+  try:
+   page.wait_for_function("v=>{const parent=document.querySelector('#tvChart .tradingview-widget-container'),w=window.__widgets?.findLast(x=>x.container_id===parent?.id),s=THNTradingViewStatus();return w?.symbol===v[0]&&w.interval===v[1]&&s.scriptLoaded&&s.iframeLoaded&&parent.querySelectorAll('iframe').length===1}",arg=[symbol,interval])
+  except Exception as error:
+   diagnostic={'expected':{'symbol':symbol,'interval':interval},**widget_state()}
+   (out/'widget-failure.json').write_text(json.dumps(diagnostic,indent=2))
+   summary={'expected':diagnostic['expected'],'context':{k:diagnostic['context'].get(k) for k in ['symbol','interval']},'controls':diagnostic['controls'],'activeContainer':diagnostic['container'],'activeWidget':{k:(diagnostic['activeWidget'] or {}).get(k) for k in ['symbol','interval','container_id']},'historicalLast':{k:(diagnostic['history'] or [{}])[-1].get(k) for k in ['symbol','interval','container_id']},'status':diagnostic['status'],'frames':diagnostic['frames']}
+   raise AssertionError('WIDGET FAILURE '+json.dumps(summary)) from error
+  state=widget_state();result.setdefault('transitions',[]).append({'expected':[symbol,interval],**state})
+  (out/'transitions.json').write_text(json.dumps(result['transitions'],indent=2))
+  return state['activeWidget']
  def go(v):
   button=page.locator('.nav-stack [data-view="'+v+'"]');button.focus();button.press('Enter');page.wait_for_timeout(100)
  go('markets');page.locator('#r66Search').fill('GBPUSD');page.locator('[data-pro-tv="GBPUSD"]').click();page.wait_for_function('THNTradingViewStatus().iframeLoaded&&THNTradingViewStatus().scriptLoaded')
@@ -22,13 +35,36 @@ with sync_playwright() as p:
  assert page.evaluate('__widgets.length')==1
  for symbol,tv in [('GBPUSD','FX:GBPUSD'),('XAUUSD','OANDA:XAUUSD'),('BTCUSDT','BINANCE:BTCUSDT'),('EURUSD','FX:EURUSD')]:
   for interval,expected in [('15m','15'),('1d','D'),('1h','60')]:
-   page.locator('#qSymbol').fill(symbol);page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option(interval);page.wait_for_function('(v)=>window.__widgets?.at(-1).symbol===v[0]&&__widgets.at(-1).interval===v[1]',arg=[tv,expected])
-   c=page.evaluate('__widgets.at(-1)');assert c['symbol']==tv and c['interval']==expected and c['studies']==[] and not c['details'] and not c['hotlist'] and not c['calendar']
+   page.locator('#qSymbol').fill(symbol);page.locator('#qSymbol').press('Tab');page.wait_for_function('s=>THNContext.get().symbol===s',arg=symbol);page.locator('#qInterval').select_option(interval);page.wait_for_function('v=>THNContext.get().interval===v',arg=interval);wait_widget(tv,expected)
+   c=widget_state()['activeWidget'];assert c['symbol']==tv and c['interval']==expected and c['studies']==[] and not c['details'] and not c['hotlist'] and not c['calendar']
    assert page.locator('#proTVExternal').get_attribute('href').startswith('https://www.tradingview.com/chart/?symbol=')
  ids=page.evaluate('__widgets.map(c=>c.container_id)');assert len(set(ids))==len(ids)
  old=page.evaluate('__widgets.length');page.evaluate('THNContext.set({datasetId:"metadata-only"},"test")');page.wait_for_timeout(150);assert page.evaluate('__widgets.length')==old
  page.locator('#loadChartBtn').click();page.wait_for_function('(n)=>__widgets.length===n+1',arg=old)
  result['checks'].append('12 symbol/timeframe combinations, repeated navigation, metadata-only updates and explicit retry; shim configuration only')
+ # Complete a genuine detached bootstrap after the active generation (deterministic negative control).
+ delayed=[];release_detached=[False]
+ def defer_detached(route):
+  if release_detached[0]:route.fulfill(status=200,content_type='application/javascript',body=DEFER_DETACHED)
+  else:delayed.append(route)
+ page.route(EMBED_URL,defer_detached)
+ page.locator('#loadChartBtn').click()
+ page.wait_for_function('THNTradingViewStatus().phase==="loading"')
+ page.locator('#qSymbol').fill('GBPUSD');page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option('15m')
+ release_detached[0]=True
+ for request in reversed(delayed):request.fulfill(status=200,content_type='application/javascript',body=DEFER_DETACHED)
+ wait_widget('FX:GBPUSD','15')
+ page.wait_for_function('window.__detachedBootstraps?.length>0')
+ page.evaluate('__detachedBootstraps.splice(0).forEach(mount=>mount())')
+ state=widget_state()
+ assert state['history'][-1]['container_id']!=state['container'],state
+ assert (state['history'][-1]['symbol'],state['history'][-1]['interval'])!=('FX:GBPUSD','15'),state
+ assert state['context']['symbol']=='GBPUSD' and state['context']['interval']=='15m' and state['frames']==1,state
+ wait_widget('FX:GBPUSD','15')
+ assert not state['status']['candleReady']
+ page.unroute(EMBED_URL,defer_detached)
+ page.evaluate('THNContext.set({symbol:"EURUSD",interval:"1h"},"restore-after-detached-test")');wait_widget('FX:EURUSD','60')
+ result['checks'].append('Detached bootstrap finishes last: historical-tail predicate is false while the current generation, context and one frame remain correct')
  # Unknown context never leaves an old instrument visible or an old external link.
  page.evaluate('THNContext.set({symbol:"UNKNOWN"},"test")');assert page.locator('#tvChart iframe').count()==0;assert page.locator('#proTVExternal').get_attribute('href')=='https://www.tradingview.com/chart/'
  page.evaluate('THNContext.set({symbol:"EURUSD"},"test")');page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
