@@ -24,11 +24,11 @@ let toastTimeout = null;
 
 const I18N = {
   en: {
-    brandTagline: "AI-powered market intelligence",
+    brandTagline: "Deterministic market research",
     navDashboard: "Dashboard",
     navMarkets: "Markets",
     navTrading: "Trading Terminal",
-    navAI: "AI Intelligence",
+    navAI: "Research Intelligence",
     navRisk: "Risk Desk",
     navPortfolio: "Portfolio",
     navJournal: "Trade Journal",
@@ -172,8 +172,8 @@ const I18N = {
     units: "Units",
     forexLots: "Forex Lots",
     exposure: "Exposure",
-    exposurePercent: "Exposure %",
-    breakEvenWinRate: "Break-even Win Rate",
+    exposurePercent: "Hypothetical notional / planning capital",
+    breakEvenWinRate: "Theoretical break-even rate · not a forecast",
     trades: "Trades",
     wins: "Wins",
     losses: "Losses",
@@ -240,11 +240,11 @@ const I18N = {
     browserNotificationBody: "{symbol}: {decision} with {confidence}% confidence. Review before execution."
   },
   ar: {
-    brandTagline: "ذكاء سوقي مدعوم بالذكاء الاصطناعي",
+    brandTagline: "أبحاث سوق حتمية",
     navDashboard: "لوحة التحكم",
     navMarkets: "الأسواق",
     navTrading: "منصة التداول",
-    navAI: "الذكاء الاصطناعي",
+    navAI: "ذكاء الأبحاث",
     navRisk: "إدارة المخاطر",
     navPortfolio: "المحفظة والأداء",
     navJournal: "سجل الصفقات",
@@ -388,8 +388,8 @@ const I18N = {
     units: "الوحدات",
     forexLots: "لوتات الفوركس",
     exposure: "التعرض",
-    exposurePercent: "نسبة التعرض %",
-    breakEvenWinRate: "نسبة التعادل",
+    exposurePercent: "التعرض الافتراضي / رأس مال التخطيط",
+    breakEvenWinRate: "معدل التعادل النظري · ليس توقعاً",
     trades: "الصفقات",
     wins: "الرابحة",
     losses: "الخاسرة",
@@ -1021,6 +1021,12 @@ const fmt = (value, digits = 2) => {
   return n.toLocaleString(currentLang === "ar" ? "ar-OM" : undefined, { maximumFractionDigits: digits });
 };
 
+// Display policy only. Raw evidence, prices, exports and numerical engines stay exact.
+window.THNPresentation=Object.freeze({price(value,symbol=window.THNContext?.get()?.symbol||'',language=currentLang){
+ if(!Number.isFinite(value))return '—';
+ const digits=/JPY$/.test(symbol)?3:/^(EUR|GBP|AUD|NZD|USD|CHF|CAD)[A-Z]{3}$/.test(symbol)?5:Math.abs(value)<1?6:2;
+ return new Intl.NumberFormat(language==='ar'?'ar-OM':'en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits}).format(value);
+}});
 const money = value => {
   const n = Number(value);
   if (!Number.isFinite(n)) return "--";
@@ -1326,12 +1332,12 @@ function renderAnalysis(a, options = {}) {
   $("marketDataSource").textContent = a.marketDataSource || "--";
   $("aiNarrative").textContent = localizedNarrative(a);
   $("marketTime").textContent = a.marketTime ? new Date(a.marketTime).toLocaleString(currentLang === "ar" ? "ar-OM" : undefined) : "--";
-  $("entry").textContent = fmt(a.entry, 6);
-  if ($("optimalEntry")) $("optimalEntry").textContent = a.optimalEntry ? fmt(a.optimalEntry, 6) : fmt(a.entry, 6);
-  $("stopLoss").textContent = a.stopLoss ? fmt(a.stopLoss, 6) : "--";
-  $("target1").textContent = a.targets?.[0] ? fmt(a.targets[0], 6) : "--";
-  $("target2").textContent = a.targets?.[1] ? fmt(a.targets[1], 6) : "--";
-  $("target3").textContent = a.targets?.[2] ? fmt(a.targets[2], 6) : "--";
+  $("entry").textContent = THNPresentation.price(a.entry, a.symbol);
+  if ($("optimalEntry")) $("optimalEntry").textContent = a.optimalEntry ? THNPresentation.price(a.optimalEntry,a.symbol) : THNPresentation.price(a.entry, a.symbol);
+  $("stopLoss").textContent = a.stopLoss ? THNPresentation.price(a.stopLoss, a.symbol) : "--";
+  $("target1").textContent = a.targets?.[0] ? THNPresentation.price(a.targets[0], a.symbol) : "--";
+  $("target2").textContent = a.targets?.[1] ? THNPresentation.price(a.targets[1], a.symbol) : "--";
+  $("target3").textContent = a.targets?.[2] ? THNPresentation.price(a.targets[2], a.symbol) : "--";
   $("riskAmount").textContent = money(a.risk?.riskAmount);
   if (!options.preserveChart && (a.decision === "BUY" || a.decision === "SELL")) {
     playTradeAlertSound(a.decision);
@@ -1515,7 +1521,7 @@ function renderTables(a) {
   const b = a.backtest || {};
 
   $("indicatorTable").innerHTML = [
-    row(t("lastPrice"), fmt(i.price, 6)),
+    row(t("lastPrice"), THNPresentation.price(i.price, a.symbol)),
     row(t("ema20"), fmt(i.ema20, 6)),
     row(t("ema50"), fmt(i.ema50, 6)),
     row(t("ema200"), fmt(i.ema200, 6)),
@@ -1527,10 +1533,10 @@ function renderTables(a) {
   ].join("");
 
   $("structureTable").innerHTML = [
-    row(t("support"), fmt(s.support, 6)),
-    row(t("resistance"), fmt(s.resistance, 6)),
-    row(t("recentHigh"), fmt(s.recentHigh, 6)),
-    row(t("recentLow"), fmt(s.recentLow, 6)),
+    row(t("support"), THNPresentation.price(s.support, a.symbol)),
+    row(t("resistance"), THNPresentation.price(s.resistance, a.symbol)),
+    row(t("recentHigh"), THNPresentation.price(s.recentHigh, a.symbol)),
+    row(t("recentLow"), THNPresentation.price(s.recentLow, a.symbol)),
     row(t("rangePosition"), `${fmt(s.rangePosition, 2)}%`),
     row(t("trendStructure"), s.trendStructure || "--"),
     row(t("sellSideSweep"), s.possibleSellSideSweep ? t("possible") : t("no")),
@@ -1550,9 +1556,14 @@ function renderTables(a) {
     row(t("breakEvenWinRate"), `${fmt(r.breakEvenWinRate, 2)}%`)
   ].join("");
 
+  const checklist=$('checklist');
+  let attribution=$('riskChecklistContext');if(!attribution){attribution=document.createElement('p');attribution.id='riskChecklistContext';attribution.setAttribute('role','status');checklist.before(attribution);}
+  const context=window.THNContext?.get(),matching=a.symbol===context?.symbol&&a.timeframe===context?.interval&&a.evidence?.hash===context?.datasetId;
+  attribution.dataset.current=String(matching);attribution.dataset.symbol=a.symbol;attribution.dataset.interval=a.timeframe;attribution.dataset.hash=a.evidence?.hash||'';
+  attribution.textContent=(currentLang==='ar'?'شروط بحث فردية، وليست اعتماد خطة أو إذن تنفيذ. ':'Individual research conditions, not plan validation or execution authorization. ')+a.symbol+' / '+a.timeframe+' · '+(a.evidence?.lastTime?new Date(a.evidence.lastTime).toISOString():'—')+' · '+(matching?(currentLang==='ar'?'يطابق البيانات الحالية':'Matches current evidence'):(currentLang==='ar'?'لقطة سابقة أو غير مطابقة؛ أعد التحليل':'Previous / unmatched snapshot; analyze current evidence'));
   $("checklist").innerHTML = (a.checklist || []).map(c => `<div class="check">
     <span>${escapeHtml(currentLang === "ar" ? checklistItemAr(c) : c.item)}</span>
-    <b class="${escapeHtml(String(c.status).toLowerCase())}">${escapeHtml(localizedValue(c.status))}</b>
+    <b class="${escapeHtml(String(c.status).toLowerCase())}">${escapeHtml(c.status==="PASS"?(currentLang==="ar"?"الشرط متحقق":"Condition met"):localizedValue(c.status))}</b>
     <small>${escapeHtml(currentLang === "ar" ? checklistDetailAr(c) : (c.detail || ""))}</small>
   </div>`).join("");
 
@@ -2850,7 +2861,7 @@ function renderEnglishReport(a) {
   const s = a.structure || {};
   const schoolLines = (a.schools || []).map(x => `- ${x.name}: ${x.bias} | Score ${fmt(x.score, 0)}/100 | Direction ${fmt(x.directionScore, 2)}`).join("\n");
   const actionPlan = Array.isArray(a.professionalActionPlan) ? a.professionalActionPlan.map(x => `- ${x}`).join("\n") : (a.professionalActionPlan || "Follow checklist, confirm news risk, and execute only if broker conditions match the plan.");
-  $("report").textContent = `==============================\nTHN AI TRADER - MARKET AUDIT BRIEFING\n==============================\n\nAPP: ${a.appName || "THN AI Trader"}\nSOURCE: ${a.source}\nMARKET DATA: ${a.marketDataSource}\nSYMBOL: ${a.symbol}\nYAHOO SYMBOL: ${a.yahooSymbol}\nTRADINGVIEW SYMBOL: ${a.tvSymbol}\nASSET CLASS: ${a.assetClass}\nTIMEFRAME: ${a.timeframe}\nEXCHANGE: ${a.exchangeName}\nMARKET TIME: ${a.marketTime ? new Date(a.marketTime).toLocaleString() : "--"}\n\n------------------------------\nAI CONSENSUS\n------------------------------\nDECISION: ${a.decision}\nCONSENSUS: ${a.consensusLabel}\nCONFIDENCE: ${fmt(a.confidence, 0)}/100\nGRADE: ${a.grade}\nCONSENSUS SCORE: ${fmt(a.consensusScore, 2)}\n\n${a.aiNarrative}\n\n------------------------------\nMULTI-SCHOOL ANALYSIS\n------------------------------\n${schoolLines}\n\n------------------------------\nTRADE LEVELS\n------------------------------\nENTRY: ${fmt(a.entry, 6)}\nSTOP LOSS: ${a.stopLoss ? fmt(a.stopLoss, 6) : "--"}\nTAKE PROFIT 1: ${a.targets?.[0] ? fmt(a.targets[0], 6) : "--"}\nTAKE PROFIT 2: ${a.targets?.[1] ? fmt(a.targets[1], 6) : "--"}\nTAKE PROFIT 3: ${a.targets?.[2] ? fmt(a.targets[2], 6) : "--"}\n\n------------------------------\nRISK MANAGEMENT\n------------------------------\nACCOUNT BALANCE: ${money(r.accountBalance)}\nRISK PER TRADE: ${fmt(r.riskPct, 2)}%\nRISK AMOUNT: ${money(r.riskAmount)}\nRISK PER UNIT: ${fmt(r.riskPerUnit, 6)}\nUNITS: ${fmt(r.units, 4)}\nFOREX LOTS: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nEXPOSURE: ${money(r.exposure)}\nEXPOSURE %: ${fmt(r.exposurePct, 2)}%\nREWARD/RISK: 1 : ${fmt(r.rewardRisk, 2)}\nBREAK-EVEN WIN RATE: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nINDICATORS\n------------------------------\nPRICE: ${fmt(i.price, 6)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD HISTOGRAM: ${fmt(i.macdHistogram, 6)}\nVOLATILITY: ${i.volatilityLabel}\n\n------------------------------\nSTRUCTURE\n------------------------------\nSUPPORT: ${fmt(s.support, 6)}\nRESISTANCE: ${fmt(s.resistance, 6)}\nRECENT HIGH: ${fmt(s.recentHigh, 6)}\nRECENT LOW: ${fmt(s.recentLow, 6)}\nTREND STRUCTURE: ${s.trendStructure}\nRANGE POSITION: ${fmt(s.rangePosition, 2)}%\nSELL-SIDE SWEEP: ${s.possibleSellSideSweep ? "Possible" : "No"}\nBUY-SIDE SWEEP: ${s.possibleBuySideSweep ? "Possible" : "No"}\n\n------------------------------\nREASONS\n------------------------------\n${(a.reasons || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nWARNINGS\n------------------------------\n${(a.warnings || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nACTION PLAN\n------------------------------\n${actionPlan}\n\nDISCLAIMER: THN AI Trader is an educational and analytical decision-support system. It is not financial advice, does not guarantee profit, and must be verified with independent market research, broker specifications, and professional risk management.`;
+  $("report").textContent = `==============================\nTHN AI TRADER - MARKET AUDIT BRIEFING\n==============================\n\nAPP: ${a.appName || "THN AI Trader"}\nSOURCE: ${a.source}\nMARKET DATA: ${a.marketDataSource}\nSYMBOL: ${a.symbol}\nYAHOO SYMBOL: ${a.yahooSymbol}\nTRADINGVIEW SYMBOL: ${a.tvSymbol}\nASSET CLASS: ${a.assetClass}\nTIMEFRAME: ${a.timeframe}\nEXCHANGE: ${a.exchangeName}\nMARKET TIME: ${a.marketTime ? new Date(a.marketTime).toLocaleString() : "--"}\n\n------------------------------\nAI CONSENSUS\n------------------------------\nDECISION: ${a.decision}\nCONSENSUS: ${a.consensusLabel}\nCONFIDENCE: ${fmt(a.confidence, 0)}/100\nGRADE: ${a.grade}\nCONSENSUS SCORE: ${fmt(a.consensusScore, 2)}\n\n${a.aiNarrative}\n\n------------------------------\nMULTI-SCHOOL ANALYSIS\n------------------------------\n${schoolLines}\n\n------------------------------\nTRADE LEVELS\n------------------------------\nENTRY: ${THNPresentation.price(a.entry, a.symbol)}\nSTOP LOSS: ${a.stopLoss ? THNPresentation.price(a.stopLoss, a.symbol) : "--"}\nTAKE PROFIT 1: ${a.targets?.[0] ? THNPresentation.price(a.targets[0], a.symbol) : "--"}\nTAKE PROFIT 2: ${a.targets?.[1] ? THNPresentation.price(a.targets[1], a.symbol) : "--"}\nTAKE PROFIT 3: ${a.targets?.[2] ? THNPresentation.price(a.targets[2], a.symbol) : "--"}\n\n------------------------------\nRISK MANAGEMENT\n------------------------------\nACCOUNT BALANCE: ${money(r.accountBalance)}\nRISK PER TRADE: ${fmt(r.riskPct, 2)}%\nRISK AMOUNT: ${money(r.riskAmount)}\nRISK PER UNIT: ${fmt(r.riskPerUnit, 6)}\nUNITS: ${fmt(r.units, 4)}\nFOREX LOTS: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nEXPOSURE: ${money(r.exposure)}\nEXPOSURE %: ${fmt(r.exposurePct, 2)}%\nREWARD/RISK: 1 : ${fmt(r.rewardRisk, 2)}\nBREAK-EVEN WIN RATE: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nINDICATORS\n------------------------------\nPRICE: ${THNPresentation.price(i.price, a.symbol)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD HISTOGRAM: ${fmt(i.macdHistogram, 6)}\nVOLATILITY: ${i.volatilityLabel}\n\n------------------------------\nSTRUCTURE\n------------------------------\nSUPPORT: ${THNPresentation.price(s.support, a.symbol)}\nRESISTANCE: ${THNPresentation.price(s.resistance, a.symbol)}\nRECENT HIGH: ${THNPresentation.price(s.recentHigh, a.symbol)}\nRECENT LOW: ${THNPresentation.price(s.recentLow, a.symbol)}\nTREND STRUCTURE: ${s.trendStructure}\nRANGE POSITION: ${fmt(s.rangePosition, 2)}%\nSELL-SIDE SWEEP: ${s.possibleSellSideSweep ? "Possible" : "No"}\nBUY-SIDE SWEEP: ${s.possibleBuySideSweep ? "Possible" : "No"}\n\n------------------------------\nREASONS\n------------------------------\n${(a.reasons || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nWARNINGS\n------------------------------\n${(a.warnings || []).map(x => `- ${x}`).join("\n")}\n\n------------------------------\nACTION PLAN\n------------------------------\n${actionPlan}\n\nDISCLAIMER: THN AI Trader is an educational and analytical decision-support system. It is not financial advice, does not guarantee profit, and must be verified with independent market research, broker specifications, and professional risk management.`;
 }
 
 function renderArabicReport(a) {
@@ -2858,7 +2869,7 @@ function renderArabicReport(a) {
   const i = a.indicators || {};
   const s = a.structure || {};
   const schoolLines = (a.schools || []).map(x => `- ${localizedSchoolName(x.name)}: ${localizedValue(x.bias)} | ${t("score")} ${fmt(x.score, 0)}/100 | اتجاه ${fmt(x.directionScore, 2)}`).join("\n");
-  $("report").textContent = `==============================\nTHN AI TRADER - تقرير احترافي\n==============================\n\nالتطبيق: ${a.appName || "THN AI Trader"}\nالمصدر: ${a.source}\nبيانات السوق: ${a.marketDataSource}\nالرمز: ${a.symbol}\nرمز Yahoo: ${a.yahooSymbol}\nرمز TradingView: ${a.tvSymbol}\nنوع الأصل: ${localizedValue(a.assetClass)}\nالإطار الزمني: ${a.timeframe}\nوقت السوق: ${a.marketTime ? new Date(a.marketTime).toLocaleString("ar-OM") : "--"}\n\n------------------------------\nتوافق الذكاء الاصطناعي\n------------------------------\nالقرار: ${localizedValue(a.decision)}\nتوافق الأدلة: ${fmt(a.confidence, 0)}/100\nالتقييم: ${a.grade}\nدرجة التوافق: ${fmt(a.consensusScore, 2)}\n\n${localizedNarrative(a)}\n\n------------------------------\nتحليل المدارس\n------------------------------\n${schoolLines}\n\n------------------------------\nمستويات الصفقة\n------------------------------\nالدخول: ${fmt(a.entry, 6)}\nوقف الخسارة: ${a.stopLoss ? fmt(a.stopLoss, 6) : "--"}\nالهدف الأول: ${a.targets?.[0] ? fmt(a.targets[0], 6) : "--"}\nالهدف الثاني: ${a.targets?.[1] ? fmt(a.targets[1], 6) : "--"}\nالهدف الثالث: ${a.targets?.[2] ? fmt(a.targets[2], 6) : "--"}\n\n------------------------------\nإدارة المخاطر\n------------------------------\nرصيد الحساب: ${money(r.accountBalance)}\nنسبة المخاطرة: ${fmt(r.riskPct, 2)}%\nمبلغ المخاطرة: ${money(r.riskAmount)}\nالمخاطرة لكل وحدة: ${fmt(r.riskPerUnit, 6)}\nالوحدات: ${fmt(r.units, 4)}\nلوتات الفوركس: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nالتعرض: ${money(r.exposure)}\nنسبة التعرض: ${fmt(r.exposurePct, 2)}%\nالعائد/المخاطرة: 1 : ${fmt(r.rewardRisk, 2)}\nنسبة التعادل: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nالمؤشرات\n------------------------------\nالسعر: ${fmt(i.price, 6)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD: ${fmt(i.macdHistogram, 6)}\nالتذبذب: ${i.volatilityLabel}\n\n------------------------------\nالهيكل\n------------------------------\nالدعم: ${fmt(s.support, 6)}\nالمقاومة: ${fmt(s.resistance, 6)}\nآخر قمة: ${fmt(s.recentHigh, 6)}\nآخر قاع: ${fmt(s.recentLow, 6)}\nهيكل الاتجاه: ${s.trendStructure}\nموقع النطاق: ${fmt(s.rangePosition, 2)}%\nسحب سيولة القيعان: ${s.possibleSellSideSweep ? t("possible") : t("no")}\nسحب سيولة القمم: ${s.possibleBuySideSweep ? t("possible") : t("no")}\n\n------------------------------\nخطة التنفيذ\n------------------------------\n- لا تدخل قبل تأكيد الأخبار والسبريد والسيولة.\n- التزم بنسبة المخاطرة المحددة ولا ترفع حجم الصفقة بسبب الثقة العالية.\n- استخدم الوقف والأهداف كما هي أو عدلها فقط حسب خطة واضحة.\n\nتنبيه: THN AI Trader نظام تحليلي وتعليمي مساعد، وليس نصيحة مالية ولا يضمن الربح. يجب التحقق من التحليل وإدارة المخاطر ومواصفات الوسيط قبل أي تنفيذ.`;
+  $("report").textContent = `==============================\nTHN AI TRADER - تقرير احترافي\n==============================\n\nالتطبيق: ${a.appName || "THN AI Trader"}\nالمصدر: ${a.source}\nبيانات السوق: ${a.marketDataSource}\nالرمز: ${a.symbol}\nرمز Yahoo: ${a.yahooSymbol}\nرمز TradingView: ${a.tvSymbol}\nنوع الأصل: ${localizedValue(a.assetClass)}\nالإطار الزمني: ${a.timeframe}\nوقت السوق: ${a.marketTime ? new Date(a.marketTime).toLocaleString("ar-OM") : "--"}\n\n------------------------------\nتوافق الذكاء الاصطناعي\n------------------------------\nالقرار: ${localizedValue(a.decision)}\nتوافق الأدلة: ${fmt(a.confidence, 0)}/100\nالتقييم: ${a.grade}\nدرجة التوافق: ${fmt(a.consensusScore, 2)}\n\n${localizedNarrative(a)}\n\n------------------------------\nتحليل المدارس\n------------------------------\n${schoolLines}\n\n------------------------------\nمستويات الصفقة\n------------------------------\nالدخول: ${THNPresentation.price(a.entry, a.symbol)}\nوقف الخسارة: ${a.stopLoss ? THNPresentation.price(a.stopLoss, a.symbol) : "--"}\nالهدف الأول: ${a.targets?.[0] ? THNPresentation.price(a.targets[0], a.symbol) : "--"}\nالهدف الثاني: ${a.targets?.[1] ? THNPresentation.price(a.targets[1], a.symbol) : "--"}\nالهدف الثالث: ${a.targets?.[2] ? THNPresentation.price(a.targets[2], a.symbol) : "--"}\n\n------------------------------\nإدارة المخاطر\n------------------------------\nرصيد الحساب: ${money(r.accountBalance)}\nنسبة المخاطرة: ${fmt(r.riskPct, 2)}%\nمبلغ المخاطرة: ${money(r.riskAmount)}\nالمخاطرة لكل وحدة: ${fmt(r.riskPerUnit, 6)}\nالوحدات: ${fmt(r.units, 4)}\nلوتات الفوركس: ${r.forexLots ? fmt(r.forexLots, 4) : "N/A"}\nالتعرض: ${money(r.exposure)}\nنسبة التعرض: ${fmt(r.exposurePct, 2)}%\nالعائد/المخاطرة: 1 : ${fmt(r.rewardRisk, 2)}\nنسبة التعادل: ${fmt(r.breakEvenWinRate, 2)}%\n\n------------------------------\nالمؤشرات\n------------------------------\nالسعر: ${THNPresentation.price(i.price, a.symbol)}\nEMA20: ${fmt(i.ema20, 6)}\nEMA50: ${fmt(i.ema50, 6)}\nEMA200: ${fmt(i.ema200, 6)}\nRSI14: ${fmt(i.rsi14, 2)}\nATR14: ${fmt(i.atr14, 6)} (${fmt(i.atrPct, 3)}%)\nMACD: ${fmt(i.macdHistogram, 6)}\nالتذبذب: ${i.volatilityLabel}\n\n------------------------------\nالهيكل\n------------------------------\nالدعم: ${THNPresentation.price(s.support, a.symbol)}\nالمقاومة: ${THNPresentation.price(s.resistance, a.symbol)}\nآخر قمة: ${THNPresentation.price(s.recentHigh, a.symbol)}\nآخر قاع: ${THNPresentation.price(s.recentLow, a.symbol)}\nهيكل الاتجاه: ${s.trendStructure}\nموقع النطاق: ${fmt(s.rangePosition, 2)}%\nسحب سيولة القيعان: ${s.possibleSellSideSweep ? t("possible") : t("no")}\nسحب سيولة القمم: ${s.possibleBuySideSweep ? t("possible") : t("no")}\n\n------------------------------\nخطة التنفيذ\n------------------------------\n- لا تدخل قبل تأكيد الأخبار والسبريد والسيولة.\n- التزم بنسبة المخاطرة المحددة ولا ترفع حجم الصفقة بسبب الثقة العالية.\n- استخدم الوقف والأهداف كما هي أو عدلها فقط حسب خطة واضحة.\n\nتنبيه: THN AI Trader نظام تحليلي وتعليمي مساعد، وليس نصيحة مالية ولا يضمن الربح. يجب التحقق من التحليل وإدارة المخاطر ومواصفات الوسيط قبل أي تنفيذ.`;
 }
 
 // All historical chart callers share the terminal's selected context. Hidden views
@@ -3844,6 +3855,10 @@ function renderPerformanceAnalytics() {
     $('trustPerformanceState').textContent=(ar?'لا يوجد تحقق من وسيط. الأفكار والسجلات المجهولة مستبعدة. نتائج المصدر المختار: ':'No broker verification exists. Ideas and unknown records are excluded. Selected-source outcomes: ')+eligible;
   }
   const filtered = getFilteredJournalTrades();
+  let empty=$('performanceEmpty');if(!empty){empty=document.createElement('p');empty.id='performanceEmpty';empty.className='work-caption';empty.setAttribute('role','status');parent.append(empty);}
+  const eligible=filtered.length>0;parent.dataset.hasOutcomes=String(eligible);
+  empty.hidden=eligible;empty.textContent=ar?'لا نتائج مؤهلة للمصدر والفترة المختارين. أفكار البحث ليست صفقات. راجع سجلاتك أو احفظ بحثاً؛ لا نستنتج أداء وسيط.':'No eligible outcomes for the selected source and period. Research ideas are not trades. Inspect your records or save research; no broker performance is inferred.';
+  parent.querySelectorAll('.d3-card,.analytics-kpi-grid,.kpi-grid').forEach(el=>el.hidden=!eligible);
   computePerformanceKPIs(filtered);
   renderD3EquityCurve(filtered);
   renderD3WinLossDonut(filtered);
@@ -5944,3 +5959,5 @@ startTerminalClock();
 setTimeout(() => {
   if (!currentAnalysis) analyze();
 }, 250);
+
+window.addEventListener('thn:context',()=>{const el=document.getElementById('riskChecklistContext'),c=window.THNContext?.get();if(!el||!c)return;const matched=el.dataset.symbol===c.symbol&&el.dataset.interval===c.interval&&el.dataset.hash===c.datasetId;el.dataset.current=String(matched);if(!matched)el.textContent=(currentLang==='ar'?'لقطة بحث سابقة، ليست اعتماد خطة. ':'Previous research snapshot, not plan approval. ')+el.dataset.symbol+' / '+el.dataset.interval+' · '+(currentLang==='ar'?'أعد التحليل للسياق المختار':'Analyze the selected context again');});

@@ -1,0 +1,822 @@
+[
+  {
+    "language": "en",
+    "populated": 0,
+    "iteration": 0,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-1d56a8b9-211d-48de-be20-d3f58c67c32e",
+      "date": "2026-10-22T16:02:49.929Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 0,
+    "iteration": 1,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-4c640781-40b1-4861-9342-2afdef24b2df",
+      "date": "2026-10-22T16:02:52.810Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 0,
+    "iteration": 2,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-eeb5d10b-fb5c-4212-a76b-88c0f679981c",
+      "date": "2026-10-22T16:02:55.960Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 0,
+    "iteration": 3,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-d5494612-6956-448a-9eb2-ca1257ee4cfb",
+      "date": "2026-10-22T16:02:59.030Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 0,
+    "iteration": 4,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-456c006f-01b3-4bc9-9c7a-d989a81dd163",
+      "date": "2026-10-22T16:03:01.842Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 35,
+    "iteration": 0,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-d33f3972-a600-4d92-9f08-33153ec7df71",
+      "date": "2026-10-22T16:03:04.816Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 35,
+    "iteration": 1,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-b0247eab-59bd-48f5-bd32-d864d9be9378",
+      "date": "2026-10-22T16:03:08.119Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 35,
+    "iteration": 2,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-f8517416-1356-4fff-898a-066573386df1",
+      "date": "2026-10-22T16:03:11.103Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 35,
+    "iteration": 3,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-85c1f786-16ab-481b-aff5-3838c7665192",
+      "date": "2026-10-22T16:03:14.351Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "en",
+    "populated": 35,
+    "iteration": 4,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "Run analysis first.",
+      "toast": "Run analysis first.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 Research idea",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-b43c6c59-97fe-48f2-b4e3-72e32f75f166",
+      "date": "2026-10-22T16:03:17.422Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 0,
+    "iteration": 0,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-b28774d6-550b-46a9-8f12-0ec358765096",
+      "date": "2026-10-22T16:03:21.118Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 0,
+    "iteration": 1,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-6f60406a-18f6-4e85-82af-5a9a6cdadb55",
+      "date": "2026-10-22T16:03:24.185Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 0,
+    "iteration": 2,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-7d99f074-3c68-4621-8a4b-7d87ecdfc6c1",
+      "date": "2026-10-22T16:03:27.061Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 0,
+    "iteration": 3,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-5ac51017-079a-4ee7-b9a0-1d84b2fb6ca8",
+      "date": "2026-10-22T16:03:29.787Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 0,
+    "iteration": 4,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 0,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 1,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-ef6f424b-6708-4ca1-b785-a25ff6932a31",
+      "date": "2026-10-22T16:03:32.720Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 35,
+    "iteration": 0,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-fe02f550-e95e-4b97-b9f6-693cb32221a4",
+      "date": "2026-10-22T16:03:35.713Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 35,
+    "iteration": 1,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-c66b8215-bb38-4cb1-bd5b-11d8ba1b31ac",
+      "date": "2026-10-22T16:03:38.658Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 35,
+    "iteration": 2,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-6fc773ce-583e-4084-bb84-cd742633c46c",
+      "date": "2026-10-22T16:03:41.957Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 35,
+    "iteration": 3,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-97bc0e3d-c6f0-4cf6-b15b-55461eeee869",
+      "date": "2026-10-22T16:03:44.983Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  },
+  {
+    "language": "ar",
+    "populated": 35,
+    "iteration": 4,
+    "unavailable": {
+      "analysisReady": false,
+      "unchanged": true,
+      "count": 35,
+      "notice": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toast": "\u0634\u063a\u0651\u0644 \u0627\u0644\u062a\u062d\u0644\u064a\u0644 \u0623\u0648\u0644\u064b\u0627.",
+      "toastVisible": true
+    },
+    "count": 36,
+    "kind": "research_idea",
+    "symbol": "EURUSD",
+    "selected": 0,
+    "rendered": "EURUSD \u00b7 \u0641\u0643\u0631\u0629 \u0628\u062d\u062b",
+    "stored": {
+      "schema": "THN-RECORD-1",
+      "kind": "research_idea",
+      "source": "research",
+      "verification": "unverified",
+      "id": "idea-e6474efe-d332-431d-af42-f19353370ea4",
+      "date": "2026-10-22T16:03:48.379Z",
+      "symbol": "EURUSD",
+      "decision": "SELL LIMIT",
+      "entry": 1.121267,
+      "stopLoss": 1.124808,
+      "target1": 1.115602,
+      "risk": 100,
+      "confidence": 56,
+      "grade": "C",
+      "assetClass": "Forex",
+      "evidence": {
+        "hash": "8087ab76e07b9cd696aa00e9dcf4c2afe28a96fa69c958056223858ebe4d5348",
+        "interval": "1h",
+        "lastTime": 1792680762000,
+        "availableAt": 1792684362000
+      }
+    }
+  }
+]

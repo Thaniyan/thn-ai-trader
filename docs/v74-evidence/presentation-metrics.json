@@ -1,0 +1,120 @@
+{
+  "before": {
+    "dashboard": {
+      "height": 1188.71875,
+      "document": 1470,
+      "nodes": 3555,
+      "chart": null
+    },
+    "markets": {
+      "height": 2714.453125,
+      "document": 2998,
+      "nodes": 3555,
+      "chart": null
+    },
+    "trading": {
+      "height": 1294,
+      "document": 1575,
+      "nodes": 3555,
+      "chart": {
+        "width": 814,
+        "height": 510
+      }
+    },
+    "ai": {
+      "height": 2367.921875,
+      "document": 2649,
+      "nodes": 3555,
+      "chart": null
+    },
+    "risk": {
+      "height": 2365.21875,
+      "document": 2648,
+      "nodes": 3555,
+      "chart": null
+    },
+    "portfolio": {
+      "height": 3267.796875,
+      "document": 3551,
+      "nodes": 3555,
+      "chart": null
+    },
+    "journal": {
+      "height": 1158.6875,
+      "document": 1440,
+      "nodes": 3555,
+      "chart": null
+    },
+    "brokers": {
+      "height": 423.375,
+      "document": 1000,
+      "nodes": 3555,
+      "chart": null
+    },
+    "settings": {
+      "height": 1017.390625,
+      "document": 1283,
+      "nodes": 3555,
+      "chart": null
+    }
+  },
+  "after": {
+    "dashboard": {
+      "height": 570.203125,
+      "document": 1000,
+      "nodes": 3535,
+      "chart": null
+    },
+    "markets": {
+      "height": 1958.765625,
+      "document": 2234,
+      "nodes": 3535,
+      "chart": null
+    },
+    "trading": {
+      "height": 1154.765625,
+      "document": 1428,
+      "nodes": 3535,
+      "chart": {
+        "width": 868,
+        "height": 610
+      }
+    },
+    "ai": {
+      "height": 2161.0625,
+      "document": 2434,
+      "nodes": 3535,
+      "chart": null
+    },
+    "risk": {
+      "height": 1174.953125,
+      "document": 1444,
+      "nodes": 3535,
+      "chart": null
+    },
+    "portfolio": {
+      "height": 438.828125,
+      "document": 1000,
+      "nodes": 3535,
+      "chart": null
+    },
+    "journal": {
+      "height": 1116.359375,
+      "document": 1390,
+      "nodes": 3535,
+      "chart": null
+    },
+    "brokers": {
+      "height": 390.421875,
+      "document": 1000,
+      "nodes": 3535,
+      "chart": null
+    },
+    "settings": {
+      "height": 776.671875,
+      "document": 1046,
+      "nodes": 3535,
+      "chart": null
+    }
+  }
+}

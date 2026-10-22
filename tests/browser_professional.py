@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Full workstation journeys and all-nine-view geometry; providers are explicit offline fixtures."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright,expect
@@ -29,7 +30,7 @@ with sync_playwright() as p:
  page.route(EMBED_URL,lambda r:r.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY));page.locator('[data-pro-tv="EURUSD"]').click();assert page.locator('#chart').is_visible();assert not page.locator('.q-chart-panel').is_visible();page.wait_for_function('window.__widgets?.length>0');config=page.evaluate('__widgets.at(-1)');assert config['symbol']=='FX:EURUSD' and config['interval']=='60' and config['hide_side_toolbar']==False and config['hide_top_toolbar']==False and config['studies']==[] and config['support_host']=='https://www.tradingview.com'
  count=page.evaluate('__widgets.length');page.locator('#loadChartBtn').click();page.wait_for_function('(n)=>__widgets.length===n+1',arg=count);assert page.evaluate('__widgets.at(-1).symbol')=='FX:EURUSD'
  page.locator('#proResearchMode').click();assert page.locator('.q-chart-panel').is_visible()
- page.locator('#qDrawingMode').select_option('horizontal');canvas=page.locator('#qCandles');canvas.scroll_into_view_if_needed();canvas.click(position={'x':150,'y':130});assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')
+ control(page,'#qDrawingMode').select_option('horizontal');canvas=page.locator('#qCandles');canvas.scroll_into_view_if_needed();canvas.click(position={'x':150,'y':130});assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')
  page.reload();page.wait_for_function('window.THNProfessional&&THNResearch.series()');assert page.evaluate('THNResearch.chart.drawings.some(d=>d.type==="horizontal")')
  go('trading');canvas=page.locator('#qCandles');canvas.focus();page.keyboard.press('ArrowLeft');page.keyboard.press('+');page.keyboard.press('Home')
  assert page.evaluate('THNResearch.chart.offset')==0
@@ -84,7 +85,7 @@ with sync_playwright() as p:
  for v in views:
   refused.locator('.nav-stack [data-view="'+v+'"]').focus();refused.keyboard.press('Enter')
  refused.locator('.terminal-topbar [data-language="ar"]').click();refused.locator('#themeBtn').click();refused.wait_for_timeout(200);assert not errors,errors
- refused.locator('.nav-stack [data-view="settings"]').focus();refused.keyboard.press('Enter');refused.on('dialog',lambda d:d.accept());refused.locator('#prefClearJournalBtn').click();refused.wait_for_timeout(100);assert not errors,errors
+ refused.locator('.nav-stack [data-view="settings"]').focus();refused.keyboard.press('Enter');refused.on('dialog',lambda d:d.accept());control(refused,'#prefClearJournalBtn').click();refused.wait_for_timeout(100);assert not errors,errors
  refused.screenshot(path=str(out/'storage-refusal.png'));results['journeys'].append('Storage entirely denied: all nine views, language and theme initialize without uncaught errors')
  b.close()
 (out/'results.json').write_text(json.dumps(results,indent=2))

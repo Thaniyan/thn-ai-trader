@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Packaged browser trust journey; synthetic prices, no model/broker account."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright
@@ -19,7 +20,7 @@ with sync_playwright() as p:
  assert page.evaluate('getJournal().find(r=>r.id==="legacy-original")')==legacy
  checks.append('Ten ideas produce no WIN, exit or realized profit; legacy bytes interpreted without promotion')
  page.locator('.nav-stack [data-view="portfolio"]').click()
- assert page.locator('#kpiNetPnl').inner_text()=='Unavailable'
+ assert page.locator('#kpiNetPnl').text_content()=='Unavailable'
  def capture_outcome(path):
   page.evaluate('''() => {const e=document.querySelector('#performanceAnalytics'),h=document.querySelector('.terminal-topbar').getBoundingClientRect().height;for(let p=e.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;document.documentElement.style.scrollBehavior='auto';e.style.scrollMarginTop=(h+25)+'px';e.scrollIntoView({block:'start',behavior:'instant'})}''')
   page.wait_for_timeout(800);page.screenshot(path=str(path))
@@ -27,13 +28,13 @@ with sync_playwright() as p:
  page.locator('#openLogTradeModalBtn').click()
  for id,value in {'manualSymbol':'EURUSD','manualEntry':'1.1','manualExit':'1.12','manualPnl':'200','manualRisk':'100','manualDate':'2026-01-02'}.items():page.locator('#'+id).fill(value)
  page.locator('#logTradeForm button[type="submit"]').click()
- assert page.locator('#kpiNetPnl').inner_text()=='Unavailable'
- page.locator('#trustPerformanceSource').select_option('manual');assert page.locator('#kpiNetPnl').inner_text()=='+$200.00'
- assert page.locator('#kpiProfitFactor').inner_text()=='—'
- assert 'capital basis' in page.locator('#kpiNetPnlPct').inner_text()
+ assert page.locator('#kpiNetPnl').text_content()=='Unavailable'
+ control(page,'#trustPerformanceSource').select_option('manual');assert page.locator('#kpiNetPnl').text_content()=='+$200.00'
+ assert page.locator('#kpiProfitFactor').text_content()=='—'
+ assert 'capital basis' in page.locator('#kpiNetPnlPct').text_content()
  assert 'unverified' in page.locator('#trustPerformanceState').inner_text() or 'No broker verification' in page.locator('#trustPerformanceState').inner_text()
- page.locator('#trustPerformanceSource').select_option('verified');assert page.locator('#kpiNetPnl').inner_text()=='Unavailable'
- assert page.locator('#donutWinCount').inner_text()=='Unavailable'
+ control(page,'#trustPerformanceSource').select_option('verified');assert page.locator('#kpiNetPnl').text_content()=='Unavailable'
+ assert page.locator('#donutWinCount').text_content()=='Unavailable'
  checks.append('Manual outcome requires explicit fields, stays unverified, excluded by default; no fake capital/PF')
  # Actual file import preview and atomic failure; original data remains untouched.
  page.locator('.nav-stack [data-view="journal"]').click();page.locator('#m65JournalLegacy > summary').click();page.locator('#journalBulkImportBtn').click()
@@ -78,7 +79,7 @@ with sync_playwright() as p:
   for view in ['dashboard','risk','portfolio','journal','ai']:
    button=page.locator('.nav-stack [data-view="'+view+'"]');button.focus();button.press('Enter');page.wait_for_timeout(200)
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  page.locator('.nav-stack [data-view="portfolio"]').focus();page.keyboard.press('Enter');page.locator('#trustPerformanceSource').select_option('manual');page.wait_for_timeout(600)
+  page.locator('.nav-stack [data-view="portfolio"]').focus();page.keyboard.press('Enter');control(page,'#trustPerformanceSource').select_option('manual');page.wait_for_timeout(600)
   assert ('غير موثقة' if language=='ar' else 'unverified') in page.locator('#trustPerformanceSource').inner_text()
   violations=page.evaluate('''async()=> (await axe.run(document.querySelector('#view-portfolio'),{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))''')
   scans.append({'language':language,'theme':theme,'width':width,'violations':violations})

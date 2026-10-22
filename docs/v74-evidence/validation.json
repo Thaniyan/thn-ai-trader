@@ -1,0 +1,137 @@
+{
+  "version": "7.4.0",
+  "branch": "feature/product-experience-v74",
+  "parent": "4cbee1968bcc1460191676b8fbf9a2a0f17ed96c",
+  "boundary": "LOCAL only; no push, PR, merge, deployment or hosting changes",
+  "browser": {
+    "suites": [
+      "consolidation",
+      "decision",
+      "evolution",
+      "experience",
+      "intelligence",
+      "intelligence_memory",
+      "journal_lifecycle",
+      "layout",
+      "library_reliability",
+      "maturity",
+      "pilot",
+      "professional",
+      "quality",
+      "research",
+      "research_outage",
+      "terminal",
+      "trading_remediation",
+      "trust",
+      "workstation"
+    ],
+    "suiteCount": 19,
+    "fullRunnerExitCode": 1,
+    "fullRunnerPassed": 17,
+    "fullRunnerFailures": [
+      "terminal",
+      "evolution"
+    ],
+    "correctedTargetedReruns": {
+      "terminal": {
+        "exitCode": 0,
+        "log": "/workspace/work/v74-evidence/terminal-final-corrected.log"
+      },
+      "evolution": {
+        "exitCode": 0,
+        "log": "/workspace/work/v74-evidence/evolution-final-corrected-2.log"
+      }
+    },
+    "finalAggregate": "All 19 suites passed; original complete run is not misreported as exit 0",
+    "compatibilityCorrections": [
+      "Open original plan overlay through Chart tools summary",
+      "Use visible primary Markets navigation instead of removed redundant Dashboard shortcut",
+      "Use visible Journal backup button; exact exported schema/record assertions preserved"
+    ],
+    "professional": {
+      "layouts": 288,
+      "accessibility": 72,
+      "zoom": 64,
+      "touchTargets": 72
+    },
+    "shellCases": 202,
+    "shellAccessibility": 8,
+    "evolution": {
+      "geometry": 108,
+      "accessibility": 108,
+      "metadataEvents": 40,
+      "renders": 1
+    },
+    "consolidation": {
+      "geometry": 20,
+      "accessibility": 20,
+      "journeys": 6
+    },
+    "experience": {
+      "geometry": 144,
+      "accessibility": 72,
+      "mobileFocusAccessibility": 4,
+      "journeys": [
+        "A: instrument-aware display, exact raw candles retained, compact Dashboard and advanced original access",
+        "B\u2013D: discovery, original context, active layers, focus/Escape/focus restoration, official widget shim and honest fallback",
+        "E: real deterministic assistant history attributed to prior USDJPY after EURUSD selection",
+        "F/J: unmatched checklist separate from plan; genuine USD100 server plan -> immutable Library",
+        "G: empty charts compact; actual UI manual outcome shown only for explicit unverified source; verified remains unavailable",
+        "H: guarded idea save, truthful classification, separate backup tools, accessible Advanced Recovery and preserved reports",
+        "I: restored preferences and explicit, cancellable destructive confirmation"
+      ],
+      "pageErrors": []
+    },
+    "journalIterations": 20,
+    "tradingView": {
+      "layouts": 24,
+      "accessibility": 24,
+      "externalCandles": "UNVERIFIED; protocol fixture only"
+    },
+    "playwrightCleanupWarning": "Non-failing pending-connection/TargetClosedError warning retained"
+  },
+  "unit": {
+    "passed": 155,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "otherGates": {
+    "build": "pass",
+    "lint": "pass",
+    "package": "pass",
+    "reproduciblePackage": "pass",
+    "workflow": "pass",
+    "releaseSourceGuard": "pass with supported subprocess permissions",
+    "gitFsck": "pass",
+    "frozenInstall": "pass using existing pinned Bun 1.4.3",
+    "dependencyAudit": "pass, zero advisories"
+  },
+  "artifact": {
+    "runtimeFiles": 62,
+    "artifactFiles": 66,
+    "manifestSHA256": "1ccae1e5ebaa0445dd9ce82ef07ddf44659d09af8c46293ab5e3d96d7f36bd4e"
+  },
+  "tooling": {
+    "node": "24.19.0",
+    "python": "3.12.14",
+    "playwright": "1.62.0",
+    "axe": "4.10.3",
+    "chromium": "151.0.7922.173"
+  },
+  "rawEvidence": "/workspace/work/v74-evidence",
+  "limitations": [
+    "Offline fixtures are not live Production observations",
+    "Real external TradingView candles not verified",
+    "Hosted CI requires separate publication approval",
+    "Browser-local records are unencrypted and device-specific",
+    "No generative model or financial execution activation"
+  ],
+  "zeroAdditionalSpending": true
+}

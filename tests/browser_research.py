@@ -1,3 +1,4 @@
+from workspace_controls import control
 from playwright.sync_api import sync_playwright
 import os,json
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3011')
@@ -7,15 +8,15 @@ with sync_playwright() as p:
  page.goto(BASE);page.wait_for_function('window.THNResearch && window.THNResearch.series()',timeout=40000)
  report={'provider':page.evaluate('THNResearch.series().provenance'),'checks':[],'a11y':[],'mobile':[]}
  page.locator('.nav-stack [data-view="trading"]').click();page.wait_for_timeout(500)
- original=page.evaluate('THNResearch.chart.count');page.locator('#qZoomIn').click();assert page.evaluate('THNResearch.chart.count')<original
+ original=page.evaluate('THNResearch.chart.count');control(page,'#qZoomIn').click();assert page.evaluate('THNResearch.chart.count')<original
  page.locator('#qCandles').focus();page.keyboard.press('ArrowLeft');assert page.evaluate('THNResearch.chart.offset')>0
  page.keyboard.press('Home');assert page.evaluate('THNResearch.chart.offset')==0
  page.keyboard.press('Shift+ArrowLeft');assert 'Open' in page.locator('#qTooltip').inner_text()
  canvas=page.locator('#qCandles');box=canvas.bounding_box();page.mouse.move(box['x']+200,box['y']+120);assert 'Open' in page.locator('#qTooltip').inner_text()
- page.locator('[data-qlayer="smc"]').click();assert page.evaluate('THNResearch.chart.layers.smc')
- page.locator('#qDrawingMode').select_option('line');canvas.click(position={'x':100,'y':100});canvas.click(position={'x':200,'y':150});assert page.evaluate('THNResearch.chart.drawings.length')==1
- page.locator('#qAnnotation').fill('Research annotation');page.locator('#qDrawingMode').select_option('note');canvas.click(position={'x':220,'y':160});assert page.evaluate('THNResearch.chart.drawings.length')==2
- page.locator('#qUndo').click();assert page.evaluate('THNResearch.chart.drawings.length')==1
+ control(page,'[data-qlayer="smc"]').click();assert page.evaluate('THNResearch.chart.layers.smc')
+ control(page,'#qDrawingMode').select_option('line');canvas.click(position={'x':100,'y':100});canvas.click(position={'x':200,'y':150});assert page.evaluate('THNResearch.chart.drawings.length')==1
+ control(page,'#qAnnotation').fill('Research annotation');control(page,'#qDrawingMode').select_option('note');canvas.click(position={'x':220,'y':160});assert page.evaluate('THNResearch.chart.drawings.length')==2
+ control(page,'#qUndo').click();assert page.evaluate('THNResearch.chart.drawings.length')==1
  with page.expect_download() as analytical:page.locator('#qAnalysisExport').click()
  analysis=json.load(open(analytical.value.path()));assert analysis['provenance']['hash'];assert 'accounts' not in analysis
  page.screenshot(path='work/v62-final-chart.png');report['checks'].append('OHLC tooltip, zoom, pan, keyboard reset, layers, drawings and undo')
@@ -29,10 +30,10 @@ with sync_playwright() as p:
  if valid:
   page.locator('#m65Matrix > summary').click();page.locator('[data-qscenario="'+valid+'"]').click();assert page.locator('#view-risk').is_visible();assert float(page.locator('#planEntry').input_value())>0;assert page.evaluate('THNContext.get().interval')=='1h';page.locator('#workRiskForm button').click();page.wait_for_function('THNDecision.plan()',timeout=10000);assert page.evaluate('THNDecision.plan().symbol')=='EURUSD';report['checks'].append('independent timeframe scenario transferred to server-backed Risk Desk')
  page.locator('#qInterval').select_option('1h');page.wait_for_function('THNResearch.series()?.provenance.interval === "1h"',timeout=40000)
- page.locator('.nav-stack [data-view="portfolio"]').click();page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=40000)
+ page.locator('.nav-stack [data-view="portfolio"]').click();control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=40000)
  report['research']=page.evaluate('({metrics:THNResearch.result().metrics,sample:THNResearch.result().sample})')
  assert page.locator('#qResult table').first.is_visible();assert page.evaluate('THNResearch.evaluation().development.sample.lastTime<THNResearch.evaluation().holdout.sample.firstTime');page.screenshot(path='work/v62-final-research.png')
- with page.expect_download() as download:page.locator('#qExport').click()
+ with page.expect_download() as download:control(page,'#qExport').click()
  payload=json.load(open(download.value.path()));assert payload['evaluation']['dataset']['hash'];assert payload['evaluation']['development']['sample']['lastTime']<payload['evaluation']['holdout']['sample']['firstTime'];assert 'accounts' not in payload;assert 'credentials' not in json.dumps(payload).lower()
  report['checks'].append('actual historical strategy run and export contains research only')
  page.locator('.nav-stack [data-view="journal"]').click();page.locator('#m65Notebook > summary').click();page.locator('#qNoteTitle').fill('Browser research record');page.locator('#qNoteBody').fill('Observed EMA result; invalidation requires confirmation.');page.locator('#qNoteForm button').click();assert 'Browser research record' in page.locator('#qNotes').inner_text();page.reload();page.wait_for_function('window.THNResearch');page.locator('.nav-stack [data-view="journal"]').click();page.locator('#m65Notebook > summary').click();assert 'Browser research record' in page.locator('#qNotes').inner_text();report['checks'].append('research notes survive reload')

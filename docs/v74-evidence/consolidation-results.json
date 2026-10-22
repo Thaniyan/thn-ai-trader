@@ -1,0 +1,343 @@
+{
+  "journeys": [
+    "A: discovery -> explicit observation -> selected chart; one toolbar and terminal owner",
+    "B: HTTP analysis -> current technical evidence -> Intelligence; canonical scenario owner",
+    "C: validated USD100 risk plan -> matched Library -> current research navigation; original evidence unchanged",
+    "D: terminal save -> immediate idea -> filter -> reload -> original inspection; premature saves rejected",
+    "E: measured script/frame phases; widget reused on revisits/metadata; unverified candles and real THN fallback",
+    "F: sizing setup persists across reload; storage refusal explicit; records preserved"
+  ],
+  "geometry": [
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "dark",
+      "chartTop": 521.765625,
+      "chartWidth": 868,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "light",
+      "chartTop": 521.765625,
+      "chartWidth": 868,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1440,
+      "lang": "ar",
+      "theme": "dark",
+      "chartTop": 521.765625,
+      "chartWidth": 868,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1440,
+      "lang": "ar",
+      "theme": "light",
+      "chartTop": 521.765625,
+      "chartWidth": 868,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1024,
+      "lang": "en",
+      "theme": "dark",
+      "chartTop": 600.953125,
+      "chartWidth": 744,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1024,
+      "lang": "en",
+      "theme": "light",
+      "chartTop": 600.953125,
+      "chartWidth": 744,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1024,
+      "lang": "ar",
+      "theme": "dark",
+      "chartTop": 519.765625,
+      "chartWidth": 744,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 1024,
+      "lang": "ar",
+      "theme": "light",
+      "chartTop": 519.765625,
+      "chartWidth": 744,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 4
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "dark",
+      "chartTop": 708.953125,
+      "chartWidth": 488,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "light",
+      "chartTop": 708.953125,
+      "chartWidth": 488,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 768,
+      "lang": "ar",
+      "theme": "dark",
+      "chartTop": 646.953125,
+      "chartWidth": 488,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 768,
+      "lang": "ar",
+      "theme": "light",
+      "chartTop": 646.953125,
+      "chartWidth": 488,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "dark",
+      "chartTop": 829.53125,
+      "chartWidth": 322,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "light",
+      "chartTop": 829.53125,
+      "chartWidth": 322,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "theme": "dark",
+      "chartTop": 790.140625,
+      "chartWidth": 322,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "theme": "light",
+      "chartTop": 790.140625,
+      "chartWidth": 322,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 3
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "dark",
+      "chartTop": 969.5,
+      "chartWidth": 252,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 2
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "light",
+      "chartTop": 969.5,
+      "chartWidth": 252,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 2
+    },
+    {
+      "width": 320,
+      "lang": "ar",
+      "theme": "dark",
+      "chartTop": 891.125,
+      "chartWidth": 252,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 2
+    },
+    {
+      "width": 320,
+      "lang": "ar",
+      "theme": "light",
+      "chartTop": 891.125,
+      "chartWidth": 252,
+      "overflow": false,
+      "axisOverlap": false,
+      "labels": 2
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "lang": "ar",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "lang": "ar",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "lang": "en",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "lang": "en",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "lang": "ar",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "lang": "ar",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "lang": "ar",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 768,
+      "lang": "ar",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "width": 320,
+      "lang": "ar",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "width": 320,
+      "lang": "ar",
+      "theme": "light",
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "network": "Offline provider/widget fixtures; not external TradingView candle evidence",
+  "widget": {
+    "generation": 1,
+    "requestedAt": 1358.8999999985099,
+    "scriptMs": 42,
+    "frameMs": 60,
+    "lastPhaseMs": 60
+  }
+}

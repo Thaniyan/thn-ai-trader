@@ -1,3 +1,4 @@
+from workspace_controls import control
 from playwright.sync_api import sync_playwright
 import os,json
 BASE=os.environ.get('TEST_URL','http://127.0.0.1:3021')
@@ -7,29 +8,30 @@ with sync_playwright() as p:
  page.goto(BASE);page.wait_for_function('window.THNResearch?.series() && THNContext.get().datasetId',timeout=40000)
  report={'checks':[],'a11y':[],'mobile':[],'data':page.evaluate('THNResearch.series().provenance')}
  initial=len([r for r in requests if '/api/research/series' in r]);page.evaluate('THNContext.set({strategy:{name:"ema",direction:"long_short"}},"test")');page.wait_for_timeout(200);assert len([r for r in requests if '/api/research/series' in r])==initial
- page.locator('.nav-stack [data-view="portfolio"]').click();page.locator('#qDirection').select_option('long_short');page.locator('#qMinimumTrades').fill('5');page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=40000)
+ page.locator('.nav-stack [data-view="portfolio"]').click();control(page,'#qDirection').select_option('long_short');control(page,'#qMinimumTrades').fill('5');control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=40000)
  first=page.evaluate('THNResearch.evaluation()');assert first['development']['sample']['lastTime']<first['holdout']['sample']['firstTime'];assert first['limits']['runsExecuted']<=18
  report['realEvaluation']={'dataset':first['dataset'],'development':first['development']['metrics'],'holdout':first['holdout']['metrics'],'split':first['split']}
- page.locator('#qSaveExperiment').click();page.locator('#qDirection').select_option('short_only');page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation().parameters.direction==="short_only"',timeout=40000);page.locator('#qSaveExperiment').click()
+ control(page,'#qSaveExperiment').click();control(page,'#qDirection').select_option('short_only');control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation().parameters.direction==="short_only"',timeout=40000);control(page,'#qSaveExperiment').click()
+ control(page,'#qCompareExperiments')
  for box in page.locator('[data-experiment]').all():box.check()
- page.locator('#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
+ control(page,'#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
  page.locator('#qResult').screenshot(path='work/v63-report.png');page.locator('#q63Comparison').screenshot(path='work/v63-comparison.png')
  report['checks'].append('real chronological reports, directional strategies, bounded sensitivity, walk-forward and two-run comparison')
- with page.expect_download() as downloaded:page.locator('#qExport').click()
+ with page.expect_download() as downloaded:control(page,'#qExport').click()
  exported=json.load(open(downloaded.value.path()));assert exported['evaluation']['split'];assert exported['context']['datasetId']==exported['evaluation']['dataset']['hash'];assert 'credentials' not in json.dumps(exported).lower()
- with page.expect_download() as downloaded:page.locator('#qExportExperiments').click()
+ with page.expect_download() as downloaded:control(page,'#qExportExperiments').click()
  records=json.load(open(downloaded.value.path()));records['records'][0]['credentials']={'apiToken':'DO_NOT_RETAIN'}
- page.locator('#qImportExperiments').set_input_files({'name':'experiments.json','mimeType':'application/json','buffer':json.dumps(records).encode()});page.wait_for_timeout(300)
+ control(page,'#qImportExperiments').set_input_files({'name':'experiments.json','mimeType':'application/json','buffer':json.dumps(records).encode()});page.wait_for_timeout(300)
  assert page.locator('[data-experiment]').count()==4;stored=page.evaluate('localStorage.getItem("thn_experiments_v63")');assert 'DO_NOT_RETAIN' not in stored;assert 'Imported — unverified' in page.locator('#q63Runs').inner_text()
  records['records'][0]['holdout']['sample']['firstTime']=1e100
- page.locator('#qImportExperiments').set_input_files({'name':'malformed.json','mimeType':'application/json','buffer':json.dumps(records).encode()});page.wait_for_timeout(200);assert 'Import rejected' in page.locator('#q63StorageStatus').inner_text()
+ control(page,'#qImportExperiments').set_input_files({'name':'malformed.json','mimeType':'application/json','buffer':json.dumps(records).encode()});page.wait_for_timeout(200);assert 'Import rejected' in page.locator('#q63StorageStatus').inner_text()
  report['checks'].append('complete export, bounded experiment import, unverified labeling, credential-field stripping and invalid timestamp rejection')
  page.locator('#qRecordConclusion').click();assert page.locator('#view-journal').is_visible();assert first['dataset']['hash'] in page.locator('#qNoteBody').input_value();page.locator('#qNoteForm button').click();notes=page.evaluate('JSON.parse(localStorage.getItem("thn_research_notes_v62"))');assert notes[-1]['evaluation']['holdout']['trades']>=0
  report['checks'].append('evaluation conclusions and dataset identity attach to browser-local journal')
  page.locator('.nav-stack [data-view="portfolio"]').click()
  page.evaluate('''(()=>{const native=window.fetch;window.fetch=(url,options={})=>{if(String(url).includes('/api/research/evaluate')&&JSON.parse(options.body||'{}').symbol==='EURUSD'){const safe={...options};delete safe.signal;return native(url,safe).then(r=>new Promise(resolve=>setTimeout(()=>resolve(r),900)));}return native(url,options);};})()''')
- page.locator('#qRun').click();page.locator('#qSymbol').fill('GBPUSD');page.locator('#qSymbol').press('Tab');page.wait_for_function('THNResearch.series()?.symbol==="GBPUSD"',timeout=40000);page.wait_for_timeout(1300);assert page.evaluate('THNContext.get().symbol')=='GBPUSD';assert page.evaluate('THNResearch.evaluation().symbol')=='EURUSD';assert 'Previous report retained' in page.locator('#qResult').inner_text()
- page.locator('#qRun').click();page.wait_for_function('THNResearch.evaluation()?.symbol==="GBPUSD"',timeout=40000);assert page.evaluate('THNContext.get().datasetId===THNResearch.evaluation().dataset.hash')
+ control(page,'#qRun').click();page.locator('#qSymbol').fill('GBPUSD');page.locator('#qSymbol').press('Tab');page.wait_for_function('THNResearch.series()?.symbol==="GBPUSD"',timeout=40000);page.wait_for_timeout(1300);assert page.evaluate('THNContext.get().symbol')=='GBPUSD';assert page.evaluate('THNResearch.evaluation().symbol')=='EURUSD';assert 'Previous report retained' in page.locator('#qResult').inner_text()
+ control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()?.symbol==="GBPUSD"',timeout=40000);assert page.evaluate('THNContext.get().datasetId===THNResearch.evaluation().dataset.hash')
  report['checks'].append('late old evaluation cannot overwrite a newer selection; prior work is retained explicitly')
  page.locator('.nav-stack [data-view="risk"]').click();page.locator('#planCapital').fill('20000');page.locator('#planRisk').fill('0.5');page.locator('#planLeverage').fill('10');page.locator('.q-context [data-qgoto="portfolio"]').click();assert page.locator('#qParam_capital').input_value()=='20000';assert page.locator('#qParam_riskPct').input_value()=='0.5';assert page.locator('#qParam_leverage').input_value()=='10'
  report['checks'].append('Risk Desk assumptions transfer to research without account balances or extra chart reloads')

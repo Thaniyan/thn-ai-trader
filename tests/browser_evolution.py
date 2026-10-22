@@ -18,7 +18,7 @@ with sync_playwright() as p:
   page.wait_for_function('THNEvolution.analysisReady()&&!document.getElementById("proAnalyzeContext").disabled')
   assert page.evaluate('currentAnalysis.symbol')==page.evaluate('THNContext.get().symbol')
  # A: Discover -> existing context -> provider provenance -> chart -> genuine deterministic analysis.
- page.locator('#evoDashboard [data-evo="go:markets"]').click();page.locator('#r66Search').fill('GBPUSD');page.locator('[data-evo-symbol="GBPUSD"][data-evo-view="ai"]').click()
+ page.locator('.nav-stack [data-view="markets"]').click();page.locator('#r66Search').fill('GBPUSD');page.locator('[data-evo-symbol="GBPUSD"][data-evo-view="ai"]').click()
  page.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNDecision.brief()?.symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"')
  expect(page.locator('#evoContext')).to_contain_text('Yahoo Finance')
  page.locator('#evoIntelligence [data-evo="chart"]').click();expect(page.locator('#qCandles')).to_be_visible();analyze()
@@ -45,7 +45,7 @@ with sync_playwright() as p:
  page.locator('#proRecords').get_by_role('button',name='Inspect original record',exact=True).first.click();expect(page.locator('#proRecordDetail')).to_contain_text('research_idea')
  assert page.evaluate('THNRecords.select(getJournal()).length')==0
  page.reload();page.wait_for_function('window.THNEvolution');go('journal');expect(page.locator('#proRecords').get_by_text('EURUSD · Research idea',exact=True)).to_be_visible()
- with page.expect_download() as download:page.locator('#evoJournal [data-evo="export-json"]').click()
+ with page.expect_download() as download:page.locator('#evoJournalTools').get_by_role('button',name='Back up Journal JSON',exact=True).click()
  payload=json.loads(pathlib.Path(download.value.path()).read_text());assert payload['schema']=='THN-RECORDS-1' and payload['records'][0]['kind']=='research_idea' and 'pnl' not in payload['records'][0]
  assert page.evaluate('THNLibrary.records().length')==1
  page.screenshot(path=str(out/'fixture-persisted-journal.png'),animations='disabled')
