@@ -15,6 +15,7 @@ import { prepareSeries, multiTimeframe, INTERVAL_MS } from "./server/research.js
 import { runBacktest, normalizeParameters, numericParameter } from "./server/backtest.js";
 import http from "node:http";
 import fs from "node:fs";
+const RELEASE_VERSION=JSON.parse(fs.readFileSync(new URL("./package.json",import.meta.url),"utf8")).version;
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -1493,7 +1494,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 400, { ok: false, code: "USE_LOCAL_SANDBOX", error: "Use the existing local sandbox account." });
     }
     if (req.method === "GET" && url.pathname === "/api/health") {
-      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: "7.1.0", openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
+      return sendJson(res, 200, { ok: true, app: "THN AI Trader", version: RELEASE_VERSION, openaiEnabled, capabilities: { paperExecution: localPaperEnabled, liveTrading: false, durableHostedAccounts: false, analysis: "deterministic", independentTimeframes: ["15m", "1h", "1d"], historicalBacktesting: true, chronologicalValidation: true, browserSnapshotReplay: true, confidence: "uncalibrated confluence score" }, serverTime: new Date().toISOString() });
     }
 
     if(req.method==='POST'&&url.pathname==='/api/intelligence/saved'){

@@ -1,0 +1,222 @@
+{
+  "baseline": "a3e996e2b0881ca2a36a5426bc2bccad08c66ec9",
+  "data": "Offline deterministic provider fixtures; no real TradingView candle delivery demonstrated",
+  "files": [
+    {
+      "path": "before-dashboard-1440-en-dark.png",
+      "sha256": "b41f2d9541b85459c6bb6dc46be937f5df8de9787f768e7c7380e3d6ce50b1ea",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-dashboard-390-ar-light.png",
+      "sha256": "e7260380ff59cabf739db89838935ee97d57be564a2354faefc57a8067811de3",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-markets-1440-en-dark.png",
+      "sha256": "768089d377e8359cc8275d63b702c4aa6255950a56fe7ad25199bed06b956286",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-markets-390-ar-light.png",
+      "sha256": "8f04d376bcbe593698feca2e01813d19c59c26ea10b5774ed28fda51263f52a2",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-trading-1440-en-dark.png",
+      "sha256": "f222bc5d1c733fbdbf4d138583e974019166c55f3882f2c2c64e21bc170836f0",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-trading-390-ar-light.png",
+      "sha256": "cef55713079b3d1401af0d9cfb26f7cc494ecaeccdb18151badb0b989fdfb5dc",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-ai-1440-en-dark.png",
+      "sha256": "21950d9b1dd906d53fb5cce453f71fdb7dc29a31d95f5d1b9c53a9ee76794ad1",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-ai-390-ar-light.png",
+      "sha256": "8c24aef7e550c75a8492dae7561a48d3a33c36fa9c300aa5340cce2499d4f08b",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-risk-1440-en-dark.png",
+      "sha256": "a8ceed6341ba831b0f49d956583862ed87109677c18ce35618f1f1da03a024dc",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-risk-390-ar-light.png",
+      "sha256": "260640762120ff4e2a8150b51f34f3640db0bb68a9786f051a4f60e3282f3084",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-portfolio-1440-en-dark.png",
+      "sha256": "45a2bdfa36f63f0102ba9ec3fb1c053d1351fbac260664369ae455389b8257ca",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-portfolio-390-ar-light.png",
+      "sha256": "4fa00b65f987438eadc80583a4b602a003a9dba42c529665881b5e625050590d",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-journal-1440-en-dark.png",
+      "sha256": "f637bdde659e44d0509b1a4134cbc43cbe378e939fe350bb755cb95425d2f9b0",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-journal-390-ar-light.png",
+      "sha256": "66e962aacbbb73653c1d9eeef63d6bdabab048cbc96fc7f151b194f3d4d0539f",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-brokers-1440-en-dark.png",
+      "sha256": "d7dde35ee90a340d47ee77f10dca4fac4c8103d598151256c1862b5d2a5fd140",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-brokers-390-ar-light.png",
+      "sha256": "ce74a703c1fda712fe5cc19e3d41464fa06d464d84b527903f5c810aacb4cd33",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "before-settings-1440-en-dark.png",
+      "sha256": "3ccd1cd0eef8fd1790bbd459afbf32bc451aa55eb973c29e99eefc543f5c3279",
+      "source": "before",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "before-settings-390-ar-light.png",
+      "sha256": "3938727a03b48d1e0977ca6d3452e11769e8b14a943c34665eefa633bce8ff68",
+      "source": "before",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-dashboard-1440-en-dark.png",
+      "sha256": "97160bbf0970f65e0e6ea3ab0cd05c30d5aaca13b936db229d60c052ba066a85",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-dashboard-390-ar-light.png",
+      "sha256": "993f3bf5f25f4cb878b8a197dc1047e0e75a34582c2887ca91c135eafa81c214",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-markets-1440-en-dark.png",
+      "sha256": "adca7fc290e7ccaaca71ee6a4e5148bf4da355ee1c17fe12084443a448ae43ad",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-markets-390-ar-light.png",
+      "sha256": "1e47527aa79f423ee15c303e9fec9296d9343ce4f8b3bfada5288b58023cc25c",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-trading-1440-en-dark.png",
+      "sha256": "6460d6f97f82607d1378892f61adec6beaba9a15605063b99364bd9199e7df46",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-trading-390-ar-light.png",
+      "sha256": "751251a25766c979840dd193be90f8903831e0bd7e91010b96820e2b94be295c",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-ai-1440-en-dark.png",
+      "sha256": "86d08fad00a802ab07fb4ada33de8e9e4333b5a5a27e68f701e33b6420708605",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-ai-390-ar-light.png",
+      "sha256": "7c57764e813a6ae9d16fdf7721734e76104f52c1b2c0ea72733dca219bcc880e",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-risk-1440-en-dark.png",
+      "sha256": "0239857c03ee957d8ccee992ca0a6fa3b190b66601195bbcaf041cb3c9b311be",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-risk-390-ar-light.png",
+      "sha256": "5a7f345c3036a371a773b0dbd397629102c718dfda5cc82ad5ba5bf19e1e97ab",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-portfolio-1440-en-dark.png",
+      "sha256": "4b62a32499825b5c55b90fc06bd0e4b64d77a1b675de6e0d6df3b5c0a399b127",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-portfolio-390-ar-light.png",
+      "sha256": "20c14a6dd2a7bd145d7ab608b73a47a2f45ba26e27d1f3be52e0f230d0597086",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-journal-1440-en-dark.png",
+      "sha256": "7219f8588d3950250e11cbc185bd36d7930cc94a8032a4307a205128bfabffba",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-journal-390-ar-light.png",
+      "sha256": "3b0a12dd9d4880cc32ebf49b6c1fce22e373ad0db0798ae533d1192bf8cc967c",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-brokers-1440-en-dark.png",
+      "sha256": "f090e984d40f03d9101e60ca6ee953079d5d22ba015d610410282ec4e50b9183",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-brokers-390-ar-light.png",
+      "sha256": "ab298f7206d268ce2c2aa61ad7f9a76ffd518b1d55cded2f2e595cc2db08c2f0",
+      "source": "after",
+      "viewport": "390-ar-light"
+    },
+    {
+      "path": "after-settings-1440-en-dark.png",
+      "sha256": "4b36f551b67774574c79c82cabc245fcadf831bf0b2bc176c6ff5b97b2d09dbc",
+      "source": "after",
+      "viewport": "1440-en-dark"
+    },
+    {
+      "path": "after-settings-390-ar-light.png",
+      "sha256": "f901289551ad100e6b6508a661f226593dc9a34f23795467a99d91ad64f7942e",
+      "source": "after",
+      "viewport": "390-ar-light"
+    }
+  ]
+}

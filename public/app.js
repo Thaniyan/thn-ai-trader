@@ -3336,10 +3336,12 @@ function loadBenchmarkHistory() {
 }
 
 function saveJournal() {
-  if (!currentAnalysis) return showNotice(t('runAnalysisFirst'), 'error');
-  if (!writeJournal([THNRecords.idea(currentAnalysis), ...getJournal()])) return;
+  const context=window.THNContext?.get();
+  if (!currentAnalysis || $('analyzeBtn').disabled || (context && (currentAnalysis.symbol!==context.symbol || currentAnalysis.timeframe!==context.interval))) {showNotice(t('runAnalysisFirst'), 'error');return false;}
+  if (!writeJournal([THNRecords.idea(currentAnalysis), ...getJournal()])) return false;
   renderJournal(); renderPerformanceAnalytics();
   status(currentLang==='ar'?'حُفظت فكرة بحثية؛ لا توجد أرباح محققة.':'Research idea saved; no realized outcome recorded.');
+  return true;
 }
 
 function getJournal() {

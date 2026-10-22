@@ -7,7 +7,7 @@ test('packaged runtime contains all v7 assets and only declared source',()=>{
  const root='.vercel/output/functions/index.func/';
  const manifest=JSON.parse(fs.readFileSync('.vercel/output/runtime-manifest.json'));
  for(const f of manifest){assert.equal(crypto.createHash('sha256').update(fs.readFileSync(root+f.path)).digest('hex'),f.sha256);assert.doesNotMatch(f.path,/(?:tests\/|\.env|\.runtime|\.sqlite|audit_log|trading_accounts|metadata\.json|AUDIT_REPORT)/);}
- for(const f of ['server/intelligence.js','server/intelligence-provider.js','public/intelligence-workspace.js','public/intelligence-memory.js','public/intelligence.css','public/research-library.js'])assert.ok(manifest.some(v=>v.path===f),f);
+ for(const f of ['server/intelligence.js','server/intelligence-provider.js','public/intelligence-workspace.js','public/intelligence-memory.js','public/intelligence.css','public/research-library.js','public/platform-evolution.js','public/platform-evolution.css'])assert.ok(manifest.some(v=>v.path===f),f);
  assert.equal(JSON.parse(fs.readFileSync(root+'.vc-config.json')).runtime,'nodejs24.x');
  assert.equal(JSON.parse(fs.readFileSync(root+'.vc-config.json')).shouldAddHelpers,false);
  const output='.vercel/output/';
@@ -19,7 +19,7 @@ test('packaged runtime contains all v7 assets and only declared source',()=>{
 });
 test('hosted package starts without credentials and rejects all financial mutations despite local opt-in',async()=>{
  const s=await startPackaged({local:true});try {
-  const h=await(await fetch(s.url+'/api/health')).json();assert.equal(h.capabilities.paperExecution,false);assert.equal(h.capabilities.liveTrading,false);assert.equal(h.openaiEnabled,false);
+  const h=await(await fetch(s.url+'/api/health')).json();assert.equal(h.version,JSON.parse(fs.readFileSync('package.json')).version);assert.equal(h.capabilities.paperExecution,false);assert.equal(h.capabilities.liveTrading,false);assert.equal(h.openaiEnabled,false);
   assert.equal((await(await fetch(s.url+'/api/intelligence/provider')).json()).available,false);
   const a=await(await fetch(s.url+'/api/accounts')).json();assert.deepEqual(a.accounts,[]);assert.equal(a.available,false);
   for(const route of ['/api/orders/execute','/api/positions/close','/api/broker/connect-account','/api/broker/reset-sandbox','/api/broker/reconcile'])assert.equal((await fetch(s.url+route,{method:'POST',body:'{}'})).status,503,route);

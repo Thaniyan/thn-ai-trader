@@ -48,7 +48,7 @@ with sync_playwright() as p:
  page.wait_for_function('THNDecision.brief()?.symbol==="EURUSD"&&THNResearch.series()?.symbol==="EURUSD"',timeout=45000);assert page.evaluate('THNContext.get().symbol')=='EURUSD'
  views=['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']
  for lang in ['en','ar']:
-  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(250);page.set_viewport_size({'width':1600,'height':1050});page.add_script_tag(path=os.environ.get('AXE_PATH','work/node_modules/axe-core/axe.min.js'));assert '7.1.0' in page.locator('#modelStatus').inner_text()
+  page.locator('[data-language="'+lang+'"]').first.click();page.wait_for_timeout(250);page.set_viewport_size({'width':1600,'height':1050});page.add_script_tag(path=os.environ.get('AXE_PATH','work/node_modules/axe-core/axe.min.js'));assert page.request.get(BASE+'/api/health').json()['version'] in page.locator('#modelStatus').inner_text()
   if lang=='ar':assert page.locator('html').get_attribute('dir')=='rtl'
   for view in views:
    page.locator('.nav-stack [data-view="'+view+'"]').click();page.wait_for_timeout(200);v=page.evaluate('async()=>{const r=await axe.run(document.querySelector("#view-"+location.hash.slice(1)),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))}');result['a11y'].append({'lang':lang,'view':view,'violations':v})

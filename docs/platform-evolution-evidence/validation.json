@@ -1,0 +1,81 @@
+{
+  "baseline": "a3e996e2b0881ca2a36a5426bc2bccad08c66ec9",
+  "version": "7.2.0",
+  "scope": "LOCAL validation; no publication or deployment",
+  "unit": {
+    "passed": 155,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "browser": {
+    "suites": [
+      "tests/browser_workstation.py",
+      "tests/browser_research.py",
+      "tests/browser_research_outage.py",
+      "tests/browser_quality.py",
+      "tests/browser_decision.py",
+      "tests/browser_library_reliability.py",
+      "tests/browser_maturity.py",
+      "tests/browser_terminal.py",
+      "tests/browser_intelligence.py",
+      "tests/browser_intelligence_memory.py",
+      "tests/browser_layout.py",
+      "tests/browser_pilot.py",
+      "tests/browser_trust.py",
+      "tests/browser_professional.py",
+      "tests/browser_journal_lifecycle.py",
+      "tests/browser_trading_remediation.py",
+      "tests/browser_evolution.py"
+    ],
+    "exitCode": 0,
+    "professional": {
+      "layouts": 288,
+      "accessibility": 72,
+      "zoom": 64,
+      "touchTargets": 72
+    },
+    "evolution": {
+      "geometry": 108,
+      "accessibility": 108,
+      "journeys": [
+        "A: Dashboard -> GBPUSD discovery -> matching provider evidence -> chart -> HTTP analysis; stale GBPUSD cannot save as EURUSD",
+        "B: Explicit USD capital/entry/stop/target/costs -> validated hypothetical plan -> matching evidence-bound Library report; no executed record",
+        "C: Genuine idea -> synchronous record -> original JSON inspection -> reload persistence -> unchanged JSON export and Library compatibility",
+        "D: Direct Trading, official protocol frame, unchanged generation on revisit, honest unverified candles and THN fallback",
+        "Settings: explicit context retained across reload, original records unchanged; version matches package and hosted safety flags stay disabled"
+      ],
+      "coalescedRenders": 1,
+      "pageErrors": []
+    },
+    "tradingRemediation": {
+      "layouts": 24,
+      "accessibility": 24,
+      "pageErrors": []
+    },
+    "warning": "Successful runner shutdown emitted Playwright pending-connection/TargetClosedError warning; retained in raw log. Not counted as an application page error."
+  },
+  "otherGates": [
+    "build",
+    "lint",
+    "production packaging",
+    "workflow validation",
+    "release/source guard",
+    "frozen dependency install",
+    "dependency audit: zero vulnerabilities"
+  ],
+  "packageManifestSHA256": "bf0526d1eddb8131849673f34cca48aeb1e34ce65648a687ad4d4089d19b358a",
+  "limits": [
+    "Explicit offline provider/widget fixtures; actual TradingView candles unverified",
+    "Local system Chromium; hosted CI not run",
+    "Browser-local records are not durable server accounts",
+    "Hosted generative inference and financial execution remain disabled"
+  ],
+  "rawEvidenceDirectory": "/workspace/work/platform-evolution-evidence"
+}
