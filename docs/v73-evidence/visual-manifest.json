@@ -1,0 +1,396 @@
+{
+  "baseline": "2546b5b48d9e94db45675d3d50268a8f22d86868",
+  "capture": "Unmodified local Chromium originals with explicit provider fixtures; external-widget blocked screenshot used real script request through inherited proxy. No actual external candle claim.",
+  "files": [
+    {
+      "path": "before-ai-1440-en-dark.png",
+      "sha256": "d514f0b6c5623e103df0d57f4835f9be8a242ff5321592844e62be89b9872d3e",
+      "version": "before"
+    },
+    {
+      "path": "before-ai-1440-en-light.png",
+      "sha256": "53a7af4ed89a537adaa9ea6731b1f4f1609222eea1ace01c6c8bb1a32822484a",
+      "version": "before"
+    },
+    {
+      "path": "before-ai-390-ar-light.png",
+      "sha256": "5e53c2a255a1341b23ee927217e16ec00d12a3555f55172bf3b8674da2f7ce2b",
+      "version": "before"
+    },
+    {
+      "path": "before-ai-768-en-dark.png",
+      "sha256": "f9a9e8512346b88f01f9095253150df3e60ee3a713c619fc09b485523cc17dc6",
+      "version": "before"
+    },
+    {
+      "path": "before-brokers-1440-en-dark.png",
+      "sha256": "6f41a39a4115f131a7cd8a97b477adab05efe7237aaaae2558213d249abf950d",
+      "version": "before"
+    },
+    {
+      "path": "before-brokers-1440-en-light.png",
+      "sha256": "77b67e8bf56aaa13f1502620df3dcbe79135508daf678261cb8405d9f9fc8706",
+      "version": "before"
+    },
+    {
+      "path": "before-brokers-390-ar-light.png",
+      "sha256": "58d0e26cf14292bb12abc94cca665c72a3acca7209608c9d56d63e71b33a72d9",
+      "version": "before"
+    },
+    {
+      "path": "before-brokers-768-en-dark.png",
+      "sha256": "4eb58c8cb3394a82a7f6063b5faf7f7ec11f8ec0685a20c576e146a174b4e965",
+      "version": "before"
+    },
+    {
+      "path": "before-dashboard-1440-en-dark.png",
+      "sha256": "6059b015050c522d442610a71904009b25891d6a098b50bfe8569bf710f00017",
+      "version": "before"
+    },
+    {
+      "path": "before-dashboard-1440-en-light.png",
+      "sha256": "8739cd29ac74af67f8beeb02600c74ca88717d53a1d5662d1893c18947658e98",
+      "version": "before"
+    },
+    {
+      "path": "before-dashboard-390-ar-light.png",
+      "sha256": "da6b4aaba946710ec0d222eba2b021a9d9b9dc8cdbd98326cd989ed3fc13fac5",
+      "version": "before"
+    },
+    {
+      "path": "before-dashboard-768-en-dark.png",
+      "sha256": "f0c937171c841ee85864eb7d577469c9450597bceba66ddbccb964b6ee31dd2a",
+      "version": "before"
+    },
+    {
+      "path": "before-journal-1440-en-dark.png",
+      "sha256": "7eab4620151f6455b31663c14359d1592ff48f73db6c6d841d413d5f9b010598",
+      "version": "before"
+    },
+    {
+      "path": "before-journal-1440-en-light.png",
+      "sha256": "b252898d6dac68d34f45d42aeb0db2c01b7d46972de4bf9de5a6fe75a3d4b611",
+      "version": "before"
+    },
+    {
+      "path": "before-journal-390-ar-light.png",
+      "sha256": "21ad2286cac3e9db0c7794dd41472a09e2ceb77ead45c19e09b7819bd939290e",
+      "version": "before"
+    },
+    {
+      "path": "before-journal-768-en-dark.png",
+      "sha256": "3747bfaccfb90333d597991ad75ace992a30a1a2559f169d5a7db01f8b19b957",
+      "version": "before"
+    },
+    {
+      "path": "before-markets-1440-en-dark.png",
+      "sha256": "5b3c06c804154ee07deb72e1df289da93e0fb1e56638ac949d39809430538b7f",
+      "version": "before"
+    },
+    {
+      "path": "before-markets-1440-en-light.png",
+      "sha256": "335a3ff7d4edbeadcfc69b59f6b644672cc3caf41db751340e631d912955450f",
+      "version": "before"
+    },
+    {
+      "path": "before-markets-390-ar-light.png",
+      "sha256": "63094d037a8ce2dc6c7947977c155bd2da60e226fe7406c41ce43de455bb27e9",
+      "version": "before"
+    },
+    {
+      "path": "before-markets-768-en-dark.png",
+      "sha256": "fbe2fa99f5773a07af22ac75aeb6daa972cf4997dee8240b32fde2656abea4ae",
+      "version": "before"
+    },
+    {
+      "path": "before-portfolio-1440-en-dark.png",
+      "sha256": "b136d0c711ff6162623d8ce21ae6c15684d7570f14d91862c49c3ac5e448ed1a",
+      "version": "before"
+    },
+    {
+      "path": "before-portfolio-1440-en-light.png",
+      "sha256": "76577372c96694d8968ca86c10c70573dda9b627dad8d7dcdb0cbb418556a67c",
+      "version": "before"
+    },
+    {
+      "path": "before-portfolio-390-ar-light.png",
+      "sha256": "2eb399c58a53b8cf2224836472ca5a694cba7ac9e8ac08b790b3953cea523f7b",
+      "version": "before"
+    },
+    {
+      "path": "before-portfolio-768-en-dark.png",
+      "sha256": "4302931f27dd9bec1488d651f1223ffc7a5c33dd3f9688cbbb60aeefa62c19e5",
+      "version": "before"
+    },
+    {
+      "path": "before-risk-1440-en-dark.png",
+      "sha256": "8b7fe2ca414a581d1013cb0f4a9af260c5493e5e4e22174392ff125462459d14",
+      "version": "before"
+    },
+    {
+      "path": "before-risk-1440-en-light.png",
+      "sha256": "b97ae501f46f4a48abff4b4170577c07c38ed7795a016d0ed2c371d965fb49ce",
+      "version": "before"
+    },
+    {
+      "path": "before-risk-390-ar-light.png",
+      "sha256": "3cc904feb61ec9eb836a3cc5035426b8d260859b1804163476111af692f48e42",
+      "version": "before"
+    },
+    {
+      "path": "before-risk-768-en-dark.png",
+      "sha256": "2a71f13a3d028a06e926930e5093a7b70741680e6f8dc8c53f6cc7c38cca8f69",
+      "version": "before"
+    },
+    {
+      "path": "before-settings-1440-en-dark.png",
+      "sha256": "a11b9364e1fb90154171a399c5678bbda07c9013e334f21bf0c54bce535d6ce1",
+      "version": "before"
+    },
+    {
+      "path": "before-settings-1440-en-light.png",
+      "sha256": "4ba39eef321f4caec7805d242cd7c3798421de400d83c4cb5107c64c6b973a58",
+      "version": "before"
+    },
+    {
+      "path": "before-settings-390-ar-light.png",
+      "sha256": "47567129f03a98dd73d9a170ea130439b3e8651b71a10616cf08e2ebbef27f13",
+      "version": "before"
+    },
+    {
+      "path": "before-settings-768-en-dark.png",
+      "sha256": "cc34dd9e586e8e1334e9c4e2dbf0e04061fd3022e29b3da2af713f3291d04d62",
+      "version": "before"
+    },
+    {
+      "path": "before-trading-1440-en-dark.png",
+      "sha256": "0a9bf2f197db56ce793c2e43fb5f5cbadf68d691096ef294f180dfcf7ce8c32f",
+      "version": "before"
+    },
+    {
+      "path": "before-trading-1440-en-light.png",
+      "sha256": "3d4c26110f2e243312ebc4795eafec75703fa83bff5113bb9fd813487ccde210",
+      "version": "before"
+    },
+    {
+      "path": "before-trading-390-ar-light.png",
+      "sha256": "2efaa5554edfc9be667df513bd6b27c0a495a448c9c41ccb1f3143e37c04d751",
+      "version": "before"
+    },
+    {
+      "path": "before-trading-768-en-dark.png",
+      "sha256": "bfba48c9f103bd6babf714c4acab0ee7400e9d1ecec14e8047fab28954d19cd9",
+      "version": "before"
+    },
+    {
+      "path": "after-ai-1440-en-dark.png",
+      "sha256": "24497772ce17bf5004f84fce45d292cb82cfb3fcdd9445273d1bda3a716eb8de",
+      "version": "after"
+    },
+    {
+      "path": "after-ai-1440-en-light.png",
+      "sha256": "cab97ab8fa7645252bb3234bb25c883a0323421217615dd7b3d62e1019443862",
+      "version": "after"
+    },
+    {
+      "path": "after-ai-390-ar-light.png",
+      "sha256": "bc62a2db37ed63d979f7b678b7145adead762e2e5f77e31b711fae706a3d5242",
+      "version": "after"
+    },
+    {
+      "path": "after-ai-768-en-dark.png",
+      "sha256": "3c6a351b9b7b80dca125b2ee221b6a7cf8cc7844a3889ddbe25c2747b473b9c2",
+      "version": "after"
+    },
+    {
+      "path": "after-brokers-1440-en-dark.png",
+      "sha256": "19e9bf3891fd9be7f97e92d4ccafbaeffddd399dc3b26a1b97c110719b6e7d70",
+      "version": "after"
+    },
+    {
+      "path": "after-brokers-1440-en-light.png",
+      "sha256": "9568c7b3ea5c9e13fa38ebf3d22347c660d30c78f19ea59ad4105f49b1c5b7d3",
+      "version": "after"
+    },
+    {
+      "path": "after-brokers-390-ar-light.png",
+      "sha256": "a00d1d3b5b3ff523dfb25f9322d66bf657d76a3a9ed7f185bddd1d90e4a359dc",
+      "version": "after"
+    },
+    {
+      "path": "after-brokers-768-en-dark.png",
+      "sha256": "5f3e9c030ecdd54234781a503e78754a76f0dd1b64f9d1a535444078e5df3b92",
+      "version": "after"
+    },
+    {
+      "path": "after-dashboard-1440-en-dark.png",
+      "sha256": "2fd9f672904f09c699f4fa399af5954669ef01543353008705ed4f9e4886a334",
+      "version": "after"
+    },
+    {
+      "path": "after-dashboard-1440-en-light.png",
+      "sha256": "3c5c14e213d575844c9ddda3b51a541ae45daa6fe35a655d1c6b7a6444adae5b",
+      "version": "after"
+    },
+    {
+      "path": "after-dashboard-390-ar-light.png",
+      "sha256": "2f889ca38f59a2f049b3f32663b673f3d552e96aa1b2bfe0eebea49d4cce45b5",
+      "version": "after"
+    },
+    {
+      "path": "after-dashboard-768-en-dark.png",
+      "sha256": "32ae0d75c48211dc151b5af48b98ac4595f59d0fe2d25d752e36474298e89346",
+      "version": "after"
+    },
+    {
+      "path": "after-journal-1440-en-dark.png",
+      "sha256": "c8daa146adc3232ab31e48760607bc9d8f18cefc3a2612edc01fb186e9533d02",
+      "version": "after"
+    },
+    {
+      "path": "after-journal-1440-en-light.png",
+      "sha256": "ea5aab56dad59deefca9e6de89d81b116c67cc2ca66bb5e92debb1ff1b08652d",
+      "version": "after"
+    },
+    {
+      "path": "after-journal-390-ar-light.png",
+      "sha256": "08df1b88dcffc52329b3b9c0a8b9de56676255ad1dc311254379e6775a25cb65",
+      "version": "after"
+    },
+    {
+      "path": "after-journal-768-en-dark.png",
+      "sha256": "8bce36114cf2c72ff510ef60d228ddc93fd36bb0fbc93bae64003f10dce38f1e",
+      "version": "after"
+    },
+    {
+      "path": "after-markets-1440-en-dark.png",
+      "sha256": "0ddb920c17b4cf97f655deb4b7d7e8fac051b8f5a554af598fcc703d7c6d2357",
+      "version": "after"
+    },
+    {
+      "path": "after-markets-1440-en-light.png",
+      "sha256": "a36909e6f9cbe4417be84352f3894379efdad6ceeffcafc728f561bcbbe179ca",
+      "version": "after"
+    },
+    {
+      "path": "after-markets-390-ar-light.png",
+      "sha256": "1055914a420e9ef9442be5e6d1d2c6d36df51509941a2421987c921409cf4d9b",
+      "version": "after"
+    },
+    {
+      "path": "after-markets-768-en-dark.png",
+      "sha256": "d72fc3a3201cc3856b671ae0d44d5e8ead084cdeae523cca029e5414f4b3bc7c",
+      "version": "after"
+    },
+    {
+      "path": "after-portfolio-1440-en-dark.png",
+      "sha256": "c857bfd98012ab7e1e7fc38dfb8b84fc9f26691ee593b713cac1e1076fb6ff30",
+      "version": "after"
+    },
+    {
+      "path": "after-portfolio-1440-en-light.png",
+      "sha256": "05b8a6d47d73ca09a52903c6f2490784b0f73698c2e8bad3c5214e9eb069b5a3",
+      "version": "after"
+    },
+    {
+      "path": "after-portfolio-390-ar-light.png",
+      "sha256": "03467f38fec7b7aecdaec4c29d616bb0bff5abc679aab3aacd1f66c61a5f0544",
+      "version": "after"
+    },
+    {
+      "path": "after-portfolio-768-en-dark.png",
+      "sha256": "a6049521bf897c62e2a057e546fb929f7309cad27e7c4a6136b0174dce00b4d0",
+      "version": "after"
+    },
+    {
+      "path": "after-risk-1440-en-dark.png",
+      "sha256": "3c3849dd738eda0373f524234e721643d31aa7c9f5107ed90735b5b0aadf2ebc",
+      "version": "after"
+    },
+    {
+      "path": "after-risk-1440-en-light.png",
+      "sha256": "fc69c2bbcb688e3d8019f145caad01f951f3dc6f07a706cc84743d36d60569d6",
+      "version": "after"
+    },
+    {
+      "path": "after-risk-390-ar-light.png",
+      "sha256": "601f774e1b38a4616d3b4b20985269a1de00cb94dc3fe4fec30ef1def92eae1e",
+      "version": "after"
+    },
+    {
+      "path": "after-risk-768-en-dark.png",
+      "sha256": "2460e4d85f705bd6623a5c60d7fd1f2bf23df4b325f5101fa9b7b1cd2a5ba7a4",
+      "version": "after"
+    },
+    {
+      "path": "after-settings-1440-en-dark.png",
+      "sha256": "bf093197d5a6a24b9ff8367579161af085d82e800f6ed85ce498256dec838a7c",
+      "version": "after"
+    },
+    {
+      "path": "after-settings-1440-en-light.png",
+      "sha256": "41474b6b67b0f507c11a0840076d5d26228da42c5989bd5929a135a03c909777",
+      "version": "after"
+    },
+    {
+      "path": "after-settings-390-ar-light.png",
+      "sha256": "545e041e062ae35b3fcbe63f3aa4e029b8c346366ab468bc81a8b45c410ba815",
+      "version": "after"
+    },
+    {
+      "path": "after-settings-768-en-dark.png",
+      "sha256": "6723dc1de0a47bdf4bc1f0505b1eb725502884b867bd474dd484ef0f6498e95f",
+      "version": "after"
+    },
+    {
+      "path": "after-trading-1440-en-dark.png",
+      "sha256": "f2f92bd47c99e0a797582117d657ccad5bfc2a92869f3a843f32f1a978b86f59",
+      "version": "after"
+    },
+    {
+      "path": "after-trading-1440-en-light.png",
+      "sha256": "b45a2400e7f0ae6ec9ba87e8aec3727298efc1fa5593e7e2ca6a0de4b971df31",
+      "version": "after"
+    },
+    {
+      "path": "after-trading-390-ar-light.png",
+      "sha256": "e0edebe9456fcdc581ac30fef891d99817ee16c2e16d73974b8b18e3da64e48c",
+      "version": "after"
+    },
+    {
+      "path": "after-trading-768-en-dark.png",
+      "sha256": "a044283e685de7f8d7743880c2f0892c4b459afc1ed8a0310cf2640d2ad5c67a",
+      "version": "after"
+    },
+    {
+      "path": "external-widget-blocked.png",
+      "sha256": "5828c898ac01d2d3fd029d82bbedf17a026496d3da662a723f7ce1ef030d5d53",
+      "version": "after"
+    },
+    {
+      "path": "fixture-populated-library.png",
+      "sha256": "b780b427ab059762cdfb7dcb06108dbe6ddb432789d55ce66189dff1bbeb1592",
+      "version": "after"
+    },
+    {
+      "path": "fixture-invalid-plan.png",
+      "sha256": "d7b43d374ca596314aaf8ff798f7c1d3230a15d1d95257c384bb6a6abed4d342",
+      "version": "after"
+    },
+    {
+      "path": "fixture-populated-journal.png",
+      "sha256": "8602da86c10fa1f4f9ac6e55e827d57e81060b67de2cfaf929d5e76fdc11889c",
+      "version": "after"
+    },
+    {
+      "path": "fixture-saved-report.png",
+      "sha256": "d56d97c047e12a80937d5b8dd8f49169870d77aaff9c16a36c6d34acc8fa10b0",
+      "version": "after"
+    },
+    {
+      "path": "fixture-validated-plan.png",
+      "sha256": "03bf07b809b87eb6f241c7d7e7cc66a78255b37576f72f94cdd3132967bd9068",
+      "version": "after"
+    }
+  ]
+}

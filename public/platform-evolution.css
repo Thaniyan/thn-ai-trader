@@ -133,3 +133,60 @@
 @media(max-width:760px){.evo-context-shell .q-context-actions{flex-wrap:nowrap;overflow:auto;max-width:100%;padding-bottom:3px}.evo-context-shell .q-context-actions button{flex:0 0 auto;min-height:36px}.pro-terminal .q-chart-panel>.panel-head{gap:8px;flex-wrap:wrap}.pro-terminal .q-chart-panel>.panel-head h2{font-size:17px}.pro-workflow-actions{border-top:1px solid var(--evo-line);padding-top:12px}}
 @media(max-width:760px){.evo-context-shell .evo-context-source{flex:1 1 170px;font-size:11px}.evo-context-shell .evo-context-source small{display:none}.evo-context-shell .evo-mode{margin:0;font-size:8px;padding:5px}.evo-context-shell .evo-context{gap:8px}.evo-provenance p{overflow-wrap:anywhere;line-height:1.7}.pro-terminal .q-chart-panel>.panel-head{margin-bottom:8px}.pro-terminal .q-canvas-shell{margin-top:0}}
 @media(max-width:260px){.pro-terminal .q-chart-controls label{min-width:0;max-width:100%;flex:1 1 100%}.pro-terminal .q-chart-controls input,.pro-terminal .q-chart-controls select{min-width:0;width:100%;max-width:100%}}
+
+/* v7.3: consolidate existing owners; flagship chart + actionable research rail. */
+.evo-context-shell{padding:10px 14px;margin-bottom:12px}
+.evo-context-shell .q-context{gap:10px;align-items:end;margin-bottom:7px}
+.evo-context-shell .q-context .eyebrow{display:none}
+.evo-context-shell .q-context label{flex:0 1 160px}
+.evo-context-shell #evoFlow{margin:0;align-items:center;flex:1 1 360px;justify-content:flex-end}
+.evo-context-shell .evo-context{padding-top:7px}
+.evo-provenance{margin-top:3px}
+.evo-flow [aria-current=page]{color:var(--text);border-color:var(--accent)}
+.pro-terminal-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,290px);gap:16px;align-items:start}
+.pro-terminal-grid>*{min-width:0}
+.pro-chart-area{min-width:0}
+.pro-terminal-head{margin:0 0 5px;align-items:center}
+.pro-terminal-head h1{font-size:clamp(20px,2vw,25px);margin:3px 0}
+#proSelectedContext{margin:3px 0}
+.pro-source-details{margin:4px 0 10px}
+.pro-source-details summary{min-height:30px}
+.pro-research-rail{border:1px solid var(--evo-line);border-radius:8px;background:var(--bg-2);padding:14px}
+.pro-research-rail .pro-terminal-evidence{margin:0;padding:0;border:0}
+.pro-research-rail summary{font-size:15px;line-height:1.8;cursor:pointer;font-weight:650}
+.pro-research-rail p{font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+#proEvidenceState{color:var(--muted);font-size:11px}
+#proTechnicalEvidence{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px 12px;padding:12px 0;border-block:1px solid var(--evo-line);font-size:12px}
+#proTechnicalEvidence dt{color:var(--muted)}
+#proTechnicalEvidence dd{margin:0;text-align:end;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.pro-research-rail .pro-workflow-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;margin-bottom:0;padding-top:10px}
+.pro-research-rail button{width:100%;min-height:40px;text-align:start;white-space:normal;line-height:1.7}
+.pro-chart-area .q-chart-panel{padding:12px;margin:0}
+.pro-chart-area .q-chart-panel>.panel-head{margin-bottom:8px}
+.pro-chart-area .q-chart-panel>.panel-head h2{font-size:14px}
+.pro-chart-area .q-canvas-shell{height:clamp(360px,51vh,620px);min-height:0;margin-top:0}
+.pro-chart-area .q-chart-controls{border-top:1px solid var(--evo-line);padding-top:10px;margin-top:10px;gap:7px}
+.pro-chart-area .q-chart-controls>div{display:flex;flex-wrap:wrap;gap:5px}
+.pro-chart-area .q-chart-controls button,.pro-chart-area .q-layer-controls button{min-height:36px}
+.pro-chart-area .q-chart-controls label{min-width:0;flex:1 1 120px;max-width:100%}
+.pro-chart-area .q-chart-controls select,.pro-chart-area .q-chart-controls input{min-width:0;width:100%;max-width:100%}
+#proActiveTool{margin:5px 0 10px;font-size:11px;color:var(--muted);line-height:1.8}
+#proTradingArchive{margin-top:18px}
+#proTradingArchive>.subtab-content{margin-top:14px}
+#proTVMetrics{font-variant-numeric:tabular-nums}
+#view-ai .evo-evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#view-ai .evo-panel{padding:20px}
+.evo-panel .evo-heading{margin-bottom:15px}
+#decisionWorkspace .d64-scenarios{grid-template-columns:repeat(3,minmax(0,1fr))}
+#view-dashboard #decisionCommand{margin-top:16px}
+#view-dashboard #decisionCommand .d64-grid{gap:14px}
+#view-dashboard .evo-recent button{margin:3px 5px 3px 0;white-space:normal}
+.pro-market-table .q-table td{padding:10px 8px}
+.pro-market-table .pro-row-actions{display:flex;flex-wrap:wrap;gap:4px;min-width:200px;max-width:240px}
+.pro-market-table .pro-row-actions button{font-size:10px;padding:5px 7px;min-width:60px}
+#proRecordCount{margin:10px 0 0}
+#evoSizingStatus{font-size:12px;line-height:1.8}
+#view-settings .settings-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))!important}
+@media(max-width:1150px){.pro-terminal-grid{grid-template-columns:minmax(0,1fr)}.pro-research-rail{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.7fr);gap:20px}.pro-research-rail .pro-workflow-actions{margin:0;align-content:start}.pro-chart-area .q-canvas-shell{height:440px}}
+@media(max-width:760px){.evo-context-shell{padding:8px 10px}.evo-context-shell .q-context{gap:6px;flex-wrap:wrap}.evo-context-shell .q-context label{flex:1 1 90px}.evo-context-shell #evoFlow{justify-content:flex-start;flex-basis:100%;padding:2px 0;margin:0;gap:5px}.evo-context-shell #evoFlow button{min-height:36px;padding:6px 9px}.pro-terminal-head{gap:7px}.pro-terminal-head>div{min-width:0}.pro-mode-switch{gap:5px}.pro-mode-switch button{min-height:40px;padding:7px;font-size:11px}.pro-terminal-grid{gap:12px}.pro-chart-area .q-chart-panel{padding:10px}.pro-chart-area .q-canvas-shell{height:380px}.pro-research-rail{display:block;padding:12px}.pro-research-rail .pro-workflow-actions{margin-top:12px;grid-template-columns:repeat(2,minmax(0,1fr))}.pro-research-rail button{font-size:11px}.pro-chart-area .q-chart-controls button{min-height:40px}.pro-market-table .pro-row-actions button{min-height:44px}#view-ai .evo-evidence-grid,#decisionWorkspace .d64-scenarios{grid-template-columns:minmax(0,1fr)}.evo-panel .evo-heading{margin-bottom:12px}.evo-panel{padding:18px}.evo-context-source{flex-basis:160px}.evo-mode{font-size:8px}}
+@media(max-width:320px){.pro-mode-switch{flex-wrap:wrap}.pro-mode-switch button{flex-basis:100%}.pro-research-rail .pro-workflow-actions{grid-template-columns:minmax(0,1fr)}.pro-chart-area .q-canvas-shell{height:330px}}

@@ -1,0 +1,101 @@
+{
+  "baseline": "2546b5b48d9e94db45675d3d50268a8f22d86868",
+  "branch": "feature/professional-trading-experience-v73",
+  "version": "7.3.0",
+  "boundary": "LOCAL implementation and tests only; no remote publication or deployment",
+  "browser": {
+    "runnerExitCode": 0,
+    "suites": [
+      "tests/browser_workstation.py",
+      "tests/browser_research.py",
+      "tests/browser_research_outage.py",
+      "tests/browser_quality.py",
+      "tests/browser_decision.py",
+      "tests/browser_library_reliability.py",
+      "tests/browser_maturity.py",
+      "tests/browser_terminal.py",
+      "tests/browser_intelligence.py",
+      "tests/browser_intelligence_memory.py",
+      "tests/browser_layout.py",
+      "tests/browser_pilot.py",
+      "tests/browser_trust.py",
+      "tests/browser_professional.py",
+      "tests/browser_journal_lifecycle.py",
+      "tests/browser_trading_remediation.py",
+      "tests/browser_evolution.py",
+      "tests/browser_consolidation.py"
+    ],
+    "shellCases": 202,
+    "professional": {
+      "layouts": 288,
+      "accessibility": 72,
+      "zoom": 64,
+      "touchTargets": 72
+    },
+    "evolution": {
+      "geometry": 108,
+      "accessibility": 108,
+      "coalescedRenders": 1
+    },
+    "consolidation": {
+      "geometry": 20,
+      "accessibility": 20,
+      "journeys": [
+        "A: discovery -> explicit observation -> selected chart; one toolbar and terminal owner",
+        "B: HTTP analysis -> current technical evidence -> Intelligence; canonical scenario owner",
+        "C: validated USD100 risk plan -> matched Library -> current research navigation; original evidence unchanged",
+        "D: terminal save -> immediate idea -> filter -> reload -> original inspection; premature saves rejected",
+        "E: measured script/frame phases; widget reused on revisits/metadata; unverified candles and real THN fallback",
+        "F: sizing setup persists across reload; storage refusal explicit; records preserved"
+      ],
+      "widget": {
+        "generation": 1,
+        "requestedAt": 1457.4000000022352,
+        "scriptMs": 32,
+        "frameMs": 51,
+        "lastPhaseMs": 51
+      }
+    },
+    "tradingRemediation": {
+      "layouts": 24,
+      "accessibility": 24
+    },
+    "pageErrors": [],
+    "playwrightShutdownWarning": true
+  },
+  "unit": {
+    "passed": 155,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "otherGates": [
+    "build",
+    "lint",
+    "production packaging",
+    "workflow validation",
+    "release/source guard",
+    "git fsck",
+    "frozen dependency install",
+    "dependency audit: zero advisories"
+  ],
+  "artifact": {
+    "output": "/workspace/work/thn-v71-resumed/.vercel/output",
+    "runtimeFiles": 62,
+    "artifactFiles": 66,
+    "manifestSHA256": "33ca88c0e8e3ca5aa551207d5c2e968d2f1cec9c5557e5cf1ee518b7f54694b5"
+  },
+  "limitations": [
+    "Market/widget browser suites use explicit deterministic fixtures",
+    "Actual official TradingView script request blocked by inherited proxy; no external candle claim",
+    "Local Chromium 151; hosted CI and Production visual acceptance not performed",
+    "Records remain unencrypted browser-local data; no durable hosted ledger"
+  ],
+  "rawEvidence": "/workspace/work/v73-evidence"
+}

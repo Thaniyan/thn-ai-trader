@@ -1,0 +1,59 @@
+{
+  "method": "Same capture code, clean browser storage, exact source archive/candidate, same 1000px viewport height",
+  "before": {
+    "1440endark": {
+      "chartTop": 542.78125,
+      "contextHeight": 160.1875,
+      "domNodes": 3666,
+      "chartControls": 40
+    },
+    "1440enlight": {
+      "chartTop": 542.78125,
+      "contextHeight": 160.1875,
+      "domNodes": 3666,
+      "chartControls": 40
+    },
+    "390arlight": {
+      "chartTop": 781.5625,
+      "contextHeight": 208.796875,
+      "domNodes": 3666,
+      "chartControls": 40
+    },
+    "768endark": {
+      "chartTop": 683.234375,
+      "contextHeight": 206.1875,
+      "domNodes": 3666,
+      "chartControls": 40
+    }
+  },
+  "after": {
+    "1440endark": {
+      "chartTop": 485.234375,
+      "contextHeight": 145.1875,
+      "domNodes": 3555,
+      "chartControls": 41
+    },
+    "1440enlight": {
+      "chartTop": 485.234375,
+      "contextHeight": 145.1875,
+      "domNodes": 3555,
+      "chartControls": 41
+    },
+    "390arlight": {
+      "chartTop": 661.578125,
+      "contextHeight": 172.796875,
+      "domNodes": 3555,
+      "chartControls": 41
+    },
+    "768endark": {
+      "chartTop": 586.578125,
+      "contextHeight": 189.1875,
+      "domNodes": 3555,
+      "chartControls": 41
+    }
+  },
+  "claims": [
+    "Chart top is CSS viewport coordinate at scroll zero",
+    "DOM-node count is a fixture-screen measurement; no startup or memory latency claim"
+  ]
+}

@@ -10,6 +10,14 @@
    this.anchor=null;this.draw();
   }
   persist(){this.drawings=this.drawings.slice(-50);try{localStorage.setItem(this.storageKey,JSON.stringify(this.drawings));}catch{window.dispatchEvent(new Event('thn:storage-unavailable'));}}
-  draw(){super.draw();if(!this.data||!this.plot)return;const ctx=this.canvas.getContext('2d'),p=this.plot;ctx.save();ctx.beginPath();ctx.rect(p.left,p.top,p.width,p.height);ctx.clip();ctx.strokeStyle=document.documentElement.dataset.theme==='light'?'#6d28d9':'#c4b5fd';ctx.fillStyle=ctx.strokeStyle;ctx.font='11px ui-monospace,monospace';for(const d of this.drawings.filter(d=>d.type==='horizontal')){const y=p.top+(p.max-d.price)/(p.max-p.min)*p.height;ctx.setLineDash([5,3]);ctx.beginPath();ctx.moveTo(p.left,y);ctx.lineTo(p.right,y);ctx.stroke();ctx.setLineDash([]);ctx.fillText(d.price.toPrecision(6),p.left+8,y-5);}ctx.restore();}
+  draw(){super.draw();if(!this.data||!this.plot)return;const ctx=this.canvas.getContext('2d'),p=this.plot;ctx.save();ctx.beginPath();ctx.rect(p.left,p.top,p.width,p.height);ctx.clip();ctx.strokeStyle=document.documentElement.dataset.theme==='light'?'#6d28d9':'#c4b5fd';ctx.fillStyle=ctx.strokeStyle;ctx.font='11px ui-monospace,monospace';for(const d of this.drawings.filter(d=>d.type==='horizontal')){const y=p.top+(p.max-d.price)/(p.max-p.min)*p.height;ctx.setLineDash([5,3]);ctx.beginPath();ctx.moveTo(p.left,y);ctx.lineTo(p.right,y);ctx.stroke();ctx.setLineDash([]);ctx.fillText(d.price.toPrecision(6),p.left+8,y-5);}ctx.restore();this.drawTimeLabels(ctx,p);}
+  // Presentation-only axis layout: use original visible bars and measured text widths.
+  drawTimeLabels(ctx,p){
+   ctx.save();ctx.clearRect(0,p.bottom+5,this.canvas.width,p.bottom?23:0);ctx.font='10px ui-monospace,monospace';ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--muted').trim();
+   const bars=this.visible||[],candidates=[0,Math.round((bars.length-1)/3),Math.round(2*(bars.length-1)/3),bars.length-1];this.timeLabels=[];
+   // Place the endpoints first; intermediate ticks only when a complete label fits.
+   for(const index of [candidates[0],candidates[3],candidates[1],candidates[2]]){if(!bars[index])continue;const label=new Date(bars[index].time).toISOString().slice(this.context.interval==='1d'?0:5,this.context.interval==='1d'?10:16).replace('T',' '),width=ctx.measureText(label).width;const x=Math.max(p.left,Math.min(p.right-width,p.left+(index+.5)*p.width/bars.length));if(this.timeLabels.some(v=>x<v.x+v.width+10&&x+width+10>v.x))continue;this.timeLabels.push({x,width,label});ctx.fillText(label,x,p.bottom+20);}
+   ctx.restore();
+  }
  };
 })();

@@ -1240,7 +1240,7 @@ function getPayload() {
 }
 
 function saveSetup() {
-  THNPreferences.setItem(setupKey, JSON.stringify(getPayload()));
+  return THNPreferences.setItem(setupKey, JSON.stringify(getPayload()));
 }
 
 function restoreSetup() {
@@ -2867,10 +2867,12 @@ function loadChart() {
   window.THNProfessional?.requestTV();
 }
 let tvGeneration = 0, tvTimer, tvObserver, tvSignature = "";
+let tvTimings={generation:0,requestedAt:null,scriptMs:null,frameMs:null,lastPhaseMs:null};
 const initialTVState=phase=>({phase,scriptLoaded:false,iframeLoaded:false,uiReady:false,candleReady:false,providerData:"unverified"});
 let tvState = initialTVState("idle");
 function tradingViewStatus(phase) {
   tvState.phase = phase;
+  if(tvTimings.requestedAt!==null){const elapsed=Math.round(performance.now()-tvTimings.requestedAt);tvTimings.lastPhaseMs=elapsed;if(phase==='script'&&tvTimings.scriptMs===null)tvTimings.scriptMs=elapsed;if(phase==='frame'&&tvTimings.frameMs===null)tvTimings.frameMs=elapsed;}
   const el=$("proTVStatus");
   if (!el) return;
   el.dataset.phase=phase;$("loadChartBtn").disabled=phase==="loading";
@@ -2882,6 +2884,7 @@ function tradingViewStatus(phase) {
     unverified:["Candle availability cannot be verified through this public embed. If it is still blank or spinning, switch to THN Research. No substitute TradingView data is shown.","لا يمكن التحقق من الشموع عبر هذا التضمين العام. إذا بقي فارغاً أو قيد التحميل فانتقل إلى بحث THN. لا نعرض بيانات TradingView بديلة."]
   };
   el.textContent=(messages[phase]||messages.unavailable)[currentLang==='ar'?1:0];
+  window.dispatchEvent(new CustomEvent('thn:tradingview',{detail:{...tvTimings,phase}}));
 }
 function invalidateTradingView() {
   ++tvGeneration;clearTimeout(tvTimer);tvObserver?.disconnect();tvSignature="";
@@ -2901,6 +2904,7 @@ function renderTradingView(chartSymbol, chartInterval, force=false) {
   // Each official embed owns a detached-on-replacement parent. A late script
   // retains its old parent; it cannot resolve a shared ID into the current chart.
   host.hidden=false;host.replaceChildren();tvWidget=null;
+  tvTimings={generation,requestedAt:performance.now(),scriptMs:null,frameMs:null,lastPhaseMs:0};
   tvState=initialTVState("loading");tradingViewStatus('loading');
   tvTimer=setTimeout(()=>{
     if(generation!==tvGeneration)return;
@@ -2931,12 +2935,13 @@ function renderTradingView(chartSymbol, chartInterval, force=false) {
     withdateranges:true,save_image:true,details:false,hotlist:false,calendar:false,
     studies:[],support_host:"https://www.tradingview.com"
   });
-  script.onload=()=>{if(generation!==tvGeneration)return;tvState.scriptLoaded=true;if(!tvState.iframeLoaded)tradingViewStatus('script');};
+  script.onload=()=>{if(generation!==tvGeneration)return;tvState.scriptLoaded=true;tvTimings.scriptMs=Math.round(performance.now()-tvTimings.requestedAt);if(!tvState.iframeLoaded)tradingViewStatus('script');};
   script.onerror=()=>{if(generation!==tvGeneration)return;clearTimeout(tvTimer);observer.disconnect();host.hidden=true;tradingViewStatus('unavailable');};
   container.append(surface,credit,script);host.append(container);tvWidget=container;
   return true;
 }
 window.THNTradingViewStatus=()=>({...tvState});
+window.THNTradingViewMetrics=()=>({...tvTimings});
 
 
 function normalizeSymbolInput(value) {
@@ -4316,12 +4321,12 @@ async function testBrokerPing() {
 function syncAccountSizeWithBroker() {
   const acc = getBrokerAccount();
   const balInput = $("accountBalance");
-  if (balInput) {
+  if (balInput && acc.connected) {
     balInput.value = String(acc.balance);
-    balInput.setAttribute("title", "Synchronized automatically to Broker Account");
+    balInput.setAttribute("title", "Synchronized to the explicitly connected local paper account");
   }
   const riskInput = $("riskPct");
-  if (riskInput && acc.riskPct) {
+  if (riskInput && acc.connected && acc.riskPct) {
     riskInput.value = String(acc.riskPct);
   }
   const topbarDot = $("topbarBrokerDot");

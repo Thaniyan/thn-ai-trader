@@ -1,0 +1,11 @@
+{
+  "fixture": "Existing nonfinancial setup preferences in clean browser storage",
+  "restored": {
+    "riskPct": 3,
+    "rewardRisk": 4,
+    "capital": 12345,
+    "planRisk": 3
+  },
+  "apply": "Saved through the existing setup preference key; hypothetical plans still require recalculation",
+  "result": "passed"
+}

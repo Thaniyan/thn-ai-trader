@@ -1,6 +1,6 @@
 {
   "name": "thn-ai-trader",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "THN AI Trader - professional bilingual AI-powered trading workstation with automated copilot, clear technical drawing chart, dedicated SK/SMC analysis map, watchlist patrol, risk governance, journaling and reports.",
   "type": "module",
   "engines": {
