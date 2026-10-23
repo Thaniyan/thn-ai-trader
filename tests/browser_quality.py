@@ -15,12 +15,14 @@ with sync_playwright() as p:
  control(page,'#qCompareExperiments')
  for box in page.locator('[data-experiment]').all():box.check()
  control(page,'#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
+ assert 'Normalized equity index (base 100, not USD)' in page.locator('#q63Comparison').inner_text()
+ page.locator('.terminal-topbar [data-language=ar]').click();assert 'مؤشر حقوق مطبع' in page.locator('#q63Comparison').inner_text();page.locator('.terminal-topbar [data-language=en]').click();assert 'Normalized equity index' in page.locator('#q63Comparison').inner_text()
  page.locator('#qResult').screenshot(path='work/v63-report.png');page.locator('#q63Comparison').screenshot(path='work/v63-comparison.png')
  report['checks'].append('real chronological reports, directional strategies, bounded sensitivity, walk-forward and two-run comparison')
  with page.expect_download() as downloaded:control(page,'#qExport').click()
- exported=json.load(open(downloaded.value.path()));assert exported['evaluation']['split'];assert exported['context']['datasetId']==exported['evaluation']['dataset']['hash'];assert 'credentials' not in json.dumps(exported).lower()
+ exported=json.load(open(downloaded.value.path()));assert exported['applicationVersion']=='7.5.0' and exported['schemaVersion']=='THN-EVALUATION-6.3' and exported['analysisEngineVersion']=='6.3';assert exported['evaluation']['split'];assert exported['context']['datasetId']==exported['evaluation']['dataset']['hash'];assert 'credentials' not in json.dumps(exported).lower()
  with page.expect_download() as downloaded:control(page,'#qExportExperiments').click()
- records=json.load(open(downloaded.value.path()));records['records'][0]['credentials']={'apiToken':'DO_NOT_RETAIN'}
+ records=json.load(open(downloaded.value.path()));assert records['applicationVersion']=='7.5.0' and records['rawEquityUnits']=='USD hypothetical backtest equity' and 'not USD' in records['comparisonUnits'];records['records'][0]['credentials']={'apiToken':'DO_NOT_RETAIN'}
  control(page,'#qImportExperiments').set_input_files({'name':'experiments.json','mimeType':'application/json','buffer':json.dumps(records).encode()});page.wait_for_timeout(300)
  assert page.locator('[data-experiment]').count()==4;stored=page.evaluate('localStorage.getItem("thn_experiments_v63")');assert 'DO_NOT_RETAIN' not in stored;assert 'Imported — unverified' in page.locator('#q63Runs').inner_text()
  records['records'][0]['holdout']['sample']['firstTime']=1e100

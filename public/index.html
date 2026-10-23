@@ -255,7 +255,7 @@
 
         <div class="subtab-content" data-subtab="terminal">
           <!-- Trading Command Desk -->
-      <section class="command-desk panel-glow" id="dashboard">
+      <section class="command-desk panel-glow" id="legacyAnalysisDashboard">
         <div class="desk-header">
           <div class="desk-title">
             <p class="eyebrow" data-i18n="deskEyebrow">QUANTITATIVE EXECUTION DESK</p>
@@ -337,10 +337,11 @@
           <div><h2 data-i18n="tradingViewChart">TradingView Terminal</h2><p id="tvSymbolText" data-i18n="chartWillLoad">Terminal loads upon asset selection.</p></div>
           <div class="button-row"><button class="ghost" id="loadChartBtn" data-i18n="reloadChart">Reload Feed</button></div>
         </div>
-        <div class="pro-tv-recovery">
+        <p class="pro-tv-independent" id="proTVIndependent">External TradingView chart — independently sourced. Internal symbol/timeframe changes do not update pinned THN evidence.</p>
+        <details class="pro-tv-recovery" id="proTVRecovery"><summary id="proTVRecoveryTitle">Chart status, retry & fallback</summary>
           <p id="proTVStatus" role="status" aria-live="polite"></p>
           <div class="q-actions"><button type="button" class="ghost" id="proTVFallback">THN Research</button><a id="proTVExternal" href="https://www.tradingview.com/chart/" target="_blank" rel="noopener noreferrer">Open TradingView ↗</a></div>
-        </div>
+        </details>
         <div id="tvChart" class="tv-chart"></div>
       </section>
           <!-- Decision Center & Order Ticket -->
@@ -551,7 +552,7 @@
               <div><small>Buy-Side Liquidity (BSL)</small><b id="smcBsl">--</b></div>
               <div><small>Sell-Side Liquidity (SSL)</small><b id="smcSsl">--</b></div>
             </div>
-            <p id="smcLiquiditySummary">Smart money accumulates orders at liquidity pools.</p>
+            <p id="smcLiquiditySummary">Prior range highs/lows are heuristic reference levels; resting orders and actor intent are unobserved.</p>
           </div>
 
           <div class="smc-deep-card">
@@ -955,7 +956,7 @@
                 </div>
               </div>
             </div>
-            <span class="hud-label" data-i18n="brokerBalance">Account Balance (Auto-Managed)</span>
+            <span class="hud-label" data-i18n="brokerBalance">Operator-local paper balance</span>
             <b class="hud-amount" id="brokerBalanceDisplay">—</b>
             <div class="hud-sub-row">
               <span><span data-i18n="netEquity">Net Equity</span>: <b id="brokerEquityDisplay">—</b></span>
@@ -1612,7 +1613,7 @@
             </div>
 
             <div class="broker-sync-note tiny muted-text" style="margin-top: 8px;">
-              🛡️ <b>Balance &amp; Margin Integrity:</b> Capital balance, used margin, and open positions are retrieved authoritatively from the broker gateway upon handshake. Manual balance entry is prohibited.
+              🛡️ <b>Balance &amp; Margin Integrity:</b> Operator-local paper ledger only. No hosted broker balance, account synchronization or execution is available.
             </div>
 
             <div class="test-ping-box">
@@ -1790,7 +1791,7 @@
             <div><small data-i18n="stopLoss">SL</small><b id="toastSL">--</b></div>
             <div><small data-i18n="takeProfit1">TP1</small><b id="toastTP1">--</b></div>
           </div>
-          <p class="toast-reason" id="toastReason">Scanner detected a high-probability opportunity setup.</p>
+          <p class="toast-reason" id="toastReason">Scanner detected a heuristic research setup; no calibrated win probability.</p>
         </div>
         <div class="toast-actions">
           <button type="button" class="primary small" id="toastInspectBtn" data-i18n="inspectTrade">Inspect Chart & Analysis</button>

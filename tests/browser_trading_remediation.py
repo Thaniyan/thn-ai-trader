@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Owned terminal lifecycle/recovery tests. Protocol frames never establish real TV candles."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright
@@ -67,7 +68,7 @@ with sync_playwright() as p:
  result['checks'].append('Detached bootstrap finishes last: historical-tail predicate is false while the current generation, context and one frame remain correct')
  # Unknown context never leaves an old instrument visible or an old external link.
  page.evaluate('THNContext.set({symbol:"UNKNOWN"},"test")');assert page.locator('#tvChart iframe').count()==0;assert page.locator('#proTVExternal').get_attribute('href')=='https://www.tradingview.com/chart/'
- page.evaluate('THNContext.set({symbol:"EURUSD"},"test")');page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
+ page.evaluate('THNContext.set({symbol:"EURUSD"},"test")');control(page,'#proTVFallback').focus();control(page,'#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
  page.wait_for_function('THNResearch.series()&&THNResearch.series().symbol==="EURUSD"')
  # Fail a changed-context script request; no global constructor exists to shim.
  def missing_library(route):route.abort()
@@ -89,7 +90,7 @@ with sync_playwright() as p:
  assert not page.evaluate('THNTradingViewStatus().iframeLoaded') and not page.evaluate('THNTradingViewStatus().uiReady')
  page.wait_for_timeout(18050);assert page.evaluate('THNTradingViewStatus().phase')=='unverified'
  page.unroute(EMBED_URL,script_only)
- page.locator('#proTVFallback').focus();page.locator('#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
+ control(page,'#proTVFallback').focus();control(page,'#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
  result['checks'].append('Network failure, delayed official-embed boundary, retry lock, script-only versus frame-only readiness, generation containers and keyboard fallback')
  # Browsers may coalesce two requests for this SAME public script URL.
  # Cover both fetch behaviors without cache-busting undocumented provider URLs.
@@ -112,7 +113,7 @@ with sync_playwright() as p:
  assert page.locator('#tvChart iframe').count()==1
  assert page.locator('#tvChart script').evaluate('s=>JSON.parse(s.textContent).symbol')=='FX:GBPUSD'
  assert not page.evaluate('THNTradingViewStatus().candleReady')
- page.unroute(EMBED_URL,late_library);page.evaluate('THNContext.set({symbol:"EURUSD",interval:"1h"},"restore-context-test")');page.wait_for_function('THNTradingViewStatus().iframeLoaded');page.locator('#proTVFallback').click();page.wait_for_function('THNResearch.series()?.symbol==="EURUSD"&&THNResearch.series().provenance.interval==="1h"&&THNDecision.brief()?.symbol==="EURUSD"&&THNDecision.brief().interval==="1h"')
+ page.unroute(EMBED_URL,late_library);page.evaluate('THNContext.set({symbol:"EURUSD",interval:"1h"},"restore-context-test")');page.wait_for_function('THNTradingViewStatus().iframeLoaded');control(page,'#proTVFallback').click();page.wait_for_function('THNResearch.series()?.symbol==="EURUSD"&&THNResearch.series().provenance.interval==="1h"&&THNDecision.brief()?.symbol==="EURUSD"&&THNDecision.brief().interval==="1h"')
  result['checks'].append('Late old-generation events and shared/reverse-order asset completion cannot restore a stale instrument or readiness')
  # Selected-context original analysis opens existing evidence, never a second analysis engine.
  with page.expect_response(lambda r:r.url.endswith('/api/analyze') and r.request.method=='POST') as analysis_response:

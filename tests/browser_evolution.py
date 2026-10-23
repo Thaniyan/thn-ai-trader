@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Connected user journeys over real application APIs and explicit offline provider fixtures."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright,expect
@@ -53,7 +54,7 @@ with sync_playwright() as p:
  # D: Official embed protocol in a real browser, never proof of real market candles.
  go('trading');page.locator('#proTradingViewMode').click();page.wait_for_function('THNTradingViewStatus().iframeLoaded&&THNTradingViewStatus().scriptLoaded')
  parent=page.locator('#tvChart .tradingview-widget-container').get_attribute('id');go('dashboard');go('trading');assert page.locator('#tvChart .tradingview-widget-container').get_attribute('id')==parent
- assert not page.evaluate('THNTradingViewStatus().candleReady');page.locator('#proTVFallback').click();expect(page.locator('#qCandles')).to_be_visible()
+ assert not page.evaluate('THNTradingViewStatus().candleReady');control(page,'#proTVFallback').click();expect(page.locator('#qCandles')).to_be_visible()
  result['journeys'].append('D: Direct Trading, official protocol frame, unchanged generation on revisit, honest unverified candles and THN fallback')
  # Defaults use original context preferences, never a second state store.
  go('settings');page.locator('#evoDefaultSymbol').fill('GBPUSD');page.locator('#evoDefaultInterval').select_option('15m');page.locator('#evoDefaultForm button[type="submit"]').click();page.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNContext.get().interval==="15m"')

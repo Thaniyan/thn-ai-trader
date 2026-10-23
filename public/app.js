@@ -642,7 +642,7 @@ Object.assign(I18N.en, {
   brokerSubtitle: "Account synchronization and hosted execution are unavailable. Research plans are hypothetical; local paper simulation is available only with explicit operator opt-in.",
   brokerSettings: "⚙️ Gateway Settings",
   connectBrokerBtn: "🔗 Connect Broker Account",
-  brokerBalance: "Account Balance (Auto-Managed)",
+  brokerBalance: "Operator-local paper balance",
   netEquity: "Net Equity",
   unrealizedPnl: "Open PnL",
   freeMargin: "Free Margin",
@@ -719,14 +719,14 @@ Object.assign(I18N.ar, {
   brokerSubtitle: "مزامنة الحساب والتنفيذ المستضاف غير متاحين. الخطط البحثية افتراضية؛ تتطلب المحاكاة المحلية تفعيل المشغل.",
   brokerSettings: "⚙️ إعدادات البوابة",
   connectBrokerBtn: "🔗 ربط حساب الوسيط",
-  brokerBalance: "رصيد الحساب (مُدار تلقائياً)",
+  brokerBalance: "رصيد محاكاة محلية للمشغل فقط",
   netEquity: "صافي القيمة",
   unrealizedPnl: "الأرباح العائمة",
   freeMargin: "الهامش المتاح",
   usedMargin: "الهامش المحجوز",
   dailyRealizedPnl: "أرباح اليوم المحققة",
   capitalDealsTitle: "سيناريوهات المحاكاة الافتراضية",
-  capitalDealsSub: "فرص تداول عالية الاحتمالية محسوبة أحجامها بدقة حسب رأس مالك الحالي",
+  capitalDealsSub: "سيناريوهات بحث استدلالية؛ ليست احتمالات ربح أو رصيد وسيط متصلاً",
   activePositionsTitle: "الصفقات المفتوحة لدى الوسيط",
   activePositionsSub: "مراكز محاكاة محلية فقط؛ دون وسيط حقيقي متصل",
   connectBrokerTitle: "ربط وفتح حساب وسيط التداول",
@@ -901,17 +901,17 @@ Object.assign(I18N.ar, {
   optimalEntry: "نقطة الدخول المثالية",
   watchlistHidden: "قائمة المتابعة مصغرة ({count} زوج)",
   pairs: "أزواج",
-  deskEyebrow: "مكتب التنفيذ الكمي المؤسسي",
+  deskEyebrow: "مكتب البحث الكمي الافتراضي",
   popularAssets: "أصول سريعة:",
   mtfaEyebrow: "توافق الأطر الزمنية المتعددة",
   mtfaTitle: "مصفوفة توافق الأطر الزمنية (MTFA)",
   smcDeepEyebrow: "مفاهيم السمارت موني وتدفق الأوامر",
-  smcDeepTitle: "هندسة السيولة ومفاهيم SMC المؤسسية",
+  smcDeepTitle: "قواعد هيكل السعر الاستدلالية",
   liquidityArchitecture: "مجمعات السيولة (BSL / SSL)",
-  orderBlocksDeep: "كتل الأوامر المؤسسية (Order Blocks)",
+  orderBlocksDeep: "مناطق هيكل سعري استدلالية (Order Blocks)",
   fvgDeep: "فجوات القيمة العادلة (FVG)",
   dealingRange: "نطاق التداول والتوازن (Equilibrium 50%)",
-  macroEyebrow: "رادار الاقتصاد الكلي المؤسسي",
+  macroEyebrow: "سياق السوق؛ أخبار موثقة غير متاحة",
   macroTitle: "المفكرة الاقتصادية عالية التأثير ورادار البنوك المركزية",
   macroSafety: "مرشح المخاطر نشط",
   navMtfa: "🌐 توافق الأطر (MTFA)",
@@ -1040,12 +1040,17 @@ const escapeHtml = value => String(value ?? "")
   .replace(/"/g, "&quot;")
   .replace(/'/g, "&#039;");
 
-function status(text) {
+const noticeKeys=new Map(Object.entries({"notice.305eb4010955": {"english": "Latest analysis request failed. Any retained results belong to the last successful analysis, not the newly requested instrument.", "arabic": "تعذر التحليل الجديد. أي نتائج باقية تخص آخر تحليل ناجح وليست الأداة المطلوبة حالياً."}, "notice.f8d9fb9b0f58": {"english": "Unavailable from candle provider", "arabic": "غير متاح من مزود الشموع"}, "notice.4b92fea2d0b3": {"english": "Requires independently fetched timeframe candles", "arabic": "يتطلب بيانات مستقلة لكل إطار"}, "notice.dbe0a58d2b94": {"english": "BELOW OBSERVED RANGE MIDPOINT", "arabic": "منطقة خصم (Discount)"}, "notice.3650617b87aa": {"english": "ABOVE OBSERVED RANGE MIDPOINT", "arabic": "منطقة علاوة (Premium)"}, "notice.0fdd8571e1d2": {"english": "Heuristic: prior low crossed and recovered; actor intent unknown", "arabic": "تجاوز قاع سابق ثم تعافٍ؛ لا دليل على هوية المتداول"}, "notice.a9682e40d68f": {"english": "Heuristic: prior high crossed and rejected; actor intent unknown", "arabic": "تجاوز قمة سابقة ثم تراجع؛ لا دليل على هوية المتداول"}, "notice.7583d89a7d73": {"english": "Prior range highs and lows; resting orders are unobserved", "arabic": "قمم وقيعان نطاق سابق؛ الأوامر غير مرصودة"}, "notice.e56e234b2ee7": {"english": "Heuristic order-block candidates representing possible liquidity zones", "arabic": "كتل أوامر فنية تمثل مناطق سيولة وارتداد حاسمة"}, "notice.4ca5bc75f293": {"english": "Heuristic three-candle gaps; no guaranteed price revisit", "arabic": "فجوات ثلاث شموع استدلالية؛ عودة السعر غير مضمونة"}, "notice.14dbe18fc368": {"english": "Range midpoint heuristic only; not execution authorization", "arabic": "وصف استدلالي لموضع النطاق؛ ليس تصريحاً للتنفيذ"}, "notice.8630bfb9661f": {"english": "Verified economic calendar unavailable", "arabic": "التقويم الاقتصادي الموثق غير متاح"}, "notice.1034d0a0e8f9": {"english": "Individual research conditions, not plan validation or execution authorization. ", "arabic": "شروط بحث فردية، وليست اعتماد خطة أو إذن تنفيذ. "}, "notice.37ac5a7f0ff0": {"english": "Matches current evidence", "arabic": "يطابق البيانات الحالية"}, "notice.13ce075c376b": {"english": "Previous / unmatched snapshot; analyze current evidence", "arabic": "لقطة سابقة أو غير مطابقة؛ أعد التحليل"}, "notice.615ba1f1fa4c": {"english": "Historical backtesting unavailable. A reproducible engine with costs and execution rules is required.", "arabic": "الاختبار التاريخي غير متاح. يلزم محرك قابل لإعادة الإنتاج مع التكاليف وقواعد التنفيذ."}, "notice.1bf001ce1df2": {"english": "TradingView external chart", "arabic": "رسم TradingView الخارجي"}, "notice.6f09145d8b39": {"english": "No pairs match search.", "arabic": "لا توجد أزواج مطابقة للبحث."}, "notice.0fc90bc5e4d3": {"english": "Scanner detected a heuristic confluence setup.", "arabic": "رصد الماسح توافقاً استدلالياً؛ ليس احتمال ربح."}, "notice.b5097d172d78": {"english": "The journal contains saved research notes only. Sample performance cannot be imported.", "arabic": "السجل مخصص لملاحظات البحث المحفوظة فقط."}, "notice.de67e24c9fb9": {"english": "Record not saved: storage unreadable, unavailable or full. Previous data preserved.", "arabic": "لم يُحفظ السجل؛ التخزين غير متاح أو غير مقروء أو ممتلئ. حُفظت البيانات السابقة."}, "notice.fe6ee850bbf5": {"english": "An idea cannot become an execution outcome. Enter a separately sourced reported outcome.", "arabic": "لا يمكن تحويل فكرة إلى نتيجة تنفيذ. أضف نتيجة مسجلة صراحةً مع مصدرها."}, "notice.011a94845d2c": {"english": "Reported net outcome (USD), unverified", "arabic": "صافي نتيجة مُبلغ عنها (دولار)، غير موثقة"}, "notice.9f16c20b85bb": {"english": "No supported realized outcome; excluded from performance.", "arabic": "لا توجد نتيجة محققة مدعومة؛ مستبعد من الأداء."}, "notice.a6ca212a9777": {"english": "Original record · unverified", "arabic": "السجل الأصلي · غير موثق"}, "notice.49558e6b2a00": {"english": "Return unavailable: no authenticated capital basis", "arabic": "العائد غير متاح؛ أساس رأس المال غير موثق"}, "notice.01b266477362": {"english": "Drawdown % unavailable without capital basis", "arabic": "نسبة التراجع غير متاحة دون رأس مال موثق"}, "notice.9d2522a4e947": {"english": "reported outcomes · unverified", "arabic": "نتائج مُبلغ عنها غير موثقة"}, "notice.91603d1a996d": {"english": "No trade records to plot equity curve.", "arabic": "لا توجد صفقات لعرض منحنى رأس المال."}, "notice.4de2b86b7439": {"english": "Storage unavailable for export.", "arabic": "التخزين غير متاح للتصدير."}, "notice.cd13851fff18": {"english": "Unavailable — no account", "arabic": "غير متاح — لا يوجد حساب"}, "notice.acf81b50dcae": {"english": "Executable quotes are unavailable. Use analysis and risk planning.", "arabic": "أسعار التنفيذ غير متاحة. استخدم التحليل والتخطيط."}, "notice.7f7485b075e6": {"english": "Simulated sandbox paper trading portfolio successfully reset to $50,000.00.", "arabic": "تمت إعادة تعيين محفظة التداول الافتراضي (Sandbox) إلى 50,000$ بنجاح."}, "notice.52fef09c3fa4": {"english": "Reset unavailable. Account state was not changed.", "arabic": "تعذر إعادة التعيين. لم يتم تغيير الرصيد."}, "notice.613e8b138802": {"english": "Pinging broker gateway server...", "arabic": "جاري فحص الاتصال بالخادم..."}, "notice.fd691ab98e56": {"english": "No account data; use hypothetical risk planning.", "arabic": "لا توجد بيانات حساب؛ استخدم التخطيط الافتراضي."}, "notice.5ed7141d2398": {"english": "Awaiting Instrument Analysis", "arabic": "بانتظار تحليل الأصول المالية"}, "notice.416b564287ff": {"english": "Analyze an asset above or run the Opportunity Scanner to generate real-time, risk-governed capital allocation tickets.", "arabic": "قم بتحليل أي أصل مالي أعلاه أو تشغيل ماسح السوق لتوليد تذاكر صفقات حقيقية محسوبة المخاطر."}, "notice.6690b6070e4b": {"english": "Analyze Gold (XAUUSD) Now", "arabic": "تحليل الذهب (XAUUSD) الآن"}, "notice.39c4c1b587ed": {"english": "Hosted account connections are unavailable. Do not enter real credentials.", "arabic": "ربط الحسابات المستضافة غير متاح. لا تُدخل بيانات اعتماد حقيقية."}, "notice.115cff4ee8c8": {"english": "Measuring roundtrip latency...", "arabic": "جاري قياس زمن الوصول..."}, "notice.0344b685648c": {"english": "🔴 Gateway Unreachable / Offline", "arabic": "🔴 تعذر الوصول إلى الخادم / غير متصل"}, "notice.3311141d3be3": {"english": "Paper order blocked: storage unavailable or a prior intent requires recovery.", "arabic": "يلزم استرداد الأمر السابق أو إتاحة التخزين قبل المحاولة."}, "notice.c209edda411e": {"english": "Paper trading paused: reconcile the retained order/account locally before submitting a new intent.", "arabic": "التداول التجريبي متوقف: يلزم مراجعة سجل الأمر والحساب محلياً قبل إعادة المحاولة."}, "notice.6ec4d5339ef0": {"english": "Paper order response unknown. Retry the same plan to recover its original intent; do not submit a new order.", "arabic": "تعذر تنفيذ الأمر: فشل الاتصال بخادم التداول"}, "notice.a82c3dcd0b7c": {"english": "Failed to close position: Broker server unreachable", "arabic": "تعذر إغلاق الصفقة: فشل الاتصال بخادم الوسيط"}, "notice.92fa2689529c": {"english": "Journal could not be cleared; existing data was preserved.", "arabic": "تعذر مسح السجل؛ بقيت البيانات محفوظة."}, "notice.17cbea31dbf5": {"english": "Explicit date, prices, risk and reported net outcome required.", "arabic": "أدخل تاريخاً وأسعاراً ومخاطرة وصافي نتيجة مُبلغ عنها صراحةً."}, "notice.db5eec64010d": {"english": "Logged closed trade outcome successfully.", "arabic": "تم تسجيل الصفقة المغلقة بنجاح."}, "notice.750e4d70849c": {"english": "Unverified imported records; no execution verified", "arabic": "سجلات مستوردة غير موثقة؛ لا تثبت التنفيذ"}, "notice.54c7079507e8": {"english": "No records imported: ", "arabic": "لم تُستورد أي سجلات: "}, "notice.0f9e74785541": {"english": "Copied Exness MT5 config to clipboard!", "arabic": "تم نسخ إعدادات Exness MT5 إلى الحافظة!"}, "notice.b2e38c64a526": {"english": "Copied XTB JSON authentication payload!", "arabic": "تم نسخ نموذج كود مصادقة XTB JSON!"}, "notice.edcabce339db": {"english": "⏳ Provisioning official broker platform account...", "arabic": "⏳ جاري فتح وتفعيل الحساب رسمياً في خوادم الوسيط..."}, "notice.072af42730a9": {"english": "Failed to register account on broker server.", "arabic": "تعذر إنشاء الحساب على الخادم. يرجى المحاولة لاحقاً."}, "notice.55d182dd06c1": {"english": "⏳ Verifying broker credentials & handshake...", "arabic": "⏳ جاري التحقق من خادم الوسيط والاتصال..."}, "notice.f6af22662f81": {"english": "External broker integration is unavailable.", "arabic": "ربط وسيط خارجي غير متاح."}, "notice.96da85fec2eb": {"english": "Broker gateway verification failed. Please verify credentials.", "arabic": "تعذر التحقق من خادم الوسيط. يرجى التأكد من البيانات أو تشغيل جسر MT5."}, "notice.2e0c66ac3122": {"english": "Copied MT5 login details to clipboard!", "arabic": "تم نسخ بيانات دخول MT5 إلى الحافظة بنجاح!"}, "notice.1f89e7ae6b44": {"english": "Positions ledger refreshed", "arabic": "تم تحديث سجل الصفقات النشطة"}, "notice.2f5d500d2285": {"english": "Risk Engine Rule: Stop Loss is mandatory before submission", "arabic": "قاعدة المخاطر الإلزامية: وقف الخسارة مطلوب قبل الإرسال"}, "notice.d0500ae5ba0c": {"english": "Journal ledger cleared successfully.", "arabic": "تم مسح سجل التداول بالكامل"}, "notice.4f10e4154123": {"english": "Previous research snapshot, not plan approval. ", "arabic": "لقطة بحث سابقة، ليست اعتماد خطة. "}, "notice.21560211c430": {"english": "Analyze the selected context again", "arabic": "أعد التحليل للسياق المختار"}, "notice.a0fa07d217fa": {"english": "No retained analysis.", "arabic": "لا يوجد تحليل محفوظ."}, "notice.dc05cc512f97": {"english": "HISTORICAL — not current context research: ", "arabic": "تاريخي — ليس بحث السياق الحالي: "}, "notice.a37bd211cdbb": {"english": "RSI/ATR: simple rolling 14; differs from THN Research Wilder smoothing.", "arabic": "RSI/ATR متوسط نافذة بسيطة 14؛ تختلف عن وايلدر في THN Research."}, "notice.c6719c788d12": {"english": " USD proxy, not native USDT.", "arabic": " بديل USD لا يمثل USDT أصلياً."}}));let activeNotice=null,activeToastNotice=null,activeToastType=null;
+function localizedStatus(key,english,arabic,replacements={}){noticeKeys.set(key,{english,arabic});activeNotice={key,replacements};const pair=noticeKeys.get(key);status((currentLang==='ar'?pair.arabic:pair.english),true);}
+function statusKey(key,replacements={}){activeNotice={translationKey:key,replacements};status(t(key,replacements),true);}
+function status(text,retainKey=false) {
+  if(!retainKey){activeNotice=null;for(const [key,pair]of noticeKeys)if(text===pair.english||text===pair.arabic){activeNotice={key};break;}for(const key of Object.keys(I18N.en)){if(I18N.en[key]===text||I18N.ar[key]===text){activeNotice={translationKey:key};break;}}}
+
   if ($("statusMsg")) $("statusMsg").textContent = text;
 }
 
 function showNotice(msg, type = "info") {
-  status(msg);
+  status(msg);activeToastNotice=activeNotice?{...activeNotice}:null;activeToastType=type;
   const toast = $("tradeToast");
   if (toast) {
     if ($("toastSignal")) $("toastSignal").textContent = type === "error" ? "⚠️ ALERT" : "ℹ️ NOTICE";
@@ -1057,7 +1062,7 @@ function showNotice(msg, type = "info") {
   }
 }
 
-function switchView(viewName) {
+function switchView(viewName, {replace=false}={}) {
   if (!viewName) viewName = "dashboard";
   const jumpMap = {
     dashboard: "dashboard",
@@ -1122,7 +1127,7 @@ function switchView(viewName) {
   }
 
   if (location.hash !== `#${actualViewName}`) {
-    history.replaceState(null, "", `#${actualViewName}`);
+    history[replace?"replaceState":"pushState"](null, "", `#${actualViewName}`);
   }
 
   if (actualViewName === "trading") {
@@ -1231,6 +1236,10 @@ function setLanguage(lang) {
   renderMapLayerButtons();
   if (currentAnalysis) renderAnalysis(currentAnalysis, { preserveChart: true });
   loadChart();
+  const noticeText=ref=>ref?.translationKey?t(ref.translationKey,ref.replacements||{}):ref?.key?(currentLang==='ar'?noticeKeys.get(ref.key)?.arabic:noticeKeys.get(ref.key)?.english):null;
+  const currentNotice=noticeText(activeNotice);if(currentNotice)status(currentNotice,true);
+  const toastNotice=noticeText(activeToastNotice);if(toastNotice&&$('toastReason'))$('toastReason').textContent=toastNotice;
+  if(activeToastType&&$('toastSignal'))$('toastSignal').textContent=activeToastType==='error'?(currentLang==='ar'?'⚠️ تنبيه':'⚠️ ALERT'):(currentLang==='ar'?'ℹ️ إشعار':'ℹ️ NOTICE');
 }
 
 function getPayload() {
@@ -1282,11 +1291,13 @@ async function checkHealth() {
 }
 window.THNServiceHealth={get:()=>cachedHealth,refresh:checkHealth};
 
+let analysisGeneration=0;
 async function analyze() {
   window.THNContext?.set({symbol: $("symbolInput").value.trim().toUpperCase(), interval: ({scalp:"15m",intraday:"1h",swing:"1d",position:"1d"})[$("timeframe").value] || "1h"}, "analysis");
+  const generation=++analysisGeneration;
   const payload = getPayload();
   saveSetup();
-  status(t("analyzingStatus", { symbol: payload.symbol.toUpperCase() }));
+  statusKey("analyzingStatus", { symbol: payload.symbol.toUpperCase() });
   $("analyzeBtn").disabled = true;
   $("analyzeBtn").textContent = t("analyzing");
   try {
@@ -1298,13 +1309,15 @@ async function analyze() {
     const data = await res.json();
     if (!res.ok || data.error) throw new Error(data.detail || data.error || "Analysis failed");
     if (window.THNContext && (payload.symbol.toUpperCase() !== window.THNContext.get().symbol || payload.timeframe !== window.THNContext.get().interval)) return;
+    if(generation!==analysisGeneration)return;
     currentAnalysis = data;
     document.querySelectorAll(".work-analysis-error").forEach(el => el.remove());
     renderAnalysis(data);
     window.dispatchEvent(new CustomEvent("thn:analysis", { detail: data }));
     loadChart(data.tvSymbol, data.tvInterval);
-    status(t("completedStatus", { symbol: data.symbol }));
+    statusKey("completedStatus", { symbol: data.symbol });
   } catch (error) {
+    if(generation!==analysisGeneration)return;
     status(`${t("errorPrefix")}: ${error.message}`);
     document.querySelectorAll(".work-analysis-error").forEach(el => el.remove());
     ["view-trading", "view-ai"].forEach(id => {
@@ -1313,6 +1326,7 @@ async function analyze() {
       $(id)?.prepend(notice);
     });
   } finally {
+    if(generation!==analysisGeneration)return;
     $("analyzeBtn").disabled = false;
     $("analyzeBtn").textContent = t("analyze");
   }
@@ -1405,7 +1419,7 @@ function renderSMCDeepDive(a) {
   const isDiscount = price <= eqPrice;
 
   if ($("smcZoneBadge")) {
-    $("smcZoneBadge").textContent = isDiscount ? (currentLang === "ar" ? "منطقة خصم (Discount)" : "DISCOUNT ACCUMULATION ZONE") : (currentLang === "ar" ? "منطقة علاوة (Premium)" : "PREMIUM DISTRIBUTION ZONE");
+    $("smcZoneBadge").textContent = isDiscount ? (currentLang === "ar" ? "منطقة خصم (Discount)" : "BELOW OBSERVED RANGE MIDPOINT") : (currentLang === "ar" ? "منطقة علاوة (Premium)" : "ABOVE OBSERVED RANGE MIDPOINT");
     $("smcZoneBadge").className = `badge ${isDiscount ? "pass" : "danger"}`;
   }
 
@@ -1414,9 +1428,9 @@ function renderSMCDeepDive(a) {
   if ($("smcBsl")) $("smcBsl").textContent = fmt(bslPool, precision);
   if ($("smcSsl")) $("smcSsl").textContent = fmt(sslPool, precision);
   if ($("smcLiquiditySummary")) {
-    const sweep = a.structure?.possibleSellSideSweep ? (currentLang === "ar" ? "تم سحب سيولة القيعان (SSL) بنجاح" : "Sell-side liquidity swept; smart money accumulated") :
-                  a.structure?.possibleBuySideSweep ? (currentLang === "ar" ? "تم سحب سيولة القمم (BSL) بنجاح" : "Buy-side liquidity swept; smart money distributed") :
-                  (currentLang === "ar" ? "سيولة متراكمة فوق القمم وتحت القيعان" : "External range liquidity resting above BSL & below SSL");
+    const sweep = a.structure?.possibleSellSideSweep ? (currentLang === "ar" ? "تجاوز قاع سابق ثم تعافٍ؛ لا دليل على هوية المتداول" : "Heuristic: prior low crossed and recovered; actor intent unknown") :
+                  a.structure?.possibleBuySideSweep ? (currentLang === "ar" ? "تجاوز قمة سابقة ثم تراجع؛ لا دليل على هوية المتداول" : "Heuristic: prior high crossed and rejected; actor intent unknown") :
+                  (currentLang === "ar" ? "قمم وقيعان نطاق سابق؛ الأوامر غير مرصودة" : "Prior range highs and lows; resting orders are unobserved");
     $("smcLiquiditySummary").textContent = sweep;
   }
 
@@ -1433,7 +1447,7 @@ function renderSMCDeepDive(a) {
   if ($("smcBullFvg")) $("smcBullFvg").textContent = bullFvgs.length ? `${fmt(bullFvgs[0].from, precision)} - ${fmt(bullFvgs[0].to, precision)}` : "None";
   if ($("smcBearFvg")) $("smcBearFvg").textContent = bearFvgs.length ? `${fmt(bearFvgs[0].from, precision)} - ${fmt(bearFvgs[0].to, precision)}` : "None";
   if ($("smcFvgSummary")) {
-    $("smcFvgSummary").textContent = currentLang === "ar" ? "فجوات السيولة تجذب السعر لإعادة التوازن" : "3-candle liquidity displacement imbalances acting as magnetic price targets";
+    $("smcFvgSummary").textContent = currentLang === "ar" ? "فجوات ثلاث شموع استدلالية؛ عودة السعر غير مضمونة" : "Heuristic three-candle gaps; no guaranteed price revisit";
   }
 
   if ($("smcEq")) $("smcEq").textContent = fmt(eqPrice, precision);
@@ -1441,7 +1455,7 @@ function renderSMCDeepDive(a) {
   if ($("smcRangePos")) $("smcRangePos").textContent = `${fmt(rangePosPct, 1)}% (${isDiscount ? "Discount" : "Premium"})`;
   if ($("eqMarker")) $("eqMarker").style.left = `${rangePosPct}%`;
   if ($("smcEqSummary")) {
-    $("smcEqSummary").textContent = currentLang === "ar" ? "قاعدة التنفيذ: الدخول في صفقات الشراء فقط في منطقة الخصم والبيع في منطقة العلاوة" : "Quantitative Execution Rule: Long in Discount (<50%); Short in Premium (>50%)";
+    $("smcEqSummary").textContent = currentLang === "ar" ? "وصف استدلالي لموضع النطاق؛ ليس تصريحاً للتنفيذ" : "Range midpoint heuristic only; not execution authorization";
   }
 }
 
@@ -1556,6 +1570,7 @@ function renderTables(a) {
     row(t("breakEvenWinRate"), `${fmt(r.breakEvenWinRate, 2)}%`)
   ].join("");
 
+  if(a.identity?.proxy)$('riskTable').textContent=currentLang==='ar'?'تقديرات العقود غير متاحة لعملة مزود بديلة. استخدم عقداً وعملة بحث متطابقين.':'Contract estimates unavailable for proxy quote currency. Use matching research currency and contract.';
   const checklist=$('checklist');
   let attribution=$('riskChecklistContext');if(!attribution){attribution=document.createElement('p');attribution.id='riskChecklistContext';attribution.setAttribute('role','status');checklist.before(attribution);}
   const context=window.THNContext?.get(),matching=a.symbol===context?.symbol&&a.timeframe===context?.interval&&a.evidence?.hash===context?.datasetId;
@@ -1567,6 +1582,7 @@ function renderTables(a) {
     <small>${escapeHtml(currentLang === "ar" ? checklistDetailAr(c) : (c.detail || ""))}</small>
   </div>`).join("");
 
+  $("scenarioGrid").hidden=Boolean(a.identity?.proxy);
   $("scenarioGrid").innerHTML = (a.scenarios || []).map(scn => `<div class="scenario-card">
     <h3>${escapeHtml(currentLang === "ar" ? scenarioNameAr(scn.name) : scn.name)}</h3>
     <p>${t("risk")}: <b>${fmt(scn.riskPct, 2)}%</b></p>
@@ -2853,6 +2869,7 @@ function renderReport(a) {
   } else {
     renderEnglishReport(a);
   }
+  $('report').textContent='HISTORICAL / تاريخي · immutable originating snapshot; not a current recommendation\n'+JSON.stringify({applicationVersion:a.applicationVersion||null,schemaVersion:a.schemaVersion||null,analysisEngineVersion:a.analysisEngineVersion||null,identity:a.identity||null,indicatorMethodology:a.indicatorMethodology||null})+'\n'+$('report').textContent;
 }
 
 function renderEnglishReport(a) {
@@ -3154,6 +3171,7 @@ function playTradeAlertSound(decision) {
 }
 
 function showTradeToast(item) {
+  activeToastNotice=null;activeToastType=null;
   const toast = $("tradeToast");
   if (!toast) return;
   if (toastTimeout) clearTimeout(toastTimeout);
@@ -3173,7 +3191,7 @@ function showTradeToast(item) {
   if ($("toastSL")) $("toastSL").textContent = item.stopLoss ? fmt(item.stopLoss, precision) : "--";
   if ($("toastTP1")) $("toastTP1").textContent = item.targets?.[0] ? fmt(item.targets[0], precision) : "--";
 
-  const reasonText = item.reasons?.[0] || item.aiNarrative || item.automation?.summary || (currentLang === "ar" ? "اكتشف الماسح فرصة تداول عالية الاحتمالية." : "Scanner detected a heuristic confluence setup.");
+  const reasonText = item.reasons?.[0] || item.aiNarrative || item.automation?.summary || (currentLang === "ar" ? "رصد الماسح توافقاً استدلالياً؛ ليس احتمال ربح." : "Scanner detected a heuristic confluence setup.");
   if ($("toastReason")) $("toastReason").textContent = reasonText;
 
   toast.dataset.symbol = item.symbol || item.requestedSymbol;
@@ -3353,10 +3371,10 @@ function loadBenchmarkHistory() {
 
 function saveJournal() {
   const context=window.THNContext?.get();
-  if (!currentAnalysis || $('analyzeBtn').disabled || (context && (currentAnalysis.symbol!==context.symbol || currentAnalysis.timeframe!==context.interval))) {showNotice(t('runAnalysisFirst'), 'error');return false;}
+  if (!currentAnalysis || $('analyzeBtn').disabled || (context && (currentAnalysis.symbol!==context.symbol || currentAnalysis.timeframe!==context.interval||currentAnalysis.evidence?.hash!==context.datasetId))) {showNotice(t('runAnalysisFirst'), 'error');return false;}
   if (!writeJournal([THNRecords.idea(currentAnalysis), ...getJournal()])) return false;
   renderJournal(); renderPerformanceAnalytics();
-  status(currentLang==='ar'?'حُفظت فكرة بحثية؛ لا توجد أرباح محققة.':'Research idea saved; no realized outcome recorded.');
+  localizedStatus('journal.saved','Research idea saved; no realized outcome recorded.','حُفظت فكرة بحثية؛ لا توجد أرباح محققة.');
   return true;
 }
 
@@ -5961,3 +5979,19 @@ setTimeout(() => {
 }, 250);
 
 window.addEventListener('thn:context',()=>{const el=document.getElementById('riskChecklistContext'),c=window.THNContext?.get();if(!el||!c)return;const matched=el.dataset.symbol===c.symbol&&el.dataset.interval===c.interval&&el.dataset.hash===c.datasetId;el.dataset.current=String(matched);if(!matched)el.textContent=(currentLang==='ar'?'لقطة بحث سابقة، ليست اعتماد خطة. ':'Previous research snapshot, not plan approval. ')+el.dataset.symbol+' / '+el.dataset.interval+' · '+(currentLang==='ar'?'أعد التحليل للسياق المختار':'Analyze the selected context again');});
+
+// Route identity and visible view always move together, including initial reload.
+function restoreRoute(){switchView(location.hash.slice(1)||'dashboard',{replace:true});}
+window.addEventListener('hashchange',restoreRoute);
+window.addEventListener('popstate',restoreRoute);
+restoreRoute();
+
+const analysisIdentityNotice=document.createElement('p');analysisIdentityNotice.id='v75AnalysisIdentity';analysisIdentityNotice.setAttribute('role','status');$('decisionTitle').before(analysisIdentityNotice);
+function legacyIdentity(){const c=window.THNContext?.get(),a=currentAnalysis;if(!a){analysisIdentityNotice.textContent=currentLang==='ar'?'لا يوجد تحليل محفوظ.':'No retained analysis.';return;}const historical=a.symbol!==c?.symbol||a.timeframe!==c?.interval||a.evidence?.hash!==c?.datasetId;analysisIdentityNotice.dataset.historical=String(historical);analysisIdentityNotice.textContent=(historical?(currentLang==='ar'?'تاريخي — ليس بحث السياق الحالي: ':'HISTORICAL — not current context research: '):(currentLang==='ar'?'لقطة تحليل: ':'Analysis snapshot: '))+a.symbol+' / '+a.timeframe+' · '+(a.evidence?.source||a.marketDataSource||'—')+' · '+(a.evidence?.lastTime?new Date(a.evidence.lastTime).toISOString():'—')+' · '+(a.evidence?.hash||'—')+' · '+(currentLang==='ar'?'RSI/ATR متوسط نافذة بسيطة 14؛ تختلف عن وايلدر في THN Research.':'RSI/ATR: simple rolling 14; differs from THN Research Wilder smoothing.')+(/USDT$/.test(a.symbol)?(currentLang==='ar'?' بديل USD لا يمثل USDT أصلياً.':' USD proxy, not native USDT.'):'');}
+function discloseRetainedAnalysis(){legacyIdentity();for(const id of ['d64Legacy','evoRiskConditions']){const root=$(id);if(!root)continue;let notice=root.querySelector('[data-legacy-identity]');if(!notice){notice=document.createElement('p');notice.dataset.legacyIdentity='true';notice.setAttribute('role','status');root.querySelector('summary')?.after(notice);}notice.textContent=analysisIdentityNotice.textContent;notice.dataset.historical=analysisIdentityNotice.dataset.historical||'true';}}
+for(const event of ['thn:analysis','thn:context','thn:research-context'])window.addEventListener(event,discloseRetainedAnalysis);
+window.addEventListener('DOMContentLoaded',discloseRetainedAnalysis);
+new MutationObserver(discloseRetainedAnalysis).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+window.addEventListener('thn:context',()=>{++analysisGeneration;$('analyzeBtn').disabled=false;$('analyzeBtn').textContent=t('analyze');legacyIdentity();});
+for(const event of ['thn:analysis','thn:series','thn:research-context'])window.addEventListener(event,legacyIdentity);
+new MutationObserver(legacyIdentity).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});legacyIdentity();

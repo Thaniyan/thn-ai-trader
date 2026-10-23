@@ -1,0 +1,120 @@
+{
+  "applicationVersion": "7.5.0",
+  "branch": "feature/research-trust-consistency-v75",
+  "parent": "9fa6b69d5b36a0cdcb99e627674fe6d4e2cfb22a",
+  "findings": {
+    "F01": "Fixed (local acceptance)",
+    "F02": "Fixed (local acceptance)",
+    "F03": "Fixed (local acceptance)",
+    "F04": "Fixed (local acceptance)",
+    "F05": "Fixed (local acceptance)",
+    "F06": "Fixed (local acceptance)",
+    "F07": "Fixed (local acceptance)",
+    "F08": "Fixed (local acceptance)",
+    "F09": "Fixed (local acceptance)",
+    "F10": "Fixed (local acceptance)",
+    "F11": "Fixed (local acceptance)",
+    "F12": "Fixed (local acceptance)",
+    "F13": "Fixed (local acceptance)",
+    "F14": "Fixed (local acceptance)",
+    "F15": "Fixed (local acceptance)"
+  },
+  "unitIntegrationNumerical": {
+    "pass": 169,
+    "fail": 0
+  },
+  "security": {
+    "pass": 21,
+    "fail": 0
+  },
+  "system": {
+    "pass": 10,
+    "fail": 0
+  },
+  "fullBrowserRun": {
+    "suites": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "layout",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency"
+    ],
+    "pass": 20,
+    "fail": 0,
+    "exitCode": 0
+  },
+  "finalArtifactAffectedRerun": {
+    "reason": "Final provider/margin metadata, capability and browser-history focus corrections",
+    "results": {
+      "professional": 0,
+      "trading_remediation": 0,
+      "evolution": 0,
+      "consolidation": 0,
+      "experience": 0,
+      "consistency": 0
+    }
+  },
+  "professional": {
+    "geometryCases": 288,
+    "axeScans": 72,
+    "zoomChecks": 64,
+    "errors": 0
+  },
+  "newFocused": {
+    "routes": 9,
+    "axeScans": 16,
+    "errors": 0,
+    "asyncOrdering": {
+      "oldResponseRiskPct": 0.5,
+      "newResponseRiskPct": 0.7,
+      "retainedRiskPct": 0.7
+    },
+    "historyFocusExit": "passed",
+    "hostedResetDisabled": "passed"
+  },
+  "gates": {
+    "build": "passed",
+    "lint": "passed",
+    "workflow": "passed",
+    "sourceGuard": "passed",
+    "frozenLock": "passed",
+    "dependencyAudit": "passed; zero advisories",
+    "gitFsck": "passed; pre-existing dangling blobs retained"
+  },
+  "productionPackage": {
+    "output": "/workspace/work/thn-v71-resumed/.vercel/output",
+    "runtimeFiles": 64,
+    "artifactFiles": 68,
+    "manifestSHA256": "16fbafbbb6081b22a2cef4fe7a76d9016ad1c1691c36f97915f271583ca2e632",
+    "reproducedIdentically": true
+  },
+  "screenshots": 97,
+  "externalTradingViewCandles": "not tested here; offline protocol fixtures only; owner-observed v7.4 functionality and original initializer preserved",
+  "realModel": "not activated or run",
+  "hostedFinancialExecution": false,
+  "publicGenerativeInference": false,
+  "push": false,
+  "deployment": false,
+  "hostingSettingsChanged": false,
+  "newPaidResources": false,
+  "remainingReleaseGates": [
+    "Owner exact-SHA approval",
+    "Fresh hosted CI",
+    "Owner live Chrome/Production acceptance after authorized release"
+  ]
+}

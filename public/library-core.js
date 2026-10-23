@@ -1,3 +1,4 @@
+import {APPLICATION_VERSION} from './instrument-identity.js';
 import { cleanReport, cleanResearchValue } from './decision-records.js';
 export const LIBRARY_KEY='thn_research_library_v65';
 export const LIMITS=Object.freeze({reports:24,archives:120,snapshots:2,bytes:1800000,backupBytes:2100000});
@@ -49,7 +50,7 @@ export function diffReports(a,b){
   const changes=[];const compare=(key,x,y)=>{if(JSON.stringify(x??null)!==JSON.stringify(y??null))changes.push({key,before:x??null,after:y??null});};
   compare('instrument',a.symbol,b.symbol);compare('timeframe',a.interval,b.interval);compare('provider',a.brief.selected.provenance.source,b.brief.selected.provenance.source);compare('providerSymbol',a.brief.selected.provenance.providerSymbol,b.brief.selected.provenance.providerSymbol);compare('dataset',a.brief.selected.provenance.hash,b.brief.selected.provenance.hash);compare('coverage',[a.brief.selected.provenance.firstTime,a.brief.selected.provenance.lastTime],[b.brief.selected.provenance.firstTime,b.brief.selected.provenance.lastTime]);compare('parameters',a.quantitative?.parameters,b.quantitative?.parameters);compare('windows',a.quantitative?.split,b.quantitative?.split);compare('risk',a.plan,b.plan);compare('engine',a.lineage?.engineVersion,b.lineage?.engineVersion);compare('holdoutReturn',a.quantitative?.holdout.returnPct,b.quantitative?.holdout.returnPct);return changes;
 }
-export function makeBackup(state){const value=validateLibrary(state);return {schema:'THN-BACKUP-6.5',createdAt:Date.now(),library:value};}
+export function makeBackup(state){const value=validateLibrary(state);return {schema:'THN-BACKUP-6.5',applicationVersion:APPLICATION_VERSION,schemaVersion:'THN-BACKUP-6.5',analysisEngineVersion:'6.3',createdAt:Date.now(),library:value};}
 export async function decodeBackup(raw,cryptoAPI=globalThis.crypto){
   if(typeof raw!=='string'||bytes(raw)>LIMITS.backupBytes)throw Error('size');const input=JSON.parse(raw);
   if(input.schema==='THN-DECISIONS-6.4'){

@@ -1,0 +1,390 @@
+[
+  {
+    "path": "after/ai-1440-en-dark.png",
+    "sha256": "b42eeafaa740a3717be6faf6fa077f92af9489a0c8333c11446e00c3bdb371a3"
+  },
+  {
+    "path": "after/ai-1440-en-light.png",
+    "sha256": "55079dc4467770760540a11c97333b477b18d06c499920d7293ca03c8e4fe115"
+  },
+  {
+    "path": "after/ai-390-ar-light.png",
+    "sha256": "6cbb604fd66eb25751e69bb401049eb1fe4b214753043d07cd06b09b6a382d25"
+  },
+  {
+    "path": "after/ai-768-en-dark.png",
+    "sha256": "b283b0cbac6f2cdd285398c01847279512ebe097c5471e52d18a1e89db31da21"
+  },
+  {
+    "path": "after/brokers-1440-en-dark.png",
+    "sha256": "21130efc42f6d5d811a8cf62583f1c7e1c663094aada51379f7019176c4b9f71"
+  },
+  {
+    "path": "after/brokers-1440-en-light.png",
+    "sha256": "5173d563bf2cd802ab90eecdaa8407a86613b9fe2c9cc179efe11f8cbdf3a780"
+  },
+  {
+    "path": "after/brokers-390-ar-light.png",
+    "sha256": "bc11d5d76e6f105cb9c1c42a22420669c0cace0df849b9d34a38e706837a6524"
+  },
+  {
+    "path": "after/brokers-768-en-dark.png",
+    "sha256": "b8bca96e24da1262834bd890c1308a20fe6c645b18e98f9f41eea17167e3ea2f"
+  },
+  {
+    "path": "after/dashboard-1440-en-dark.png",
+    "sha256": "cf57ba4da19f5a0099fa90969be8c7717333be5995474afa4760de8fe02889f1"
+  },
+  {
+    "path": "after/dashboard-1440-en-light.png",
+    "sha256": "3e3c5a95961b82e989be0f3649b848116ae3d445f60e13774e119e16c6cc8212"
+  },
+  {
+    "path": "after/dashboard-390-ar-light.png",
+    "sha256": "9b623a671099c3a7aa83e7fe7e8e41e9714c506a0df815bd14d8ba3764cc402b"
+  },
+  {
+    "path": "after/dashboard-768-en-dark.png",
+    "sha256": "c75cc6494d103dcd9709817d0a697fc5df43bc07556af769d836eaa0daaf2947"
+  },
+  {
+    "path": "after/journal-1440-en-dark.png",
+    "sha256": "9befb21d53ec562a979ed7e53b238871c4b7b8e312b4b60882e688bee04390f8"
+  },
+  {
+    "path": "after/journal-1440-en-light.png",
+    "sha256": "2cb942f8ded429ce3bca059c665d218c22732038089b6252d3843a5952355d38"
+  },
+  {
+    "path": "after/journal-390-ar-light.png",
+    "sha256": "b18a2b7681a73f055534f004be6bf6f69132f3f739ec38bee09f5c5c7c31a4d0"
+  },
+  {
+    "path": "after/journal-768-en-dark.png",
+    "sha256": "cca9214631744b9aa8e0651bd3259b5c2add5f7b6a6bf4126baf5e5be9674cfc"
+  },
+  {
+    "path": "after/markets-1440-en-dark.png",
+    "sha256": "27e3360c63ba97e66e322e6a0e7ccfe6102ecc190d3c94ff8d2abac5a82f0ec3"
+  },
+  {
+    "path": "after/markets-1440-en-light.png",
+    "sha256": "04052e3eb79218703d07f21a3bdc62f54a57e02ebb798054c56c34a90edd46cc"
+  },
+  {
+    "path": "after/markets-390-ar-light.png",
+    "sha256": "a3fc48e801fb8e7089e6a6e358f82dd3a134bb79b82f6eb7e1db5218eaa44146"
+  },
+  {
+    "path": "after/markets-768-en-dark.png",
+    "sha256": "af3c748e5d804c9c5f0889ad8be826aa1c7586200bfc6be6120447108267852e"
+  },
+  {
+    "path": "after/portfolio-1440-en-dark.png",
+    "sha256": "df6039b626a09f0480f4859d071e0e5f47b26a68aa87c1f298036c60cd26f694"
+  },
+  {
+    "path": "after/portfolio-1440-en-light.png",
+    "sha256": "0ee44d97e6da5798817fd59e554ace90197e2303d84171845a2c2a9e08e80318"
+  },
+  {
+    "path": "after/portfolio-390-ar-light.png",
+    "sha256": "7679588dd598390c6f4a3caa6702104f0441502ac378f37a758049b25ed03367"
+  },
+  {
+    "path": "after/portfolio-768-en-dark.png",
+    "sha256": "7396eb88b49182ebc6bf350b80e304f9b7627e14f242e20b5f04bb72064cbe53"
+  },
+  {
+    "path": "after/risk-1440-en-dark.png",
+    "sha256": "c080ec4de2d9560f494c31312373d5e500fc64a0cd5d633a7d187e90098cc594"
+  },
+  {
+    "path": "after/risk-1440-en-light.png",
+    "sha256": "201b765cd390af130ebf15be155754e9e34f9e868c981abe38ede42345c89b24"
+  },
+  {
+    "path": "after/risk-390-ar-light.png",
+    "sha256": "ce77ff649c68a30c191a669a095318c8564c942e1e2ad7bde438b2108767eb6a"
+  },
+  {
+    "path": "after/risk-768-en-dark.png",
+    "sha256": "e7d2806ebbc5f916460d01df497cf6de3cd532c2c9b5b9df95b7b20c82f632e1"
+  },
+  {
+    "path": "after/settings-1440-en-dark.png",
+    "sha256": "2ec96ca6ed3a80976f9218d05a4ed9f9895e6f8b10c8d0aacedf2372057b81f2"
+  },
+  {
+    "path": "after/settings-1440-en-light.png",
+    "sha256": "4ac82e293c366368ab3b5e89ba36d2ebc18328c0aa0a850a103260e54574a9bb"
+  },
+  {
+    "path": "after/settings-390-ar-light.png",
+    "sha256": "54ffc7adaf6bfbb76b5552893e72c5af2525f94d95732bb3a8fb4c065b1c43df"
+  },
+  {
+    "path": "after/settings-768-en-dark.png",
+    "sha256": "cf9207773408a77af342669292d56c10282fbee604f6976759ab053a8b4a2b96"
+  },
+  {
+    "path": "after/trading-1440-en-dark.png",
+    "sha256": "b2022fbed7cd08490f3366c52657f29e4bd4a572905b1c72f9bc4572efc511d9"
+  },
+  {
+    "path": "after/trading-1440-en-light.png",
+    "sha256": "9a3ab758531c7f02938a7375d3867f298b17cf06bfed8a292a4c0500f52e2a3b"
+  },
+  {
+    "path": "after/trading-390-ar-light.png",
+    "sha256": "c8e40f2ec432e9e89f7e5acb5b466c9f752fa3bed328449cea44164d617071de"
+  },
+  {
+    "path": "after/trading-768-en-dark.png",
+    "sha256": "1489c28825ce1b8f45e1f490ddaae2525e08967d885b9c4e3bda98ef44bde840"
+  },
+  {
+    "path": "audit-journeys/after-cost-inclusive.png",
+    "sha256": "4c9573e74b538f6867135775c107039a00880ba1857c993530c0487823beccd8"
+  },
+  {
+    "path": "audit-journeys/after-historical-context.png",
+    "sha256": "fa93af3478df7ffbae836a7e47d0ce022b99445292d8a7246c0b55e2bb5797cb"
+  },
+  {
+    "path": "audit-journeys/after-independent-chart.png",
+    "sha256": "3f938fb3a786530fbd5f2f2a170de91512ac39fd39394b8b472a631ed5d15558"
+  },
+  {
+    "path": "audit-journeys/after-proxy-evidence.png",
+    "sha256": "27de322ed7653a9be9384105bc7a36b7c45b0037aae9cc7e8b00f8d8fb9aef62"
+  },
+  {
+    "path": "audit-journeys/after-risk-budget.png",
+    "sha256": "29652b26d328d37e9fbfe132a01a895b798105241318f4d4ecac8ce6053ac8b8"
+  },
+  {
+    "path": "audit-journeys/before-historical-context.png",
+    "sha256": "1a65c25cd425872fe05ec2becde2a9cf02033c45fda5b6f7d07e3d36cbb95f99"
+  },
+  {
+    "path": "audit-journeys/before-independent-chart.png",
+    "sha256": "cdbf18c46dcdf5462203babce94bd3b88e7e8203695f07f21c88fe2f9aa83aa5"
+  },
+  {
+    "path": "audit-journeys/before-proxy-evidence.png",
+    "sha256": "79d907dc2fd4762ea478da01e75b0606ee68f2d7846cecb7083be8d5e7ed2271"
+  },
+  {
+    "path": "audit-journeys/before-risk-budget.png",
+    "sha256": "27aafc5164c6af0b0017af2ad21208c050e235cfc508bbf334c2c44067e9fa67"
+  },
+  {
+    "path": "before/ai-1440-en-dark.png",
+    "sha256": "adcd690a521d60b2a7cd9a5961ad5a3cb907acd89e0b61bc29f43da35837544d"
+  },
+  {
+    "path": "before/ai-1440-en-light.png",
+    "sha256": "fcfca6962e531155b6453c351248e37a7cfa04a49569e071461fa9c0a874f4a8"
+  },
+  {
+    "path": "before/ai-390-ar-light.png",
+    "sha256": "96a5539c80a13cfadd55327f13b6ac4b45f9e9293406962863ea19b1e7dcacc0"
+  },
+  {
+    "path": "before/ai-768-en-dark.png",
+    "sha256": "0c247f08d0441c7c798ca7591b21e6dc771520af065ffda6c18e57f2adba4995"
+  },
+  {
+    "path": "before/brokers-1440-en-dark.png",
+    "sha256": "0def3d2899d944f5c9f294a50459acc6ba584a4d414c463f21ebee760e6a0c4d"
+  },
+  {
+    "path": "before/brokers-1440-en-light.png",
+    "sha256": "0fe067fe041068ba276e9fdab2cbd912a04b9a1ab6609880e21dbbe1f229f5b5"
+  },
+  {
+    "path": "before/brokers-390-ar-light.png",
+    "sha256": "2263e71888b60318672283ceeeb743e6cb81cdf099fd30dd0fc34bce1cdba0b2"
+  },
+  {
+    "path": "before/brokers-768-en-dark.png",
+    "sha256": "c24d6b01540cc4b7bc9cde0f3ed9a89cee1a7bf6f247d4c79dc1d6ad6be6ed80"
+  },
+  {
+    "path": "before/dashboard-1440-en-dark.png",
+    "sha256": "57effc432b4a9e56e6d9e496512933647383ffa359c92f54242d36794a99ffd2"
+  },
+  {
+    "path": "before/dashboard-1440-en-light.png",
+    "sha256": "58649966b27b85d6a23e993ad978e1e2002769bd632406b447ab976d6b504521"
+  },
+  {
+    "path": "before/dashboard-390-ar-light.png",
+    "sha256": "ee5126528fbff28d9175740596496c36aadc9906e0eaede39060ecd10166d894"
+  },
+  {
+    "path": "before/dashboard-768-en-dark.png",
+    "sha256": "647e528d165eafcad680bfdcab5dfe0ec9d07ee5c477094d41d8d18ac728fe74"
+  },
+  {
+    "path": "before/journal-1440-en-dark.png",
+    "sha256": "aa99abf3ad900b7adb262f057318960008bf9b52a204116249157be2853da543"
+  },
+  {
+    "path": "before/journal-1440-en-light.png",
+    "sha256": "2e8b8c3c3d53515ab5344005283858fcbfda6e48df852210576ce4a16f781329"
+  },
+  {
+    "path": "before/journal-390-ar-light.png",
+    "sha256": "56592214b34daea7531351b8a1d7074a83a39c50b2d0c75c34074ee9d0ba6148"
+  },
+  {
+    "path": "before/journal-768-en-dark.png",
+    "sha256": "5073d4ddb121c6c2054ba885c2132013cc67cf4ecf30a9b0dc7bbabad93f52e8"
+  },
+  {
+    "path": "before/markets-1440-en-dark.png",
+    "sha256": "c3dc3a2b7bd5fc9119aa4c9de82f35c57aa201beba6e8d0b627656590ca04ca8"
+  },
+  {
+    "path": "before/markets-1440-en-light.png",
+    "sha256": "8d04d20d3df76bbc78d6004ce45eabe6d02570bf55ca8c70fd75df62e0980de9"
+  },
+  {
+    "path": "before/markets-390-ar-light.png",
+    "sha256": "79f26dbb0ab7defe19130a49f1692bc5766cc7e3bc7c7e37148c3ce941d5ea51"
+  },
+  {
+    "path": "before/markets-768-en-dark.png",
+    "sha256": "6867e8f1d805052fb12dbe58349d7b806859d0217b6d1072777c053d62c8832c"
+  },
+  {
+    "path": "before/portfolio-1440-en-dark.png",
+    "sha256": "5bcd6d19845c38f9b353dec57b7a3fec9fd5f2801d8cd44099c7a984d66acf4c"
+  },
+  {
+    "path": "before/portfolio-1440-en-light.png",
+    "sha256": "cb47ade95b9b4c36033e83f9c37be71321ef77e7eb43875aa6e166c2ad96a0da"
+  },
+  {
+    "path": "before/portfolio-390-ar-light.png",
+    "sha256": "8268f84628d631ad6cc051fa341ace9cc9c54964fef1fd90ea2fd2a151c5b302"
+  },
+  {
+    "path": "before/portfolio-768-en-dark.png",
+    "sha256": "4c292224430af749a7d77b4c166a532a428696be1a166a950884530ebb287317"
+  },
+  {
+    "path": "before/risk-1440-en-dark.png",
+    "sha256": "f222191eea6b38dd61db8a5c6e0bac2937ef7174cefb51bd2e1e0c726debeb04"
+  },
+  {
+    "path": "before/risk-1440-en-light.png",
+    "sha256": "a24eb01aca2915bd16c4806efb768108a6192e333b2786f4ef0dafd0ca63c9ef"
+  },
+  {
+    "path": "before/risk-390-ar-light.png",
+    "sha256": "49b258ca8993e7fab956b69d166e881fab3a0dbbfae5b97f8cf0292e00aaef50"
+  },
+  {
+    "path": "before/risk-768-en-dark.png",
+    "sha256": "8d2dde4cc1d641d8934d43bd0b7a575f01706761907b36e9a91f4d538b07a160"
+  },
+  {
+    "path": "before/settings-1440-en-dark.png",
+    "sha256": "3a9fd3330ec623b2293843bccb641507bc1683db12c9189595c6e8cc0cf16052"
+  },
+  {
+    "path": "before/settings-1440-en-light.png",
+    "sha256": "b2dbc08fa9148f454dda7b421b337e48ab1450877e48099d00b4d1b09a83cb84"
+  },
+  {
+    "path": "before/settings-390-ar-light.png",
+    "sha256": "fa8e464d47da58f837e03e762317279bd2cc9aade7a9bc7f653c456c3416f310"
+  },
+  {
+    "path": "before/settings-768-en-dark.png",
+    "sha256": "3b51abb38b7ed918ad2ce22399e342cfa656e81fe46b267ee94ee68fcb995620"
+  },
+  {
+    "path": "before/trading-1440-en-dark.png",
+    "sha256": "2bb8a63a079a24fdda933a3f5d0f85c15c1825cd21dd9eb13ec37dffc3995b39"
+  },
+  {
+    "path": "before/trading-1440-en-light.png",
+    "sha256": "1b5d1a3062c569c89adf552ed6b02923cee1e1c1f48e0ff2d21ef899ff8100f3"
+  },
+  {
+    "path": "before/trading-390-ar-light.png",
+    "sha256": "a6159e0ff665c3f14afbdac6accc34b436980a5e173ff625d046972cba0bcb49"
+  },
+  {
+    "path": "before/trading-768-en-dark.png",
+    "sha256": "6bb63e230fa5276083b9e4232d9bab74355e10abb2ab8cdec679f79e79b450ed"
+  },
+  {
+    "path": "focused/ai-ar-1440.png",
+    "sha256": "71b669bf7826c88255122e28cc4a4fc38aba8926fdbd40c06e2efe90a7f98323"
+  },
+  {
+    "path": "focused/ai-ar-390.png",
+    "sha256": "5cfaccc6723e1e8ff4e08d9c5d8d950d3af607a684f435f28c57c9a158aa18cb"
+  },
+  {
+    "path": "focused/ai-en-1440.png",
+    "sha256": "eb5b8c993f71d16bd2051c13cd6b452bb52a280827246871bb18442cc79d0c19"
+  },
+  {
+    "path": "focused/ai-en-390.png",
+    "sha256": "f6edd8263ccf9d8d547a62a05ed5879a06c222377bf59ddb2cc92953eff1fc16"
+  },
+  {
+    "path": "focused/journal-ar-1440.png",
+    "sha256": "e415010555be436889eecf8df115747b08723cb1d87db757dff00a50022f1ef3"
+  },
+  {
+    "path": "focused/journal-ar-390.png",
+    "sha256": "fbe0799a20e8bc794f9d6da0e2865f2fed6df4f538dd8a68ef712136b3ce8d2d"
+  },
+  {
+    "path": "focused/journal-en-1440.png",
+    "sha256": "3a1d4eb27760f69ab7e8b8d6a84c1200e309cd18734a263a97ebd05dd00d7e63"
+  },
+  {
+    "path": "focused/journal-en-390.png",
+    "sha256": "dd3531e9db8e0f30c7a2c2e32872516d659cb281eff6c69b622771de22e2ba80"
+  },
+  {
+    "path": "focused/risk-ar-1440.png",
+    "sha256": "e42348501e84365d13222a89bb824df20f45bc0dc2011fb17d70f6f613747856"
+  },
+  {
+    "path": "focused/risk-ar-390.png",
+    "sha256": "03b7ce2a5515ab1ce040757ef1475eebf31c1ccf930801d6b30c5fbc26f24402"
+  },
+  {
+    "path": "focused/risk-en-1440.png",
+    "sha256": "e828b3f59cb1fbb7b36412ac539c7256624891eee6c5d16d95c4779c6bbe89c9"
+  },
+  {
+    "path": "focused/risk-en-390.png",
+    "sha256": "6a6e340bda1183e3ed0838f9b2c77c599a7857e2a7a38c6fa88be4a8efbf3541"
+  },
+  {
+    "path": "focused/trading-ar-1440.png",
+    "sha256": "56307e7d96cdb58150107d4ddfb53285603bff105f4e1fe43e10164bdf81eb32"
+  },
+  {
+    "path": "focused/trading-ar-390.png",
+    "sha256": "a03a69330ceb887c34f640d52d97efb3449d56cccc54e5e905e18f03a27f56c2"
+  },
+  {
+    "path": "focused/trading-en-1440.png",
+    "sha256": "b99e27026f368372a11f8b6bf5f7d4d4eefa00b0fd2f7bc3c39aa6c05f713779"
+  },
+  {
+    "path": "focused/trading-en-390.png",
+    "sha256": "9c77c2b463db2f6eb0b4896e904d8b9b7f902fdac66ffd247a7d7796c6d6e4e1"
+  }
+]

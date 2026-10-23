@@ -1,3 +1,4 @@
+from workspace_controls import control
 """v7.3 user acceptance over packaged APIs, explicit provider and public-widget protocol fixtures."""
 import os,json,pathlib,itertools
 from playwright.sync_api import sync_playwright,expect
@@ -58,7 +59,7 @@ with sync_playwright() as p:
  expect(page.locator('#proTVMetrics')).to_contain_text('unverified');gen=metrics['generation'];go('markets');go('trading');assert page.evaluate('THNTradingViewMetrics().generation')==gen
  page.evaluate('THNContext.set({analysisTimestamp:Date.now()},"metadata")');assert page.evaluate('THNTradingViewMetrics().generation')==gen
  assert page.evaluate('THNTradingViewStatus().candleReady') is False
- page.locator('#proTVFallback').click();expect(page.locator('#qCandles')).to_be_visible();result['widget']=metrics
+ control(page,'#proTVFallback').click();expect(page.locator('#qCandles')).to_be_visible();result['widget']=metrics
  result['journeys'].append('E: measured script/frame phases; widget reused on revisits/metadata; unverified candles and real THN fallback')
  # F: working sizing preferences use the existing setup store; storage refusal stays honest.
  go('settings');page.locator('#prefDefaultRisk').select_option('0.5');page.locator('#prefDefaultRR').select_option('3.0');page.locator('#evoApplySizing').click();expect(page.locator('#evoSizingStatus')).to_contain_text('saved');assert page.locator('#planRisk').input_value()=='0.5'

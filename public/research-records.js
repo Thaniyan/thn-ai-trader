@@ -29,6 +29,7 @@
   function idea(analysis, now=Date.now()) {
     return {schema:'THN-RECORD-1',kind:'research_idea',source:'research',verification:'unverified',id:'idea-'+crypto.randomUUID(),date:new Date(now).toISOString(),symbol:analysis.symbol,decision:analysis.decision,
       entry:analysis.entry,stopLoss:analysis.stopLoss,target1:analysis.targets?.[0],risk:analysis.risk?.riskAmount,confidence:analysis.confidence,grade:analysis.grade,assetClass:analysis.assetClass,
+      applicationVersion:analysis.applicationVersion||null,schemaVersion:'THN-RECORD-1',analysisEngineVersion:analysis.analysisEngineVersion||null,identity:analysis.identity?structuredClone(analysis.identity):null,indicatorMethodology:analysis.indicatorMethodology?structuredClone(analysis.indicatorMethodology):null,
       evidence:analysis.evidence?{hash:analysis.evidence.hash,interval:analysis.evidence.interval,lastTime:analysis.evidence.lastTime,availableAt:analysis.evidence.availableAt}:null};
   }
   function outcome(input, source='manual', now=Date.now()) {

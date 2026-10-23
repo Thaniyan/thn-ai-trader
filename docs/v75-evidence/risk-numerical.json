@@ -1,0 +1,114 @@
+{
+  "assumptions": {
+    "symbol": "EURUSD",
+    "side": "BUY",
+    "capital": 10000,
+    "riskPct": 0.5,
+    "entry": 1.1,
+    "stop": 1.095,
+    "targets": [
+      1.11
+    ],
+    "leverage": 20,
+    "spreadBps": 1,
+    "slippageBps": 1,
+    "commissionBps": 1
+  },
+  "nominal": {
+    "version": "6.4.0",
+    "symbol": "EURUSD",
+    "side": "BUY",
+    "capital": 10000,
+    "riskPct": 0.5,
+    "entry": 1.1,
+    "stop": 1.095,
+    "targets": [
+      1.11
+    ],
+    "leverage": 20,
+    "spreadBps": 1,
+    "slippageBps": 1,
+    "commissionBps": 1,
+    "lots": 0.1,
+    "contractSize": 100000,
+    "budget": 50,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 550,
+      "slDistance": 0.005,
+      "slDollars": 50,
+      "tpDistance": 0.01,
+      "tpDollars": 100,
+      "rrRatio": 2
+    },
+    "estimatedRoundTripCosts": 5.5,
+    "plannedStopLossWithCosts": 55.5,
+    "targetOutcomes": [
+      {
+        "price": 1.11,
+        "reward": 94.5000000000001,
+        "rewardRisk": 1.7027027027027044
+      }
+    ],
+    "warnings": [
+      "hypothetical_capital",
+      "stop_not_guaranteed",
+      "no_funding_or_borrow",
+      "contract_terms_unverified",
+      "costs_exceed_budget"
+    ],
+    "inputValid": true,
+    "sizingMode": "nominal",
+    "budgetCompliant": false,
+    "executionAuthorized": false
+  },
+  "costInclusive": {
+    "version": "6.4.0",
+    "symbol": "EURUSD",
+    "side": "BUY",
+    "capital": 10000,
+    "riskPct": 0.5,
+    "entry": 1.1,
+    "stop": 1.095,
+    "targets": [
+      1.11
+    ],
+    "leverage": 20,
+    "spreadBps": 1,
+    "slippageBps": 1,
+    "commissionBps": 1,
+    "lots": 0.09,
+    "contractSize": 100000,
+    "budget": 50,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 9900,
+      "requiredMargin": 495,
+      "slDistance": 0.005,
+      "slDollars": 45,
+      "tpDistance": 0.01,
+      "tpDollars": 90,
+      "rrRatio": 2
+    },
+    "estimatedRoundTripCosts": 4.949999999999999,
+    "plannedStopLossWithCosts": 49.95,
+    "targetOutcomes": [
+      {
+        "price": 1.11,
+        "reward": 85.05000000000008,
+        "rewardRisk": 1.7027027027027042
+      }
+    ],
+    "warnings": [
+      "hypothetical_capital",
+      "stop_not_guaranteed",
+      "no_funding_or_borrow",
+      "contract_terms_unverified"
+    ],
+    "inputValid": true,
+    "sizingMode": "cost-inclusive",
+    "budgetCompliant": true,
+    "executionAuthorized": false
+  }
+}

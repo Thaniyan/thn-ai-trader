@@ -55,7 +55,7 @@ with sync_playwright() as p:
  page.evaluate('(d)=>executeBrokerOrder(d)',order);assert len(intent_keys)==2 and intent_keys[0]==intent_keys[1]
  assert page.evaluate('localStorage.getItem("thn_pending_paper_intent_v1")') is None
  page.evaluate('getBrokerAccount=window.__originalAccount');page.unroute('**/api/orders/execute',paper_reply)
- go('brokers');page.locator('#proBrokerTools').evaluate('e=>e.open=true');page.locator('#openNewAccountFromDeskBtn').click();assert not page.locator('#brokerModal').is_visible();assert page.locator('#brokerPasswordInput').is_disabled()
+ go('brokers');page.locator('#proBrokerTools').evaluate('e=>e.open=true');assert page.locator('#openNewAccountFromDeskBtn').is_disabled();assert not page.locator('#brokerModal').is_visible();assert page.locator('#brokerPasswordInput').is_disabled()
  assert page.locator('#brokerActiveAccountSelect').is_disabled();assert 'LIVE REAL' not in page.locator('#brokerActiveAccountSelect').inner_text();page.locator('#proBrokerTools').evaluate('e=>e.open=false')
  results['journeys'].append('Client lost-response retry reuses one intent (protocol fixture); hosted broker UI asks for no credentials')
  page.add_script_tag(content=pathlib.Path(os.environ['AXE_PATH']).read_text())

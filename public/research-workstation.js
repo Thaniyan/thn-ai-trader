@@ -120,17 +120,11 @@
   costPanel.innerHTML=`<h3 data-r="planningCosts"></h3><div class="q-cost-inputs">${[['spread',2],['slippage',1],['commission',1]].map(([key,value])=>`<label><span data-r="${key}"></span><input id="qRisk_${key}" type="number" min="0" max="100" step="any" value="${value}" /></label>`).join('')}</div><p class="work-caption" data-r="planningCostNote"></p><p id="qRiskCost" role="status"></p>`;
   $('workRiskForm').after(costPanel);
   function updatePlanningCosts(){
-    const [entry,stop,capital,risk]=['planEntry','planStop','planCapital','planRisk'].map(id=>Number($(id).value));
-    if(!entry||!stop||entry===stop||!capital||!risk){$('qRiskCost').textContent='';return;}
-    const specs={EURUSD:[100000,.01,.01,100],GBPUSD:[100000,.01,.01,100],XAUUSD:[100,.01,.01,50],BTCUSDT:[1,.01,.01,10],US30:[1,.1,.1,50],USDJPY:[100000,.01,.01,100]};
-    const symbol=$('planSymbol').value,spec=specs[symbol]||window.THNContractSpecs?.[symbol];if(!spec){$('qRiskCost').textContent=t('planningCostNote');return;}const [contract,step,min,max]=spec;
-    const baseUSD=symbol.startsWith('USD'),conversion=baseUSD?1/entry:1;
-    const lots=Math.min(max,Math.floor((capital*risk/100/(Math.abs(entry-stop)*contract*conversion)+1e-10)/step)*step);
-    const [spread,slippage,commission]=['spread','slippage','commission'].map(k=>Number($('qRisk_'+k).value));
-    if(lots<min||![spread,slippage,commission].every(v=>Number.isFinite(v)&&v>=0&&v<=100)){$('qRiskCost').textContent=t('invalidParams');return;}
-    const nominal=lots*contract*(baseUSD?1:entry),cost=nominal*(spread+2*slippage+2*commission)/10000;
-    $('qRiskCost').textContent=`${t('costAdjusted')}: $${num(lots*contract*Math.abs(entry-stop)*conversion+cost,2)} · ${t('fees')}: $${num(cost,2)}`;
+    const p=window.THNDecision?.plan?.();
+    $('qRiskCost').textContent=p?`${t('costAdjusted')}: $${num(p.plannedStopLossWithCosts,2)} · ${t('fees')}: $${num(p.estimatedRoundTripCosts,2)}`:(document.documentElement.lang==='ar'?'لا تقدير حالي. تحقق من الخطة لعرض تعرض الوقف والتكاليف.':'No current estimate. Validate the plan to show stop exposure and costs.');
   }
+  window.addEventListener('thn:plan',updatePlanningCosts);
+  new MutationObserver(updatePlanningCosts).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   $('workRiskForm').addEventListener('input',updatePlanningCosts);costPanel.addEventListener('input',updatePlanningCosts);
   window.THNResearch={chart,context:THNContext,series:()=>series,result:()=>result,mtf:()=>mtf};
   translate();strategyFields();contextChanged();

@@ -1,0 +1,133 @@
+{
+  "routes": [
+    "dashboard",
+    "markets",
+    "trading",
+    "ai",
+    "risk",
+    "portfolio",
+    "journal",
+    "brokers",
+    "settings"
+  ],
+  "journeys": [
+    "F01 grounded narratives",
+    "F02 immutable historical record",
+    "F03 unavailable execution disabled",
+    "F04 USDT proxy disclosure",
+    "F05 independent TradingView",
+    "F06 route restoration",
+    "F07 direction/stale errors",
+    "F08 cost-inclusive compliance",
+    "F10 explicit smoothing distinction",
+    "F11 provenance assistant",
+    "F12 live language errors",
+    "F13 compact recovery",
+    "F15 versioned export"
+  ],
+  "errors": [],
+  "axe": [
+    {
+      "view": "trading",
+      "language": "en",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "risk",
+      "language": "en",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "ai",
+      "language": "en",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "journal",
+      "language": "en",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "trading",
+      "language": "en",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "risk",
+      "language": "en",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "ai",
+      "language": "en",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "journal",
+      "language": "en",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "trading",
+      "language": "ar",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "risk",
+      "language": "ar",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "ai",
+      "language": "ar",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "journal",
+      "language": "ar",
+      "width": 1440,
+      "violations": 0
+    },
+    {
+      "view": "trading",
+      "language": "ar",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "risk",
+      "language": "ar",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "ai",
+      "language": "ar",
+      "width": 390,
+      "violations": 0
+    },
+    {
+      "view": "journal",
+      "language": "ar",
+      "width": 390,
+      "violations": 0
+    }
+  ],
+  "externalCandles": "Not asserted; offline official-protocol fixture only",
+  "asyncOrdering": {
+    "oldResponseRiskPct": 0.5,
+    "newResponseRiskPct": 0.7,
+    "retainedRiskPct": 0.7
+  }
+}

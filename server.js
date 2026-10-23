@@ -1,3 +1,5 @@
+import {budgetPlan} from './server/plan-budget.js';
+import {instrumentIdentity,researchIdentity} from './public/instrument-identity.js';
 import {createPaperIntents,ensurePaperWriter} from './server/paper-intents.js';
 import {closedMarket} from './server/market-evidence.js';
 import {createConversations} from './server/intelligence-conversation.js';
@@ -741,10 +743,10 @@ function buildProfessionalLayer({ candles, price, atr14, atrPct, ema20, ema50, e
   ];
   const playbook = isBuy
     ? isLimit
-      ? ["Queue BUY LIMIT order at optimal discount / OTE pullback level to avoid buying at the top.", "Protective stop-loss is placed strictly below institutional swing support.", "Scale out 50% at Take Profit 1 and trail stop to entry."]
+      ? ["Hypothetical bullish scenario at the observed pullback reference; no order is authorized.", "Protective stop-loss is placed strictly below observed swing support.", "Scale out 50% at Take Profit 1 and trail stop to entry."]
       : ["Immediate Market BUY execution confirmed by trend momentum and price action.", "Invalidation remains strictly protected below recent swing low.", "Move to break-even once price closes beyond Take Profit 1."]
     : isLimit
-      ? ["Queue SELL LIMIT order at optimal premium / OTE bounce level to avoid selling at the bottom.", "Protective stop-loss is placed strictly above institutional swing resistance.", "Scale out 50% at Take Profit 1 and trail stop to entry."]
+      ? ["Hypothetical bearish scenario at the observed pullback reference; no order is authorized.", "Protective stop-loss is placed strictly above observed swing resistance.", "Scale out 50% at Take Profit 1 and trail stop to entry."]
       : ["Immediate Market SELL execution confirmed by bearish structure break and momentum.", "Invalidation remains strictly protected above recent swing high.", "Reduce exposure if volatility expands before entry."];
   return {
     executionReadiness,
@@ -828,7 +830,7 @@ function buildAIAutomation({ symbol, decision, confidence, grade, professional, 
       name: "Invalidation guard",
       priority: "HIGH",
       trigger: isBuy ? (support ? round(support - atrBuffer, 6) : null) : isSell ? (resistance ? round(resistance + atrBuffer, 6) : null) : null,
-      condition: "Disable signal when price violates the nearest institutional level.",
+      condition: "Disable signal when price violates the nearest observed structure level.",
       reason: "Prevents stale setups from remaining active after structure changes."
     },
     {
@@ -924,11 +926,11 @@ function buildAnalysis(market, request = {}) {
   const candleBullish = last.close > last.open && bodySize > atr14 * 0.25;
   const candleBearish = last.close < last.open && bodySize > atr14 * 0.25;
 
-  // Real institutional price action: False breakout sweeps reverse; confirmed closes break through
+  // Price-pattern heuristics describe observed crossings/rejections; actors are unobserved.
   if (structure.sweepUp) {
-    addScore(priceAction, -22, "Bearish liquidity sweep above resistance rejected; smart money trapped breakout buyers.");
+    addScore(priceAction, -22, "Heuristic: price exceeded resistance then rejected; this does not identify trader intent.");
   } else if (structure.sweepDown) {
-    addScore(priceAction, 22, "Bullish liquidity sweep below support rejected; smart money trapped breakdown sellers.");
+    addScore(priceAction, 22, "Heuristic: price fell below support then rejected; this does not identify trader intent.");
   } else if (price > structure.resistance && last.close > structure.resistance && candleBullish) {
     addScore(priceAction, 20, "Confirmed bullish breakout candle closed above active resistance.");
   } else if (price < structure.support && last.close < structure.support && candleBearish) {
@@ -946,16 +948,16 @@ function buildAnalysis(market, request = {}) {
   finalizeSchool(priceAction);
 
   const smartMoney = schoolTemplate("Smart Money Concepts");
-  if (structure.sweepDown) addScore(smartMoney, 24, "Sell-side liquidity pool swept; smart money accumulated orders in discount.");
-  if (structure.sweepUp) addScore(smartMoney, -24, "Buy-side liquidity pool swept; smart money distributed orders in premium.");
+  if (structure.sweepDown) addScore(smartMoney, 24, "Heuristic: price crossed a prior low and recovered; orders and actors are unobserved.");
+  if (structure.sweepUp) addScore(smartMoney, -24, "Heuristic: price crossed a prior high and reversed; orders and actors are unobserved.");
 
   // Discount vs Premium SMC Rule
   if (rangePosition <= 0.45) {
-    addScore(smartMoney, 12, "Price is trading in the institutional Discount zone (optimal accumulation area).");
+    addScore(smartMoney, 12, "Price is below the observed range midpoint; a descriptive heuristic, not accumulation evidence.");
   } else if (rangePosition >= 0.55) {
-    addScore(smartMoney, -12, "Price is trading in the institutional Premium zone (optimal distribution area).");
+    addScore(smartMoney, -12, "Price is above the observed range midpoint; a descriptive heuristic, not distribution evidence.");
   } else {
-    smartMoney.reasons.push("Price is at range equilibrium (50%); no high-probability SMC discount/premium edge.");
+    smartMoney.reasons.push("Price is at range equilibrium (50%); no established predictive edge from range position.");
   }
 
   // Check proximity to Order Blocks and Fair Value Gaps
@@ -970,10 +972,10 @@ function buildAnalysis(market, request = {}) {
   const bullFvgs = (smcMapData.fvgs || []).filter(f => f.type === "BULLISH_FVG");
   const bearFvgs = (smcMapData.fvgs || []).filter(f => f.type === "BEARISH_FVG");
   if (bullFvgs.some(f => price >= f.bottom && price <= f.top + atr14 * 0.2)) {
-    addScore(smartMoney, 12, "Price filled an institutional Bullish Fair Value Gap imbalance.");
+    addScore(smartMoney, 12, "Price filled an heuristic bullish three-candle gap imbalance.");
   }
   if (bearFvgs.some(f => price <= f.top && price >= f.bottom - atr14 * 0.2)) {
-    addScore(smartMoney, -12, "Price filled an institutional Bearish Fair Value Gap imbalance.");
+    addScore(smartMoney, -12, "Price filled an heuristic bearish three-candle gap imbalance.");
   }
   finalizeSchool(smartMoney);
 
@@ -981,11 +983,11 @@ function buildAnalysis(market, request = {}) {
   if (slopePct > 0.015) addScore(quant, 18, "Linear regression slope shows positive statistical drift.");
   if (slopePct < -0.015) addScore(quant, -18, "Linear regression slope shows negative statistical drift.");
   if (zScore > 1.6) {
-    addScore(quant, -14, "Latest candle return is statistically stretched (+1.6σ); high mean-reversion risk.");
+    addScore(quant, -14, "Latest candle return exceeds the +1.6 standard-deviation heuristic threshold; no calibrated reversal probability.");
     quant.warnings.push("Price is statistically extended to the upside; avoid chasing longs.");
   }
   if (zScore < -1.6) {
-    addScore(quant, 14, "Latest candle return is statistically stretched (-1.6σ); high bounce probability.");
+    addScore(quant, 14, "Latest candle return is below the -1.6 standard-deviation heuristic threshold; no calibrated rebound probability.");
     quant.warnings.push("Price is statistically extended to the downside; avoid chasing shorts.");
   }
   if (bb.upper && price > bb.upper) quant.warnings.push("Price is piercing the upper Bollinger band; overextension filter active.");
@@ -1006,7 +1008,7 @@ function buildAnalysis(market, request = {}) {
     addScore(patternSchool, signal.score, signal.reason);
     if (signal.direction === "NEUTRAL") patternSchool.warnings.push(signal.reason);
   }
-  if (!patternPack.signals.length) patternSchool.reasons.push("No high-probability chart pattern is dominant at the latest candle.");
+  if (!patternPack.signals.length) patternSchool.reasons.push("No configured chart-pattern rule is dominant at the latest candle.");
   finalizeSchool(patternSchool);
 
   const volatilitySchool = schoolTemplate("Volume & Volatility");
@@ -1579,12 +1581,12 @@ const server = http.createServer(async (req, res) => {
       return;
     }
     if (req.method === "GET" && url.pathname === "/api/research/catalog") {
-      const forex=["EURUSD","GBPUSD","AUDUSD","NZDUSD","USDJPY","USDCHF","USDCAD"].map(symbol=>({symbol,category:"Forex",providerSymbol:symbol+"=X",proxy:false,contract:getContractSpec(symbol)}));
-      const others=[...new Map([...SYMBOL_ALIASES.values()].map(v=>[v.display,v])).values()].map(v=>({symbol:v.display,category:["XAUUSD","XAGUSD"].includes(v.display)?"Metals":["USOIL","BRENT"].includes(v.display)?"Oil":v.assetClass,providerSymbol:v.yahoo,proxy:v.assetClass==="Commodity",contract:getContractSpec(v.display)}));
+      const forex=["EURUSD","GBPUSD","AUDUSD","NZDUSD","USDJPY","USDCHF","USDCAD"].map(symbol=>({symbol,category:"Forex",providerSymbol:symbol+"=X",proxy:false,identity:instrumentIdentity(symbol,{providerSymbol:symbol+"=X",source:"Yahoo Finance"}),contract:getContractSpec(symbol)}));
+      const others=[...new Map([...SYMBOL_ALIASES.values()].map(v=>[v.display,v])).values()].map(v=>({symbol:v.display,category:["XAUUSD","XAGUSD"].includes(v.display)?"Metals":["USOIL","BRENT"].includes(v.display)?"Oil":v.assetClass,providerSymbol:v.yahoo,proxy:v.assetClass==="Commodity"||/USDT$/.test(v.display),identity:instrumentIdentity(v.display,{providerSymbol:v.yahoo,source:"Yahoo Finance"}),contract:getContractSpec(v.display)}));
       return sendJson(res,200,{ok:true,instruments:[...forex,...others],provider:"Yahoo Finance; Binance fallback where supported",intervals:["15m","1h","1d"],availability:"Candidate mappings only; requested observations must be fetched and verified. No live bid/ask or streaming claim."});
     }
     if (req.method === "POST" && url.pathname === "/api/research/plan") {
-      return sendJson(res,200,{ok:true,plan:createPlan(await readBody(req))});
+      return sendJson(res,200,{ok:true,plan:budgetPlan(await readBody(req))});
     }
 
     if (req.method === "GET" && url.pathname === "/api/research/series") {
@@ -1695,6 +1697,9 @@ const server = http.createServer(async (req, res) => {
       const body = await readBody(req);
       const market = await getResearchMarketData(body.symbol || "EURUSD", body.timeframe || "intraday");
       const analysis = buildAnalysis(market, body);
+      analysis.identity=researchIdentity(analysis.symbol,analysis.timeframe,analysis.evidence,'legacy-window-14');
+      analysis.applicationVersion='7.5.0';analysis.schemaVersion='legacy-analysis-1';analysis.analysisEngineVersion='legacy-window-14';
+      analysis.indicatorMethodology={rsi14:'simple rolling 14 changes (not Wilder)',atr14:'simple rolling 14 true ranges (not Wilder)',ema:'SMA-seeded EMA; full closed-bar window',window:market.candles.length,datasetHash:analysis.evidence?.hash,lastTime:analysis.evidence?.lastTime};
       analysis.mtfa = { available: false, reason: "Independent multi-timeframe data is not fetched by this endpoint." };
       analysis.methodology = { type: "deterministic", score: "Heuristic confluence /100; not a probability of profit", closedBarsOnly:true, generatedAt: new Date().toISOString() };
       const enhanced = await enhanceWithOpenAI(analysis);

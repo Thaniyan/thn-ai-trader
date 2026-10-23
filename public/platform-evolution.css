@@ -211,3 +211,14 @@
 @media(max-width:1150px){#evoSettings .evo-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){#evoSettings .evo-settings-grid{grid-template-columns:minmax(0,1fr)}}
 .i7-research-options{display:grid;grid-template-columns:minmax(130px,.5fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:12px}.i7-research-options>div{min-width:0}.i7-research-options label{display:block;line-height:1.7;margin-bottom:5px}.i7-research-options input,.i7-research-options select,.i7-research-options textarea{width:100%;min-width:0}.i7-research-options textarea{height:74px}.i7-actions{gap:6px}.i7-panel>p{font-size:12px;line-height:1.8}
 @media(max-width:760px){.i7-research-options{grid-template-columns:minmax(0,1fr)}.i7-research-options textarea{height:60px}}
+
+/* Explicit independent source boundary, not an inferred candle failure. */
+.pro-tv-independent{padding:10px 12px;border-inline-start:3px solid var(--accent);font-size:.82rem;overflow-wrap:anywhere}
+.pro-tv-recovery:not([open]){padding:8px 12px;background:transparent;border:1px solid var(--border)}
+.pro-pinned-evidence{border-inline-start:3px solid var(--border);padding-inline-start:12px}
+#v75AnalysisIdentity,[data-legacy-identity]{overflow-wrap:anywhere;padding:12px;border:1px solid var(--border)}
+#v75AnalysisIdentity[data-historical="true"]{border-color:var(--warning,#b78324);font-weight:700}
+
+.v75-cost-option{display:flex!important;align-items:center;gap:10px;grid-column:1/-1}
+.v75-cost-option input[type=checkbox]{width:20px;height:20px;min-height:20px;flex:0 0 20px;accent-color:var(--accent)}
+.evo-next[data-budget-compliant="false"]{border-inline-start-color:#b78324}

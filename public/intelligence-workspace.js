@@ -1,8 +1,10 @@
+import {APPLICATION_VERSION} from './instrument-identity.js';
 import {cleanCommittee} from './intelligence-memory.js';
 /* No tools, credentials or financial authority in the conversation. */
 const key='thn_intelligence_history_v7',root=document.createElement('section');root.className='i7-panel';root.id='intelligenceAssistant';
 document.querySelector('#view-ai').prepend(root);
-const tr=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
+const noticeTranslations=new Map();
+const tr=(en,ar)=>{noticeTranslations.set(en,[en,ar]);noticeTranslations.set(ar,[en,ar]);return document.documentElement.lang==='ar'?ar:en;};
 let memorySelection=null;
 let providerInfo={available:false,provider:null},providerCheck=null,pilotMode='deterministic',localToken='',conversation=null;
 function forgetConversation(){const old=conversation;conversation=null;if(old&&localToken)void fetch('/api/intelligence/conversation/delete',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+localToken},body:JSON.stringify({sessionId:old.id})}).catch(()=>{});}
@@ -20,7 +22,7 @@ function context(){const c=window.THNContext?.get();return c?{symbol:c.symbol,in
 function signature(){return memorySelection?'saved:'+memorySelection.snapshot.id:JSON.stringify(context())}
 function contextKey(){const c=context();return c?`${c.symbol} / ${c.interval}`:'—';}
 function cancel(){generation++;controller?.abort();controller=null;status=tr('Cancelled. Submitted server calculations may finish; late results are ignored.','أُلغي الطلب. قد تكتمل الحسابات المرسلة؛ تُتجاهل النتائج المتأخرة.');render();}
-function researchExport(value){const {conversation,...research}=value;return research;}
+function researchExport(value){const {conversation,...research}=value;return {...research,applicationVersion:APPLICATION_VERSION,schemaVersion:value.schema,analysisEngineVersion:value.snapshot?.engineVersion||null};}
 function exportResult(){if(!lastResult)return;const url=URL.createObjectURL(new Blob([JSON.stringify(researchExport(lastResult),null,2)],{type:'application/json'}));const a=node('a');a.href=url;a.download='THN-research-committee.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 async function ask(question){
  const c=context();if(!c||!question.trim())return;const generative=pilotMode==='llm'&&!memorySelection;if(generative&&!localToken){status=tr('Enter the local access token in pilot controls.','أدخل رمز الوصول المحلي في أدوات التجربة.');render();return;}if(/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/.test(question)){status=tr('Do not enter credentials in research. Request rejected.','لا تدخل بيانات اعتماد في البحث. رُفض الطلب.');render();return;}controller?.abort();controller=new AbortController();const run=++generation,identity=signature();lastQuestion=question;activeSignature=identity;
@@ -72,5 +74,5 @@ function render(){
 const entry=button(tr('Open Research Assistant','فتح مساعد البحث'),()=>{window.switchView?.('ai');root.scrollIntoView({block:'start'});root.querySelector('#i7Question').focus()});document.querySelector('#view-dashboard').prepend(entry);
 window.addEventListener('thn:library',render);
 window.addEventListener('thn:research-context',()=>{if(!memorySelection&&activeSignature&&activeSignature!==signature()){if(controller)cancel();forgetConversation();}});
-window.addEventListener('thn:context',()=>{forgetConversation();memorySelection=null;draftThesis='';draftHorizon=24;cancel();render()});new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+window.addEventListener('thn:context',()=>{forgetConversation();memorySelection=null;draftThesis='';draftHorizon=24;cancel();render()});new MutationObserver(()=>{const pair=noticeTranslations.get(status);if(pair)status=tr(...pair);render();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 window.THNIntelligence={ask,cancel,result:()=>lastResult};render();void refreshProvider();

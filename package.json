@@ -1,6 +1,6 @@
 {
   "name": "thn-ai-trader",
-  "version": "7.4.0",
+  "version": "7.5.0",
   "description": "THN AI Trader - bilingual deterministic market research workstation, quantitative evidence and hypothetical risk planning.",
   "type": "module",
   "engines": {
