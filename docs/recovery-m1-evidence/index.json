@@ -1,0 +1,485 @@
+{
+  "canonicalBaseline": "53679a0be3f53967c5a409c579f8765d12d1afe5",
+  "historicalVisualReference": "a6d442e",
+  "productionScreenshots": false,
+  "originalPNGs": 68,
+  "automatedSnapshots": "Same viewport/language/theme and EURUSD / 1h; timestamps may differ",
+  "screenshotFiles": [
+    {
+      "file": "after-ai-ar-1440-dark.png",
+      "width": 1440,
+      "height": 2407,
+      "sha256": "9e30e53b8d5e60777d2c3e0b9bb708facee1d9c2165e74f46d9aab32a8e2f262",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-ai-ar-390-light.png",
+      "width": 390,
+      "height": 3768,
+      "sha256": "c7e37023a5f05bff4f43113eacf782b0aa607ac425277e82abcabb52528e94eb",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-ai-en-1440-dark.png",
+      "width": 1440,
+      "height": 2426,
+      "sha256": "4283e34c81059226548d6f2b9e52c2fec2c51134c7bf563d256f8b2db461aabf",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-ai-en-390-light.png",
+      "width": 390,
+      "height": 3994,
+      "sha256": "45b9c006c05f6f80e86ebb3c5cb3bcc5ad93ec9892972e54bba3bb7b57e062a2",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-brokers-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "29ef1aafb16b383424126c30597336b87c95b5d557965773eb131f9ea26613dd",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-brokers-ar-390-light.png",
+      "width": 390,
+      "height": 1000,
+      "sha256": "565d2f0ee9d2301873af5a88f4f40db3c2805ad026dc12f4692edd524ae0bd34",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-brokers-en-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "da08d36361c2bc1c8a1d529869a064424b396d4230964a9576003733161e0195",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-brokers-en-390-light.png",
+      "width": 390,
+      "height": 1000,
+      "sha256": "c6028a6ef9339d06bf219640f3e2a4ac1d009dd352e9ba5906a28b0a922a1c0b",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1567,
+      "sha256": "ca10fbf9c674250396d584d7b382b8299294f3394664ed780fa6209d8af7ba0e",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-ar-390-light.png",
+      "width": 390,
+      "height": 2241,
+      "sha256": "177bc39115021e1c94b05c19bd065cbb22c7aa77d7c5b3cc870752968937b153",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-ar-820-dark.png",
+      "width": 820,
+      "height": 1980,
+      "sha256": "87dfb1011d05d3d5e1fcfe0b2417b28c18e06c00811a910be3779299d09986b3",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-en-1440-dark.png",
+      "width": 1440,
+      "height": 1567,
+      "sha256": "b3246d0845538342cf037edff6441d3b3a6bb71d64f27781c769ceb9ab7ba27a",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-en-390-light.png",
+      "width": 390,
+      "height": 2283,
+      "sha256": "863f5444090cca3c69fd663f32d0deefc41533a23a2b717f770f5d153296e739",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-dashboard-en-820-dark.png",
+      "width": 820,
+      "height": 2061,
+      "sha256": "45c8f73e69bc481fbff4783a0dd8885d34bf5a095e881cb5cd11f73243deadd7",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-journal-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1364,
+      "sha256": "fee06d4d394fdf22e818d799e61d38aed564823674ac22325c39b80afdf80d6e",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-journal-ar-390-light.png",
+      "width": 390,
+      "height": 2122,
+      "sha256": "ce095d0a6c73f22ba114c5715c604818353f409893552570ee0637606d4f4ab2",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-journal-en-1440-dark.png",
+      "width": 1440,
+      "height": 1380,
+      "sha256": "cfbe16386d8cfd57f5f287f13b225c21e606d4e1571cc3414741d7d34982f128",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-journal-en-390-light.png",
+      "width": 390,
+      "height": 2156,
+      "sha256": "a36de742c30fcedd6fdf7c73f226f2402802f2aa129e13e2d17d9608e31a4468",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-markets-ar-1440-dark.png",
+      "width": 1440,
+      "height": 2369,
+      "sha256": "6033bcc9767eb9fc9df64e7c346c8991247b6c00da7fa32015c93e11544cd9a9",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-markets-ar-390-light.png",
+      "width": 390,
+      "height": 4003,
+      "sha256": "431699ef392eedda3df6ede66b7ade32f7025f794a7cb1d8b326176cf5257a49",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-markets-en-1440-dark.png",
+      "width": 1440,
+      "height": 2415,
+      "sha256": "6b159687981df42bca8c9b26cd71c3a2e23d4d816832c21ef94114f7a34de763",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-markets-en-390-light.png",
+      "width": 390,
+      "height": 4047,
+      "sha256": "58f7c30b684d3284557c358bea5e061cf043969954dcf5ef9116a426cac2e129",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-portfolio-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "7d15699fb1ad4ab941ea735735ce580bd9cd1bbb95eff81430fa22212bb06eb0",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-portfolio-ar-390-light.png",
+      "width": 390,
+      "height": 1000,
+      "sha256": "aabace2267a969250a050a32115aaf933d46905bddbfae071e96a2256e77b59b",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-portfolio-en-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "3f6d280bb5843c833df4dec02ec4040ec46bc7005dce656a1cb8990c0f3dab60",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-portfolio-en-390-light.png",
+      "width": 390,
+      "height": 1000,
+      "sha256": "b886ac1b2810d46fd76df65d25a211e56f773fcafeea92a7f269573d2acb0599",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-provider-unavailable.png",
+      "width": 1440,
+      "height": 1263,
+      "sha256": "a7ed81b3fa8cd05ccd333188ed125ea6571a4e823815cdee008e6b701e776721",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-risk-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1498,
+      "sha256": "bc3a93f3703718f6aee355f9e19ebaa87ff1831a68f6afcef17bf251e937f51e",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-risk-ar-390-light.png",
+      "width": 390,
+      "height": 2384,
+      "sha256": "cd38283e1f80aeedf14aac16f8d7228295dbc729ae9d81b930877c70917a2bfe",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-risk-en-1440-dark.png",
+      "width": 1440,
+      "height": 1498,
+      "sha256": "7d1d62617196ae0ef438f9593c2ab341ed378f94acea9b197bb851365c8840cf",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-risk-en-390-light.png",
+      "width": 390,
+      "height": 2520,
+      "sha256": "2a3fcb0e7ffb507e725c25c67c817ceee175ab1aad170054d8742baa7f7eb094",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-settings-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "1c2af4ec2bc82c793efcabc95bcfb8886fea76cf5220b5f7837b8150ccd63ddc",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-settings-ar-390-light.png",
+      "width": 390,
+      "height": 1743,
+      "sha256": "2a47f11bd1ba20f0589092bf9f536c132a2d59be003b46f314926cbce2460fbc",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-settings-en-1440-dark.png",
+      "width": 1440,
+      "height": 1024,
+      "sha256": "b2ad9d9be826bdf95a4532bb5762d83df6ef692dea51f2d0641388098cd8a32c",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-settings-en-390-light.png",
+      "width": 390,
+      "height": 1781,
+      "sha256": "7b6b18395dded277e75bfc06cfcc6ae35d91069573cb28c4ee96b16ea6784b9b",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1278,
+      "sha256": "e369cc180300e09400d409182bfcbd49211eabed653cb7851636bc21fe284e7c",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-ar-390-light.png",
+      "width": 390,
+      "height": 1888,
+      "sha256": "c947c9938aec897ab95217cdaedc31fe643c65c6364bc657709e256f1d8e0c14",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-ar-820-dark.png",
+      "width": 820,
+      "height": 1691,
+      "sha256": "7bdaaa503baa637d577d4357db7c04fb9cdab1d5c15102a9496d3be3b96736d5",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-en-1440-dark.png",
+      "width": 1440,
+      "height": 1278,
+      "sha256": "f854ac5fe6d1b7e483823ec64b71085fa280f6758e51fde64132a0dcff8f9437",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-en-390-light.png",
+      "width": 390,
+      "height": 1908,
+      "sha256": "895730ccc42afa30c2cfcc8ce74811cf883b47bf0ffa48dd6fd737c3b0075803",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "after-trading-en-820-dark.png",
+      "width": 820,
+      "height": 1754,
+      "sha256": "22741623ab985947b3ef484d12779110674e67192b0ebb0a08b3eb1f6b12723c",
+      "scope": "Local production package, offline regression fixture"
+    },
+    {
+      "file": "before-ai-ar-1440-dark.png",
+      "width": 1440,
+      "height": 2415,
+      "sha256": "8b9b3d6ba781145eaabac372ef2dcc4cee1ea0a5c8f3ad628740aae5c10a9a73",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-ai-ar-390-light.png",
+      "width": 390,
+      "height": 3818,
+      "sha256": "652945d93a5c37c7573d1e976de2d549d8affff11086358f1da7bdf7b49894f5",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-ai-en-1440-dark.png",
+      "width": 1440,
+      "height": 2434,
+      "sha256": "1be692f50a192432e0ec2bd433032096a649a0dd4e0f910c1fede724dd0f84e8",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-ai-en-390-light.png",
+      "width": 390,
+      "height": 4105,
+      "sha256": "8d0fee03c35e2a89cff05d691bc01cbea6bd9297a0ff9c0addfdb9b6570a02f4",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "3849ba49c058fbd753468c79e5914fbb6924f8a0c91c67681407a79c0c429731",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-ar-390-light.png",
+      "width": 390,
+      "height": 1158,
+      "sha256": "509bae2f4c6d09af06f260f9cfbde4705f531869f82093d1d276d0ffc6f01f42",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-ar-820-dark.png",
+      "width": 820,
+      "height": 1024,
+      "sha256": "f30161311bfec6ae1336fd808c5e4462466180bb5084a204abdeb308c1cbb0cc",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-en-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "cb1773da6f9e27e8b60af8434f1ed9e0225130c41e3f39eac55cbd24a8fc0014",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-en-390-light.png",
+      "width": 390,
+      "height": 1181,
+      "sha256": "7ba60b3de88af2d1812eb9eac185d3d71a28a99a686bc1ae052b7dabdd5a59ba",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-dashboard-en-820-dark.png",
+      "width": 820,
+      "height": 1024,
+      "sha256": "9fca9f63ee3dae76b50a68028790f989da2ece2188e7ec19ea2df5b726dda047",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-journal-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1373,
+      "sha256": "fdee7875af825fb95a06d3528fb2938c4d7a0e67e1cd810201511b35f329a790",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-journal-ar-390-light.png",
+      "width": 390,
+      "height": 2108,
+      "sha256": "badf0d27a3d85a037f0d36cecd2ecdfdcae29afcd6123082b57fbc6b5433c217",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-journal-en-1440-dark.png",
+      "width": 1440,
+      "height": 1390,
+      "sha256": "aebdcf7ef7d10987a6c303af09864cfe866333a665941f8d10aa413db9b1c95f",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-journal-en-390-light.png",
+      "width": 390,
+      "height": 2141,
+      "sha256": "1709c3cd886a5c03dbb73abb65dd77716b6276a70a93152ae373d3c640b443c9",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-risk-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1519,
+      "sha256": "17f394042ecc7ed7fe0a5eb53ba951813ba0d92aa4c3bf18202191814663da57",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-risk-ar-390-light.png",
+      "width": 390,
+      "height": 2433,
+      "sha256": "74945479bcde8ad7f9430e355f45af5fb8029a6d6361bca7a071a07219d5c03b",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-risk-en-1440-dark.png",
+      "width": 1440,
+      "height": 1519,
+      "sha256": "536c54c3b50916b6c7f6796355a674ff2051da708e66c3256f07cea66ac5e9ae",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-risk-en-390-light.png",
+      "width": 390,
+      "height": 2568,
+      "sha256": "144597522fdae6eb701661ba625bad6e2a3392cdb2fa9157cb2134c1681fe4ff",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-ar-1440-dark.png",
+      "width": 1440,
+      "height": 1428,
+      "sha256": "76ebddc4a301a653b6a3cf8be7d2a8fbdf74bb35077cc2f9179860bf7f8be183",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-ar-390-light.png",
+      "width": 390,
+      "height": 2064,
+      "sha256": "a434ad80f75d2150b170f283608c10f64f8539d346526284a645ead733e84921",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-ar-820-dark.png",
+      "width": 820,
+      "height": 1848,
+      "sha256": "fc97ba5859faf0a7104aabf88ea4140900f54c46f24ffbe1645ad1aaa787f7d4",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-en-1440-dark.png",
+      "width": 1440,
+      "height": 1428,
+      "sha256": "c017892a9c091ec6dea737d0e356b389d83986f666187bea0834981bf233281b",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-en-390-light.png",
+      "width": 390,
+      "height": 2107,
+      "sha256": "2e12d361c7355d46dd9f4c4813931a24bac72d890f40b868543b61899ac49b60",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "before-trading-en-820-dark.png",
+      "width": 820,
+      "height": 1930,
+      "sha256": "4c3fd0fb74e31c668c4124a4336dc062ff9cc0027534c5267a1c12889a71af01",
+      "scope": "Local v7.5 source, offline provider"
+    },
+    {
+      "file": "real-provider-ar-mobile.png",
+      "width": 390,
+      "height": 2241,
+      "sha256": "3fa4109354dea1c75c78027386cd4762572c479e1f972467fe8d68228a8556e7",
+      "scope": "Local current source, genuine provider data (stale)"
+    },
+    {
+      "file": "real-provider-en-desktop.png",
+      "width": 1440,
+      "height": 1567,
+      "sha256": "910ef07f498a2b0e52b840c1ae814d1f84723e4636ffaac95c2768511e9dc614",
+      "scope": "Local current source, genuine provider data (stale)"
+    },
+    {
+      "file": "reference-a6d442e-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "b144959c756acca1d7cd01e295a0824ef5017f60abb51fc79631d578255a3ab8",
+      "scope": "Historical public frontend only"
+    }
+  ]
+}
