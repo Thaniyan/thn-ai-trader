@@ -1141,6 +1141,7 @@ function switchView(viewName, {replace=false}={}) {
 
   const main = document.querySelector(".terminal-main");
   if (main) main.scrollTop = 0;
+  window.dispatchEvent(new CustomEvent("thn:view", {detail: {view: actualViewName}}));
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 

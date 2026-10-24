@@ -1,0 +1,62 @@
+[
+  {
+    "path": "server/research.js",
+    "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+    "matchesV75": true
+  },
+  {
+    "path": "server/backtest.js",
+    "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+    "matchesV75": true
+  },
+  {
+    "path": "server/evaluation.js",
+    "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+    "matchesV75": true
+  },
+  {
+    "path": "server/decision.js",
+    "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+    "matchesV75": true
+  },
+  {
+    "path": "server/replay.js",
+    "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+    "matchesV75": true
+  },
+  {
+    "path": "server/plan-budget.js",
+    "sha256": "4053ba086869313135d304c5a03ef4ab0654d1c0da73866c6037a983a6e9b85f",
+    "matchesV75": true
+  },
+  {
+    "path": "public/research-chart.js",
+    "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "matchesV75": true
+  },
+  {
+    "path": "public/professional-records.js",
+    "sha256": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "matchesV75": true
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "sha256": "18a61d54258418028e024ed5eefcf0f9506bc0fa946cd433bdb11a0552acd2cc",
+    "matchesV75": true
+  },
+  {
+    "path": "vercel.json",
+    "sha256": "8b6e70a37c4fffadf4b8c2fe824eb081c874dd855a6cc326de3375430e8a95e0",
+    "matchesV75": true
+  },
+  {
+    "path": "bun.lock",
+    "sha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c",
+    "matchesV75": true
+  },
+  {
+    "path": "package.json",
+    "sha256": "dc519c9fc94eb1ac4c7ede2bf5916a525c17b8ddc3d4e1dc3fe98d72b16646d4",
+    "matchesV75": true
+  }
+]
