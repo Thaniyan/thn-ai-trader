@@ -1,0 +1,19 @@
+{
+  "hostedCandidate": "d53cfe8a32784f9c1d9e68f391fdf48d2c91ae72",
+  "hostedPRRun": 40212079534,
+  "failure": "page horizontal overflow, EN dark/light, 320px at 200% zoom (160 CSS pixels)",
+  "reproducedHeading": "#evoDashboard h2",
+  "before": {
+    "boxWidth": 98,
+    "textWidth": 119.859375,
+    "pageWidth": 160,
+    "localPageClamped": true
+  },
+  "after": {
+    "boxWidth": 98,
+    "textWidth": 96.9375,
+    "pageWidth": 160
+  },
+  "fix": "overflow-wrap:anywhere for headings, no clipping or hidden content",
+  "test": "108 extra narrow heading/page containment cases, conditions synchronized with animation frames; original 202-case gate unchanged"
+}

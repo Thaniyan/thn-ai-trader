@@ -125,7 +125,7 @@
   },
   {
     "path": "functions/index.func/public/professional.css",
-    "sha256": "18c307d6ab63ed44c29c8eedfa6c1073d2f1d786030fdf0f4839beccce8a8f0e"
+    "sha256": "a4c3f64e93ca053fc2d6022cd3c3f4ad4c546a50fc3766feb9bda6507db87076"
   },
   {
     "path": "functions/index.func/public/replay-contract.js",
@@ -269,6 +269,6 @@
   },
   {
     "path": "runtime-manifest.json",
-    "sha256": "040a9925295dbb743ed026ceef34379a7876480244acc2f79bbdf1fca9f37d22"
+    "sha256": "ba37f020e42719f0e3af59361a36399947eb68078d5bf6a6b75885894c83041b"
   }
 ]

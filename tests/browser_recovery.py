@@ -60,5 +60,15 @@ with sync_playwright() as p:
     violations=s.evaluate('async()=> (await axe.run(document.querySelector(".view-active"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))');results['accessibility'].append([width,language,theme,view,violations]);assert not violations,results['accessibility'][-1]
     if (width==1440 and theme=='dark') or (width==390 and theme=='light'):s.screenshot(path=str(out/(view+'-'+language+'-'+str(width)+'-'+theme+'.png')),full_page=True,animations='disabled')
    if zoom==1 and width==820 and theme=='dark' and view in ['dashboard','trading']:s.screenshot(path=str(out/(view+'-'+language+'-820-dark.png')),full_page=True,animations='disabled')
+ # Narrow zoom reflow must contain actual heading text, not merely the page box.
+ # This catches the research-desk heading overflow even when a browser clamps it.
+ results['narrowHeadings']=[]
+ for width,language,theme in itertools.product([160,192,240],['en','ar'],['dark','light']):
+  s.set_viewport_size({'width':width,'height':450});cdp.send('Emulation.setDeviceMetricsOverride',{'width':width,'height':450,'deviceScaleFactor':2,'mobile':False});s.locator('.terminal-topbar [data-language='+language+']').click();s.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  for view in views:
+   go(view)
+   s.evaluate('()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+   issues=s.evaluate("""()=>{const out=[];if(document.documentElement.scrollWidth>innerWidth+1)out.push('page overflow');for(const e of document.querySelectorAll('.view-active .evo-panel h2,.view-active .pro-research-rail h2')){if(!e.getClientRects().length)continue;const box=e.getBoundingClientRect(),w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())if(n.textContent.trim()){const range=document.createRange();range.selectNodeContents(n);for(const r of range.getClientRects())if(r.width&&(r.left<box.left-1||r.right>box.right+1))out.push(e.textContent+' text exceeds heading box');}}return out;}""")
+   results['narrowHeadings'].append([width,language,theme,view,issues]);assert not issues,results['narrowHeadings'][-1]
  assert not results['errors'],results['errors'];b.close()
-(out/'acceptance.json').write_text(json.dumps(results,indent=2));print(json.dumps({'journeys':len(results['journeys']),'geometry':len(results['geometry']),'axe':len(results['accessibility']),'errors':results['errors']}))
+(out/'acceptance.json').write_text(json.dumps(results,indent=2));print(json.dumps({'journeys':len(results['journeys']),'geometry':len(results['geometry']),'axe':len(results['accessibility']),'narrowHeadings':len(results['narrowHeadings']),'errors':results['errors']}))

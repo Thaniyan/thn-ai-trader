@@ -59,6 +59,14 @@ unchanged 202-case layout assertions then passed. Expanded recovery coverage che
 technical-node visibility and real Library counts alongside drawing, zoom, Journal,
 mode visibility, provenance, all-nine-view, EN/AR, geometry and axe workflows.
 
+Hosted CI on `d53cfe8` exposed two EN page-overflow cases at 160 CSS pixels,
+despite all 21 local suites passing. The new research heading measured 119.86px
+inside a 98px box locally. Heading/panel text now wraps, and Markets filter minima
+respect their container. No clipping or hidden content is used. The additive
+regression checks text containment and page width in all nine views at 160/192/240px,
+both languages and themes (108 cases); the original 202-case gate is unchanged.
+The failed hosted run remains recorded in PR history.
+
 All server sources, numerical engines, chart calculations, record classification,
 TradingView synchronization/mode lifecycle, CI, Vercel and dependency configuration
 match the parent. Canonical legacy history is retained, not claimed sanitized.
