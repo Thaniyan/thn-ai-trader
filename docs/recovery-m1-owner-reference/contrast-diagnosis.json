@@ -1,0 +1,245 @@
+{
+  "candidate": "7de6d887b046c61301da4bbd031c2402d47ff7c9",
+  "pushRun": 40214786109,
+  "prRunPassed": 40214789730,
+  "cause": "Inherited 180ms color/background interpolation temporarily mismatched text and theme surface; actual immediate-state axe reproduction",
+  "before": [
+    {
+      "theme": "light",
+      "mode": "manual",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#proTradingViewMode"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.78 (foreground color: #a7b8cc, background color: #eef1f6, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "mode": "research",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(155, 166, 181)",
+          "background": "rgba(32, 51, 72, 0.47)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(91, 105, 124)",
+          "background": "rgba(232, 237, 244, 0.53)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        }
+      ],
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "mode": "research",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "color"
+          ]
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "0.18s",
+          "animations": [
+            "color"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#proTradingViewMode"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.78 (foreground color: #a7b8cc, background color: #eef1f6, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "mode": "manual",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(26, 38, 56)",
+          "background": "rgba(232, 237, 244, 0.976)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(85, 100, 121)",
+          "background": "rgba(32, 51, 72, 0.024)",
+          "transition": "0.18s",
+          "animations": [
+            "background-color",
+            "box-shadow",
+            "color"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#proResearchMode"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.06 (foreground color: #657487, background color: #717783, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "theme": "light",
+      "mode": "manual",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "none",
+          "animations": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transition": "none",
+          "animations": []
+        }
+      ],
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "mode": "research",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transition": "none",
+          "animations": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "none",
+          "animations": []
+        }
+      ],
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "mode": "research",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transition": "none",
+          "animations": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "none",
+          "animations": []
+        }
+      ],
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "mode": "manual",
+      "styles": [
+        {
+          "id": "proResearchMode",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transition": "none",
+          "animations": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transition": "none",
+          "animations": []
+        }
+      ],
+      "violations": []
+    }
+  ],
+  "fix": "Immediate source-selector color changes; shared buttons/navigation animate borders only",
+  "regression": "8 immediate theme/mode EN/AR contrast scans, one animation-frame synchronization, no arbitrary extra delay"
+}

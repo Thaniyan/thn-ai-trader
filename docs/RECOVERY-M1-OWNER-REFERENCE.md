@@ -67,6 +67,13 @@ regression checks text containment and page width in all nine views at 160/192/2
 both languages and themes (108 cases); the original 202-case gate is unchanged.
 The failed hosted run remains recorded in PR history.
 
+The following SHA (`7de6d8`) passed full PR CI, while push CI caught transient
+chart-source contrast during inherited 180ms color fades. An immediate-state axe
+probe reproduced 1.78:1 / 1.06:1 contrast. Shared controls now change text/background
+colors atomically; only borders may animate, and the source selector is immediate.
+Eight additional EN/AR theme/mode scans check the first rendered state without
+adding a sleep. [Diagnostic evidence](recovery-m1-owner-reference/contrast-diagnosis.json).
+
 All server sources, numerical engines, chart calculations, record classification,
 TradingView synchronization/mode lifecycle, CI, Vercel and dependency configuration
 match the parent. Canonical legacy history is retained, not claimed sanitized.

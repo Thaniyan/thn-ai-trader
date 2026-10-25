@@ -85,7 +85,7 @@
   },
   {
     "path": "public/platform-evolution.css",
-    "sha256": "5e8cf3847ca41fee1c004ce9eae2c374eea5b73c6db4a9fc64ed5fa13dfe661b"
+    "sha256": "c0e0ea9b202b285b9c85512eb9fcfcb14bad08d52a1fc6d09e983ce9a46f22ae"
   },
   {
     "path": "public/platform-evolution.js",
@@ -113,7 +113,7 @@
   },
   {
     "path": "public/professional.css",
-    "sha256": "a4c3f64e93ca053fc2d6022cd3c3f4ad4c546a50fc3766feb9bda6507db87076"
+    "sha256": "5a9c0aebd0df882a329286d243bd029a45744bcec8b86fc6f84a1d4a836bd1ba"
   },
   {
     "path": "public/replay-contract.js",

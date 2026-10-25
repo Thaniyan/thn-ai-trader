@@ -1,6 +1,6 @@
 {
   "ownerVisualAcceptance": false,
-  "scope": "Completed local final-core and targeted reflow checks; fresh full hosted CI on final child required; previous full local 21-suite run passed before hosted narrow-width finding",
+  "scope": "Completed final local targeted/source/package checks; fresh full hosted CI required on final child, tracked in PR #10",
   "unitIntegrationNumerical": 169,
   "security": 21,
   "systemAssertions": 10,
@@ -18,10 +18,11 @@
     "geometry": 288,
     "axe": 72,
     "pageErrors": [],
-    "narrowHeadingCases": 108
+    "narrowHeadingCases": 108,
+    "immediateContrastScans": 8
   },
   "reproduciblePackage": true,
-  "artifactManifestSHA256": "9b50f8f4b1cd8fa272ba946f64d43bf856bbe7821b98a40f618e40e567b46b36",
+  "artifactManifestSHA256": "2e0602f49bddf4a6856d545354541a058f1f3b066e49e3012f441c60c5424623",
   "runtimeFiles": 64,
   "artifactFiles": 68,
   "protectedSourcesUnchanged": [
@@ -69,5 +70,20 @@
       "layout"
     ],
     "reason": "Heading text exceeded its narrow box; fixed heading/panel text wrapping and container-bounded Markets filters; no assertion removal or clipping"
+  },
+  "tradingRemediation": {
+    "layouts": 24,
+    "accessibility": 24,
+    "pageErrors": []
+  },
+  "themeContrastCorrected": {
+    "candidate": "7de6d887b046c61301da4bbd031c2402d47ff7c9",
+    "prRun": 40214789730,
+    "prResult": "success",
+    "pushRun": 40214786109,
+    "pushResult": "failure",
+    "cause": "Inherited color/background fades caused genuine transient contrast failure; immediate-state axe reproduction 1.78:1 and 1.06:1",
+    "fix": "Immediate chart-source color changes; shared navigation/primary/ghost controls animate borders only",
+    "finalTargetedResult": "PASS"
   }
 }

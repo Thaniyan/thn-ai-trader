@@ -70,5 +70,15 @@ with sync_playwright() as p:
    s.evaluate('()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
    issues=s.evaluate("""()=>{const out=[];if(document.documentElement.scrollWidth>innerWidth+1)out.push('page overflow');for(const e of document.querySelectorAll('.view-active .evo-panel h2,.view-active .pro-research-rail h2')){if(!e.getClientRects().length)continue;const box=e.getBoundingClientRect(),w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())if(n.textContent.trim()){const range=document.createRange();range.selectNodeContents(n);for(const r of range.getClientRects())if(r.width&&(r.left<box.left-1||r.right>box.right+1))out.push(e.textContent+' text exceeds heading box');}}return out;}""")
    results['narrowHeadings'].append([width,language,theme,view,issues]);assert not issues,results['narrowHeadings'][-1]
+ # Actual immediate post-theme/mode contrast, without waiting for a color fade.
+ results['instantContrast']=[]
+ s.set_viewport_size({'width':768,'height':1000});cdp.send('Emulation.setDeviceMetricsOverride',{'width':768,'height':1000,'deviceScaleFactor':1,'mobile':False})
+ for language,theme,mode in itertools.product(['en','ar'],['dark','light'],['research','manual']):
+  s.locator('.terminal-topbar [data-language='+language+']').click();go('trading')
+  s.evaluate('(v)=>{document.documentElement.dataset.theme=v[0];THNProfessional.setMode(v[1])}',[theme,mode]);s.evaluate('()=>new Promise(requestAnimationFrame)')
+  state=s.locator('#proChartModes button').evaluate_all('(es)=>es.map(e=>({id:e.id,pressed:e.getAttribute("aria-pressed"),color:getComputedStyle(e).color,background:getComputedStyle(e).backgroundColor,transitions:e.getAnimations().map(a=>a.transitionProperty)}))')
+  assert state[0]['pressed']==str(mode=='research').lower() and state[1]['pressed']==str(mode=='manual').lower(),state
+  violations=s.evaluate('async()=> (await axe.run(document.querySelector("#proChartModes"),{runOnly:{type:"rule",values:["color-contrast"]}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))')
+  results['instantContrast'].append([language,theme,mode,state,violations]);assert not violations,results['instantContrast'][-1]
  assert not results['errors'],results['errors'];b.close()
-(out/'acceptance.json').write_text(json.dumps(results,indent=2));print(json.dumps({'journeys':len(results['journeys']),'geometry':len(results['geometry']),'axe':len(results['accessibility']),'narrowHeadings':len(results['narrowHeadings']),'errors':results['errors']}))
+(out/'acceptance.json').write_text(json.dumps(results,indent=2));print(json.dumps({'journeys':len(results['journeys']),'geometry':len(results['geometry']),'axe':len(results['accessibility']),'narrowHeadings':len(results['narrowHeadings']),'instantContrast':len(results['instantContrast']),'errors':results['errors']}))

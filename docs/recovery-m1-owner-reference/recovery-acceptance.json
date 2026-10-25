@@ -3580,5 +3580,183 @@
       "settings",
       []
     ]
+  ],
+  "instantContrast": [
+    [
+      "en",
+      "dark",
+      "research",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "true",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "false",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "en",
+      "dark",
+      "manual",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "false",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "true",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "en",
+      "light",
+      "research",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "true",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "false",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "en",
+      "light",
+      "manual",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "false",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "true",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "ar",
+      "dark",
+      "research",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "true",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "false",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "ar",
+      "dark",
+      "manual",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "false",
+          "color": "rgb(167, 184, 204)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "true",
+          "color": "rgb(237, 244, 252)",
+          "background": "rgb(32, 51, 72)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "ar",
+      "light",
+      "research",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "true",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "false",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        }
+      ],
+      []
+    ],
+    [
+      "ar",
+      "light",
+      "manual",
+      [
+        {
+          "id": "proResearchMode",
+          "pressed": "false",
+          "color": "rgb(82, 97, 118)",
+          "background": "rgba(0, 0, 0, 0)",
+          "transitions": []
+        },
+        {
+          "id": "proTradingViewMode",
+          "pressed": "true",
+          "color": "rgb(23, 35, 53)",
+          "background": "rgb(232, 237, 244)",
+          "transitions": []
+        }
+      ],
+      []
+    ]
   ]
 }

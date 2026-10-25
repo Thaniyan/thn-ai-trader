@@ -7,25 +7,25 @@
       "file": "ai-ar-1440-dark.png",
       "width": 1440,
       "height": 2481,
-      "sha256": "7a5f4b83439ec0c80607bb28d02a8678141d8a0cd1a70991d449d52df32ceba4"
+      "sha256": "eb2b24457c97cbbf1a0e221c6e3a82515563ab84721e95f60534b30eeff02eef"
     },
     {
       "file": "ai-ar-390-light.png",
       "width": 390,
       "height": 3820,
-      "sha256": "ac9586186c12635ea6848bc7bfaaeaec61fb24ca67413ce7a8bb8510bbf9c514"
+      "sha256": "23b325c0aaccabf930b69909f4501dcfbf317e80419c96b1ebcef974a9ee580c"
     },
     {
       "file": "ai-en-1440-dark.png",
       "width": 1440,
       "height": 2501,
-      "sha256": "fcd253153bed5e1e3feddb6b163585bd52c11be5d89bbe26c71be7589bc41685"
+      "sha256": "d63b2d9b7c836c6590d717979feb6e3ab0c8524202119b4f8b03e08a456146e0"
     },
     {
       "file": "ai-en-390-light.png",
       "width": 390,
       "height": 4130,
-      "sha256": "f5bd66f59d3beb1af914f09661eedce0a476389ea724428a6d2431f2db50b8c3"
+      "sha256": "c9c3b36e02e5380a60bdb66cfcc4f6f30cf3beb9e16aa5177341b045c0163607"
     },
     {
       "file": "before-ai-desktop-en.png",
@@ -79,7 +79,7 @@
       "file": "brokers-ar-1440-dark.png",
       "width": 1440,
       "height": 1000,
-      "sha256": "1b5eb3faa3b52e04010dd1ec9acc517f6352686a3ccac98a3480492a53c43436"
+      "sha256": "238167777aa3c006726e931b5755596c76632b82480d91676377499673a843ea"
     },
     {
       "file": "brokers-ar-390-light.png",
@@ -91,115 +91,115 @@
       "file": "brokers-en-1440-dark.png",
       "width": 1440,
       "height": 1000,
-      "sha256": "3d629775549659d5f1eebe4ae900672953f3ee81c80ece7c7cad57b8ae4253b8"
+      "sha256": "6615e21d86d86c2a6cee55ca4f7757f7e3fcb19ede85505b96a57d49613803e3"
     },
     {
       "file": "brokers-en-390-light.png",
       "width": 390,
       "height": 1000,
-      "sha256": "cf1a1b1a61cd896a4156bff3ad318b8f775b084b6d9418c2433f0c7c1761dcd9"
+      "sha256": "5513a310a7fc323b518585edf45757cc7554cd3ceccf9b97870676dd98de438a"
     },
     {
       "file": "comparison-dashboard-desktop-en.png",
       "width": 1800,
       "height": 1349,
-      "sha256": "15f5ae05f8d8cd2b41acfab1d8b1014e75cf53f3bd12eae564653fa53757cb24"
+      "sha256": "c9ba1fc791f6d5473272ca41fe54d9272553b005d69884bbe43a84682f51c762"
     },
     {
       "file": "comparison-risk-desktop-en.png",
       "width": 1800,
       "height": 1129,
-      "sha256": "e42e9d1d7efd13035e9d27954fd956c2ed282862b3e704fff6f0708e1a4a6bdd"
+      "sha256": "be0cf01338bd72fdd73ceee140a7acb07fc3a8bd2bce94817022d6608bbe29de"
     },
     {
       "file": "comparison-trading-desktop-en.png",
       "width": 1800,
       "height": 1070,
-      "sha256": "92db810bbd4100534a88657c3f642897b2d75cc8469b401b464a358674b3c6d9"
+      "sha256": "b9d92764bef0ecde4d671d82553ec47fa7a0f5fc64d23aab3a384e4b330f0cd5"
     },
     {
       "file": "comparison-trading-mobile-ar.png",
       "width": 860,
       "height": 2483,
-      "sha256": "493ceeff282cc1eab2e7f0d1ffcba128471f16816b348957e5a10381eef1c65f"
+      "sha256": "066f0c249e05b3b01fcfaafd3031fd145c53e9d6fb6dab871013c45b442c2ebb"
     },
     {
       "file": "dashboard-ar-1440-dark.png",
       "width": 1440,
       "height": 1880,
-      "sha256": "48b134c60e01f9b339a88553f17901ec56767db0a03b18e413f51bb08dbc0fa1"
+      "sha256": "b5a06409ab3394663caf6dbff1b78dfa5eec10cf2e6fab436690a6354cc3453e"
     },
     {
       "file": "dashboard-ar-390-light.png",
       "width": 390,
       "height": 2997,
-      "sha256": "2ad06388a59469b90068fa50e5daade84e3ed28cfaa717be4c4b2da95d59c650"
+      "sha256": "d043b1e4b1722cb242fbfabd0991b45821c87afa421f5c08cc203a6357001328"
     },
     {
       "file": "dashboard-ar-820-dark.png",
       "width": 820,
       "height": 2722,
-      "sha256": "d951f9ff71fcada6d9d7013d0c7e0aea885871d10125ae22f39b4d198619b262"
+      "sha256": "31205629779af7a9b56474d4aaf0acda1c96fc0fc4fabb1fbe7311e95636f4c0"
     },
     {
       "file": "dashboard-en-1440-dark.png",
       "width": 1440,
       "height": 1880,
-      "sha256": "7d1ac2b72adfed03cb4d8dd8f47a08aa6c020aaaa0b47f90a08682025dba0490"
+      "sha256": "64897dbc9d017f090a218ce077f9add3e381665e5f69e5d09eb8067026a9e6c9"
     },
     {
       "file": "dashboard-en-390-light.png",
       "width": 390,
       "height": 3023,
-      "sha256": "661961d18c785d860f17b6da317849285496d39b51deb8879596850d2889f2bb"
+      "sha256": "9c6edc2b4861aca8fe2b5bdc6d73d8eec0943a0b8ebfbc11078924613f15d931"
     },
     {
       "file": "dashboard-en-820-dark.png",
       "width": 820,
       "height": 2729,
-      "sha256": "1ad0e1f2fcf89190eb9993a4be9529dbec0b87db577e97ba2c051ffd380de870"
+      "sha256": "ed3ae4af6d2a691d30d5b00c1aebd4a0a7137304964bd7a101485559f0d3ac08"
     },
     {
       "file": "journal-ar-1440-dark.png",
       "width": 1440,
       "height": 1417,
-      "sha256": "4c16b7d159595c71b539eb46102d5c28661462d59765fc0d6536e0daf61abf16"
+      "sha256": "cf115b3a8bac2fec6eddd5abca4bd6b94cf6d1598b240d11911b1ee7ed6c2d61"
     },
     {
       "file": "journal-ar-390-light.png",
       "width": 390,
       "height": 2102,
-      "sha256": "47888711d1cb366322386d1c00d86f7b7d22f6a7207cbd64a56fabf01af5927e"
+      "sha256": "867d1c542e6690cb5444d75e7ad965c1a66249f5e84fae40eed02ac5bdeb8f23"
     },
     {
       "file": "journal-en-1440-dark.png",
       "width": 1440,
       "height": 1451,
-      "sha256": "e5454ee7e9416d0aaf46e8375e443092ed78d6a49ca49a7a7a2cc07ab02c569e"
+      "sha256": "d12f1454e195f03cfe4f2868d2fef404636d87c25430d0c93f6005ee3f6d35e3"
     },
     {
       "file": "journal-en-390-light.png",
       "width": 390,
       "height": 2191,
-      "sha256": "0b8c5e9fabcceea605df72330c891db5a587640deeec02fe62cda9d0733fe31a"
+      "sha256": "7b47345999743d409e3f3f1041f082fa96143650ff874f84239deb6107c08739"
     },
     {
       "file": "markets-ar-1440-dark.png",
       "width": 1440,
       "height": 2306,
-      "sha256": "9211d64b30eef0512e771735696582632f77b1486d25828c44a7773b7187ff42"
+      "sha256": "7c781f925d05a9953dca8d64bbc2abf773176038c6f22ca6f9dd0c6140d65dc6"
     },
     {
       "file": "markets-ar-390-light.png",
       "width": 390,
       "height": 3951,
-      "sha256": "f03a90c845acec4fce31ead8f6e8ec879baf62ebd75175cccebecfeb7d491700"
+      "sha256": "52295c4dfc55f4e3a3648f221f417bcd55f31d1373a33bd735010a45694190e2"
     },
     {
       "file": "markets-en-1440-dark.png",
       "width": 1440,
       "height": 2995,
-      "sha256": "3797df1f307a5b7f6a936c051940c9d6e02be8e13c36e22bd065f0848897363a"
+      "sha256": "39d80047491ed6e18457d0facd13ccca5f9ad5e9e34da0ab68aa39befcfb6156"
     },
     {
       "file": "markets-en-390-light.png",
@@ -223,19 +223,19 @@
       "file": "portfolio-ar-1440-dark.png",
       "width": 1440,
       "height": 1000,
-      "sha256": "cf77b8cbfdde936dd2af2097eb32e8d25a36fd1c91f9e180caff9d4219e61a2d"
+      "sha256": "dcf30628fe339840db79e7314784257f7e51bf6c7454197d6cd54f336f88e7e3"
     },
     {
       "file": "portfolio-ar-390-light.png",
       "width": 390,
       "height": 1000,
-      "sha256": "569594be52b1efdee4495cabded3f2628840dc27565ebb8c60e24fa28cb2c3d4"
+      "sha256": "fb7ac279cd1057f0249d8d03a838671714892ceb02a0c487fd744c2a0d73452e"
     },
     {
       "file": "portfolio-en-1440-dark.png",
       "width": 1440,
       "height": 1000,
-      "sha256": "67b83b79347e825a03fcf8e08719d2f7f470b9f8e28320440391e31653b04584"
+      "sha256": "c1034d46d196a6511c2c6a08789f8dbd78189a875b2b736a7640088f811a2896"
     },
     {
       "file": "portfolio-en-390-light.png",
@@ -247,7 +247,7 @@
       "file": "provider-unavailable.png",
       "width": 1440,
       "height": 1397,
-      "sha256": "d4565897b31705e7e2a3b5866498b3ee6b597fe02c6c30a20456b9793c381dda"
+      "sha256": "89831f51efc3bea94c4734f947296d086c415733d973c063e49017d88e5c91b8"
     },
     {
       "file": "real-provider-desktop-en.png",
@@ -265,19 +265,19 @@
       "file": "risk-ar-1440-dark.png",
       "width": 1440,
       "height": 1519,
-      "sha256": "44f828ca1b88c458e43d11f71123a889d07fac5cd1ff48ac15312da246de191a"
+      "sha256": "aa4ff278fb2e748b948e0cfa142fe5539ad604509a31078d3eddf7f7e4b4d5ae"
     },
     {
       "file": "risk-ar-390-light.png",
       "width": 390,
       "height": 2382,
-      "sha256": "6b2b04ad3ba351c98e17a2d206490bd0dbf1a3d2b4712333d173ad6368d94892"
+      "sha256": "fa2d69d5b3d99f0619227a2700d58576f35f2d2068d8e853f40d443586a77045"
     },
     {
       "file": "risk-en-1440-dark.png",
       "width": 1440,
       "height": 1514,
-      "sha256": "28e203e3003470b7c4136674906702e579d1a8e3774d78fd5bde4affbc8d7466"
+      "sha256": "a2d2655782bf3822233294f55140737c1714af1f396ccef3de29c4b24488fd5f"
     },
     {
       "file": "risk-en-390-light.png",
@@ -289,19 +289,19 @@
       "file": "settings-ar-1440-dark.png",
       "width": 1440,
       "height": 1019,
-      "sha256": "b9f61f3a3cd6f61fc63ae6b6728f7e2146e117fdc6c3f3955054b9803212909d"
+      "sha256": "cbfdad32e47c460f1d07a2e76c1eaad3a9b89da4da0c1d762c415d48fd030e6e"
     },
     {
       "file": "settings-ar-390-light.png",
       "width": 390,
       "height": 1726,
-      "sha256": "230d4550d77ee4d86d96eb68524f6d7fb8ae4fd92d7e340c973f10c1761a8344"
+      "sha256": "951d5f7ef794577ea0a41acbb8a36b9a60ddae20960d0be839342daad522bc38"
     },
     {
       "file": "settings-en-1440-dark.png",
       "width": 1440,
       "height": 1043,
-      "sha256": "59b3e5da6541a130b665afa58e11070c3e18d1f7be0c38e2342fa8a9bd5cb76f"
+      "sha256": "e6aa5a927445b78ad6f3b5f0b590e8bc497cc1e259024d4297ebac558f8997b7"
     },
     {
       "file": "settings-en-390-light.png",
@@ -313,37 +313,37 @@
       "file": "trading-ar-1440-dark.png",
       "width": 1440,
       "height": 1416,
-      "sha256": "569471a6f32fda69b98f23bf32dcb25d2e6d76f3389275c1715f51d26f73a211"
+      "sha256": "6da75c7fb9bd9e873048aa68099649997534ea327370fb2839b60d72fb9348dc"
     },
     {
       "file": "trading-ar-390-light.png",
       "width": 390,
       "height": 2215,
-      "sha256": "4cc1844939336083303efdfc8ed705a80bc946471151d0239726e9a8b7c05c17"
+      "sha256": "6e1d38eee08b8d26b9a4d6b703d7dac0971774b74012f70c2902e1bf117e0c1d"
     },
     {
       "file": "trading-ar-820-dark.png",
       "width": 820,
       "height": 2222,
-      "sha256": "0244fa56d1ae2a2898d96fd5166bf3d0008990c4f5e285e2467f08fe619346df"
+      "sha256": "9ef73e93a4a9202d298ab5f7f71fdd804674cf2188471a2c9fe80085261b1e5f"
     },
     {
       "file": "trading-en-1440-dark.png",
       "width": 1440,
       "height": 1416,
-      "sha256": "aa3440abd194cfadb3cdbf3a445ff6cefddc144564471a77c4cfd4531587e5fc"
+      "sha256": "d36d58342495681695c61e796e9e806b0d391405b51596141ff2cb077cb0d5cb"
     },
     {
       "file": "trading-en-390-light.png",
       "width": 390,
       "height": 2215,
-      "sha256": "475b0ce2b7464880e677c85a481330d312214cc76af25cc4814da1a4525ea7f5"
+      "sha256": "9c5fd426b2391067fbebcdf136775f7a37a49579698af919a574193017dac318"
     },
     {
       "file": "trading-en-820-dark.png",
       "width": 820,
       "height": 2181,
-      "sha256": "864783dbd1e3147ca5989aa887998636366abe07cf7973e4a1eb33cd32319da1"
+      "sha256": "009b269504bac6b0e18162406c45bd3efcc72e1bf535b1ed574481e3258faf30"
     }
   ],
   "pngCount": 57
