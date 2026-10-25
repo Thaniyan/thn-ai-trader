@@ -33,6 +33,7 @@ window.addEventListener('thn:view',locateTerminal);locateTerminal();
 const overview=document.createElement('section');overview.id='proChartSummary';
 overview.innerHTML='<p class="eyebrow" id="proSummaryTitle"></p><strong id="proSummaryTrend"></strong><p id="proSummaryStructure"></p><dl id="proSummaryLevels"></dl><p id="proSummaryLimit" class="work-caption"></p>';
 rail.prepend(overview);
+const technicalCard=document.createElement('section');technicalCard.className='pro-technical-card';technicalCard.innerHTML='<h3 id="proTechnicalTitle"></h3>';technicalCard.append($('proTechnicalEvidence'));overview.after(technicalCard);
 // The instrument is the visual anchor. The quote is an observed close, never a
 // broker balance or execution quote; values come only from the selected series.
 const quote=document.createElement('div');quote.className='pro-instrument-quote';
@@ -58,7 +59,7 @@ const frameName=id=>({'frame-15m':tr('15-minute timing','توقيت ١٥ دقي�
 function terminalEvidence(){const context=THNContext.get(),series=THNResearch.series(),brief=window.THNDecision?.brief();const matching=series?.symbol===context.symbol&&series?.provenance.interval===context.interval;
  const identity=instrumentIdentity(context.symbol,series?.provenance);
  const frame=matching&&brief?.symbol===context.symbol&&brief.interval===context.interval?brief.frames.find(f=>f.interval===context.interval&&f.available&&f.provenance.hash===series.provenance.hash):null;
- $('proRailTitle').textContent=tr('Analysis','التحليل');$('proScenarioTitle').textContent=tr('Trade scenario','سيناريو التداول');$('proSummaryTitle').textContent=tr('PINNED THN CONTEXT','سياق THN المثبت');$('proInstrumentName').textContent=context.symbol;$('proObservedClose').textContent=window.THNPresentation.price(matching?series.candles.at(-1)?.close:null,context.symbol);$('proObservedLabel').textContent=tr('Observed close · ','الإغلاق المرصود · ')+(matching?series.provenance.currency:'—');
+ $('proTechnicalTitle').textContent=tr('Technical snapshot','اللقطة الفنية');$('proRailTitle').textContent=tr('Market assessment','قراءة السوق');$('proScenarioTitle').textContent=tr('Trade scenario','سيناريو التداول');$('proSummaryTitle').textContent=tr('PINNED THN CONTEXT','سياق THN المثبت');$('proInstrumentName').textContent=context.symbol;$('proObservedClose').textContent=window.THNPresentation.price(matching?series.candles.at(-1)?.close:null,context.symbol);$('proObservedLabel').textContent=tr('Observed close · ','الإغلاق المرصود · ')+(matching?series.provenance.currency:'—');
  $('proSummaryTrend').textContent=frame?({bullish:tr('Upward trend','اتجاه صاعد'),bearish:tr('Downward trend','اتجاه هابط'),mixed:tr('Mixed trend','اتجاه مختلط'),neutral:tr('Neutral trend','اتجاه محايد')})[frame.trend]||tr('No clear trend','لا اتجاه واضح'):tr('Waiting for matched evidence','بانتظار أدلة مطابقة');
  const structure=frame?.lastStructure;
  $('proSummaryStructure').textContent=structure?tr('Confirmed structure: ','هيكل مؤكد: ')+({BOS:tr('Structure break','كسر الهيكل'),CHoCH:tr('Change of character','تغيّر الهيكل')})[structure.type]+' · '+window.THNPresentation.price(structure.price,context.symbol):frame?tr('No confirmed structure in this frame.','لا هيكل مؤكد في هذا الإطار.'):tr('Structure evidence unavailable.','أدلة الهيكل غير متاحة.');

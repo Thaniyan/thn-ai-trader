@@ -1,0 +1,62 @@
+{
+  "ownerVisualAcceptance": false,
+  "scope": "Completed local pre-publication checks at evidence capture; full final results tracked in PR #10 and final report",
+  "unitIntegrationNumerical": 169,
+  "security": 21,
+  "systemAssertions": 10,
+  "build": "PASS",
+  "lint": "PASS",
+  "workflow": "PASS",
+  "canonicalReleaseGuard": "PASS",
+  "dependencyAdvisories": 0,
+  "layout": {
+    "cases": 202,
+    "failures": 0
+  },
+  "recovery": {
+    "journeys": 8,
+    "geometry": 288,
+    "axe": 72,
+    "pageErrors": []
+  },
+  "reproduciblePackage": true,
+  "artifactManifestSHA256": "de067a2627e60abb872de97a7e09a5524ca6272d1973a83c013fc7f49d9eb089",
+  "runtimeFiles": 64,
+  "artifactFiles": 68,
+  "protectedSourcesUnchanged": [
+    "server.js",
+    "server/accountStore.js",
+    "server/auditLogger.js",
+    "server/backtest.js",
+    "server/brokerAdapters.js",
+    "server/decision.js",
+    "server/encryption.js",
+    "server/evaluation.js",
+    "server/intelligence-conversation.js",
+    "server/intelligence-local.js",
+    "server/intelligence-provider.js",
+    "server/intelligence.js",
+    "server/market-evidence.js",
+    "server/paper-intents.js",
+    "server/plan-budget.js",
+    "server/reconciliationEngine.js",
+    "server/replay.js",
+    "server/research.js",
+    "server/riskEngine.js",
+    "public/research-chart.js",
+    "public/professional-records.js",
+    ".github/workflows/ci.yml",
+    "vercel.json",
+    "package.json",
+    "bun.lock"
+  ],
+  "officialWidgetLifecycleUnchanged": true,
+  "realProvider": {
+    "closedCandles": 2000,
+    "status": "stale",
+    "gaps": 17,
+    "matchedEvidence": true
+  },
+  "productionDeploymentPerformed": false,
+  "ownerPDFPublished": false
+}

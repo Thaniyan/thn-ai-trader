@@ -1,0 +1,40 @@
+{
+  "fixture": false,
+  "scope": "Local source with actual provider requests through supported proxy; not Production",
+  "provenance": {
+    "source": "Yahoo Finance chart data",
+    "providerSymbol": "EURUSD=X",
+    "interval": "1h",
+    "requestedInterval": "1h",
+    "currency": "USD",
+    "count": 2000,
+    "firstTime": 1782352800000,
+    "lastTime": 1792785600000,
+    "providerTime": 1792790984000,
+    "status": "stale",
+    "discardedRows": 98,
+    "gapCount": 17,
+    "hash": "0d8258be73af86907c0e09322bf5f548df76826cb2f04739ac26a91e48fb676b",
+    "closedBarsOnly": true,
+    "observation": "Provider OHLCV observations",
+    "volumeAvailable": false
+  },
+  "matched": true,
+  "summary": "PINNED THN CONTEXTDownward trendConfirmed structure: Change of character \u00b7 1.12309Prior support1.11894Prior resistance1.12296Prior 20 bars. Chart levels follow the visible window. Not a forecast.",
+  "capabilities": {
+    "paperExecution": false,
+    "liveTrading": false,
+    "durableHostedAccounts": false,
+    "analysis": "deterministic",
+    "independentTimeframes": [
+      "15m",
+      "1h",
+      "1d"
+    ],
+    "historicalBacktesting": true,
+    "chronologicalValidation": true,
+    "browserSnapshotReplay": true,
+    "confidence": "uncalibrated confluence score"
+  },
+  "pageErrors": []
+}

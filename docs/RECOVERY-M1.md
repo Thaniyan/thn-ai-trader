@@ -1,3 +1,6 @@
+> Latest iteration: [owner-supplied reference revision](RECOVERY-M1-OWNER-REFERENCE.md).
+> The earlier iteration below remains preserved as design history. Owner acceptance is pending.
+
 # Milestone 1 — revised visual direction, awaiting owner acceptance
 
 The owner rejected candidate `5bd4421d15db44751a9745beb25ea14c162e0faa`.
