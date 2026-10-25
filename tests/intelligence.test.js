@@ -21,3 +21,12 @@ test('reflection waits for the declared horizon and never rewrites the original'
 test('gaps, incomplete coverage and future bars cannot supply a completed reflection',()=>{const original=committee(evidenceSnapshot(fixture()),'Committee'),later={symbol:'EURUSD',provenance:{interval:'1h'},candles:[{time:now+3600000,close:1},{time:now+9*3600000,close:2}]};assert.equal(reflectCommittee(original,later,{horizonHours:4,now:now+8*3600000}).status,'insufficient');});
 
 test('different ticker requests and provider identities are never silently substituted',()=>{const b=fixture();assert.equal(committee(evidenceSnapshot(b),'Analyze GBPUSD').outcome,'context_mismatch');b.selected.provenance.providerSymbol='EURUSD=X';b.frames[1].provenance.providerSymbol='BTCUSDT';const snapshot=evidenceSnapshot(b);assert.ok(snapshot.missing.includes('provider-identity:1h'));assert.ok(!snapshot.refs.some(r=>r.id==='frame-1h'));assert.equal(snapshot.fresh,false);});
+
+test('optional provider cannot launder unsupported prose through a valid citation',async()=>{
+ const snapshot=evidenceSnapshot(fixture()),env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'fixture-auth',OPENAI_API_KEY:'fixture-not-real',THN_AI_MODEL:'fixture-model',THN_AI_MAX_REQUESTS:'1',THN_AI_TOTAL_TOKEN_CEILING:'20000',THN_AI_MAX_OUTPUT_TOKENS:'200'};
+ for(const summary of ['Guaranteed profit.','Breaking news supports the position.','Success probability is high.','GBPUSD confirms this EURUSD thesis.','Buy now.','أرباح مضمونة','اشتر الآن','sk-proj-'+ 'x'.repeat(50)]){
+  const provider=createProvider({env,transport:async()=>({ok:true,json:async()=>({choices:[{message:{content:JSON.stringify({summary,citations:['frame-1h']})}}]})})});
+  await assert.rejects(provider(snapshot,'Review this market',{authorization:'Bearer fixture-auth'}));assert.equal(provider.stats().successfulResponses,0);assert.equal(provider.stats().modelCalls,1);
+ }
+ const result=validateGeneration({summary:'Evidence disagrees; review the opposing interpretation.',citations:['frame-1h']},snapshot);assert.equal(result.interpretationUnverified,true);assert.ok(validateGeneration({summary:'Review the supplied evidence. '.repeat(50),citations:['frame-1h']},snapshot).summary.length>1000);
+});

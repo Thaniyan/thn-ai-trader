@@ -1,3 +1,6 @@
+> Latest direction: [reference-led intelligent trading desk](RECOVERY-M1-INTELLIGENT-DESK.md).
+> Production remains unchanged; visual acceptance and actual generative validation are pending.
+
 > Latest iteration: [owner-supplied reference revision](RECOVERY-M1-OWNER-REFERENCE.md).
 > The earlier iteration below remains preserved as design history. Owner acceptance is pending.
 

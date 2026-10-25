@@ -1,0 +1,454 @@
+{
+  "provider": {
+    "source": "Yahoo Finance chart data",
+    "providerSymbol": "EURUSD=X",
+    "interval": "1h",
+    "requestedInterval": "1h",
+    "currency": "USD",
+    "count": 2000,
+    "firstTime": 1782356400000,
+    "lastTime": 1792789200000,
+    "providerTime": 1792956043000,
+    "status": "stale",
+    "discardedRows": 98,
+    "gapCount": 17,
+    "hash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+    "closedBarsOnly": true,
+    "observation": "Provider OHLCV observations",
+    "volumeAvailable": false
+  },
+  "review": {
+    "ok": true,
+    "schema": "THN-COMMITTEE-7",
+    "method": "deterministic",
+    "snapshot": {
+      "schema": "THN-EVIDENCE-7",
+      "symbol": "EURUSD",
+      "interval": "1h",
+      "asOf": 1792958396728,
+      "engineVersion": "6.6/6.3",
+      "selectedHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+      "refs": [
+        {
+          "id": "frame-15m",
+          "interval": "15m",
+          "trend": "neutral",
+          "source": "Yahoo Finance chart data",
+          "providerSymbol": "EURUSD=X",
+          "datasetHash": "1420fe5474db6ce1596e1b54cf3088e5f7b2ab5240e134ec7b740600cd64db6a",
+          "availableAt": 1792791000000,
+          "status": "stale",
+          "inputs": {
+            "close": 1.1204482316970825,
+            "ema20": 1.1199447698660547,
+            "ema50": 1.1201302735738297,
+            "rsi": 60.38972944703759,
+            "atr": 0.0003536111990336432,
+            "support": 1.1193194389343262,
+            "resistance": 1.1209505796432495
+          }
+        },
+        {
+          "id": "frame-1h",
+          "interval": "1h",
+          "trend": "bearish",
+          "source": "Yahoo Finance chart data",
+          "providerSymbol": "EURUSD=X",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792792800000,
+          "status": "stale",
+          "inputs": {
+            "close": 1.1204482316970825,
+            "ema20": 1.120488652656272,
+            "ema50": 1.1213408219108507,
+            "rsi": 47.63599796626269,
+            "atr": 0.0008953966430738952,
+            "support": 1.118943691253662,
+            "resistance": 1.1225864887237549
+          }
+        },
+        {
+          "id": "frame-1d",
+          "interval": "1d",
+          "trend": "bearish",
+          "source": "Yahoo Finance chart data",
+          "providerSymbol": "EURUSD=X",
+          "datasetHash": "0b4ee36b3cd41aa15aef9b477248d49bb429a53390ee3eef0fb4ad4dcdc3f35e",
+          "availableAt": 1792796400000,
+          "status": "recent",
+          "inputs": {
+            "close": 1.1221455335617065,
+            "ema20": 1.1266408929793845,
+            "ema50": 1.1371298508175647,
+            "rsi": 36.04362044193941,
+            "atr": 0.00608487119377038,
+            "support": 1.1114075183868408,
+            "resistance": 1.1411616802215576
+          }
+        },
+        {
+          "id": "event-0",
+          "kind": "structure",
+          "label": "LIQ",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792717200000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.12271249294281
+          }
+        },
+        {
+          "id": "event-1",
+          "kind": "structure",
+          "label": "FVG",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792724400000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.1218308210372925
+          }
+        },
+        {
+          "id": "event-2",
+          "kind": "structure",
+          "label": "FVG",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792746000000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.1205737590789795
+          }
+        },
+        {
+          "id": "event-3",
+          "kind": "structure",
+          "label": "LIQ",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792746000000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.1193194389343262
+          }
+        },
+        {
+          "id": "event-4",
+          "kind": "structure",
+          "label": "FVG",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792778400000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.1196954250335693
+          }
+        },
+        {
+          "id": "event-5",
+          "kind": "structure",
+          "label": "FVG",
+          "source": "THN causal structure engine",
+          "datasetHash": "f6f7493adfb4b70a9ce127aad1091e6443ce5f5ccb6848fbdec5af60f38e5a10",
+          "availableAt": 1792792800000,
+          "status": "historical_observation",
+          "inputs": {
+            "price": 1.1204482316970825
+          }
+        }
+      ],
+      "missing": [
+        "gaps:15m",
+        "discarded-rows:15m",
+        "gaps:1h",
+        "discarded-rows:1h",
+        "gaps:1d",
+        "discarded-rows:1d"
+      ],
+      "events": [
+        {
+          "type": "OB",
+          "time": 1792663200000
+        },
+        {
+          "type": "FVG",
+          "time": 1792666800000
+        },
+        {
+          "type": "FVG",
+          "time": 1792670400000
+        },
+        {
+          "type": "FVG",
+          "time": 1792674000000
+        },
+        {
+          "type": "FVG",
+          "time": 1792688400000
+        },
+        {
+          "type": "FVG",
+          "time": 1792692000000
+        },
+        {
+          "type": "LIQ",
+          "time": 1792717200000
+        },
+        {
+          "type": "FVG",
+          "time": 1792724400000
+        },
+        {
+          "type": "FVG",
+          "time": 1792746000000
+        },
+        {
+          "type": "LIQ",
+          "time": 1792746000000
+        },
+        {
+          "type": "FVG",
+          "time": 1792778400000
+        },
+        {
+          "type": "FVG",
+          "time": 1792792800000
+        }
+      ],
+      "limitations": [
+        "No predictive probabilities",
+        "No verified news, sentiment or macro publications",
+        "Historical evaluation and risk plans require explicitly selected verified records"
+      ],
+      "quantitative": null,
+      "fresh": false,
+      "id": "955974e59cbefb839875057a31d2c46cb616b6528358a4e68206d758a339ef96"
+    },
+    "roles": [
+      {
+        "role": "technical",
+        "references": [
+          "frame-15m",
+          "frame-1h",
+          "frame-1d",
+          "event-0",
+          "event-1",
+          "event-2",
+          "event-3",
+          "event-4",
+          "event-5"
+        ],
+        "supporting": [
+          "15m: neutral",
+          "1h: bearish",
+          "1d: bearish",
+          "Structure: LIQ",
+          "Structure: FVG",
+          "Structure: FVG",
+          "Structure: LIQ",
+          "Structure: FVG",
+          "Structure: FVG"
+        ],
+        "contradictory": [],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d"
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast."
+        ],
+        "hypothesis": "",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      },
+      {
+        "role": "quantitative",
+        "references": [],
+        "supporting": [],
+        "contradictory": [],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d",
+          "No server-verified historical evaluation was selected for this request. No performance claim can be made."
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast."
+        ],
+        "hypothesis": "",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      },
+      {
+        "role": "bull",
+        "references": [
+          "frame-1h",
+          "frame-1d"
+        ],
+        "supporting": [],
+        "contradictory": [
+          "1h: bearish",
+          "1d: bearish"
+        ],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d",
+          "No selected directional observation supports this thesis."
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast."
+        ],
+        "hypothesis": "Conditional thesis only; no order or price target is authorized.",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      },
+      {
+        "role": "bear",
+        "references": [
+          "frame-1h",
+          "frame-1d"
+        ],
+        "supporting": [
+          "1h: bearish \u00b7 frame-1h",
+          "1d: bearish \u00b7 frame-1d"
+        ],
+        "contradictory": [],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d"
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast."
+        ],
+        "hypothesis": "Conditional thesis only; no order or price target is authorized.",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      },
+      {
+        "role": "risk",
+        "references": [
+          "frame-15m",
+          "frame-1h",
+          "frame-1d",
+          "event-0",
+          "event-1",
+          "event-2",
+          "event-3",
+          "event-4",
+          "event-5"
+        ],
+        "supporting": [
+          "Financial execution is outside this assistant. Capital is hypothetical."
+        ],
+        "contradictory": [],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d"
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast.",
+          "Stops, gaps, slippage and contract identity require independent risk review."
+        ],
+        "hypothesis": "",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      },
+      {
+        "role": "manager",
+        "references": [
+          "frame-15m",
+          "frame-1h",
+          "frame-1d",
+          "event-0",
+          "event-1",
+          "event-2",
+          "event-3",
+          "event-4",
+          "event-5"
+        ],
+        "supporting": [],
+        "contradictory": [],
+        "missing": [
+          "gaps:15m",
+          "discarded-rows:15m",
+          "gaps:1h",
+          "discarded-rows:1h",
+          "gaps:1d",
+          "discarded-rows:1d"
+        ],
+        "uncertainties": [
+          "Direction is a rule-based interpretation, not a forecast."
+        ],
+        "hypothesis": "Insufficient or stale evidence: no-trade research outcome.",
+        "invalidation": [
+          "Revisit if the dataset changes or evidence becomes stale."
+        ],
+        "reviewStatus": "deterministic"
+      }
+    ],
+    "model": null,
+    "provider": null,
+    "modelCalls": 0,
+    "outcome": "insufficient",
+    "summary": "Insufficient or stale evidence: no-trade research outcome.",
+    "followUps": [
+      "Challenge the bullish hypothesis",
+      "Explain the biggest risks"
+    ],
+    "navigation": {
+      "view": "trading",
+      "symbol": "EURUSD",
+      "interval": "1h"
+    },
+    "financialExecution": false
+  },
+  "state": {
+    "available": false,
+    "hostedDisabled": true,
+    "provider": null,
+    "model": null,
+    "mode": "deterministic",
+    "busy": false,
+    "method": "deterministic",
+    "language": "en"
+  },
+  "localReviewLatencyMs": 262,
+  "scope": "Local source, actual provider observations; not Production; no model run",
+  "arabicReview": {
+    "method": "deterministic",
+    "language": "ar",
+    "outcome": "insufficient"
+  },
+  "pageErrors": []
+}

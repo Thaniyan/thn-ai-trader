@@ -1,0 +1,63 @@
+{
+  "unit": {
+    "pass": 170,
+    "fail": 0
+  },
+  "security": {
+    "pass": 21,
+    "fail": 0
+  },
+  "system": {
+    "pass": 10,
+    "fail": 0
+  },
+  "fullBrowserRun": {
+    "suites": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "layout",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency",
+      "recovery",
+      "assisted_desk"
+    ],
+    "failed": [],
+    "scope": "Full local run before targeted viewport/ticket/optional-output-compatibility corrections"
+  },
+  "finalTargetedSuites": [
+    "paper_review",
+    "assisted_desk",
+    "layout",
+    "recovery"
+  ],
+  "finalTargetedAllPassed": true,
+  "layoutCases": 202,
+  "recovery": {
+    "journeys": 8,
+    "geometry": 288,
+    "axe": 72,
+    "narrowHeadings": 108,
+    "instantContrast": 8
+  },
+  "dependencyVulnerabilities": 0,
+  "buildLintWorkflowSourceGuards": "pass",
+  "reproduciblePackageManifest": "725a3e8d31ba4282c1795738dca131630a1fbc55f6a79d7d13ea415b1f125503",
+  "realModelRun": false,
+  "hostedCI": "Pending final commit; all 23 browser suites required",
+  "production": "Unchanged; visual acceptance pending"
+}

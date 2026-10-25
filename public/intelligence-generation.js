@@ -11,7 +11,7 @@ export function evidenceState(snapshot){const trends=new Set(snapshot.refs.filte
 export function validateGeneration(value,snapshot,{strict=false,expectedRoles=null}={}){
  if(!value||typeof value.summary!=='string'||value.summary.length>4000||!Array.isArray(value.citations)||!value.citations.length||value.citations.length>12||new Set(value.citations).size!==value.citations.length||value.citations.some(c=>!snapshot.refs.some(r=>r.id===c)))throw Error('Invalid model schema or citation');
  if(/\p{N}|[%٪]/u.test(value.summary.normalize('NFKC')))throw Error('Unverified numeric model statement');
- if(!strict)return {summary:value.summary,citations:[...value.citations]};
+ if(!strict){const summary=safeInterpretation(value.summary,4000);if(conflictsWithInstrument(summary,snapshot.symbol))throw Error('Conflicting instrument');return {summary,citations:[...value.citations],interpretationUnverified:true};}
  if(Object.keys(value).some(k=>!['schema','snapshotId','symbol','interval','summary','citations','claims','roles','evidenceState','uncertainties'].includes(k)))throw Error('Unexpected model field');
  if(value.schema!=='THN-GENERATION-7.1'||value.snapshotId!==snapshot.id||value.symbol!==snapshot.symbol||value.interval!==snapshot.interval||value.evidenceState!==evidenceState(snapshot))throw Error('Model context or contradiction mismatch');
  if(!Array.isArray(value.roles)||!value.roles.length||value.roles.length>6||new Set(value.roles).size!==value.roles.length||value.roles.some(r=>!roles.includes(r))||expectedRoles&&JSON.stringify(value.roles)!==JSON.stringify(expectedRoles))throw Error('Unrequested specialist roles');

@@ -86,7 +86,7 @@ html[dir="rtl"] .sidebar { border-right:0; border-inline-end:1px solid var(--bor
 @media(max-width:760px) {
  .app-shell {display:block} .sidebar {position:sticky;top:0;height:auto;padding:8px 10px;gap:0;z-index:30;background:var(--bg-2)}
  .sidebar .brand,.sidebar-status-tag,.sidebar .side-card,.sidebar .disclaimer{display:none}
- .nav-stack {display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:6px;padding:2px 0 5px}
+ .nav-stack {display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:2px 0 5px}
  .nav-stack .nav {flex:0 0 auto;white-space:nowrap;padding:10px 12px;font-size:12px;min-height:40px}
  .terminal-main {padding:12px} .terminal-topbar{padding:12px;flex-wrap:wrap;gap:8px;margin-bottom:18px} .topbar-controls{flex-wrap:wrap;gap:8px} .brand-titles small{display:none} .broker-status-pill{display:none}
  .work-heading{display:block;margin:16px 0} .work-heading h1{font-size:25px} .work-heading .work-mode{margin-top:14px}
@@ -99,7 +99,7 @@ html[dir="rtl"] .sidebar { border-right:0; border-inline-end:1px solid var(--bor
 @media(prefers-reduced-motion:reduce) {*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 #view-settings .badge { color:var(--text); background:var(--bg-2); }
 @media(max-width:760px) {
- .nav-stack .nav { width:auto!important; }
+ .nav-stack .nav { width:auto; }
  .terminal-topbar { display:flex!important; min-height:0; }
  .topbar-brand { flex:0 0 auto; }
  .topbar-brand .brand-titles { display:none; }

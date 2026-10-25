@@ -16,7 +16,11 @@ with sync_playwright() as p:
   s.wait_for_function('()=>!document.querySelector(".view-active").getAnimations({subtree:true}).some(a=>a.playState==="running"&&a.effect?.getComputedTiming().endTime!==Infinity&&a.effect?.target?.getClientRects().length)')
  def matched(symbol,interval):s.wait_for_function('(c)=>THNResearch.series()?.symbol===c[0]&&THNDecision.brief()?.symbol===c[0]&&THNDecision.brief()?.interval===c[1]',arg=[symbol,interval])
  expect(s.locator('#view-dashboard #qCandles')).to_be_visible();assert s.locator('#qCandles').count()==1
- chart=s.locator('#qCandles').bounding_box();assert chart['y']<400 and chart['width']>800 and chart['height']>=400,chart
+ # Owner requested the original branded market-entry flow ahead of the chart.
+ # Require the working entry controls and at least 400px of chart in the first
+ # desktop viewport; keep the original chart dimensions and identity assertions.
+ expect(s.locator('#evoDeskLead #qSymbol')).to_be_visible();expect(s.locator('#evoRunDesk')).to_be_enabled()
+ chart=s.locator('#qCandles').bounding_box();assert chart['width']>800 and chart['height']>=400 and min(chart['height'],1000-chart['y'])>=400,chart
  # Identity is compared with an object reference, not a fake substitute chart.
  s.evaluate('window.__recoveryChart=THNResearch.chart')
  go('trading');assert s.evaluate('THNResearch.chart===window.__recoveryChart');expect(s.locator('#view-trading #qCandles')).to_be_visible()

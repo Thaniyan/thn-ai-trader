@@ -1,0 +1,251 @@
+{
+  "scope": "Local captures, not Production. Before is parent a7c60a1 source; actual provider captures labeled real. Owner PDF private.",
+  "screenshots": [
+    {
+      "file": "after-dashboard-desktop-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "bf4ef8db373fab737c8d5281daacb22c6b30e3fc4966cfa8458f81a40b5fd413"
+    },
+    {
+      "file": "after-dashboard-desktop-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "d50b2a308fe35d85375ca85566b596fc6b2e92c63c7b8dcd5befc393f63194b9"
+    },
+    {
+      "file": "after-dashboard-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "3ddbc444baef514d757baa35c69d73cccfb9c73c6daacb67a61116839e245209"
+    },
+    {
+      "file": "after-dashboard-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "2e872d487d1210bb5fbf1c0c6993670707b3e0ed0ea9f4a7c349bb96139dfa77"
+    },
+    {
+      "file": "after-trading-desktop-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ea2881a8abb8745ab538ac0633a5929693fda8fd4d6d4140453e079bcf3e368e"
+    },
+    {
+      "file": "after-trading-desktop-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "34f7f30c52b0fa8bba40b91411cd75b83bb29ece871ec0878c61312675794848"
+    },
+    {
+      "file": "after-trading-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "ac1a1e1fcd069569b496657eed97bb23f5f11e48df617c63bf48ef68b55da84d"
+    },
+    {
+      "file": "after-trading-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "8923ae1ce928caa154fddec93e89ded75012b0516899550d6ac3710a2d80c168"
+    },
+    {
+      "file": "before-dashboard-desktop-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ed510fe69ce889ede21dc8ebd33e1dbd37fb6cfb9be444c512ae4c2c2c30fc1b"
+    },
+    {
+      "file": "before-dashboard-desktop-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "25c1fb70707294204372360bf1151e10369c2ddd2f631e0eee2eea232d6e7fd7"
+    },
+    {
+      "file": "before-dashboard-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "1dd1564af72685a9b1952711fd9a163755faef42ad60b60b3cefaaa2c8cfc078"
+    },
+    {
+      "file": "before-dashboard-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "578622fd5353cfed44f4cb7f78d9369a2c9e256535c6b526488beb2d195c95f3"
+    },
+    {
+      "file": "before-trading-desktop-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "97d2e1e9ddc954018d32d482f65d102fa352c1004b092b4af2446f16212ad713"
+    },
+    {
+      "file": "before-trading-desktop-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "71e50ba5e846fca068e3d651f1aef72c65f9d7cca193fe77c34f4738d8733a6b"
+    },
+    {
+      "file": "before-trading-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "1661d1e34d0bca471ff17122ef4af5c6cdec5ae3a013d082965cd471e062b360"
+    },
+    {
+      "file": "before-trading-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "8f54220a91b2262e82bbdd92c1267e9eae058d4daf593603be398321fd280480"
+    },
+    {
+      "file": "real-decision-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "ec2dd500e238eaaef74bb8c9363715f8cba64ba7f4a489cf3a898c8ba7fc7b20"
+    },
+    {
+      "file": "real-decision.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "88366457d09a4e06e29e3f9dd9da5e9ced291c20148bbcf198dc561391dc1cac"
+    },
+    {
+      "file": "real-desktop-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "1a6b821e19a203271b6256a7b7ff1f95a55da7d61dfef6412a8bea7b4c7a839c"
+    },
+    {
+      "file": "real-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ca0358482e8728c69202aefbda9a486d451dbc233adabc7ff61d29560f47dd04"
+    },
+    {
+      "file": "real-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "e9763092c493127896e3e3191b3bf8d5060748f1f497dc9a7597bb6bb8012ce9"
+    },
+    {
+      "file": "real-mobile-review-ar.png",
+      "width": 390,
+      "height": 4470,
+      "sha256": "2abff63881fdcbd63cb77955618aa4203293c98b78a79901edc990c97bf720ed"
+    },
+    {
+      "file": "real-reasoning-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "3997e5c29fa1e24663445d40ced1ddd6c0173c256fb950e5afc14557f588a7bc"
+    },
+    {
+      "file": "view-ai-ar-390-light.png",
+      "width": 390,
+      "height": 3922,
+      "sha256": "32e60470b5de53376b3fc3d7dd383b1fb42c613c3619834af3f55d6d89798333"
+    },
+    {
+      "file": "view-ai-en-1440-dark.png",
+      "width": 1440,
+      "height": 2501,
+      "sha256": "7acddd0863c31bdc3a6beb1d371499f02c90f7d513833b5d005ede27b2ea754e"
+    },
+    {
+      "file": "view-brokers-ar-390-light.png",
+      "width": 390,
+      "height": 1047,
+      "sha256": "4ee1dc5e7f87d1bf295f52b232a06956871792ade7e16436b13a9dc684c6a8a5"
+    },
+    {
+      "file": "view-brokers-en-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ed7935c75ffb54724f0926f87964fe3d64a2304bdaed1a8fa95bd9ec6621a79b"
+    },
+    {
+      "file": "view-dashboard-ar-390-light.png",
+      "width": 390,
+      "height": 4456,
+      "sha256": "f380d700547b147c8f14af38cc0808833d380f79f711996e59ae76ca8174e196"
+    },
+    {
+      "file": "view-dashboard-en-1440-dark.png",
+      "width": 1440,
+      "height": 2623,
+      "sha256": "40fb00a872e229899cff8aca2ee67c3b06c9b739e14ccc60b9d937d8af9a4651"
+    },
+    {
+      "file": "view-journal-ar-390-light.png",
+      "width": 390,
+      "height": 2204,
+      "sha256": "12b51062e0e6b7be44743ed2b0ecc1756487daed0f1de1ba8c84a8e3aff882c8"
+    },
+    {
+      "file": "view-journal-en-1440-dark.png",
+      "width": 1440,
+      "height": 1451,
+      "sha256": "05a3b66181bb03766c19cee0fff0f2b17d6f9299a63a3505d68228392cf40b0a"
+    },
+    {
+      "file": "view-markets-ar-390-light.png",
+      "width": 390,
+      "height": 4053,
+      "sha256": "d9dbbb6fc67cb2430a3de84c2e1425c820feccdf831af804671096acdd760ba0"
+    },
+    {
+      "file": "view-markets-en-1440-dark.png",
+      "width": 1440,
+      "height": 2995,
+      "sha256": "52f41d74980c6cbde5816047402442a147c4fc2e820d42930d19821f7ebcef88"
+    },
+    {
+      "file": "view-portfolio-ar-390-light.png",
+      "width": 390,
+      "height": 1010,
+      "sha256": "4a3589974fd5ebfe671c5a68b1472e3ee6f6721add5261572164476cadf8341d"
+    },
+    {
+      "file": "view-portfolio-en-1440-dark.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ecf1a4e62d4a65d5e7d0c292beb12c698449e7ecaa9c98ff89b32af9f8a1aba2"
+    },
+    {
+      "file": "view-risk-ar-390-light.png",
+      "width": 390,
+      "height": 2484,
+      "sha256": "a07a276e564112b5541cafd73e0c7dd4914d703c672c5fb64562063e489de340"
+    },
+    {
+      "file": "view-risk-en-1440-dark.png",
+      "width": 1440,
+      "height": 1514,
+      "sha256": "ddcc62af507d21abe8852d70728588e85fd0db2f735d1d36c134594d02cb6ee6"
+    },
+    {
+      "file": "view-settings-ar-390-light.png",
+      "width": 390,
+      "height": 1828,
+      "sha256": "2bd225800173eb03b811fe6321aee9f45735a1f15babf28008e27e3b52e25553"
+    },
+    {
+      "file": "view-settings-en-1440-dark.png",
+      "width": 1440,
+      "height": 1043,
+      "sha256": "3d3b097c225719971fd62b4bbfa3448fce83ea8b517388a0b2b2b2aa35c6104e"
+    },
+    {
+      "file": "view-trading-ar-390-light.png",
+      "width": 390,
+      "height": 3333,
+      "sha256": "1757bede9bb7ad0e53f5e58286fe05dd90018175e598676a22881a83741ac8c4"
+    },
+    {
+      "file": "view-trading-en-1440-dark.png",
+      "width": 1440,
+      "height": 1947,
+      "sha256": "e034d8a299385cb182ba9504510b8d970f88fb0012dd38f77019126d65269290"
+    }
+  ]
+}
