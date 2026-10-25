@@ -1,0 +1,7 @@
+{
+  "source": "historical",
+  "local": true,
+  "productionCapture": false,
+  "provider": "Historical public frontend only; no old backend or account state",
+  "errors": []
+}

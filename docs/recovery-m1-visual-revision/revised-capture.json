@@ -1,0 +1,7 @@
+{
+  "source": "revised",
+  "local": true,
+  "productionCapture": false,
+  "provider": "offline regression fixture",
+  "errors": []
+}

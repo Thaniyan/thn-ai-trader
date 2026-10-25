@@ -1,0 +1,91 @@
+{
+  "ownerVisualAcceptance": false,
+  "scope": "Local CI-equivalent validation; fresh hosted CI required after publication",
+  "initialComprehensiveBrowserRun": {
+    "passed": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency",
+      "recovery"
+    ],
+    "failed": [
+      "layout"
+    ],
+    "cause": "Inherited all-property navigation transition animated widths at zoom breakpoints; genuine overflow, corrected to color-only transitions",
+    "logsPreservedOutsideGit": "/workspace/work/recovery-m1-revision/final"
+  },
+  "finalCorrectedFocusedRuns": {
+    "layout": {
+      "cases": 202,
+      "failures": 0
+    },
+    "recovery": {
+      "journeys": 8,
+      "geometry": 288,
+      "axe": 72,
+      "pageErrors": []
+    }
+  },
+  "finalGateCoverage": "All 21 suites passed across comprehensive run and focused correction; full fresh hosted run still required",
+  "unitIntegrationNumerical": {
+    "passed": 169,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0,
+    "rerunAfterCorrection": true
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "build": "PASS after correction",
+  "lint": "PASS after correction",
+  "workflow": "PASS",
+  "sourceGuard": {
+    "script": "scripts/ci/release-guard.mjs",
+    "result": "PASS",
+    "policy": "Canonical descendant; current and newly added source exclusions; numerical parity",
+    "independentHistoryGuard": "Not applicable to canonical integrated history: legacy source-guard.mjs reports pre-existing legacy objects and ancestry, not a newly sanitized repository"
+  },
+  "dependencyAudit": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0,
+    "info": 0
+  },
+  "packaging": {
+    "reproducible": true,
+    "runtimeFiles": 64,
+    "artifactFiles": 68,
+    "artifactManifestSHA256": "7b785ffc13dbfdceb6776262eb7c50551ec65cbbb84bc25a7b05af311b631ed2"
+  },
+  "realProvider": {
+    "run": true,
+    "localOnly": true,
+    "closedCandles": 2000,
+    "status": "stale",
+    "gaps": 17,
+    "matchedEvidence": true
+  },
+  "externalTradingViewCandles": "Not established by fixtures or local provider screenshots",
+  "productionChanged": false
+}
