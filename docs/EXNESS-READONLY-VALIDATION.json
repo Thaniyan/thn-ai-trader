@@ -1,0 +1,73 @@
+{
+  "base": "96f86c99907467932adf5b21e263dc55108a5f73",
+  "branch": "feature/exness-readonly",
+  "unitIntegrationNumerical": 186,
+  "dedicatedExnessProtocolSecurityCases": 9,
+  "security": 21,
+  "system": 10,
+  "browserSuites": [
+    "workstation",
+    "research",
+    "research_outage",
+    "quality",
+    "decision",
+    "library_reliability",
+    "maturity",
+    "terminal",
+    "intelligence",
+    "intelligence_memory",
+    "layout",
+    "pilot",
+    "trust",
+    "professional",
+    "journal_lifecycle",
+    "trading_remediation",
+    "evolution",
+    "consolidation",
+    "experience",
+    "consistency",
+    "recovery",
+    "assisted_desk",
+    "paper_review",
+    "evidence_workflow",
+    "broker_workspace"
+  ],
+  "build": "passed",
+  "lint": "passed",
+  "workflowGuard": "passed",
+  "sourceGuard": "passed; six protected numerical files unchanged",
+  "dependencyAudit": {
+    "policy": "Block high/critical; report lower severity; errors block",
+    "counts": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0,
+      "info": 0
+    },
+    "blocking": false
+  },
+  "productionPackage": {
+    "output": "/workspace/work/thn-v71-resumed/.vercel/output",
+    "runtimeFiles": 68,
+    "artifactFiles": 72,
+    "manifestSHA256": "719b466bc58bf264047dbf9352c2cc379fa2d52b17204d3969dfde8d83577796"
+  },
+  "realExnessRequests": 0,
+  "realBrokerAuthenticated": false,
+  "realCredentialsProvisioned": false,
+  "realOrdersSubmitted": 0,
+  "websiteConnected": false,
+  "publicEndpointAdded": false,
+  "newDependencies": false,
+  "paidResources": false,
+  "pushOrDeploy": false,
+  "pending": [
+    "Owner account API availability and demo/real eligibility",
+    "Final official response schema and genuine authenticated read validation",
+    "Approved network/secret provisioning",
+    "Separate secure multi-user hosted connection architecture"
+  ],
+  "evidence": "Synthetic unregistered keys and provider fixtures; all account monetary examples fictional.",
+  "packageReproduced": true
+}
