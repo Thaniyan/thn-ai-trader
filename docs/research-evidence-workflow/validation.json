@@ -1,0 +1,73 @@
+{
+  "base": "7a742fdfc6b370afdd30e7cac485ad65aa3912d6",
+  "unit": {
+    "passed": 174,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "fullPackagedBrowserRun": {
+    "passed": [
+      "tests/browser_workstation.py",
+      "tests/browser_research.py",
+      "tests/browser_research_outage.py",
+      "tests/browser_quality.py",
+      "tests/browser_decision.py",
+      "tests/browser_library_reliability.py",
+      "tests/browser_maturity.py",
+      "tests/browser_terminal.py",
+      "tests/browser_intelligence.py",
+      "tests/browser_intelligence_memory.py",
+      "tests/browser_layout.py",
+      "tests/browser_pilot.py",
+      "tests/browser_trust.py",
+      "tests/browser_professional.py",
+      "tests/browser_journal_lifecycle.py",
+      "tests/browser_trading_remediation.py",
+      "tests/browser_evolution.py",
+      "tests/browser_consolidation.py",
+      "tests/browser_experience.py",
+      "tests/browser_consistency.py",
+      "tests/browser_recovery.py",
+      "tests/browser_assisted_desk.py",
+      "tests/browser_paper_review.py",
+      "tests/browser_evidence_workflow.py"
+    ],
+    "failures": [],
+    "manifest": "fb8760d009e9e568bb58f9a98c8c1f5b8085acbdad8bdd20c2cafb2c8cd155ab",
+    "scope": "Initial evidence integration before final display, keyboard and busy-state refinements"
+  },
+  "finalPackagedTargeted": {
+    "passed": [
+      "evidence_workflow",
+      "intelligence",
+      "layout"
+    ],
+    "failures": [],
+    "evidenceProfiles": 16,
+    "evidenceClosedAccessibilityScans": 16,
+    "expandedRawAccessibilityScans": 4,
+    "assistantChecks": 85,
+    "layoutCases": 202,
+    "manifest": "b36b89d0be18bfdb0f4df2668a1526b44f8b64491a409c697fa9de35fd8b380d"
+  },
+  "build": "pass",
+  "lint": "pass",
+  "workflowGuard": "pass",
+  "dependencyAudit": {
+    "vulnerabilities": 0
+  },
+  "sourceGuard": "pass",
+  "packaging": "Two manifests identical",
+  "realModelRun": false,
+  "externalTradingViewVerification": false,
+  "push": false,
+  "deployment": false,
+  "spendingAdded": false
+}

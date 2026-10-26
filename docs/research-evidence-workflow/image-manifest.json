@@ -1,0 +1,89 @@
+{
+  "scope": "Local offline provider fixtures, actual local HTTP workflows. No live Production capture or real model run. Before source is released 7a742fd.",
+  "images": [
+    {
+      "file": "after-assistant-ar-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "06339cc08a3c94087d0b9b9d31db8d2207c8642ed237b9c35d468c5c8157baca"
+    },
+    {
+      "file": "after-assistant-en-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "e24210780c85e3794b8af63e0c702f2420daac7799f29c7652b488a7a219525a"
+    },
+    {
+      "file": "after-reader-ar-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "9bf992ee56fe495f31cbb8c557b5ec86aee9b0881be78fdab0a08b7b2f88e9ec"
+    },
+    {
+      "file": "after-reader-en-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "d4ac21f39d5d4af7c3c0a5169db87421b6823ad8573fc4f216a7b224efb7499c"
+    },
+    {
+      "file": "before-assistant-ar-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "9050416052bd939b51491058bc6182e19832a42c0fc70920267bfc4a1d0f094f"
+    },
+    {
+      "file": "before-assistant-en-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "b7ca42a8654e01410e5ad2a5aaa16b012d670c94795ad02c24de0978d29dadd4"
+    },
+    {
+      "file": "evidence-ar-dark-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "e3d5e16340e38b8fcfd8227e4030e996310246da4f27c28e1af3823c39da1f77"
+    },
+    {
+      "file": "evidence-ar-dark-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "bc709543952ce143b50993e02c77b9eef3746ec1f8b2e2ba2aa681f23018fee8"
+    },
+    {
+      "file": "evidence-ar-light-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "e1e926c0421cf134472f80d2bfd49d17f06244ecc9c62f83416b6707c15234ae"
+    },
+    {
+      "file": "evidence-ar-light-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "9bf992ee56fe495f31cbb8c557b5ec86aee9b0881be78fdab0a08b7b2f88e9ec"
+    },
+    {
+      "file": "evidence-en-dark-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "d4ac21f39d5d4af7c3c0a5169db87421b6823ad8573fc4f216a7b224efb7499c"
+    },
+    {
+      "file": "evidence-en-dark-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "1895c4d62fdd1b3584976eac8c6c9c6ebe00f9e4700bc0052854ad2e3f742c98"
+    },
+    {
+      "file": "evidence-en-light-1440.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "fddc483a1f87ba58e0b287d900f1d0e6644114c8399596742fdf49918d5d884e"
+    },
+    {
+      "file": "evidence-en-light-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "f8a183726bcc4a3208ec4c6d4303a0e8c4517152247d81a623488871c73e35df"
+    }
+  ]
+}
