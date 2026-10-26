@@ -1,0 +1,44 @@
+[
+  {
+    "path": "before-ar-390.png",
+    "sha256": "bf58b14d5243f6130d97da2ec27a5060199a1c9f2979dc30ba422ba65c717596",
+    "width": 390,
+    "height": 1047
+  },
+  {
+    "path": "before-en-1440.png",
+    "sha256": "190efc1daedd038b548a5bfe77766cab3d850118ecc29882850b3cdc053789d1",
+    "width": 1440,
+    "height": 1000
+  },
+  {
+    "path": "broker-ar-dark-1440.png",
+    "sha256": "3f9c67dec570212adba0dfaf04df0383619380fbe734e19b54314dda876348b1",
+    "width": 1440,
+    "height": 1247
+  },
+  {
+    "path": "broker-ar-dark-390.png",
+    "sha256": "5a874be8f594a683a4d0cebc1d5944f1c718018e5e34078b16e55e817e5e38c4",
+    "width": 390,
+    "height": 2428
+  },
+  {
+    "path": "broker-ar-light-390.png",
+    "sha256": "8c4550472d7c3e07a7ebd663c9742cde1e40225634a0cf2d93dcdf5fbc306d0f",
+    "width": 390,
+    "height": 2428
+  },
+  {
+    "path": "broker-en-dark-1440.png",
+    "sha256": "4ca864913d90a2fade0f83790e0a37d86f0f7256dd1b2402b0dea6362a7750ea",
+    "width": 1440,
+    "height": 1309
+  },
+  {
+    "path": "broker-en-light-390.png",
+    "sha256": "61823e4af53b8f338f13ae7d6b20a01fd083a654bc37736d65e7015a6b6c7d4f",
+    "width": 390,
+    "height": 2609
+  }
+]

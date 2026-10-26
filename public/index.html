@@ -1296,7 +1296,7 @@
                 <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0;">
-                <div><b>XTB xStation Bridge</b><br><small class="muted-text">Direct xAPI streaming</small></div>
+                <div><b>XTB API unavailable</b><br><small class="muted-text">Public API discontinued</small></div>
                 <span class="badge" style="color: #eab308;">IN DEVELOPMENT</span>
               </div>
             </div>
@@ -1455,7 +1455,7 @@
             <div>
               <h3 data-i18n="connectBrokerTitle">Trading Broker &amp; Capital Gateway</h3>
               <p class="tiny trust-copy" data-i18n="connectBrokerSub">
-                Approved and regulated trading brokers in the Arabian Gulf &amp; Global Markets (XTB, Exness, MetaTrader 5, and more). Open or connect your broker account directly.
+                Broker information only. External account connection is unavailable; do not enter real credentials.
               </p>
             </div>
             <button type="button" class="toast-close-btn" id="closeBrokerModalBtn">&times;</button>
@@ -1466,7 +1466,7 @@
             <div class="callout-icon">💡</div>
             <div class="callout-content">
               <b data-i18n="needApiKeyHelp">Need help finding your MT5 login, server, or API key?</b>
-              <small data-i18n="needApiKeyHelpSub">Follow our interactive step-by-step connection tutorials for Exness, XTB, and MetaTrader 5.</small>
+              <small data-i18n="needApiKeyHelpSub">External connectivity is unavailable. Review the broker workspace for current provider limitations.</small>
             </div>
             <button type="button" class="ghost small" id="openDocsFromBrokerModalBtn" data-i18n="viewTutorialsBtn">📖 View API Tutorials</button>
           </div>
@@ -1507,7 +1507,7 @@
                   <span class="broker-tag-popular">MT5 Bridge</span>
                   <b>Exness (MT5 Bridge)</b>
                 </div>
-                <small>MetaTrader 5 Cloud Bridge · Raw Spread ECN</small>
+                <small>Legacy bridge scaffold only · not connected</small>
               </div>
             </label>
 
@@ -1518,10 +1518,10 @@
               </div>
               <div class="option-info">
                 <div>
-                  <span class="broker-tag-popular">Official API</span>
-                  <b>XTB MENA (xStation 5)</b>
+                  <span class="broker-tag-popular">API discontinued</span>
+                  <b>XTB</b>
                 </div>
-                <small>DFSA Regulated · High-Speed WebSocket Gateway</small>
+                <small>No supported API connection is available here.</small>
               </div>
             </label>
 
@@ -1533,9 +1533,9 @@
               <div class="option-info">
                 <div>
                   <span class="broker-tag-popular">Multi-Broker</span>
-                  <b>MetaTrader 5 (Universal)</b>
+                  <b>MetaTrader 5 platform</b>
                 </div>
-                <small>IC Markets, Pepperstone, XM, FTMO Bridge</small>
+                <small>Actual broker and approved terminal connection required</small>
               </div>
             </label>
           </div>
@@ -1543,7 +1543,7 @@
           <!-- TAB 1: CONNECT EXISTING TRADING ACCOUNT -->
           <div id="connectBrokerTabContent" class="broker-tab-panel">
             <div class="broker-notice-card">
-              <span>🔗 <b>Secure Server-Side Gateway:</b> Connect an existing broker terminal or sandbox portfolio. Credentials are encrypted at rest with AES-256-GCM on the backend and are never exposed to browser state or public storage.</span>
+              <span>🔗 <b>Secure Server-Side Gateway:</b> External broker connections are disabled. Do not enter real credentials. The local paper sandbox is separate from a real brokerage account.</span>
             </div>
 
             <!-- Permission Level Selector -->
@@ -1634,20 +1634,20 @@
           <!-- TAB 2: REGISTER NEW ACCOUNT WITH REGULATED BROKER -->
           <div id="openBrokerTabContent" class="broker-tab-panel hidden">
             <div class="broker-notice-card" id="brokerNoticeCard">
-              <span>🏛️ <b>Official Broker Registration:</b> THN AI Trader is an independent analytical workstation and trade execution interface. It does not act as a broker or register brokerage accounts directly. To trade real capital with regulatory investor protection, please register directly with an authorized broker below:</span>
+              <span>🏛️ <b>Official Broker Registration:</b> THN AI Trader is an independent research workstation. These external links do not create accounts or verify regional eligibility. Review the broker’s local legal entity and terms directly.</span>
             </div>
 
             <div class="official-brokers-grid">
               <div class="official-broker-card">
                 <div class="ob-header">
-                  <b>Exness GCC &amp; Global</b>
-                  <span class="ob-badge green">CySEC &amp; FSA Regulated</span>
+                  <b>Exness</b>
+                  <span class="ob-badge green">Eligibility unverified</span>
                 </div>
-                <p>Leading multi-asset broker with 0.0 pip Raw Spread ECN accounts, Islamic swap-free option, and instant local banking.</p>
+                <p>An official API is documented for eligible verified Exness trading accounts. No THN connection is configured.</p>
                 <ul class="ob-features">
-                  <li>Supported Platforms: MT5 Cloud, WebTrader</li>
-                  <li>Account Types: Raw Spread ECN, Pro, Standard</li>
-                  <li>Regulation: CySEC (#178/12), FSA (#SD025)</li>
+                  <li>The documented Exness API excludes standard MetaTrader accounts.</li>
+                  <li>Account type and regional eligibility must be verified with Exness.</li>
+                  <li>No broker account opening or synchronization is available here.</li>
                 </ul>
                 <a class="button primary small" href="https://www.exness.com" target="_blank" rel="noopener noreferrer">
                   🌐 Open Account at Exness Official Portal ↗
@@ -1656,14 +1656,14 @@
 
               <div class="official-broker-card">
                 <div class="ob-header">
-                  <b>XTB MENA (xStation 5)</b>
-                  <span class="ob-badge blue">DFSA Dubai Regulated</span>
+                  <b>XTB</b>
+                  <span class="ob-badge blue">API discontinued</span>
                 </div>
-                <p>DFSA-regulated broker operating from Dubai International Financial Centre (DIFC). Offers 0% commission equities and high-speed JSON streaming API.</p>
+                <p>XTB reports that its API service ended on 14 March 2025. The former xStation API cannot be used as a working THN connection.</p>
                 <ul class="ob-features">
-                  <li>Supported Platforms: xStation 5 Web API</li>
-                  <li>Account Types: Standard, Pro, Islamic Swap-Free</li>
-                  <li>Regulation: DFSA License #F003423</li>
+                  <li>Use XTB’s official website for current platform information.</li>
+                  <li>Account availability depends on the applicable legal entity.</li>
+                  <li>THN does not verify licensing or provide an XTB login.</li>
                 </ul>
                 <a class="button primary small" href="https://www.xtb.com/mena" target="_blank" rel="noopener noreferrer">
                   🌐 Open Account at XTB MENA Official Portal ↗
@@ -1672,13 +1672,13 @@
 
               <div class="official-broker-card">
                 <div class="ob-header">
-                  <b>MetaTrader 5 Universal</b>
-                  <span class="ob-badge gold">Universal Multi-Broker</span>
+                  <b>MetaTrader 5 platform</b>
+                  <span class="ob-badge gold">Broker required</span>
                 </div>
-                <p>Connect your existing trading account from any MT5 broker including IC Markets, Pepperstone, XM, or prop firms (FTMO, FundedNext).</p>
+                <p>MT5 is a platform, not a broker. Broker identity, server and an approved terminal connection must be verified before integration.</p>
                 <ul class="ob-features">
-                  <li>Supported Platforms: MT5 Terminal &amp; WebRequest Bridge</li>
-                  <li>Account Types: All MT5 ECN &amp; Standard accounts</li>
+                  <li>The official Python integration requires a running MT5 terminal.</li>
+                  <li>No MT5 bridge or broker session is available in this hosted app.</li>
                 </ul>
                 <a class="button ghost small" href="https://www.metatrader5.com" target="_blank" rel="noopener noreferrer">
                   🌐 Visit MetaQuotes Official Site ↗

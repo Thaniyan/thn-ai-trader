@@ -1,0 +1,79 @@
+{
+  "base": "bca80e16346899af28504fbf82259b124b540f48",
+  "unitIntegrationNumerical": {
+    "passed": 177,
+    "failed": 0,
+    "skipped": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "browserSuites": [
+    "workstation",
+    "research",
+    "research_outage",
+    "quality",
+    "decision",
+    "library_reliability",
+    "maturity",
+    "terminal",
+    "intelligence",
+    "intelligence_memory",
+    "layout",
+    "pilot",
+    "trust",
+    "professional",
+    "journal_lifecycle",
+    "trading_remediation",
+    "evolution",
+    "consolidation",
+    "experience",
+    "consistency",
+    "recovery",
+    "assisted_desk",
+    "paper_review",
+    "evidence_workflow",
+    "broker_workspace"
+  ],
+  "brokerProfiles": 20,
+  "axe": "WCAG2A, WCAG2AA, WCAG21AA on all 20 broker profiles",
+  "browserErrors": [],
+  "newWorkspaceFinancialPosts": [],
+  "build": "passed",
+  "lint": "passed",
+  "sourceGuard": "passed; six protected numerical files unchanged",
+  "workflow": "passed",
+  "dependencyAudit": {
+    "policy": "Block high/critical; report lower severity; errors block",
+    "counts": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0,
+      "info": 0
+    },
+    "blocking": false
+  },
+  "productionPackage": {
+    "output": "/workspace/work/thn-v71-resumed/.vercel/output",
+    "runtimeFiles": 67,
+    "artifactFiles": 71,
+    "manifestSHA256": "cd3d525071b50f127df99dcb2149cdde7410db3946958c10c42d029417e029d8"
+  },
+  "noDependenciesAdded": true,
+  "realBrokerConnected": false,
+  "realAccountOpeningTested": false,
+  "realBrokerOrdersTested": false,
+  "realModelRun": false,
+  "evidenceMode": "Packaged local application; frozen offline market fixtures. Matched desktop1440/mobile390 dark captures. No Production browser claim.",
+  "earlierDevelopmentRuns": "Two partial full-browser runs intentionally interrupted to incorporate verified provider limitations and remove obsolete copy; not counted as complete passes. New focused test fixture prerequisites and storage-failure instrumentation corrected before final full run.",
+  "publication": "Not authorized in this task; no push or deployment.",
+  "packagingReproduced": true,
+  "artifactManifestVerified": true
+}
