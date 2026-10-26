@@ -63,3 +63,9 @@ completed full regression from checks rerun for the final small refinements.
 This is a local review candidate. Production remains on the previously approved
 release. Real-model reasoning quality and live third-party candle reliability are
 not established by these offline tests. Browser research remains device-local.
+
+## Subsequent hosted gate
+
+The approved original candidate later failed hosted dialog-width checks in PR #11.
+Production was not updated. See [targeted correction and evidence](EVIDENCE-OVERFLOW-REMEDIATION.md).
+Local passes above are retained as historical evidence, not substituted for hosted CI.

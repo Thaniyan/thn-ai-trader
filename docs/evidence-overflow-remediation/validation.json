@@ -1,0 +1,93 @@
+{
+  "parent": "d8835bd3efe064fa3aba61db210cd4dfc38b0b43",
+  "unit": {
+    "passed": 174,
+    "failed": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "fullBrowserSuites": {
+    "passed": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "layout",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency",
+      "recovery",
+      "assisted_desk",
+      "paper_review",
+      "evidence_workflow"
+    ],
+    "failed": []
+  },
+  "focusedRepeatedRuns": {
+    "runs": 3,
+    "each": {
+      "originalProfiles": 16,
+      "additionalFallbackFontProfiles": 8,
+      "fontVerifiedByCDP": true,
+      "errors": 0
+    }
+  },
+  "reproduction": {
+    "font": "DejaVu Sans",
+    "viewportCssPixels": 160,
+    "before": {
+      "clientWidth": 124,
+      "scrollWidth": 126
+    },
+    "after": {
+      "clientWidth": 124,
+      "scrollWidth": 124
+    },
+    "wrapOnlyIsolation": "outer overflow removed, metric labels still cramped",
+    "exactHostedProfile": "Not logged in original CI; new diagnostics record it"
+  },
+  "fontProbe": {
+    "profiles": 20,
+    "beforeOuterOverflows": 1,
+    "afterOuterOverflows": 0
+  },
+  "tooling": {
+    "localChromium": "151.0.7922.173",
+    "hostedPreviousChromium": "151.0.7922.34",
+    "playwright": "1.62.0",
+    "python": "3.12.14",
+    "node": "24.19.0"
+  },
+  "buildLint": "passed",
+  "workflowGuard": "passed",
+  "sourceGuard": "passed",
+  "dependencyVulnerabilities": 0,
+  "gitIntegrity": "passed",
+  "reproducibleManifest": "e4d7273e802d73027545b6202a500555c2ccd6043e2d0b0bebbb8ae87e9c5abd",
+  "runtimeFiles": 65,
+  "artifactFiles": 69,
+  "hostedCorrectedCI": "Not run; exact-SHA approval required before updating PR #11",
+  "realModelRun": false,
+  "push": false,
+  "merge": false,
+  "deployment": false,
+  "paidResources": false
+}

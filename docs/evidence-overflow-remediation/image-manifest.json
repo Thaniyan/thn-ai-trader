@@ -1,0 +1,41 @@
+{
+  "scope": "Native local captures with offline provider fixture; no Production capture or model run. Before/after 160px uses DejaVu Sans; standard desktop/mobile use default locale fonts.",
+  "images": [
+    {
+      "path": "after-context-160.png",
+      "width": 160,
+      "height": 1000,
+      "sha256": "647d31c448e17ed5906825f920d85cc1005d2621d91abb98fb9fb56d5a4a830b"
+    },
+    {
+      "path": "after-metrics-160.png",
+      "width": 160,
+      "height": 1000,
+      "sha256": "26fd258987232068863ab32fd904e8adfdc378c86807e58cdd8c62dbe42c01c5"
+    },
+    {
+      "path": "before-context-160.png",
+      "width": 160,
+      "height": 1000,
+      "sha256": "b04caa488e90924a91f620b5b87303bdeb972483aa26824129c7631d7d324523"
+    },
+    {
+      "path": "before-metrics-160.png",
+      "width": 160,
+      "height": 1000,
+      "sha256": "e22af1bb06ea7c52078d528c69d25776b881df57d533e05a5d6e5bac65bcf159"
+    },
+    {
+      "path": "corrected-desktop-en.png",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ecfaad1c84746a8c0cead8d882517c6dbd84d211fd23b6c473095dae2d24e217"
+    },
+    {
+      "path": "corrected-mobile-ar.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "69f3dfd2b3e5e1e5f584ca068c42a44b7b5276ec2d0426025448f09eda1a34f0"
+    }
+  ]
+}

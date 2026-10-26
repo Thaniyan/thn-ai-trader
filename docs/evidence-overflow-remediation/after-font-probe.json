@@ -1,0 +1,242 @@
+[
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 160
+  }
+]

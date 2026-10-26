@@ -1,0 +1,135 @@
+[
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Closed price",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "RSI 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "ATR 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Prior support",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Prior resistance",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Closed price",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "RSI 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "ATR 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 160
+  }
+]

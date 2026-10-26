@@ -1,0 +1,627 @@
+[
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "system-ui",
+    "nodes": [],
+    "fontChoice": "system-ui",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "system-ui",
+    "nodes": [
+      {
+        "tag": "DIV",
+        "cls": "evidence-context",
+        "text": "EURUSD / 1hSnapshot reviewed at: 2026-10-26 08:16:39 UT",
+        "width": 90,
+        "scroll": 96,
+        "rect": 92,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "system-ui",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 126,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"DejaVu Sans\"",
+    "nodes": [
+      {
+        "tag": "DIV",
+        "cls": "evidence-context",
+        "text": "EURUSD / 1hSnapshot reviewed at: 2026-10-26 08:16:39 UT",
+        "width": 90,
+        "scroll": 109,
+        "rect": 92,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "STRONG",
+        "cls": "",
+        "text": "EURUSD / 1h",
+        "width": 0,
+        "scroll": 0,
+        "rect": 92.5625,
+        "whiteSpace": "normal",
+        "display": "inline"
+      },
+      {
+        "tag": "BDI",
+        "cls": "",
+        "text": "EURUSD / 1h",
+        "width": 0,
+        "scroll": 0,
+        "rect": 92.5625,
+        "whiteSpace": "normal",
+        "display": "inline"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Closed price",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "RSI 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "ATR 14",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Prior support",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Prior resistance",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Closed price",
+        "width": 2,
+        "scroll": 8,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 2,
+        "scroll": 10,
+        "rect": 2.375,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "DejaVu Sans",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [],
+    "fontChoice": "Liberation Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"Liberation Sans\"",
+    "nodes": [
+      {
+        "tag": "DIV",
+        "cls": "evidence-context",
+        "text": "EURUSD / 1hSnapshot reviewed at: 2026-10-26 08:16:39 UT",
+        "width": 90,
+        "scroll": 100,
+        "rect": 92,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "Liberation Sans",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "Arial",
+    "nodes": [],
+    "fontChoice": "Arial",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "Arial",
+    "nodes": [
+      {
+        "tag": "DIV",
+        "cls": "evidence-context",
+        "text": "EURUSD / 1hSnapshot reviewed at: 2026-10-26 08:16:39 UT",
+        "width": 90,
+        "scroll": 100,
+        "rect": 92,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "Arial",
+    "viewport": 160
+  },
+  {
+    "client": 958,
+    "scroll": 958,
+    "rect": {
+      "x": 240,
+      "width": 960
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 1440
+  },
+  {
+    "client": 354,
+    "scroll": 354,
+    "rect": {
+      "x": 17,
+      "width": 356
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 390
+  },
+  {
+    "client": 204,
+    "scroll": 204,
+    "rect": {
+      "x": 17,
+      "width": 206
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [],
+    "fontChoice": "Noto Sans",
+    "viewport": 240
+  },
+  {
+    "client": 124,
+    "scroll": 124,
+    "rect": {
+      "x": 17,
+      "width": 126
+    },
+    "font": "\"Noto Sans\"",
+    "nodes": [
+      {
+        "tag": "DIV",
+        "cls": "evidence-context",
+        "text": "EURUSD / 1hSnapshot reviewed at: 2026-10-26 08:16:39 UT",
+        "width": 90,
+        "scroll": 96,
+        "rect": 92,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 20",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "EMA 50",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      },
+      {
+        "tag": "DT",
+        "cls": "",
+        "text": "Confirmed level",
+        "width": 8,
+        "scroll": 11,
+        "rect": 7.59375,
+        "whiteSpace": "normal",
+        "display": "block"
+      }
+    ],
+    "fontChoice": "Noto Sans",
+    "viewport": 160
+  }
+]
