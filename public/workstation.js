@@ -1,9 +1,9 @@
 /* Integrated research workstation. All displayed market observations carry provenance. */
 (() => {
   const $ = id => document.getElementById(id);
-  // Keep the whole keyboard-focused tab visible in the horizontal mobile dock.
+  // Keep the whole keyboard-focused tab visible in the phone/tablet dock.
   document.querySelector('.nav-stack').addEventListener('focusin', event => {
-    if (matchMedia('(max-width:760px)').matches && event.target.matches('.nav')) {
+    if (matchMedia('(max-width:1100px)').matches && event.target.matches('.nav')) {
       event.target.scrollIntoView({block:'nearest', inline:'nearest'});
     }
   });

@@ -1,0 +1,250 @@
+/* Visual refinement: the existing chart, controls and evidence keep their owners.
+   Compact chrome gives the market priority without concealing capability limits. */
+:root {
+  --bg: #091321;
+  --bg-2: #111f30;
+  --bg-3: #1b3043;
+  --border: #2b4054;
+  --muted: #a8bacd;
+}
+[data-theme="light"] {
+  --bg: #edf2f5;
+  --bg-2: #ffffff;
+  --bg-3: #e8f0f2;
+  --border: #c9d5df;
+  --muted: #506174;
+}
+body { background: var(--bg); }
+.panel { box-shadow: none; border-radius: 12px; }
+/* Render route changes at full contrast; fading whole workspaces dims controls. */
+.app-view { animation: none; }
+.terminal-topbar {
+  min-height: 64px;
+  padding: 12px 20px;
+  background: var(--bg-2);
+  border-radius: 12px;
+}
+.brand-titles .wordmark { font-size: 20px; }
+.nav-stack .nav { border-radius: 8px; }
+.nav-stack .nav.active { border-inline-start: 3px solid var(--accent); }
+button:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+/* A workspace heading rather than another large product masthead. */
+.evo-desk-lead {
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  padding: 18px 22px;
+  gap: 24px;
+  margin: 12px 0;
+  border-inline-start: 3px solid var(--accent);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--accent) 5%, var(--bg-2)), var(--bg-2));
+  border-radius: 12px;
+}
+.evo-lead-brand h1 {
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.3;
+  font-weight: 650;
+  letter-spacing: -.035em;
+  margin: 3px 0 6px;
+}
+.evo-lead-brand .eyebrow { margin: 0; font-size: 10px; }
+.evo-lead-brand > p:not(.eyebrow) { font-size: 13px; margin: 0; max-width: none; }
+.evo-provider-state { font-size: 11px; margin-top: 8px; }
+/* Provider availability is a description, not a green connection indicator. */
+.evo-provider-state::before { content: none; }
+#evoLeadControls { padding: 0; background: transparent; border: 0; border-radius: 0; }
+.evo-desk-lead .q-context { margin: 0; }
+.evo-desk-lead .q-context input,
+.evo-desk-lead .q-context select { min-height: 40px; }
+.evo-desk-lead #evoFlow button { font-size: 11px; min-height: 32px; padding: 5px 8px; }
+.evo-lead-actions { margin-top: 8px; }
+.evo-lead-actions > button { flex: 1 1 130px; min-height: 40px; }
+.evo-provenance { font-size: 11px; }
+.pro-terminal { border-radius: 12px; }
+.pro-terminal-head { padding: 14px 20px; background: var(--bg-2); }
+.pro-terminal-grid { grid-template-columns: minmax(0, 1fr) 264px; }
+.pro-instrument-quote > strong { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pro-chart-area .q-canvas-shell { border-radius: 6px; }
+.q-layer-controls button { font-size: 12px; min-height: 36px; padding: 6px 9px; }
+.pro-tool-button, #proDrawingDock [data-pro-zoom] { min-height: 40px; }
+.pro-research-rail { padding: 18px 16px; background: var(--bg-2); }
+#proChartSummary { padding: 0 0 16px; background: none; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; }
+#proSummaryTitle { font-size: 10px; }
+#proSummaryTrend { font-size: 24px; }
+.pro-technical-card { padding: 12px 0; background: none; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; }
+.pro-technical-card #proTechnicalEvidence { font-size: 12px; gap: 9px; }
+.pro-workflow-actions button, .pro-scenario button { min-height: 40px; }
+.pro-scenario { background: var(--bg); padding: 14px; border-radius: 8px; }
+.evo-decision-grid > article { border-radius: 8px; }
+.evo-decision-grid h3 { font-size: 19px; }
+.evo-desk-metrics .evo-metric { background: transparent; border-radius: 8px; }
+#view-dashboard #evoDashboard { background: var(--bg-2); border-radius: 12px; padding: 22px; }
+html[dir="rtl"] .evo-lead-brand h1,
+html[dir="rtl"] .evo-lead-brand .eyebrow { letter-spacing: 0; }
+
+/* Tablet and phone navigation is a single scrollable, keyboard-accessible row.
+   Every destination remains in the original nav; no duplicate route state. */
+@media (max-width: 1100px) {
+  .app-shell { display: block; }
+  .sidebar {
+    position: relative;
+    height: auto;
+    padding: 0 16px;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    backdrop-filter: none;
+    gap: 0;
+  }
+  .sidebar .brand-lockup, .sidebar-status-tag, .sidebar .side-card,
+  .sidebar .disclaimer, .pro-sidebar-utility, .pro-nav-group { display: none; }
+  .nav-stack {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 6px 0;
+    margin: 0;
+    max-width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    scroll-padding-inline: 4px;
+  }
+  .nav-stack .nav {
+    flex: 0 0 auto;
+    width: auto !important;
+    min-height: 44px;
+    padding: 9px 14px;
+    font-size: 12px;
+    white-space: nowrap;
+    line-height: 1.5;
+    justify-content: center;
+    text-align: center;
+  }
+  .nav-stack .nav .pro-nav-icon { display: none; }
+  .nav-stack .nav.active { border-inline-start: 0; border-bottom: 2px solid var(--accent); }
+  .terminal-topbar { margin: 12px 16px 0; width: calc(100% - 32px); min-height: 60px; }
+  .terminal-main { padding: 0 16px 20px; }
+  .pro-terminal-grid { grid-template-columns: minmax(0, 1fr); }
+  .pro-research-rail { border-inline-start: 0; border-top: 1px solid var(--border); }
+  .evo-desk-lead { gap: 16px; padding: 16px 18px; }
+  .pro-chart-area .q-canvas-shell { height: 500px; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .pro-instrument-quote { flex: 1 1 230px; }
+  .pro-terminal-head > div:not(.pro-instrument-quote):not(.pro-mode-switch) { flex: 1 1 180px; }
+}
+@media (max-width: 760px) {
+  .terminal-topbar { padding: 10px 12px; margin: 8px 12px 0; width: calc(100% - 24px); }
+  .terminal-main { padding: 0 12px 16px; }
+  .sidebar { padding-inline: 12px; }
+  .topbar-controls .icon-btn, .language-switch .lang-pill,
+  #evoAssistantAccess { min-height: 36px; }
+  .topbar-controls .icon-btn { width: 36px; }
+  .evo-desk-lead { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px 14px; margin: 10px 0; }
+  .evo-lead-brand .eyebrow, #evoLeadDescription { display: none; }
+  /* Route identity is already in the chrome; retain its semantic heading. */
+  .evo-lead-brand h1 { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .evo-provider-state { margin-top: 3px; line-height: 1.5; }
+  .evo-desk-lead .q-context { gap: 8px; }
+  .evo-desk-lead .q-context label { flex: 1 1 90px; }
+  .evo-desk-lead .q-context input, .evo-desk-lead .q-context select { min-height: 44px; height: 44px; }
+  .evo-desk-lead .evo-provenance { margin-top: 3px; font-size: 11px; }
+  .evo-lead-actions { gap: 6px; margin-top: 6px; }
+  .evo-lead-actions > button { flex: 1 1 120px; min-height: 44px; padding: 7px 9px; }
+  .pro-terminal-head { padding: 10px 12px; gap: 6px 10px; }
+  .pro-terminal-head > div:not(.pro-instrument-quote):not(.pro-mode-switch) { order: 0; }
+  .pro-instrument-quote { gap: 0 12px; }
+  .pro-instrument-quote > span, .pro-instrument-quote > strong { font-size: 21px; }
+  .pro-instrument-quote > span, .pro-instrument-quote > strong { line-height: 1.3; }
+  .pro-mode-switch button, #proChartFocus { min-height: 40px; font-size: 11px; }
+  .pro-chart-area { padding: 0 8px 10px; }
+  .pro-chart-area .q-chart-panel > .panel-head { padding: 2px 0; }
+  .pro-chart-area .panel-head .q-actions button { min-height: 32px; }
+  .q-layer-controls { gap: 4px; padding-bottom: 6px; scrollbar-width: thin; }
+  .q-layer-controls button { font-size: 11px; min-height: 40px; padding: 6px 8px; }
+  .pro-plotting { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 4px; }
+  #proDrawingDock { flex-direction: column; flex-wrap: nowrap; gap: 4px; padding: 0; }
+  .pro-tool-button, #proDrawingDock [data-pro-zoom] { width: 30px; min-height: 44px; padding: 4px; }
+  .pro-chart-area .q-canvas-shell { height: 440px; min-height: 360px; }
+  .pro-research-rail { padding: 18px 14px; }
+  #proSummaryTrend { font-size: 24px; }
+  .pro-workflow-actions button, .pro-scenario button { min-height: 44px; }
+  .pro-focused .pro-chart-area .q-canvas-shell { height: calc(100dvh - 310px); }
+}
+/* At extreme zoom, controls wrap and drawings stay below the full-width plot. */
+@media (max-width: 340px) {
+  .evo-lead-actions > button { flex-basis: 100%; }
+  .pro-plotting { display: flex; flex-direction: column; }
+  #proDrawingDock { flex-direction: row; flex-wrap: wrap; }
+  .pro-mode-switch { flex-wrap: wrap; }
+  .pro-mode-switch button { flex: 1 1 100%; }
+  .pro-instrument-quote > strong { white-space: normal; overflow-wrap: anywhere; }
+}
+
+/* Connected, symbol-only favorites reuse Markets preferences and chart context. */
+.flow-watchlist { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 36px; margin: 0 0 6px; padding-inline: 4px; }
+.flow-watchlist > strong { flex: 0 0 auto; font-size: 12px; color: var(--muted); }
+.flow-watchlist-items { display: flex; gap: 5px; align-items: center; overflow-x: auto; min-width: 0; flex: 1; scrollbar-width: thin; }
+.flow-watchlist-items button { flex: 0 0 auto; font: 12px/1.5 ui-monospace, monospace; }
+.flow-watchlist-items [aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-2)); }
+.flow-watchlist > button { flex: 0 1 auto; margin-inline-start: auto; white-space: normal; }
+#flowWatchlist [hidden] { display: none; }
+
+/* One clear primary chart action; lower-emphasis routes remain visible. */
+.pro-market-table .pro-row-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; min-width: 190px; max-width: 230px; }
+.pro-market-table .pro-row-actions > button { min-height: 34px; padding: 5px 8px; }
+.pro-market-table .pro-row-actions > button.primary { background: transparent !important; color: var(--accent) !important; border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
+.pro-market-table .pro-selected .pro-row-actions > button.primary { background: var(--accent) !important; color: var(--bg) !important; }
+.pro-market-table .pro-row-secondary { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 2px; }
+.pro-market-table .pro-row-secondary button { min-height: 30px; border-color: transparent; padding: 3px 5px; font-size: 11px; }
+.pro-market-table td { padding-block: 9px; vertical-align: middle; }
+.pro-market-table td small { font-size: 11px; line-height: 1.65; }
+.pro-market-table th { font-size: 11px; }
+.pro-market-table tr.pro-selected td:first-child { border-inline-start: 2px solid var(--accent); }
+
+/* Preserve the calculator's existing input IDs, events and authoritative result. */
+.flow-risk-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: start; gap: 20px; margin-top: 18px; }
+.flow-risk-layout .work-risk-form { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; gap: 16px; }
+.flow-risk-group { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--border); border-radius: 8px; }
+.flow-risk-group legend { max-width: 100%; padding-inline: 4px; font-size: 13px; font-weight: 600; color: var(--text); overflow-wrap: anywhere; }
+.flow-step { color: var(--accent); font: 11px/1.5 ui-monospace, monospace; margin-inline-end: 8px; }
+.flow-risk-group label { font-size: 12px; align-content: start; }
+.flow-risk-group input, .flow-risk-group select { min-height: 44px; }
+#flowRiskOptional { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#flowRiskOptional label { grid-template-rows: minmax(3em, auto) auto; }
+.flow-risk-layout .v75-cost-option, .flow-risk-layout .work-risk-form > button { grid-column: 1 / -1; }
+.flow-risk-layout .work-risk-form > button { justify-self: start; min-width: min(100%, 240px); min-height: 44px; }
+.flow-risk-layout .q-planning-costs { margin: 0; padding: 18px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); min-width: 0; }
+.flow-risk-layout .q-planning-costs h3 { margin: 0 0 16px; font-size: 14px; }
+.flow-risk-layout .q-cost-inputs { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.flow-risk-layout .q-cost-inputs label { font-size: 12px; }
+.flow-risk-layout .q-planning-costs p { font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+#evoRisk { padding: 18px 20px; }
+#evoRisk .evo-heading { margin-bottom: 10px; }
+#evoRisk .evo-next { margin-top: 12px; padding: 10px 14px; }
+.evo-decision-desk { padding: 20px; }
+.evo-decision-desk .evo-heading { margin-bottom: 16px; }
+.evo-decision-grid > article { padding: 16px; }
+.evo-decision-grid h3 { margin-block: 8px; font-size: 18px; }
+#evoDashboard .evo-heading { margin-bottom: 14px; }
+@media (max-width: 1100px) {
+  .flow-risk-layout { grid-template-columns: minmax(0, 1fr); }
+  .flow-risk-layout .q-cost-inputs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .flow-watchlist { gap: 6px; padding-inline: 0; }
+  .flow-watchlist > strong, .flow-watchlist > button { font-size: 11px; }
+  .flow-risk-layout .work-risk-form { grid-template-columns: minmax(0, 1fr); }
+  #flowRiskOptional { grid-template-columns: minmax(0, 1fr); }
+  .flow-risk-group { padding: 12px; }
+  .flow-risk-layout .work-risk-form > button { width: 100%; }
+  .pro-market-table .pro-row-secondary button { min-height: 36px; }
+}
+@media (max-width: 340px) {
+  .flow-watchlist { flex-wrap: wrap; }
+  .flow-watchlist-items { flex-basis: 100%; order: 2; }
+  .flow-risk-group, .flow-risk-layout .q-cost-inputs { grid-template-columns: minmax(0, 1fr); }
+  .flow-risk-group legend { font-size: 12px; }
+}

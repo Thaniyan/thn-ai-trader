@@ -34,16 +34,17 @@ with sync_playwright() as p:
  s.route('**/api/analyze',lambda r:r.fulfill(status=503,content_type='application/json',body='{"error":"Acceptance provider failure"}'))
  before=len([r for r in requests if r[0]=='POST' and r[1].endswith('/api/intelligence')]);s.locator('#evoRunDesk').click();expect(s.locator('#evoDeskRunStatus')).to_contain_text('Analysis unavailable');assert len([r for r in requests if r[0]=='POST' and r[1].endswith('/api/intelligence')])==before;s.unroute('**/api/analyze')
  checks.append('Failed analysis produces honest unavailable state, not false completion or a second review request')
- # Actual navigation and context controls reflow; no horizontally clipped sections.
+ # Compact navigation must reveal each whole destination on keyboard focus.
+ # Retain the containment and actual navigation checks for all nine sections.
  for lang in ['en','ar']:
   s.set_viewport_size({'width':390,'height':844});s.locator('.terminal-topbar [data-language='+lang+']').click()
   if lang=='ar':expect(s.locator('#evoDeskRunStatus')).not_to_contain_text('Analysis unavailable');expect(s.locator('#evoAssistantSummary')).not_to_have_text(data['summary'])
   assert s.locator('.terminal-topbar').bounding_box()['y']<s.locator('.sidebar').bounding_box()['y']
   for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
-   nav=s.locator('.nav-stack [data-view='+view+']');r=nav.bounding_box();assert r and r['x']>=-1 and r['x']+r['width']<=391;go(view)
+   nav=s.locator('.nav-stack [data-view='+view+']');nav.focus();r=nav.bounding_box();assert r and r['x']>=-1 and r['x']+r['width']<=391;go(view)
   go('dashboard');expect(s.locator('#evoDeskLead #qSymbol')).to_be_visible();s.screenshot(path=str(out/(lang+'-mobile.png')),full_page=True)
  s.locator('#evoAssistantAccess').click();expect(s.locator('#view-ai')).to_be_visible();expect(s.locator('#i7Question')).to_be_focused();assert s.evaluate('THNContext.get().symbol')=='GBPUSD'
- checks.append('EN/AR mobile branding precedes all nine visible navigation choices; one context input survives view switches')
+ checks.append('EN/AR mobile branding precedes compact navigation; all nine choices reveal fully on focus and navigate; one context input survives view switches')
  assert not any(method=='POST' and ('/api/broker/' in url or '/api/accounts' in url) for method,url,body in requests)
  assert not errors,errors
  b.close()
