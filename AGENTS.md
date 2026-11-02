@@ -1,5 +1,15 @@
 # Integrated v7 release contract
 
+## Owner branch directive — 2026-11-02
+
+The owner requires all completed past, present and future changes to be delivered
+to `main`. Use `main` as the destination for future pushes; feature-branch-only
+delivery does not fulfill the owner's request. Preserve remote updates and use
+normal, non-forced pushes. Deployment, paid resources and real financial
+operations remain subject to their separate authorization boundaries.
+
+## Release requirements
+
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.
 The independent candidate 9a7342d116d14354498898c8f7ae0b0d7c6a6086 remains a recovery reference in its separate checkout.
 Owner explicitly authorized source-only integration onto original history on 2026-10-20.
