@@ -23,7 +23,7 @@ with sync_playwright() as p:
  page.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNDecision.brief()?.symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"')
  expect(page.locator('#evoContext')).to_contain_text('Yahoo Finance')
  page.locator('#evoIntelligence [data-evo="chart"]').click();expect(page.locator('#qCandles')).to_be_visible();analyze()
- expect(page.locator('#evoIntelligence')).to_contain_text('Counter-evidence');expect(page.locator('#evoIntelligence')).to_contain_text('Invalidation')
+ expect(page.locator('#evoIntelligence')).to_contain_text('Bearish observations');expect(page.locator('#evoIntelligence')).to_contain_text('Bullish observations');expect(page.locator('#evoIntelligence')).to_contain_text('Invalidation')
  # Stale analysis is not allowed to save another instrument or timeframe.
  before=page.evaluate('JSON.stringify(getJournal())');page.evaluate('THNContext.set({symbol:"EURUSD",interval:"1h"},"journey")')
  assert page.evaluate('saveJournal()') is False and page.evaluate('JSON.stringify(getJournal())')==before

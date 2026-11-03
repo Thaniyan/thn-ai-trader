@@ -34,6 +34,7 @@
     return `<figure class="q-curve"><figcaption>${label==='equityIndex'?(document.documentElement.lang==='ar'?'مؤشر حقوق مطبع (البداية 100، ليس دولاراً)':'Normalized equity index (base 100, not USD)'):t(label)} · ${num(min)} — ${num(max)}</figcaption><svg viewBox="0 0 740 165" role="img" aria-label="${esc(label==='equityIndex'?(document.documentElement.lang==='ar'?'مؤشر مطبع، ليس دولاراً':'Normalized index, not USD'):t(label))}"><path d="M20 25H720 M20 78H720 M20 130H720" stroke="var(--border)"/>${items.map((item,n)=>`<polyline points="${item.values.map((v,i)=>`${20+i/Math.max(1,item.values.length-1)*700},${130-(v[property]-min)/range*105}`).join(' ')}" fill="none" stroke="${colors[n]}" stroke-width="2"/>`).join('')}<text x="20" y="155">0%</text><text x="680" y="155">100%</text></svg><div class="q63-legend">${items.map((item,n)=>`<span style="border-inline-start:3px solid ${colors[n]}">${esc(item.label)}</span>`).join('')}</div></figure>`;
   }
   function renderReport(){
+    window.dispatchEvent(new CustomEvent('thn:evaluation-state'));
     if(!report){$('qResult').innerHTML=`<p class="work-caption">${t('empty')}</p>`;return;}
     const a=report.development,b=report.holdout,c=THNContext.get(),old=c.symbol!==report.symbol||c.interval!==report.dataset.interval;
     const keys=['trades','longTrades','shortTrades','returnPct','returnPerBarBps','maxDrawdownPct','expectancy','averageR','profitFactor','winRate','sharpePerBar','averageWin','averageLoss','averageHoldingBars','averageHoldingHours','exposurePct','largestTradeAbsolutePnlSharePct','largestTradeRiskSharePct'];
@@ -51,15 +52,15 @@
   function statusText(code){return t(code==='INSUFFICIENT_VALIDATION_HISTORY'?'insufficient':code==='RESEARCH_GAPS_REJECTED'?'gapsRejected':code==='INVALID_RESEARCH_PARAMETERS'||code==='INVALID_RESEARCH_PERIOD'?'invalid':code==='UNSUPPORTED_RESEARCH_CURRENCY'||code==='UNSUPPORTED_RESEARCH_CONTRACT'?'currency':'failure');}
   form.addEventListener('submit',async event=>{
     event.preventDefault();event.stopImmediatePropagation();
-    const id=++requestId;controller?.abort();controller=new AbortController();const context=THNContext.get(),settings=collect();busy=true;status.textContent=t('loading');$('qRun').disabled=true;
+    const id=++requestId;controller?.abort();controller=new AbortController();const context=THNContext.get(),settings=collect();busy=true;status.textContent=t('loading');$('qRun').disabled=true;window.dispatchEvent(new CustomEvent('thn:evaluation-state'));const activeController=controller,timer=setTimeout(()=>activeController.abort(),25000);
     try{
       const response=await fetch('/api/research/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:context.symbol,interval:context.interval,...settings}),signal:controller.signal});
       const data=await response.json();if(id!==requestId||context.symbol!==THNContext.get().symbol||context.interval!==THNContext.get().interval)return;
       if(!response.ok||!data.ok){lastAttemptFailed=true;lastFailureCode=data.code;status.textContent=statusText(data.code);renderReport();return;}
       report=data;reportContext={symbol:context.symbol,interval:context.interval,provider:data.dataset.source,datasetId:data.dataset.hash,analysisTimestamp:Date.now(),scenario:context.scenario??null,riskAssumptions:{capital:data.parameters.capital,riskPct:data.parameters.riskPct,leverage:data.parameters.leverage,spreadBps:data.parameters.spreadBps,slippageBps:data.parameters.slippageBps,commissionBps:data.parameters.commissionBps},strategy:{name:data.parameters.strategy,direction:data.parameters.direction}};
-      THNContext.set(reportContext,'evaluation');dirty=false;lastAttemptFailed=false;status.textContent='';save.disabled=false;note.disabled=false;$('qExport').disabled=false;renderReport();window.dispatchEvent(new CustomEvent('thn:evaluation'));
-    }catch(error){if(id===requestId&&error.name!=='AbortError'){lastAttemptFailed=true;lastFailureCode=null;status.textContent=t('failure');renderReport();}}
-    finally{if(id===requestId){busy=false;$('qRun').disabled=false;}}
+      THNContext.set(reportContext,'evaluation');dirty=JSON.stringify(settings)!==JSON.stringify(collect());lastAttemptFailed=false;status.textContent='';save.disabled=false;note.disabled=false;$('qExport').disabled=false;renderReport();window.dispatchEvent(new CustomEvent('thn:evaluation'));
+    }catch(error){if(id===requestId){lastAttemptFailed=true;lastFailureCode=null;status.textContent=t('failure');renderReport();}}
+    finally{clearTimeout(timer);if(id===requestId){busy=false;$('qRun').disabled=false;window.dispatchEvent(new CustomEvent('thn:evaluation-state'));}}
   },{capture:true});
   form.addEventListener('input',()=>{dirty=Boolean(report);const p=collect().parameters;THNContext.set({strategy:{name:p.strategy,direction:p.direction}},'strategy');if(report)renderReport();});
   function readRuns(){try{const records=JSON.parse(localStorage.getItem(key));return Array.isArray(records)?records.slice(-4).filter(validRecord):[];}catch{return [];}}
@@ -93,7 +94,7 @@
   function renderHelp(){const help=$('qualityHelp');if(!help)return;help.innerHTML=`<div class="q63-help"><h2>${t('helpTitle')}</h2>${['helpWorkflow','helpResearch','helpData','helpCosts','helpAccounts','helpPrivacy'].map(k=>`<p>${t(k)}</p>`).join('')}<button type="button" id="qCloseQualityHelp" class="ghost">${t('close')}</button></div>`;$('qCloseQualityHelp').addEventListener('click',()=>closeBrokerDocsModal());}
   function strategyRules(){$('qStrategyRule').textContent=t($('qStrategy').value==='ema'?'emaDirectional':$('qStrategy').value==='rsi'?'rsiDirectional':'breakoutDirectional');}
   function translate(){for(const id of ['q63StorageStatus','q63Status']){const el=$(id);if(el){const key=Object.keys(en).find(k=>en[k]===el.textContent||ar[k]===el.textContent);if(key)el.textContent=t(key);}}strategyRules();document.querySelectorAll('[data-v63]').forEach(el=>el.textContent=t(el.dataset.v63));renderContext();renderReport();renderRuns();renderHelp();if(selected.size>=2)compareRuns();if(busy)status.textContent=t('loading');else if(lastAttemptFailed)status.textContent=statusText(lastFailureCode);}
-  window.addEventListener('thn:context',()=>{++requestId;controller?.abort();busy=false;$('qRun').disabled=false;renderContext();renderReport();$('qExport').disabled=!report;save.disabled=!report;note.disabled=!report;});
+  window.addEventListener('thn:context',()=>{++requestId;controller?.abort();busy=false;lastAttemptFailed=false;lastFailureCode=null;$('qRun').disabled=false;renderContext();renderReport();$('qExport').disabled=!report;save.disabled=!report;note.disabled=!report;});
   window.addEventListener('thn:research-context',()=>{renderContext();if(report)renderReport();});
   window.addEventListener('thn:series',renderContext);
   form.addEventListener('change',strategyRules);
@@ -110,7 +111,7 @@
     if(context.scenario)$('qDirection').value=context.scenario.direction==='bearish'?'short_only':context.scenario.direction==='bullish'?'long_only':$('qDirection').value;
     dirty=Boolean(report);status.textContent=t(risk.leverage>20?'riskCap':'riskCopied');renderReport();
   });
-  const originalResult=THNResearch.result;THNResearch.result=()=>report?.holdout||originalResult();THNResearch.evaluation=()=>report;
+  const originalResult=THNResearch.result;THNResearch.result=()=>report?.holdout||originalResult();THNResearch.evaluation=()=>report;THNResearch.evaluationState=()=>({dirty,busy,failed:lastAttemptFailed});
   new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   translate();
 })();

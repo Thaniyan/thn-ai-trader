@@ -27,7 +27,7 @@ with sync_playwright() as p:
  expect(page.locator('#proTradingArchive')).to_be_visible();assert page.locator('#proTradingArchive').get_attribute('open') is None
  result['journeys'].append('A: discovery -> explicit observation -> selected chart; one toolbar and terminal owner')
  # B: actual analysis HTTP response, current numerical observations and one canonical scenario surface.
- analyze();expect(page.locator('#proTechnicalEvidence')).not_to_contain_text('—');page.locator('#proEvidenceLink').click();expect(page.locator('#evoIntelligence')).to_contain_text('Counter-evidence');assert page.locator('#evoIntelligence [data-brief-plan]').count()==0
+ analyze();expect(page.locator('#proTechnicalEvidence')).not_to_contain_text('—');page.locator('#proEvidenceLink').click();expect(page.locator('#evoIntelligence')).to_contain_text('Bearish observations');expect(page.locator('#evoIntelligence')).to_contain_text('Bullish observations');assert page.locator('#evoIntelligence [data-brief-plan]').count()==0
  assert page.locator('#decisionWorkspace .d64-scenarios').count()==1
  result['journeys'].append('B: HTTP analysis -> current technical evidence -> Intelligence; canonical scenario owner')
  # C: original position calculator and matched report, never an execution record.
