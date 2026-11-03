@@ -87,3 +87,33 @@ html[dir=rtl] .cockpit-heading h2,html[dir=rtl] .cockpit-heading .eyebrow,html[d
 .cockpit-test .confidence-quality { color:var(--text); font-weight:650; }
 .confidence-criteria { margin-top:12px; }
 .confidence-criteria>summary { color:var(--text); font-size:12px; line-height:1.8; cursor:pointer; }
+/* Dashboard revision D2: make the restored research visible at the entry point. */
+#evoDeskLead { border:1px solid color-mix(in srgb,var(--accent) 30%,var(--border)); border-top:3px solid var(--accent); border-radius:18px; padding:24px; gap:20px 30px; background:radial-gradient(ellipse at 0 0,color-mix(in srgb,var(--accent) 15%,transparent),transparent 65%),linear-gradient(135deg,var(--bg-3),var(--bg-2) 70%); box-shadow:inset 0 1px 0 #ffffff08,0 16px 44px #00000016; }
+#evoDeskLead .evo-lead-brand h1 { font-size:clamp(25px,2.7vw,38px); font-weight:800; line-height:1.4; letter-spacing:-.035em; }
+#evoDeskLead #evoLeadDescription { font-size:12px; }
+#evoDeskLead .evo-provider-state { font-size:10px; margin-top:8px; }
+.home-conviction { display:flex; align-items:center; gap:18px; margin-top:18px; }
+.home-confidence-ring { width:116px; height:116px; flex:0 0 116px; padding:9px; border-radius:50%; background:conic-gradient(var(--accent) calc(var(--score)*1%),var(--border) 0); }
+.home-confidence-ring>div { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; background:var(--bg-2); border-radius:50%; }
+.home-confidence-ring strong { font-size:35px; line-height:1.4; font-variant-numeric:tabular-nums; }
+.home-confidence-ring small { font-size:10px; color:var(--muted); }
+.home-consensus { min-width:0; overflow-wrap:anywhere; }
+.home-consensus>span { font-size:9px; font-weight:650; letter-spacing:.12em; color:var(--accent); }
+.home-consensus h2 { font-size:clamp(18px,1.7vw,24px); margin:4px 0; line-height:1.6; }
+.home-consensus p { font-size:11px; color:var(--muted); margin:2px 0; }
+.home-consensus>small { display:block; font-size:10px; line-height:1.8; color:var(--muted); }
+.home-consensus button { font-size:10px; padding:5px 0; min-height:30px; border:0; color:var(--accent); }
+.home-evidence { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; padding-top:18px; border-top:1px solid var(--border); }
+.home-evidence>div { min-width:0; display:grid; gap:4px; padding-inline-start:16px; border-inline-start:2px solid color-mix(in srgb,var(--accent) 40%,var(--border)); }
+.home-evidence span { font-size:9px; letter-spacing:.08em; color:var(--muted); line-height:1.8; }
+.home-evidence strong { font-size:20px; line-height:1.6; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.home-evidence small { font-size:10px; color:var(--muted); }
+.home-evidence button { justify-self:start; font-size:10px; padding:3px 0; min-height:25px; border:0; color:var(--accent); }
+#evoDeskLead #evoLeadControls { align-self:center; }
+#evoDeskLead .evo-lead-actions button { min-height:44px; }
+#evoDeskLead #evoRunDesk { background:linear-gradient(110deg,var(--accent),var(--accent-2)); }
+#view-dashboard .pro-terminal { border-radius:16px; }
+#view-dashboard .pro-terminal-head { border-radius:16px 16px 0 0; background:linear-gradient(110deg,color-mix(in srgb,var(--accent) 7%,var(--bg-2)),var(--bg-2)); }
+@media(max-width:1100px) { #evoDeskLead { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }.home-confidence-ring { width:96px; height:96px; flex-basis:96px; }.home-conviction { gap:12px; } }
+@media(max-width:760px) { #evoDeskLead { grid-template-columns:1fr; padding:18px; gap:16px; }#evoDeskLead .evo-lead-brand h1 { font-size:27px; }.home-conviction { margin-top:12px; }.home-evidence { gap:10px; padding-top:14px; }.home-evidence>div { padding-inline-start:8px; }.home-evidence strong { font-size:15px; }.home-evidence span { font-size:8px; letter-spacing:0; } }
+@media(max-width:320px) { .home-conviction { flex-wrap:wrap; }.home-evidence { grid-template-columns:1fr; }#evoDeskLead { padding:12px; }#evoDeskLead .evo-lead-brand h1 { font-size:22px; } }

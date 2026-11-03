@@ -18,10 +18,27 @@ const sizing=group('confidenceSizing','02','Hypothetical risk & costs','المخ
 const sample=group('confidenceSample','03','Independent validation windows','نوافذ التحقق المستقلة',['qTrainFraction','qMinimumTrades','qGapPolicy','qStart','qEnd']);settings.remove();form.prepend(rules,sizing,sample);
 // The primary research task is usable immediately; comparisons remain secondary.
 $('evoEvaluation').open=true;
+// Dashboard uses the same evidence model; there is no second analysis engine.
+const homeConviction=document.createElement('div');homeConviction.id='dashboardConviction';homeConviction.className='home-conviction';document.querySelector('.evo-lead-brand').append(homeConviction);
+const homeEvidence=document.createElement('div');homeEvidence.id='dashboardEvidence';homeEvidence.className='home-evidence';$('evoDeskLead').append(homeEvidence);
+let homeMarkup='',homeEvidenceMarkup='';
+function renderDashboard(m,c){
+ const a=m.analysis,brief=THNDecision.brief(),series=THNResearch.series();
+ const matchedSeries=series?.symbol===c.symbol&&series?.provenance.interval===c.interval&&series?.provenance.hash===c.datasetId?series:null;
+ const matchedBrief=brief?.symbol===c.symbol&&brief?.interval===c.interval&&brief.selected?.provenance.hash===c.datasetId?brief:null;
+ const bias=a?.consensusLabel;
+ const reading=!a?tr('Ready for analysis','جاهز للتحليل'):bias==='BULLISH'?tr('Bullish consensus','توافق صعودي'):bias==='BEARISH'?tr('Bearish consensus','توافق هبوطي'):tr('Wait for confirmation','انتظر التأكيد');
+ const value=m.confluence===null?'—':String(m.confluence);
+ const markup=`<div class="home-confidence-ring" style="--score:${m.confluence??0}" role="img" aria-label="${esc(tr('Confidence score: ','درجة الثقة: ')+value+'/100')}"><div><strong id="dashboardConfidenceValue">${value}</strong><small>/ 100</small></div></div><div class="home-consensus"><span>${tr('CONFIDENCE & CONSENSUS','الثقة والتوافق')}</span><h2>${reading}</h2><p>${a?`${tr('Grade','التقدير')} ${esc(a.grade)} · ${a.schools.length} ${tr('analysis schools','مدارس تحليلية')}`:tr('Run the selected market review','شغّل مراجعة السوق المختار')}</p><small>${tr('Heuristic confluence · not win probability','توافق استدلالي · ليس احتمال فوز')}</small><button type="button" class="ghost small" data-cockpit="details">${tr('Inspect school assessments','فحص تقييمات المدارس')}</button></div>`;
+ if(homeMarkup!==markup){const focused=homeConviction.contains(document.activeElement);homeConviction.innerHTML=markup;homeMarkup=markup;if(focused)homeConviction.querySelector('button').focus({preventScroll:true});}
+ const status={untested:tr('Not tested','لم يُختبر'),running:tr('Testing…','جار الاختبار…'),failed:tr('Retry required','تلزم إعادة المحاولة'),changed:tr('Settings changed','تغيرت الإعدادات'),complete:m.validationScore===null?'—':m.passed+' / 10'}[m.testStatus];
+ const evidence=`<div><span>${tr('OBSERVED CLOSE','الإغلاق المرصود')}</span><strong>${THNPresentation.price(matchedSeries?.candles.at(-1)?.close,c.symbol)}</strong><small dir="ltr">${esc(c.symbol)} / ${esc(c.interval)} · ${esc(matchedSeries?.provenance.currency||'—')}</small></div><div><span>${tr('TIMEFRAME EVIDENCE','أدلة الأطر الزمنية')}</span><strong>${matchedBrief?matchedBrief.frames.filter(f=>f.available).length+' / 3':'—'}</strong><small>${matchedBrief?.conflicting?tr('Conflicting directions','اتجاهات متعارضة'):tr('Independent observations','مشاهدات مستقلة')}</small></div><div><span>${tr('HISTORICAL VALIDATION','التحقق التاريخي')}</span><strong>${status}</strong><button type="button" class="ghost small" data-cockpit="test">${tr('Open confidence test','فتح اختبار الثقة')}</button></div>`;
+ if(homeEvidenceMarkup!==evidence){const focused=homeEvidence.contains(document.activeElement);homeEvidence.innerHTML=evidence;homeEvidenceMarkup=evidence;if(focused)homeEvidence.querySelector('button').focus({preventScroll:true});}
+}
 let prior='';
 function model(){return confidenceReview({analysis:typeof currentAnalysis==='undefined'?null:currentAnalysis,evaluation:THNResearch.evaluation?.(),context:THNContext.get(),evaluationState:THNResearch.evaluationState?.()});}
 function render(){
- const m=model(),c=THNContext.get(),a=m.analysis,e=m.evaluation;
+ const m=model(),c=THNContext.get(),a=m.analysis,e=m.evaluation;renderDashboard(m,c);
  const state={running:tr('Test running','الاختبار جارٍ'),untested:tr('Not tested','لم يُختبر'),failed:tr('Latest test failed · earlier report retained','فشل أحدث اختبار · التقرير السابق محفوظ'),changed:tr('Settings changed · test again','تغيرت الإعدادات · أعد الاختبار'),complete:tr('Test complete','اكتمل الاختبار')}[m.testStatus];
  $('cockpitSchoolsTitle').textContent=tr('Multi-school assessments','تقييمات المدارس التحليلية');$('cockpitSchoolsNote').textContent=a?tr('Rule-based interpretations of the same market snapshot. Scores describe each school’s heuristic, not independent probabilities.','تفسيرات بقواعد للقطة السوق نفسها. تصف الدرجات قواعد كل مدرسة وليست احتمالات مستقلة.'):tr('Run analysis to populate these assessments for the selected instrument and timeframe.','شغّل التحليل لعرض التقييمات للأداة والإطار المختارين.');$('schoolsGrid').hidden=!a;
  const brief=THNDecision.brief(),matchedBrief=brief?.symbol===c.symbol&&brief?.interval===c.interval&&brief.selected?.provenance.hash===c.datasetId?brief:null;
@@ -38,8 +55,8 @@ function render(){
  if(validation.dataset.markup!==markup){const focused=document.activeElement?.id==='confidenceTestTitle';validation.innerHTML=markup;validation.dataset.markup=markup;if(focused)$('confidenceTestTitle').focus({preventScroll:true});}
  for(const label of groupLabels)label.node.textContent=tr(label.en,label.ar);
 }
-function activate(event){const action=event.target.closest('[data-cockpit]')?.dataset.cockpit;if(action==='test')openTest();if(action==='analyze')$('evoRunDesk').click();}
-cockpit.addEventListener('click',activate);playbook.addEventListener('click',activate);
+function activate(event){const action=event.target.closest('[data-cockpit]')?.dataset.cockpit;if(action==='test')openTest();if(action==='analyze')$('evoRunDesk').click();if(action==='details'){document.querySelector('.nav-stack [data-view=ai]').click();$('cockpitTitle').tabIndex=-1;$('cockpitTitle').focus();cockpit.scrollIntoView({block:'start'});}}
+cockpit.addEventListener('click',activate);playbook.addEventListener('click',activate);homeConviction.addEventListener('click',activate);homeEvidence.addEventListener('click',activate);
 for(const event of ['thn:desk-state','thn:analysis','thn:context','thn:research-context','thn:series','thn:decision','thn:evaluation','thn:evaluation-state','thn:view'])window.addEventListener(event,render);
 new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 window.THNConfidence={review:model,openTest};render();

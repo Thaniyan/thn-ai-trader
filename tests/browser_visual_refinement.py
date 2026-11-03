@@ -1,4 +1,4 @@
-"""Chart visibility and readable prices are product requirements, not just overflow.
+"""Dashboard confidence and accessible charts/readable prices are product requirements.
 Uses the packaged application and offline provider fixtures from the browser runner.
 """
 import itertools
@@ -40,7 +40,19 @@ with sync_playwright() as p:
             assert page.locator('#qCandles').count() == 1
             box = page.locator('#qCandles').bounding_box()
             visible = max(0, min(box['height'], height - box['y']))
-            assert visible >= (200 if width == 390 else 350), (width, language, theme, view, box)
+            if view == 'dashboard':
+                # Owner correction: confidence belongs on the opening Dashboard.
+                # The chart remains directly below it and accessible by scrolling.
+                confidence = page.locator('#dashboardConviction').bounding_box()
+                assert confidence['y'] >= 0 and confidence['y'] + confidence['height'] <= height, (width, language, theme, confidence)
+                page.locator('#qCandles').scroll_into_view_if_needed()
+                expect(page.locator('#qCandles')).to_be_in_viewport(ratio=.2)
+                scrolled = page.locator('#qCandles').bounding_box()
+                visible_after_scroll = max(0, min(scrolled['y'] + scrolled['height'], height) - max(0, scrolled['y']))
+                assert visible_after_scroll >= (200 if width == 390 else 350), (width, language, theme, view, scrolled)
+                page.evaluate('scrollTo(0, 0)')
+            else:
+                assert visible >= (200 if width == 390 else 350), (width, language, theme, view, box)
             # The previous tablet layout broke a single observed price over two lines.
             assert page.locator('#proObservedClose').evaluate('e => { const r=document.createRange(); r.selectNodeContents(e); return r.getClientRects().length === 1; }')
             assert not page.evaluate('document.documentElement.scrollWidth > innerWidth + 1')

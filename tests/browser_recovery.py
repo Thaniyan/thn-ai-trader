@@ -16,10 +16,10 @@ with sync_playwright() as p:
   s.wait_for_function('()=>!document.querySelector(".view-active").getAnimations({subtree:true}).some(a=>a.playState==="running"&&a.effect?.getComputedTiming().endTime!==Infinity&&a.effect?.target?.getClientRects().length)')
  def matched(symbol,interval):s.wait_for_function('(c)=>THNResearch.series()?.symbol===c[0]&&THNDecision.brief()?.symbol===c[0]&&THNDecision.brief()?.interval===c[1]',arg=[symbol,interval])
  expect(s.locator('#view-dashboard #qCandles')).to_be_visible();assert s.locator('#qCandles').count()==1
- # Owner requested the original branded market-entry flow ahead of the chart.
- # Require the working entry controls and at least 400px of chart in the first
- # desktop viewport; keep the original chart dimensions and identity assertions.
+ # Owner correction: show confidence on the opening Dashboard, then retain
+ # the original chart dimensions, visibility after scrolling and object identity.
  expect(s.locator('#evoDeskLead #qSymbol')).to_be_visible();expect(s.locator('#evoRunDesk')).to_be_enabled()
+ expect(s.locator('#dashboardConviction')).to_be_in_viewport();s.locator('#qCandles').scroll_into_view_if_needed()
  chart=s.locator('#qCandles').bounding_box();assert chart['width']>800 and chart['height']>=400 and min(chart['height'],1000-chart['y'])>=400,chart
  # Identity is compared with an object reference, not a fake substitute chart.
  s.evaluate('window.__recoveryChart=THNResearch.chart')
@@ -47,7 +47,7 @@ with sync_playwright() as p:
  s.locator('#qInterval').select_option('15m');matched('GBPUSD','15m');assert s.evaluate('THNResearch.chart.context.interval')=='15m'
  s.reload();s.wait_for_function('window.THNEvolution&&THNResearch.series()');expect(s.locator('#view-dashboard #qCandles')).to_be_visible();go('trading');s.locator('#proAnalyzeContext').click();s.wait_for_function('THNEvolution.analysisReady()');go('trading');s.locator('#proSaveIdea').click();expect(s.locator('#proRecords')).to_contain_text('Research idea');assert s.evaluate('THNRecords.select(getJournal()).length')==0
  go('trading');s.locator('#proTradingViewMode').click();s.wait_for_function('THNTradingViewStatus().iframeLoaded');expect(s.locator('#qCandles')).not_to_be_visible();expect(s.locator('#proDrawingDock')).not_to_be_visible();assert not s.evaluate('THNTradingViewStatus().candleReady');s.locator('#proTVRecovery > summary').click();s.locator('#proTVFallback').click();expect(s.locator('#qCandles')).to_be_visible()
- results['journeys']=['Landing chart visible without navigation','Exact same chart/state across desk and terminal','Focus routing and Escape restoration','Search and timeframe -> matched evidence','Visible toggles, drawing dock and native zoom change the actual chart','Summary equals authoritative frame values','Reload -> real analysis -> research idea (never profit)','Official widget protocol -> honest THN fallback']
+ results['journeys']=['Landing confidence visible; same chart accessible by scrolling','Exact same chart/state across desk and terminal','Focus routing and Escape restoration','Search and timeframe -> matched evidence','Visible toggles, drawing dock and native zoom change the actual chart','Summary equals authoritative frame values','Reload -> real analysis -> research idea (never profit)','Official widget protocol -> honest THN fallback']
  # A real provider failure clears selected values. Do not inject analysis or prices.
  s.route('**/api/research/series?**',lambda r:r.fulfill(status=503,content_type='application/json',body='{"error":"Provider unavailable in acceptance case"}'))
  s.locator('#qSymbol').fill('USDJPY');s.locator('#qSymbol').press('Tab');s.wait_for_function('THNContext.get().symbol==="USDJPY"&&THNResearch.series()===null');expect(s.locator('#proSummaryLevels')).to_contain_text('—');expect(s.locator('#proObservedClose')).to_have_text('—');expect(s.locator('#proSummaryStructure')).to_contain_text('unavailable');assert not s.evaluate('THNEvolution.analysisReady()');expect(s.locator('#proSaveIdea')).to_be_disabled();s.screenshot(path=str(out/'provider-unavailable.png'),full_page=True);s.unroute('**/api/research/series?**')
