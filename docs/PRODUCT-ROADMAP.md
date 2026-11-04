@@ -86,3 +86,26 @@ system checks, production packaging, workflow validation, dependency audit
 or lockfile was changed. Full browser logs are retained locally under ignored
 work/roadmap-20261104. Production verification remains subject to the network
 block described above; no live deployment success is inferred from these tests.
+
+## Verified cycle: evidence-bound Risk Desk saving
+
+Rollback baseline: 79cb730ec858af3417aa83d21489c6f8968b37c5. The Risk Desk
+save button previously enabled for any validated plan, even if matching research
+was unavailable; clicking then produced a generic failure. The presentation now
+asks the existing report builder whether a matching plan can be included. The
+snapshot probe writes no record; the save action independently validates again.
+No financial calculation, API, persistence format or execution boundary changes.
+
+An associated bilingual status explains whether a hypothetical plan needs
+validation, matching research is unavailable, or the matched report is ready for
+browser-local saving and backup. The workflow regression now exercises research
+outage with a retained valid plan, recovery, an evidence-bound Library save with
+no execution record, and input-change invalidation. Existing responsive, theme,
+accessibility and financial assertions are retained.
+
+All 30 browser suites passed on pinned Chromium 151.0.7922.34, including the
+expanded Workflow Polish suite's 60 responsive view profiles and accessibility
+checks. The ready-to-save desktop screenshot and mobile Arabic light layout were
+reviewed. Build, lint, 191 core tests, 21 security tests, 10 system checks,
+packaging, workflow validation, zero-advisory dependency audit, Git integrity and
+source/numerical parity also passed. No assertion, timeout or safeguard changed.

@@ -59,8 +59,39 @@ with sync_playwright() as p:
     page.wait_for_function('THNDecision.plan()?.budget === 100')
     assert page.evaluate('THNDecision.plan().plannedStopLossWithCosts') == 100
     assert page.evaluate('THNDecision.plan().executionAuthorized') is False
+    save = page.locator('#evoRisk [data-evo=save-plan]')
+    expect(save).to_be_enabled()
+    expect(save).to_have_attribute('aria-describedby', 'evoPlanSaveReadiness')
+    expect(page.locator('#evoPlanSaveReadiness')).to_contain_text('Saved in this browser only')
+    page.locator('#evoPlanSaveReadiness').scroll_into_view_if_needed()
+    page.screenshot(path=str(out / 'matched-plan-save-readiness.png'), animations='disabled')
+    # Plan validation alone must not promise that matching research can be saved.
+    page.route('**/api/research/brief?**', lambda r:r.fulfill(status=503,json={'ok':False,'code':'MARKET_DATA_UNAVAILABLE'}))
+    page.evaluate('THNDecision.reload()')
+    page.wait_for_function('THNDecision.brief()===null && THNDecision.failure()')
+    assert page.evaluate('THNDecision.plan().budget') == 100
+    expect(save).to_be_disabled()
+    expect(page.locator('#evoPlanSaveReadiness')).to_contain_text('Matching research is unavailable')
+    page.screenshot(path=str(out / 'missing-research-save-readiness.png'), animations='disabled')
+    assert page.evaluate('THNLibrary.records().length') == 0
+    page.locator('.terminal-topbar [data-language=ar]').click()
+    expect(page.locator('#evoPlanSaveReadiness')).to_contain_text('البحث المطابق غير متاح')
+    page.locator('.terminal-topbar [data-language=en]').click()
+    page.unroute('**/api/research/brief?**')
+    page.evaluate('THNDecision.reload()')
+    page.wait_for_function('THNDecision.brief() && THNDecision.brief().selected.provenance.hash===THNContext.get().datasetId')
+    expect(save).to_be_enabled()
+    save.click()
+    page.wait_for_function('THNLibrary.records().length===1')
+    record=page.evaluate('THNLibrary.records()[0]')
+    assert record['plan']['context']['datasetHash']==record['brief']['selected']['provenance']['hash']
+    assert record['plan']['executionAuthorized'] is False
+    assert page.evaluate('getJournal().length') == 0
+    go('risk')
     page.locator('#planStop').fill('1.095')
     assert page.evaluate('THNDecision.plan()') is None
+    expect(save).to_be_disabled()
+    expect(page.locator('#evoPlanSaveReadiness')).to_contain_text('Validate your hypothetical plan above')
     results['checks'].append('Grouped original inputs produce authoritative USD100 hypothetical risk; editing invalidates the plan; execution stays unauthorized')
 
     page.add_script_tag(path=os.environ['AXE_PATH'])
