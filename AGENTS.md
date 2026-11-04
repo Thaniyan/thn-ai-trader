@@ -8,6 +8,20 @@ delivery does not fulfill the owner's request. Preserve remote updates and use
 normal, non-forced pushes. Deployment, paid resources and real financial
 operations remain subject to their separate authorization boundaries.
 
+## Active development and deployment — owner directive, 2026-11-04
+
+Routine, low-risk improvements are authorized through implementation, required
+verification, commit/push to main, existing Vercel deployment and Production
+verification without another approval. Major changes use a development branch
+and the existing Vercel Preview workflow before owner acceptance where needed
+and integration into main. Do not create duplicate projects or infrastructure.
+The user's current direct instructions supersede older approval wording below
+and in historical release/vision documents. Preserve all release gates.
+Explicit approval is still required for real-money/broker execution, destructive
+data operations, significant security changes and new paid infrastructure.
+Keep a rollback commit and report actual deployment evidence separately from Git.
+Product priorities and verified limitations: docs/PRODUCT-ROADMAP.md.
+
 ## Release requirements
 
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.

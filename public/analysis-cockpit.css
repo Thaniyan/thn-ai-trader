@@ -117,3 +117,6 @@ html[dir=rtl] .cockpit-heading h2,html[dir=rtl] .cockpit-heading .eyebrow,html[d
 @media(max-width:1100px) { #evoDeskLead { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }.home-confidence-ring { width:96px; height:96px; flex-basis:96px; }.home-conviction { gap:12px; } }
 @media(max-width:760px) { #evoDeskLead { grid-template-columns:1fr; padding:18px; gap:16px; }#evoDeskLead .evo-lead-brand h1 { font-size:27px; }.home-conviction { margin-top:12px; }.home-evidence { gap:10px; padding-top:14px; }.home-evidence>div { padding-inline-start:8px; }.home-evidence strong { font-size:15px; }.home-evidence span { font-size:8px; letter-spacing:0; } }
 @media(max-width:320px) { .home-conviction { flex-wrap:wrap; }.home-evidence { grid-template-columns:1fr; }#evoDeskLead { padding:12px; }#evoDeskLead .evo-lead-brand h1 { font-size:22px; } }
+
+.home-provenance { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:4px 16px; margin:0; padding-top:8px; border-top:1px solid var(--border); font-size:10px; line-height:1.8; color:var(--muted); overflow-wrap:anywhere; min-width:0; }
+.home-provenance span { letter-spacing:normal; font-size:inherit; }

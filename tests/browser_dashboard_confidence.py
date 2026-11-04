@@ -7,6 +7,10 @@ with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000});page.route('https://**/*',lambda r:r.abort());page.on('pageerror',lambda e:results['errors'].append(str(e)))
  page.goto(os.environ['TEST_URL']);page.wait_for_function('window.THNConfidence && THNConfidence.review().analysis && THNDecision.brief()');page.evaluate('window.__landingChart=THNResearch.chart')
  expect(page.locator('#evoLeadTitle')).to_have_text('THN AI TRADER')
+ provenance=page.evaluate('THNResearch.series().provenance')
+ expect(page.locator('#dashboardDataSource')).to_have_text(provenance['source']+' / '+provenance['providerSymbol'])
+ expect(page.locator('#dashboardDataStatus')).to_have_text('Recent history at retrieval' if provenance['status']=='recent' else 'Stale history · review before use')
+ expect(page.locator('#dashboardBarTime')).to_have_attribute('datetime',page.evaluate('new Date(THNResearch.series().provenance.lastTime).toISOString()'))
  expect(page.locator('#dashboardConfidenceValue')).to_have_text(str(page.evaluate('THNConfidence.review().confluence')))
  a=page.evaluate('THNConfidence.review().analysis')
  expected_consensus={'BULLISH':'Bullish consensus','BEARISH':'Bearish consensus'}.get(a['consensusLabel'],'Wait for confirmation')
@@ -17,7 +21,14 @@ with sync_playwright() as p:
  expect(page.locator('#dashboardEvidence > div').nth(2).locator('strong')).to_have_text('Not tested')
  page.locator('#dashboardConviction [data-cockpit=details]').click();expect(page.locator('#view-ai')).to_be_visible();expect(page.locator('#cockpitTitle')).to_be_focused()
  page.locator('.nav-stack [data-view=dashboard]').click();page.locator('#dashboardEvidence [data-cockpit=test]').click();expect(page.locator('#view-portfolio')).to_be_visible();expect(page.locator('#confidenceTestTitle')).to_be_focused();expect(page.locator('#qRun')).to_be_visible();page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"');page.locator('.nav-stack [data-view=dashboard]').click();expect(page.locator('#dashboardEvidence > div').nth(2).locator('strong')).to_have_text(str(page.evaluate('THNConfidence.review().passed'))+' / 10')
+ pending=[];page.route('**/api/research/series?**',lambda r:pending.append(r))
  page.locator('.nav-stack [data-view=dashboard]').click();page.locator('#qSymbol').fill('USDJPY');page.locator('#qSymbol').press('Tab');page.wait_for_function('THNContext.get().symbol==="USDJPY"');expect(page.locator('#dashboardConfidenceValue')).to_have_text('—');assert page.evaluate('THNResearch.chart===window.__landingChart')
+ expect(page.locator('#dashboardDataSource')).to_have_text('—');expect(page.locator('#dashboardDataStatus')).to_have_text('History status unavailable');expect(page.locator('#dashboardBarTime')).not_to_have_attribute('datetime')
+ page.wait_for_function('THNResearch.series()===null');assert pending and all('symbol=USDJPY&interval=1h' in r.request.url for r in pending)
+ # Existing chart and independent decision-brief consumers request this endpoint.
+ for route in pending:
+  response=route.fetch();route.fulfill(response=response)
+ page.unroute('**/api/research/series?**')
  page.wait_for_function('THNResearch.series()?.symbol==="USDJPY" && THNDecision.brief()?.symbol==="USDJPY"');page.locator('#evoRunDesk').click();page.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');page.evaluate('scrollTo(0,0)');expect(page.locator('#dashboardConfidenceValue')).to_have_text(str(page.evaluate('THNConfidence.review().confluence')))
  # The offline provider deliberately reports USD for every Yahoo symbol.
  # Require the exact observed currency, not an assumed canonical quote currency.
@@ -32,6 +43,15 @@ with sync_playwright() as p:
    expect(page.locator(selector)).to_be_visible();assert page.locator(selector).evaluate('e=>e.scrollWidth<=e.clientWidth+1'),(selector,width,lang,theme)
   if width in [1440,390]:
    violations=page.evaluate('async()=> (await axe.run(document.querySelector("#evoDeskLead"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))');assert not violations,(width,lang,theme,violations)
+  expect(page.locator('#dashboardDataStatus')).to_have_text(('Recent history at retrieval' if lang=='en' else 'سجل حديث عند الجلب') if page.evaluate('THNResearch.series().provenance.status')=='recent' else ('Stale history · review before use' if lang=='en' else 'سجل قديم · راجعه قبل الاستخدام'))
+  if (width,lang,theme) in [(1440,'en','dark'),(390,'ar','light')]:page.screenshot(path=str(out/('dashboard-provenance-'+str(width)+'-'+lang+'-'+theme+'.png')),full_page=True)
   results['profiles'].append([width,lang,theme])
+ # Exercise explicit server-reported stale and unavailable states, never a client-invented freshness calculation.
+ page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click()
+ def stale_history(route):
+  response=route.fetch();data=response.json();data['provenance']['status']='stale';route.fulfill(response=response,json=data)
+ page.route('**/api/research/series?**',stale_history);page.locator('#qRefresh').click();page.wait_for_function('THNResearch.series()?.provenance.status==="stale"');expect(page.locator('#dashboardDataStatus')).to_have_text('Stale history · review before use')
+ page.locator('.terminal-topbar [data-language=ar]').click();expect(page.locator('#dashboardDataStatus')).to_have_text('سجل قديم · راجعه قبل الاستخدام');page.unroute('**/api/research/series?**')
+ page.route('**/api/research/series?**',lambda r:r.fulfill(status=503,json={'ok':False,'code':'MARKET_DATA_UNAVAILABLE'}));page.locator('#qRefresh').click();page.wait_for_function('THNResearch.series()===null');expect(page.locator('#dashboardDataSource')).to_have_text('—');expect(page.locator('#dashboardDataStatus')).to_have_text('حالة السجل غير متاحة');expect(page.locator('#dashboardBarTime')).not_to_have_attribute('datetime')
  assert not results['errors'];b.close()
 (out/'dashboard-confidence-results.json').write_text(json.dumps(results,indent=2));print('PASS: landing confidence, live context, navigation, chart ownership and 24 profiles')
