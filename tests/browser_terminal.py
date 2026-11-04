@@ -69,6 +69,27 @@ with sync_playwright() as p:
   if width!=160:page.locator('.l65-selection-guide').screenshot(path='work/comparison-selection-20261104/guide-'+str(width)+'-'+lang+'.png')
  page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
  page.locator('[data-lib=clear-selection]').click();page.locator('#l65Search').fill('');expect(page.locator('[data-lib-select]:checked')).to_have_count(0);assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==selection_storage
+ # Empty search recovery preserves comparison selection, report storage and sort.
+ for title in ['Changed costs','Unsupported engine']:page.locator('.l65-record').filter(has_text=title).locator('[data-lib-select]').check()
+ page.locator('#l65Sort').select_option('oldest');page.locator('#l65Search').fill('no-saved-report-matches-this-query')
+ expect(page.locator('.l65-record')).to_have_count(0);expect(page.locator('.l65-list')).to_contain_text('No reports match these filters')
+ expect(page.locator('#l65ResultsCount')).to_have_text('Showing 0 of '+str(page.evaluate('THNLibrary.entries().length'))+' saved reports')
+ expect(page.locator('#l65SelectionStatus')).to_contain_text('hidden by filters: 2')
+ page.locator('[data-lib=clear-filters]').focus();page.locator('[data-lib=clear-filters]').press('Enter')
+ expect(page.locator('#l65Search')).to_be_focused();expect(page.locator('#l65Search')).to_have_value('');expect(page.locator('#l65Sort')).to_have_value('oldest')
+ expect(page.locator('.l65-record')).to_have_count(page.evaluate('THNLibrary.entries().length'));expect(page.locator('#l65SelectedCount')).to_have_text('2 / 4')
+ expect(page.locator('[data-lib=clear-filters]')).to_be_disabled();assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==selection_storage
+ page.locator('#l65Status').select_option('archived');expect(page.locator('.l65-record')).to_have_count(0)
+ page.locator('[data-lib=clear-filters]').click();expect(page.locator('#l65Status')).to_have_value('all');page.locator('[data-lib=clear-selection]').click()
+ for width,lang,theme in [(1440,'en','dark'),(390,'ar','light'),(160,'ar','light')]:
+  page.set_viewport_size({'width':width,'height':1050});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  page.locator('#l65Search').fill('no-saved-report-matches-this-query');expect(page.locator('#l65ResultsCount')).to_contain_text('Showing 0 of' if lang=='en' else 'عرض 0 من')
+  expect(page.locator('[data-lib=clear-filters]')).to_have_text('Clear filters' if lang=='en' else 'مسح عوامل التصفية');assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1')
+  if width!=160:page.locator('.l65-results-guide').screenshot(path='work/library-discovery-20261104/results-'+str(width)+'-'+lang+'.png')
+  page.locator('[data-lib=clear-filters]').click();expect(page.locator('#l65Search')).to_be_focused()
+ page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
+ assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==selection_storage
+ result['checks'].append('Library result counts, distinct empty states and keyboard filter recovery preserve sorting, selection and storage across EN/AR layouts')
  result['checks'].append('selection count/limits, hidden filtered selections, shared compatibility guidance, keyboard focus, stale-result invalidation and clear action preserve stored reports')
 
  # Integrity failure is distinguished before submitting any replay to the server.

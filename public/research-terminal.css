@@ -11,3 +11,6 @@
 .l65-selection-guide { margin:12px 0; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--bg-2); min-width:0; overflow-wrap:anywhere; }
 .l65-selection-guide p { margin:0 0 10px; font-size:12px; line-height:1.8; }
 #l65CompatibilityHint:empty { display:none; }
+.l65-results-guide { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; margin:12px 0; color:var(--muted); }
+.l65-results-guide p { margin:0; font-size:12px; line-height:1.8; overflow-wrap:anywhere; min-width:0; }
+.l65-results-guide button { min-height:44px; max-width:100%; white-space:normal; }

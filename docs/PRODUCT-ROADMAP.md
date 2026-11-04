@@ -172,3 +172,27 @@ core tests, 21 security tests, 10 system checks, packaging, workflow validation,
 zero-advisory dependency audit, Git integrity and source/numerical parity passed.
 Dependencies, comparison calculations, original assertions and timeouts remain
 unchanged. Production status still requires an actual reachable live-site check.
+
+## Verified cycle: Library filter recovery
+
+Rollback baseline: b9d10ded2a1a908c8ada2bb35a55c5b25a9f76b3. The Library now
+shows the visible/total saved-report count and distinguishes an empty Library
+from a search or status filter with no matches. A clear-filters action resets
+search and status, preserves sort order and comparison selections, and returns
+keyboard focus to Search. It writes no saved data. English and Arabic wording
+and a wrapping, touch-accessible toolbar cover narrow layouts.
+
+The expanded Terminal/Library regression verifies empty search and status
+results, exact counts, keyboard recovery, retained hidden comparison selections,
+sort order, unchanged storage and EN/AR desktop/mobile/narrow layouts. English
+dark desktop and Arabic light mobile captures were visually reviewed. All 30
+complete browser suites passed with pinned Chromium 151.0.7922.34. Build, lint,
+191 core unit/integration/numerical tests, 21 security tests, 10 system checks,
+packaging, workflow validation, zero-advisory dependency audit, Git integrity and
+source/numerical parity passed. No dependency, persistence schema, comparison
+rule, numerical engine, financial boundary, assertion or timeout changed.
+
+The update uses the existing main delivery workflow. A read-only request to the
+Production domain still returned proxy CONNECT HTTP 403; no network rule was
+widened. GitHub publication and live deployment verification remain separate.
+Local verification evidence: ignored work/library-discovery-20261104.
