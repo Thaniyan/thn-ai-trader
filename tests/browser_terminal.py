@@ -50,9 +50,27 @@ with sync_playwright() as p:
  def open_case(title):page.locator('.l65-record').filter(has_text=title).locator('[data-lib-open]').click()
  open_case('Changed costs');expect(page.locator('.l65-saved-results')).to_contain_text('Imported / unverified research');page.locator('[data-r66-replay]').click();page.wait_for_function('THNLibrary.entries().find(e=>e.title==="Changed costs").reproduction?.status==="mismatch"',timeout=30000);assert 'Numerical mismatch' in page.locator('.r66-replay').inner_text();assert page.evaluate('THNLibrary.entries().find(e=>e.title==="Changed costs").record.unverified')
  open_case('Unsupported engine');assert page.locator('[data-r66-replay]').is_disabled();assert 'unsupported' in page.locator('.r66-replay').inner_text();open_case('Missing retained snapshot');assert page.locator('[data-r66-replay]').is_disabled();assert 'no fresh data' in page.locator('.r66-replay').inner_text()
+ expect(page.locator('#l65SelectedCount')).to_have_text('0 / 4');expect(page.locator('[data-lib=compare]')).to_be_disabled()
+ first_pick=page.locator('[data-lib-select]').nth(0);first_pick.check();expect(page.locator('#l65SelectedCount')).to_have_text('1 / 4');expect(page.locator('[data-lib=compare]')).to_be_disabled()
  for checkbox in page.locator('[data-lib-select]').all():checkbox.check()
+ expect(page.locator('#l65SelectedCount')).to_have_text('4 / 4');expect(page.locator('#l65CompatibilityHint')).to_contain_text('Different engines')
  page.locator('[data-lib="compare"]').click();assert page.locator('#l65Comparison svg').count()==1;assert 'Different provider snapshots' in page.locator('#l65Comparison').inner_text();assert 'Different engines' in page.locator('#l65Comparison').inner_text();assert 'no strategy ranking' in page.locator('#l65Comparison').inner_text();page.screenshot(path='work/v66-comparison.png',full_page=True)
  result['checks'].append('changed-parameter mismatch, imported/unverified preservation, missing-snapshot and incompatible-engine reasons, and bounded four-case quantitative comparison with incompatible-data warnings')
+ selection_storage=page.evaluate('localStorage.getItem("thn_research_library_v65")')
+ first_pick.focus();first_pick.press('Space');expect(page.locator('#l65SelectedCount')).to_have_text('3 / 4');expect(page.locator('#l65Comparison svg')).to_have_count(0);expect(page.locator('#l65Comparison')).to_contain_text('Selection changed');expect(first_pick).to_be_focused()
+ first_pick.press('Space');page.locator('[data-lib=compare]').click();expect(page.locator('#l65Comparison svg')).to_have_count(1)
+ page.locator('[data-lib=clear-selection]').click();expect(page.locator('#l65SelectedCount')).to_have_text('0 / 4');expect(page.locator('[data-lib=compare]')).to_be_disabled();expect(page.locator('#l65Comparison')).to_be_empty()
+ for title in ['Changed costs','Unsupported engine']:page.locator('.l65-record').filter(has_text=title).locator('[data-lib-select]').check()
+ page.locator('#l65Search').fill('Changed costs');expect(page.locator('#l65SelectedCount')).to_have_text('2 / 4');expect(page.locator('#l65SelectionStatus')).to_contain_text('hidden by filters: 1');expect(page.locator('[data-lib=compare]')).to_be_enabled()
+ page.locator('[data-lib=compare]').click();expect(page.locator('#l65Comparison')).to_contain_text('Unsupported engine')
+ for width,lang,theme in [(1440,'en','dark'),(390,'ar','light'),(160,'ar','light')]:
+  page.set_viewport_size({'width':width,'height':1050});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  expect(page.locator('#l65SelectedCount')).to_have_text('2 / 4');expect(page.locator('#l65CompatibilityHint')).to_contain_text('Different engines' if lang=='en' else 'محركات مختلفة');assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1')
+  if width!=160:page.locator('.l65-selection-guide').screenshot(path='work/comparison-selection-20261104/guide-'+str(width)+'-'+lang+'.png')
+ page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
+ page.locator('[data-lib=clear-selection]').click();page.locator('#l65Search').fill('');expect(page.locator('[data-lib-select]:checked')).to_have_count(0);assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==selection_storage
+ result['checks'].append('selection count/limits, hidden filtered selections, shared compatibility guidance, keyboard focus, stale-result invalidation and clear action preserve stored reports')
+
  # Integrity failure is distinguished before submitting any replay to the server.
  preserved=page.evaluate('localStorage.getItem("thn_research_library_v65")');page.evaluate('()=>{const s=JSON.parse(localStorage.getItem("thn_research_library_v65"));s.snapshots[0].candles[0].volume+=1;localStorage.setItem("thn_research_library_v65",JSON.stringify(s))}');page.reload();page.wait_for_function('window.THNLibrary',timeout=45000);page.locator('#m65Library').click();page.locator('[data-lib-open]').first.click();page.locator('[data-r66-replay]').click();page.wait_for_function('document.querySelector(".r66-replay .q-status").textContent.includes("integrity failure")',timeout=15000);page.evaluate('(raw)=>localStorage.setItem("thn_research_library_v65",raw)',preserved);page.reload();page.wait_for_function('window.THNLibrary&&THNDecision.brief()?.selected',timeout=45000);page.locator('#m65Library').click();page.locator('[data-lib-open]').first.click()
  # A response ignoring AbortSignal must not apply after explicit cancel.
@@ -61,10 +79,28 @@ with sync_playwright() as p:
  page.route('**/api/research/brief?**',lambda route:route.fulfill(status=503,content_type='application/json',body='{"ok":false}'));page.evaluate('THNDecision.reload()');page.wait_for_timeout(350);assert page.evaluate('THNDecision.brief()') is None;page.locator('[data-r66-replay]').click();page.wait_for_function('document.querySelector(".r66-replay .q-status").textContent.includes("Reproduced")',timeout=30000);page.unroute('**/api/research/brief?**');page.evaluate('THNDecision.reload()');page.wait_for_function('THNDecision.brief()',timeout=45000)
  result['checks'].append('tampered-candle integrity failure, interrupted response protection, unchanged records after cancellation and snapshot-only replay during provider failure')
  # A separately generated report with no historical evaluation must show missing results, not invented zero metrics.
- plain=b.new_page();plain.route('https://**/*',lambda r:r.abort());plain.goto(BASE);plain.wait_for_function('THNDecision.brief()?.selected && THNResearch.series()')
+ plain=b.new_page();plain.on('pageerror',lambda e:errors.append(str(e)));plain.route('https://**/*',lambda r:r.abort());plain.goto(BASE);plain.wait_for_function('THNDecision.brief()?.selected && THNResearch.series()')
  plain.locator('.nav-stack [data-view=ai]').click();plain.locator('#decisionWorkspace [data-decision=save]').click();plain.wait_for_function('THNLibrary.entries().length===1');plain.locator('#m65Library').click();plain.locator('[data-lib-open]').click()
  assert plain.evaluate('THNLibrary.entries()[0].record.quantitative') is None
- expect(plain.locator('#l65NoEvaluation')).to_contain_text('Missing results are not zero returns');expect(plain.locator('#l65SavedMetrics')).to_have_count(0);plain.close()
+ expect(plain.locator('#l65NoEvaluation')).to_contain_text('Missing results are not zero returns');expect(plain.locator('#l65SavedMetrics')).to_have_count(0)
+ for count in range(2,6):
+  plain.locator('.nav-stack [data-view=ai]').click();plain.locator('#decisionWorkspace [data-decision=save]').click();plain.wait_for_function('(n)=>THNLibrary.entries().length===n',arg=count)
+ plain.locator('#m65Library').click();plain_storage=plain.evaluate('localStorage.getItem("thn_research_library_v65")')
+ for box in plain.locator('[data-lib-select]').all():box.check()
+ expect(plain.locator('#l65SelectedCount')).to_have_text('5 / 4');expect(plain.locator('[data-lib=compare]')).to_be_disabled();expect(plain.locator('#l65SelectionStatus')).to_contain_text('Too many selected')
+ plain.locator('[data-lib-select]').nth(4).uncheck();expect(plain.locator('#l65SelectedCount')).to_have_text('4 / 4');expect(plain.locator('[data-lib=compare]')).to_be_enabled()
+ plain.locator('[data-lib=clear-selection]').click();expect(plain.locator('[data-lib=compare]')).to_be_disabled();assert plain.evaluate('localStorage.getItem("thn_research_library_v65")')==plain_storage
+ # Incomplete but accepted legacy metadata must not turn selection into an unhandled error.
+ incomplete=json.loads(json.dumps(backup['library']['reports'][0]));incomplete['id']='incomplete-quality';incomplete['title']='Incomplete quality metadata';incomplete.pop('reproduction',None);incomplete['record']['quantitative']['quality']['checks']='legacy incomplete metadata'
+ complete=json.loads(json.dumps(backup['library']['reports'][0]));complete['id']='complete-quality';complete['title']='Good quantitative comparison case';complete.pop('reproduction',None)
+ legacy_import={'schema':'THN-BACKUP-6.5','library':{'schema':'THN-LIBRARY-6.5','reports':[incomplete,complete],'archives':[],'snapshots':[]}}
+ control(plain,'#d64Import').set_input_files({'name':'legacy-incomplete.json','mimeType':'application/json','buffer':json.dumps(legacy_import).encode()});plain.wait_for_selector('[data-lib=restore]');plain.locator('[data-lib=restore]').click();plain.wait_for_function('THNLibrary.entries().length===7')
+ legacy_storage=plain.evaluate('localStorage.getItem("thn_research_library_v65")');plain.locator('.l65-record').filter(has_text='Incomplete quality metadata').locator('[data-lib-select]').check()
+ plain.locator('.l65-record').filter(has_text='Good quantitative comparison case').locator('[data-lib-select]').check();expect(plain.locator('#l65SelectedCount')).to_have_text('2 / 4');expect(plain.locator('[data-lib=compare]')).to_be_disabled();expect(plain.locator('#l65CompatibilityHint')).to_contain_text('Compatibility unavailable')
+ assert plain.evaluate('localStorage.getItem("thn_research_library_v65")')==legacy_storage
+ plain.locator('[data-lib=clear-selection]').click()
+ for box in plain.locator('.l65-record').filter(has_not_text='Incomplete quality metadata').locator('[data-lib-select]').all()[:2]:box.check()
+ expect(plain.locator('[data-lib=compare]')).to_be_enabled();plain.close()
  # Current risk uses authoritative contract rules; visual alternatives and overlay toggles stay explicit.
  page.locator('.q-context [data-qgoto="ai"]').click();page.locator('[data-brief-plan]').first.click();control(page,'#qRisk_spread').fill('100');control(page,'#qRisk_slippage').fill('100');control(page,'#qRisk_commission').fill('100');page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);page.locator('[data-decision="savePlan"]').click();assert page.locator('#r66PlanVisual svg').count()==1;assert 'nominal risk budget' in page.locator('#decisionPlans').inner_text();page.locator('[data-decision="planChart"]').click();control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is False;control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is True
  result['checks'].append('authoritative risk-plan costs, explicit exceeded-budget warning, independent plan exposure visualization and chart overlay visibility toggle')

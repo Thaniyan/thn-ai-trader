@@ -135,3 +135,40 @@ light summary screenshots were reviewed. Build, lint, 191 core tests, 21 securit
 tests, 10 system checks, packaging, workflow validation, zero-advisory dependency
 audit, Git integrity and source/numerical parity passed. No dependency, numerical
 engine, persistence schema, financial boundary, assertion or timeout changed.
+
+## Verified cycle: comparison selection and compatibility
+
+Rollback baseline: e0d01a12d47119848d825b3a60ca00ef5a42b9ac. Library comparison
+now displays its selection count, two-to-four-report requirement, hidden filtered
+selections and shared compatibility warnings before a comparison is opened.
+Warnings reuse the existing comparison engine and vocabulary; no compatibility
+rule or ranking is introduced. Incompatible cases remain inspectable, with their
+existing warnings. A clear-selection action changes UI selection only.
+
+Changing a checkbox formerly left the prior comparison visible. The old result
+is now removed and the user is asked to compare again. Checkbox focus is
+preserved without rerendering the Library or its open report. Filtering preserves
+selection and explicitly states when hidden reports remain included.
+
+The extended Terminal regression covers zero/one/two/four/five selections,
+filtered hidden cases, compatibility notes, keyboard focus, stale-result removal,
+clearing and unchanged storage. Existing replay, source-integrity, comparison
+and financial assertions remain intact.
+
+A targeted diagnostic also confirmed that the existing import codec accepts
+some incomplete legacy quality metadata which the comparison engine cannot
+always assess. Pre-comparison guidance catches that error, disables Compare and
+asks the user to inspect metadata or choose other reports. It neither mutates
+the import nor changes comparison calculations. A UI import regression verifies
+this state, unchanged storage and recovery to valid selections without page
+errors. The initial full run was paused for this correction; the complete gate was
+then rerun successfully on the final source.
+
+Final verification passed all 30 browser suites on pinned Chromium 151.0.7922.34,
+including selection bounds, hidden selections, compatibility failures/recovery,
+keyboard focus, unchanged storage and all original replay/financial assertions.
+EN desktop and AR mobile guidance screenshots were reviewed. Build, lint, 191
+core tests, 21 security tests, 10 system checks, packaging, workflow validation,
+zero-advisory dependency audit, Git integrity and source/numerical parity passed.
+Dependencies, comparison calculations, original assertions and timeouts remain
+unchanged. Production status still requires an actual reachable live-site check.

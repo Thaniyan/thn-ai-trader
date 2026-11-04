@@ -7,3 +7,7 @@
 #l65SavedMetrics th,#l65SavedMetrics td { overflow-wrap:anywhere; }
 #l65SavedMetrics caption { text-align:start; padding:8px 0; font-size:12px; color:var(--muted); }
 @media(max-width:600px) { #l65SavedMetrics th,#l65SavedMetrics td { padding:10px 6px; font-size:11px; } }
+
+.l65-selection-guide { margin:12px 0; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--bg-2); min-width:0; overflow-wrap:anywhere; }
+.l65-selection-guide p { margin:0 0 10px; font-size:12px; line-height:1.8; }
+#l65CompatibilityHint:empty { display:none; }
