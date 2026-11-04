@@ -1,6 +1,6 @@
 from workspace_controls import control
 """v6.6 real-provider market discovery, browser replay, comparison and reliability acceptance."""
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 import os,json,subprocess
 BASE=os.environ.get('TEST_URL','http://127.1.0.1:3027')
 with sync_playwright() as p:
@@ -14,6 +14,26 @@ with sync_playwright() as p:
  # Return to a liquid genuine dataset for chronological research and saved replay.
  page.locator('#qSymbol').fill('EURUSD');page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option('1h');page.wait_for_function('THNDecision.brief()?.symbol==="EURUSD"&&THNDecision.brief()?.interval==="1h"&&THNResearch.series()?.provenance.interval==="1h"',timeout=45000)
  page.locator('.q-context [data-qgoto="portfolio"]').click();control(page,'#qDirection').select_option('long_short');control(page,'#qMinimumTrades').fill('5');control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=45000);control(page,'#qSaveExperiment').click();page.locator('#m65ReviewEvidence').click();page.locator('#d64Thesis').fill('EURUSD independent timeframe research');page.locator('#d64Conclusion').fill('Recheck costs and gaps before drawing conclusions.');page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');page.locator('#m65Library').click();page.locator('[data-lib="snapshot"]').click();page.wait_for_function('THNLibrary.state().snapshots.length===1');page.locator('[data-lib-open]').first.click()
+ saved_record=page.evaluate('JSON.stringify(THNLibrary.entries()[0].record)')
+ quantitative=page.evaluate('THNLibrary.entries()[0].record.quantitative')
+ for key in ['returnPct','maxDrawdownPct','trades','profitFactor','averageR','exposurePct']:
+  for index,window in enumerate(['development','holdout']):
+   expected=page.evaluate('(v)=>Number.isFinite(v)?new Intl.NumberFormat("en-US",{maximumFractionDigits:6}).format(v):"Unavailable"',quantitative[window].get(key))
+   expect(page.locator('#l65SavedMetrics [data-saved-metric='+key+'] td').nth(index)).to_have_text(expected)
+ expect(page.locator('#l65SavedCosts')).to_have_text(' / '.join(str(quantitative['parameters'][k]) for k in ['spreadBps','slippageBps','commissionBps']))
+ expect(page.locator('.l65-saved-results')).to_contain_text('not a current market assessment or an execution record')
+ for width in [1440,390,160]:
+  for lang in ['en','ar']:
+   for theme in ['dark','light']:
+    page.set_viewport_size({'width':width,'height':1050});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+    expect(page.locator('#l65SavedResultsTitle')).to_have_text('Saved results & assumptions' if lang=='en' else 'النتائج والافتراضات المحفوظة')
+    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1'),(width,lang,theme)
+    if width>=390:assert page.locator('.l65-metrics-shell').evaluate('e=>e.scrollWidth<=e.clientWidth+1'),(width,lang,theme)
+    page.locator('.l65-metrics-shell').focus();assert page.evaluate('document.activeElement.classList.contains("l65-metrics-shell")')
+    assert page.evaluate('JSON.stringify(THNLibrary.entries()[0].record)')==saved_record
+    if (width,lang,theme) in [(1440,'en','dark'),(390,'ar','light')]:page.locator('.l65-saved-results').screenshot(path='work/saved-review-20261104/summary-'+str(width)+'-'+lang+'-'+theme+'.png')
+ page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
+ result['checks'].append('saved development/holdout metrics and costs equal original report; 12 responsive/theme/language profiles preserve immutable historical evidence')
  market_requests=lambda:len([u for u in requests if any(v in u for v in ['/api/research/series','/api/research/mtf','/api/research/brief'])])
  before=market_requests();page.locator('[data-r66-replay]').click();page.wait_for_function('THNLibrary.entries()[0].reproduction?.status==="reproduced"',timeout=30000);assert market_requests()==before;assert 'recorded metrics and windows match' in page.locator('.r66-replay').inner_text();assert page.locator('.r66-replay').get_by_text('0',exact=True).count()>=1
  page.locator('[data-r66-snapshot-chart]').click();assert page.locator('#r66SavedChart').is_visible();assert page.locator('#r66SavedCanvas').count()==1;page.locator('#r66SavedCanvas').focus();page.keyboard.press('ArrowLeft');page.keyboard.press('Home');page.locator('#r66SavedSMC').click();page.locator('#r66SavedZoom').click();page.locator('#r66SavedReset').click();page.screenshot(path='work/v66-saved-chart.png',full_page=True);page.locator('#r66CloseSnapshot').click()
@@ -28,7 +48,7 @@ with sync_playwright() as p:
  imported={'schema':'THN-BACKUP-6.5','library':{'schema':'THN-LIBRARY-6.5','reports':variants,'archives':[],'snapshots':[]}}
  control(page,'#d64Import').set_input_files({'name':'cases.json','mimeType':'application/json','buffer':json.dumps(imported).encode()});page.wait_for_selector('[data-lib="restore"]');assert page.evaluate('THNLibrary.entries().length')==1;page.locator('[data-lib="restore"]').click();assert page.evaluate('THNLibrary.entries().length')==4
  def open_case(title):page.locator('.l65-record').filter(has_text=title).locator('[data-lib-open]').click()
- open_case('Changed costs');page.locator('[data-r66-replay]').click();page.wait_for_function('THNLibrary.entries().find(e=>e.title==="Changed costs").reproduction?.status==="mismatch"',timeout=30000);assert 'Numerical mismatch' in page.locator('.r66-replay').inner_text();assert page.evaluate('THNLibrary.entries().find(e=>e.title==="Changed costs").record.unverified')
+ open_case('Changed costs');expect(page.locator('.l65-saved-results')).to_contain_text('Imported / unverified research');page.locator('[data-r66-replay]').click();page.wait_for_function('THNLibrary.entries().find(e=>e.title==="Changed costs").reproduction?.status==="mismatch"',timeout=30000);assert 'Numerical mismatch' in page.locator('.r66-replay').inner_text();assert page.evaluate('THNLibrary.entries().find(e=>e.title==="Changed costs").record.unverified')
  open_case('Unsupported engine');assert page.locator('[data-r66-replay]').is_disabled();assert 'unsupported' in page.locator('.r66-replay').inner_text();open_case('Missing retained snapshot');assert page.locator('[data-r66-replay]').is_disabled();assert 'no fresh data' in page.locator('.r66-replay').inner_text()
  for checkbox in page.locator('[data-lib-select]').all():checkbox.check()
  page.locator('[data-lib="compare"]').click();assert page.locator('#l65Comparison svg').count()==1;assert 'Different provider snapshots' in page.locator('#l65Comparison').inner_text();assert 'Different engines' in page.locator('#l65Comparison').inner_text();assert 'no strategy ranking' in page.locator('#l65Comparison').inner_text();page.screenshot(path='work/v66-comparison.png',full_page=True)
@@ -40,6 +60,11 @@ with sync_playwright() as p:
  # Genuine retained research remains reproducible while provider endpoints fail.
  page.route('**/api/research/brief?**',lambda route:route.fulfill(status=503,content_type='application/json',body='{"ok":false}'));page.evaluate('THNDecision.reload()');page.wait_for_timeout(350);assert page.evaluate('THNDecision.brief()') is None;page.locator('[data-r66-replay]').click();page.wait_for_function('document.querySelector(".r66-replay .q-status").textContent.includes("Reproduced")',timeout=30000);page.unroute('**/api/research/brief?**');page.evaluate('THNDecision.reload()');page.wait_for_function('THNDecision.brief()',timeout=45000)
  result['checks'].append('tampered-candle integrity failure, interrupted response protection, unchanged records after cancellation and snapshot-only replay during provider failure')
+ # A separately generated report with no historical evaluation must show missing results, not invented zero metrics.
+ plain=b.new_page();plain.route('https://**/*',lambda r:r.abort());plain.goto(BASE);plain.wait_for_function('THNDecision.brief()?.selected && THNResearch.series()')
+ plain.locator('.nav-stack [data-view=ai]').click();plain.locator('#decisionWorkspace [data-decision=save]').click();plain.wait_for_function('THNLibrary.entries().length===1');plain.locator('#m65Library').click();plain.locator('[data-lib-open]').click()
+ assert plain.evaluate('THNLibrary.entries()[0].record.quantitative') is None
+ expect(plain.locator('#l65NoEvaluation')).to_contain_text('Missing results are not zero returns');expect(plain.locator('#l65SavedMetrics')).to_have_count(0);plain.close()
  # Current risk uses authoritative contract rules; visual alternatives and overlay toggles stay explicit.
  page.locator('.q-context [data-qgoto="ai"]').click();page.locator('[data-brief-plan]').first.click();control(page,'#qRisk_spread').fill('100');control(page,'#qRisk_slippage').fill('100');control(page,'#qRisk_commission').fill('100');page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);page.locator('[data-decision="savePlan"]').click();assert page.locator('#r66PlanVisual svg').count()==1;assert 'nominal risk budget' in page.locator('#decisionPlans').inner_text();page.locator('[data-decision="planChart"]').click();control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is False;control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is True
  result['checks'].append('authoritative risk-plan costs, explicit exceeded-budget warning, independent plan exposure visualization and chart overlay visibility toggle')

@@ -109,3 +109,29 @@ checks. The ready-to-save desktop screenshot and mobile Arabic light layout were
 reviewed. Build, lint, 191 core tests, 21 security tests, 10 system checks,
 packaging, workflow validation, zero-advisory dependency audit, Git integrity and
 source/numerical parity also passed. No assertion, timeout or safeguard changed.
+
+## Verified cycle: readable saved research
+
+Rollback baseline: 5ff2fbbb63ddcbac21101bc63c4c7aa14b63abbd. An opened Library
+report previously exposed detailed strategy results mainly through raw JSON. A
+read-only summary now shows development and holdout outcomes side by side,
+recorded costs, evaluation dates, strategy settings and any saved hypothetical
+plan's risk assumptions. It displays stored values without rerunning analysis or
+changing the original report. Missing metrics remain unavailable; reports with no
+quantitative evaluation explicitly say so. Imported research remains unverified.
+
+The original source audit, comparison controls and authoritative replay stay
+intact. The compact table fits normal mobile layouts; a labeled, focusable
+region preserves horizontal access on very narrow screens. Arabic dates and
+parameter sequences use isolated directionality. Expanded Terminal regression
+coverage checks exact saved metrics/costs, immutable records across 12
+language/theme/width profiles, imported warnings and absent evaluations.
+
+All 30 complete browser suites passed on pinned Chromium 151.0.7922.34. The
+Terminal/Library regression verifies recorded metrics and costs, source-data
+immutability across 12 EN/AR/theme/width profiles, missing evaluations, imported
+warnings and retained replay/compare protections. Desktop dark and mobile Arabic
+light summary screenshots were reviewed. Build, lint, 191 core tests, 21 security
+tests, 10 system checks, packaging, workflow validation, zero-advisory dependency
+audit, Git integrity and source/numerical parity passed. No dependency, numerical
+engine, persistence schema, financial boundary, assertion or timeout changed.
