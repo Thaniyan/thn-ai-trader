@@ -20,13 +20,67 @@ with sync_playwright() as p:
  m=page.evaluate('(()=>{const m=THNConfidence.review();return {score:m.validationScore,passed:m.passed,checks:m.checks.length,probability:m.probability};})()')
  assert m['checks']==10 and m['score']==m['passed']*10 and m['probability'] is None
  expect(page.locator('.confidence-checks li')).to_have_count(10)
- page.locator('#qParam_spread').fill('8');assert page.evaluate('THNConfidence.review().testStatus')=='changed';assert page.evaluate('THNConfidence.review().validationScore') is None
+ recorded=page.evaluate('JSON.stringify(THNResearch.evaluation())')
+ evaluation=page.evaluate('THNResearch.evaluation()')
+ for check in page.evaluate('THNConfidence.review().checks'):
+  finding=page.locator('[data-validation-check="'+check['code']+'"]');expect(finding).to_have_attribute('data-pass',str(check['pass']).lower());finding.locator('summary').click();expect(finding.locator('dl')).to_be_visible();assert finding.locator('[data-validation-value]').count()>0
+  expect(finding.locator('p').first).not_to_be_empty()
+  finding.locator('summary').click()
+ def shown(key):return page.locator('[data-validation-value="'+key+'"]')
+ def number(value):return page.evaluate('(v)=>Number.isFinite(v)?new Intl.NumberFormat("en-US",{maximumFractionDigits:6}).format(v):"Unavailable"',value)
+ for code,keys in [('trade_count',['trades']),('holdout_positive',['returnPct','expectancy']),('development_positive',['returnPct','expectancy']),('expectancy_retained',['averageR'])]:
+  finding=page.locator('[data-validation-check="'+code+'"]');finding.locator('summary').click()
+  for window in ['development','holdout']:
+   for key in keys:expect(finding.locator('[data-validation-value="'+window+'-'+key+'"]')).to_have_text(number(evaluation[window]['metrics'].get(key)))
+  finding.locator('summary').click()
+ expect(shown('development-period')).to_have_text(page.evaluate('(e)=>[e.development.sample.firstTime,e.development.sample.lastTime].map(v=>new Date(v).toISOString().replace("T"," ").slice(0,19)+" UTC").join(" → ")',evaluation))
+ expect(shown('costs')).to_have_text(' / '.join(number(evaluation['parameters'][k]) for k in ['spreadBps','slippageBps','commissionBps']))
+ sample=page.locator('[data-validation-check=trade_count]');sample.locator('summary').click();expect(sample.locator('[data-validation-value=minimumTrades]')).to_have_text(number(evaluation['split']['minimumTrades']));sample.locator('[data-validation-control]').click();expect(page.locator('#qMinimumTrades')).to_be_focused();assert page.evaluate('JSON.stringify(THNResearch.evaluation())')==recorded
+ sample.locator('summary').click()
+ for code in ['cost_robustness','parameter_robustness']:
+  finding=page.locator('[data-validation-check="'+code+'"]');finding.locator('summary').click()
+  variants=[v for v in evaluation['sensitivity'] if (v['kind']=='parameter')==(code=='parameter_robustness')]
+  expect(finding.locator('[data-validation-value=variants]')).to_have_text(str(len(variants)))
+  for i,v in enumerate(variants):
+   for window in ['development','holdout']:expect(finding.locator('[data-validation-value="variant-'+str(i)+'-'+window+'"]')).to_have_text(number(v[window]['metrics']['returnPct']))
+  finding.locator('summary').click()
+ for key,metric in [('profitFactor','profitFactor'),('sharpePerBar','sharpePerBar'),('averageR','averageR')]:expect(page.locator('[data-validation-check=defined_metrics] [data-validation-value='+key+']')).to_have_text(number(evaluation['holdout']['metrics'][metric]))
+ # Keep open evidence accessible in EN/AR, both themes and narrow layouts.
+ page.add_script_tag(path=os.environ['AXE_PATH'])
+ for width,lang,theme in itertools.product([1440,768,390,160],['en','ar'],['dark','light']):
+  page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  for detail in page.locator('.confidence-finding').all():
+   if not detail.get_attribute('open')=='' :detail.locator('summary').click()
+  assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1'),(width,lang,theme)
+  expect(page.locator('#confidenceRecordedTitle')).to_have_text('Recorded evaluation evidence' if lang=='en' else 'أدلة التقييم المسجلة')
+  if width in [1440,390]:
+   violations=page.evaluate('async()=> (await axe.run(document.getElementById("confidenceValidation"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>v.id)');assert not violations,(width,lang,theme,violations)
+  assert page.evaluate('JSON.stringify(THNResearch.evaluation())')==recorded
+  if (width,lang,theme) in [(1440,'en','dark'),(390,'ar','light')]:page.locator('#confidenceValidation').screenshot(path=str(out/('validation-evidence-'+str(width)+'-'+lang+'.png')))
+ page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
+
+ # Exercise missing fold evidence and insufficient history through the real engine.
+ short_start=page.evaluate('(e)=>new Date(e.development.sample.firstTime).toISOString().slice(0,10)',evaluation)
+ short_end=page.evaluate('(e)=>new Date(e.development.sample.firstTime+12*86400000).toISOString().slice(0,10)',evaluation)
+ page.locator('#qStart').fill(short_start);page.locator('#qEnd').fill(short_end);page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"')
+ assert not page.evaluate('THNResearch.evaluation().walkForward.available')
+ fold=page.locator('[data-validation-check=walk_consistency]');fold.locator('summary').click();expect(fold.locator('[data-validation-value=walkUnavailable]')).to_contain_text(str(page.evaluate('THNResearch.evaluation().walkForward.requiredEligibleBars')));expect(fold).to_have_attribute('data-pass','false')
+ page.locator('#qEnd').fill(short_start);page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="failed"');assert page.evaluate('THNConfidence.review().validationScore') is None;expect(page.locator('.confidence-recorded')).to_contain_text('Retained report, not current validation')
+ page.locator('#qStart').fill('');page.locator('#qEnd').fill('');page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"')
+ # Unrecognized report labels remain text, even under a hostile response fixture.
+ hostile_label='<img src=x onerror="window.__validationInjected=true">'
+ def label_fixture(route):
+  response=route.fetch();body=response.json();body['sensitivity'][0]['label']=hostile_label;route.fulfill(response=response,json=body)
+ page.route('**/api/research/evaluate',label_fixture);page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"')
+ hostile=page.locator('[data-validation-check=parameter_robustness]');hostile.locator('summary').click();expect(hostile.locator('dt')).to_contain_text(['Recorded variants',hostile_label,'Development return %','Holdout return %','Higher parameter','Development return %','Holdout return %']);expect(page.locator('#confidenceValidation img')).to_have_count(0);expect(page.locator('#qResult img')).to_have_count(0);assert not page.evaluate('Boolean(window.__validationInjected)')
+ page.unroute('**/api/research/evaluate',label_fixture);page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"')
+ page.locator('#qParam_spread').fill('8');assert page.evaluate('THNConfidence.review().testStatus')=='changed';assert page.evaluate('THNConfidence.review().validationScore') is None;expect(page.locator('.confidence-recorded')).to_contain_text('Retained report, not current validation')
  page.route('**/api/research/evaluate',lambda r:r.fulfill(status=503,json={'ok':False,'code':'MARKET_DATA_UNAVAILABLE'}))
  page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus === "failed"');assert page.evaluate('THNConfidence.review().validationScore') is None
  page.unroute('**/api/research/evaluate');page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus === "complete"')
  # Prove context changes cannot attach the retained score to another market.
  page.evaluate('THNContext.set({symbol:"USDJPY"},"confidence-test")');assert page.evaluate('THNConfidence.review().validationScore') is None
- assert page.evaluate('THNConfidence.review().confluence') is None
+ assert page.evaluate('THNConfidence.review().confluence') is None;expect(page.locator('#confidenceRecordedTitle')).to_have_count(0);expect(page.locator('[data-validation-check]')).to_have_count(0)
  page.wait_for_function('THNResearch.series()?.symbol === "USDJPY" && THNDecision.brief()?.symbol === "USDJPY"')
  go('ai');expect(page.locator('[data-cockpit=analyze]')).to_be_enabled();page.locator('[data-cockpit=analyze]').click();page.wait_for_function('THNConfidence.review().analysis?.symbol === "USDJPY" && document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');expect(page.locator('#schoolsGrid')).to_be_visible()
  page.add_script_tag(path=os.environ['AXE_PATH'])

@@ -120,3 +120,21 @@ html[dir=rtl] .cockpit-heading h2,html[dir=rtl] .cockpit-heading .eyebrow,html[d
 
 .home-provenance { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:4px 16px; margin:0; padding-top:8px; border-top:1px solid var(--border); font-size:10px; line-height:1.8; color:var(--muted); overflow-wrap:anywhere; min-width:0; }
 .home-provenance span { letter-spacing:normal; font-size:inherit; }
+
+/* Recorded validation evidence: expandable, readable and context-bound. */
+.confidence-checks li[data-validation-check] { display:block; min-width:0; }
+.confidence-finding>summary { display:flex; align-items:baseline; justify-content:space-between; gap:12px; cursor:pointer; line-height:1.8; }
+.confidence-finding>summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+.confidence-finding>summary>span { min-width:0; overflow-wrap:anywhere; }
+.confidence-finding-body { padding:10px 0; line-height:1.8; }
+.confidence-finding-body p,.confidence-recorded p { color:var(--muted); font-size:11px; line-height:1.9; overflow-wrap:anywhere; }
+.confidence-recorded { margin-top:16px; padding:14px; border:1px solid var(--border); border-inline-start:3px solid var(--accent); border-radius:10px; }
+.confidence-recorded h4 { margin:0 0 10px; font-size:13px; }
+.confidence-finding-body dl,.confidence-recorded dl { display:grid; gap:8px; margin:10px 0; }
+.confidence-finding-body dl>div,.confidence-recorded dl>div { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; min-width:0; }
+.confidence-finding-body dt,.confidence-recorded dt { color:var(--muted); font-size:11px; }
+.confidence-finding-body dd,.confidence-recorded dd { margin:0; font-size:11px; overflow-wrap:anywhere; max-width:100%; }
+.confidence-finding-body button { white-space:normal; max-width:100%; min-height:40px; }
+
+.confidence-finding>summary>span::before { content:'+ '; color:var(--accent); font-weight:700; }
+.confidence-finding[open]>summary>span::before { content:'− '; }

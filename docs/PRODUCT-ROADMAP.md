@@ -239,3 +239,54 @@ reasons for unmet checks and relevant assumptions, and saving the matched resear
 without creating an execution record; verify EN/AR, themes, responsive layouts
 and all existing release gates. Model integration, hosted persistence and live
 execution remain separately scoped capabilities, not implied by this milestone.
+
+## Integrated Research and Decision Intelligence — increment 1
+
+Rollback baseline: 8e834323c201fdc3a6beab5c85057bc34458d7e3. Historical
+validation now explains all ten existing 6.4-Q1 checks through expandable findings.
+Each finding uses the existing confidence verdict and recorded evaluation values;
+no numerical engine, threshold, verdict, dataset identity or record format changes.
+The evidence panel displays development/holdout periods, transaction-cost
+assumptions, trade counts, returns, expectancy, average R, all recorded stress
+variants and patches, fold results, concentration, coverage and undefined metrics.
+Missing folds show the engine-reported eligible-bar requirement. Values are rounded
+for display, with scientific notation for tiny nonzero values; verdicts retain full
+precision. Arabic score sequences use explicit left-to-right directionality.
+
+A finding's assumptions action focuses its existing strategy, cost, minimum-trade,
+gap-policy or chronological-window control without changing it. Editing inputs,
+a pending request or failure explicitly labels the retained report as non-current;
+market/timeframe/hash mismatches remove the evidence panel and scored findings.
+This reuses confidenceReview, researchQuality and the authoritative evaluation
+report. Existing analysis, scenario-to-risk and Library workflows remain intact.
+It neither trains a model nor estimates probability of future trading success.
+
+The expanded Confidence Lifecycle regression verifies exact recorded values,
+criteria verdict parity, periods, costs, variant returns, focus routing and report
+immutability. It opens findings across 16 EN/AR/theme/width profiles with
+accessibility scans, retaining the original 48 lifecycle profiles. Real bounded
+historical evaluation exercises missing walk-forward folds and insufficient
+history; retained-report and context-invalidation protections remain asserted.
+
+A hostile-label fixture found that the older detailed-results table rendered an
+unknown sensitivity label as HTML. Publication stopped for a one-line escaping
+correction in research-quality.js. The regression retains the execution assertion
+and verifies both presentation surfaces contain no injected image element. No
+assertion, suite, time limit or safeguard was removed to resolve that failure.
+The complete browser gate is rerun on the corrected source before publication.
+
+The next increment should bring these explanations into saved-research review,
+using only evidence retained in existing records and explicitly identifying any
+missing detail. This will connect current validation interpretation to revisited
+research without introducing a second engine or changing persistence formats.
+
+Final increment verification passed all 30 browser suites in one corrected full
+gate with exit 0, using pinned Playwright 1.62.0 / Chromium 151.0.7922.34. The
+original failing run is retained as diagnostic evidence. The English desktop dark
+and Arabic mobile light expanded findings were visually reviewed. Build, lint,
+191 core unit/integration/numerical tests, 21 security tests, ten system checks,
+packaging, workflow, zero-advisory dependency audit, Git integrity and numerical
+source parity passed. No dependency, persistence schema, financial endpoint or
+quantitative engine changed. Local evidence: work/integrated-validation-20261105.
+Production status must still be verified separately; prior proxy CONNECT 403
+responses do not establish Vercel deployment success or application failure.
