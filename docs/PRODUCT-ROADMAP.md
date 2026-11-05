@@ -361,3 +361,81 @@ Next increment: compare a saved thesis with a fresh, separately validated
 hypothetical risk scenario, making the context and assumptions review explicit.
 Keep the original record immutable; never silently transfer historical levels
 into a current plan or represent a plan as an execution authorization.
+
+## Integrated Research and Decision Intelligence — increment 3 (2026-11-06)
+
+Rollback baseline: b9f7d015100000a5710acf2b4acc865c0f045638. The owner
+independently confirmed a matching READY Vercel Production deployment for that
+baseline; interactive behavior and this increment's deployment require separate
+verification.
+
+The Library reader now starts a separate historical-to-current Risk Desk
+comparison. It retains an in-memory copy of the selected historical record and
+leaves the stored report, evaluation and hypothetical plan unchanged. No prices,
+stops, targets or capital are transferred from history. An explicit action selects
+the report's instrument/timeframe for new research; the existing context rules
+still clear stale price levels and invalidate prior estimates. Users review or
+enter current hypothetical inputs and submit the existing authoritative planner.
+The original report can be reopened through End comparison or Escape, restoring
+keyboard focus without saving or overwriting anything.
+
+The comparison reads the supplied recorded plan and server-validated estimate.
+It subtracts comparable numeric values only; it never sizes positions, converts
+currencies, calculates margin, recalculates historical returns or approves an
+execution. Rows cover capital, risk percentage/budget, entered levels and targets,
+lots, recorded contract units, leverage, cost assumptions, modeled exposure,
+margin, stop exposure and supplied target reward/risk. Missing targets and values
+remain missing rather than zero. Backtest assumptions never substitute for an
+absent historical plan.
+
+Numeric differences require matching selected instrument/timeframe, provider,
+provider instrument, observation currency, current snapshot binding and recent-at-
+retrieval history. Historical plan provenance and validation metadata must be
+retained. The supported planner version and recorded contract size must match;
+these are model specifications, not verified broker terms. New validation must
+postdate the saved report. Different historical/current source hashes remain
+visible and are explicitly an assumptions comparison, not a replay. Direction or
+scenario-reference changes withhold price-level and target reward/risk differences
+while allowing otherwise compatible supplied USD amounts. Imported, unverified,
+proxy, incomplete, unsupported or mismatched baselines remain inspectable with
+explicit reasons and withheld differences. Input edits, pending/rejected validation
+or lost evidence remove valid comparison differences immediately.
+
+Source cards retain selected candle opening times, provider metadata and hashes.
+Browser save/validation times are labeled as browser times. Retained scenario
+reference intervals/hashes are shown; absent reference timestamps are not invented.
+Existing budget-compliance flags and margin warnings are surfaced separately from
+input validity and never imply execution authorization. Side-by-side differences
+explain changed modeled stop exposure without projecting strategy performance.
+
+Browser verification caught that the old instrument-change event also clears
+planning prices. The new same-context preparation action uses the existing form
+invalidation path instead. Actual context changes preserve their original clearing
+safeguards; tests require explicit new prices afterward rather than restoring old
+levels. No numerical engine, server endpoint, saved schema or persistence key was
+changed. The comparison session is not persisted and cancellation writes no report.
+
+Thirteen new focused tests cover supplied-value arithmetic, immutability, missing
+plans/values, invalidation, context/currency/provider/time/snapshot conflicts,
+imports/proxies, contract mismatches, direction/reference differences and safe
+source labels. The new browser suite exercises genuine historical evaluation and
+server plan validation, Library selection, input preservation, differences,
+evidence outage/recovery, context transitions, cancellation/focus, imported and
+legacy reports, and unchanged records/evaluation request counts. Sixteen EN/AR,
+dark/light, desktop/tablet/mobile/narrow profiles and accessibility scans passed;
+desktop English dark and mobile Arabic light captures were reviewed. Narrow tables
+have a labeled keyboard-focusable horizontal region and visible scroll guidance.
+
+The preserved full browser run records all 31 unique suite passes with no failure
+or traceback. After continuation, tested-source hashes were verified unchanged.
+Build, lint, 216 core unit/integration/numerical tests, 21 security tests, ten system
+checks, packaging (77 runtime files), workflow, zero-advisory dependency audit,
+Git integrity and source/numerical parity passed. No dependency version, lockfile,
+financial calculation or execution restriction changed. Existing Vercel main
+delivery is reused; GitHub publication must remain distinct from live verification.
+Local verification evidence: work/research-risk-20261105.
+
+Next increment: an explicit, separately saved follow-up research record linking the
+new scenario to its historical thesis, retaining both snapshots and user-authored
+rationale. Keep the original immutable; assess the existing record format before
+adding linkage, and never imply a simulated or realized trade outcome.

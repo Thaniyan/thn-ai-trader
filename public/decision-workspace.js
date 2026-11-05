@@ -1,3 +1,4 @@
+import {attachResearchRiskComparison} from './research-risk-comparison.js';
 import {APPLICATION_VERSION,instrumentIdentity} from './instrument-identity.js';
 import { createResearchLibrary } from './research-library.js';
 import { cleanReport, decodeReports, reportHTML } from './decision-records.js';
@@ -10,7 +11,7 @@ const date=v=>Number.isFinite(v)?new Date(v).toISOString().replace('T',' ').slic
 const labels={insufficient:['Insufficient evidence','أدلة غير كافية'],limited:['Limited historical support','دعم تاريخي محدود'],mixed:['Mixed evidence','أدلة مختلطة'],consistent:['Historical evidence more consistent across tests','أدلة تاريخية أكثر اتساقاً عبر الاختبارات'],development_positive:['Positive development return and expectancy','عائد وتوقع موجب في فترة التطوير'],trade_count:['Minimum trades in both windows','أدنى الصفقات في الفترتين'],holdout_positive:['Positive holdout return and expectancy','عائد وتوقع موجب في العينة الخارجية'],expectancy_retained:['Mean realized R retained','استمرار متوسط R المحقق'],cost_robustness:['All cost stresses positive','جميع اختبارات التكاليف موجبة'],parameter_robustness:['Both parameter variants positive','اختبارا المعلمات موجبان'],walk_consistency:['All three subsequent folds positive with minimum trades','الفترات الثلاث اللاحقة موجبة مع أدنى الصفقات'],concentration:['Largest trade ≤40% absolute PnL and ≤25% risk share','أكبر صفقة ≤٤٠٪ من الربح المطلق و≤٢٥٪ من المخاطرة'],coverage:['Recent history without omitted rows or observed gaps','سجل حديث دون حذف صفوف أو فجوات مرصودة'],defined_metrics:['Defined profit factor, Sharpe and mean R','معامل ربح وشارب ومتوسط R معرفة'],bullish:['Bullish','صاعد'],bearish:['Bearish','هابط'],neutral:['Wait / neutral','انتظار / محايد']};
 const label=k=>labels[k]?tr(...labels[k]):k;
 const button=(action,en,ar)=>`<button type="button" class="ghost small" data-decision="${action}">${tr(en,ar)}</button>`;
-let brief=null,briefFailure=null,loading=false,request=0,controller,plan=null,planContext=null,planRequest=0,selectedReport=null,library;
+let brief=null,briefFailure=null,loading=false,request=0,controller,plan=null,planContext=null,planRequest=0,selectedReport=null,library,riskComparison;
 const recordsKey='thn_decision_reports_v64',plansKey='thn_decision_plans_v64';
 const dashboard=document.createElement('section');dashboard.id='decisionCommand';dashboard.className='panel d64-panel';$('view-dashboard').querySelector('.work-stats').after(dashboard);
 const workspace=document.createElement('section');workspace.id='decisionWorkspace';workspace.className='panel d64-panel';$('view-ai').prepend(workspace);
@@ -64,7 +65,8 @@ window.addEventListener('thn:context',()=>{++planRequest;plan=null;planContext=n
 window.addEventListener('thn:evaluation',()=>{const e=currentEvaluation();if(e)THNContext.set({evaluationPeriod:{firstTime:e.development.sample.firstTime,lastTime:e.holdout.sample.lastTime},researchQuality:researchQuality(e)},'evaluation-quality');render();});
 window.addEventListener('thn:library',render);
 new MutationObserver(()=>{const old=$('d64SaveStatus')?.textContent,pair=noticeTranslations.get(old);render();renderPlans();if(pair)$('d64SaveStatus').textContent=tr(...pair);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-library=createResearchLibrary({root:reports,onChange:()=>{window.dispatchEvent(new CustomEvent('thn:library'));}});
+library=createResearchLibrary({root:reports,onCompareRisk:id=>riskComparison?.start(id),onChange:()=>{window.dispatchEvent(new CustomEvent('thn:library'));}});
 window.THNLibrary=library;
 window.THNDecision={savedPlans:()=>read(plansKey),failure:()=>briefFailure,render,brief:()=>brief,quality:()=>researchQuality(currentEvaluation()),plan:()=>plan,snapshot:reportSnapshot,reload:loadBrief};
+riskComparison=attachResearchRiskComparison({library,getState:()=>({plan,planContext,planState,context:THNContext.get(),series:THNResearch.series(),brief}),onReturn:id=>{goto('journal');showReport(id);const trigger=reports.querySelector('[data-lib-risk="'+CSS.escape(id)+'"]');(trigger||reports.querySelector('h2'))?.focus();}});
 render();loadBrief();
