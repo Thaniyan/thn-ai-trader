@@ -196,3 +196,46 @@ The update uses the existing main delivery workflow. A read-only request to the
 Production domain still returned proxy CONNECT HTTP 403; no network rule was
 widened. GitHub publication and live deployment verification remain separate.
 Local verification evidence: ignored work/library-discovery-20261104.
+
+## Verified cycle: cancellable Library editors — 2026-11-05
+
+Rollback baseline: e97be2cb1f9d4f81dce352760ad8763cbb5619de. Rename and
+report/candle-removal prompts now open as named inline regions with predictable
+keyboard focus. Rename focuses the title field; removal prompts focus Cancel,
+without automatically confirming deletion. Cancel and Escape close the prompt
+and return focus to its originating button. Report removal identifies its title.
+Existing confirmation requirements, persistence formats and financial behavior
+remain unchanged; cancellation writes no report or candle data.
+
+The recovered implementation was preserved after workspace interruption. The
+Terminal/Library suite checks all three editors, Cancel and Escape, unchanged
+Library state and no overflow at English desktop, Arabic mobile and a 160-pixel
+narrow layout. All original assertions and deadlines are retained. All 30 browser
+suites passed on pinned Chromium 151.0.7922.34: nineteen logged passes survived
+execution-session loss; the remaining eleven completed successfully using the
+original runner logic and deadlines. This was resumed verification, not a claimed
+single uninterrupted full-command exit. Recovery hashes confirm unchanged source.
+Build, lint, 191 core unit/integration/numerical tests, 21 security tests, ten
+system checks, packaging, workflow, zero-advisory dependency audit, Git integrity
+and source/numerical parity passed.
+
+Release diagnostics identify the workspace proxy as the observed HTTP 403 source:
+HTTPS CONNECT is denied before TLS reaches thn-ai-trader.vercel.app or
+api.github.com; both hosts are absent from the enforced destination allowlist.
+This does not establish Vercel Deployment Protection, GitHub API authorization
+or application health. No protection, credential or network rule was changed.
+Repository configuration enables main deployment; actual Vercel connection,
+deployment commit and Production smoke tests remain unverified behind that block.
+GitHub publication must be reported separately from Production readiness.
+
+## Next priority: actionable historical-validation interpretation
+
+Connect each existing failed confidence check to its recorded evidence and the
+relevant strategy, costs or validation-window controls. Explain sample sufficiency,
+parameter sensitivity and holdout limitations without inventing metrics or win
+probabilities. Preserve dataset/context invalidation and original report values.
+Acceptance: an evidence-bound route from analysis to a historical test, readable
+reasons for unmet checks and relevant assumptions, and saving the matched research
+without creating an execution record; verify EN/AR, themes, responsive layouts
+and all existing release gates. Model integration, hosted persistence and live
+execution remain separately scoped capabilities, not implied by this milestone.

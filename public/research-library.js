@@ -19,6 +19,17 @@ export function createResearchLibrary({root,storage={getItem:key=>localStorage.g
   let state=readLibrary(storage).state,error=readLibrary(storage).error,filter='',status='all',sort='newest',selected=new Set(),opened=null,preview=null,message='',previewRequest=0,replayHandle=null,comparisonOpen=false;let recoveryOpen=false;const replayCache=new Map();
   const change=next=>{state=writeLibrary(storage,next,state);onChange();};
   const fail=()=>{message=tr('Operation rejected. Storage may be full/unreadable or the file exceeds safe bounds. Existing work was preserved.','رُفضت العملية. قد يكون التخزين ممتلئاً/غير مقروء أو الملف يتجاوز الحدود الآمنة. حُفظ العمل السابق.');render();};
+  let editorOpener=null;
+  function closeEditor(){
+    const editor=root.querySelector('#l65Editor');editor.replaceChildren();editor.removeAttribute('role');editor.removeAttribute('aria-label');
+    if(editorOpener?.isConnected)editorOpener.focus();editorOpener=null;
+  }
+  function showEditor(html,opener,label,focusSelector='[data-lib="close-editor"]'){
+    const editor=root.querySelector('#l65Editor');editorOpener=opener;editor.setAttribute('role','region');editor.setAttribute('aria-label',label);
+    editor.innerHTML=html+` <button type="button" class="ghost small" data-lib="close-editor">${tr('Cancel','إلغاء')}</button>`;
+    editor.querySelector(focusSelector).focus();
+  }
+  root.addEventListener('keydown',event=>{if(event.key==='Escape'&&event.target.closest('#l65Editor')){event.preventDefault();event.stopPropagation();closeEditor();}});
   function legacy(){
     const pending=emptyLibrary();let skipped=0;
     const get=key=>{try{const v=JSON.parse(storage.getItem(key));return Array.isArray(v)?v:[];}catch{skipped++;return [];}};
@@ -49,6 +60,7 @@ export function createResearchLibrary({root,storage={getItem:key=>localStorage.g
     comparisonOpen=false;
   }
   function render(){
+    editorOpener=null;
     const messagePair=noticeTranslations.get(message);if(messagePair)message=tr(...messagePair);
     replayHandle?.dispose();replayHandle=null;for(const id of replayCache.keys())if(!state.reports.some(e=>e.id===id))replayCache.delete(id);
     const records=state.reports.filter(e=>(status==='all'||e.status===status)&&`${e.title} ${e.record.symbol} ${e.record.interval} ${e.record.user.thesis}`.toLowerCase().includes(filter.toLowerCase())).sort((a,b)=>sort==='oldest'?a.record.savedAt-b.record.savedAt:sort==='symbol'?a.record.symbol.localeCompare(b.record.symbol):b.record.savedAt-a.record.savedAt);
@@ -72,6 +84,7 @@ export function createResearchLibrary({root,storage={getItem:key=>localStorage.g
     const context=e.target.closest('[data-lib-context]');if(context){const entry=state.reports.find(v=>v.id===context.dataset.libContext);if(entry&&window.THNContext.set({symbol:entry.record.symbol,interval:entry.record.interval},'library-current-research')){document.querySelector('.nav-stack [data-view="trading"]').click();window.THNProfessional?.setMode('research');}return;}
     const action=e.target.closest('[data-lib]')?.dataset.lib;const target=e.target.closest('button');if(!target)return;e.stopPropagation();
     try{
+      if(action==='close-editor'){closeEditor();return;}
       if(action==='legacy'){++previewRequest;const recovery=legacy();preview=recovery.state;message=tr(`Legacy sources remain unchanged. Legacy records not included: ${recovery.skipped}.`,`تبقى المصادر القديمة دون تغيير. سجلات قديمة لم تُدرج: ${recovery.skipped}.`);render();}
       if(action==='cancel'){++previewRequest;preview=null;message='';render();}
       if(action==='restore'&&preview){change(mergeRestore(state,preview,()=>crypto.randomUUID()));preview=null;message=tr('Restore appended safely. Original records remain intact.','أُضيفت الاستعادة بأمان. السجلات الأصلية محفوظة.');render();}
@@ -82,11 +95,11 @@ export function createResearchLibrary({root,storage={getItem:key=>localStorage.g
       if(action==='snapshot'){const c=THNContext.get(),series=THNResearch.series();if(!series||series.provenance.hash!==c.datasetId)throw Error();const snap=await verifySnapshot({symbol:c.symbol,interval:c.interval,hash:series.provenance.hash,provenance:series.provenance,candles:series.candles});if(!state.snapshots.some(s=>s.hash===snap.hash))change({...state,snapshots:[...state.snapshots,snap]});message=tr('Exact selected-frame candles retained and SHA-256 verified.','حُفظت شموع الإطار المختار وتحققت بصمة SHA-256.');render();}
       const id=target.dataset.libOpen;if(id)open(id);
       const html=target.dataset.libHtml;if(html){const item=state.reports.find(r=>r.id===html);if(item)download('THN-research-'+item.record.symbol+'.html',reportHTML(item.record,document.documentElement.lang==='ar'),'text/html');}
-      const remove=target.dataset.libDelete;if(remove){root.querySelector('#l65Editor').innerHTML=`<p>${tr('Delete this report? Export a backup first if needed.','حذف هذا التقرير؟ صدّر نسخة أولاً عند الحاجة.')}</p><button type="button" class="ghost small" data-lib-confirm-delete="${esc(remove)}">${tr('Confirm delete','تأكيد الحذف')}</button>`;}
+      const remove=target.dataset.libDelete;if(remove){showEditor(`<p><b>${esc(state.reports.find(r=>r.id===remove)?.title||'')}</b></p><p>${tr('Delete this report? Export a backup first if needed.','حذف هذا التقرير؟ صدّر نسخة أولاً عند الحاجة.')}</p><button type="button" class="ghost small" data-lib-confirm-delete="${esc(remove)}">${tr('Confirm delete','تأكيد الحذف')}</button>`,target,tr('Remove saved report','إزالة التقرير المحفوظ'));}
       const confirmed=target.dataset.libConfirmDelete;if(confirmed){change({...state,reports:state.reports.filter(r=>r.id!==confirmed)});selected.delete(confirmed);opened=null;render();}
-      const snapshot=target.dataset.libDropSnapshot;if(snapshot){root.querySelector('#l65Editor').innerHTML=`<p>${tr('Removing candles prevents offline replay unless a backup is retained.','إزالة الشموع تمنع إعادة التشغيل دون اتصال إلا بوجود نسخة احتياطية.')}</p><button type="button" class="ghost small" data-lib-confirm-snapshot="${esc(snapshot)}">${tr('Confirm snapshot deletion','تأكيد حذف اللقطة')}</button>`;}
+      const snapshot=target.dataset.libDropSnapshot;if(snapshot){showEditor(`<p>${tr('Removing candles prevents offline replay unless a backup is retained.','إزالة الشموع تمنع إعادة التشغيل دون اتصال إلا بوجود نسخة احتياطية.')}</p><button type="button" class="ghost small" data-lib-confirm-snapshot="${esc(snapshot)}">${tr('Confirm snapshot deletion','تأكيد حذف اللقطة')}</button>`,target,tr('Remove retained candles','إزالة الشموع المحفوظة'));}
       const drop=target.dataset.libConfirmSnapshot;if(drop){change({...state,snapshots:state.snapshots.filter(s=>s.hash!==drop)});render();}
-      const edit=target.dataset.libEdit;if(edit){const item=state.reports.find(v=>v.id===edit);root.querySelector('#l65Editor').innerHTML=`<label>${tr('Research title','عنوان البحث')}<input id="l65Title" maxlength="120" value="${esc(item.title)}" /></label><label>${tr('User review status','حالة المراجعة الشخصية')}<select id="l65EditStatus">${['draft','reviewed','archived'].map(v=>`<option value="${v}" ${item.status===v?'selected':''}>${statusName(v)}</option>`).join('')}</select></label><button type="button" class="primary small" data-lib-save-edit="${esc(edit)}">${tr('Save name and status','حفظ الاسم والحالة')}</button>`;}
+      const edit=target.dataset.libEdit;if(edit){const item=state.reports.find(v=>v.id===edit);showEditor(`<label>${tr('Research title','عنوان البحث')}<input id="l65Title" maxlength="120" value="${esc(item.title)}" /></label><label>${tr('User review status','حالة المراجعة الشخصية')}<select id="l65EditStatus">${['draft','reviewed','archived'].map(v=>`<option value="${v}" ${item.status===v?'selected':''}>${statusName(v)}</option>`).join('')}</select></label><button type="button" class="primary small" data-lib-save-edit="${esc(edit)}">${tr('Save name and status','حفظ الاسم والحالة')}</button>`,target,tr('Rename saved research','تغيير اسم البحث المحفوظ'),'#l65Title');}
       const save=target.dataset.libSaveEdit;if(save){const title=root.querySelector('#l65Title').value.trim()||tr('Untitled research','بحث بلا عنوان'),status=root.querySelector('#l65EditStatus').value;change({...state,reports:state.reports.map(r=>r.id===save?{...r,title,status}:r)});render();}
     }catch{fail();}
   });

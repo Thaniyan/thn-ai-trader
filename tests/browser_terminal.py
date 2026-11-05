@@ -1,7 +1,7 @@
 from workspace_controls import control
 """v6.6 real-provider market discovery, browser replay, comparison and reliability acceptance."""
 from playwright.sync_api import sync_playwright,expect
-import os,json,subprocess
+import os,json,subprocess,re
 BASE=os.environ.get('TEST_URL','http://127.1.0.1:3027')
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox']);page=b.new_page(viewport={'width':1600,'height':1050});errors=[];requests=[];page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:requests.append(r.url))
@@ -15,6 +15,21 @@ with sync_playwright() as p:
  page.locator('#qSymbol').fill('EURUSD');page.locator('#qSymbol').press('Tab');page.locator('#qInterval').select_option('1h');page.wait_for_function('THNDecision.brief()?.symbol==="EURUSD"&&THNDecision.brief()?.interval==="1h"&&THNResearch.series()?.provenance.interval==="1h"',timeout=45000)
  page.locator('.q-context [data-qgoto="portfolio"]').click();control(page,'#qDirection').select_option('long_short');control(page,'#qMinimumTrades').fill('5');control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=45000);control(page,'#qSaveExperiment').click();page.locator('#m65ReviewEvidence').click();page.locator('#d64Thesis').fill('EURUSD independent timeframe research');page.locator('#d64Conclusion').fill('Recheck costs and gaps before drawing conclusions.');page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');page.locator('#m65Library').click();page.locator('[data-lib="snapshot"]').click();page.wait_for_function('THNLibrary.state().snapshots.length===1');page.locator('[data-lib-open]').first.click()
  saved_record=page.evaluate('JSON.stringify(THNLibrary.entries()[0].record)')
+ # Inline Library editors must be discoverable and cancellable without writes.
+ library_before=page.evaluate('JSON.stringify(THNLibrary.state())')
+ for width,lang,theme in [(1440,'en','dark'),(390,'ar','light'),(160,'ar','dark')]:
+  page.set_viewport_size({'width':width,'height':1050});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  for attribute,initial in [('data-lib-edit','#l65Title'),('data-lib-delete','[data-lib="close-editor"]'),('data-lib-drop-snapshot','[data-lib="close-editor"]')]:
+   opener=page.locator('['+attribute+']');expect(opener).to_have_count(1)
+   if attribute=='data-lib-drop-snapshot' and not opener.is_visible():opener.locator('xpath=ancestor::details[1]').locator(':scope > summary').click()
+   opener.click()
+   editor=page.locator('#l65Editor');expect(editor).to_have_attribute('role','region');expect(editor).to_have_attribute('aria-label',re.compile('.+'));expect(editor.locator(initial)).to_be_focused()
+   if attribute=='data-lib-edit':page.locator('#l65Title').fill('Unsaved temporary title')
+   if attribute=='data-lib-delete':expect(editor).to_contain_text(page.evaluate('THNLibrary.entries()[0].title'))
+   editor.locator('[data-lib="close-editor"]').click();expect(opener).to_be_focused();expect(editor).to_be_empty();assert page.evaluate('JSON.stringify(THNLibrary.state())')==library_before
+   opener.click();editor.locator(initial).press('Escape');expect(opener).to_be_focused();expect(editor).to_be_empty();assert page.evaluate('JSON.stringify(THNLibrary.state())')==library_before
+   assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1'),(width,lang,attribute)
+ page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"');page.locator('[data-lib-open]').click()
  quantitative=page.evaluate('THNLibrary.entries()[0].record.quantitative')
  for key in ['returnPct','maxDrawdownPct','trades','profitFactor','averageR','exposurePct']:
   for index,window in enumerate(['development','holdout']):
