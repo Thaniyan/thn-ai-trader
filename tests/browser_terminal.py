@@ -31,6 +31,33 @@ with sync_playwright() as p:
    assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1'),(width,lang,attribute)
  page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"');page.locator('[data-lib-open]').click()
  quantitative=page.evaluate('THNLibrary.entries()[0].record.quantitative')
+ # Saved validation is immutable evidence, not a new evaluation of current data.
+ saved_library=page.evaluate('localStorage.getItem("thn_research_library_v65")');evaluation_calls=sum('/api/research/evaluate' in url for url in requests)
+ saved_panel=page.locator('.l65-saved-validation');expect(saved_panel.locator('[data-validation-check]')).to_have_count(10)
+ for check in quantitative['quality']['checks']:
+  expect(saved_panel.locator('[data-validation-check="'+check['code']+'"]')).to_have_attribute('data-saved-validation-state','passed' if check['pass'] else 'unmet')
+ saved_panel.locator('[data-validation-check=walk_consistency] summary').click();expect(saved_panel.locator('[data-validation-value=foldsMissing]')).to_contain_text('Individual fold periods and trade counts were not retained')
+ saved_panel.locator(':scope > .q-actions [data-saved-validation-target=l65SavedAssumptions]').click();expect(page.locator('#l65SavedAssumptions')).to_be_focused()
+ saved_panel.locator(':scope > .q-actions [data-saved-validation-target=l65SavedAudit]').click();expect(page.locator('#l65SavedAudit')).to_have_attribute('open','');expect(page.locator('#l65SavedAudit')).to_be_focused();page.locator('#l65SavedAudit > summary').click()
+ page.add_script_tag(path=os.environ['AXE_PATH'])
+ for width,lang,theme in [(w,l,t) for w in [1440,768,390,160] for l in ['en','ar'] for t in ['dark','light']]:
+  page.set_viewport_size({'width':width,'height':1050});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+  for code in ['trade_count','cost_robustness','walk_consistency']:
+   finding=saved_panel.locator('[data-validation-check='+code+']');finding.locator('summary').click()
+  expect(saved_panel.locator('#l65ValidationTitle')).to_have_text('Historical validation · saved findings' if lang=='en' else 'التحقق التاريخي · النتائج المحفوظة')
+  assert not page.evaluate('document.documentElement.scrollWidth>innerWidth+1'),(width,lang,theme)
+  assert saved_panel.evaluate('e=>e.scrollWidth<=e.clientWidth+1'),(width,lang,theme)
+  assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==saved_library
+  if width in [1440,390]:
+   violations=page.evaluate('async()=> (await axe.run(document.querySelector(".l65-saved-validation"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>v.id)');assert not violations,(width,lang,theme,violations)
+  if (width,lang,theme) in [(1440,'en','dark'),(390,'ar','light')]:saved_panel.screenshot(path='work/library-validation-20261105/saved-validation-'+str(width)+'-'+lang+'.png')
+ page.set_viewport_size({'width':1600,'height':1050});page.locator('.terminal-topbar [data-language=en]').click();page.evaluate('document.documentElement.dataset.theme="dark"')
+ page.evaluate('THNContext.set({symbol:"GBPUSD"},"saved-validation-regression")');page.wait_for_function('THNResearch.series()?.symbol==="GBPUSD" && THNDecision.brief()?.symbol==="GBPUSD"')
+ assert page.evaluate('JSON.stringify(THNLibrary.entries()[0].record)')==saved_record
+ expect(saved_panel).to_contain_text('Saved historical evidence, not current validation');assert page.evaluate('localStorage.getItem("thn_research_library_v65")')==saved_library
+ assert sum('/api/research/evaluate' in url for url in requests)==evaluation_calls
+ page.evaluate('THNContext.set({symbol:"EURUSD"},"saved-validation-regression")');page.wait_for_function('THNResearch.series()?.symbol==="EURUSD" && THNDecision.brief()?.symbol==="EURUSD"')
+
  for key in ['returnPct','maxDrawdownPct','trades','profitFactor','averageR','exposurePct']:
   for index,window in enumerate(['development','holdout']):
    expected=page.evaluate('(v)=>Number.isFinite(v)?new Intl.NumberFormat("en-US",{maximumFractionDigits:6}).format(v):"Unavailable"',quantitative[window].get(key))
@@ -118,7 +145,7 @@ with sync_playwright() as p:
  plain=b.new_page();plain.on('pageerror',lambda e:errors.append(str(e)));plain.route('https://**/*',lambda r:r.abort());plain.goto(BASE);plain.wait_for_function('THNDecision.brief()?.selected && THNResearch.series()')
  plain.locator('.nav-stack [data-view=ai]').click();plain.locator('#decisionWorkspace [data-decision=save]').click();plain.wait_for_function('THNLibrary.entries().length===1');plain.locator('#m65Library').click();plain.locator('[data-lib-open]').click()
  assert plain.evaluate('THNLibrary.entries()[0].record.quantitative') is None
- expect(plain.locator('#l65NoEvaluation')).to_contain_text('Missing results are not zero returns');expect(plain.locator('#l65SavedMetrics')).to_have_count(0)
+ expect(plain.locator('#l65NoEvaluation')).to_contain_text('Missing results are not zero returns');expect(plain.locator('#l65SavedMetrics')).to_have_count(0);expect(plain.locator('[data-saved-validation-state=missing]')).to_have_count(10)
  for count in range(2,6):
   plain.locator('.nav-stack [data-view=ai]').click();plain.locator('#decisionWorkspace [data-decision=save]').click();plain.wait_for_function('(n)=>THNLibrary.entries().length===n',arg=count)
  plain.locator('#m65Library').click();plain_storage=plain.evaluate('localStorage.getItem("thn_research_library_v65")')
@@ -136,7 +163,15 @@ with sync_playwright() as p:
  assert plain.evaluate('localStorage.getItem("thn_research_library_v65")')==legacy_storage
  plain.locator('[data-lib=clear-selection]').click()
  for box in plain.locator('.l65-record').filter(has_not_text='Incomplete quality metadata').locator('[data-lib-select]').all()[:2]:box.check()
- expect(plain.locator('[data-lib=compare]')).to_be_enabled();plain.close()
+ expect(plain.locator('[data-lib=compare]')).to_be_enabled()
+ plain.locator('.l65-record').filter(has_text='Incomplete quality metadata').locator('[data-lib-open]').click();expect(plain.locator('[data-saved-validation-state=missing]')).to_have_count(10);expect(plain.locator('.l65-saved-validation')).to_contain_text('Imported / unverified research')
+ assert plain.evaluate('localStorage.getItem("thn_research_library_v65")')==legacy_storage
+ plain.locator('.l65-record').filter(has_text='Good quantitative comparison case').locator('[data-lib-open]').click();expect(plain.locator('.l65-saved-validation')).to_contain_text('not independently verified');expect(plain.locator('[data-saved-validation-state=passed]')).not_to_have_count(0)
+ unknown=json.loads(json.dumps(complete));unknown['id']='unknown-criteria';unknown['title']='Unsupported recorded criteria';unknown['record']['quantitative']['quality']['criteriaVersion']='older-unknown';unknown['record']['quantitative'].pop('sensitivity',None);unknown['record']['quantitative']['walkForward']={'available':True,'folds':[{'fold':'1\" onmouseover=\"window.__savedFoldInjected=true','holdout':{'metrics':{'returnPct':1,'trades':1}}}]}
+ unknown_import={'schema':'THN-BACKUP-6.5','library':{'schema':'THN-LIBRARY-6.5','reports':[unknown],'archives':[],'snapshots':[]}}
+ control(plain,'#d64Import').set_input_files({'name':'unknown-criteria.json','mimeType':'application/json','buffer':json.dumps(unknown_import).encode()});plain.wait_for_selector('[data-lib=restore]');plain.locator('[data-lib=restore]').click();plain.wait_for_function('THNLibrary.entries().length===8')
+ unknown_storage=plain.evaluate('localStorage.getItem("thn_research_library_v65")');plain.locator('.l65-record').filter(has_text='Unsupported recorded criteria').locator('[data-lib-open]').click();expect(plain.locator('[data-saved-validation-state=indeterminate]')).to_have_count(10);expect(plain.locator('.l65-saved-validation [onmouseover]')).to_have_count(0);assert not plain.evaluate('Boolean(window.__savedFoldInjected)')
+ plain.locator('[data-validation-check=cost_robustness] summary').click();expect(plain.locator('[data-validation-check=cost_robustness] [data-validation-value=variantsMissing]')).to_contain_text('Stress variants and their assumptions were not retained');expect(plain.locator('.l65-saved-validation')).not_to_contain_text('≤ 40%');assert plain.evaluate('localStorage.getItem("thn_research_library_v65")')==unknown_storage;plain.close()
  # Current risk uses authoritative contract rules; visual alternatives and overlay toggles stay explicit.
  page.locator('.q-context [data-qgoto="ai"]').click();page.locator('[data-brief-plan]').first.click();control(page,'#qRisk_spread').fill('100');control(page,'#qRisk_slippage').fill('100');control(page,'#qRisk_commission').fill('100');page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);page.locator('[data-decision="savePlan"]').click();assert page.locator('#r66PlanVisual svg').count()==1;assert 'nominal risk budget' in page.locator('#decisionPlans').inner_text();page.locator('[data-decision="planChart"]').click();control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is False;control(page,'#r66TogglePlan').click();assert page.evaluate('THNResearch.chart.showPlanOverlay') is True
  result['checks'].append('authoritative risk-plan costs, explicit exceeded-budget warning, independent plan exposure visualization and chart overlay visibility toggle')

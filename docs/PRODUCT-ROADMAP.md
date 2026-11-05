@@ -290,3 +290,74 @@ source parity passed. No dependency, persistence schema, financial endpoint or
 quantitative engine changed. Local evidence: work/integrated-validation-20261105.
 Production status must still be verified separately; prior proxy CONNECT 403
 responses do not establish Vercel deployment success or application failure.
+
+## Integrated Research and Decision Intelligence — increment 2
+
+Rollback baseline: a857be970c26a18e1e70a38e87fd837ea892b297. The owner
+independently confirmed that baseline's matching READY Vercel Production
+deployment; interactive live-site verification remains a separate open item.
+
+Saved Library reports now use the same validation-evidence renderer as the live
+Confidence panel. The shared module owns the ten descriptions, evidence formatting
+and disclosure UI; neither renderer recalculates historical verdicts. The read-only
+saved adapter reshapes retained metrics and periods without modifying the record,
+consulting current market state, fetching history or applying today's thresholds.
+Recorded passes and unmet requirements remain the stored outcomes even if the
+retained metrics appear inconsistent with them. Unknown criteria versions,
+conflicting period/assumption metadata, missing or conflicting dataset identity,
+and duplicated or malformed flags are indeterminate. Original boolean flags stay
+inspectable; absent flags are not reconstructed from metrics.
+
+Current records retain variant parameter snapshots and walk-forward summaries,
+not original change-only patches or individual folds. These omissions are explicit.
+Where richer records contain individual fold periods and results, they are shown
+as recorded. Unknown numeric values are not zero; absent values are distinguished
+from recorded-but-unavailable metrics. Recognized 6.4-Q1 requirements are shown as
+that criteria version's descriptions; unsupported versions receive no current-rule
+interpretation. Imported findings remain unverified, including recorded passes.
+
+Reader navigation focuses recorded outcomes, saved assumptions, the saved
+hypothetical plan when present, or opens the saved source audit. The separate
+current-research action still retrieves fresh context without copying saved
+assumptions or altering historical evidence. No record schema, persistence key,
+import codec, comparison calculation, snapshot, risk engine or financial endpoint
+was changed. The shared module is included in the existing production package and
+build/lint syntax checks without adding dependencies.
+
+Regression coverage includes a deliberately contradictory saved verdict to prove
+no re-rating, missing and malformed records, unknown versions, unverified imports,
+safe source labels, complete retained fold dates and conflicting legacy periods.
+Browser coverage verifies all ten stored outcomes, omitted fold/stress detail,
+saved navigation, immutable Library storage, no new evaluation requests during
+reading, current-market context changes, and 16 EN/AR/theme/width profiles with
+accessibility scans. Existing live Confidence, Library replay, comparison,
+backup/recovery and financial assertions remain intact.
+
+Final verification passed all 30 browser suites with exit 0 on pinned Chromium
+151.0.7922.34, including unchanged live Confidence and the expanded Terminal /
+Library workflows. Build, lint, 203 core unit/integration/numerical tests (12 new
+saved-evidence tests), 21 security tests, ten system checks, packaging (76 runtime
+files), workflow, zero-advisory dependency audit, Git integrity and source/numerical
+parity passed. Desktop English dark and mobile Arabic light captures were reviewed.
+No dependency version, lockfile, persistence schema or numerical engine changed.
+
+Import-safety review identified that retained fold identifiers need HTML-attribute
+escaping as well as text escaping. This was corrected before final verification;
+the regression verifies that a hostile imported identifier creates no event-handler
+attribute. An ambiguous test locator was scoped to its intended cost finding,
+without changing its expectation or selecting an arbitrary first match.
+
+An earlier full run failed the existing Trading Remediation script-only phase
+assertion after its unchanged 18.05-second wait. The original log did not record
+the actual phase. A passive isolated diagnostic passed: its timer fired at about
+18,000.1 ms, with the page visible and the expected generation. The final full gate
+also passed the same wait and predicate. No TradingView application logic or
+timeout was changed; the canonical assertion now includes state, generation,
+elapsed-time and visibility evidence if it recurs. The earlier intermittent
+failure's cause remains unproven and must not be described as fixed by this work.
+Local evidence is retained under work/library-validation-20261105.
+
+Next increment: compare a saved thesis with a fresh, separately validated
+hypothetical risk scenario, making the context and assumptions review explicit.
+Keep the original record immutable; never silently transfer historical levels
+into a current plan or represent a plan as an execution authorization.

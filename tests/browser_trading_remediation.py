@@ -88,7 +88,7 @@ with sync_playwright() as p:
  def script_only(route):route.fulfill(status=200,content_type='application/javascript',body=SCRIPT_ONLY)
  page.route(EMBED_URL,script_only);page.locator('#loadChartBtn').click();page.wait_for_function('THNTradingViewStatus().scriptLoaded')
  assert not page.evaluate('THNTradingViewStatus().iframeLoaded') and not page.evaluate('THNTradingViewStatus().uiReady')
- page.wait_for_timeout(18050);assert page.evaluate('THNTradingViewStatus().phase')=='unverified'
+ page.wait_for_timeout(18050);deadline=page.evaluate('()=>({state:THNTradingViewStatus(),metrics:THNTradingViewMetrics(),now:performance.now(),visibility:document.visibilityState})');assert deadline['state']['phase']=='unverified',deadline
  page.unroute(EMBED_URL,script_only)
  control(page,'#proTVFallback').focus();control(page,'#proTVFallback').press('Enter');assert page.locator('#qCandles').is_visible()
  result['checks'].append('Network failure, delayed official-embed boundary, retry lock, script-only versus frame-only readiness, generation containers and keyboard fallback')

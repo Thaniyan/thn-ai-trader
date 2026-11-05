@@ -138,3 +138,10 @@ html[dir=rtl] .cockpit-heading h2,html[dir=rtl] .cockpit-heading .eyebrow,html[d
 
 .confidence-finding>summary>span::before { content:'+ '; color:var(--accent); font-weight:700; }
 .confidence-finding[open]>summary>span::before { content:'− '; }
+
+.l65-saved-validation { padding:16px; margin-top:18px; border:1px solid var(--border); border-radius:12px; line-height:1.8; min-width:0; }
+.l65-saved-validation p { font-size:12px; overflow-wrap:anywhere; }
+.l65-saved-validation .confidence-finding>summary b { white-space:normal; text-align:end; max-width:45%; min-width:0; overflow-wrap:anywhere; }
+.l65-saved-validation .q-actions { flex-wrap:wrap; }
+.l65-saved-validation button { white-space:normal; max-width:100%; }
+.l65-saved-validation [data-saved-validation-state=indeterminate] b,.l65-saved-validation [data-saved-validation-state=missing] b { color:var(--muted); }
