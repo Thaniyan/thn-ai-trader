@@ -158,3 +158,112 @@ html[dir=rtl] .cockpit-heading h2,html[dir=rtl] .cockpit-heading .eyebrow,html[d
 .research-risk-table table { min-width:640px; }
 .research-risk-table :is(th,td) { white-space:normal; overflow-wrap:anywhere; }
 @media(max-width:760px){.research-risk-sources { grid-template-columns:1fr; }}
+
+/* Milestone 4: compact working summary; the original shared chart stays intact. */
+#evoDeskLead { padding:14px 18px; gap:12px 24px; margin-block:12px; border-radius:12px; }
+#evoDeskLead .evo-lead-brand h1 { font-size:17px; line-height:1.4; letter-spacing:.01em; margin:0; }
+#evoDeskLead .evo-provider-state { font-size:10px; margin-top:4px; }
+#evoDeskLead .home-conviction { margin-top:10px; gap:12px; }
+#evoDeskLead .home-confidence-ring { width:64px; height:64px; flex-basis:64px; padding:5px; }
+#evoDeskLead .home-confidence-ring strong { font-size:23px; }
+#evoDeskLead .home-consensus h2 { font-size:19px; margin:0; line-height:1.4; }
+#evoDeskLead .home-consensus>span { font-size:8px; }
+#evoDeskLead .home-consensus p { margin:2px 0; }
+#evoDeskLead .home-consensus button { min-height:26px; padding:2px 0; }
+#dashboardWorkspaceDetails { font-size:10px; color:var(--muted); margin-top:6px; }
+#dashboardWorkspaceDetails>summary { cursor:pointer; min-height:24px; line-height:24px; }
+#dashboardWorkspaceDetails .eyebrow { margin-top:8px; }
+#evoDeskLead #evoLeadControls { padding:0; border:0; background:none; }
+#evoDeskLead .evo-lead-actions { margin-top:6px; }
+#evoDeskLead .evo-lead-actions>button { min-height:36px; }
+#evoDeskLead .home-evidence { padding-top:10px; gap:8px 16px; }
+#evoDeskLead .home-evidence>div { gap:1px; padding-inline-start:10px; }
+#evoDeskLead .home-evidence strong { font-size:16px; line-height:1.4; }
+#evoDeskLead .home-evidence button { min-height:26px; }
+#evoDeskLead .home-provenance { display:block; padding-top:6px; }
+.home-provenance>summary { cursor:pointer; min-height:24px; line-height:24px; }
+.home-provenance>div { display:flex; flex-wrap:wrap; gap:4px 16px; padding-block:6px; }
+#view-dashboard .pro-terminal-head { padding:10px 14px; gap:8px 14px; }
+#view-dashboard .pro-terminal-head>div:not(.pro-instrument-quote):not(.pro-mode-switch) { flex-basis:120px; }
+#view-dashboard .pro-instrument-quote>span,#view-dashboard .pro-instrument-quote>strong { font-size:22px; }
+/* Native disclosures keep the real controls, evidence and event listeners. */
+.research-disclosure { margin-block:12px; padding:0; border-radius:12px; overflow-wrap:anywhere; }
+.research-disclosure>summary { padding:16px 18px; cursor:pointer; color:var(--text); font-size:14px; font-weight:650; line-height:1.7; }
+.research-disclosure>summary small { display:block; font-size:11px; color:var(--muted); font-weight:400; margin-inline-start:16px; }
+.research-disclosure>summary:focus-visible,#dashboardWorkspaceDetails>summary:focus-visible,.home-provenance>summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.research-disclosure[open]>summary { border-bottom:1px solid var(--border); }
+.research-disclosure>.cockpit-schools { margin:0; padding:16px 18px; }
+.research-disclosure>.panel { border:0; margin:0; box-shadow:none; background:none; }
+#researchConclusion>.d64-notes { margin:0; padding:16px 18px; }
+.cockpit-research-nav { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+.cockpit-research-nav button { min-height:36px; font-size:11px; }
+#analysisCockpit { padding:18px; margin-block:12px; }
+#analysisCockpit .cockpit-heading { margin-bottom:14px; }
+#analysisCockpit .cockpit-decision h3 { font-size:26px; margin-block:4px; }
+#analysisCockpit .cockpit-overview { gap:16px; }
+#analysisCockpit .cockpit-gauge { width:100px; height:100px; padding:7px; }
+#analysisCockpit .cockpit-gauge strong { font-size:30px; }
+#analysisCockpit .cockpit-confidence { padding:4px 12px; gap:6px; }
+#analysisCockpit .cockpit-test { padding-top:4px; }
+#analysisCockpit .cockpit-test>strong { font-size:26px; line-height:1.4; }
+#analysisCockpit .cockpit-actions { margin-top:10px; }
+#analysisCockpit .cockpit-observation { margin-top:12px; padding-top:8px; }
+#analysisCockpit .cockpit-method { margin-top:10px; padding-top:10px; }
+@media(min-width:1101px) { #analysisCockpit .cockpit-overview { grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr) minmax(0,.8fr); }#analysisCockpit .cockpit-test { grid-column:auto; border-top:0; } }
+@media(max-width:760px) {
+ #evoDeskLead { padding:12px; gap:10px; }
+ #evoDeskLead .evo-lead-brand { display:grid; grid-template-columns:minmax(0,1fr); }
+ #evoDeskLead .evo-lead-actions>button { flex:1 1 120px; min-height:40px; }
+ #evoDeskLead .home-consensus h2 { font-size:18px; }
+ #evoDeskLead .home-evidence { gap:6px; }
+ #evoDeskLead .home-evidence>div { padding-inline-start:6px; }
+ #evoDeskLead .home-evidence strong { font-size:14px; }
+ #evoDeskLead .home-evidence button { font-size:10px; white-space:normal; text-align:start; }
+ #view-dashboard .pro-instrument-quote { flex-basis:100%; }
+ #analysisCockpit .cockpit-heading h2 { font-size:22px; }
+ #analysisCockpit .cockpit-heading { gap:6px; }
+ #analysisCockpit .cockpit-overview { gap:12px; }
+ #analysisCockpit .cockpit-confidence { padding:12px 0 0; }
+ #analysisCockpit .cockpit-gauge { flex:0 0 80px; width:80px; height:80px; padding:6px; }
+ .research-disclosure>summary { padding:12px; }
+}
+@media(max-width:320px) {
+ #evoDeskLead .home-evidence { grid-template-columns:1fr; }
+ #evoDeskLead .home-conviction { flex-wrap:wrap; }
+ #view-dashboard .pro-instrument-quote { grid-template-columns:minmax(0,1fr); }
+}
+
+.cockpit-quality { font-size:11px; line-height:1.8; color:var(--muted); margin:12px 0 0; }
+@media(min-width:1251px) {
+ #evoDeskLead { grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,.75fr); gap:18px; align-items:center; }
+ #evoDeskLead .home-evidence { grid-column:auto; grid-template-columns:1fr; border-top:0; border-inline-start:1px solid var(--border); padding:0; padding-inline-start:14px; gap:6px; }
+ #evoDeskLead .home-evidence>div { display:grid; grid-template-columns:1fr auto; border:0; padding:0; }
+ #evoDeskLead .home-evidence>div>small,#evoDeskLead .home-evidence>div>button { grid-column:1/-1; }
+ #evoDeskLead .home-provenance { grid-column:auto; }
+}
+@media(max-width:760px) {
+ #evoDeskLead .home-conviction { margin-top:4px; }
+ #evoDeskLead .home-confidence-ring { width:54px; height:54px; flex-basis:54px; }
+ #evoDeskLead .home-consensus h2 { font-size:17px; }
+ #evoDeskLead .home-consensus p { font-size:10px; }
+ #evoDeskLead .home-consensus>small { font-size:9px; }
+ #evoDeskLead #evoFlow { flex-wrap:nowrap; overflow-x:auto; max-width:100%; }
+ #evoDeskLead #evoFlow button { flex-shrink:0; }
+ #evoDeskLead .home-evidence { padding-top:8px; }
+ #evoDeskLead .home-evidence small { font-size:9px; }
+ #view-dashboard .pro-terminal-head { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+ #view-dashboard .pro-instrument-quote { grid-column:1/-1; }
+ #view-dashboard .pro-terminal-head>div:not(.pro-instrument-quote):not(.pro-mode-switch) { grid-column:1/-1; }
+ #view-dashboard #proChartFocus { margin:0; }
+}
+.home-evidence-after-chart { margin:12px 0; padding:12px; border:1px solid var(--border); border-radius:12px; background:var(--bg-2); }
+.home-evidence-after-chart .home-provenance { display:block; }
+@media(max-width:760px) {
+ .home-evidence-after-chart { gap:8px; }
+ .home-evidence-after-chart>div { padding-inline-start:6px; }
+ .home-evidence-after-chart strong { font-size:15px; }
+ .home-evidence-after-chart button { white-space:normal; text-align:start; }
+}
+
+#dashboardWorkspaceDetails #evoLeadEyebrow,#dashboardWorkspaceDetails #evoLeadDescription { display:block; }
+@media(max-width:320px) { #view-dashboard .pro-terminal-head { grid-template-columns:minmax(0,1fr); }#view-dashboard .pro-terminal-head>* { grid-column:1; max-width:100%; } }

@@ -1,0 +1,302 @@
+[
+  {
+    "view": "dashboard",
+    "width": 1440,
+    "lang": "en",
+    "theme": "dark",
+    "height": 2931,
+    "scrollWidth": 1440,
+    "chart": {
+      "x": 292,
+      "y": 834.5,
+      "width": 846,
+      "height": 688
+    },
+    "visibleChartHeight": 165.5
+  },
+  {
+    "view": "ai",
+    "width": 1440,
+    "lang": "en",
+    "theme": "dark",
+    "height": 3938,
+    "scrollWidth": 1440,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 1440,
+    "lang": "en",
+    "theme": "light",
+    "height": 2931,
+    "scrollWidth": 1440,
+    "chart": {
+      "x": 292,
+      "y": 834.5,
+      "width": 846,
+      "height": 688
+    },
+    "visibleChartHeight": 165.5
+  },
+  {
+    "view": "ai",
+    "width": 1440,
+    "lang": "en",
+    "theme": "light",
+    "height": 3938,
+    "scrollWidth": 1440,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 1440,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 2943,
+    "scrollWidth": 1440,
+    "chart": {
+      "x": 302,
+      "y": 846.40625,
+      "width": 846,
+      "height": 688
+    },
+    "visibleChartHeight": 153.6
+  },
+  {
+    "view": "ai",
+    "width": 1440,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 3930,
+    "scrollWidth": 1440,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 1440,
+    "lang": "ar",
+    "theme": "light",
+    "height": 2943,
+    "scrollWidth": 1440,
+    "chart": {
+      "x": 302,
+      "y": 846.40625,
+      "width": 846,
+      "height": 688
+    },
+    "visibleChartHeight": 153.6
+  },
+  {
+    "view": "ai",
+    "width": 1440,
+    "lang": "ar",
+    "theme": "light",
+    "height": 3930,
+    "scrollWidth": 1440,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 768,
+    "lang": "en",
+    "theme": "dark",
+    "height": 4028,
+    "scrollWidth": 768,
+    "chart": {
+      "x": 78,
+      "y": 899.4375,
+      "width": 658,
+      "height": 498
+    },
+    "visibleChartHeight": 100.6
+  },
+  {
+    "view": "ai",
+    "width": 768,
+    "lang": "en",
+    "theme": "dark",
+    "height": 5097,
+    "scrollWidth": 768,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 768,
+    "lang": "en",
+    "theme": "light",
+    "height": 4028,
+    "scrollWidth": 768,
+    "chart": {
+      "x": 78,
+      "y": 899.4375,
+      "width": 658,
+      "height": 498
+    },
+    "visibleChartHeight": 100.6
+  },
+  {
+    "view": "ai",
+    "width": 768,
+    "lang": "en",
+    "theme": "light",
+    "height": 5097,
+    "scrollWidth": 768,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 768,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 3980,
+    "scrollWidth": 768,
+    "chart": {
+      "x": 32,
+      "y": 888.4375,
+      "width": 658,
+      "height": 498
+    },
+    "visibleChartHeight": 111.6
+  },
+  {
+    "view": "ai",
+    "width": 768,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 4906,
+    "scrollWidth": 768,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 768,
+    "lang": "ar",
+    "theme": "light",
+    "height": 3980,
+    "scrollWidth": 768,
+    "chart": {
+      "x": 32,
+      "y": 888.4375,
+      "width": 658,
+      "height": 498
+    },
+    "visibleChartHeight": 111.6
+  },
+  {
+    "view": "ai",
+    "width": 768,
+    "lang": "ar",
+    "theme": "light",
+    "height": 4906,
+    "scrollWidth": 768,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 390,
+    "lang": "en",
+    "theme": "dark",
+    "height": 4797,
+    "scrollWidth": 390,
+    "chart": {
+      "x": 56,
+      "y": 990.390625,
+      "width": 312,
+      "height": 438
+    },
+    "visibleChartHeight": 9.6
+  },
+  {
+    "view": "ai",
+    "width": 390,
+    "lang": "en",
+    "theme": "dark",
+    "height": 7410,
+    "scrollWidth": 390,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 390,
+    "lang": "en",
+    "theme": "light",
+    "height": 4797,
+    "scrollWidth": 390,
+    "chart": {
+      "x": 56,
+      "y": 990.390625,
+      "width": 312,
+      "height": 438
+    },
+    "visibleChartHeight": 9.6
+  },
+  {
+    "view": "ai",
+    "width": 390,
+    "lang": "en",
+    "theme": "light",
+    "height": 7410,
+    "scrollWidth": 390,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 390,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 4664,
+    "scrollWidth": 390,
+    "chart": {
+      "x": 22,
+      "y": 957,
+      "width": 312,
+      "height": 438
+    },
+    "visibleChartHeight": 43
+  },
+  {
+    "view": "ai",
+    "width": 390,
+    "lang": "ar",
+    "theme": "dark",
+    "height": 6969,
+    "scrollWidth": 390,
+    "chart": null,
+    "visibleChartHeight": null
+  },
+  {
+    "view": "dashboard",
+    "width": 390,
+    "lang": "ar",
+    "theme": "light",
+    "height": 4664,
+    "scrollWidth": 390,
+    "chart": {
+      "x": 22,
+      "y": 957,
+      "width": 312,
+      "height": 438
+    },
+    "visibleChartHeight": 43
+  },
+  {
+    "view": "ai",
+    "width": 390,
+    "lang": "ar",
+    "theme": "light",
+    "height": 6969,
+    "scrollWidth": 390,
+    "chart": null,
+    "visibleChartHeight": null
+  }
+]

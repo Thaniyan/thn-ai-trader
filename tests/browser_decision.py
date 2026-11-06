@@ -15,18 +15,18 @@ with sync_playwright() as p:
  result['checks'].append('genuine provider brief, traceable frame claims and preserved chart navigation/zoom')
  page.locator('.nav-stack [data-view="portfolio"]').click();control(page,'#qDirection').select_option('long_short');control(page,'#qMinimumTrades').fill('5');control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=45000)
  assert page.evaluate('THNDecision.quality().checks.length===10');assert page.evaluate('THNDecision.quality().probability===null')
- page.locator('.nav-stack [data-view="ai"]').click();page.locator('#d64Thesis').fill('Research thesis <img src=x onerror=alert(1)>');page.locator('#d64Conclusion').fill('Wait for evidence');page.locator('#d64Notes').fill('User notes remain separate')
- page.locator('#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');saved=page.evaluate('THNLibrary.entries()[0].record');assert saved['quantitative']['quality']['checks'];assert saved['brief']['selected']['provenance']['hash']==result['provider']['hash']
- with page.expect_download() as d:page.locator('#decisionWorkspace [data-decision="export"]').click()
+ page.locator('.nav-stack [data-view="ai"]').click();control(page,'#d64Thesis').fill('Research thesis <img src=x onerror=alert(1)>');page.locator('#d64Conclusion').fill('Wait for evidence');page.locator('#d64Notes').fill('User notes remain separate')
+ control(page,'#decisionWorkspace [data-decision="save"]').click();page.wait_for_function('THNLibrary.entries().length===1');saved=page.evaluate('THNLibrary.entries()[0].record');assert saved['quantitative']['quality']['checks'];assert saved['brief']['selected']['provenance']['hash']==result['provider']['hash']
+ with page.expect_download() as d:control(page,'#decisionWorkspace [data-decision="export"]').click()
  exported=json.load(open(d.value.path()));assert exported['records'][0]['quantitative']['holdout']['trades']>=0
- with page.expect_download() as d:page.locator('#decisionWorkspace [data-decision="html"]').click()
+ with page.expect_download() as d:control(page,'#decisionWorkspace [data-decision="html"]').click()
  html=open(d.value.path()).read();assert '&lt;img' in html;assert '<img src=x' not in html;assert 'Content-Security-Policy' in html
  page.locator('.nav-stack [data-view="journal"]').click();exported['records'][0]['credentials']={'password':'DROP_ME'};control(page,'#d64Import').set_input_files({'name':'report.json','mimeType':'application/json','buffer':json.dumps(exported).encode()});page.wait_for_selector('[data-lib="restore"]');assert page.evaluate('THNLibrary.entries().length')==1;page.locator('[data-lib="restore"]').click()
  assert page.evaluate('THNLibrary.entries()[1].record.unverified');assert 'DROP_ME' not in page.evaluate('localStorage.getItem("thn_research_library_v65")');assert page.locator('#decisionReports img').count()==0
  exported['records'][0]['savedAt']=1e100;control(page,'#d64Import').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':json.dumps(exported).encode()});page.wait_for_timeout(200);assert 'rejected' in page.locator('#d64ImportStatus').inner_text()
  page.reload();page.wait_for_function('window.THNDecision?.brief()',timeout=45000);assert page.evaluate('THNLibrary.entries().length')==2
  result['checks'].append('matched quantitative evidence, saved reports/reload, JSON/HTML export, escaped injection and bounded unverified imports')
- page.locator('.nav-stack [data-view="ai"]').click();scenario=page.locator('[data-brief-plan]');assert scenario.count()>0;scenario.first.click();assert page.locator('#view-risk').is_visible();assert page.locator('#planEntry').input_value();assert page.locator('#planStop').input_value()
+ page.locator('.nav-stack [data-view="ai"]').click();scenario=control(page,'[data-brief-plan]');assert scenario.count()>0;scenario.first.click();assert page.locator('#view-risk').is_visible();assert page.locator('#planEntry').input_value();assert page.locator('#planStop').input_value()
  page.locator('#workRiskForm button[type="submit"]').click();page.wait_for_function('THNDecision.plan()',timeout=15000);assert page.evaluate('THNDecision.plan().plannedStopLossWithCosts>=THNDecision.plan().metrics.slDollars')
  page.locator('[data-decision="savePlan"]').click();page.locator('[data-decision="planChart"]').click();assert page.locator('#view-trading').is_visible();assert page.evaluate('THNResearch.chart.planLevels.targets.length')>=1
  page.locator('.nav-stack [data-view="risk"]').click();page.locator('#planRisk').fill('0.5');assert page.evaluate('THNDecision.plan()') is None

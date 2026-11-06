@@ -53,7 +53,8 @@ manage.onclick = () => document.querySelector('.nav-stack [data-view="markets"]'
 watchlist.append(title, items, manage);
 function placeWatchlist() {
   const terminal = document.getElementById('proTerminal');
-  if (terminal.parentElement?.matches('#view-dashboard, #view-trading')) terminal.before(watchlist);
+  if (terminal.parentElement?.id === 'view-dashboard') terminal.after(watchlist);
+  else if (terminal.parentElement?.id === 'view-trading') terminal.before(watchlist);
 }
 function selection() {
   const symbol = window.THNContext.get().symbol;

@@ -1,0 +1,135 @@
+{
+  "repository": "Thaniyan/thn-ai-trader",
+  "baselineMain": "4ebd6e601cc8aca627b55d5c95854296c68c0ce9",
+  "candidateBranch": "feature/m4-workspace-hierarchy-20261106",
+  "scope": "Local production package, synthetic offline provider fixtures, hosted financial restrictions. Not interactive Vercel acceptance.",
+  "tools": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "chromium": "151.0.7922.34",
+    "chromiumRevision": 1234
+  },
+  "browser": {
+    "gateExitCode": 0,
+    "suitesPassed": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "layout",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency",
+      "recovery",
+      "assisted_desk",
+      "paper_review",
+      "evidence_workflow",
+      "broker_workspace",
+      "visual_refinement",
+      "workflow_polish",
+      "visual_identity",
+      "confidence",
+      "dashboard_confidence",
+      "research_risk",
+      "workspace_hierarchy"
+    ],
+    "count": 32
+  },
+  "nonBrowser": {
+    "coreIntegrationNumerical": 216,
+    "security": 21,
+    "system": 10,
+    "build": "pass",
+    "lint": "pass",
+    "packaging": "pass",
+    "frozenDependencies": "pass; unchanged package.json and bun.lock",
+    "dependencyAdvisories": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0,
+      "info": 0
+    },
+    "workflow": "pass",
+    "sourceIntegrity": "pass; protected numerical baseline byte-identical",
+    "gitFsck": "pass"
+  },
+  "runtimeManifest": {
+    "files": 77,
+    "sourceMismatches": [],
+    "sha256": "b00e0ae1e2f9e351709dc954b52d7ff6302bab1d032bf882376ad18bb33b4575"
+  },
+  "renderedEvidence": {
+    "matchedProfiles": 24,
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "viewportHeight": 1000,
+    "languages": [
+      "en",
+      "ar"
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "source": "before-measurements.json and after-measurements.json; actual local screenshots"
+  },
+  "diagnostics": [
+    "Initial hierarchy test exposed event-order focus loss on the chart evidence entry point; fixed delegation after the existing route handler.",
+    "Initial full diagnostic run exposed Decision and Terminal steps clicking the newly collapsed brief after reload. The steps now open visible native summaries through the existing helper; numerical and lifecycle assertions and timeout limits remain. The failed run was interrupted, then all 32 suites were rerun from the beginning.",
+    "New Dashboard source disclosure retains open state and focus on translated rerenders.",
+    "Dashboard Confidence now checks focus on the intentionally opened school summary, open state and all eight cards rather than the former overview-heading destination. The corrected full suite and all 32 suites are rerun.",
+    "Additional EN/AR 160px and 240px inspection found no document or evidence-strip horizontal overflow."
+  ],
+  "deployment": {
+    "previewIdentity": "Unverified; Vercel API proxy CONNECT 403 before destination TLS, no configured Vercel identity",
+    "production": "No Production deployment performed",
+    "mainIntegration": "Not performed; visual and Preview acceptance required"
+  },
+  "changedFiles": [
+    "docs/M4-WORKSPACE-HIERARCHY.md",
+    "docs/PRODUCT-ROADMAP.md",
+    "docs/m4-workspace-hierarchy/after-ai-1440-en-dark.png",
+    "docs/m4-workspace-hierarchy/after-ai-390-ar-light.png",
+    "docs/m4-workspace-hierarchy/after-ai-768-en-light.png",
+    "docs/m4-workspace-hierarchy/after-dashboard-1440-en-dark.png",
+    "docs/m4-workspace-hierarchy/after-dashboard-390-ar-light.png",
+    "docs/m4-workspace-hierarchy/after-dashboard-768-en-light.png",
+    "docs/m4-workspace-hierarchy/after-measurements.json",
+    "docs/m4-workspace-hierarchy/before-ai-1440-en-dark.png",
+    "docs/m4-workspace-hierarchy/before-ai-390-ar-light.png",
+    "docs/m4-workspace-hierarchy/before-ai-768-en-light.png",
+    "docs/m4-workspace-hierarchy/before-dashboard-1440-en-dark.png",
+    "docs/m4-workspace-hierarchy/before-dashboard-390-ar-light.png",
+    "docs/m4-workspace-hierarchy/before-dashboard-768-en-light.png",
+    "docs/m4-workspace-hierarchy/before-measurements.json",
+    "docs/m4-workspace-hierarchy/verification.json",
+    "public/analysis-cockpit.css",
+    "public/analysis-cockpit.js",
+    "public/workflow-polish.js",
+    "scripts/ci/run-browsers.py",
+    "tests/browser_confidence.py",
+    "tests/browser_dashboard_confidence.py",
+    "tests/browser_decision.py",
+    "tests/browser_evolution.py",
+    "tests/browser_maturity.py",
+    "tests/browser_terminal.py",
+    "tests/browser_workspace_hierarchy.py",
+    "tests/workspace_controls.py"
+  ]
+}

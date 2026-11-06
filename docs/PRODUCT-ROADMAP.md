@@ -23,9 +23,16 @@ Never bypass a critical failure or represent fixtures as real market evidence.
 
 ## Current capability map
 
-Repository baseline: fd2ce7d20b34e7182afb1bf90000c09313f0eedd. Its complete
-30-suite offline browser gate and required non-browser checks passed. This is
-repository verification, not proof of current Production readiness.
+Verified main baseline: `4ebd6e601cc8aca627b55d5c95854296c68c0ce9` (Integrated
+Research increments 1–3). Its preserved evidence records 31 browser-suite PASS
+results, 216 core tests, 21 security tests and 10 system checks. Interactive
+Production acceptance remains separate from repository verification.
+
+Active candidate: Milestone 4, increment 1 — Dashboard chart prominence and
+Intelligence hierarchy, on `feature/m4-workspace-hierarchy-20261106`. See
+[M4 implementation and visual evidence](M4-WORKSPACE-HIERARCHY.md). This candidate
+requires complete verification and visual/Preview acceptance before integration;
+it is not represented as shipped on main.
 
 | Product system | Existing foundation | Next integration or limitation |
 | --- | --- | --- |
@@ -36,7 +43,7 @@ repository verification, not proof of current Production readiness.
 | Quantitative research | Cost assumptions, holdout/walk-forward evaluation, reproducible replay and historical checks | Improve discovery and comparison of existing reports before adding engines |
 | Portfolio, Journal and monitoring | Local research records, watchlists and review workflows | Clarify local persistence/export; hosted durable multi-user storage and notifications need separate design |
 
-## Current routine milestone: Dashboard evidence provenance
+## Completed baseline milestone: Dashboard evidence provenance
 
 Show source/provider symbol, server-reported history state and the opening
 timestamp of the last closed bar beside the observed close. Recent means recent

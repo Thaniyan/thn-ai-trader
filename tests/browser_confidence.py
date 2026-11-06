@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Confidence restoration: real engine results, lifecycle, responsive EN/AR and axe."""
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -11,9 +12,9 @@ with sync_playwright() as p:
   page.locator('.nav-stack [data-view='+view+']').click()
   expect(page.locator('#view-'+view)).to_be_visible()
  go('ai');page.locator('[data-cockpit=analyze]').click();page.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")')
- expect(page.locator('#schoolsGrid')).to_be_visible();assert page.locator('#schoolsGrid .school-card').count()==8
+ control(page,'#schoolsGrid');expect(page.locator('#schoolsGrid')).to_be_visible();assert page.locator('#schoolsGrid .school-card').count()==8
  assert page.evaluate('THNConfidence.review().probability') is None
- page.evaluate('window.__confidenceChart=THNResearch.chart');scenario=page.locator('#confidencePlaybook [data-evo^="scenario:"]').first;expect(scenario).to_be_visible();scenario.click();expect(page.locator('#view-risk')).to_be_visible();assert float(page.locator('#planEntry').input_value())>0;assert page.locator('#planEntry').input_value()!=page.locator('#planStop').input_value();assert page.evaluate('THNDecision.plan()') is None;assert page.evaluate('THNResearch.chart===window.__confidenceChart');go('ai')
+ page.evaluate('window.__confidenceChart=THNResearch.chart');scenario=control(page,'#confidencePlaybook [data-evo^="scenario:"]').first;expect(scenario).to_be_visible();scenario.click();expect(page.locator('#view-risk')).to_be_visible();assert float(page.locator('#planEntry').input_value())>0;assert page.locator('#planEntry').input_value()!=page.locator('#planStop').input_value();assert page.evaluate('THNDecision.plan()') is None;assert page.evaluate('THNResearch.chart===window.__confidenceChart');go('ai')
  page.locator('#view-ai.view-active #analysisCockpit').get_by_role('button',name='Confidence test',exact=True).click();expect(page.locator('#qRun')).to_be_visible();assert page.locator('#qBacktestForm fieldset').count()==3
  pending=[];page.route('**/api/research/evaluate',lambda r:pending.append(r));page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus === "running"');page.locator('#qParam_spread').fill('6');response=pending[0].fetch();pending[0].fulfill(response=response);page.wait_for_function('THNConfidence.review().testStatus === "changed"');assert page.evaluate('THNConfidence.review().validationScore') is None;page.unroute('**/api/research/evaluate')
  page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus === "complete"')
