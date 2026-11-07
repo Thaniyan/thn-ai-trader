@@ -32,11 +32,14 @@ form.append(calculate);
 const layout = document.createElement('div');
 layout.className = 'flow-risk-layout';
 form.before(layout);
-layout.append(form, document.querySelector('.q-planning-costs'));
+const reviewRail = document.createElement('aside');
+reviewRail.className = 'workspace-risk-rail';
+reviewRail.append(document.getElementById('evoRisk'), document.querySelector('.q-planning-costs'));
+layout.append(form, reviewRail);
 const planner = form.closest('.work-planner');
 planner.querySelector('h2').id = 'flowRiskTitle';
 planner.setAttribute('aria-labelledby', 'flowRiskTitle');
-planner.after(document.getElementById('evoRisk'));
+// Risk results and save readiness stay alongside the original form.
 
 // Favorites have one owner and one storage key in the existing Markets module.
 // The strip carries symbols only: it never invents quotes or polling services.

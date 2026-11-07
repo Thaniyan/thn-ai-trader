@@ -51,7 +51,11 @@ with sync_playwright() as p:
     page.wait_for_function('THNResearch.series()?.symbol === "EURUSD"')
     go('risk')
     assert page.locator('#workRiskForm fieldset').count() == 3
-    assert page.locator('#flowRiskBudget').bounding_box()['y'] < page.locator('#evoRisk').bounding_box()['y']
+    # Review now sits beside the original budget form instead of below it.
+    budget=page.locator('#flowRiskBudget').bounding_box(); review=page.locator('#evoRisk').bounding_box()
+    expect(page.locator('#flowRiskBudget')).to_be_visible(); expect(page.locator('#evoRisk')).to_be_visible()
+    assert budget['x']+budget['width'] <= review['x']
+    assert page.locator('#evoRisk').evaluate('e=>e.parentElement.classList.contains("workspace-risk-rail")')
     for ident, value in {'planCapital':'10000', 'planRisk':'1', 'planEntry':'1.1', 'planStop':'1.09', 'planTarget':'1.12', 'planLeverage':'100', 'qRisk_spread':'0', 'qRisk_slippage':'0', 'qRisk_commission':'0'}.items():
         page.locator('#' + ident).fill(value)
     page.locator('#planSide').select_option('BUY')

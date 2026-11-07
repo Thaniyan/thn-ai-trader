@@ -23,16 +23,19 @@ Never bypass a critical failure or represent fixtures as real market evidence.
 
 ## Current capability map
 
-Verified main baseline: `4ebd6e601cc8aca627b55d5c95854296c68c0ce9` (Integrated
-Research increments 1–3). Its preserved evidence records 31 browser-suite PASS
-results, 216 core tests, 21 security tests and 10 system checks. Interactive
-Production acceptance remains separate from repository verification.
+Verified main baseline: `a752fa4f533b0376c8d60eab1a450c5fbf9932f9`, containing
+Integrated Research increments 1–3 and the accepted Milestone 4 hierarchy work.
+Production identity and interactive behavior remain separate from local source
+verification and any Git push.
 
-Active candidate: Milestone 4, increment 1 — Dashboard chart prominence and
-Intelligence hierarchy, on `feature/m4-workspace-hierarchy-20261106`. See
-[M4 implementation and visual evidence](M4-WORKSPACE-HIERARCHY.md). This candidate
-requires complete verification and visual/Preview acceptance before integration;
-it is not represented as shipped on main.
+Active candidate: the unified decision workstation overhaul, on
+`feature/unified-decision-workstation-20261107`. It connects market selection,
+evidence-bound recommendations, AI Research, hypothetical Risk Desk planning and
+saved research. See [implementation, limits and verification](UNIFIED-DECISION-WORKSTATION.md).
+This is a major development candidate requiring responsive visual/Preview review
+and owner acceptance before main integration. The rollback reference is the main
+baseline above. Genuine Ollama inference remains unconfigured and local-only;
+rule-based recommendations must not be represented as generated model output.
 
 | Product system | Existing foundation | Next integration or limitation |
 | --- | --- | --- |

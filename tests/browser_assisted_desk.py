@@ -28,7 +28,7 @@ with sync_playwright() as p:
  checks.append('Actual deterministic plan -> original entry/stop/target overlay; hosted paper draft unavailable')
  # A pending old-context response must not become the next instrument's reasoning.
  go('dashboard');held=[];s.route('**/api/intelligence',lambda r:held.append(r));s.locator('#evoRunDesk').click();s.wait_for_function('THNIntelligence.state().busy');assert held
- s.locator('#qSymbol').fill('GBPUSD');s.locator('#qSymbol').press('Tab');s.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"');expect(s.locator('#evoDeskRunStatus')).to_contain_text('Market changed');expect(s.locator('#evoAssistantSummary')).to_contain_text('Run the market review');held[0].abort();s.unroute('**/api/intelligence');expect(s.locator('#evoRunDesk')).to_be_enabled()
+ s.locator('#qSymbol').fill('GBPUSD');s.locator('#qSymbol').press('Tab');s.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"');expect(s.locator('#evoDeskRunStatus')).to_contain_text('Market changed');expect(s.locator('#evoAssistantSummary')).not_to_have_text(data['summary']);assert s.evaluate('THNWorkspace.recommendation().interpretation') is None;held[0].abort();s.unroute('**/api/intelligence');expect(s.locator('#evoRunDesk')).to_be_enabled()
  checks.append('Context switch cancels pending review, clears matched explanation and never restores old trade parameters')
  # Rejected analysis cannot reuse a prior successful object as a false new success.
  s.route('**/api/analyze',lambda r:r.fulfill(status=503,content_type='application/json',body='{"error":"Acceptance provider failure"}'))

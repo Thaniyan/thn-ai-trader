@@ -1292,11 +1292,17 @@ async function checkHealth() {
 }
 window.THNServiceHealth={get:()=>cachedHealth,refresh:checkHealth};
 
-let analysisGeneration=0;
+let analysisGeneration=0,analysisPending=null;
 async function analyze() {
   window.THNContext?.set({symbol: $("symbolInput").value.trim().toUpperCase(), interval: ({scalp:"15m",intraday:"1h",swing:"1d",position:"1d"})[$("timeframe").value] || "1h"}, "analysis");
+  const payload=getPayload();
+  const key=JSON.stringify([payload,window.THNContext?.get().datasetId||null]);
+  if(analysisPending?.key===key&&analysisPending.generation===analysisGeneration)return analysisPending.promise;
+  const promise=performAnalysis(payload);analysisPending={key,promise,generation:analysisGeneration};
+  try{return await promise;}finally{if(analysisPending?.promise===promise)analysisPending=null;}
+}
+async function performAnalysis(payload) {
   const generation=++analysisGeneration;
-  const payload = getPayload();
   saveSetup();
   statusKey("analyzingStatus", { symbol: payload.symbol.toUpperCase() });
   $("analyzeBtn").disabled = true;
