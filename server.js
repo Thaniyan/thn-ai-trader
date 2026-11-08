@@ -1411,6 +1411,30 @@ async function enhanceWithOpenAI(analysis) {
   }
 }
 
+// HTTP route metadata only. Financial and provider handlers remain authoritative.
+const GET_API_PATHS = new Set([
+  '/api/health', '/api/intelligence/provider', '/api/research/brief',
+  '/api/research/catalog', '/api/research/series', '/api/research/mtf',
+  '/api/quotes', '/api/market/quotes', '/api/broker/paper-quotes',
+  '/api/accounts', '/api/broker/accounts', '/api/audit-logs'
+]);
+const POST_API_PATHS = new Set([
+  '/api/intelligence/saved', '/api/intelligence/reflect',
+  '/api/intelligence/provider/check', '/api/intelligence/conversation/delete',
+  '/api/intelligence', '/api/research/replay', '/api/research/plan',
+  '/api/research/evaluate', '/api/research/backtest', '/api/analyze',
+  '/api/watchlist/scan', '/api/accounts/test-connection', '/api/accounts/connect',
+  '/api/broker/connect-account', '/api/broker/register-account',
+  '/api/broker/reconcile', '/api/broker/reset-sandbox', '/api/accounts/delete',
+  '/api/broker/delete-account', '/api/orders/execute', '/api/positions/close',
+  '/api/risk/calculate', '/api/broker/ping', '/api/broker/funds'
+]);
+function apiMethods(pathname) {
+  if (GET_API_PATHS.has(pathname) || /^\/api\/market\/[^/]+$/.test(pathname)) return ['GET', 'OPTIONS'];
+  if (POST_API_PATHS.has(pathname)) return ['POST', 'OPTIONS'];
+  return null;
+}
+
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
@@ -1424,7 +1448,7 @@ const MIME_TYPES = {
 function setBaseHeaders(res) {
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("X-Frame-Options", "DENY");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("Referrer-Policy", "no-referrer");
@@ -1455,13 +1479,18 @@ function safeStaticPath(urlPath) {
   return target;
 }
 
-function serveFile(res, filePath) {
+function serveFile(req, res, filePath, pathname) {
   if (!filePath || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+    // Only document navigation may use the SPA fallback; assets and private paths never do.
+    const documentNavigation = String(req.headers.accept || '').split(',').some(v => v.trim().split(';')[0] === 'text/html');
+    const assetOrPrivate = path.posix.extname(pathname) || pathname.split('/').some(v => v.startsWith('.')) || /^\/(assets|static|images|fonts)(\/|$)/.test(pathname);
+    if (!filePath || !documentNavigation || assetOrPrivate) return sendJson(res, 404, { ok: false, code: 'NOT_FOUND', error: 'Resource not found.' });
     filePath = path.join(__dirname, "public", "index.html");
   }
   const ext = path.extname(filePath).toLowerCase();
   setBaseHeaders(res);
   res.writeHead(200, { "Content-Type": MIME_TYPES[ext] || "application/octet-stream" });
+  if (req.method === 'HEAD') return res.end();
   fs.createReadStream(filePath).pipe(res);
 }
 
@@ -1471,14 +1500,27 @@ const activeAccounts = new Set();
 let activeReplays = 0;
 const server = http.createServer(async (req, res) => {
   setBaseHeaders(res);
-  if (req.method === "OPTIONS") {
-    res.writeHead(204);
-    return res.end();
-  }
-
-  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
-
   try {
+    let url, decodedPath;
+    try {
+      url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      decodedPath = decodeURIComponent(url.pathname);
+      if (decodedPath.includes('\0')) throw new Error('Invalid path');
+    } catch {
+      return sendJson(res, 400, { ok: false, code: 'INVALID_PATH', error: 'Invalid request path.' });
+    }
+    if (/^\/api(\/|$)/.test(decodedPath)) {
+      const allowed = apiMethods(url.pathname);
+      if (!allowed) return sendJson(res, 404, { ok: false, code: 'API_NOT_FOUND', error: 'API route not found.' });
+      if (!allowed.includes(req.method)) {
+        res.setHeader('Allow', allowed.join(', '));
+        return sendJson(res, 405, { ok: false, code: 'METHOD_NOT_ALLOWED', error: 'Method not allowed.' });
+      }
+    }
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      return res.end();
+    }
     // Public deployments have no authenticated account isolation or durable ledger.
     // Preserve the full local engine, but never expose shared financial records.
     const financial = /^\/api\/(accounts|broker|orders|positions|audit-logs)(\/|$)/.test(url.pathname);
@@ -2156,11 +2198,12 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    if (req.method === "GET") {
-      return serveFile(res, safeStaticPath(url.pathname));
+    if (req.method === "GET" || req.method === "HEAD") {
+      return serveFile(req, res, safeStaticPath(url.pathname), decodedPath);
     }
 
-    return sendJson(res, 405, { ok: false, error: "Method not allowed" });
+    res.setHeader('Allow', 'GET, HEAD, OPTIONS');
+    return sendJson(res, 405, { ok: false, code: 'METHOD_NOT_ALLOWED', error: 'Method not allowed.' });
   } catch (error) {
     return sendJson(res, error.status || 500, { ok: false, code: error.code || "REQUEST_FAILED", error: error.status ? error.message : "Request could not be completed." });
   }

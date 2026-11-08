@@ -1,0 +1,103 @@
+{
+  "scope": "Main-based isolated M2 candidate; local production package with synthetic provider fixtures; not Preview or Production acceptance",
+  "baseline": "a752fa4f533b0376c8d60eab1a450c5fbf9932f9",
+  "branch": "fix/api-route-contracts-20261108",
+  "checks": {
+    "build": "PASS",
+    "lint": "PASS (JavaScript syntax checks)",
+    "core": {
+      "passed": 226,
+      "failed": 0
+    },
+    "security": {
+      "passed": 21,
+      "failed": 0
+    },
+    "system": {
+      "passed": 10,
+      "failed": 0
+    },
+    "browser": {
+      "passed": 32,
+      "failed": 0,
+      "suites": [
+        "workstation",
+        "research",
+        "research_outage",
+        "quality",
+        "decision",
+        "library_reliability",
+        "maturity",
+        "terminal",
+        "intelligence",
+        "intelligence_memory",
+        "layout",
+        "pilot",
+        "trust",
+        "professional",
+        "journal_lifecycle",
+        "trading_remediation",
+        "evolution",
+        "consolidation",
+        "experience",
+        "consistency",
+        "recovery",
+        "assisted_desk",
+        "paper_review",
+        "evidence_workflow",
+        "broker_workspace",
+        "visual_refinement",
+        "workflow_polish",
+        "visual_identity",
+        "confidence",
+        "dashboard_confidence",
+        "research_risk",
+        "workspace_hierarchy"
+      ]
+    },
+    "httpContractCases": 10,
+    "packaging": "PASS",
+    "workflow": "PASS",
+    "frozenDependencies": "PASS",
+    "dependencyAudit": {
+      "policy": "Block high/critical; report lower severity; errors block",
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "moderate": 0,
+        "low": 0,
+        "info": 0
+      },
+      "blocking": false
+    },
+    "sourceParity": {
+      "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+      "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+      "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+      "server/decision.js": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+      "server/replay.js": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+      "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+      "server/riskEngine.js": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a",
+      "server/paper-intents.js": "92126c2d60c2a0ac1082d4da7cb65ac89dbdf2b3c2c904d62c3754f97d8aaf96",
+      "server/accountStore.js": "a4852a6af1c95fd9dfee80b5c226472cbaa833782dc4e129bd8380883556d10e",
+      "public/app.js": "d6e16571c9da71cf17dff0d628bdf5570e0775f9585af8dcc6f13cf36ded686d"
+    }
+  },
+  "artifactManifestSHA256": "adfb1cf7f248b5508aec11c5dab4b7163166f29499fbfbdb9c2765ec32f97713",
+  "before": {
+    "unknownAPI": "HTTP 200 text/html",
+    "missingJavaScript": "HTTP 200 text/html"
+  },
+  "after": {
+    "unknownAPI": "HTTP 404 application/json API_NOT_FOUND",
+    "missingStaticResource": "HTTP 404 application/json NOT_FOUND",
+    "unsupportedKnownMethod": "HTTP 405 application/json METHOD_NOT_ALLOWED + Allow",
+    "malformedPath": "HTTP 400 application/json INVALID_PATH",
+    "documentNavigation": "HTTP 200 text/html for existing documents or eligible extensionless HTML navigation"
+  },
+  "limitations": [
+    "Preview/Production HTTP verification blocked by workspace proxy CONNECT 403",
+    "GitHub API/branch-rule/PR creation access blocked; no direct main push allowed",
+    "Legacy risk leverage/null contract remains outside this routing correction; no financial formula changed"
+  ]
+}
