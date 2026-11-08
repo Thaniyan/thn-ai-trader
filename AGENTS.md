@@ -1,3 +1,19 @@
+# Current owner engineering policy — 2026-11-08
+
+The [Master Engineering Directive](docs/MASTER-ENGINEERING-DIRECTIVE-20261108.md)
+is the latest owner instruction. Preserve main as the verified Production branch.
+New development uses dedicated branches and the normal PR workflow. Never use a
+direct main push to bypass PR review, required checks or Preview acceptance.
+Routine low-risk work may merge only when all required gates and repository policy
+permit. Significant UI/workflow, architecture, financial-policy, security-sensitive,
+broker, destructive or paid changes require explicit owner approval before merge
+or deployment. PR #14 remains subject to complete acceptance and explicit owner
+approval; prior requests to push do not override this new specific hold.
+No force push, unrelated-history merge, protection bypass, live/hosted broker
+execution, paid activation or destructive migration. Preserve established tests,
+numerical engines and financial truthfulness. Read the current audit and release
+evidence; historical release statements below are reference, not current policy.
+
 # Integrated v7 release contract
 
 ## Owner branch directive — 2026-11-02

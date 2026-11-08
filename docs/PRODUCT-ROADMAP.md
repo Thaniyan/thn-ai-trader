@@ -6,33 +6,38 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
-## Delivery policy
+## Delivery policy — current owner directive, 2026-11-08
 
-Routine, low-risk improvements: implement, run required gates, review the diff,
-commit/push to main, allow the existing Vercel integration, verify the actual
-Production deployment. No separate routine deployment approval is required.
-Major changes: dedicated branch, comprehensive tests, existing Vercel Preview,
-responsive EN/AR/theme review and necessary owner acceptance before main.
-Do not create duplicate Vercel projects. Branch Preview availability must be
-checked: current vercel.json explicitly enables main and disables two older
-branches, so a branch push alone does not prove Preview availability.
+The [Master Engineering Directive](MASTER-ENGINEERING-DIRECTIVE-20261108.md)
+supersedes older direct-main delivery wording. Develop on dedicated branches,
+use the normal PR workflow, pass all mandatory checks and verify relevant Preview
+behavior before integration. Do not use direct main pushes to bypass that workflow.
+Routine low-risk work may proceed only when repository policy and all gates permit.
+Significant UI/workflow, financial-policy, architecture, security-sensitive, broker,
+destructive or paid changes need explicit owner approval before merge/deployment.
+PR #14 remains subject to full acceptance and explicit owner approval.
 
-Real-money execution, live brokers, destructive data operations, significant
-security changes and new paid infrastructure still require explicit approval.
-Never bypass a critical failure or represent fixtures as real market evidence.
+Keep real-money and hosted broker execution disabled. Do not create Vercel projects,
+weaken protections, introduce paid services or migrate private data without approval.
+A Git push, READY metadata or fixture pass does not establish interactive Production
+correctness. Preserve original history and the current known rollback reference.
 
 ## Current capability map
 
-Verified main baseline: `4ebd6e601cc8aca627b55d5c95854296c68c0ce9` (Integrated
-Research increments 1–3). Its preserved evidence records 31 browser-suite PASS
-results, 216 core tests, 21 security tests and 10 system checks. Interactive
-Production acceptance remains separate from repository verification.
+Verified main/rollback source: `a752fa4f533b0376c8d60eab1a450c5fbf9932f9`.
+Existing unified-workstation PR #14 is preserved. Its reviewed recovery checkpoint
+is `28f5d1a`; the financial-truthfulness presentation correction is
+`527c0c985e54eaa6519ab352b8dd7e645f289fe7`. It requires major-change acceptance.
+The independent main-based M2 routing correction is
+`3ed704557ce10b4c188a4fc29f3ea9ab237c0a93` on
+`fix/api-route-contracts-20261108`, excluding unaccepted M1 UI changes.
 
-Active candidate: Milestone 4, increment 1 — Dashboard chart prominence and
-Intelligence hierarchy, on `feature/m4-workspace-hierarchy-20261106`. See
-[M4 implementation and visual evidence](M4-WORKSPACE-HIERARCHY.md). This candidate
-requires complete verification and visual/Preview acceptance before integration;
-it is not represented as shipped on main.
+[Current audit and verified F01–F16 status](CURRENT-ENGINEERING-AUDIT-20261108.md)
+records actual commands, local gates, source ownership and release limitations.
+Preview/Production application checks and GitHub API-based PR/rule access are
+currently blocked by the workspace proxy. Genuine model inference remains
+unconfigured/local-only; browser research is device-local and hosted finance stays
+unavailable. Historical cycle evidence below retains its original scope/date.
 
 | Product system | Existing foundation | Next integration or limitation |
 | --- | --- | --- |

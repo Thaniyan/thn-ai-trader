@@ -1,4 +1,31 @@
-# THN AI Trader 7.0 — integrated local release candidate
+# THN AI Trader 7.5 — bilingual research workstation
+
+Canonical repository: `Thaniyan/thn-ai-trader`. Original site:
+https://thn-ai-trader.vercel.app/.
+
+Current engineering entry points (2026-11-08):
+
+- [Owner engineering directive and release policy](docs/MASTER-ENGINEERING-DIRECTIVE-20261108.md).
+- [Current verified audit, findings and release boundaries](docs/CURRENT-ENGINEERING-AUDIT-20261108.md).
+- [Product vision and strategic roadmap](docs/PRODUCT-ROADMAP.md).
+- [Mandatory CI and pinned tooling](.github/workflows/ci.yml).
+
+Use Node 24.19.0 and the existing lockfile. The active application provides
+provider-based closed-candle research, deterministic explanations, historical
+validation, hypothetical risk planning and browser-local saved research. Genuine
+local inference needs separate installed-model validation. Hosted accounts,
+hosted financial execution and real-money trading remain unavailable.
+
+Develop on branches and use PR review, mandatory checks and Preview verification.
+Major changes require explicit owner approval before integration. Preserve original
+canonical history; it is not certified sanitized. `build`/`lint` primarily check
+JavaScript syntax and do not constitute semantic lint or a security certification.
+
+The release excerpts below are historical records. Their old versions, ancestry,
+counts, approval statements and deployment status do not describe current policy
+or independently verified Production behavior.
+
+## Historical v7.0 integration record
 
 One original product: `Thaniyan/thn-ai-trader`, planned website `thn-ai-trader.vercel.app`.
 See [RELEASE-7.0.md](RELEASE-7.0.md) for the delivered assistant, safeguards, test evidence,

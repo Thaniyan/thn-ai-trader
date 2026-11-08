@@ -1,0 +1,237 @@
+[
+  {
+    "file": "docs/LOCAL-AI-RESEARCH.md",
+    "kind": "implementation/tests/docs",
+    "sha256": "be25789fdb5a329cc0b990f0e8292cf403be431e95e48513605c68836b083b9b"
+  },
+  {
+    "file": "docs/PRODUCT-ROADMAP.md",
+    "kind": "implementation/tests/docs",
+    "sha256": "b487c04093c8e647328e46bdf056612dbe456ba67fb90c20a0f6ffc7c39e27b3"
+  },
+  {
+    "file": "docs/UNIFIED-DECISION-WORKSTATION.md",
+    "kind": "implementation/tests/docs",
+    "sha256": "fb2260ac5f76675adb0864c474fb315ab389511ea3851e85cf6e865576d9ba7b"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/README.md",
+    "kind": "evidence data",
+    "sha256": "dc81f23c04cee41f9d715374c0bc1dedefabb36271a7c5f3d0cfa59232cf3d20"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-ai-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "7cb803cc68f0853f7e201ec646f3c7bd79763f6d27bd51364fba115372037e77"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-ai-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "ed8b8c06b4b8d87b1b14ebe36c465242cd827abb2cee2b3802fa89b08211d750"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-ai-768-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "b40c34014e822305fc9ea90a8a5fbb6e80b2b0c180fd0fcae6793e0b3c8b1163"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-dashboard-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "c204efa8a471bb02d57eb81e099f0ef53235be5d595c0304739a58ffe94f04d2"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-dashboard-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "adf6efc36563ba2836aa4f7c1dc5e3ddc1ae93d75232538efaf1ff19a441e9be"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-dashboard-768-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "c51bb3c35182bb1ea09f68be4c0fe998c37f9bc8abf601fbcb8e42743f74a3b6"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-journal-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "9fcd7ce2e597de0a3c0d15b5348c9e2ccb84bd5a23ccb92cb4b6afa173d159c7"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-journal-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "a9fac7c0875541bf823fa934b6e0b40e7974a02ac5ee219c642a8d914df1a524"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-risk-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "5800ca7091da002ad515777706a0d122c085b7e697785aea8acb349297b98c1d"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/after-risk-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "28e0723c6906a37e6fbcbbdbbfc0b73f11f869d197036d79a385149bc301edd6"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/artifact-manifest.json",
+    "kind": "evidence data",
+    "sha256": "ae5963f020a380ba7636f27fcef12b7187632d6c631690345db16588f7cffb70"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-ai-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "cdb42bfebfb47e2c28dae7ae5f90cb551197470d8bf539a679d64c97ddd200d5"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-ai-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "097a4e1656d9b2dc8432fa518a01236bdb30b6eea7c7e0217be9945fc469b16a"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-ai-768-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "41a902e32deb16605d1ae3f00c13d95c0bfb137854197e32a82827364ca5896b"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-dashboard-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "393c66c34975dce280970beae57a556df96b95d1568cf3742446280946add434"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-dashboard-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "ccd8c5642c3953ecfe878e5d1ad379bfb450a8e75819103273c88ff8febcca2c"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-dashboard-768-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "59e1f136f39026cff4ad45d274f2ae5e2a43f0e3ecdee2d2cdfb0f41a61a11a8"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-journal-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "747eb5baeb6184441291f21b2dfd653a3b143a181650b793a2a0362c5e1e7a68"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-journal-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "f73ba21079cc184560f7a8cb9aae989c70e1265d1f5d5159d242a34fe802929d"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-risk-1440-en-dark.png",
+    "kind": "visual evidence",
+    "sha256": "e61deb20d0b864dadfa7cd930504d56a69c8a2fc6abceef219d76262be4090d4"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/before-risk-390-ar-light.png",
+    "kind": "visual evidence",
+    "sha256": "6fc15d606ec132c7dda23853e84ba1b9eac32b9d11aa6bef141d0afa83b7f5a4"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/browser-gate.txt",
+    "kind": "evidence data",
+    "sha256": "790292680886c72b2ad80bc91f81a83f3e6705703422334b0a193638b69083e8"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/runtime-manifest.json",
+    "kind": "evidence data",
+    "sha256": "de00bf879b6fcf1246b72ac817741736b838ba533eaa358ca67dcaedb6e33ac5"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/verification.json",
+    "kind": "evidence data",
+    "sha256": "b7b8bac42b391c342d5b6fb07d15fc5c5f9ab8e9431932535b5b4ce54c1ce14a"
+  },
+  {
+    "file": "docs/evidence/unified-workspace-20261107/visual-matrix.json",
+    "kind": "evidence data",
+    "sha256": "85c29590d6ceceee22ed3f039aab62dc1b2e8964ff88f7b780b024e81563f18d"
+  },
+  {
+    "file": "package.json",
+    "kind": "implementation/tests/docs",
+    "sha256": "e6e72527673c62d0ee3c651d766ef51a648dba65e872d20cef7cbf1e7839b623"
+  },
+  {
+    "file": "public/app.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "d1b12b82c161106ce6144032d0170bea5beaa534d2946d2e9c00980ff7d1cd79"
+  },
+  {
+    "file": "public/index.html",
+    "kind": "implementation/tests/docs",
+    "sha256": "cc9aaeb9319629f3722527d22c39b8f07c16be776340f114e978e6a3d434b81e"
+  },
+  {
+    "file": "public/platform-evolution.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "f052ee31594abeced888f905b7ed3d6c7d82cf39e36bbe478189fd511a7b7b6d"
+  },
+  {
+    "file": "public/recommendation-core.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "c4dbc58bb9c8c76d5ee45b0adbfbae0f2c7a42bfa1ee35066de92c0bfbc376ef"
+  },
+  {
+    "file": "public/recommendation-view.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786"
+  },
+  {
+    "file": "public/unified-workspace.css",
+    "kind": "implementation/tests/docs",
+    "sha256": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4"
+  },
+  {
+    "file": "public/unified-workspace.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "b2516963fd3470af2c6ad905ebaf6fcc5234d0711c8b58e5b7c410862a333db1"
+  },
+  {
+    "file": "public/workflow-polish.js",
+    "kind": "implementation/tests/docs",
+    "sha256": "ae01cabc6d72835046aec3512d35bc9a8a7bf0304405bbe02c5b066eccddc38b"
+  },
+  {
+    "file": "scripts/check-local-ai.mjs",
+    "kind": "implementation/tests/docs",
+    "sha256": "2bc8dca3a82ee16ab92af66c28bca2c126e9c525e167aa81c612fc8c0fcba34c"
+  },
+  {
+    "file": "scripts/ci/run-browsers.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "be07ff4e67845283fed423f951a6d1576c8262c19b7b454670e3eb4a01827601"
+  },
+  {
+    "file": "tests/browser_assisted_desk.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "928c7bdc51baff8c56e78403496fa4e88b5caf125ed13d8030281209f9a525e5"
+  },
+  {
+    "file": "tests/browser_dashboard_confidence.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "a79a1f75dcbf334f6be478325e29eeb7afa8fcf6c254a5ca04abcc1ace8216ae"
+  },
+  {
+    "file": "tests/browser_recovery.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "b81041ed48f38800756c3004c5c8d6fd505f661c05fb20de9122e38d43917fba"
+  },
+  {
+    "file": "tests/browser_unified_workspace.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "f1d0d4aa52d90de1e2e624caebaa6394e5ab7eb312009b1b460e74a54067832b"
+  },
+  {
+    "file": "tests/browser_workflow_polish.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "b76d5fcb9d84c8084ecaa0565513e549cf2a4fe6ff8474054f645ca15a0bb88b"
+  },
+  {
+    "file": "tests/recommendation.test.mjs",
+    "kind": "implementation/tests/docs",
+    "sha256": "7959de7ec99bed1e3ba5c8639147c4a8adb94727d29838bcd1e261f1e44ee986"
+  },
+  {
+    "file": "tests/workspace_controls.py",
+    "kind": "implementation/tests/docs",
+    "sha256": "344f87a1ffdba90011d9934da0fe83470526263af0b3b41f53e72ea008b5eb61"
+  }
+]

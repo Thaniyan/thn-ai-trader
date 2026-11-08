@@ -1,0 +1,46 @@
+{
+  "recoveredCheckpoint": "28f5d1a69540c7233c17a23702741b398eebe879",
+  "currentHead": "527c0c985e54eaa6519ab352b8dd7e645f289fe7",
+  "files": [
+    {
+      "path": "docs/M1-TICKET-RISK-TRUTHFULNESS.md",
+      "sha256": "d6e4e0a874f5e839b735a68421b28fe2c043e8aba098229464ce9e4aff27de2f"
+    },
+    {
+      "path": "docs/UNIFIED-DECISION-WORKSTATION.md",
+      "sha256": "c266cef91ee516ef0787682fd8db3410b6f3bcb7b25e84d0e88e02b18f0cc5df"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/after.json",
+      "sha256": "76f56a905cddd6c6c27d856d78a36660c2f8ecfb2a4eda702e890fb9e5fe647d"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/before.json",
+      "sha256": "62e798d5969d69a314987be88be011bbace3166722433a1ea4d5eb475030717e"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/m1-risk-failure-after-1440-en-dark.png",
+      "sha256": "0bb53a897382214058d7fbcc2f30f7e4c32b82d6d260b554f5b5ac9ae2993d2d"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/m1-risk-failure-after-390-ar-light.png",
+      "sha256": "40d8e54f81ef1e4e16ea158b66717e6b9aec34cea2764fe65113c3b514b520e6"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/m1-risk-failure-before-1440-en-dark.png",
+      "sha256": "5ba7ba7b7c796b23c91fe810320630c330d9a25e787d04dd8282ef1fea6095f9"
+    },
+    {
+      "path": "docs/evidence/master-20261108/ticket-risk/m1-risk-failure-before-390-ar-light.png",
+      "sha256": "d5d8b3ecf512b85ee70ecb75dd0445f43aca7745d27e1b37a25a2895e45a4742"
+    },
+    {
+      "path": "public/app.js",
+      "sha256": "396e7a15d67e46b6e5b3e4733b50ac99a3b2a2f0f370d3eb437f5a528e4a2804"
+    },
+    {
+      "path": "tests/browser_paper_review.py",
+      "sha256": "31a7385e7a8cfd7d8616e0a456eead927a53cf2a0e25ea8afd3feae0958eabed"
+    }
+  ]
+}

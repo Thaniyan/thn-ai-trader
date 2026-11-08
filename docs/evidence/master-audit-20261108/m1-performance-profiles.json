@@ -1,0 +1,758 @@
+{
+  "scope": "Local synthetic fixture, one cold page with 36 navigations; not mobile/LCP/Production or an SLA",
+  "profiles": [
+    [
+      1024,
+      "en",
+      "dark",
+      "dashboard"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "markets"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "trading"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "ai"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "risk"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "portfolio"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "journal"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "brokers"
+    ],
+    [
+      1024,
+      "en",
+      "dark",
+      "settings"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "dashboard"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "markets"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "trading"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "ai"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "risk"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "portfolio"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "journal"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "brokers"
+    ],
+    [
+      1024,
+      "en",
+      "light",
+      "settings"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "dashboard"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "markets"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "trading"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "ai"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "risk"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "portfolio"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "journal"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "brokers"
+    ],
+    [
+      1024,
+      "ar",
+      "dark",
+      "settings"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "dashboard"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "markets"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "trading"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "ai"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "risk"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "portfolio"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "journal"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "brokers"
+    ],
+    [
+      1024,
+      "ar",
+      "light",
+      "settings"
+    ]
+  ],
+  "pageErrors": [],
+  "horizontalPageOverflow": false,
+  "logoSVGHTTPResponses": 0,
+  "brandPNGHTTPResponses": 38,
+  "resources": [
+    {
+      "path": "/style.css",
+      "transferSize": 102956,
+      "encodedBodySize": 102656
+    },
+    {
+      "path": "/workstation.css",
+      "transferSize": 12664,
+      "encodedBodySize": 12364
+    },
+    {
+      "path": "/research.css",
+      "transferSize": 6232,
+      "encodedBodySize": 5932
+    },
+    {
+      "path": "/research-quality.css",
+      "transferSize": 3575,
+      "encodedBodySize": 3275
+    },
+    {
+      "path": "/workflow-maturity.css",
+      "transferSize": 5037,
+      "encodedBodySize": 4737
+    },
+    {
+      "path": "/decision-workspace.css",
+      "transferSize": 2975,
+      "encodedBodySize": 2675
+    },
+    {
+      "path": "/research-terminal.css",
+      "transferSize": 3949,
+      "encodedBodySize": 3649
+    },
+    {
+      "path": "/intelligence.css",
+      "transferSize": 5212,
+      "encodedBodySize": 4912
+    },
+    {
+      "path": "/professional.css",
+      "transferSize": 17113,
+      "encodedBodySize": 16813
+    },
+    {
+      "path": "/platform-evolution.css",
+      "transferSize": 31862,
+      "encodedBodySize": 31562
+    },
+    {
+      "path": "/analysis-cockpit.css",
+      "transferSize": 24460,
+      "encodedBodySize": 24160
+    },
+    {
+      "path": "/workspace-refinement.css",
+      "transferSize": 13964,
+      "encodedBodySize": 13664
+    },
+    {
+      "path": "/visual-identity.css",
+      "transferSize": 6886,
+      "encodedBodySize": 6586
+    },
+    {
+      "path": "/unified-workspace.css",
+      "transferSize": 11743,
+      "encodedBodySize": 11443
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/d3.min.js",
+      "transferSize": 280006,
+      "encodedBodySize": 279706
+    },
+    {
+      "path": "/research-state.js",
+      "transferSize": 3966,
+      "encodedBodySize": 3666
+    },
+    {
+      "path": "/preferences.js",
+      "transferSize": 827,
+      "encodedBodySize": 527
+    },
+    {
+      "path": "/research-records.js",
+      "transferSize": 9998,
+      "encodedBodySize": 9698
+    },
+    {
+      "path": "/app.js",
+      "transferSize": 307588,
+      "encodedBodySize": 307288
+    },
+    {
+      "path": "/professional-chart.js",
+      "transferSize": 3607,
+      "encodedBodySize": 3307
+    },
+    {
+      "path": "/research-chart.js",
+      "transferSize": 11695,
+      "encodedBodySize": 11395
+    },
+    {
+      "path": "/workstation.js",
+      "transferSize": 21394,
+      "encodedBodySize": 21094
+    },
+    {
+      "path": "/research-workstation.js",
+      "transferSize": 43877,
+      "encodedBodySize": 43577
+    },
+    {
+      "path": "/market-terminal.js",
+      "transferSize": 18341,
+      "encodedBodySize": 18041
+    },
+    {
+      "path": "/locale-secondary.js",
+      "transferSize": 20053,
+      "encodedBodySize": 19753
+    },
+    {
+      "path": "/research-quality.js",
+      "transferSize": 53224,
+      "encodedBodySize": 52924
+    },
+    {
+      "path": "/intelligence-workspace.js",
+      "transferSize": 25116,
+      "encodedBodySize": 24816
+    },
+    {
+      "path": "/professional-workspace.js",
+      "transferSize": 34035,
+      "encodedBodySize": 33735
+    },
+    {
+      "path": "/professional-records.js",
+      "transferSize": 6988,
+      "encodedBodySize": 6688
+    },
+    {
+      "path": "/platform-evolution.js",
+      "transferSize": 45995,
+      "encodedBodySize": 45695
+    },
+    {
+      "path": "/visual-identity.js",
+      "transferSize": 1544,
+      "encodedBodySize": 1244
+    },
+    {
+      "path": "/workflow-polish.js",
+      "transferSize": 5211,
+      "encodedBodySize": 4911
+    },
+    {
+      "path": "/unified-workspace.js",
+      "transferSize": 15865,
+      "encodedBodySize": 15565
+    },
+    {
+      "path": "/analysis-cockpit.js",
+      "transferSize": 26814,
+      "encodedBodySize": 26514
+    },
+    {
+      "path": "/api/health",
+      "transferSize": 706,
+      "encodedBodySize": 406
+    },
+    {
+      "path": "/api/broker/accounts",
+      "transferSize": 369,
+      "encodedBodySize": 69
+    },
+    {
+      "path": "/api/health",
+      "transferSize": 706,
+      "encodedBodySize": 406
+    },
+    {
+      "path": "/api/research/series",
+      "transferSize": 210057,
+      "encodedBodySize": 209757
+    },
+    {
+      "path": "/api/quotes",
+      "transferSize": 6721,
+      "encodedBodySize": 6421
+    },
+    {
+      "path": "/api/research/series",
+      "transferSize": 210057,
+      "encodedBodySize": 209757
+    },
+    {
+      "path": "/api/research/series",
+      "transferSize": 210057,
+      "encodedBodySize": 209757
+    },
+    {
+      "path": "/api/research/mtf",
+      "transferSize": 3151,
+      "encodedBodySize": 2851
+    },
+    {
+      "path": "/workflow-maturity.js",
+      "transferSize": 10111,
+      "encodedBodySize": 9811
+    },
+    {
+      "path": "/professional-markets.js",
+      "transferSize": 11399,
+      "encodedBodySize": 11099
+    },
+    {
+      "path": "/decision-records.js",
+      "transferSize": 8667,
+      "encodedBodySize": 8367
+    },
+    {
+      "path": "/terminal-research.js",
+      "transferSize": 16809,
+      "encodedBodySize": 16509
+    },
+    {
+      "path": "/evidence-view.js",
+      "transferSize": 6667,
+      "encodedBodySize": 6367
+    },
+    {
+      "path": "/instrument-identity.js",
+      "transferSize": 1756,
+      "encodedBodySize": 1456
+    },
+    {
+      "path": "/intelligence-memory.js",
+      "transferSize": 6182,
+      "encodedBodySize": 5882
+    },
+    {
+      "path": "/recommendation-core.js",
+      "transferSize": 10674,
+      "encodedBodySize": 10374
+    },
+    {
+      "path": "/recommendation-view.js",
+      "transferSize": 8305,
+      "encodedBodySize": 8005
+    },
+    {
+      "path": "/confidence-core.js",
+      "transferSize": 1671,
+      "encodedBodySize": 1371
+    },
+    {
+      "path": "/broker-workspace.js",
+      "transferSize": 11720,
+      "encodedBodySize": 11420
+    },
+    {
+      "path": "/validation-evidence.js",
+      "transferSize": 22997,
+      "encodedBodySize": 22697
+    },
+    {
+      "path": "/api/research/series",
+      "transferSize": 210057,
+      "encodedBodySize": 209757
+    },
+    {
+      "path": "/library-core.js",
+      "transferSize": 8175,
+      "encodedBodySize": 7875
+    },
+    {
+      "path": "/replay-contract.js",
+      "transferSize": 1156,
+      "encodedBodySize": 856
+    },
+    {
+      "path": "/comparison-core.js",
+      "transferSize": 2652,
+      "encodedBodySize": 2352
+    },
+    {
+      "path": "/decision-workspace.js",
+      "transferSize": 35710,
+      "encodedBodySize": 35410
+    },
+    {
+      "path": "/intelligence-generation.js",
+      "transferSize": 5737,
+      "encodedBodySize": 5437
+    },
+    {
+      "path": "/decision-core.js",
+      "transferSize": 4553,
+      "encodedBodySize": 4253
+    },
+    {
+      "path": "/broker-catalog.js",
+      "transferSize": 2723,
+      "encodedBodySize": 2423
+    },
+    {
+      "path": "/research-library.js",
+      "transferSize": 33388,
+      "encodedBodySize": 33088
+    },
+    {
+      "path": "/research-risk-comparison.js",
+      "transferSize": 25253,
+      "encodedBodySize": 24953
+    },
+    {
+      "path": "/api/research/brief",
+      "transferSize": 7829,
+      "encodedBodySize": 7529
+    },
+    {
+      "path": "/api/research/catalog",
+      "transferSize": 9749,
+      "encodedBodySize": 9449
+    },
+    {
+      "path": "/api/intelligence/provider",
+      "transferSize": 458,
+      "encodedBodySize": 158
+    },
+    {
+      "path": "/api/analyze",
+      "transferSize": 40659,
+      "encodedBodySize": 40359
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    },
+    {
+      "path": "/brand-mark.png",
+      "transferSize": 14984,
+      "encodedBodySize": 14684
+    }
+  ],
+  "sameOriginTransferBytes": 2901045
+}

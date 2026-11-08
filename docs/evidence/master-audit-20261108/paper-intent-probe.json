@@ -1,0 +1,9 @@
+{
+  "scope": "Synthetic fixture; disposable opt-in local paper directory; not broker or Production evidence",
+  "firstStatus": 200,
+  "sameKeyStatus": 200,
+  "sameKeySameTicket": true,
+  "newKeyStatus": 200,
+  "newKeyDifferentTicket": true,
+  "positionCount": 2
+}

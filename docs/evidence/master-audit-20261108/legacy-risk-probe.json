@@ -1,0 +1,115 @@
+[
+  {
+    "input": {},
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 550,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    },
+    "riskAnalysis": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 550,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    }
+  },
+  {
+    "input": {
+      "leverage": -1
+    },
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 11000,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    },
+    "riskAnalysis": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 11000,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    }
+  },
+  {
+    "input": {
+      "leverage": 0
+    },
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 55,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    },
+    "riskAnalysis": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 55,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    }
+  },
+  {
+    "input": {
+      "leverage": "bad"
+    },
+    "status": 200,
+    "ok": true,
+    "metrics": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 55,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    },
+    "riskAnalysis": {
+      "contractSize": 100000,
+      "notionalValue": 11000,
+      "requiredMargin": 55,
+      "slDistance": 0.01,
+      "slDollars": 100,
+      "tpDistance": 0.02,
+      "tpDollars": 200,
+      "rrRatio": 2
+    }
+  },
+  {
+    "input": null,
+    "status": 500,
+    "ok": false,
+    "code": "REQUEST_FAILED",
+    "error": "Request could not be completed."
+  }
+]

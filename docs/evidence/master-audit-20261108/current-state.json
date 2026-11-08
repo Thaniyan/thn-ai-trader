@@ -1,0 +1,204 @@
+{
+  "scope": "Current-source audit; all numerical/account/browser samples synthetic and local; no Production behavior verified",
+  "baselines": {
+    "main": "a752fa4f533b0376c8d60eab1a450c5fbf9932f9",
+    "m1Recovered": "28f5d1a69540c7233c17a23702741b398eebe879",
+    "m1Current": "527c0c985e54eaa6519ab352b8dd7e645f289fe7",
+    "m2": "3ed704557ce10b4c188a4fc29f3ea9ab237c0a93"
+  },
+  "observedRemoteRefs": {
+    "refs/heads/feature/unified-decision-workstation-20261107": "527c0c985e54eaa6519ab352b8dd7e645f289fe7",
+    "refs/heads/fix/api-route-contracts-20261108": "3ed704557ce10b4c188a4fc29f3ea9ab237c0a93",
+    "refs/heads/main": "a752fa4f533b0376c8d60eab1a450c5fbf9932f9",
+    "refs/pull/14/head": "527c0c985e54eaa6519ab352b8dd7e645f289fe7"
+  },
+  "pr14": {
+    "url": "https://github.com/Thaniyan/thn-ai-trader/pull/14",
+    "state": "OPEN",
+    "head": "527c0c985e54eaa6519ab352b8dd7e645f289fe7",
+    "mandatoryCI": "m1-final-pr-ci: Success; m1-final-push-ci: Success",
+    "pushRun": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42461972388",
+    "pullRequestRun": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42461976276"
+  },
+  "previewMetadata": {
+    "classification": "PARTIALLY VERIFIED",
+    "source": "Vercel bot in public PR page, current head present",
+    "reportedState": "Ready",
+    "uniqueURL": "https://thn-ai-trader-h4q1y7p9z-s139354s-projects.vercel.app/",
+    "dashboardReference": "9ZmZgjz7JyWy2J9xWbr1mWDcZ6b7",
+    "actualHTTP": "BLOCKED HTTPS CONNECT 403; not Vercel/app response",
+    "actualDeploymentSHA": "Not independently available from platform API"
+  },
+  "production": {
+    "domain": "https://thn-ai-trader.vercel.app/",
+    "classification": "BLOCKED",
+    "deploymentID": null,
+    "deployedSHA": null,
+    "health": "HTTPS CONNECT 403",
+    "ownerReportedBaselineReady": "a752fa4f533b0376c8d60eab1a450c5fbf9932f9"
+  },
+  "governance": {
+    "branchProtection": "BLOCKED GitHub API CONNECT 403; owner-reported unprotected not independently current",
+    "normalPRCreate": "BLOCKED gh pr create POST api.github.com/graphql Forbidden",
+    "requiredCheckNames": [
+      "Source and tests",
+      "Browser and accessibility",
+      "Dependency audit"
+    ],
+    "actualEnforcement": "UNVERIFIED",
+    "mainMerged": false,
+    "adminSettingsChanged": false
+  },
+  "currentLocalChecks": {
+    "mainBaselineCore": 216,
+    "mainBaselineSecurity": 21,
+    "mainBaselineSystem": 10,
+    "m1Core": 266,
+    "m1Security": 21,
+    "m1System": 10,
+    "m1FinalPaperReview": "PASS; zero orders; network/HTTP/malformed/negative/string metric and bilingual/overflow checks",
+    "m1FullBrowserFinal": {
+      "status": "PASS",
+      "head": "527c0c985e54eaa6519ab352b8dd7e645f289fe7",
+      "passedSuites": 33,
+      "failedSuites": 0,
+      "suites": [
+        "workstation",
+        "research",
+        "research_outage",
+        "quality",
+        "decision",
+        "library_reliability",
+        "maturity",
+        "terminal",
+        "intelligence",
+        "intelligence_memory",
+        "layout",
+        "pilot",
+        "trust",
+        "professional",
+        "journal_lifecycle",
+        "trading_remediation",
+        "evolution",
+        "consolidation",
+        "experience",
+        "consistency",
+        "recovery",
+        "assisted_desk",
+        "paper_review",
+        "evidence_workflow",
+        "broker_workspace",
+        "visual_refinement",
+        "workflow_polish",
+        "visual_identity",
+        "confidence",
+        "dashboard_confidence",
+        "research_risk",
+        "workspace_hierarchy",
+        "unified_workspace"
+      ]
+    },
+    "m1CheckpointProfessional": {
+      "layouts": 288,
+      "accessibilityScans": 72,
+      "errors": 0,
+      "scope": "Before small ticket correction; not a final-source full gate"
+    },
+    "m1CheckpointJourneyProfiles": 16,
+    "additional1024ViewProfiles": 36,
+    "m2Core": 226,
+    "m2Security": 21,
+    "m2System": 10,
+    "m2FullBrowserSuites": 32,
+    "m2HTTPContractCases": 10,
+    "dependencyAudits": "0 advisories for current locks; source inputs unchanged"
+  },
+  "boundaries": {
+    "realMoneyTrading": false,
+    "hostedFinancialMutationsEnabled": false,
+    "realBrokerCredentialsUsed": false,
+    "realModelInference": false,
+    "weightsDownloaded": false,
+    "paidServicesActivated": false,
+    "forcePush": false,
+    "directMainPush": false
+  },
+  "next": "M3 isolated legacy risk input/entry validation and intent-policy review; approval before financial-policy release",
+  "auditBranch": "feature/engineering-audit-20261108",
+  "auditRuntimeMatchesMainFiles": 77,
+  "auditDocsLocalLinkCheck": "PASS",
+  "observedAtUTC": "2026-11-08T08:41:38.025838+00:00",
+  "initialRemoteDevelopmentBranchesObserved": [
+    "develop",
+    "feature/broker-workspace",
+    "feature/core-research-trust",
+    "feature/dashboard-confidence-recovery-20261103",
+    "feature/exness-readonly",
+    "feature/m4-workspace-hierarchy-20261106",
+    "feature/product-experience-v74",
+    "feature/professional-platform-evolution",
+    "feature/professional-product-recovery-m1",
+    "feature/professional-trading-experience-v73",
+    "feature/professional-workstation",
+    "feature/research-evidence-workflow",
+    "feature/research-trust-consistency-v75",
+    "feature/unified-decision-workstation-20261107",
+    "feature/v7.1-resumed-pilot",
+    "feature/workspace-visual-refinement",
+    "fix/trading-experience-remediation",
+    "fix/v7.0-responsive-layout",
+    "main",
+    "release/v7-integrated"
+  ],
+  "auditChecks": {
+    "scope": "Documentation/policy only; 77 runtime source files equal main",
+    "build": "PASS",
+    "lint": "PASS (syntax checks only)",
+    "core": {
+      "passed": 216,
+      "failed": 0
+    },
+    "security": {
+      "passed": 21,
+      "failed": 0
+    },
+    "system": {
+      "passed": 10,
+      "failed": 0
+    },
+    "packaging": "PASS",
+    "workflow": "PASS",
+    "frozenDependencies": "PASS",
+    "dependencyAudit": "PASS; zero advisories",
+    "sourceParity": "PASS",
+    "localDocLinks": "PASS",
+    "fullBrowserScope": "Full final-source gates run on the M1 and M2 implementations; no claim of a separate M0 browser rerun"
+  },
+  "hostedCIObservations": [
+    {
+      "url": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42461976276",
+      "run": "m1-final-pr-ci",
+      "status": "Success"
+    },
+    {
+      "url": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42461972388",
+      "run": "m1-final-push-ci",
+      "status": "Success"
+    },
+    {
+      "url": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42462362283",
+      "run": "m2-push-ci",
+      "status": "Success"
+    }
+  ],
+  "hostedCIObservedAtUTC": "2026-11-08T08:50:51.769613+00:00",
+  "m2HostedCI": {
+    "url": "https://github.com/Thaniyan/thn-ai-trader/actions/runs/42462362283",
+    "run": "m2-push-ci",
+    "status": "Success"
+  },
+  "finalPublicOpenPRsObserved": [
+    "14"
+  ],
+  "allImplementationHostedRunsSuccessful": true
+}
