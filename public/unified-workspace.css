@@ -124,3 +124,91 @@ body { background:var(--bg); }
 #evoDeskLead .home-consensus p { display:inline; }
 .workspace-risk-rail #evoRisk .evo-heading { margin-bottom:10px; }
 .workspace-risk-rail #evoRisk p { font-size:11px; line-height:1.65; }
+
+
+/* M4.1 — Chart-first visual hierarchy, deliberately presentation-only.
+   No new figures, market signals, timers, controls or financial permissions. */
+@media (min-width:1101px) {
+  #view-dashboard .pro-terminal,
+  #view-trading .pro-terminal {
+    border:1px solid color-mix(in srgb,var(--accent) 17%,var(--border));
+    background:var(--bg-2);
+    box-shadow:0 18px 44px #00000024;
+  }
+  #view-dashboard .pro-terminal-grid,
+  #view-trading .pro-terminal-grid {
+    grid-template-columns:minmax(0,1fr) 306px;
+  }
+  #view-dashboard .pro-chart-area,
+  #view-trading .pro-chart-area {min-width:0;}
+  #view-dashboard .pro-research-rail,
+  #view-trading .pro-research-rail {
+    border-inline-start:1px solid var(--border);
+    background:color-mix(in srgb,var(--bg-2) 95%,var(--accent));
+  }
+}
+#view-dashboard .pro-terminal-head,
+#view-trading .pro-terminal-head {
+  background:linear-gradient(115deg,color-mix(in srgb,var(--accent) 9%,var(--bg-2)),var(--bg-2) 62%);
+  border-bottom:1px solid var(--border);
+}
+#view-dashboard .pro-instrument-quote>span,
+#view-trading .pro-instrument-quote>span {
+  font-size:clamp(25px,2.1vw,32px);
+  font-weight:750;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.045em;
+}
+#view-dashboard #evoDecisionDesk,
+#view-trading #evoDecisionDesk {
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 6%,var(--bg-2)),var(--bg-2) 65%);
+  border-bottom-color:var(--border);
+}
+#view-dashboard #evoDecisionDesk #evoDecisionDeskTitle,
+#view-trading #evoDecisionDesk #evoDecisionDeskTitle {
+  font-size:clamp(23px,2vw,29px);
+  font-weight:750;
+  line-height:1.28;
+}
+#evoDecisionDesk .recommendation-entry,
+#evoDecisionDesk .recommendation-rationale,
+#evoDecisionDesk .recommendation-outcome {font-size:13px;line-height:1.7;}
+#evoDecisionDesk .recommendation-levels {font-size:12px;}
+#evoDecisionDesk .recommendation-risk p {font-size:12px;}
+#evoDecisionDesk .recommendation-footnote {font-size:11px;line-height:1.65;}
+#view-dashboard .work-heading h1,
+#view-trading .work-heading h1 {letter-spacing:-.04em;}
+#view-dashboard .work-stats>div {
+  border:1px solid var(--border);
+  background:linear-gradient(155deg,color-mix(in srgb,var(--accent) 4%,var(--bg-2)),var(--bg-2) 78%);
+}
+#view-dashboard .work-stats>div b {font-variant-numeric:tabular-nums;}
+.workspace-market-search {
+  border-color:color-mix(in srgb,var(--accent) 40%,var(--border));
+  background:color-mix(in srgb,var(--accent) 6%,var(--bg-2));
+  font-size:12px;
+  font-weight:650;
+}
+.workspace-market-search:hover {background:color-mix(in srgb,var(--accent) 11%,var(--bg-2));}
+.workspace-market-option:hover,
+.workspace-market-option:focus-visible {
+  background:color-mix(in srgb,var(--accent) 9%,var(--bg-2));
+  border-color:var(--accent);
+}
+@media (max-width:1100px) {
+  #view-dashboard .pro-terminal,
+  #view-trading .pro-terminal {border:1px solid var(--border);}
+  #view-dashboard .pro-research-rail,
+  #view-trading .pro-research-rail {border-inline-start:0;}
+}
+@media (max-width:760px) {
+  #view-dashboard .pro-instrument-quote>span,
+  #view-trading .pro-instrument-quote>span {font-size:26px;}
+  #view-dashboard #evoDecisionDesk,
+  #view-trading #evoDecisionDesk {padding:16px;}
+  #view-dashboard .work-stats>div {padding:13px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .workspace-market-search,
+  .workspace-market-option {transition:none;}
+}
