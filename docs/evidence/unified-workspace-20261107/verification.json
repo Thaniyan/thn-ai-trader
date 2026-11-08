@@ -1,0 +1,134 @@
+{
+  "verifiedAtUTC": "2026-11-07T16:41:31.528049+00:00",
+  "baseline": "a752fa4f533b0376c8d60eab1a450c5fbf9932f9",
+  "branch": "feature/unified-decision-workstation-20261107",
+  "scope": "Local packaged-source verification with synthetic providers; not Production acceptance",
+  "tooling": {
+    "node": "24.19.0",
+    "playwright": "1.62.0",
+    "browser": "Chrome for Testing 151.0.7922.34",
+    "playwrightChromiumRevision": 1234,
+    "axe": "4.10.3",
+    "bun": "1.4.3"
+  },
+  "checks": {
+    "core": {
+      "status": "PASS",
+      "passed": 266,
+      "failed": 0
+    },
+    "security": {
+      "status": "PASS",
+      "passed": 21,
+      "failed": 0
+    },
+    "system": {
+      "status": "PASS",
+      "passed": 10,
+      "failed": 0
+    },
+    "browser": {
+      "status": "PASS",
+      "passedSuites": 33,
+      "failedSuites": 0,
+      "suites": [
+        "workstation",
+        "research",
+        "research_outage",
+        "quality",
+        "decision",
+        "library_reliability",
+        "maturity",
+        "terminal",
+        "intelligence",
+        "intelligence_memory",
+        "layout",
+        "pilot",
+        "trust",
+        "professional",
+        "journal_lifecycle",
+        "trading_remediation",
+        "evolution",
+        "consolidation",
+        "experience",
+        "consistency",
+        "recovery",
+        "assisted_desk",
+        "paper_review",
+        "evidence_workflow",
+        "broker_workspace",
+        "visual_refinement",
+        "workflow_polish",
+        "visual_identity",
+        "confidence",
+        "dashboard_confidence",
+        "research_risk",
+        "workspace_hierarchy",
+        "unified_workspace"
+      ]
+    },
+    "build": "PASS",
+    "lint": "PASS",
+    "packaging": "PASS",
+    "workflow": "PASS",
+    "gitIntegrity": "PASS",
+    "sourceIntegrity": "PASS",
+    "frozenDependencies": "PASS",
+    "dependencyAudit": {
+      "policy": "Block high/critical; report lower severity; errors block",
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "moderate": 0,
+        "low": 0,
+        "info": 0
+      },
+      "blocking": false
+    }
+  },
+  "runtime": {
+    "files": 81,
+    "artifactManifestSHA256": "ae5963f020a380ba7636f27fcef12b7187632d6c631690345db16588f7cffb70",
+    "sourceMatchesPackage": true,
+    "protectedNumericalSourceHashes": {
+      "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+      "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+      "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+      "server/decision.js": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+      "server/replay.js": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+      "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b"
+    }
+  },
+  "visual": {
+    "beforeAfterCaptures": 216,
+    "selectedScreenshots": 20,
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "languages": [
+      "en",
+      "ar"
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "pageErrors": [],
+    "horizontalPageOverflow": false
+  },
+  "resolvedFindings": [
+    "Invalidated same-market requests no longer coalesce with a fresh generation; late responses cannot replace the new result",
+    "Recommendation rail narrowed from 324px to 300px to restore the original >800px chart-width requirement",
+    "Recovery opens the native price-context disclosure before the preserved exact support/resistance checks"
+  ],
+  "limitations": [
+    "No installed Ollama model or genuine inference tested; current recommendations are explicitly rule-based",
+    "Hosted model generation and live trading remain disabled",
+    "Production access rejected by workspace proxy during HTTPS CONNECT with HTTP 403",
+    "No verified Vercel Preview readiness or live application behavior",
+    "Shared Desktop control tools unavailable in this chat",
+    "Major candidate remains separate from main pending visual acceptance"
+  ]
+}

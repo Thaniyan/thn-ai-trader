@@ -1,0 +1,126 @@
+/* Unified THN workstation: one context, chart and evidence-led recommendation. */
+:root { --workspace-radius:8px; }
+body { background:var(--bg); }
+.panel { box-shadow:none; border-radius:var(--workspace-radius); background:var(--bg-2); }
+.terminal-topbar { padding:12px 16px; border-radius:8px; margin-bottom:12px; }
+.identity-workspace-label { font-size:9px; letter-spacing:.12em; }
+#proRouteTitle { font-size:22px; letter-spacing:-.03em; line-height:1.5; }
+.workspace-purpose { color:var(--muted); font-size:11px; margin:2px 0 0; line-height:1.6; max-width:75ch; }
+.workspace-market-search { font-size:11px; min-height:36px; padding:6px 12px; white-space:normal; }
+.nav-stack .nav { border-radius:6px; min-height:44px; padding-block:10px; font-size:12px; }
+.pro-nav-group { font-size:9px; letter-spacing:.13em; margin-top:20px; }
+#evoDeskLead { border-top:1px solid var(--border); background:var(--bg-2); padding:12px 16px; border-radius:8px; gap:12px 18px; margin-block:0 12px; }
+#evoDeskLead .evo-lead-brand h1 { font-size:14px; letter-spacing:.015em; }
+#evoDeskLead .home-confidence-ring { width:58px; height:58px; flex-basis:58px; padding:5px; }
+#evoDeskLead .home-confidence-ring strong { font-size:22px; }
+#evoDeskLead .home-consensus h2 { font-size:18px; }
+#evoDeskLead .home-consensus>span,#evoDeskLead .home-evidence span { font-size:10px; letter-spacing:.02em; }
+#evoDeskLead .home-consensus p { font-size:11px; }
+#evoDeskLead .home-consensus>small { font-size:10px; }
+#evoDeskLead #evoFlow { gap:0; }
+#evoFlow { border:0; }
+#evoFlow button { font-size:11px; min-height:34px; padding:5px 9px; border-radius:5px; }
+#evoFlow button[aria-current=page] { color:var(--accent); background:color-mix(in srgb,var(--accent) 10%,var(--bg-2)); }
+#evoDeskLead .home-evidence strong { font-size:16px; }
+#evoDeskLead .evo-lead-actions>button { min-height:38px; }
+.pro-terminal { border-radius:8px; overflow:visible; box-shadow:none; }
+.pro-terminal-head,#view-dashboard .pro-terminal-head { padding:12px 16px; background:var(--bg-2); border-radius:8px 8px 0 0; }
+.pro-instrument-quote>span,#view-dashboard .pro-instrument-quote>span { font-size:24px; letter-spacing:-.04em; }
+.pro-terminal-grid { grid-template-columns:minmax(0,1fr) 300px; }
+.pro-research-rail { padding:0; max-height:830px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+#evoDecisionDesk { margin:0; padding:18px; border:0; border-bottom:1px solid var(--border); border-radius:0; background:var(--bg-2); box-shadow:none; }
+.recommendation-heading { display:flex; flex-direction:column; align-items:start; gap:4px; }
+.recommendation-heading .eyebrow { color:var(--accent); font-size:10px; letter-spacing:.09em; margin:0; }
+.recommendation-method { font-size:10px; color:var(--muted); line-height:1.6; }
+.recommendation-verdict { display:flex; align-items:baseline; gap:8px; margin-top:12px; }
+.recommendation-dot { display:inline-block; width:8px; height:8px; flex:0 0 8px; border-radius:50%; background:var(--muted); }
+.recommendation-verdict[data-recommendation-action=BUY] .recommendation-dot { background:var(--accent); }
+.recommendation-verdict[data-recommendation-action=SELL] .recommendation-dot { background:#eea859; }
+.recommendation-verdict[data-recommendation-action=AVOID] .recommendation-dot { background:#ef7c86; }
+#evoDecisionDesk #evoDecisionDeskTitle { font-size:22px; line-height:1.4; margin:0; letter-spacing:-.03em; overflow-wrap:anywhere; }
+.recommendation-subtitle { font-size:11px; color:var(--muted); margin:6px 0 12px; }
+.recommendation-entry { font-size:12px; line-height:1.8; margin:0 0 12px; }
+#evoDecisionDesk .desk-confidence-strip { display:grid; grid-template-columns:1fr; gap:6px; padding:12px 0; margin:0; border-block:1px solid var(--border); }
+#evoDecisionDesk .desk-confidence-strip>span { font-size:11px; }
+#evoDecisionDesk .desk-confidence-strip button { justify-self:start; margin:0; min-height:30px; }
+.recommendation-outcome { font-size:12px; margin:14px 0 6px; }
+.recommendation-rationale { font-size:12px; line-height:1.8; margin:0; white-space:pre-line; overflow-wrap:anywhere; }
+.recommendation-provider { font-size:10px; line-height:1.8; color:var(--muted); margin:8px 0 12px; }
+.recommendation-levels { display:grid; gap:8px; font-size:11px; border-block:1px solid var(--border); padding:12px 0; }
+.recommendation-levels>div { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 10px; }
+.recommendation-levels dt { color:var(--muted); }
+.recommendation-levels dd { margin:0; font-family:ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+.recommendation-confirmation { color:var(--muted); font-size:11px; }
+.recommendation-blockers { padding-inline-start:16px; font-size:11px; line-height:1.8; color:var(--muted); }
+.recommendation-blockers li { padding-block:3px; }
+.recommendation-risk { border-inline-start:2px solid var(--border); padding-inline-start:10px; margin:12px 0; display:grid; gap:4px; }
+.recommendation-risk>span { font-size:9px; letter-spacing:.06em; color:var(--muted); }
+.recommendation-risk>b { font-size:12px; }
+.recommendation-risk p { font-size:11px; line-height:1.8; margin:0; }
+.recommendation-risk[data-recommendation-risk=over_budget] { border-color:#ee7c86; }
+#evoDecisionDesk .evo-actions { display:flex; flex-wrap:wrap; gap:6px; }
+#evoDecisionDesk .evo-actions button { min-height:36px; font-size:11px; white-space:normal; max-width:100%; }
+.recommendation-footnote { font-size:10px; color:var(--muted); line-height:1.8; margin:12px 0 0; }
+.workspace-technical-details { margin:0; padding:12px 18px; border-bottom:1px solid var(--border); }
+.workspace-technical-details>summary { font-size:12px; cursor:pointer; min-height:30px; }
+.pro-research-rail>#proRailTitle { font-size:14px; padding:12px 18px 0; margin:0; }
+.pro-research-rail .pro-technical-card,.pro-research-rail .pro-scenario,.pro-research-rail .pro-workflow-actions { padding:12px 18px; margin:0; }
+.pro-research-rail .pro-technical-card { border-bottom:1px solid var(--border); }
+.workspace-risk-rail { min-width:0; display:grid; align-content:start; gap:16px; }
+.workspace-risk-rail #evoRisk { padding:16px; margin:0; background:var(--bg); }
+.workspace-risk-rail #evoRisk .evo-heading h2 { font-size:18px; }
+.workspace-risk-rail #evoRisk .evo-heading p { font-size:11px; }
+.workspace-risk-rail .q-planning-costs { margin:0; }
+.workspace-model-status { padding:20px; margin:16px 0; max-width:900px; }
+.workspace-model-status h2 { font-size:20px; margin:6px 0; }
+.workspace-model-status p { font-size:12px; line-height:1.8; color:var(--muted); }
+#view-journal #decisionReports { margin-top:12px; }
+#view-journal #evoJournal .evo-heading h2,#view-markets .evo-heading h2,#view-portfolio .evo-heading h2 { font-size:24px; }
+#view-journal #evoJournal .evo-heading p { max-width:75ch; }
+#analysisCockpit { border-top:1px solid var(--border); background:var(--bg-2); }
+#analysisCockpit .cockpit-heading h2 { font-size:24px; }
+#analysisCockpit .cockpit-decision h3 { font-size:26px; }
+.research-disclosure { border-radius:8px; }
+.workspace-market-dialog { color:var(--text); background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:20px; width:min(600px,calc(100% - 24px)); max-height:85dvh; box-sizing:border-box; }
+.workspace-market-dialog::backdrop { background:#020813b8; }
+.workspace-market-dialog header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.workspace-market-dialog h2 { margin:0; font-size:22px; }
+.workspace-market-dialog label { display:block; color:var(--muted); font-size:12px; margin:16px 0 6px; }
+.workspace-market-dialog input { width:100%; min-height:44px; }
+#workspaceMarketNote,#workspaceMarketEmpty { font-size:11px; color:var(--muted); line-height:1.8; }
+#workspaceMarketResults { display:grid; gap:4px; max-height:46dvh; overflow-y:auto; }
+.workspace-market-option { display:flex; justify-content:space-between; align-items:center; text-align:start; gap:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:6px; padding:12px; min-height:48px; cursor:pointer; }
+.workspace-market-option small { color:var(--muted); font-size:11px; }
+.workspace-market-option:focus-visible,.workspace-technical-details>summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media(min-width:1101px) { .terminal-topbar .brand-titles { min-width:0; }.topbar-controls { gap:6px; } }
+@media(max-width:1100px) { .pro-terminal-grid { grid-template-columns:minmax(0,1fr); }.pro-research-rail { max-height:none; overflow:visible; border-inline-start:0; border-top:1px solid var(--border); }#evoDecisionDesk { padding:18px; }#evoDecisionDesk .desk-confidence-strip { grid-template-columns:1fr 1fr; }.workspace-purpose { display:none; } }
+@media(max-width:760px) {
+ .terminal-topbar { padding:10px 12px; }
+ .workspace-market-search { min-width:0; font-size:11px; padding:5px 8px; }
+ .topbar-controls { flex-wrap:wrap; gap:4px; }
+ #evoDeskLead { padding:12px; }
+ #evoDeskLead .home-consensus h2 { font-size:17px; }
+ #evoDeskLead #evoFlow { display:flex; flex-wrap:nowrap; overflow-x:auto; }
+ #evoFlow button { flex-shrink:0; }
+ #evoDecisionDesk #evoDecisionDeskTitle { font-size:24px; }
+ .recommendation-actions button { flex:1 1 135px; }
+ .flow-risk-layout { grid-template-columns:minmax(0,1fr); }
+ .workspace-market-dialog { padding:14px; }.workspace-market-dialog h2 { font-size:19px; }.workspace-market-option { flex-wrap:wrap; gap:3px; }
+}
+@media(max-width:460px) { #evoDecisionDesk .desk-confidence-strip { grid-template-columns:1fr; }.workspace-market-search { font-size:10px; }.topbar-controls { justify-content:flex-end; } }
+@media(max-width:320px) { .workspace-market-dialog header { flex-wrap:wrap; }.workspace-market-option { padding:8px; overflow-wrap:anywhere; }.recommendation-actions button { flex-basis:100%; } }
+#workspaceConsensus { display:inline-block; font-size:10px; color:var(--muted); letter-spacing:0; line-height:1.6; margin:3px 0; }
+@media(max-width:760px) { #evoDeskLead #evoFlow { display:none; }#evoAssistantAccess { min-width:30px; padding:5px; }.workspace-market-search { min-width:40px; } }
+.recommendation-explanation { border-block:1px solid var(--border); padding:8px 0; margin:12px 0; }
+.recommendation-explanation>summary { cursor:pointer; min-height:32px; line-height:1.8; font-size:12px; font-weight:650; }
+.recommendation-explanation>summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.recommendation-primary-reason { font-size:11px; line-height:1.8; color:var(--muted); margin:10px 0; }
+#evoDecisionDesk .desk-confidence-strip { grid-template-columns:1fr 1fr; }
+#evoDecisionDesk .desk-confidence-strip small,#evoDecisionDesk .desk-confidence-strip button { grid-column:1/-1; }
+@media(max-width:320px) { #evoDecisionDesk .desk-confidence-strip { grid-template-columns:1fr; } }
+/* Keep the chart above the fold while retaining the complete confidence context. */
+#evoDeskLead .evo-lead-brand h1 { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+#evoDeskLead #workspaceConsensus { display:inline; margin-inline-end:8px; }
+#evoDeskLead .home-consensus p { display:inline; }
+.workspace-risk-rail #evoRisk .evo-heading { margin-bottom:10px; }
+.workspace-risk-rail #evoRisk p { font-size:11px; line-height:1.65; }

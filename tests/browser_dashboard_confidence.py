@@ -14,7 +14,7 @@ with sync_playwright() as p:
  expect(page.locator('#dashboardConfidenceValue')).to_have_text(str(page.evaluate('THNConfidence.review().confluence')))
  a=page.evaluate('THNConfidence.review().analysis')
  expected_consensus={'BULLISH':'Bullish consensus','BEARISH':'Bearish consensus'}.get(a['consensusLabel'],'Wait for confirmation')
- expect(page.locator('#dashboardConviction .home-consensus h2')).to_have_text(expected_consensus)
+ expect(page.locator('#workspaceConsensus')).to_have_text(expected_consensus);expect(page.locator('#dashboardConviction .home-consensus h2')).to_contain_text(page.evaluate('THNWorkspace.recommendation().action'))
  expect(page.locator('#dashboardConviction .home-consensus p')).to_have_text('Grade '+a['grade']+' · '+str(len(a['schools']))+' analysis schools')
  expect(page.locator('#dashboardEvidence > div').nth(0).locator('strong')).to_have_text(page.evaluate('THNPresentation.price(THNResearch.series().candles.at(-1).close,THNContext.get().symbol)'))
  expect(page.locator('#dashboardEvidence > div').nth(1).locator('strong')).to_have_text(str(page.evaluate('THNDecision.brief().frames.filter(f=>f.available).length'))+' / 3')
