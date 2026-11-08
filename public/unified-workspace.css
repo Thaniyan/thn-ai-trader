@@ -212,3 +212,82 @@ body { background:var(--bg); }
   .workspace-market-search,
   .workspace-market-option {transition:none;}
 }
+
+
+/* M4.2 — Visual wayfinding: market context stays distinct from research authority.
+   These are style-only treatments of existing values and navigation. */
+@media (min-width:1101px) {
+  .sidebar .nav-stack .nav {
+    border:1px solid transparent;
+    transition:background-color .14s,border-color .14s;
+  }
+  .sidebar .nav-stack .nav:hover:not(.active) {
+    background:color-mix(in srgb,var(--accent) 7%,transparent);
+    border-color:color-mix(in srgb,var(--accent) 22%,transparent);
+  }
+  .terminal-topbar {
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 21%,var(--border));
+    box-shadow:0 10px 32px #00000018;
+  }
+}
+#view-dashboard .work-heading {
+  border-inline-start:3px solid var(--accent);
+  padding-inline-start:18px;
+}
+#view-dashboard .work-heading h1 {font-size:clamp(27px,2.3vw,36px);font-weight:760;}
+#view-dashboard .work-stats {
+  border:0;
+  border-radius:0;
+  background:none;
+  gap:10px;
+}
+#view-dashboard .work-stats>div {
+  border-radius:10px;
+  border:1px solid var(--border);
+  min-width:0;
+}
+#view-dashboard .work-stats>div:last-child {border:1px solid var(--border);}
+#view-dashboard .work-stats small {font-size:12px;line-height:1.45;}
+#view-dashboard .work-stats b {font-size:clamp(18px,1.75vw,24px);line-height:1.25;}
+#view-dashboard .work-stats span {font-size:11px;line-height:1.5;}
+#view-dashboard .work-market,
+#view-dashboard .work-focus {
+  border:1px solid var(--border);
+  background:var(--bg-2);
+}
+#view-dashboard .work-market .panel-head,
+#view-dashboard .work-focus .panel-head {
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+#view-dashboard .work-table tbody tr:hover {
+  background:color-mix(in srgb,var(--accent) 5%,var(--bg-2));
+}
+#view-dashboard .work-table th {
+  font-size:11px;
+  font-weight:650;
+  letter-spacing:.025em;
+}
+#view-dashboard .work-table td {font-variant-numeric:tabular-nums;}
+#view-dashboard .work-table .selected {
+  background:color-mix(in srgb,var(--accent) 9%,var(--bg-2));
+  box-shadow:inset 3px 0 0 var(--accent);
+}
+#view-dashboard .work-table :is(button,a):focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+#view-dashboard .work-mode {
+  border-color:color-mix(in srgb,var(--accent) 26%,var(--border));
+  background:color-mix(in srgb,var(--accent) 6%,var(--bg-2));
+}
+@media (max-width:760px) {
+  #view-dashboard .work-heading {padding-inline-start:12px;}
+  #view-dashboard .work-stats {gap:8px;}
+  #view-dashboard .work-stats>div {padding:12px;}
+  #view-dashboard .work-stats b {font-size:18px;}
+}
+html[dir="rtl"] #view-dashboard .work-heading h1 {letter-spacing:0;}
+@media (prefers-reduced-motion:reduce) {
+  .sidebar .nav-stack .nav {transition:none;}
+}
