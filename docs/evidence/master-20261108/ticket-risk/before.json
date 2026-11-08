@@ -1,0 +1,17 @@
+{
+  "scope": "Synthetic disposable local paper UI, failed read-only risk request; no orders submitted",
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "text": "Status: Standard checks verified. Stop Loss: 1.09 | Lots: 0.1"
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "text": "Status: Standard checks verified. Stop Loss: 1.09 | Lots: 0.1"
+    }
+  ]
+}

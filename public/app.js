@@ -5885,17 +5885,19 @@ function initEvents() {
       const res = await fetch("/api/risk/calculate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symbol: sym, side, lots, stopLoss: sl, takeProfit: tp, balance: acc.balance || 50000, leverage: acc.leverage || 200 })
+        body: JSON.stringify({ symbol: sym, side, lots, stopLoss: sl, takeProfit: tp, leverage: acc.leverage || 200 })
       });
       const data = await res.json();
-      if (data.ok && data.metrics) {
-        const m = data.metrics;
-        resultEl.innerHTML = `<b>Pre-Trade Risk:</b> Margin Required: <b>$${m.requiredMargin.toFixed(2)}</b> | Max Risk: <b style="color:var(--red)">$${m.potentialLoss.toFixed(2)}</b> | Max Gain: <b style="color:var(--green)">+$${m.potentialProfit.toFixed(2)}</b> | R:R: <b>1 : ${m.rewardRiskRatio.toFixed(2)}</b> | Status: <b style="color:var(--green)">APPROVED</b>`;
+      const m = data.metrics;
+      if (res.ok && data.ok && m && [m.requiredMargin, m.slDollars, m.tpDollars, m.rrRatio].every(v => Number.isFinite(v) && v >= 0)) {
+        resultEl.textContent = currentLang === "ar"
+          ? `تقدير افتراضي فقط · الهامش: ${money(m.requiredMargin)} · تعرض الوقف النموذجي: ${money(m.slDollars)} · نتيجة الهدف النموذجية: ${money(m.tpDollars)} · العائد/المخاطرة: ${m.rrRatio.toFixed(2)}. ليس اعتماداً للتنفيذ؛ لا يضمن الوقف سعر التنفيذ.`
+          : `Hypothetical estimate only · Margin: ${money(m.requiredMargin)} · Modeled stop exposure: ${money(m.slDollars)} · Modeled target outcome: ${money(m.tpDollars)} · Reward/risk: ${m.rrRatio.toFixed(2)}. Not execution approval; stops do not guarantee fills.`;
       } else {
-        resultEl.innerHTML = `<b style="color:var(--red)">Risk Check Warning:</b> ${data.error || "Verify price parameters."}`;
+        resultEl.textContent = currentLang === "ar" ? "مقاييس المخاطر غير متاحة أو غير صالحة؛ لم يصدر أي اعتماد. راجع المدخلات في مكتب المخاطر." : "Risk metrics unavailable or invalid; no approval was issued. Review inputs in Risk Desk.";
       }
     } catch {
-      resultEl.innerHTML = `<b>Status:</b> Standard checks verified. Stop Loss: ${sl} | Lots: ${lots}`;
+      resultEl.textContent = currentLang === "ar" ? "تعذر التحقق من المخاطر؛ لم يصدر أي اعتماد. استخدم مكتب المخاطر لخطة افتراضية متحقق منها." : "Risk verification unavailable; no approval was issued. Use Risk Desk for a validated hypothetical plan.";
     }
   });
 

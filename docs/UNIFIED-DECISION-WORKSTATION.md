@@ -1,5 +1,7 @@
 # Unified decision workstation — development candidate
 
+November 8 acceptance review: [legacy ticket risk truthfulness correction](M1-TICKET-RISK-TRUTHFULNESS.md). Original gate/gallery results below identify the recovered `28f5d1a` checkpoint; they do not assert a final-code run on later corrections.
+
 Baseline: `a752fa4f533b0376c8d60eab1a450c5fbf9932f9`.
 Branch: `feature/unified-decision-workstation-20261107`.
 This is a major development candidate, separate from main. A local fixture render
