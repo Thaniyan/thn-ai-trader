@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>THN AI Trader · M4 Design Review</title>
+  <link rel="stylesheet" href="./m4-prototype.css">
+  <script type="module" src="./m4-prototype.js"></script>
+</head>
+<body>
+  <a class="skip" href="#workspace" data-t="skip">Skip to workspace</a>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" data-view="dashboard">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m5 22 7-10 5 5 10-11M20 6h7v7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><bdi>THN AI Trader</bdi><small data-t="brandSub">RESEARCH WORKSTATION</small></span>
+      </a>
+      <span class="eyebrow nav-label" data-t="workspace">WORKSPACE</span>
+      <nav id="navigation" aria-label="Workspace">
+        <a href="#dashboard" data-view="dashboard"><span data-icon="grid"></span><span data-t="dashboard">Command Center</span></a>
+        <a href="#terminal" data-view="terminal"><span data-icon="chart"></span><span data-t="terminal">Trading Terminal</span></a>
+        <a href="#risk" data-view="risk"><span data-icon="shield"></span><span data-t="risk">Risk &amp; Scenario Lab</span></a>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="mode"><span class="dot"></span><span data-t="mode">Research only</span></div>
+        <p data-t="restrictions">Live execution, broker balances, hosted AI and local paper are unavailable.</p>
+        <a href="/" data-t="existing">Open current application ↗</a>
+      </div>
+    </aside>
+    <div class="workarea">
+      <header class="topbar">
+        <div class="breadcrumb"><span data-t="workspace">WORKSPACE</span><span class="divider">/</span><strong id="current-view"></strong></div>
+        <div class="tools">
+          <button class="search-trigger" type="button" id="open-picker" aria-keyshortcuts="Control+k Meta+k"><span data-icon="search"></span><span data-t="search">Find instrument</span><kbd id="shortcut">Ctrl K</kbd></button>
+          <button type="button" id="language" class="icon-button">العربية</button>
+          <button type="button" id="theme" class="icon-button"></button>
+        </div>
+      </header>
+      <main id="workspace" tabindex="-1"></main>
+    </div>
+  </div>
+  <dialog id="picker" aria-labelledby="picker-title">
+    <div class="dialog-head"><h2 id="picker-title" data-t="search">Find instrument</h2><button type="button" id="close-picker" class="icon-button" data-t="close">Close</button></div>
+    <label class="sr-only" for="query" data-t="filter">Filter symbols</label>
+    <input type="search" id="query" placeholder="BTC, Gold, EUR…" autocomplete="off">
+    <div id="picker-results" class="watchlist"></div>
+  </dialog>
+</body>
+</html>
