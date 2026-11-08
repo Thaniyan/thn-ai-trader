@@ -28,7 +28,9 @@ test('hosted package starts without credentials and rejects all financial mutati
   assert.equal((await fetch(s.url+'/api/intelligence',{method:'POST',headers:{'Content-Type':'application/json'},body:'{'})).status,400);
   assert.equal((await fetch(s.url+'/api/intelligence',{method:'POST',body:'x'.repeat(17000)})).status,413);
   assert.equal((await fetch(s.url+'/api/intelligence',{method:'POST',headers:{Origin:'https://attacker.invalid'},body:'{}'})).status,403);
-  for(const route of ['/.env','/server.js','/trading_accounts.json','/%2e%2e/server.js'])assert.match(await(await fetch(s.url+route)).text(),/<!doctype html>/i);
+  for(const route of ['/.env','/server.js','/trading_accounts.json','/%2e%2e/server.js']){
+   const denied=await fetch(s.url+route,{headers:{Accept:'text/html'}});assert.equal(denied.status,404);assert.match(denied.headers.get('content-type'),/^application\/json/);assert.deepEqual(await denied.json(),{ok:false,code:'NOT_FOUND',error:'Resource not found.'});
+  }
   assert.deepEqual(fs.readdirSync(s.dir),[]);
  }finally {await s.stop();}
 });
