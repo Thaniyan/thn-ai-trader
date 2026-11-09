@@ -449,6 +449,14 @@
                   <input id="directOrderLots" type="number" min="0.01" max="50" step="0.01" value="0.10" />
                 </label>
                 <label>
+                  <span>Hypothetical entry (not a quote)</span>
+                  <input id="directOrderEntry" type="number" min="0" step="any" aria-describedby="directOrderContext" />
+                </label>
+                <label>
+                  <span>Hypothetical leverage</span>
+                  <input id="directOrderLeverage" type="number" min="1" max="2000" step="1" value="200" />
+                </label>
+                <label>
                   <span>Protective Stop Loss (Price)</span>
                   <input id="directOrderSL" type="number" step="any" placeholder="Required SL price" />
                 </label>
@@ -461,7 +469,8 @@
                   <button type="button" class="ghost" id="checkOrderRiskBtn" style="height: 40px; margin-top: 4px;">🛡️ Verify Margin &amp; Risk</button>
                 </label>
               </div>
-              <div id="directOrderRiskResult" class="status-line" style="margin-top: 12px; display: none;"></div>
+              <p id="directOrderContext" class="tiny trust-copy" aria-live="polite"></p>
+              <div id="directOrderRiskResult" role="status" aria-live="polite" class="status-line" style="margin-top: 12px; display: none;"></div>
               <div style="margin-top: 16px; display: flex; gap: 10px;">
                 <button type="button" class="primary execute-btn" id="executeDirectOrderBtn">⚡ Transmit Order to Paper Engine</button>
                 <button type="button" class="ghost" id="resetDirectOrderFormBtn">Clear</button>

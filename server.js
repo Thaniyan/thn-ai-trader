@@ -1,3 +1,4 @@
+import {validateRiskPreview,verifyRiskContext,calculateRiskPreview,riskPreviewError} from './server/risk-preview.js';
 import {budgetPlan} from './server/plan-budget.js';
 import {instrumentIdentity,researchIdentity} from './public/instrument-identity.js';
 import {createPaperIntents,ensurePaperWriter} from './server/paper-intents.js';
@@ -2155,16 +2156,20 @@ const server = http.createServer(async (req, res) => {
     // --- Risk Engine Preview Endpoint ---
     if (req.method === "POST" && url.pathname === "/api/risk/calculate") {
       const body = await readBody(req);
-      if (![body.lots, body.entryPrice ?? body.currentPrice, body.stopLoss, body.takeProfit].every(v => Number.isFinite(Number(v)) && Number(v) > 0)) return sendJson(res, 400, { ok: false, code: "INVALID_RISK_INPUT", error: "Positive finite lots, entry, stop and target are required." });
-      const supported = /^(EURUSD|GBPUSD|AUDUSD|NZDUSD|USDJPY|USDCHF|USDCAD|XAUUSD|XAGUSD|USOIL|BRENT|BTCUSD|BTCUSDT|ETHUSD|ETHUSDT|SPX|NAS100|US30)$/.test(String(body.symbol));
-      const side = body.side || "BUY";
-      if (!supported || !["BUY", "SELL"].includes(side)) return sendJson(res, 400, { ok: false, code: "UNSUPPORTED_RISK_CONTRACT" });
-      const entry = Number(body.entryPrice ?? body.currentPrice), stop = Number(body.stopLoss), target = Number(body.takeProfit);
-      if (side === "BUY" ? !(stop < entry && target > entry) : !(stop > entry && target < entry)) return sendJson(res, 400, { ok: false, code: "INVALID_PROTECTION_DIRECTION" });
-      const spec = getContractSpec(body.symbol), volume = Number(body.lots);
-      if (volume < spec.minLot || volume > spec.maxLot || Math.abs(volume / spec.lotStep - Math.round(volume / spec.lotStep)) > 1e-7) return sendJson(res, 400, { ok: false, code: "INVALID_VOLUME" });
-      const riskMetrics = calculateOrderRisk(body);
-      return sendJson(res, 200, { ok: true, metrics: riskMetrics, riskAnalysis: riskMetrics });
+      try {
+        const input=validateRiskPreview(body);
+        let context=null;
+        if(input.context){
+          let series;
+          try{series=prepareSeries(await getResearchMarketData(input.symbol,input.context.interval),input.context.interval);}
+          catch{throw riskPreviewError('RISK_CONTEXT_UNAVAILABLE',503);}
+          context=verifyRiskContext(input,series);
+        }
+        return sendJson(res,200,calculateRiskPreview(input,context));
+      }catch(error){
+        if(error.messages)return sendJson(res,error.status,{ok:false,code:error.code,error:error.messages.en,messages:error.messages,executionApproval:false});
+        throw error;
+      }
     }
 
     // --- Audit Log Retrieval ---

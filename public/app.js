@@ -1228,6 +1228,7 @@ function setLanguage(lang) {
   currentLang = lang === "ar" ? "ar" : "en";
   THNPreferences.setItem(langKey, currentLang);
   translateStaticDom();
+  window.dispatchEvent(new Event("thn:risk-language"));
   renderHealthStatus();
   renderJournal();
   renderPerformanceAnalytics();
@@ -5861,50 +5862,53 @@ function initEvents() {
     showNotice(currentLang === "ar" ? "تم تحديث سجل الصفقات النشطة" : "Positions ledger refreshed", "info");
   });
 
-  // Direct Order Ticket in Trading View
+  // A draft is an explicit assumption, never an inferred executable quote.
+  const riskDraftIds=['directOrderSymbol','directOrderSide','directOrderLots','directOrderEntry','directOrderLeverage','directOrderSL','directOrderTP'];
+  let riskGeneration=0;
+  const draftValues=()=>riskDraftIds.map(id=>$(id)?.value);
+  const draftContext=()=>{const c=window.THNContext?.get();return c?{symbol:c.symbol,interval:c.interval,datasetId:c.datasetId,dataTimestamp:c.dataTimestamp,provider:c.provider,providerSymbol:c.providerSymbol}:null;};
+  const draftKey=()=>JSON.stringify([draftValues(),draftContext(),currentLang]);
+  function invalidateRiskDraft(){
+    ++riskGeneration;
+    const el=$('directOrderRiskResult');if(el){el.style.display='none';el.textContent='';}
+    const c=draftContext(),node=$('directOrderContext');
+    if(node)node.textContent=(currentLang==='ar'?'سياق البحث المختار: ':'Selected research context: ')+(c?.symbol||'—')+' / '+(c?.interval||'—')+' · '+(c?.provider||'—')+' · '+(Number.isFinite(c?.dataTimestamp)?new Date(c.dataTimestamp).toISOString():'—')+' · '+(currentLang==='ar'?'الدخول افتراض يحدده المستخدم، وليس سعر تنفيذ.':'Entry is a user assumption, not an executable quote.');
+    if($('directOrderEntry')?.previousElementSibling)$('directOrderEntry').previousElementSibling.textContent=currentLang==='ar'?'الدخول الافتراضي (ليس سعراً للتنفيذ)':'Hypothetical entry (not a quote)';
+    if($('directOrderLeverage')?.previousElementSibling)$('directOrderLeverage').previousElementSibling.textContent=currentLang==='ar'?'الرافعة الافتراضية':'Hypothetical leverage';
+  }
+  riskDraftIds.forEach(id=>{for(const event of ['input','change'])$(id)?.addEventListener(event,invalidateRiskDraft);});
+  for(const event of ['thn:context','thn:research-context','thn:series','thn:risk-draft','thn:risk-language'])window.addEventListener(event,invalidateRiskDraft);
+  invalidateRiskDraft();
   $("checkOrderRiskBtn")?.addEventListener("click", async () => {
-    const sym = $("directOrderSymbol")?.value || "XAUUSD";
-    const side = $("directOrderSide")?.value || "BUY";
-    const lots = Number($("directOrderLots")?.value) || 0.1;
-    const sl = Number($("directOrderSL")?.value);
-    const tp = Number($("directOrderTP")?.value);
-    const resultEl = $("directOrderRiskResult");
-    if (!resultEl) return;
-
-    if (!sl) {
-      resultEl.style.display = "block";
-      resultEl.innerHTML = `<span style="color:var(--red)">⚠️ Stop Loss price is required to calculate risk exposure.</span>`;
-      return;
-    }
-
-    resultEl.style.display = "block";
-    resultEl.textContent = "Verifying pre-trade risk metrics...";
-
+    const [symbol,side,volume,entry,leverage,stop,target]=draftValues();
+    const resultEl=$('directOrderRiskResult');if(!resultEl)return;
+    const context=draftContext(),generation=++riskGeneration,key=draftKey();
+    resultEl.style.display='block';
+    if(!context||symbol!==context.symbol||!context.datasetId){resultEl.textContent=currentLang==='ar'?'السياق غير مطابق أو غير متاح؛ حدّث بحث الأداة المختارة. لم يصدر أي اعتماد.':'Context mismatched or unavailable; refresh research for the selected instrument. No approval was issued.';return;}
+    resultEl.textContent=currentLang==='ar'?'جارٍ التحقق من تقدير المخاطر الافتراضي…':'Checking hypothetical risk estimates…';
     try {
-      const acc = getBrokerAccount();
-      const res = await fetch("/api/risk/calculate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symbol: sym, side, lots, stopLoss: sl, takeProfit: tp, leverage: acc.leverage || 200 })
-      });
-      const data = await res.json();
-      const m = data.metrics;
-      if (res.ok && data.ok && m && [m.requiredMargin, m.slDollars, m.tpDollars, m.rrRatio].every(v => Number.isFinite(v) && v >= 0)) {
-        resultEl.textContent = currentLang === "ar"
-          ? `تقدير افتراضي فقط · الهامش: ${money(m.requiredMargin)} · تعرض الوقف النموذجي: ${money(m.slDollars)} · نتيجة الهدف النموذجية: ${money(m.tpDollars)} · العائد/المخاطرة: ${m.rrRatio.toFixed(2)}. ليس اعتماداً للتنفيذ؛ لا يضمن الوقف سعر التنفيذ.`
-          : `Hypothetical estimate only · Margin: ${money(m.requiredMargin)} · Modeled stop exposure: ${money(m.slDollars)} · Modeled target outcome: ${money(m.tpDollars)} · Reward/risk: ${m.rrRatio.toFixed(2)}. Not execution approval; stops do not guarantee fills.`;
-      } else {
-        resultEl.textContent = currentLang === "ar" ? "مقاييس المخاطر غير متاحة أو غير صالحة؛ لم يصدر أي اعتماد. راجع المدخلات في مكتب المخاطر." : "Risk metrics unavailable or invalid; no approval was issued. Review inputs in Risk Desk.";
+      const res=await fetch('/api/risk/calculate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol,side,lots:Number(volume),entryPrice:Number(entry),leverage:Number(leverage),stopLoss:Number(stop),takeProfit:Number(target),context})});
+      const data=await res.json();
+      if(generation!==riskGeneration||key!==draftKey())return;
+      const m=data.metrics;
+      if(res.ok&&data.ok&&m&&[m.requiredMargin,m.slDollars,m.tpDollars,m.rrRatio].every(v=>Number.isFinite(v)&&v>=0)){
+        resultEl.textContent=currentLang==='ar'
+          ? `تقدير افتراضي فقط · ${symbol} · الدخول المفترض: ${entry} · الهامش: ${money(m.requiredMargin)} · تعرض الوقف النموذجي: ${money(m.slDollars)} · نتيجة الهدف النموذجية: ${money(m.tpDollars)} · العائد/المخاطرة: ${m.rrRatio.toFixed(2)}. ليس اعتماداً للتنفيذ؛ لا يضمن الوقف سعر التنفيذ.`
+          : `Hypothetical estimate only · ${symbol} · Assumed entry: ${entry} · Margin: ${money(m.requiredMargin)} · Modeled stop exposure: ${money(m.slDollars)} · Modeled target outcome: ${money(m.tpDollars)} · Reward/risk: ${m.rrRatio.toFixed(2)}. Not execution approval; stops do not guarantee fills.`;
+      }else{
+        const message=data.messages?.[currentLang];
+        resultEl.textContent=(typeof message==='string'?message+' ':'')+(currentLang==='ar'?'مقاييس المخاطر غير متاحة أو غير صالحة؛ لم يصدر أي اعتماد. راجع المدخلات في مكتب المخاطر.':'Risk metrics unavailable or invalid; no approval was issued. Review inputs in Risk Desk.');
       }
-    } catch {
-      resultEl.textContent = currentLang === "ar" ? "تعذر التحقق من المخاطر؛ لم يصدر أي اعتماد. استخدم مكتب المخاطر لخطة افتراضية متحقق منها." : "Risk verification unavailable; no approval was issued. Use Risk Desk for a validated hypothetical plan.";
+    }catch{
+      if(generation!==riskGeneration||key!==draftKey())return;
+      resultEl.textContent=currentLang==='ar'?'تعذر التحقق من المخاطر؛ لم يصدر أي اعتماد. استخدم مكتب المخاطر لخطة افتراضية متحقق منها.':'Risk verification unavailable; no approval was issued. Use Risk Desk for a validated hypothetical plan.';
     }
   });
 
   $("executeDirectOrderBtn")?.addEventListener("click", async () => {
     const sym = $("directOrderSymbol")?.value || "XAUUSD";
     const side = $("directOrderSide")?.value || "BUY";
-    const lots = Number($("directOrderLots")?.value) || 0.1;
+    const lots = Number($("directOrderLots")?.value);
     const sl = Number($("directOrderSL")?.value);
     const tp = Number($("directOrderTP")?.value);
 
@@ -5913,13 +5917,16 @@ function initEvents() {
       return;
     }
 
-    const curPrice = Number($("entry")?.textContent) || (side === "BUY" ? sl * 1.008 : sl * 0.992);
+    const curPrice=Number($('directOrderEntry')?.value),context=window.THNContext?.get();
+    if(!Number.isFinite(curPrice)||curPrice<=0||!Number.isFinite(lots)||lots<=0||!Number.isFinite(tp)||tp<=0||context?.symbol!==sym){
+      showNotice(currentLang==='ar'?'يلزم دخول وحجم وهدف صريحة وسياق أداة مطابق؛ لم يرسل أمر.':'Explicit entry, volume, target and matching instrument context required; no order submitted.','error');return;
+    }
     const deal = {
       symbol: sym,
       decision: side,
       lots: lots,
       stopLoss: sl,
-      target1: tp || (side === "BUY" ? curPrice * 1.02 : curPrice * 0.98),
+      target1: tp,
       entry: curPrice
     };
 
@@ -5927,6 +5934,8 @@ function initEvents() {
   });
 
   $("resetDirectOrderFormBtn")?.addEventListener("click", () => {
+    invalidateRiskDraft();
+    if ($('directOrderEntry')) $('directOrderEntry').value='';
     if ($("directOrderSL")) $("directOrderSL").value = "";
     if ($("directOrderTP")) $("directOrderTP").value = "";
     if ($("directOrderRiskResult")) $("directOrderRiskResult").style.display = "none";

@@ -1,0 +1,185 @@
+{
+  "scope": "Disposable offline fixture servers; no financial mutation",
+  "baseline": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "results": {
+    "before": [
+      {
+        "case": "valid",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 550,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "negative_leverage",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 11000,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "zero_leverage",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 55,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "nonnumeric_leverage",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 55,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "null_body",
+        "status": 500,
+        "code": "REQUEST_FAILED",
+        "metrics": null,
+        "executionApproval": null
+      },
+      {
+        "case": "conflicting_entry",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11100,
+          "requiredMargin": 555,
+          "slDistance": 0.02,
+          "slDollars": 200,
+          "tpDistance": 0.01,
+          "tpDollars": 100,
+          "rrRatio": 0.5
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "coerced_numeric_string",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 550,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": null
+      },
+      {
+        "case": "wrong_stop_geometry",
+        "status": 400,
+        "code": "INVALID_PROTECTION_DIRECTION",
+        "metrics": null,
+        "executionApproval": null
+      }
+    ],
+    "after": [
+      {
+        "case": "valid",
+        "status": 200,
+        "code": null,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 11000,
+          "requiredMargin": 550,
+          "slDistance": 0.01,
+          "slDollars": 100,
+          "tpDistance": 0.02,
+          "tpDollars": 200,
+          "rrRatio": 2
+        },
+        "executionApproval": false
+      },
+      {
+        "case": "negative_leverage",
+        "status": 400,
+        "code": "INVALID_LEVERAGE",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "zero_leverage",
+        "status": 400,
+        "code": "INVALID_LEVERAGE",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "nonnumeric_leverage",
+        "status": 400,
+        "code": "INVALID_RISK_INPUT",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "null_body",
+        "status": 400,
+        "code": "INVALID_RISK_INPUT",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "conflicting_entry",
+        "status": 400,
+        "code": "AMBIGUOUS_ENTRY",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "coerced_numeric_string",
+        "status": 400,
+        "code": "INVALID_RISK_INPUT",
+        "metrics": null,
+        "executionApproval": false
+      },
+      {
+        "case": "wrong_stop_geometry",
+        "status": 400,
+        "code": "INVALID_PROTECTION_DIRECTION",
+        "metrics": null,
+        "executionApproval": false
+      }
+    ]
+  }
+}

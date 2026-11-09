@@ -57,6 +57,7 @@ async function runTestSuite() {
   await test("Authoritative Risk Calculation Endpoint", async () => {
     const payload = {
       symbol: "EURUSD",
+      side: "BUY", // Explicit direction required by the strict preview contract.
       entryPrice: 1.0850,
       stopLoss: 1.0800,
       takeProfit: 1.0950,
