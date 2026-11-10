@@ -22,6 +22,16 @@ data operations, significant security changes and new paid infrastructure.
 Keep a rollback commit and report actual deployment evidence separately from Git.
 Product priorities and verified limitations: docs/PRODUCT-ROADMAP.md.
 
+## Main-First release directive — 2026-11-10
+
+Main is authoritative. Use short-lived development branches and one substantial
+integrated release at a time; finish PR #20 before starting another major branch.
+Push verified PR #20 corrections to its existing development branch. Owner approval
+is required before merging PR #20 or deploying Production; no automatic merge.
+Keep PR #17 separate and subject to financial approval. Preserve every existing
+gate, hosted execution restriction, and canonical linear history. After approval,
+integrate promptly through the existing release workflow without force pushes.
+
 ## Release requirements
 
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.

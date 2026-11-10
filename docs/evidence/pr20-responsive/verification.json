@@ -1,0 +1,300 @@
+{
+  "baseHead": "0dba503477ea33dac30dc3294b5dfd36869f7394",
+  "main": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "branch": "feature/integrated-research-workstation-issue19-20261110",
+  "browser": "Chromium 151.0.7922.34 / revision 1234 / Playwright 1.62.0",
+  "coreTests": 312,
+  "securityTests": 21,
+  "systemChecks": 10,
+  "browserSuites": [
+    {
+      "suite": "workstation",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 30.91
+    },
+    {
+      "suite": "research_outage",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 3.99
+    },
+    {
+      "suite": "decision",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 45.04
+    },
+    {
+      "suite": "maturity",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 58.69
+    },
+    {
+      "suite": "intelligence",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 32.94
+    },
+    {
+      "suite": "layout",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 46.7
+    },
+    {
+      "suite": "trust",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 48.86
+    },
+    {
+      "suite": "journal_lifecycle",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 45.42
+    },
+    {
+      "suite": "evolution",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 78.45
+    },
+    {
+      "suite": "experience",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 70.86
+    },
+    {
+      "suite": "recovery",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 140.18
+    },
+    {
+      "suite": "paper_review",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 6.9
+    },
+    {
+      "suite": "broker_workspace",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 22.83
+    },
+    {
+      "suite": "workflow_polish",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 68.08
+    },
+    {
+      "suite": "confidence",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 63.18
+    },
+    {
+      "suite": "research_risk",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 59.35
+    },
+    {
+      "suite": "unified_workspace",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 101.07
+    },
+    {
+      "suite": "responsive_fonts",
+      "shard": 0,
+      "result": "PASS",
+      "seconds": 30.12
+    },
+    {
+      "suite": "research",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 34.67
+    },
+    {
+      "suite": "quality",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 42.92
+    },
+    {
+      "suite": "library_reliability",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 3.8
+    },
+    {
+      "suite": "terminal",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 137.96
+    },
+    {
+      "suite": "intelligence_memory",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 5.01
+    },
+    {
+      "suite": "pilot",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 21.97
+    },
+    {
+      "suite": "professional",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 170.61
+    },
+    {
+      "suite": "trading_remediation",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 71.95
+    },
+    {
+      "suite": "consolidation",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 32.78
+    },
+    {
+      "suite": "consistency",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 34.48
+    },
+    {
+      "suite": "assisted_desk",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 9.46
+    },
+    {
+      "suite": "evidence_workflow",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 62.81
+    },
+    {
+      "suite": "visual_refinement",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 21.71
+    },
+    {
+      "suite": "visual_identity",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 66.66
+    },
+    {
+      "suite": "dashboard_confidence",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 23.82
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 71.76
+    },
+    {
+      "suite": "research_studio",
+      "shard": 1,
+      "result": "PASS",
+      "seconds": 69.55
+    }
+  ],
+  "browserExecution": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 953.88
+  },
+  "supplementalFontProfiles": 48,
+  "nonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.07
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.16
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 17.45
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.55
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 2.04
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.24
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.94
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.3
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 17.51
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 1.87
+    }
+  ],
+  "frozenInstall": "PASS; 42 packages checked, no dependency or lockfile changes",
+  "artifactManifestSHA256": "8e8772c5f5992ac205b99b3d89459f44094f02e01e8c67aa421412cf18950b70",
+  "originalBrowserAssertionsAndTimeouts": "UNCHANGED",
+  "financialEnginesAndServerSource": "UNCHANGED from main",
+  "previousSerialRun": "Interrupted by environment restart after 12 passes; not counted as a complete gate",
+  "priorHostedRuns": {
+    "42829641756": "FAIL; three owner-supplied responsive assertions",
+    "42831570451": "CANCELLED; browser job exceeded existing 30-minute limit"
+  },
+  "hostedCI": "Must be verified for pushed correction SHA; local results do not establish hosted CI success",
+  "preview": "Old head 0dba503 independently READY; correction requires its own identity verification. Direct access blocked by proxy CONNECT 403",
+  "production": "No merge or Production deployment performed",
+  "financialApproval": "PR17 remains separate; Issue18 fault characterizations are not financial release acceptance"
+}

@@ -55,3 +55,54 @@
 .studio-archive .studio-section-title{grid-column:1}.studio-archive-stats{grid-column:2;margin:0}
 .studio-archive>.q-actions{grid-column:1/-1;margin:0}
 @media(max-width:760px){.studio-archive{grid-template-columns:minmax(0,1fr);gap:12px}.studio-archive .studio-section-title,.studio-archive-stats{grid-column:1}.studio-archive-stats strong{font-size:21px}}
+/* PR #20: do not squeeze a status caption or verdict below one readable glyph. */
+@media(max-width:360px){
+ .studio-validation-line{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
+ .studio-validation-line>span{width:100%;overflow-wrap:anywhere}
+ .research-studio .confidence-finding>summary{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+ .research-studio .confidence-finding>summary>b{justify-self:start;white-space:normal;max-width:100%}
+}
+@media(max-width:260px){
+ .studio-lab-setup .confidence-form-group,.studio-lab-setup .confidence-form-group:last-of-type{grid-template-columns:minmax(0,1fr)}
+}
+/* Empty conversations need no blank message gutter; content retains its normal spacing. */
+.research-studio #intelligenceAssistant .i7-messages:empty{margin-block:0}
+.research-studio #intelligenceAssistant>p:empty{margin-block:0}
+@media(max-width:1100px){
+ .research-studio #intelligenceAssistant>.i7-prompts{margin-block:8px}
+ .research-studio #intelligenceAssistant>.i7-research-options{margin-top:8px}
+ .research-studio #intelligenceAssistant>.i71-pilot{margin-block:8px}
+ .research-studio #intelligenceAssistant>.i7-actions{margin-block:8px}
+}
+@media(min-width:761px) and (max-width:1100px){
+ .research-studio #analysisCockpit .cockpit-heading{margin-bottom:12px}
+ .research-studio #analysisCockpit .cockpit-heading .eyebrow{margin:0 0 4px}
+ .research-studio #analysisCockpit .cockpit-heading h2{margin:0;line-height:1.4}
+ .research-studio #analysisCockpit .cockpit-quality,.research-studio #analysisCockpit .cockpit-observation{margin-top:8px}
+ .research-studio #analysisCockpit .cockpit-research-nav{margin-top:12px}
+ .research-studio #analysisCockpit .cockpit-method{margin-top:8px;padding-top:8px}
+}
+@media(max-width:760px){
+ .research-studio #analysisCockpit .cockpit-heading{margin-bottom:12px;gap:6px}
+ .research-studio #analysisCockpit .cockpit-heading .eyebrow{margin:0 0 4px}
+ .research-studio #analysisCockpit .cockpit-heading h2{font-size:22px;line-height:1.4;margin:0}
+ .research-studio #analysisCockpit .cockpit-test{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center}
+ .research-studio #analysisCockpit .cockpit-test>.eyebrow,.research-studio #analysisCockpit .cockpit-test>p{grid-column:1/-1}
+ .research-studio #analysisCockpit .cockpit-test>strong{font-size:18px;line-height:1.4}
+ .research-studio #analysisCockpit .cockpit-test>button{grid-column:2;grid-row:2;max-width:150px}
+ .research-studio #intelligenceAssistant .i7-research-options{gap:8px}
+ .research-studio #intelligenceAssistant .i7-research-options label{font-size:12px;line-height:1.6;margin-bottom:4px}
+}
+@media(min-width:361px) and (max-width:760px){
+ .research-studio #analysisCockpit .cockpit-test>.eyebrow{grid-column:1;grid-row:1}
+ .research-studio #analysisCockpit .cockpit-test>strong{grid-column:2;grid-row:1}
+ .research-studio #analysisCockpit .cockpit-test>button{grid-column:1/-1;grid-row:auto;max-width:100%;justify-self:start}
+ .research-studio #intelligenceAssistant>.i7-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .research-studio #intelligenceAssistant>.i7-actions button{width:100%}
+}
+@media(max-width:760px){
+ .research-studio #analysisCockpit,.research-studio #intelligenceAssistant,.research-studio .studio-evidence{padding:14px}
+ .research-studio :is(#researchSchools,#researchEvidence,#researchScenarios,#researchConclusion){padding:0}
+ .research-studio :is(#m65Matrix,#d64Legacy){padding:12px}
+ .research-studio .studio-research-grid{gap:12px}
+}

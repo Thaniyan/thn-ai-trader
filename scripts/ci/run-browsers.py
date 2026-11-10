@@ -2,6 +2,8 @@
 All canonical v6.6 suites and both v7 suites run; failure in any suite blocks CI.
 """
 import os,pathlib,subprocess,sys,time,select,shutil
+from browser_suites import select_suites
+suites=select_suites(os.environ)
 root=pathlib.Path(__file__).resolve().parents[2];os.chdir(root)
 out=pathlib.Path(os.environ.get('BROWSER_LOG_ROOT',root/'work'));out.mkdir(parents=True,exist_ok=True);(out/'v7').mkdir(exist_ok=True)
 env={**os.environ,'VERCEL':'1','THN_AI_ENABLED':'0','THN_LOCAL_PAPER':'0','TEST_OUTPUT':str(out/'v7')}
@@ -16,14 +18,15 @@ try:
  line=server.stdout.readline().strip()
  if not line.startswith('THN_TEST_PORT='):raise RuntimeError('Packaged browser server failed: '+line)
  env['TEST_URL']='http://127.0.0.1:'+line.split('=')[1]
- suites=['workstation','research','research_outage','quality','decision','library_reliability','maturity','terminal','intelligence','intelligence_memory','layout','pilot','trust','professional','journal_lifecycle','trading_remediation','evolution','consolidation','experience','consistency','recovery','assisted_desk','paper_review','evidence_workflow','broker_workspace','visual_refinement','workflow_polish','visual_identity','confidence','dashboard_confidence','research_risk','workspace_hierarchy','unified_workspace','research_studio']
  failures=[]
  for name in suites:
   target='tests/browser_'+name+'.py';log=out/('ci-browser-'+name+'.log')
+  started=time.monotonic();print('Starting '+target,flush=True)
   with log.open('w') as stream:
    try:result=subprocess.run([sys.executable,target],env=env,stdout=stream,stderr=subprocess.STDOUT,timeout=360 if name=='professional' else 240);code=result.returncode
    except subprocess.TimeoutExpired:code=124
   print(target+': '+('PASS' if code==0 else 'FAIL ('+str(code)+')'),flush=True)
+  print('Elapsed '+name+': '+str(round(time.monotonic()-started,2))+'s',flush=True)
   if code:failures.append(name);print(log.read_text()[-2500:],flush=True)
  if failures:raise SystemExit('Failed browser suites: '+', '.join(failures))
 finally:
