@@ -104,3 +104,13 @@ Uses only temporary directories, a synthetic provider and disposable local-paper
 servers. The test preload is not in the production package. No real broker,
 account, provider request or credentials are needed. This is process/I/O fault
 injection, not physical power-loss or filesystem durability certification.
+
+## Proposed separately reviewed follow-up (not implemented)
+
+A minimal policy review can consider refusing financial operations on corrupt audit
+storage while preserving its original bytes, and refusing success/completion when
+an audit write fails. A post-account-write failure must remain an explicit unknown
+outcome with the durable intent unresolved; it cannot safely retry automatically.
+The owner must approve those execution/error and recovery semantics before source
+changes. The review must retain the exact failure matrix and include operator UX
+for preserved evidence, rather than adding lock deletion or automatic reconciliation.

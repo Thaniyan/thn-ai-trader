@@ -1,0 +1,102 @@
+{
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "chartY": 536.890625,
+      "visibleChartHeight": 463.109375,
+      "intelligenceHeight": 2151
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "chartY": 536.890625,
+      "visibleChartHeight": 463.109375,
+      "intelligenceHeight": 2151
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "chartY": 543.984375,
+      "visibleChartHeight": 456.015625,
+      "intelligenceHeight": 2159
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "chartY": 543.984375,
+      "visibleChartHeight": 456.015625,
+      "intelligenceHeight": 2159
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "chartY": 711.265625,
+      "visibleChartHeight": 288.734375,
+      "intelligenceHeight": 2413
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "chartY": 711.265625,
+      "visibleChartHeight": 288.734375,
+      "intelligenceHeight": 2413
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "chartY": 748.265625,
+      "visibleChartHeight": 251.734375,
+      "intelligenceHeight": 2254
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "chartY": 748.265625,
+      "visibleChartHeight": 251.734375,
+      "intelligenceHeight": 2254
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "chartY": 701.65625,
+      "visibleChartHeight": 298.34375,
+      "intelligenceHeight": 3367
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "chartY": 701.65625,
+      "visibleChartHeight": 298.34375,
+      "intelligenceHeight": 3367
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "chartY": 700.25,
+      "visibleChartHeight": 299.75,
+      "intelligenceHeight": 3195
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "chartY": 700.25,
+      "visibleChartHeight": 299.75,
+      "intelligenceHeight": 3195
+    }
+  ],
+  "errors": [],
+  "scope": "Offline synthetic provider fixtures, not Production acceptance"
+}

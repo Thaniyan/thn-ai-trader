@@ -126,3 +126,55 @@ A successful old-context request is aborted at the browser boundary; returning t
 identical retained evidence may legitimately reuse its old matching report. The
 assertion checks that the delayed foreign report cannot replace it, not that valid
 retained evidence must be erased.
+
+## Measured improvement and trade-offs
+
+Paired actual-app screenshots and raw measurements are in the
+[evidence gallery](evidence/issue19/README.md). All 18 paired view/profile captures
+retain the identical dataset hash and have no page errors or horizontal overflow.
+Historical Lab populated page height falls 5490 → 2563px on desktop, 6161 → 2708px
+on tablet and 7974 → 4101px on Arabic mobile. Complete numerical/source audits
+remain available through native disclosures. Default AI height and chart coverage
+must still pass the original hierarchy thresholds; they were not relaxed.
+
+The default evidence notebook follows the selected timeframe. All-frame and
+supporting/opposing filters are explicit; filtering never means the remaining
+frames were independently validated or may be ignored. Tablet composition keeps
+the assessment readable alongside the source notebook. Original assistant controls,
+notes, disclosures, keyboard behavior and model-availability labeling remain.
+Library tools are compact; its original storage, backup and import-trust notice is
+preserved instead of adding a second warning block. The populated mobile AI page
+can be longer when the user opens detailed research. Terminal history tools cost
+about one toolbar row; useful navigation replaces neither candles nor provenance.
+
+The resource audit found four identical selected-history browser requests from
+legacy focus initialization. The integrated legacy panel now consumes the existing
+shared chart series and clears unavailable/mismatched observations. Its explicit
+refresh delegates to the existing authoritative chart refresh. This preserves the
+original provider cache/freshness, requests, cancellation and numerical owners.
+Three redundant 209757-byte history responses are eliminated. Added UI assets cost
+60555 bytes; total local measured encoded resources fall 2340621 → 1771905 bytes
+(24.3%). Resource count stays 70: three additional UI assets replace three redundant
+history responses. This is not a claim about upstream Yahoo quota or Production
+latency. Three timing samples per version are mixed; see the raw measurements.
+
+## Review and remaining roadmap priorities
+
+1. Review this coherent research candidate through the dedicated branch and the
+   paired actual-app evidence. Preserve owner visual/release acceptance as a
+   separate gate; no main integration or Production deployment is authorized.
+2. Keep PR #17 financially gated. Review a minimal audit-failure/corrupt-file
+   preservation policy for Issue 18 before broader local-paper reliability
+   acceptance. Simply throwing after account persistence is not atomic recovery.
+3. Validate actual Preview identity, live provider availability/cadence and hosted
+   behavior through the owner's connected tools. This workspace's enforced proxy
+   rejects GitHub API and Vercel CONNECT requests with 403, before an application
+   response; no authentication or deployment protection is weakened.
+4. Continue the approved market-data/operational roadmap against the real owners,
+   with measured provider coverage and reproducibility, rather than another visual
+   prototype or another calculation engine. Model/broker activation remains a
+   separate explicit authorization boundary.
+
+The owner will handle PR creation and independent GitHub/Vercel verification if
+API access remains blocked. Use only the approved Git remote for the verified
+branch push. No environment security policy or project settings are changed.
