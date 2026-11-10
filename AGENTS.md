@@ -1,3 +1,15 @@
+# Current owner direction — 9 November 2026
+
+Resume the master engineering roadmap on the real application. Rejected PR #16
+is closed without merge: preserve history, integrate none of its standalone design.
+M3 financial input/context integrity uses a dedicated development branch and PR.
+Do not merge financially significant changes into main before owner approval.
+Preserve numerical formulas, hosted finance/inference restrictions, canonical
+history and every existing regression gate. No force push, test weakening,
+paid activation or new repository/Production environment. Current user direction
+supersedes historical main-push instructions below. Read the current M3 report
+and the latest section of docs/PRODUCT-ROADMAP.md before release decisions.
+
 # Integrated v7 release contract
 
 ## Owner branch directive — 2026-11-02

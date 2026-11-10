@@ -38,7 +38,7 @@ test('public mode: data provenance, truthful analysis and protected financial en
  assert.equal((await post('/api/research/backtest',{symbol:'EURUSD',parameters:[]}))[0].status,400);
  const [,analysis]=await post('/api/analyze',{symbol:'EURUSD',timeframe:'intraday'});assert.equal(analysis.methodology.type,'deterministic');assert.equal(analysis.backtest.available,false);assert.equal(analysis.mtfa.available,false);assert.deepEqual(analysis.macroCalendar,[]);assert.ok(Number.isFinite(analysis.indicators.rsi14));assert.ok(analysis.schools.length);
  assert.equal((await post('/api/risk/calculate',{lots:-1}))[0].status,400);
- assert.equal((await post('/api/risk/calculate',{symbol:'EURUSD',lots:.1,entryPrice:1.1,stopLoss:1.2,takeProfit:1.3}))[1].code,'INVALID_PROTECTION_DIRECTION');
+ assert.equal((await post('/api/risk/calculate',{symbol:'EURUSD',side:'BUY',leverage:200,lots:.1,entryPrice:1.1,stopLoss:1.2,takeProfit:1.3}))[1].code,'INVALID_PROTECTION_DIRECTION');
  assert.equal((await post('/api/risk/calculate',{symbol:'EURGBP',lots:.1,entryPrice:1.1,stopLoss:1,takeProfit:1.3}))[1].code,'UNSUPPORTED_RISK_CONTRACT');
  assert.equal((await post('/api/analyze',{symbol:'bad/path'}))[0].status,400);
  assert.equal((await post('/api/risk/calculate',{}, {Origin:'https://attacker.invalid'}))[0].status,403);

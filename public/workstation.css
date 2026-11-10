@@ -155,3 +155,12 @@ html[dir="rtl"] .sidebar { border-right:0; border-inline-end:1px solid var(--bor
 [data-theme="light"] .sidebar .paper-badge { color:#785000; background:#fff4d6; }
 [data-theme="light"] .topbar-controls .trading-mode-tag { color:#785000; background:#fff4d6; }
 [data-theme="light"] .utc-clock-badge { background:#eef4fb; color:#0f172a; }
+
+/* Local paper ticket badge must remain readable in light-theme review. */
+[data-theme="light"] #view-trading .paper-badge { color:#785000; background:#fff4d6; }
+
+/* Native paper confirmation inherits the active palette, including light mode. */
+#tradeExecutionModal { background:var(--panel); color:var(--text); }
+#tradeExecutionModal .execute-order-card { background:var(--bg-2); color:var(--text); }
+#tradeExecutionModal .order-summary-row { gap:12px; flex-wrap:wrap; }
+#tradeExecutionModal .dialog-actions { flex-wrap:wrap; }

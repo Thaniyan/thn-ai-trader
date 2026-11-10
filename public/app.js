@@ -1228,6 +1228,7 @@ function setLanguage(lang) {
   currentLang = lang === "ar" ? "ar" : "en";
   THNPreferences.setItem(langKey, currentLang);
   translateStaticDom();
+  window.dispatchEvent(new Event("thn:risk-language"));
   renderHealthStatus();
   renderJournal();
   renderPerformanceAnalytics();
@@ -4071,10 +4072,12 @@ function saveBrokerAccount(acc) {
   renderBrokerDesk();
   renderAccountCertificate();
   renderWebTrader();
+  window.dispatchEvent(new Event('thn:paper-account'));
 }
 
 async function loadBrokerAccountsFromServer() {
   brokerStateVerified=false;
+  window.dispatchEvent(new Event('thn:paper-account'));
   try {
     const res = await fetch("/api/broker/accounts",{signal:AbortSignal.timeout(10000)});
     if(!res.ok)throw Error("Account service unavailable");
@@ -4104,6 +4107,7 @@ async function loadBrokerAccountsFromServer() {
   renderBrokerDesk();
   renderAccountCertificate();
   renderWebTrader();
+  window.dispatchEvent(new Event('thn:paper-account'));
 }
 
 function renderBrokerAccountSelector() {
@@ -4832,27 +4836,30 @@ async function runDocPingTest() {
   }
 }
 
+// Presentation uses the last server account report, never the local default account.
+function riskPaperAccount(){
+  const selected=getBrokerAccount(),account=serverBrokerAccounts.find(a=>a.id===selected.id);
+  return brokerStateVerified&&cachedHealth?.capabilities?.paperExecution===true&&account?.connected&&account.broker==='paper'&&account.tradingMode==='PAPER'&&Number.isFinite(account.leverage)&&account.leverage>=1&&account.leverage<=2000?{id:account.id,leverage:account.leverage}:null;
+}
+function riskBoundaryText(leverage){
+  const a=riskPaperAccount(),ar=currentLang==='ar',valid=Number.isFinite(leverage)&&leverage>=1&&leverage<=2000;
+  return (ar?'رافعة المعاينة الافتراضية فقط: ':'Hypothetical preview leverage only: ')+(valid?'1:'+leverage:(ar?'غير محددة':'not supplied'))+' · '+
+    (ar?'رافعة حساب المحاكاة (آخر تقرير من الخادم): ':'Paper-account leverage (last server report): ')+(a?'1:'+a.leverage:(ar?'غير متاحة':'unavailable'))+'. '+
+    (a&&valid&&leverage!==a.leverage?(ar?'الرافعتان مختلفتان؛ هامش المعاينة لا يمثل هامش أمر المحاكاة. ':'Leverage differs; preview margin is not the paper-order margin. '):'')+
+    (ar?'لا تغير مدخلات المعاينة رافعة الحساب. يستخدم محرك المحاكاة رافعة الحساب وسعر التنفيذ من المزود؛ قد يختلف السعر عن الدخول الافتراضي وقد يختلف الهامش والتعرض. نجاح المعاينة ليس إذناً بالتنفيذ، والوقف لا يضمن سعر التنفيذ.':'Preview inputs do not change account leverage. The paper engine uses account leverage and a provider execution price; that price may differ from the hypothetical entry, and margin and exposure may differ. Preview success is not execution approval; stops do not guarantee fills.');
+}
 function openTradeExecutionModal(deal) {
-  pendingExecutionOrder = deal;
-  const modal = $("tradeExecutionModal");
-  const card = $("executeOrderCard");
-  if (!modal || !card) return;
-
-  const isBuy = deal.decision.includes("BUY");
-  const isLimit = deal.decision.includes("LIMIT");
-  card.innerHTML = `
-    <div class="order-summary-row"><span>Instrument:</span><b>${escapeHtml(deal.symbol)}</b></div>
-    <div class="order-summary-row"><span>Order Type:</span><b style="color:${isBuy ? (isLimit ? '#38bdf8' : 'var(--green)') : (isLimit ? '#fb923c' : 'var(--red)')}">${escapeHtml(deal.decision)} (${isLimit ? 'Pending Limit Order' : 'Market Fill'})</b></div>
-    <div class="order-summary-row"><span>Order Volume:</span><b>${deal.lots} Lots</b></div>
-    <div class="order-summary-row"><span>${isLimit ? 'Limit Trigger Price:' : 'Estimated Fill Price:'}</span><b>${fmt(deal.entry, pricePrecision(deal.entry))}</b></div>
-    <div class="order-summary-row"><span>Protective Stop Loss:</span><b>${fmt(deal.stopLoss, pricePrecision(deal.stopLoss))}</b></div>
-    <div class="order-summary-row"><span>Profit Target (TP1):</span><b>${fmt(deal.target1, pricePrecision(deal.target1))}</b></div>
-    <div class="order-summary-row"><span>Max Capital Risk:</span><b style="color:var(--red)">${money(deal.maxRisk)}</b></div>
-    <div class="order-summary-row"><span>Projected Payout:</span><b style="color:var(--green)">+${money(deal.targetProfit)}</b></div>
-  `;
-
-  if (typeof modal.showModal === "function") modal.showModal();
-  else modal.setAttribute("open", "");
+  pendingExecutionOrder=deal;
+  const modal=$('tradeExecutionModal'),card=$('executeOrderCard');if(!modal||!card)return;
+  const ar=currentLang==='ar',row=(en,arabic,value)=>`<div class="order-summary-row"><span>${ar?arabic:en}</span><b>${escapeHtml(String(value))}</b></div>`;
+  card.innerHTML=row('Instrument','الأداة',deal.symbol)+row('Requested direction','الاتجاه المطلوب',deal.decision)+row('Volume (lots)','الحجم (عقود)',deal.lots)+
+    row('Hypothetical entry — not a fill quote','الدخول الافتراضي — ليس سعر تنفيذ',Number.isFinite(deal.entry)?deal.entry:'—')+
+    row('Requested stop price','سعر الوقف المطلوب',deal.stopLoss)+row('Requested target price','سعر الهدف المطلوب',deal.target1);
+  $('paperReviewTitle').textContent=ar?'مراجعة طلب محاكاة محلية':'Review local paper request';
+  $('executeOrderDesc').textContent=riskBoundaryText(deal.previewLeverage);
+  $('confirmExecuteBtn').textContent=ar?'تأكيد طلب محاكاة محلية بسعر المزود':'Confirm local paper request at provider price';
+  $('closeExecuteModalBtn').setAttribute('aria-label',ar?'إغلاق مراجعة المحاكاة':'Close paper review');
+  if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');
 }
 
 function closeTradeExecutionModal() {
@@ -5861,72 +5868,64 @@ function initEvents() {
     showNotice(currentLang === "ar" ? "تم تحديث سجل الصفقات النشطة" : "Positions ledger refreshed", "info");
   });
 
-  // Direct Order Ticket in Trading View
+  // A draft is an explicit assumption, never an inferred executable quote.
+  const riskDraftIds=['directOrderSymbol','directOrderSide','directOrderLots','directOrderEntry','directOrderLeverage','directOrderSL','directOrderTP'];
+  let riskGeneration=0;
+  const draftValues=()=>riskDraftIds.map(id=>$(id)?.value);
+  const draftContext=()=>{const c=window.THNContext?.get();return c?{symbol:c.symbol,interval:c.interval,datasetId:c.datasetId,dataTimestamp:c.dataTimestamp,provider:c.provider,providerSymbol:c.providerSymbol}:null;};
+  const riskNumber=value=>typeof value==='string'&&value.trim()!==''&&Number.isFinite(Number(value))?Number(value):null;
+  const draftKey=()=>JSON.stringify([draftValues(),draftContext(),riskPaperAccount(),currentLang]);
+  function invalidateRiskDraft(){
+    ++riskGeneration;
+    if(pendingExecutionOrder?.riskDraftKey)closeTradeExecutionModal();
+    const el=$('directOrderRiskResult');if(el){el.style.display='none';el.textContent='';}
+    const c=draftContext(),node=$('directOrderContext');
+    if(node)node.textContent=(currentLang==='ar'?'سياق البحث المختار: ':'Selected research context: ')+(c?.symbol||'—')+' / '+(c?.interval||'—')+' · '+(c?.provider||'—')+' · '+(Number.isFinite(c?.dataTimestamp)?new Date(c.dataTimestamp).toISOString():'—')+' · '+(currentLang==='ar'?'الدخول افتراض يحدده المستخدم، وليس سعر تنفيذ.':'Entry is a user assumption, not an executable quote.');
+    if($('directOrderEntry')?.previousElementSibling)$('directOrderEntry').previousElementSibling.textContent=currentLang==='ar'?'الدخول الافتراضي (ليس سعراً للتنفيذ)':'Hypothetical entry (not a quote)';
+    if($('directOrderLeverage')?.previousElementSibling)$('directOrderLeverage').previousElementSibling.textContent=currentLang==='ar'?'رافعة المعاينة الافتراضية فقط':'Leverage for hypothetical preview only';
+    if($('directOrderBoundary'))$('directOrderBoundary').textContent=riskBoundaryText(riskNumber($('directOrderLeverage')?.value));
+  }
+  riskDraftIds.forEach(id=>{for(const event of ['input','change'])$(id)?.addEventListener(event,invalidateRiskDraft);});
+  for(const event of ['thn:context','thn:research-context','thn:series','thn:risk-draft','thn:risk-language','thn:paper-account','thn:service-health'])window.addEventListener(event,invalidateRiskDraft);
+  invalidateRiskDraft();
   $("checkOrderRiskBtn")?.addEventListener("click", async () => {
-    const sym = $("directOrderSymbol")?.value || "XAUUSD";
-    const side = $("directOrderSide")?.value || "BUY";
-    const lots = Number($("directOrderLots")?.value) || 0.1;
-    const sl = Number($("directOrderSL")?.value);
-    const tp = Number($("directOrderTP")?.value);
-    const resultEl = $("directOrderRiskResult");
-    if (!resultEl) return;
-
-    if (!sl) {
-      resultEl.style.display = "block";
-      resultEl.innerHTML = `<span style="color:var(--red)">⚠️ Stop Loss price is required to calculate risk exposure.</span>`;
-      return;
-    }
-
-    resultEl.style.display = "block";
-    resultEl.textContent = "Verifying pre-trade risk metrics...";
-
+    const [symbol,side,volume,entry,leverage,stop,target]=draftValues();
+    const resultEl=$('directOrderRiskResult');if(!resultEl)return;
+    const context=draftContext(),generation=++riskGeneration,key=draftKey();
+    resultEl.style.display='block';
+    if(!context||symbol!==context.symbol||!context.datasetId){resultEl.textContent=currentLang==='ar'?'السياق غير مطابق أو غير متاح؛ حدّث بحث الأداة المختارة. لم يصدر أي اعتماد.':'Context mismatched or unavailable; refresh research for the selected instrument. No approval was issued.';return;}
+    resultEl.textContent=currentLang==='ar'?'جارٍ التحقق من تقدير المخاطر الافتراضي…':'Checking hypothetical risk estimates…';
     try {
-      const acc = getBrokerAccount();
-      const res = await fetch("/api/risk/calculate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symbol: sym, side, lots, stopLoss: sl, takeProfit: tp, leverage: acc.leverage || 200 })
-      });
-      const data = await res.json();
-      const m = data.metrics;
-      if (res.ok && data.ok && m && [m.requiredMargin, m.slDollars, m.tpDollars, m.rrRatio].every(v => Number.isFinite(v) && v >= 0)) {
-        resultEl.textContent = currentLang === "ar"
-          ? `تقدير افتراضي فقط · الهامش: ${money(m.requiredMargin)} · تعرض الوقف النموذجي: ${money(m.slDollars)} · نتيجة الهدف النموذجية: ${money(m.tpDollars)} · العائد/المخاطرة: ${m.rrRatio.toFixed(2)}. ليس اعتماداً للتنفيذ؛ لا يضمن الوقف سعر التنفيذ.`
-          : `Hypothetical estimate only · Margin: ${money(m.requiredMargin)} · Modeled stop exposure: ${money(m.slDollars)} · Modeled target outcome: ${money(m.tpDollars)} · Reward/risk: ${m.rrRatio.toFixed(2)}. Not execution approval; stops do not guarantee fills.`;
-      } else {
-        resultEl.textContent = currentLang === "ar" ? "مقاييس المخاطر غير متاحة أو غير صالحة؛ لم يصدر أي اعتماد. راجع المدخلات في مكتب المخاطر." : "Risk metrics unavailable or invalid; no approval was issued. Review inputs in Risk Desk.";
+      const res=await fetch('/api/risk/calculate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol,side,lots:riskNumber(volume),entryPrice:riskNumber(entry),leverage:riskNumber(leverage),stopLoss:riskNumber(stop),takeProfit:riskNumber(target),context})});
+      const data=await res.json();
+      if(generation!==riskGeneration||key!==draftKey())return;
+      const m=data.metrics;
+      if(res.ok&&data.ok&&m&&[m.requiredMargin,m.slDollars,m.tpDollars,m.rrRatio].every(v=>Number.isFinite(v)&&v>=0)){
+        resultEl.textContent=currentLang==='ar'
+          ? `تقدير افتراضي فقط · ${symbol} · الدخول المفترض: ${entry} · هامش افتراضي عند رافعة المعاينة 1:${leverage}: ${money(m.requiredMargin)} · تعرض الوقف النموذجي: ${money(m.slDollars)} · نتيجة الهدف النموذجية: ${money(m.tpDollars)} · العائد/المخاطرة: ${m.rrRatio.toFixed(2)}. ليس اعتماداً للتنفيذ؛ لا يضمن الوقف سعر التنفيذ.`
+          : `Hypothetical estimate only · ${symbol} · Assumed entry: ${entry} · Modeled margin at preview leverage 1:${leverage}: ${money(m.requiredMargin)} · Modeled stop exposure: ${money(m.slDollars)} · Modeled target outcome: ${money(m.tpDollars)} · Reward/risk: ${m.rrRatio.toFixed(2)}. Not execution approval; stops do not guarantee fills.`;
+      }else{
+        const message=data.messages?.[currentLang];
+        resultEl.textContent=(typeof message==='string'?message+' ':'')+(currentLang==='ar'?'مقاييس المخاطر غير متاحة أو غير صالحة؛ لم يصدر أي اعتماد. راجع المدخلات في مكتب المخاطر.':'Risk metrics unavailable or invalid; no approval was issued. Review inputs in Risk Desk.');
       }
-    } catch {
-      resultEl.textContent = currentLang === "ar" ? "تعذر التحقق من المخاطر؛ لم يصدر أي اعتماد. استخدم مكتب المخاطر لخطة افتراضية متحقق منها." : "Risk verification unavailable; no approval was issued. Use Risk Desk for a validated hypothetical plan.";
+    }catch{
+      if(generation!==riskGeneration||key!==draftKey())return;
+      resultEl.textContent=currentLang==='ar'?'تعذر التحقق من المخاطر؛ لم يصدر أي اعتماد. استخدم مكتب المخاطر لخطة افتراضية متحقق منها.':'Risk verification unavailable; no approval was issued. Use Risk Desk for a validated hypothetical plan.';
     }
   });
 
-  $("executeDirectOrderBtn")?.addEventListener("click", async () => {
-    const sym = $("directOrderSymbol")?.value || "XAUUSD";
-    const side = $("directOrderSide")?.value || "BUY";
-    const lots = Number($("directOrderLots")?.value) || 0.1;
-    const sl = Number($("directOrderSL")?.value);
-    const tp = Number($("directOrderTP")?.value);
-
-    if (!sl) {
-      showNotice(currentLang === "ar" ? "قاعدة المخاطر الإلزامية: وقف الخسارة مطلوب قبل الإرسال" : "Risk Engine Rule: Stop Loss is mandatory before submission", "error");
-      return;
+  $("executeDirectOrderBtn")?.addEventListener("click", () => {
+    const [sym,side,volume,entry,leverage,stop,target]=draftValues();
+    const [lots,curPrice,previewLeverage,sl,tp]=[volume,entry,leverage,stop,target].map(riskNumber),context=window.THNContext?.get();
+    if(![lots,curPrice,previewLeverage,sl,tp].every(v=>v!==null&&v>0)||previewLeverage>2000||previewLeverage<1||!riskPaperAccount()||context?.symbol!==sym||!context.datasetId){
+      showNotice(currentLang==='ar'?'يلزم حساب محاكاة متاح ومدخلات رقمية صريحة وسياق أداة مطابق؛ لم يرسل أمر.':'Available paper account, explicit numeric draft inputs and matching instrument context required; no order submitted.','error');return;
     }
-
-    const curPrice = Number($("entry")?.textContent) || (side === "BUY" ? sl * 1.008 : sl * 0.992);
-    const deal = {
-      symbol: sym,
-      decision: side,
-      lots: lots,
-      stopLoss: sl,
-      target1: tp || (side === "BUY" ? curPrice * 1.02 : curPrice * 0.98),
-      entry: curPrice
-    };
-
-    await executeBrokerOrder(deal);
+    openTradeExecutionModal({symbol:sym,decision:side,lots,stopLoss:sl,target1:tp,entry:curPrice,previewLeverage,riskDraftKey:draftKey()});
   });
 
   $("resetDirectOrderFormBtn")?.addEventListener("click", () => {
+    invalidateRiskDraft();
+    if ($('directOrderEntry')) $('directOrderEntry').value='';
     if ($("directOrderSL")) $("directOrderSL").value = "";
     if ($("directOrderTP")) $("directOrderTP").value = "";
     if ($("directOrderRiskResult")) $("directOrderRiskResult").style.display = "none";
@@ -5947,10 +5946,12 @@ function initEvents() {
   });
 
   // Execution Modal Dialog actions
+  $("tradeExecutionModal")?.addEventListener('cancel',closeTradeExecutionModal);
   $("closeExecuteModalBtn")?.addEventListener("click", closeTradeExecutionModal);
   $("cancelExecuteBtn")?.addEventListener("click", closeTradeExecutionModal);
   $("confirmExecuteBtn")?.addEventListener("click", () => {
     if (pendingExecutionOrder) {
+      if(pendingExecutionOrder.riskDraftKey&&pendingExecutionOrder.riskDraftKey!==draftKey()){closeTradeExecutionModal();return;}
       executeBrokerOrder(pendingExecutionOrder);
       closeTradeExecutionModal();
     }

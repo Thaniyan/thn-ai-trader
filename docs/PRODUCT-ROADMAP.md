@@ -6,7 +6,37 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
-## Delivery policy
+## PR #17 financial review — 10 November 2026
+
+Continue the existing M3 branch; no main merge or Production deployment.
+[Financial UX review corrections](M3-PR17-FINANCIAL-UX-REVIEW-20261110.md) make
+hypothetical leverage/entry distinct from server-reported paper-account leverage
+and provider-based simulated fills. Explicit paper confirmation, missing-input
+handling, response invalidation, EN/AR and modal theme/accessibility are verified
+on the actual existing application. Financial engines, account state contracts,
+hosted restrictions and rejected PR #16 history remain unchanged. Exact-head
+verification/Preview acceptance and owner financial approval still gate release.
+
+## Current owner roadmap — 9 November 2026
+
+Latest owner direction supersedes historical release shortcuts below. Resume the
+master engineering roadmap through real application work. PR #16's standalone
+prototype is rejected and closed without merge; preserve history, integrate none
+of that design. M1/PR #14 and M2/PR #15 are merged into main `fb92c96`; M0's
+independent audit remains preserved on its audit branch. Production mapping and
+interactive checks remain blocked by proxy CONNECT 403, not established by Git.
+
+M3 is implemented on `feature/m3-risk-context-integrity-20261109`: strict legacy
+risk input validation, explicit entry/leverage, context provenance/freshness,
+bilingual errors and draft invalidation, using unchanged numerical engines.
+See [implementation, evidence and prioritized follow-up](M3-RISK-CONTEXT-INTEGRITY-20261109.md).
+Financial changes require review/owner approval before main integration. Next:
+M3 crash/recovery policy, then M4 quantitative interpretation/comparison/replay
+in the existing Historical Lab/Library, followed by measured M5 usability and
+performance. Identity/persistence/security architecture, paid/model activation
+and broker execution remain separately gated. No disconnected prototypes.
+
+## Historical delivery policy and completed-cycle record
 
 Routine, low-risk improvements: implement, run required gates, review the diff,
 commit/push to main, allow the existing Vercel integration, verify the actual
@@ -21,14 +51,14 @@ Real-money execution, live brokers, destructive data operations, significant
 security changes and new paid infrastructure still require explicit approval.
 Never bypass a critical failure or represent fixtures as real market evidence.
 
-## Current capability map
+## Historical capability map — before M1/M2 integration
 
 Verified main baseline: `a752fa4f533b0376c8d60eab1a450c5fbf9932f9`, containing
 Integrated Research increments 1–3 and the accepted Milestone 4 hierarchy work.
 Production identity and interactive behavior remain separate from local source
 verification and any Git push.
 
-Active candidate: the unified decision workstation overhaul, on
+At this historical checkpoint, the candidate was the unified decision workstation overhaul, on
 `feature/unified-decision-workstation-20261107`. It connects market selection,
 evidence-bound recommendations, AI Research, hypothetical Risk Desk planning and
 saved research. See [implementation, limits and verification](UNIFIED-DECISION-WORKSTATION.md).

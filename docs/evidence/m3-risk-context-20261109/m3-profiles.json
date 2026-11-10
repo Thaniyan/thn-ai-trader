@@ -1,0 +1,117 @@
+{
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "exactRisk": 100,
+      "exactMargin": 550,
+      "validationLocalized": true,
+      "axeViolations": []
+    }
+  ],
+  "lateResponseRejected": true,
+  "contextMismatchBlocked": true,
+  "recordsUnchanged": true,
+  "submittedOrders": 0,
+  "fixture": true
+}

@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-09",
+  "branch": "feature/m3-risk-context-integrity-20261109",
+  "base": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "scope": "Offline fixtures; no broker/model activation or financial state migration",
+  "checks": {
+    "core": {
+      "passed": 287,
+      "failed": 0,
+      "skipped": 0,
+      "log": "core-release.log"
+    },
+    "security": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "log": "security-release.log"
+    },
+    "system": {
+      "passed": 10,
+      "failed": 0,
+      "log": "system-release.log"
+    },
+    "targetedRisk": {
+      "passed": 11,
+      "failed": 0,
+      "log": "risk-targeted.log"
+    },
+    "expandedPaperReview": {
+      "passed": true,
+      "profiles": 12,
+      "axeViolations": 0,
+      "savedReportImmutability": true,
+      "submittedOrders": 0,
+      "log": "browser-full/ci-browser-paper_review.log"
+    },
+    "fullBrowser": {
+      "state": "passed",
+      "requiredSuites": 33,
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "log": "browser-full.log",
+      "portableSummary": "browser-gate.txt"
+    },
+    "build": "passed",
+    "syntaxLint": "passed",
+    "packaging": "passed",
+    "workflow": "passed",
+    "frozenDependencies": "passed",
+    "dependencyAudit": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0
+    },
+    "sourceIntegrity": "passed",
+    "gitFsck": "passed",
+    "professionalBrowser": {
+      "layouts": 288,
+      "geometryFailures": 0,
+      "accessibilityScans": 72,
+      "accessibilityFailures": 0,
+      "errors": []
+    },
+    "systemAssertions": {
+      "system": 49,
+      "legacySystem": 49,
+      "allAssertionLinesUnchanged": true
+    },
+    "runtimeManifest": {
+      "filesMatchingCurrentSource": 82,
+      "testFixturesPackaged": 0
+    },
+    "testSourceHashes": {
+      "tests/browser_paper_review.py": "d2e14e8164dee2d8339672a26bddcb8dfa6b834884b74421c08875166a8336ca",
+      "tests/risk-provider-fixture.js": "91a7ef98df655561447d17694451c462e0e7c01db34569d13711b8d8c221e317",
+      "tests/risk-preview.test.mjs": "1161c0ecb3269b9ce5aa1dd953bcedd8f86c0aa97801f00d534315ef73dac85a",
+      "scripts/ci/run-browsers.py": "be07ff4e67845283fed423f951a6d1576c8262c19b7b454670e3eb4a01827601"
+    }
+  },
+  "tooling": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34",
+    "chromiumRevision": 1234,
+    "axe": "4.10.3"
+  },
+  "protectedSource": [
+    {
+      "file": "server/riskEngine.js",
+      "sha256": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a",
+      "matchesMain": true
+    },
+    {
+      "file": "server/research.js",
+      "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+      "matchesMain": true
+    },
+    {
+      "file": "server/backtest.js",
+      "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+      "matchesMain": true
+    },
+    {
+      "file": "server/evaluation.js",
+      "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+      "matchesMain": true
+    },
+    {
+      "file": "server/decision.js",
+      "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+      "matchesMain": true
+    },
+    {
+      "file": "server/replay.js",
+      "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+      "matchesMain": true
+    },
+    {
+      "file": "public/research-chart.js",
+      "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+      "matchesMain": true
+    },
+    {
+      "file": "server/accountStore.js",
+      "sha256": "a4852a6af1c95fd9dfee80b5c226472cbaa833782dc4e129bd8380883556d10e",
+      "matchesMain": true
+    },
+    {
+      "file": "server/paper-intents.js",
+      "sha256": "92126c2d60c2a0ac1082d4da7cb65ac89dbdf2b3c2c904d62c3754f97d8aaf96",
+      "matchesMain": true
+    },
+    {
+      "file": "bun.lock",
+      "sha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c",
+      "matchesMain": true
+    }
+  ],
+  "artifact": {
+    "runtimeFiles": 82,
+    "artifactFiles": 86,
+    "manifestSHA256": "d1f4482ac463efe303832e3238a3683cc24caf6547bf361aef4a01816660be1c"
+  },
+  "access": {
+    "githubGit": "available",
+    "githubAPI": "Forbidden via api.github.com GraphQL",
+    "production": "proxy CONNECT 403; server envoy; no application response",
+    "preview": "not yet independently identified",
+    "productionIdentity": "unverified",
+    "mainChangedByThisWork": false,
+    "mergeAuthorized": false
+  },
+  "logsRoot": "/tmp/thn-m3-20261109"
+}

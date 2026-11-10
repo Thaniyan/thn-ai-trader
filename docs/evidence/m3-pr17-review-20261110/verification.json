@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-10",
+  "branch": "feature/m3-risk-context-integrity-20261109",
+  "pullRequest": 17,
+  "previousHead": "b6e76ec6cc3bd9b9757071c1575be6b8380d0750",
+  "main": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "scope": "Synthetic local fixtures; financial UI review; no live broker/model activation",
+  "checks": {
+    "core": {
+      "passed": 291,
+      "failed": 0,
+      "skipped": 0
+    },
+    "security": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "system": {
+      "passed": 10,
+      "failed": 0
+    },
+    "targetedAPI": {
+      "passed": 4,
+      "failed": 0,
+      "includesProviderGeometryRejectionAfterValidPreview": true
+    },
+    "targetedBrowser": {
+      "passed": true,
+      "languages": [
+        "en",
+        "ar"
+      ],
+      "widths": [
+        1440,
+        390
+      ],
+      "simulatedOrdersOnlyAfterExplicitConfirmation": 2,
+      "actualStaleProviderRejected": true,
+      "profileEvidence": "risk-paper-boundary.json",
+      "minimumMeasuredTextContrast": 6.439269186760488
+    },
+    "fullBrowser": {
+      "state": "passed",
+      "requiredSuites": 34,
+      "passed": 34,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "summary": "browser-gate.txt"
+    },
+    "build": "passed",
+    "syntaxLint": "passed",
+    "packaging": "passed",
+    "workflow": "passed",
+    "frozenDependencies": "passed",
+    "dependencyAudit": {
+      "policy": "Block high/critical; report lower severity; errors block",
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "moderate": 0,
+        "low": 0,
+        "info": 0
+      },
+      "blocking": false
+    },
+    "canonicalSourceGuard": "passed",
+    "gitFsck": "passed",
+    "runtimeFilesMatchSource": 82,
+    "reportLinks": "passed",
+    "professionalBrowser": {
+      "layouts": 288,
+      "accessibilityScans": 72,
+      "geometryFailures": 0,
+      "accessibilityFailures": 0
+    },
+    "testedSourceHashes": {
+      "public/app.js": "45395d9fa656e17873660c55f4fb84a3767d7683b39ff476f53c70adb72a8e0b",
+      "public/index.html": "86ab61d23f400cbb081424852108bffdb3fa27aae59495e2cb7651fdfdb98d80",
+      "public/workstation.css": "326deb429fe4be450d6cbfd1dd125490a3af93ca3a034fa3e0cf13daacb05252",
+      "server/risk-preview.js": "3144d0c47f3bc2a99a66d1efc40b0e948461455b2f56a7ae9a39489f11471c0b",
+      "tests/risk-paper-boundary.test.mjs": "ec785e9080852361e28b7e4ad235f7e4703851bf1bb2d940e931b198b95890f7",
+      "tests/browser_risk_paper_boundary.py": "56a4edf4f5b052ba925a90f0416c2a5151c878e7bef515e03ba564f3f6497465",
+      "scripts/ci/run-browsers.py": "3bfc7014b8d472cb04b03067ef6870139c49f97de0b4f79ccc0593774d7453c5"
+    }
+  },
+  "preservedSource": {
+    "files": [
+      {
+        "path": "server/research.js",
+        "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/backtest.js",
+        "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/evaluation.js",
+        "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/decision.js",
+        "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/replay.js",
+        "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "public/research-chart.js",
+        "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/riskEngine.js",
+        "sha256": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/brokerAdapters.js",
+        "sha256": "97c15e706ca0874a78c82f3557d470cc448328c03713e1613accb9db1dc27462",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/accountStore.js",
+        "sha256": "a4852a6af1c95fd9dfee80b5c226472cbaa833782dc4e129bd8380883556d10e",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/paper-intents.js",
+        "sha256": "92126c2d60c2a0ac1082d4da7cb65ac89dbdf2b3c2c904d62c3754f97d8aaf96",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server/plan-budget.js",
+        "sha256": "4053ba086869313135d304c5a03ef4ab0654d1c0da73866c6037a983a6e9b85f",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "server.js",
+        "sha256": "72269113213567658d793d74a7f5aab40e390b7cb2cfbf44f43607cc5b7eca6c",
+        "matchesPreviousPRHead": true
+      },
+      {
+        "path": "bun.lock",
+        "sha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c",
+        "matchesPreviousPRHead": true
+      }
+    ],
+    "executeBrokerOrderUnchanged": true
+  },
+  "artifact": {
+    "runtimeFiles": 82,
+    "artifactFiles": 86,
+    "manifestSHA256": "9724ecb309cc1705ca03824f849487c6402120995e1e81b007f2ee13115e07c5"
+  },
+  "tooling": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34",
+    "chromiumRevision": 1234,
+    "axe": "4.10.3"
+  },
+  "access": {
+    "GitHubGitAndPublicPages": "available",
+    "GitHubAPI": "GET api.github.com/repos/Thaniyan/thn-ai-trader/pulls/17 Forbidden",
+    "previousPreviewRead": "CONNECT 403; server envoy; before application response",
+    "newPreview": "requires new-head observation after push",
+    "productionDeployed": false,
+    "mainMergePerformed": false
+  },
+  "diagnostics": {
+    "preliminaryBrowserRun": "interrupted (130) to correct visually detected title/theme defects; not claimed passed",
+    "axeOnlyInitialScan": "missed inherited dark dialog/light foreground defect; direct WCAG contrast assertions added"
+  },
+  "logsRoot": "/tmp/thn-m3-review-20261110"
+}
