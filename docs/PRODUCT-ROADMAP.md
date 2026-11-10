@@ -6,6 +6,22 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Issue 19 candidate — 2026-11-10 (not accepted or deployed)
+
+The active independent development branch is
+`feature/integrated-research-workstation-issue19-20261110`, based on canonical
+main `fb92c9604d16d0df45d3a13096c2f84a6d66546b`. It adds a connected chart,
+cited-evidence, chronological validation, immutable saved-case comparison/replay
+and hypothetical planning workflow in the existing application. See
+[the ownership, implementation and verification report](ISSUE19-INTEGRATED-PROGRAM.md).
+
+PR #17 remains separately financially gated; rejected PR #16 is excluded. The
+Issue 18 disposable failure investigation demonstrates unresolved independent
+audit persistence and corruption gaps. No recovery semantics, financial formulas,
+execution permissions or account architecture are changed. Main integration,
+Production deployment and owner visual acceptance remain outstanding. These
+statements describe a review candidate, not released capabilities.
+
 ## Delivery policy
 
 Routine, low-risk improvements: implement, run required gates, review the diff,

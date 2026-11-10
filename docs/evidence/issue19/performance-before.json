@@ -1,0 +1,62 @@
+{
+  "scope": "Local offline synthetic fixtures; cold browser pages; not WAN/Production performance",
+  "samples": [
+    {
+      "iteration": 0,
+      "readyMs": 639.46,
+      "evaluationMs": 237.64,
+      "planningMs": 173.07,
+      "resources": 70,
+      "encodedBytes": 2340621,
+      "javascriptBytes": 1160149,
+      "cssBytes": 244428,
+      "seriesRequests": 4,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 839028,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    },
+    {
+      "iteration": 1,
+      "readyMs": 547.32,
+      "evaluationMs": 238.16,
+      "planningMs": 250.11,
+      "resources": 70,
+      "encodedBytes": 2340621,
+      "javascriptBytes": 1160149,
+      "cssBytes": 244428,
+      "seriesRequests": 4,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 839028,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    },
+    {
+      "iteration": 2,
+      "readyMs": 584.41,
+      "evaluationMs": 239.37,
+      "planningMs": 245.24,
+      "resources": 70,
+      "encodedBytes": 2340621,
+      "javascriptBytes": 1160149,
+      "cssBytes": 244428,
+      "seriesRequests": 4,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h",
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 839028,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    }
+  ]
+}
