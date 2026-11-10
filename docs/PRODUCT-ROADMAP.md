@@ -6,6 +6,17 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## PR #17 financial review — 10 November 2026
+
+Continue the existing M3 branch; no main merge or Production deployment.
+[Financial UX review corrections](M3-PR17-FINANCIAL-UX-REVIEW-20261110.md) make
+hypothetical leverage/entry distinct from server-reported paper-account leverage
+and provider-based simulated fills. Explicit paper confirmation, missing-input
+handling, response invalidation, EN/AR and modal theme/accessibility are verified
+on the actual existing application. Financial engines, account state contracts,
+hosted restrictions and rejected PR #16 history remain unchanged. Exact-head
+verification/Preview acceptance and owner financial approval still gate release.
+
 ## Current owner roadmap — 9 November 2026
 
 Latest owner direction supersedes historical release shortcuts below. Resume the

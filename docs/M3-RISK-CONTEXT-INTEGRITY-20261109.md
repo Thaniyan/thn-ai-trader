@@ -1,5 +1,7 @@
 # M3 — strict financial preview inputs and contextual risk integrity
 
+**10 November review update:** see [PR #17 financial UX corrections and current verification](M3-PR17-FINANCIAL-UX-REVIEW-20261110.md). Counts and screenshots below describe the preceding candidate.
+
 Owner direction resumed on 9 November 2026. This is a working change to the
 existing application, not a standalone design. Dedicated branch:
 `feature/m3-risk-context-integrity-20261109`. Financial review and explicit owner

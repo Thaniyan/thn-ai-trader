@@ -453,8 +453,8 @@
                   <input id="directOrderEntry" type="number" min="0" step="any" aria-describedby="directOrderContext" />
                 </label>
                 <label>
-                  <span>Hypothetical leverage</span>
-                  <input id="directOrderLeverage" type="number" min="1" max="2000" step="1" value="200" />
+                  <span>Leverage for hypothetical preview only</span>
+                  <input id="directOrderLeverage" aria-describedby="directOrderBoundary" type="number" min="1" max="2000" step="1" value="200" />
                 </label>
                 <label>
                   <span>Protective Stop Loss (Price)</span>
@@ -469,6 +469,7 @@
                   <button type="button" class="ghost" id="checkOrderRiskBtn" style="height: 40px; margin-top: 4px;">🛡️ Verify Margin &amp; Risk</button>
                 </label>
               </div>
+              <p id="directOrderBoundary" class="tiny trust-copy" aria-live="polite"></p>
               <p id="directOrderContext" class="tiny trust-copy" aria-live="polite"></p>
               <div id="directOrderRiskResult" role="status" aria-live="polite" class="status-line" style="margin-top: 12px; display: none;"></div>
               <div style="margin-top: 16px; display: flex; gap: 10px;">
@@ -1764,10 +1765,10 @@
       </dialog>
 
       <!-- Instant Trade Execution Confirmation Dialog -->
-      <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog">
+      <dialog id="tradeExecutionModal" class="log-trade-dialog execute-dialog" aria-labelledby="paperReviewTitle" aria-describedby="executeOrderDesc">
         <div class="log-trade-form">
           <div class="dialog-head">
-            <h3 data-i18n="executeOrderTitle">⚡ Paper execution · local only</h3>
+            <h3 id="paperReviewTitle">Review local paper request</h3>
             <button type="button" class="toast-close-btn" id="closeExecuteModalBtn">&times;</button>
           </div>
           <p class="tiny trust-copy" id="executeOrderDesc">

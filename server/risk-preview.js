@@ -3,7 +3,7 @@ import {getContractSpec,calculateOrderRisk} from './riskEngine.js';
 import {INTERVAL_MS} from './research.js';
 const supported=/^(EURUSD|GBPUSD|AUDUSD|NZDUSD|USDJPY|USDCHF|USDCAD|XAUUSD|XAGUSD|USOIL|BRENT|BTCUSD|BTCUSDT|ETHUSD|ETHUSDT|SPX|NAS100|US30)$/;
 const messages={
- INVALID_RISK_INPUT:['Use finite numeric lots, entry, stop, target and leverage.','أدخل قيماً رقمية محدودة للحجم والدخول والوقف والهدف والرافعة.'],
+ INVALID_RISK_INPUT:['Use finite numeric lots, entry, stop, target and leverage; blank inputs are not values and prices must be positive.','أدخل قيماً رقمية صريحة للحجم والدخول والوقف والهدف والرافعة؛ لا تُقبل الحقول الفارغة ويجب أن تكون الأسعار موجبة.'],
  UNSUPPORTED_RISK_CONTRACT:['Select a supported instrument and explicit BUY or SELL direction.','اختر أداة مدعومة واتجاه شراء أو بيع صريحاً.'],
  INVALID_LEVERAGE:['Leverage must be between 1 and 2000; no default or clamping is applied.','يجب أن تكون الرافعة بين 1 و2000؛ لا تُطبق قيمة بديلة أو تعديل تلقائي.'],
  AMBIGUOUS_ENTRY:['Entry and current price disagree. Supply one explicit hypothetical entry.','سعر الدخول والسعر الحالي مختلفان. أدخل سعر دخول افتراضياً واحداً صريحاً.'],

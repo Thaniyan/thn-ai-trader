@@ -1,0 +1,60 @@
+{
+  "scope": "Synthetic local paper only; no broker or model",
+  "profiles": [
+    {
+      "language": "en",
+      "width": 1440,
+      "previewLeverage": 2000,
+      "paperAccountLeverage": 200,
+      "executedPrice": 1.08595,
+      "hypotheticalEntry": 1.1,
+      "ordersAfterExplicitConfirmOnly": 1,
+      "axeViolations": 0,
+      "textContrastRatios": [
+        15.918361079471211,
+        8.166734070895393
+      ],
+      "blankInputsRejected": [
+        "entry",
+        "leverage",
+        "target"
+      ],
+      "lateResponsesInvalidated": [
+        "language",
+        "context",
+        "account"
+      ],
+      "obsoleteConfirmationCanceled": true,
+      "escapeRestoresFocus": true,
+      "errors": []
+    },
+    {
+      "language": "ar",
+      "width": 390,
+      "previewLeverage": 2000,
+      "paperAccountLeverage": 200,
+      "executedPrice": 1.08595,
+      "hypotheticalEntry": 1.1,
+      "ordersAfterExplicitConfirmOnly": 1,
+      "axeViolations": 0,
+      "textContrastRatios": [
+        14.468093395198201,
+        6.439269186760488
+      ],
+      "blankInputsRejected": [
+        "entry",
+        "leverage",
+        "target"
+      ],
+      "lateResponsesInvalidated": [
+        "language",
+        "context",
+        "account"
+      ],
+      "obsoleteConfirmationCanceled": true,
+      "escapeRestoresFocus": true,
+      "errors": []
+    }
+  ],
+  "actualStaleProviderRejectedENAR": true
+}
