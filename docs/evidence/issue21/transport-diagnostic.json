@@ -1,0 +1,28 @@
+{
+  "observedFailure": {
+    "suite": "consistency",
+    "location": "tests/browser_consistency.py:55",
+    "operation": "Route.fetch POST /api/analyze",
+    "error": "socket hang up",
+    "stage": "held-response capture, before ordering assertions"
+  },
+  "isolatedInstrumentedRuns": [
+    {
+      "exit": 0,
+      "olderResponseRiskPct": 0.5,
+      "newerResponseRiskPct": 0.7,
+      "retainedRiskPct": 0.7
+    },
+    {
+      "exit": 0,
+      "olderResponseRiskPct": 0.5,
+      "newerResponseRiskPct": 0.7,
+      "retainedRiskPct": 0.7
+    }
+  ],
+  "applicationChangesFromInvestigation": [],
+  "testChangesFromInvestigation": [],
+  "confirmed": "The shared packaged server served subsequent suites; isolated browser traces showed expected cancellation on instrument change.",
+  "unresolved": "The precise origin of the upstream TCP reset is not established.",
+  "publicationGate": "A fresh complete browser pass and exact-head CI are required; recurrence blocks publication."
+}

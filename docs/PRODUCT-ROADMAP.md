@@ -6,6 +6,20 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Authoritative Issue 21 — Trading Command Center
+
+Owner direction 2026-11-10: [Issue #21](https://github.com/Thaniyan/thn-ai-trader/issues/21).
+The owner rejects PR #20 as the final visual/product outcome but explicitly
+approves evolving its verified functionality on the same review branch. The
+single main page now integrates a catalog-backed chooser, the owned two-mode
+chart, qualified evidence assessment, existing-engine candidate references,
+conditional reasoning, the original risk planner/cost controls and research
+saving. See [implementation and acceptance](ISSUE21-COMMAND-CENTER.md).
+This remains a candidate. Main and Production require explicit owner approval.
+PR #17 and Issue #18 remain separate; genuine hosted model generation is off.
+The November 17, 2026 target is an owner review/release decision, not permission
+to bypass safeguards or claim a model is running.
+
 ## Issue 19 candidate — 2026-11-10 (not accepted or deployed)
 
 The active independent development branch is

@@ -42,7 +42,7 @@ with sync_playwright() as p:
  expect(s.locator('.pro-technical-card #proTechnicalEvidence')).to_be_visible();assert s.locator('.pro-technical-card dt').all_text_contents()==['EMA20','RSI14','ATR14']
  assert s.locator('#evoDashboard .evo-desk-metrics .evo-metric').count()==3
  assert s.locator('#evoDashboard .evo-desk-metrics strong').nth(0).inner_text()==s.evaluate('String(THNLibrary.records().length)')
- go('markets');s.go_back();expect(s.locator('#proRouteTitle')).to_have_text('Chart' if s.url.endswith('#trading') else 'Workspace')
+ go('markets');s.go_back();expect(s.locator('#proRouteTitle')).to_have_text('Chart' if s.url.endswith('#trading') else 'Trading Command Center')
  levels=control(s,'#proSummaryLevels');expect(levels).to_be_visible()
  frame=s.evaluate('THNDecision.brief().frames.find(f=>f.interval===THNContext.get().interval)')
  for value in [frame['support'],frame['resistance']]:assert s.evaluate('(v)=>THNPresentation.price(v,"GBPUSD")',value) in s.locator('#proSummaryLevels').inner_text()

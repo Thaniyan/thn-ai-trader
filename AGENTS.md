@@ -32,6 +32,18 @@ Keep PR #17 separate and subject to financial approval. Preserve every existing
 gate, hosted execution restriction, and canonical linear history. After approval,
 integrate promptly through the existing release workflow without force pushes.
 
+## Authoritative Issue #21 — 2026-11-10
+
+The owner explicitly authorizes evolving the existing PR #20 candidate into the
+AI-first Trading Command Center defined in GitHub Issue #21, reusing verified
+research functionality. Continue on its existing feature branch rather than
+accumulating another major branch. This supersedes the earlier visual scope,
+not the release gates. Target owner review: November 17, 2026 (Asia/Muscat).
+Keep genuine model execution disabled unless separately authorized and verified.
+Use existing engine results and planner; never invent prices, probabilities or
+execution approval. Keep PR #17 and Issue #18 financial work separate. No merge
+into main or Production deployment without explicit owner release approval.
+
 ## Release requirements
 
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.

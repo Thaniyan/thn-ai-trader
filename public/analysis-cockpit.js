@@ -50,6 +50,7 @@ document.addEventListener('click',event=>{
 // selected context and the source disclosure remain above it; no data is hidden.
 const narrowDesk=matchMedia('(max-width:760px)');
 function placeHomeEvidence(){
+ if(window.THNCommand){window.THNCommand.evidenceHost.append(homeEvidence);homeEvidence.classList.remove('home-evidence-after-chart');return;}
  const below=narrowDesk.matches&&$('view-dashboard').classList.contains('view-active');
  homeEvidence.classList.toggle('home-evidence-after-chart',below);
  if(below)$('proTerminal').after(homeEvidence);else $('evoDeskLead').append(homeEvidence);
