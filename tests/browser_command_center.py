@@ -63,9 +63,20 @@ with sync_playwright() as p:
  expect(page.locator('#commandActionStatus')).to_contain_text('Review cancelled');assert page.evaluate('THNContext.get()')==before_cancel;assert not page.evaluate('document.getElementById("analyzeBtn").disabled');page.unroute('**/api/analyze')
  assert not any('/api/order' in url or '/api/paper/' in url for url in posts)
  # A delayed old symbol is aborted when the user chooses a new instrument; no cross-context setup.
+ # Fresh analysis alone is not sufficient: keep the independent current brief pending.
+ held_briefs=[]
+ def delayed_current_brief(route):
+  if 'symbol=GBPUSD' in route.request.url:
+   held_briefs.append(route);page.evaluate('window.__commandBriefHeld=true')
+  else:positive_brief(route)
+ page.route('**/api/research/brief?**',delayed_current_brief)
  page.route('**/api/analyze',lambda route:pending.append(route) if route.request.post_data_json.get('symbol')=='USDJPY' else positive_analysis(route));page.evaluate('THNCommand.pick("USDJPY")');page.wait_for_function('THNContext.get().symbol==="USDJPY"&&document.getElementById("analyzeBtn").disabled')
  with page.expect_event('requestfailed',predicate=lambda request:request.url.endswith('/api/analyze') and request.post_data_json.get('symbol')=='USDJPY'):page.evaluate('THNCommand.pick("GBPUSD")')
- [route.abort() for route in pending];pending.clear();page.wait_for_function('THNCommand.state().fresh&&THNContext.get().symbol==="GBPUSD"');assert page.evaluate('THNCommand.state().candidate?.symbol')=='GBPUSD';assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved;page.unroute('**/api/analyze')
+ [route.abort() for route in pending];pending.clear();page.wait_for_function('window.__commandBriefHeld&&THNCommand.state().fresh&&THNContext.get().symbol==="GBPUSD"')
+ assert page.evaluate('THNDecision.brief()') is None;assert page.evaluate('THNCommand.state().candidate') is None;assert page.evaluate('THNCommand.state().recommendation.action')=='WAIT';assert 'incomplete_frames' in page.evaluate('THNCommand.state().warnings');assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved
+ for route in held_briefs:positive_brief(route)
+ held_briefs.clear()
+ page.wait_for_function('THNCommand.state().fresh&&THNContext.get().symbol==="GBPUSD"&&THNDecision.brief()?.symbol==="GBPUSD"&&THNDecision.brief()?.interval===THNContext.get().interval&&THNDecision.brief()?.selected?.provenance?.hash===THNContext.get().datasetId');assert page.evaluate('THNCommand.state().candidate?.symbol')=='GBPUSD';assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved;page.unroute('**/api/analyze');page.unroute('**/api/research/brief?**',delayed_current_brief)
  # Same single planner returns to Risk Desk; all nine original routes remain usable.
  for view in ['trading','ai','risk','portfolio','journal','brokers','settings','markets','dashboard']:
   page.locator('.nav-stack [data-view='+view+']').click();expect(page.locator('#view-'+view)).to_be_visible()

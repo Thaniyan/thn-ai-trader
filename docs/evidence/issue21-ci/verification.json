@@ -1,0 +1,359 @@
+{
+  "scope": "Local full release gate; offline packaged application with pinned Chromium and process-only hosted-style fonts. Exact official container execution is blocked locally and must pass hosted CI after push.",
+  "baseCommit": "38b195733c9830aeed081072894a17a2da74b15f",
+  "branch": "feature/integrated-research-workstation-issue19-20261110",
+  "verifiedAtUTC": "2026-11-11T15:54:12.503349+00:00",
+  "nativeFontChecks": [
+    {
+      "configuration": "workspace",
+      "arabicFallbackFamily": "Noto Sans Arabic",
+      "glyphs": "\u062a\u062d\u0644\u064a\u0644 \u0627\u0644\u0633\u0648\u0642",
+      "coverage": "all non-space characters present in the real font character map"
+    },
+    {
+      "configuration": "hosted-style",
+      "arabicFallbackFamily": "DejaVu Sans",
+      "glyphs": "\u062a\u062d\u0644\u064a\u0644 \u0627\u0644\u0633\u0648\u0642",
+      "coverage": "all non-space characters present in the real font character map"
+    }
+  ],
+  "counts": {
+    "coreNumericalUnitIntegration": 322,
+    "system": 10,
+    "security": 21,
+    "browserSuites": 36,
+    "retainedFontProfiles": 48,
+    "dashboardFontProfiles": 24
+  },
+  "toolchain": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "python": "3.12.14",
+    "playwright": "1.62.0",
+    "chromiumRevision": 1234,
+    "chromium": "151.0.7922.34",
+    "axe": "4.10.3"
+  },
+  "ciImage": "mcr.microsoft.com/playwright/python:v1.62.0-noble@sha256:aa81288e738725378becba5b3e06cb0f3a7f012a610e87e8d767a090ea3f740d",
+  "localImageBlocker": {
+    "redirectHost": "centralus.data.mcr.microsoft.com",
+    "error": "CONNECT 403; Docker image configuration download Forbidden",
+    "policyChanged": false
+  },
+  "hostedCI": "Pending new exact-head run after pushing this correction; this file does not claim a hosted result.",
+  "nonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.1
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 1.91
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 15.35
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.41
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.6
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.23
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.88
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.26
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 15.04
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 2.03
+    }
+  ],
+  "browserShards": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 1000.9
+  },
+  "browserSuites": [
+    {
+      "suite": "workstation",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 33.39
+    },
+    {
+      "suite": "research",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 40.37
+    },
+    {
+      "suite": "research_outage",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 4.04
+    },
+    {
+      "suite": "quality",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 38.16
+    },
+    {
+      "suite": "decision",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 49.32
+    },
+    {
+      "suite": "library_reliability",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 4.02
+    },
+    {
+      "suite": "maturity",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 57.67
+    },
+    {
+      "suite": "terminal",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 144.23
+    },
+    {
+      "suite": "intelligence",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 32.06
+    },
+    {
+      "suite": "intelligence_memory",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 5.47
+    },
+    {
+      "suite": "layout",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 46.97
+    },
+    {
+      "suite": "pilot",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 24.4
+    },
+    {
+      "suite": "trust",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 50.56
+    },
+    {
+      "suite": "professional",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 176.26
+    },
+    {
+      "suite": "journal_lifecycle",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 56.47
+    },
+    {
+      "suite": "trading_remediation",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 74.47
+    },
+    {
+      "suite": "evolution",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 80.84
+    },
+    {
+      "suite": "consolidation",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 31.83
+    },
+    {
+      "suite": "experience",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 73.9
+    },
+    {
+      "suite": "consistency",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 40.53
+    },
+    {
+      "suite": "recovery",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 147.86
+    },
+    {
+      "suite": "assisted_desk",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 11.96
+    },
+    {
+      "suite": "paper_review",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 8.0
+    },
+    {
+      "suite": "evidence_workflow",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 59.63
+    },
+    {
+      "suite": "broker_workspace",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 23.28
+    },
+    {
+      "suite": "visual_refinement",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 21.12
+    },
+    {
+      "suite": "workflow_polish",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 74.04
+    },
+    {
+      "suite": "visual_identity",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 67.17
+    },
+    {
+      "suite": "confidence",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 63.48
+    },
+    {
+      "suite": "dashboard_confidence",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 23.4
+    },
+    {
+      "suite": "research_risk",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 56.93
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 64.66
+    },
+    {
+      "suite": "unified_workspace",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 105.93
+    },
+    {
+      "suite": "research_studio",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 70.1
+    },
+    {
+      "suite": "responsive_fonts",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 35.87
+    },
+    {
+      "suite": "command_center",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 28.14
+    }
+  ],
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [1.00ms]\n"
+  },
+  "preservedSource": {
+    "previousHead": "38b195733c9830aeed081072894a17a2da74b15f",
+    "applicationPackageSourceDrift": [],
+    "artifactManifestSha256": "dce82025da1d0c9bd39c7970705603bdbf650d6fd14b4fc041a30f8bf9428d35"
+  },
+  "originalBrowserAssertionsAndRosterPreserved": true,
+  "assertionPreservation": {
+    "originalAssertions": 46,
+    "currentAssertions": 51,
+    "removedOrAlteredAssertions": {},
+    "addedAssertions": 5
+  },
+  "commandCenterChange": "Deterministically hold the independent brief, assert WAIT/no candidate, then await matching brief before the unchanged candidate assertion.",
+  "reviewedSourceSHA256": {
+    ".github/workflows/ci.yml": "792d08387895478fd7f64eeb9f7ae6ebd8a013dc8bef3386871a971324c4a8a2",
+    "scripts/ci/check-browser-environment.py": "166823a06c6d898be2e9f75b1b2b7a4eadb6373938f8b4bf5b28f3dec3421ad4",
+    "tests/browser-environment.test.mjs": "ae45308c95c1ed7f281aa342cb922b696058ec1ef017b85f554a38d5695fad21",
+    "tests/browser_command_center.py": "efdafe9444cc5223f65f1228195b8870a2f031e39b50203766a2b39c40729b38"
+  },
+  "noMergeOrProductionDeployment": true
+}
