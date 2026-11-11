@@ -41,6 +41,43 @@ def validate_fonts(packages, arabic_fonts):
     require(bool(arabic_fonts.strip()), 'Arabic glyph font coverage unavailable')
 
 
+def validate_dejavu_rendering(fonts, weight):
+    expected = 'DejaVuSans-Bold' if weight == 700 else 'DejaVuSans'
+    require(bool(fonts) and all(font.get('familyName') == 'DejaVu Sans' and
+            font.get('postScriptName') == expected and font.get('glyphCount', 0) > 0 and
+            font.get('isCustomFont') is False for font in fonts),
+            'Chromium substituted the required DejaVu Sans profile: ' + json.dumps(fonts))
+
+
+def verify_dejavu_rendering(page):
+    results = []
+    cdp = page.context.new_cdp_session(page)
+    try:
+        cdp.send('DOM.enable')
+        cdp.send('CSS.enable')
+        for language in ('en', 'ar'):
+            for theme in ('dark', 'light'):
+                for width in (240, 160):
+                    for weight in (400, 700):
+                        page.set_viewport_size({'width': width, 'height': 400})
+                        text = 'EURUSD / 1h' if language == 'en' else 'تحليل السوق EURUSD'
+                        direction = 'rtl' if language == 'ar' else 'ltr'
+                        colors = 'color:white;background:black' if theme == 'dark' else 'color:black;background:white'
+                        page.set_content(f'<html lang="{language}" dir="{direction}"><body style="{colors}">'
+                                         f'<strong id="font-probe" style="font-family:DejaVu Sans,sans-serif;font-weight:{weight}">'
+                                         f'{text}</strong></body></html>')
+                        page.evaluate('document.fonts.ready')
+                        document = cdp.send('DOM.getDocument')
+                        node = cdp.send('DOM.querySelector', {'nodeId': document['root']['nodeId'], 'selector': '#font-probe'})
+                        fonts = cdp.send('CSS.getPlatformFontsForNode', {'nodeId': node['nodeId']})['fonts']
+                        validate_dejavu_rendering(fonts, weight)
+                        results.append({'language': language, 'theme': theme, 'width': width,
+                                        'weight': weight, 'renderedFonts': fonts})
+    finally:
+        cdp.detach()
+    return results
+
+
 def arabic_font_family():
     # libfontconfig1 is an upstream required dependency; its optional CLI is not.
     # Inspect the matched font's real character map without adding an OS package.
@@ -116,6 +153,7 @@ def main():
             page.set_content('<html lang="ar" dir="rtl"><body><button>تحليل السوق</button></body></html>')
             require(page.get_by_role('button', name='تحليل السوق').is_visible(), 'Arabic browser smoke failed')
             require(page.evaluate('getComputedStyle(document.body).direction') == 'rtl', 'RTL browser smoke failed')
+            dejavu_profiles = verify_dejavu_rendering(page)
         finally:
             browser.close()
     require(bool(os.environ.get('GITHUB_ENV')), 'GITHUB_ENV is required to bind every suite to the checked browser')
@@ -123,7 +161,8 @@ def main():
         output.write('CHROMIUM_PATH=' + executable + '\n')
     print(json.dumps({'playwright': version, 'chromiumRevision': CHROMIUM_REVISION,
                       'chromium': CHROMIUM_VERSION, 'executable': executable,
-                      'fontPackages': packages, 'arabicFontFamily': arabic}, indent=2))
+                      'fontPackages': packages, 'arabicFontFamily': arabic,
+                      'dejavuRenderedProfiles': dejavu_profiles}, indent=2))
 
 
 if __name__ == '__main__':

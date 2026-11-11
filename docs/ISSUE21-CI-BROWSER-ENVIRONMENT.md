@@ -103,3 +103,53 @@ PR20 candidate. Main and Production are not modified by this correction. Rollbac
 of this CI-only change is a normal revert of its commit on the candidate branch,
 not a reset, force push or change to production settings. Reverting would restore
 the known failing setup and does not constitute a verified release.
+
+## DejaVu-specific follow-up
+
+The exact-head runs at `d4856d224e0517d8acc00216ed721038c42f7a6c` completed
+browser setup and passed shard 0, but both failed `browser_evidence_workflow.py:61`.
+The owner retrieved the trace: Chromium used `Liberation Sans` / `LiberationSans-Bold`
+when the original assertion explicitly required DejaVu. Evidence:
+https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6801043623 .
+The nine upstream Playwright font packages do not guarantee this additional
+suite-specific family. The earlier preflight checked Arabic coverage but missed
+the explicitly requested DejaVu font. No application regression is established
+by this substitution, and the original font assertion is preserved byte-for-byte.
+
+`install-test-fonts.py` supplements the same pinned image with the official
+[DejaVu 2.37 TTF release](https://github.com/dejavu-fonts/dejavu-fonts/releases/tag/version_2_37),
+SHA-256 `fa9ca4d13871dd122f61258a80d01751d603b4d3ee14095d65453b4e846e17d7`.
+All 22 fonts and the upstream license are retained in a job-private temporary
+directory. A process-scoped Fontconfig file includes the complete existing
+configuration and adds that directory. It removes no fonts, adds no aliases,
+changes no application CSS, and requires no APT, root access or new dependency.
+The installer rejects a mismatched checksum before writing fonts and never
+extracts arbitrary archive paths. Download and checksum errors remain blocking.
+
+The existing preflight now also inspects actual Chromium glyph rendering with
+`CSS.getPlatformFontsForNode`: DejaVu Sans / DejaVuSans and DejaVuSans-Bold,
+non-custom fonts, positive glyph counts, EN/AR, dark/light and 240/160 widths
+(16 combinations). Liberation substitution, missing glyphs, wrong styles or web
+font substitution fail preflight before the original full regression gate runs.
+
+Local controlled diagnosis exposed only Liberation in the base font configuration,
+reproduced substitution, then added the verified fonts while preserving that same
+base. All 16 actual renderer profiles passed afterward. The complete original
+Evidence Workflow suite also passed, including its eight fallback profiles and axe
+checks. This is distinct from exact Docker execution, which remains locally
+proxy-blocked; the new hosted exact-head run must verify the image plus supplement.
+
+Final follow-up verification passed: 323 core/numerical/unit/integration tests,
+10 system, 21 security, all 36 browser suites (994.47 seconds), 72 responsive font
+profiles, build, lint, production packaging, frozen install, dependency audit,
+actionlint, source/numerical integrity and Git fsck. Every original browser file,
+suite selection, assertion and timeout is byte-identical to the `d4856d2` baseline.
+The separate controlled diagnostic reproduced the exact reported
+`LiberationSans-Bold`, non-custom, 11-glyph result before supplementation.
+
+- [Actual Chromium before/after font records](evidence/issue21-ci/dejavu-renderer.json)
+- [Full local verification and source fingerprints](evidence/issue21-ci/dejavu-verification.json)
+
+These records describe local gates before commit. The release report must also
+record the new exact-head hosted conclusions and matching Preview association;
+neither this local evidence nor an earlier deployment substitutes for those gates.
