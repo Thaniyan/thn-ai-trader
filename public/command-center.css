@@ -213,12 +213,14 @@
  .command-center #commandQuickAssessment .home-conviction{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;margin:0}
  .command-center #commandQuickAssessment .home-confidence-ring{width:44px;height:44px;flex:0 0 44px;padding:4px}
  .command-center #commandQuickAssessment .home-confidence-ring strong{font-size:18px}
- .command-center #commandQuickAssessment .home-consensus{padding:0}
+ /* Keep inline grade/caveat rows on the card's text rhythm, not the 23.1px body strut. */
+ .command-center #commandQuickAssessment .home-consensus{padding:0;font-size:10px;line-height:1.5}
  .command-center #commandQuickAssessment .home-consensus>span{font-size:8px}
  .command-center #commandQuickAssessment .home-consensus h2{font-size:12px;line-height:1.5;margin:2px 0}
  .command-center #commandQuickAssessment .home-consensus p,.command-center #commandQuickAssessment .home-consensus small{font-size:9px;line-height:1.5;margin:2px 0}
  .command-center #commandQuickAssessment button{min-height:24px;font-size:10px;padding:3px 6px;margin-top:3px}
  .command-center #commandChartHost #proSelectedContext,.command-center #commandChartHost #proTerminalTitle{display:none}
+ .command-center #commandChartHost .pro-terminal-head{row-gap:6px}
 }
 @media(max-width:260px){.command-center #commandQuickAssessment .home-conviction{flex-wrap:wrap}}
 

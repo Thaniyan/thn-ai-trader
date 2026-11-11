@@ -198,3 +198,16 @@ The original coordinator status is explicitly labeled “Full review” on the m
 page, distinguishing its incomplete/full-review lifecycle from an already
 available technical snapshot. The original status text, assertions and owner
 remain unchanged.
+
+### Hosted mobile font acceptance — 2026-11-11
+
+The owner's complete CI trace identified the actual release blocker as the unchanged
+hierarchy suite's 390 EN/dark chart placement, not teardown or the earlier local
+transport event. A process-only Ubuntu-style font profile reproduced its exact
+`750.640625px` position. Native header growth was 4.921875px; the confidence card
+also inherited an unnecessarily tall body line box. Correct mobile text rhythm
+and chart-header spacing now leave over 20px of margin across measured 390px
+DejaVu/Liberation cases, preserving all content and original bounds. See
+[reproduction, before/after screenshots and gate evidence](evidence/issue21-mobile/README.md).
+The existing font suite adds Dashboard coverage; all original assertions,
+thresholds, numerical rules and timeouts remain unchanged.
