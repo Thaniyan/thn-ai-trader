@@ -44,6 +44,17 @@ Use existing engine results and planner; never invent prices, probabilities or
 execution approval. Keep PR #17 and Issue #18 financial work separate. No merge
 into main or Production deployment without explicit owner release approval.
 
+## Owner professional refinement — 2026-11-11
+
+Continue PR #20 on its existing branch toward the evidence-first Command Center,
+per https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6803982233 .
+The green `7fedc5b` candidate is a review baseline, not release approval. Improve
+the real chart, coordinate-linked references, multi-timeframe/contrary evidence,
+context provenance and EN/AR responsive workflow. Preserve the numerical engines,
+financial restrictions, all original modules and full CI gates. Provide genuine
+before/after captures and an exact-head Preview for owner acceptance. PR #17 and
+Issue #18 stay separate. No main merge or Production deployment is authorized.
+
 ## Release requirements
 
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.

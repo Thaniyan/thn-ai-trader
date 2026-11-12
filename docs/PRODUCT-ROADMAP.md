@@ -22,6 +22,14 @@ to bypass safeguards or claim a model is running.
 
 ## Issue 19 candidate — 2026-11-10 (not accepted or deployed)
 
+Owner update 2026-11-11: the CI-green `7fedc5b` candidate remains unaccepted.
+Continue the same PR #20 with an integrated evidence workbench, retained chart
+coordinate-linked level inspection, source identity, independent timeframe
+drill-down and opposing school evidence. Use the original planner, records and
+navigation owners. See [professional review evidence](COMMAND-CENTER-PROFESSIONAL-REVIEW.md)
+for measured before/after application captures and release gates. Main and
+Production remain withheld pending explicit owner approval.
+
 The active independent development branch is
 `feature/integrated-research-workstation-issue19-20261110`, based on canonical
 main `fb92c9604d16d0df45d3a13096c2f84a6d66546b`. It adds a connected chart,
