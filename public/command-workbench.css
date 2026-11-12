@@ -85,3 +85,132 @@ html[data-theme=light] .desk-primary-actions button:first-child{color:#fff}
  .command-center #commandQuickAssessment .home-consensus .eyebrow{font-size:9px}
  .command-center #commandQuickAssessment button{min-height:28px;font-size:10px;margin-top:3px;padding:3px 7px}
 }
+
+/* Owner acceptance pass: one chart-led desk, progressively disclosed evidence. */
+.command-center #view-dashboard{--desk-ink:var(--text)}
+.command-center body:has(#view-dashboard.view-active) .terminal-topbar{padding:10px 16px;min-height:0;margin-bottom:8px;border-radius:8px}
+.command-center body:has(#view-dashboard.view-active) .terminal-topbar .brand-titles h1{font-size:23px;line-height:1.4;margin:0}
+.command-center #view-dashboard #evoDeskLead{padding:10px 14px;gap:6px 14px;border-radius:8px;margin-block:8px 12px}
+.command-center #view-dashboard #evoLeadControls{gap:2px}
+.command-center #view-dashboard #evoLeadControls .q-context{max-width:none}
+.command-center #view-dashboard #evoFlow{gap:8px;margin:4px 0 0;padding:0;font-size:10px}
+.command-center #view-dashboard #evoFlow button{min-height:24px;font-size:10px;padding:3px 6px}
+.command-center #view-dashboard .desk-primary-actions{max-width:360px;justify-content:flex-end;gap:5px}
+.command-center #view-dashboard .desk-primary-actions button{min-height:32px;font-size:11px;padding:7px 10px}
+.command-center #view-dashboard #evoDeskLead>.desk-source-strip{padding-top:5px;gap:5px 12px;font-size:9px}
+.command-center #view-dashboard .desk-source-strip strong{font-size:11px}.command-center #view-dashboard .desk-source-strip button{font-size:10px;min-height:26px}
+.command-center #view-dashboard .command-grid{margin-top:10px;gap:12px}
+.command-center #commandChartHost .pro-terminal-head{padding:10px 12px;gap:8px}
+.command-center #commandChartHost #proTerminalSymbol{font-size:25px;line-height:1.2}
+.command-center #commandChartHost .q-chart-panel{padding:10px 12px}
+.command-center #commandChartHost .q-chart-panel>.panel-head{margin:0 0 5px;padding:0;min-height:24px}
+.command-center #commandChartHost .q-chart-panel>.panel-head h2{font-size:10px;margin:0}
+.command-center #commandChartHost .q-chart-panel>.panel-head button{font-size:10px;min-height:24px;padding:3px 6px}
+.command-center #commandChartHost .q-layer-controls{gap:4px;margin:4px 0;padding:0}
+.command-center #commandChartHost .q-layer-controls button{font-size:10px;min-height:26px;padding:5px 7px}
+.command-center #commandChartHost #studioChartTools{margin:4px 0;padding:0;gap:4px}
+.command-center #commandChartHost #studioRanges{gap:4px}.command-center #commandChartHost #studioRanges button{min-height:26px;font-size:10px;padding:5px 8px}
+.command-center #commandChartHost .q-canvas-shell #qCandles{height:560px;max-height:560px}
+.desk-chart-navigation{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:5px 0;font-size:9px;letter-spacing:.08em;color:var(--muted)}
+.desk-chart-navigation>div{display:flex;flex-wrap:wrap;gap:4px}.desk-chart-navigation button{font-size:10px;min-height:28px;padding:4px 8px;letter-spacing:0}
+.desk-candle-readout{display:flex;flex-wrap:wrap;align-items:center;gap:5px 14px;border-block:1px solid var(--border);padding:8px 0;margin-bottom:6px;font-size:10px;line-height:1.5;min-width:0}
+.desk-bar-time{display:grid;gap:2px;color:var(--muted);font-size:9px}.desk-bar-time b{font-weight:500;color:var(--text)}
+.desk-candle-readout dl{display:flex;flex-wrap:wrap;gap:8px 12px;margin:0;font-variant-numeric:tabular-nums}.desk-candle-readout dl>div{display:flex;gap:5px}.desk-candle-readout dt{color:var(--muted)}.desk-candle-readout dd{margin:0;font-weight:600}
+.desk-candle-readout button{font-size:10px;min-height:28px;padding:4px 8px;margin-inline-start:auto}
+.command-center #commandAssessment{padding:16px;gap:12px;border-radius:8px}
+.command-center .command-verdict h1{font-size:24px;line-height:1.3;margin:8px 0}
+.command-center .command-verdict p{font-size:11px;margin:5px 0;line-height:1.6}
+.command-center #commandConfluence{font-size:20px}
+.command-center #commandAssessment #dashboardConviction{padding:8px 0;margin:0;border-block:1px solid var(--border);gap:9px}
+.command-center #commandAssessment .home-confidence-ring{width:44px;height:44px;flex-basis:44px}.command-center #commandAssessment .home-confidence-ring strong{font-size:18px}
+.command-center #commandAssessment .home-consensus h2{font-size:12px;margin:2px 0}.command-center #commandAssessment .home-consensus p{margin:2px 0;font-size:9px}
+.command-center #commandAssessment .home-consensus>span{font-size:8px}
+.command-center #commandAssessment .command-setup{padding-top:10px}.command-center #commandAssessment .command-setup h2{font-size:17px;margin:7px 0}.command-center #commandAssessment .command-levels{margin:7px 0}
+.command-center #commandAssessment .command-levels>div{padding:3px 0}.command-center #commandAssessment .command-setup p{margin:7px 0;line-height:1.6}
+.command-center #commandAssessment .desk-no-setup{padding:8px 10px;border-radius:4px}
+.desk-horizon-grid button{padding:8px;gap:5px;min-height:64px}.desk-section-caption{margin-bottom:6px}
+.desk-decision-brief{border-block:1px solid var(--border);font-size:11px;line-height:1.6}
+.desk-decision-brief>summary{cursor:pointer;padding:10px 0;display:grid;gap:4px;color:var(--text);list-style:revert}
+.desk-decision-brief>summary>span{font-size:12px;font-weight:650}.desk-decision-brief summary strong{font-size:10px;color:var(--muted);font-weight:500}
+.desk-fact-columns{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:4px 0 10px}.desk-fact-columns h3,.desk-conditional-summary h3{font-size:11px;margin:4px 0 8px}
+.desk-fact-columns ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.desk-fact-columns li{color:var(--muted);font-size:11px}
+.command-center #commandAssessment .desk-fact-link{display:grid;gap:5px;text-align:start;width:100%;padding:8px 10px;border:1px solid var(--border);border-inline-start:2px solid var(--accent);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;line-height:1.7;cursor:pointer}
+.desk-fact-columns section+section .desk-fact-link{border-inline-start-color:var(--red)}.desk-fact-link span{color:var(--muted);font-size:10px}
+.desk-conditional-summary p{font-size:10px;line-height:1.8;color:var(--muted);margin:8px 0}.desk-conditional-summary bdi{font-variant-numeric:tabular-nums;color:var(--text)}
+.desk-layer-source{border-block:1px solid var(--border);padding:10px 12px;font-size:11px;line-height:1.7;color:var(--muted)}.desk-layer-source summary{cursor:pointer;color:var(--text);min-height:28px}.desk-layer-source p{font-size:11px;line-height:1.8}.desk-layer-source dl{display:grid;gap:10px}.desk-layer-source dl>div{display:flex;flex-wrap:wrap;gap:6px 12px}.desk-layer-source dd{margin:0;color:var(--text)}.desk-layer-source code{display:block;font-size:10px;overflow-wrap:anywhere;margin-top:12px}.desk-layer-source button{font-size:11px;min-height:32px}
+.command-center :is(.desk-candle-readout,.desk-chart-navigation,.desk-layer-source,.desk-decision-brief){box-sizing:border-box;min-width:0;overflow-wrap:anywhere}
+.command-center :is(.desk-candle-readout,.desk-chart-navigation,.desk-layer-source,.desk-decision-brief) :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(min-width:1101px){
+ .command-center .app-shell{grid-template-columns:160px minmax(0,1fr)}.command-center .sidebar{width:160px}.command-center .terminal-main{padding-inline:16px}
+ .command-center .command-grid{grid-template-columns:minmax(0,3fr) minmax(310px,1fr)}
+ .command-center #commandChartHost .pro-terminal-head{flex-wrap:nowrap}
+}
+@media(min-width:901px) and (max-width:1100px){.command-center .command-grid{grid-template-columns:minmax(0,1.65fr) minmax(264px,1fr)}}
+@media(max-width:900px){
+ .command-center #view-dashboard #evoDeskLead{grid-template-columns:minmax(0,1fr)}.command-center #view-dashboard .desk-primary-actions{grid-column:1;grid-row:auto;max-width:none;justify-content:flex-start}
+ .command-center #view-dashboard #evoDeskLead>.desk-source-strip{margin:0;gap:4px 8px;padding-top:5px}.command-center #view-dashboard .desk-source-strip small{font-size:9px;flex-basis:auto}
+}
+@media(max-width:760px){
+ .command-center body:has(#view-dashboard.view-active) .terminal-topbar{padding:8px 10px;margin-bottom:5px}.command-center body:has(#view-dashboard.view-active) .terminal-topbar .brand-titles h1{font-size:19px}
+ .command-center #view-dashboard #evoDeskLead{padding:8px 10px;gap:4px;margin-block:5px 8px}.command-center #view-dashboard .desk-primary-actions button{min-height:28px;padding:4px 7px;font-size:10px}
+ .command-center #view-dashboard #evoFlow{gap:4px}.command-center #view-dashboard #evoFlow button{font-size:9px;min-height:24px;padding:3px 4px}
+ .command-center #view-dashboard .desk-source-strip{font-size:8px}.command-center #view-dashboard .desk-source-strip>div{gap:4px}.command-center #view-dashboard .desk-source-strip small{font-size:8px}
+ .command-center #commandChartHost .pro-terminal-head{padding:8px}.command-center #commandChartHost .q-chart-panel{padding:7px 8px}.command-center #commandChartHost .q-canvas-shell #qCandles{height:480px;max-height:480px}
+ .command-center #commandChartHost #proTerminalSymbol{font-size:22px}.desk-chart-navigation{align-items:start;gap:5px}.desk-chart-navigation>span{font-size:8px;padding-top:6px}.desk-chart-navigation button{font-size:9px;min-height:26px;padding:4px 6px}
+ .desk-candle-readout{padding:6px 0;gap:5px 8px}.desk-candle-readout dl{gap:5px 10px;font-size:10px}.desk-candle-readout .desk-bar-time{flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px;font-size:8px}.desk-candle-readout button{font-size:9px;min-height:26px;padding:3px 6px}
+ .desk-horizon-grid button{min-height:64px!important}.command-center #commandAssessment{padding:14px}.desk-decision-brief summary strong{font-size:11px}
+}
+@media(max-width:360px){.desk-chart-navigation{flex-wrap:wrap}.desk-candle-readout dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.desk-candle-readout button{margin-inline-start:0}.command-center #view-dashboard .desk-primary-actions{max-width:100%;flex-direction:row}.command-center #commandAssessment .home-confidence-ring{flex-shrink:0}}
+
+.command-center #view-dashboard #deskCandleReadout,.command-center #view-dashboard #deskChartNavigation{padding-inline:12px;margin-inline:0}
+@media(max-width:760px){
+ .command-center #view-dashboard #evoDeskLead>.desk-source-strip{column-gap:6px;row-gap:3px}
+ .command-center #view-dashboard #deskSourceStrip>div:nth-child(2){flex-basis:100%}
+ .command-center #view-dashboard #deskSourceStrip button{min-height:24px;padding:3px 6px;margin-inline-start:0}
+ .command-center #view-dashboard #commandQuickAssessment{padding:6px 10px;margin:5px 0 6px}
+ .command-center #view-dashboard #commandQuickAssessment .home-consensus>span{font-size:7px}
+ .command-center #commandChartHost .pro-terminal-head{row-gap:4px}
+}
+/* Instrument/observed price already identify this chart; remove the duplicate generic title on the landing desk only. */
+.command-center #view-dashboard .pro-terminal-head>div:has(>#proTerminalTitle){display:none}
+
+.command-center #commandAssessment .home-consensus{font-size:10px;line-height:1.5;min-width:0}
+.command-center #commandAssessment .home-consensus h2{line-height:1.5}
+.command-center #commandAssessment .home-consensus p,.command-center #commandAssessment .home-consensus small{font-size:9px;line-height:1.5}
+.command-center #commandAssessment .home-consensus button{min-height:26px;padding:3px 0;font-size:10px}
+
+/* History/export commands stay available below the plot; chart controls and layers lead. */
+.command-center #view-dashboard #commandChartHost .q-chart-panel{padding-inline:0}
+.command-center #view-dashboard #deskChartNavigation{justify-content:flex-end}
+.command-center #view-dashboard #commandChartHost .q-chart-panel>.panel-head{padding:8px 12px;margin:0;border-top:1px solid var(--border)}
+
+.command-center .command-verdict h1{font-size:22px;line-height:1.25;letter-spacing:-.025em}
+.command-center #commandAssessment .command-primary-reason{font-size:10px;line-height:1.6}
+.command-center #commandAssessment .command-caveat{font-size:10px;line-height:1.6}
+.command-center #commandAssessment .command-setup>button{min-height:30px;font-size:10px;padding:5px 7px;margin-inline-end:4px;margin-top:4px}
+
+@media(min-width:901px){
+ .command-center #commandAssessment .home-consensus{display:grid;gap:1px;line-height:1.4}
+ .command-center #commandAssessment .home-consensus>span{font-size:8px;line-height:1.4}
+ .command-center #commandAssessment .home-consensus h2{font-size:12px;line-height:1.4;margin:0}
+ .command-center #commandAssessment .home-consensus p,.command-center #commandAssessment .home-consensus small{font-size:9px;line-height:1.4;margin:0}
+ .command-center #commandAssessment .home-consensus button{justify-self:start;min-height:24px;font-size:9px;padding:3px 0}
+ .command-center #commandAssessment .command-levels>div{padding-block:2px}
+ .command-center #commandAssessment .command-levels button{min-height:24px!important}
+}
+/* Read entry/stop together, then the three independent targets; original DL order and values stay intact. */
+@media(min-width:901px){
+ .command-center #commandAssessment .command-levels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-block:8px}
+ .command-center #commandAssessment .command-levels>div{grid-column:span 2;display:grid;gap:3px;padding:5px 3px;border:1px solid var(--border);border-radius:5px;background:var(--bg)}
+ .command-center #commandAssessment .command-levels>div:nth-child(-n+2){grid-column:span 3}
+ .command-center #commandAssessment .command-levels dt{font-size:9px;line-height:1.5}
+ .command-center #commandAssessment .command-levels dd{justify-self:start;font-size:12px}
+ .command-center #commandAssessment .command-levels button{font-size:12px;white-space:nowrap;padding-inline:3px}
+}
+
+@media(min-width:901px){
+ .command-center #commandAssessment .command-levels>div:nth-child(-n+2){display:flex;align-items:center;justify-content:space-between;padding-block:2px;gap:3px}
+ .command-center #commandAssessment .command-levels{gap:4px}
+ .command-center #commandAssessment .command-setup h2{margin-block:4px}
+ .command-center #commandAssessment .command-setup p{margin-block:4px}
+}

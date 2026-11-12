@@ -1,0 +1,2155 @@
+{
+  "baselineCommit": "1fbff005bcb34a84f3ddab200928636979cbeccc",
+  "branch": "feature/integrated-research-workstation-issue19-20261110",
+  "scope": "Actual packaged app, matched fixed offline provider observations/time. Not live-market, hosted-model or interactive Preview acceptance. Positive candidates are controlled UI fixtures, not trade signals.",
+  "fixedClockUTC": "2026-11-11T17:10:00Z",
+  "fixedClockAsiaMuscat": "2026-11-11 21:10",
+  "counts": {
+    "coreNumericalIntegration": 332,
+    "system": 10,
+    "security": 21,
+    "browserSuites": 38,
+    "unchangedOriginalBrowserSuites": 37,
+    "newBilingualThemeResponsiveProfiles": 20,
+    "newCompleteDesktopCandidateProfiles": 8,
+    "immediateBilingualSourceHandoffs": 2,
+    "originalFontProfiles": 72,
+    "pairedNormalProfiles": 16,
+    "pairedControlledEligibleProfiles": 6
+  },
+  "toolchain": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34",
+    "revision": 1234,
+    "axe": "4.10.3"
+  },
+  "nonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.26
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.02
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 16.94
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.4
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.66
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.24
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 1.03
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.28
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 18.69
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 1.95
+    }
+  ],
+  "browserShards": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 1154.73
+  },
+  "suites": [
+    {
+      "suite": "workstation",
+      "shard": 0,
+      "seconds": 34.61
+    },
+    {
+      "suite": "research_outage",
+      "shard": 0,
+      "seconds": 4.25
+    },
+    {
+      "suite": "decision",
+      "shard": 0,
+      "seconds": 49.74
+    },
+    {
+      "suite": "maturity",
+      "shard": 0,
+      "seconds": 61.0
+    },
+    {
+      "suite": "intelligence",
+      "shard": 0,
+      "seconds": 33.14
+    },
+    {
+      "suite": "layout",
+      "shard": 0,
+      "seconds": 51.65
+    },
+    {
+      "suite": "trust",
+      "shard": 0,
+      "seconds": 56.94
+    },
+    {
+      "suite": "journal_lifecycle",
+      "shard": 0,
+      "seconds": 67.72
+    },
+    {
+      "suite": "evolution",
+      "shard": 0,
+      "seconds": 86.4
+    },
+    {
+      "suite": "experience",
+      "shard": 0,
+      "seconds": 81.7
+    },
+    {
+      "suite": "recovery",
+      "shard": 0,
+      "seconds": 165.23
+    },
+    {
+      "suite": "paper_review",
+      "shard": 0,
+      "seconds": 8.16
+    },
+    {
+      "suite": "broker_workspace",
+      "shard": 0,
+      "seconds": 27.08
+    },
+    {
+      "suite": "workflow_polish",
+      "shard": 0,
+      "seconds": 83.34
+    },
+    {
+      "suite": "confidence",
+      "shard": 0,
+      "seconds": 96.81
+    },
+    {
+      "suite": "research_risk",
+      "shard": 0,
+      "seconds": 59.07
+    },
+    {
+      "suite": "unified_workspace",
+      "shard": 0,
+      "seconds": 117.02
+    },
+    {
+      "suite": "responsive_fonts",
+      "shard": 0,
+      "seconds": 36.76
+    },
+    {
+      "suite": "command_workbench",
+      "shard": 0,
+      "seconds": 33.82
+    },
+    {
+      "suite": "research",
+      "shard": 1,
+      "seconds": 38.63
+    },
+    {
+      "suite": "quality",
+      "shard": 1,
+      "seconds": 44.43
+    },
+    {
+      "suite": "library_reliability",
+      "shard": 1,
+      "seconds": 3.81
+    },
+    {
+      "suite": "terminal",
+      "shard": 1,
+      "seconds": 145.72
+    },
+    {
+      "suite": "intelligence_memory",
+      "shard": 1,
+      "seconds": 5.47
+    },
+    {
+      "suite": "pilot",
+      "shard": 1,
+      "seconds": 24.57
+    },
+    {
+      "suite": "professional",
+      "shard": 1,
+      "seconds": 180.45
+    },
+    {
+      "suite": "trading_remediation",
+      "shard": 1,
+      "seconds": 72.51
+    },
+    {
+      "suite": "consolidation",
+      "shard": 1,
+      "seconds": 34.6
+    },
+    {
+      "suite": "consistency",
+      "shard": 1,
+      "seconds": 37.96
+    },
+    {
+      "suite": "assisted_desk",
+      "shard": 1,
+      "seconds": 17.04
+    },
+    {
+      "suite": "evidence_workflow",
+      "shard": 1,
+      "seconds": 62.39
+    },
+    {
+      "suite": "visual_refinement",
+      "shard": 1,
+      "seconds": 20.89
+    },
+    {
+      "suite": "visual_identity",
+      "shard": 1,
+      "seconds": 82.97
+    },
+    {
+      "suite": "dashboard_confidence",
+      "shard": 1,
+      "seconds": 26.86
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "shard": 1,
+      "seconds": 95.56
+    },
+    {
+      "suite": "research_studio",
+      "shard": 1,
+      "seconds": 77.36
+    },
+    {
+      "suite": "command_center",
+      "shard": 1,
+      "seconds": 41.55
+    },
+    {
+      "suite": "institutional_desk",
+      "shard": 1,
+      "seconds": 49.15
+    }
+  ],
+  "originalBrowserSourceSHA256": {
+    "tests/browser_consistency.py": "a352b82b6bd0a9b40fcfcf1fe25e759e01582a1faa27b8d4a40244ded2335ca0",
+    "tests/browser_library_reliability.py": "6e505e8eadb66f389cb02b57591cedf9a9702345066d0d97dbd232dc5a1bbd5f",
+    "tests/browser_unified_workspace.py": "f1d0d4aa52d90de1e2e624caebaa6394e5ab7eb312009b1b460e74a54067832b",
+    "tests/browser_workstation.py": "9faf5855474a698f98df9743b5cfd46e0282e22f23467af43888d0e61b1bf4e9",
+    "tests/browser_journal_lifecycle.py": "d6ce0de34fc756b120c62f7d3d8962e97f1fcb043ba39aa45aa27a769f63fb9f",
+    "tests/browser_workflow_polish.py": "b76d5fcb9d84c8084ecaa0565513e549cf2a4fe6ff8474054f645ca15a0bb88b",
+    "tests/browser_recovery.py": "e561d89562014ebef1d91f7e00f68219f85570faa2af57c92e088e84139b9ecb",
+    "tests/browser_research_outage.py": "beb6c8fbeb940ae0d1cc55ef1abad09196826978162ea0bfc76990db2f4aa464",
+    "tests/browser_paper_review.py": "31a7385e7a8cfd7d8616e0a456eead927a53cf2a0e25ea8afd3feae0958eabed",
+    "tests/browser_research_risk.py": "ab2a676db07b5609ede0ff6b34b472adfc06a4297fc98cc15941d40cb1d1b955",
+    "tests/browser_dashboard_confidence.py": "a79a1f75dcbf334f6be478325e29eeb7afa8fcf6c254a5ca04abcc1ace8216ae",
+    "tests/browser_decision.py": "f92778b27f20c6a34b6924de16dfd42f8ca5b28bb300658e8448b342a328308f",
+    "tests/browser_experience.py": "1ed2bf079449ec92ea8df8870b5eb34bf689573fe31e339adb11f1bbf91a33e4",
+    "tests/browser_trading_remediation.py": "92e7b00438b1abe2a31afc40ab9e4893934cd35daaa011826195eeb442aa05bb",
+    "tests/browser_layout.py": "a2eb403adc22b7eb03513485d7da372d85575ce2ea47dbd88e0a3c5c055d3977",
+    "tests/browser_research_studio.py": "7724ea74aa0903bf775c954dbf8a7aa7d966fd279b94cfcb7fd169ef4bc2a194",
+    "tests/browser_maturity.py": "7fa3df88fc91d4a9b0a55dce9ae514efb78a1d6c917d23668b5644f844260719",
+    "tests/browser_command_center.py": "efdafe9444cc5223f65f1228195b8870a2f031e39b50203766a2b39c40729b38",
+    "tests/browser_visual_refinement.py": "9f3e26b8c3359b6e4cf3e1b10ac6fe58be40fec9e5b7f0f4e7466b97a02fc0ba",
+    "tests/browser_responsive_fonts.py": "ae3495af95ead9bf7ae39c23ea1b8df105fd8f077c139d2c82efb756583184c3",
+    "tests/browser_visual_identity.py": "681a38769ab070de9bb8b6d36569b5a615c3b14a3dbc5d26443eef74cabeee34",
+    "tests/browser_quality.py": "b9110b8ad193a47934da077dbb34d50c64ce2ca7421d504d19f83aa9383c30b0",
+    "tests/browser_evidence_workflow.py": "8764ee3d4920481cb47dc4804237bb9e30673a3d57b771163f47f7b50b629f53",
+    "tests/browser_trust.py": "53c4c118065f28d4f7ffa9c9ee90af9e87b1a8bc811bf7ced683cbbd5f1e9006",
+    "tests/browser_broker_workspace.py": "93dee4d88584a2ad95cb4e2c4f0b6544e889c13e11ebdbb9d5b14e156e677c8a",
+    "tests/browser_intelligence_memory.py": "123a6d1f11dca3f7e7306879fd5086b7dd73c7996cce13d6e36024a334d771f2",
+    "tests/browser_consolidation.py": "22de1745e8a202806bfb419f8b8f91c3a9ae1241bb287d4b72b6c06680eec814",
+    "tests/browser_confidence.py": "b5c9a2d9727cd558eff89bf9c5ffaa40da4ddc6a97457ca6cb511d13a9bfb890",
+    "tests/browser_evolution.py": "8d7ab8309d08cf40e9b1100bf65bc2ac1b07858529b5dd10db037c325677c0cf",
+    "tests/browser_professional.py": "ff18fe801a5be2c5479eece004e89dfa5668645b2ffe2b0c58a3ef41a90e7821",
+    "tests/browser_workspace_hierarchy.py": "0984736a1f86b170a30a843dc47c4673969483161c98b6f6f540bc60582c4fe6",
+    "tests/browser_terminal.py": "135efc05af020d9e1eb977850ee112939e3c4c04bbcd2ff916cc53f9b41d857b",
+    "tests/browser_command_workbench.py": "bd1f8d4a3ba5c4d5b0ba5bf2ca3ba3c9306ee7934ea31ce9a51c4692a8ec8b44",
+    "tests/browser_assisted_desk.py": "928c7bdc51baff8c56e78403496fa4e88b5caf125ed13d8030281209f9a525e5",
+    "tests/browser_pilot.py": "39033b5e5beef7a3dace0d8e1bc375c365ff7b1cf7d1a2569c8969cb6e744137",
+    "tests/browser_research.py": "4795f52d5d8ef1479fc162d6a5bf80c7166cf2b8f2f60539a5c7ab3685e39ee8",
+    "tests/browser_intelligence.py": "fe620367e3c461b11b4c7760930d2889fb6b3d89db8627173337736352a619d9"
+  },
+  "frozenInstall": {
+    "exit": 0,
+    "before": {
+      "package.json": "812fce0643bc5010dd908c5553fa3030cb744c291a841c34894dc0b7cb510b36",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "812fce0643bc5010dd908c5553fa3030cb744c291a841c34894dc0b7cb510b36",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [2.00ms]\n"
+  },
+  "pairs": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1440-en-dark.png",
+      "after": "after/desk-1440-en-dark.png",
+      "beforeChart": {
+        "x": 242,
+        "y": 520.234375,
+        "width": 808.875,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "beforeVisibleHeight": 479.765625,
+      "afterVisibleHeight": 560.0,
+      "beforeViewportCanvasSharePct": 26.949334716796876,
+      "afterViewportCanvasSharePct": 32.977777777777774,
+      "visibleCanvasAreaChangePct": 22.369543160646256,
+      "afterConfidence": {
+        "x": 1131,
+        "y": 556.34375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 1131,
+        "y": 688.515625,
+        "width": 276,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1440-en-light.png",
+      "after": "after/desk-1440-en-light.png",
+      "beforeChart": {
+        "x": 242,
+        "y": 520.234375,
+        "width": 808.875,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "beforeVisibleHeight": 479.765625,
+      "afterVisibleHeight": 560.0,
+      "beforeViewportCanvasSharePct": 26.949334716796876,
+      "afterViewportCanvasSharePct": 32.977777777777774,
+      "visibleCanvasAreaChangePct": 22.369543160646256,
+      "afterConfidence": {
+        "x": 1131,
+        "y": 556.34375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 1131,
+        "y": 688.515625,
+        "width": 276,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1440-ar-dark.png",
+      "after": "after/desk-1440-ar-dark.png",
+      "beforeChart": {
+        "x": 389.125,
+        "y": 523.625,
+        "width": 808.875,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "beforeVisibleHeight": 476.375,
+      "afterVisibleHeight": 560.0,
+      "beforeViewportCanvasSharePct": 26.758876953125,
+      "afterViewportCanvasSharePct": 32.977777777777774,
+      "visibleCanvasAreaChangePct": 23.240515046826403,
+      "afterConfidence": {
+        "x": 33,
+        "y": 504.234375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 636.40625,
+        "width": 276,
+        "height": 195.890625
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1440-ar-light.png",
+      "after": "after/desk-1440-ar-light.png",
+      "beforeChart": {
+        "x": 389.125,
+        "y": 523.625,
+        "width": 808.875,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "beforeVisibleHeight": 476.375,
+      "afterVisibleHeight": 560.0,
+      "beforeViewportCanvasSharePct": 26.758876953125,
+      "afterViewportCanvasSharePct": 32.977777777777774,
+      "visibleCanvasAreaChangePct": 23.240515046826403,
+      "afterConfidence": {
+        "x": 33,
+        "y": 504.234375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 636.40625,
+        "width": 276,
+        "height": 195.890625
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1024-en-dark.png",
+      "after": "after/desk-1024-en-dark.png",
+      "beforeChart": {
+        "x": 78,
+        "y": 611.375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "beforeVisibleHeight": 388.625,
+      "afterVisibleHeight": 509.765625,
+      "beforeViewportCanvasSharePct": 19.926993560791015,
+      "afterViewportCanvasSharePct": 26.49325132369995,
+      "visibleCanvasAreaChangePct": 32.95157266387094,
+      "afterConfidence": {
+        "x": 655.1875,
+        "y": 575.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 655.1875,
+        "y": 708.015625,
+        "width": 335.796875,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1024-en-light.png",
+      "after": "after/desk-1024-en-light.png",
+      "beforeChart": {
+        "x": 78,
+        "y": 611.375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "beforeVisibleHeight": 388.625,
+      "afterVisibleHeight": 509.765625,
+      "beforeViewportCanvasSharePct": 19.926993560791015,
+      "afterViewportCanvasSharePct": 26.49325132369995,
+      "visibleCanvasAreaChangePct": 32.95157266387094,
+      "afterConfidence": {
+        "x": 655.1875,
+        "y": 575.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 655.1875,
+        "y": 708.015625,
+        "width": 335.796875,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1024-ar-dark.png",
+      "after": "after/desk-1024-ar-dark.png",
+      "beforeChart": {
+        "x": 420.9375,
+        "y": 611.234375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "beforeVisibleHeight": 388.765625,
+      "afterVisibleHeight": 479.765625,
+      "beforeViewportCanvasSharePct": 19.934204196929933,
+      "afterViewportCanvasSharePct": 24.9341082572937,
+      "visibleCanvasAreaChangePct": 25.082034933372487,
+      "afterConfidence": {
+        "x": 33.015625,
+        "y": 559.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 33.015625,
+        "y": 692.015625,
+        "width": 335.796875,
+        "height": 195.890625
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-1024-ar-light.png",
+      "after": "after/desk-1024-ar-light.png",
+      "beforeChart": {
+        "x": 420.9375,
+        "y": 611.234375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "beforeVisibleHeight": 388.765625,
+      "afterVisibleHeight": 479.765625,
+      "beforeViewportCanvasSharePct": 19.934204196929933,
+      "afterViewportCanvasSharePct": 24.9341082572937,
+      "visibleCanvasAreaChangePct": 25.082034933372487,
+      "afterConfidence": {
+        "x": 33.015625,
+        "y": 559.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "afterSetup": {
+        "x": 33.015625,
+        "y": 692.015625,
+        "width": 335.796875,
+        "height": 195.890625
+      }
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-768-en-dark.png",
+      "after": "after/desk-768-en-dark.png",
+      "beforeChart": {
+        "x": 78,
+        "y": 720.234375,
+        "width": 658,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "beforeVisibleHeight": 279.765625,
+      "afterVisibleHeight": 315.265625,
+      "beforeViewportCanvasSharePct": 23.969502766927082,
+      "afterViewportCanvasSharePct": 27.011039225260415,
+      "visibleCanvasAreaChangePct": 12.68919296285953,
+      "afterConfidence": {
+        "x": 29,
+        "y": 382,
+        "width": 710,
+        "height": 128
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 2398.5625,
+        "width": 702,
+        "height": 179.890625
+      }
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-768-en-light.png",
+      "after": "after/desk-768-en-light.png",
+      "beforeChart": {
+        "x": 78,
+        "y": 720.234375,
+        "width": 658,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "beforeVisibleHeight": 279.765625,
+      "afterVisibleHeight": 315.265625,
+      "beforeViewportCanvasSharePct": 23.969502766927082,
+      "afterViewportCanvasSharePct": 27.011039225260415,
+      "visibleCanvasAreaChangePct": 12.68919296285953,
+      "afterConfidence": {
+        "x": 29,
+        "y": 382,
+        "width": 710,
+        "height": 128
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 2398.5625,
+        "width": 702,
+        "height": 179.890625
+      }
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-768-ar-dark.png",
+      "after": "after/desk-768-ar-dark.png",
+      "beforeChart": {
+        "x": 32,
+        "y": 725.234375,
+        "width": 658,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "beforeVisibleHeight": 274.765625,
+      "afterVisibleHeight": 315.265625,
+      "beforeViewportCanvasSharePct": 23.541117350260418,
+      "afterViewportCanvasSharePct": 27.011039225260415,
+      "visibleCanvasAreaChangePct": 14.73983508672163,
+      "afterConfidence": {
+        "x": 29,
+        "y": 382,
+        "width": 710,
+        "height": 128
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 2363.71875,
+        "width": 702,
+        "height": 163.890625
+      }
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-768-ar-light.png",
+      "after": "after/desk-768-ar-light.png",
+      "beforeChart": {
+        "x": 32,
+        "y": 725.234375,
+        "width": 658,
+        "height": 520
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "beforeVisibleHeight": 274.765625,
+      "afterVisibleHeight": 315.265625,
+      "beforeViewportCanvasSharePct": 23.541117350260418,
+      "afterViewportCanvasSharePct": 27.011039225260415,
+      "visibleCanvasAreaChangePct": 14.73983508672163,
+      "afterConfidence": {
+        "x": 29,
+        "y": 382,
+        "width": 710,
+        "height": 128
+      },
+      "afterSetup": {
+        "x": 33,
+        "y": 2363.71875,
+        "width": 702,
+        "height": 163.890625
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-390-en-dark.png",
+      "after": "after/desk-390-en-dark.png",
+      "beforeChart": {
+        "x": 56,
+        "y": 697.046875,
+        "width": 312,
+        "height": 440
+      },
+      "afterChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "beforeVisibleHeight": 302.953125,
+      "afterVisibleHeight": 331.578125,
+      "beforeViewportCanvasSharePct": 24.23625,
+      "afterViewportCanvasSharePct": 26.52625,
+      "visibleCanvasAreaChangePct": 9.448656454690795,
+      "afterConfidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 115.1875
+      },
+      "afterSetup": {
+        "x": 27,
+        "y": 2408.59375,
+        "width": 336,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-390-en-light.png",
+      "after": "after/desk-390-en-light.png",
+      "beforeChart": {
+        "x": 56,
+        "y": 697.046875,
+        "width": 312,
+        "height": 440
+      },
+      "afterChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "beforeVisibleHeight": 302.953125,
+      "afterVisibleHeight": 331.578125,
+      "beforeViewportCanvasSharePct": 24.23625,
+      "afterViewportCanvasSharePct": 26.52625,
+      "visibleCanvasAreaChangePct": 9.448656454690795,
+      "afterConfidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 115.1875
+      },
+      "afterSetup": {
+        "x": 27,
+        "y": 2408.59375,
+        "width": 336,
+        "height": 211.890625
+      }
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-390-ar-dark.png",
+      "after": "after/desk-390-ar-dark.png",
+      "beforeChart": {
+        "x": 22,
+        "y": 679.453125,
+        "width": 312,
+        "height": 440
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "beforeVisibleHeight": 320.546875,
+      "afterVisibleHeight": 332.171875,
+      "beforeViewportCanvasSharePct": 25.64375,
+      "afterViewportCanvasSharePct": 26.57375,
+      "visibleCanvasAreaChangePct": 3.6266146721910753,
+      "afterConfidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 114.1875
+      },
+      "afterSetup": {
+        "x": 27,
+        "y": 2392,
+        "width": 336,
+        "height": 195.890625
+      }
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "before": "before/desk-390-ar-light.png",
+      "after": "after/desk-390-ar-light.png",
+      "beforeChart": {
+        "x": 22,
+        "y": 679.453125,
+        "width": 312,
+        "height": 440
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "beforeVisibleHeight": 320.546875,
+      "afterVisibleHeight": 332.171875,
+      "beforeViewportCanvasSharePct": 25.64375,
+      "afterViewportCanvasSharePct": 26.57375,
+      "visibleCanvasAreaChangePct": 3.6266146721910753,
+      "afterConfidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 114.1875
+      },
+      "afterSetup": {
+        "x": 27,
+        "y": 2392,
+        "width": 336,
+        "height": 195.890625
+      }
+    }
+  ],
+  "controlledEligibleBefore": [
+    {
+      "file": "desk-1440-en-dark.png",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 242,
+        "y": 520.234375,
+        "width": 808.875,
+        "height": 520
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 1099.875,
+        "y": 600.359375,
+        "width": 299.109375,
+        "height": 161.09375
+      },
+      "assessment": {
+        "x": 1099.875,
+        "y": 326.5,
+        "width": 299.109375,
+        "height": 257.859375
+      },
+      "setup": {
+        "x": 1099.875,
+        "y": 892.296875,
+        "width": 299.109375,
+        "height": 424.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 736.875,
+        "top": 24,
+        "bottom": 380,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 724.875,
+        "height": 356
+      }
+    },
+    {
+      "file": "desk-1440-ar-light.png",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 389.125,
+        "y": 523.625,
+        "width": 808.875,
+        "height": 520
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 41.015625,
+        "y": 569.65625,
+        "width": 299.109375,
+        "height": 161.09375
+      },
+      "assessment": {
+        "x": 41.015625,
+        "y": 329.890625,
+        "width": 299.109375,
+        "height": 223.765625
+      },
+      "setup": {
+        "x": 41.015625,
+        "y": 861.59375,
+        "width": 299.109375,
+        "height": 407.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 736.875,
+        "top": 24,
+        "bottom": 380,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 724.875,
+        "height": 356
+      }
+    },
+    {
+      "file": "desk-1024-en-dark.png",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 78,
+        "y": 611.375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 652.0625,
+        "y": 612.359375,
+        "width": 334.9375,
+        "height": 161.09375
+      },
+      "assessment": {
+        "x": 652.0625,
+        "y": 338.5,
+        "width": 334.9375,
+        "height": 257.859375
+      },
+      "setup": {
+        "x": 652.0625,
+        "y": 904.296875,
+        "width": 334.9375,
+        "height": 424.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 453.0625,
+        "top": 24,
+        "bottom": 380,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 441.0625,
+        "height": 356
+      }
+    },
+    {
+      "file": "desk-1024-ar-light.png",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 420.9375,
+        "y": 611.234375,
+        "width": 525.0625,
+        "height": 520
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 37,
+        "y": 578.265625,
+        "width": 334.9375,
+        "height": 161.09375
+      },
+      "assessment": {
+        "x": 37,
+        "y": 338.5,
+        "width": 334.9375,
+        "height": 223.765625
+      },
+      "setup": {
+        "x": 37,
+        "y": 870.203125,
+        "width": 334.9375,
+        "height": 407.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 453.0625,
+        "top": 24,
+        "bottom": 380,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 441.0625,
+        "height": 356
+      }
+    },
+    {
+      "file": "desk-390-en-dark.png",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 56,
+        "y": 697.046875,
+        "width": 312,
+        "height": 440
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 25,
+        "y": 322.921875,
+        "width": 340,
+        "height": 115.796875
+      },
+      "assessment": {
+        "x": 29,
+        "y": 1938.875,
+        "width": 332,
+        "height": 314.859375
+      },
+      "setup": {
+        "x": 29,
+        "y": 2384.578125,
+        "width": 332,
+        "height": 448.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 240,
+        "top": 24,
+        "bottom": 300,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 228,
+        "height": 276
+      }
+    },
+    {
+      "file": "desk-390-ar-light.png",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 22,
+        "y": 679.453125,
+        "width": 312,
+        "height": 440
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 25,
+        "y": 304.921875,
+        "width": 340,
+        "height": 115.796875
+      },
+      "assessment": {
+        "x": 29,
+        "y": 1901.28125,
+        "width": 332,
+        "height": 247.015625
+      },
+      "setup": {
+        "x": 29,
+        "y": 2279.140625,
+        "width": 332,
+        "height": 431.234375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 240,
+        "top": 24,
+        "bottom": 300,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 228,
+        "height": 276
+      }
+    }
+  ],
+  "controlledEligibleAfter": [
+    {
+      "file": "desk-1440-en-dark.png",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 1131,
+        "y": 528.84375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "assessment": {
+        "x": 1131,
+        "y": 288.5,
+        "width": 276,
+        "height": 228.34375
+      },
+      "setup": {
+        "x": 1131,
+        "y": 661.015625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 776,
+        "top": 24,
+        "bottom": 420,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 764,
+        "height": 396
+      }
+    },
+    {
+      "file": "desk-1440-ar-light.png",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 33,
+        "y": 504.234375,
+        "width": 276,
+        "height": 120.171875
+      },
+      "assessment": {
+        "x": 33,
+        "y": 295.890625,
+        "width": 276,
+        "height": 196.34375
+      },
+      "setup": {
+        "x": 33,
+        "y": 636.40625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 776,
+        "top": 24,
+        "bottom": 420,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 764,
+        "height": 396
+      }
+    },
+    {
+      "file": "desk-1024-en-dark.png",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 655.1875,
+        "y": 575.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "assessment": {
+        "x": 655.1875,
+        "y": 351.5,
+        "width": 335.796875,
+        "height": 212.34375
+      },
+      "setup": {
+        "x": 655.1875,
+        "y": 708.015625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 460.1875,
+        "top": 24,
+        "bottom": 420,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 448.1875,
+        "height": 396
+      }
+    },
+    {
+      "file": "desk-1024-ar-light.png",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 33.015625,
+        "y": 559.84375,
+        "width": 335.796875,
+        "height": 120.171875
+      },
+      "assessment": {
+        "x": 33.015625,
+        "y": 351.5,
+        "width": 335.796875,
+        "height": 196.34375
+      },
+      "setup": {
+        "x": 33.015625,
+        "y": 692.015625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 460.1875,
+        "top": 24,
+        "bottom": 420,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 448.1875,
+        "height": 396
+      }
+    },
+    {
+      "file": "desk-390-en-dark.png",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 115.1875
+      },
+      "assessment": {
+        "x": 27,
+        "y": 2184.25,
+        "width": 336,
+        "height": 212.34375
+      },
+      "setup": {
+        "x": 27,
+        "y": 2408.59375,
+        "width": 336,
+        "height": 343.59375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 240,
+        "top": 24,
+        "bottom": 340,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 228,
+        "height": 316
+      }
+    },
+    {
+      "file": "desk-390-ar-light.png",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "provider": "Yahoo Finance chart data",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "analysisTimestamp": 1794417000000,
+        "providerSymbol": "EURUSD=X",
+        "analysisVersion": "6.6.0",
+        "dataTimestamp": 1794413400000,
+        "levels": {
+          "support": 1.0740282841168336,
+          "resistance": 1.1198112889117366
+        }
+      },
+      "state": "ready",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "confidence": {
+        "x": 23,
+        "y": 351.90625,
+        "width": 344,
+        "height": 114.1875
+      },
+      "assessment": {
+        "x": 27,
+        "y": 2163.65625,
+        "width": 336,
+        "height": 196.34375
+      },
+      "setup": {
+        "x": 27,
+        "y": 2372,
+        "width": 336,
+        "height": 343.59375
+      },
+      "viewportHeight": 1000,
+      "plot": {
+        "left": 12,
+        "right": 240,
+        "top": 24,
+        "bottom": 340,
+        "min": 1.069906223776959,
+        "max": 1.1296760987051413,
+        "width": 228,
+        "height": 316
+      }
+    }
+  ],
+  "runtimeSourceSHA256": {
+    "public/analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
+    "public/analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
+    "public/app.js": "cb450f22566fa27c36f161c9cdde23f1b30374eed82e72c95f3308f437cdbe08",
+    "public/brand-mark.png": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567",
+    "public/brand-preview.png": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+    "public/broker-catalog.js": "ede478798c19f488717e79791008a959a9e40318c3680fb2a273906918257183",
+    "public/broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
+    "public/command-center-core.js": "c4f14e1487d7b4fe4233920e2c932589a6ac3e95326178bb8343aa450d027e21",
+    "public/command-center.css": "699096ca436d2b3d0cedfec5ecb77d9aed41ed8413b776c3b630d37dd9f2a218",
+    "public/command-center.js": "693fd16609b247adb6add494e24c2fa654d0b8da5e42f8799cd37eaa95c54850",
+    "public/command-evidence.js": "2336af500fd12ae5b817a68c943600f430cf8fe2c648c3dded3b44172f519785",
+    "public/command-workbench.css": "41e31c780ebe0aaf68319956c7fd867cd6702b9dcae8468a79f7c648b3db909d",
+    "public/command-workbench.js": "6fc5106fc49042a07d713d602fb8a90d508f24ea1a77b15185368ceb8dc61142",
+    "public/comparison-core.js": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849",
+    "public/confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "public/d3.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "public/decision-core.js": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3",
+    "public/decision-records.js": "d833fea5f75d55dc0208ed01dc910d2cd73609d3d40b667a9fa9dc0bbe41b2ca",
+    "public/decision-workspace.css": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382",
+    "public/decision-workspace.js": "43b825999a2d42a6dd3e050e303dcc8f3faf3b068affab76a997eed4c2dcfbf5",
+    "public/evidence-view.js": "6a8eb5e90895a0d2311d4bc34f33706657e209f5bad29d77f54c4d63787d86f4",
+    "public/index.html": "d16cd34786d40f1d305063475c0aab282b1a15d3d4b3f58bb3a545432f745a40",
+    "public/instrument-identity.js": "b35e540a564b622bd6accfd2a1a734c7ee23ee43a00bad584ebc7c3b6deffbb0",
+    "public/intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "public/intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
+    "public/intelligence-workspace.js": "076b293319cfff31a8985a0050855ebd8cc73890605bc05a29a08982803f14a4",
+    "public/intelligence.css": "00a24d3938808ace039d9545aa3f8c5bf99755ee86fcb4e9ae0ee8db4857c00a",
+    "public/library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
+    "public/locale-secondary.js": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521",
+    "public/logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+    "public/manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+    "public/market-terminal.js": "6d8a3b2cbe00554507d79e17cab21333db7f46c4b3f8c11970c4afb4155902c8",
+    "public/platform-evolution.css": "d3ebc8fe5540877987c3dc4732e4905c758c17fc805303e17e14770744008fe8",
+    "public/platform-evolution.js": "91a326ccde483c24b32608b6b33330e30c9ecebdf50bc6359f069dabf23bdec2",
+    "public/preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
+    "public/professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
+    "public/professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
+    "public/professional-records.js": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "public/professional-workspace.js": "db61739a47e9c14bc9d6a35f900eed01f65b133c76054bb9e60230b87b284490",
+    "public/professional.css": "bfcf81c42f2d9281f5b33badf6a7a49bf205fdc30e740ed562b282c353679cfe",
+    "public/recommendation-core.js": "c4dbc58bb9c8c76d5ee45b0adbfbae0f2c7a42bfa1ee35066de92c0bfbc376ef",
+    "public/recommendation-view.js": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786",
+    "public/replay-contract.js": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "public/research-library.js": "10890357ab4e8bd28fafd657fb4d48fd01122d7888ff1b25be2e6a1d7725b321",
+    "public/research-quality.css": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a",
+    "public/research-quality.js": "38a253062a93507830f528297376566c4d8c516f8e15059a33c962c568b4d177",
+    "public/research-records.js": "9503045944499db0616ed42b586c95d842a20a49046228f73d39b243c97356ea",
+    "public/research-risk-comparison.js": "8623fdd57fc4792e3a18dc45567dedab0e5f764fe0413746104ac4d85a67d085",
+    "public/research-state.js": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253",
+    "public/research-studio-core.js": "e603a22f502a4a1237dcdb2421f8569a9669325325a526ebfd85b00fc74ee87c",
+    "public/research-studio.css": "5d5d675a2f23ff20b4eaeb1025a8e6879782107b4c5b494c3f08076646296dc1",
+    "public/research-studio.js": "e881b0b6814cd0646de61c1016481885677c42f196a36bf584f08e1d8f867260",
+    "public/research-terminal.css": "0c41a4d984f554d42ac44c4bd38aa8b69a24af468dd127d668fc6b1d164d74fd",
+    "public/research-workstation.js": "49fb2d5db447b8ba7ed6197b604c23719f7bef4e7347171ff89eb35fc9f557fb",
+    "public/research.css": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c",
+    "public/style.css": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8",
+    "public/terminal-research.js": "01db5f66c83b474706c2596293dd0b0143f95e07e5ab6f810b368da4580ef242",
+    "public/unified-workspace.css": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4",
+    "public/unified-workspace.js": "994fd61697b417cc8a8112d52f28ad724af992206d30d005e7f89b5e9bc284b5",
+    "public/validation-evidence.js": "dd3c9642d2ec92cacbf99be1dc3bf2323d1a71f869a0cff3e4a58ba9568f0a9c",
+    "public/visual-identity.css": "5a235e5ded3a3f944bb8a6301159d4a55d8ceb2b1b77aac4c4b01652db0e9f38",
+    "public/visual-identity.js": "7df01a27ebb7dc8d8b880660ca1b6f02a2d6d9f4673da77891ce51e5cc44f7d3",
+    "public/workflow-maturity.css": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b",
+    "public/workflow-maturity.js": "5a3b6f23e68e4345d4601053949f67a73d208f035617d0db04e24a925ce08ad6",
+    "public/workflow-polish.js": "e8c4a647a8fd8ace4e75d11a9ea5ce92c3243c1d62cf8a006dcc548956e0e905",
+    "public/workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
+    "public/workstation.css": "b56aa9f07fc8fe92995398b45d74ed33626fcd41e25a70413a10fb5d34bc1000",
+    "public/workstation.js": "2ff39a3a9c78af6b8708beb32051dc4f4a03efed2a007919d4409f065b695aa7",
+    "package.json": "812fce0643bc5010dd908c5553fa3030cb744c291a841c34894dc0b7cb510b36",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  },
+  "workflowSteps": {
+    "baseline": {
+      "evidenceHeaderThenSchool": 2,
+      "riskFromScenario": 1,
+      "riskPosition": "scenario below opening summary; no direct header shortcut",
+      "notes": "scroll to notebook; no direct header shortcut",
+      "mainHeaderActions": 2
+    },
+    "candidate": {
+      "decisionDisclosureThenExactCitation": 2,
+      "riskFromHeader": 1,
+      "notesFromHeader": 1,
+      "mainHeaderActions": 4,
+      "routeChangesForNewRiskAndNoteActions": 0
+    },
+    "note": "Click counts are descriptive, not a claim that all workflows require fewer clicks. Improved action visibility and retained context are separately observable."
+  },
+  "diagnosedProvisionalIssues": [
+    "Confidence card originally moved below the desktop viewport; compact original confidence restored before scenario, with unchanged original visual assertion.",
+    "Moving an already-placed decision disclosure lost focus; conditional placement preserves citation return focus.",
+    "Pointer inspection test originally measured a smooth scroll in flight; explicit nonanimated scrolling preserves all OHLC assertions.",
+    "New complete eligible-scenario assertion caught a small 1024px overflow; actual reference grid and concise summary corrected, assertion unchanged.",
+    "An incomplete full run was deliberately stopped to finish eligible-scenario visual acceptance; its logs are excluded from passing evidence.",
+    "A complete provisional gate passed37 suites but Evidence Workflow timed out: pointer tracing and a minimal reproduction showed source-chart scroll/focus clipping the next language target at y0.51px. Immediate source scroll and preventScroll canvas focus corrected the actual handoff; original full Evidence Workflow then passed16 standard and8 verified-font profiles with assertions unchanged."
+  ],
+  "unchangedFinancialRestrictions": true,
+  "hostedCI": "Verify separately on the new committed/pushed head; these records describe complete local gates.",
+  "noMainMergeOrProductionDeployment": true
+}

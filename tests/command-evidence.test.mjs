@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {commandEvidence,annotationLabels} from '../public/command-evidence.js';
+import {commandEvidence,annotationLabels,decisionEvidence,chartReading} from '../public/command-evidence.js';
 const hash='a'.repeat(64),now=1800000000000;
 function fixture(){
  const provenance={hash,interval:'1h',lastTime:now-3600000,status:'recent',providerSymbol:'EURUSD=X',source:'offline fixture'};
@@ -32,4 +32,25 @@ test('annotation labels avoid collisions inside the plot without altering financ
  const result=annotationLabels(points,{top:24,bottom:200});assert.equal(JSON.stringify(points),before);
  for(let i=0;i<result.length;i++){assert.ok(result[i].labelY>=35&&result[i].labelY<=197);if(i)assert.ok(result[i].labelY-result[i-1].labelY>=14);const original=points.find(p=>p.label===result[i].label);assert.equal(result[i].y,original.y);assert.equal(result[i].value,original.value);}
  assert.deepEqual(annotationLabels(points,{top:100,bottom:20}),[]);
+});
+
+test('decision brief keeps contrary facts, incomplete frames and original conditions distinct from approval',()=>{
+ const f=fixture();f.model.context={symbol:'EURUSD',interval:'1h',hash};f.model.recommendation={action:'WAIT'};f.brief.scenarios=[{direction:'bullish',trigger:1.1,invalidation:1.09},{direction:'bearish',trigger:1.08,invalidation:1.11},{direction:'bullish',trigger:null,invalidation:1}];
+ const e=commandEvidence(f),before=JSON.stringify(f),v=decisionEvidence({evidence:e,model:f.model,brief:f.brief});
+ assert.equal(v.action,'WAIT');assert.equal(v.directional,false);for(const action of ['AVOID','WAIT','BUY','SELL']){const state=decisionEvidence({evidence:e,model:{...f.model,recommendation:{action}},brief:f.brief});assert.equal(state.action,action);assert.equal(state.directional,['BUY','SELL'].includes(action));}assert.equal(v.alignment,'bullish');assert.equal(v.supporting[0].text,'Retained reason');assert.equal(v.opposing[0].text,'Opposing retained reason');assert.equal(v.scenarios.length,2);assert.equal(v.executionAuthorized,false);assert.equal(v.probability,null);v.scenarios[0].trigger=9;assert.equal(JSON.stringify(f),before);
+ e.frames[0].trend='neutral';assert.equal(decisionEvidence({evidence:e,model:f.model}).alignment,'mixed');e.frames[0].trend='bearish';assert.equal(decisionEvidence({evidence:e,model:f.model}).alignment,'mixed');e.frames[0].status='stale';assert.equal(decisionEvidence({evidence:e,model:f.model}).alignment,'incomplete');
+});
+test('stale decision facts and late cross-context scenarios never become current decision evidence',()=>{
+ const f=fixture();f.model.context={symbol:'EURUSD',interval:'1h',hash};f.brief.scenarios=[{direction:'bullish',trigger:1.1,invalidation:1}];const e=commandEvidence(f);
+ for(const brief of [{...f.brief,symbol:'GBPUSD'},{...f.brief,interval:'1d'},{...f.brief,selected:{provenance:{hash:'b'.repeat(64)}}},null])assert.deepEqual(decisionEvidence({evidence:e,model:f.model,brief}).scenarios,[]);
+ const v=decisionEvidence({evidence:e,model:{...f.model,fresh:false},brief:f.brief});assert.equal(v.usable,false);assert.deepEqual(v.supporting,[]);assert.deepEqual(v.opposing,[]);assert.deepEqual(v.scenarios,[]);assert.equal(v.availableFrames,0);
+});
+test('OHLC readout uses original selected candle and exact rolling source window without calculating prices',()=>{
+ const f=fixture();f.series.candles=Array.from({length:40},(_,i)=>({time:i*3600000,open:1+i/100,high:1.1+i/100,low:.9+i/100,close:1.02+i/100,volume:i}));const visible=f.series.candles.slice(10,30),plot={left:12,right:212,width:200},input={context:f.context,series:f.series,visible,plot,hover:{x:17},fresh:true},before=JSON.stringify(input);
+ const r=chartReading(input);assert.deepEqual(r.candle,f.series.candles[10]);assert.equal(r.index,10);assert.deepEqual(r.rangeSource,{first:f.series.candles[9].time,last:f.series.candles[28].time,count:20});assert.equal(r.executionAuthorized,false);r.candle.open=99;assert.equal(JSON.stringify(input),before);
+ const last=chartReading({...input,hover:{x:999}});assert.equal(last.candle.time,visible.at(-1).time);assert.equal(last.inspected,false);
+});
+test('OHLC readout withholds stale, missing, wrong context and altered visible-candle evidence',()=>{
+ const f=fixture();f.series.candles=[{time:1,open:1,high:2,low:.9,close:1.1}];const input={context:f.context,series:f.series,visible:f.series.candles,fresh:true};
+ for(const changes of [{fresh:false},{series:null},{visible:[]},{context:{...f.context,symbol:'GBPUSD'}},{context:{...f.context,interval:'1d'}},{context:{...f.context,datasetId:'b'.repeat(64)}},{visible:[{...f.series.candles[0],close:1.2}]}])assert.equal(chartReading({...input,...changes}),null);
 });

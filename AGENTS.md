@@ -55,6 +55,18 @@ financial restrictions, all original modules and full CI gates. Provide genuine
 before/after captures and an exact-head Preview for owner acceptance. PR #17 and
 Issue #18 stay separate. No main merge or Production deployment is authorized.
 
+## Owner institutional refinement — 2026-11-12
+
+Continue existing PR #20 from reviewed `1fbff005`, per
+https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6833948553 .
+The owner requires one coherent chart-led improvement: concise decision evidence,
+source-inspectable chart layers/candles, contextual hypothetical scenarios and
+one-page research actions. Preserve all original browser assertions, engines,
+financial restrictions and architecture. Report matched before/after observations,
+viewport geometry and workflow steps at 1440/1024/390 with EN/AR and themes.
+Keep PR #17 and Issue #18 separate. No main merge or Production deployment is
+approved; final exact-head CI and matching READY Preview precede owner acceptance.
+
 ## Release requirements
 
 This branch is a descendant of canonical main ddd13c298103d93ced74fdb8bbf8c43f4579369c.

@@ -487,3 +487,14 @@ Next increment: an explicit, separately saved follow-up research record linking 
 new scenario to its historical thesis, retaining both snapshots and user-authored
 rationale. Keep the original immutable; assess the existing record format before
 adding linkage, and never imply a simulated or realized trade outcome.
+
+## PR20 institutional acceptance pass — 2026-11-12
+
+Owner reviewed `1fbff005` and requested another substantial integrated refinement
+before main: [binding requirements](https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6833948553).
+Current work joins source-bound decision facts, timeframe disagreement and
+conditional invalidation with native candle/layer inspection and one-page risk/
+notes actions. Preserve all numerical engines and execution restrictions.
+Acceptance requires matched real-app visual evidence, original complete browser
+coverage, full exact-head CI and an existing-project Preview. Main/Production
+remain unapproved; next priority is owner acceptance of this coherent candidate.
