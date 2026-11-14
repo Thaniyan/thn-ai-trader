@@ -1,5 +1,6 @@
 import './research-studio.js';
 import {attachCommandWorkbench} from './command-workbench.js';
+import {attachCommandTrust} from './command-trust.js';
 import {annotationLabels} from './command-evidence.js';
 import {commandAssessment,projectLevel,sourceAnchor,candidateResearchNote} from './command-center-core.js';
 import {recommendationReason} from './recommendation-core.js';
@@ -124,4 +125,4 @@ new MutationObserver(schedule).observe(document.documentElement,{attributes:true
 document.addEventListener('visibilitychange',schedule);window.addEventListener('focus',schedule);
 matchMedia('(max-width:900px)').addEventListener('change',schedule);
 new MutationObserver(schedule).observe($('analyzeBtn'),{attributes:true,attributeFilter:['disabled']});
-attachCommandWorkbench();render();THNResearch.chart.draw();
+attachCommandWorkbench();attachCommandTrust();render();THNResearch.chart.draw();

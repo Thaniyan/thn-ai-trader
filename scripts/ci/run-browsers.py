@@ -2,8 +2,8 @@
 All canonical v6.6 suites and both v7 suites run; failure in any suite blocks CI.
 """
 import os,pathlib,subprocess,sys,time,select,shutil
-from browser_suites import select_suites
-suites=select_suites(os.environ)
+from browser_suites import select_suites,select_trust_suites
+suites=select_suites(os.environ)+select_trust_suites(os.environ)
 root=pathlib.Path(__file__).resolve().parents[2];os.chdir(root)
 out=pathlib.Path(os.environ.get('BROWSER_LOG_ROOT',root/'work'));out.mkdir(parents=True,exist_ok=True);(out/'v7').mkdir(exist_ok=True)
 env={**os.environ,'VERCEL':'1','THN_AI_ENABLED':'0','THN_LOCAL_PAPER':'0','TEST_OUTPUT':str(out/'v7')}
