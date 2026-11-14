@@ -1,0 +1,53 @@
+{
+  "scope": "Local offline synthetic fixtures; cold browser pages; not WAN/Production performance",
+  "samples": [
+    {
+      "iteration": 0,
+      "readyMs": 750.05,
+      "evaluationMs": 222.09,
+      "planningMs": 141.96,
+      "resources": 70,
+      "encodedBytes": 1771905,
+      "javascriptBytes": 1199408,
+      "cssBytes": 265724,
+      "seriesRequests": 1,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 209757,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    },
+    {
+      "iteration": 1,
+      "readyMs": 606.5,
+      "evaluationMs": 251.08,
+      "planningMs": 135.46,
+      "resources": 70,
+      "encodedBytes": 1771905,
+      "javascriptBytes": 1199408,
+      "cssBytes": 265724,
+      "seriesRequests": 1,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 209757,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    },
+    {
+      "iteration": 2,
+      "readyMs": 624.23,
+      "evaluationMs": 252.06,
+      "planningMs": 150.41,
+      "resources": 70,
+      "encodedBytes": 1771905,
+      "javascriptBytes": 1199408,
+      "cssBytes": 265724,
+      "seriesRequests": 1,
+      "seriesPaths": [
+        "/api/research/series?symbol=EURUSD&interval=1h"
+      ],
+      "seriesBytes": 209757,
+      "dataset": "19bfc603fe439a092588e6cbd70e57aeb6af7197dfa5375a774e40dab9dc5701"
+    }
+  ]
+}

@@ -1053,6 +1053,7 @@ function showNotice(msg, type = "info") {
   status(msg);activeToastNotice=activeNotice?{...activeNotice}:null;activeToastType=type;
   const toast = $("tradeToast");
   if (toast) {
+    toast.dataset.kind = "notice";
     if ($("toastSignal")) $("toastSignal").textContent = type === "error" ? "⚠️ ALERT" : "ℹ️ NOTICE";
     if ($("toastReason")) $("toastReason").textContent = msg;
     if ($("toastConfidence")) $("toastConfidence").textContent = "";
@@ -1292,7 +1293,8 @@ async function checkHealth() {
 }
 window.THNServiceHealth={get:()=>cachedHealth,refresh:checkHealth};
 
-let analysisGeneration=0,analysisPending=null;
+let analysisGeneration=0,analysisPending=null,analysisController=null;
+window.THNAnalysisControl={cancel(){analysisController?.abort();analysisController=null;++analysisGeneration;analysisPending=null;$('analyzeBtn').disabled=false;$('analyzeBtn').textContent=t('analyze');window.dispatchEvent(new Event('thn:analysis-state'));}};
 async function analyze() {
   window.THNContext?.set({symbol: $("symbolInput").value.trim().toUpperCase(), interval: ({scalp:"15m",intraday:"1h",swing:"1d",position:"1d"})[$("timeframe").value] || "1h"}, "analysis");
   const payload=getPayload();
@@ -1302,6 +1304,7 @@ async function analyze() {
   try{return await promise;}finally{if(analysisPending?.promise===promise)analysisPending=null;}
 }
 async function performAnalysis(payload) {
+  analysisController?.abort();const controller=new AbortController();analysisController=controller;
   const generation=++analysisGeneration;
   saveSetup();
   statusKey("analyzingStatus", { symbol: payload.symbol.toUpperCase() });
@@ -1311,7 +1314,8 @@ async function performAnalysis(payload) {
     const res = await fetch("/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: controller.signal
     });
     const data = await res.json();
     if (!res.ok || data.error) throw new Error(data.detail || data.error || "Analysis failed");
@@ -3178,6 +3182,8 @@ function playTradeAlertSound(decision) {
 }
 
 function showTradeToast(item) {
+  // The landing Command Center already owns a source-qualified assessment.
+  if (window.THNCommand && $("view-dashboard")?.classList.contains("view-active")) return;
   activeToastNotice=null;activeToastType=null;
   const toast = $("tradeToast");
   if (!toast) return;
@@ -3202,6 +3208,7 @@ function showTradeToast(item) {
   if ($("toastReason")) $("toastReason").textContent = reasonText;
 
   toast.dataset.symbol = item.symbol || item.requestedSymbol;
+  toast.dataset.kind = "research-signal";
   toast.classList.remove("hidden");
 
   toastTimeout = setTimeout(() => {
@@ -6001,6 +6008,6 @@ function discloseRetainedAnalysis(){legacyIdentity();for(const id of ['d64Legacy
 for(const event of ['thn:analysis','thn:context','thn:research-context'])window.addEventListener(event,discloseRetainedAnalysis);
 window.addEventListener('DOMContentLoaded',discloseRetainedAnalysis);
 new MutationObserver(discloseRetainedAnalysis).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-window.addEventListener('thn:context',()=>{++analysisGeneration;$('analyzeBtn').disabled=false;$('analyzeBtn').textContent=t('analyze');legacyIdentity();});
+window.addEventListener('thn:context',()=>{analysisController?.abort();++analysisGeneration;$('analyzeBtn').disabled=false;$('analyzeBtn').textContent=t('analyze');legacyIdentity();});
 for(const event of ['thn:analysis','thn:series','thn:research-context'])window.addEventListener(event,legacyIdentity);
 new MutationObserver(legacyIdentity).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});legacyIdentity();

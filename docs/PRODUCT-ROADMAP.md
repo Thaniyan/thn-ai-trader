@@ -6,6 +6,44 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Authoritative Issue 21 — Trading Command Center
+
+Owner direction 2026-11-10: [Issue #21](https://github.com/Thaniyan/thn-ai-trader/issues/21).
+The owner rejects PR #20 as the final visual/product outcome but explicitly
+approves evolving its verified functionality on the same review branch. The
+single main page now integrates a catalog-backed chooser, the owned two-mode
+chart, qualified evidence assessment, existing-engine candidate references,
+conditional reasoning, the original risk planner/cost controls and research
+saving. See [implementation and acceptance](ISSUE21-COMMAND-CENTER.md).
+This remains a candidate. Main and Production require explicit owner approval.
+PR #17 and Issue #18 remain separate; genuine hosted model generation is off.
+The November 17, 2026 target is an owner review/release decision, not permission
+to bypass safeguards or claim a model is running.
+
+## Issue 19 candidate — 2026-11-10 (not accepted or deployed)
+
+Owner update 2026-11-11: the CI-green `7fedc5b` candidate remains unaccepted.
+Continue the same PR #20 with an integrated evidence workbench, retained chart
+coordinate-linked level inspection, source identity, independent timeframe
+drill-down and opposing school evidence. Use the original planner, records and
+navigation owners. See [professional review evidence](COMMAND-CENTER-PROFESSIONAL-REVIEW.md)
+for measured before/after application captures and release gates. Main and
+Production remain withheld pending explicit owner approval.
+
+The active independent development branch is
+`feature/integrated-research-workstation-issue19-20261110`, based on canonical
+main `fb92c9604d16d0df45d3a13096c2f84a6d66546b`. It adds a connected chart,
+cited-evidence, chronological validation, immutable saved-case comparison/replay
+and hypothetical planning workflow in the existing application. See
+[the ownership, implementation and verification report](ISSUE19-INTEGRATED-PROGRAM.md).
+
+PR #17 remains separately financially gated; rejected PR #16 is excluded. The
+Issue 18 disposable failure investigation demonstrates unresolved independent
+audit persistence and corruption gaps. No recovery semantics, financial formulas,
+execution permissions or account architecture are changed. Main integration,
+Production deployment and owner visual acceptance remain outstanding. These
+statements describe a review candidate, not released capabilities.
+
 ## Delivery policy
 
 Routine, low-risk improvements: implement, run required gates, review the diff,
@@ -449,3 +487,14 @@ Next increment: an explicit, separately saved follow-up research record linking 
 new scenario to its historical thesis, retaining both snapshots and user-authored
 rationale. Keep the original immutable; assess the existing record format before
 adding linkage, and never imply a simulated or realized trade outcome.
+
+## PR20 institutional acceptance pass — 2026-11-12
+
+Owner reviewed `1fbff005` and requested another substantial integrated refinement
+before main: [binding requirements](https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6833948553).
+Current work joins source-bound decision facts, timeframe disagreement and
+conditional invalidation with native candle/layer inspection and one-page risk/
+notes actions. Preserve all numerical engines and execution restrictions.
+Acceptance requires matched real-app visual evidence, original complete browser
+coverage, full exact-head CI and an existing-project Preview. Main/Production
+remain unapproved; next priority is owner acceptance of this coherent candidate.

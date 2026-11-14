@@ -1,0 +1,9 @@
+{
+  "base": "1625b75f6637b5f2910418c3a7d346ef4ebd1d1b",
+  "file": "tests/browser_workspace_hierarchy.py",
+  "baseSHA256": "0984736a1f86b170a30a843dc47c4673969483161c98b6f6f540bc60582c4fe6",
+  "currentSHA256": "0984736a1f86b170a30a843dc47c4673969483161c98b6f6f540bc60582c4fe6",
+  "identical": true,
+  "originalChartBound": "chart.y < 750 and visible > 250",
+  "suiteAndJobTimeoutChanges": false
+}

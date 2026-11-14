@@ -1,0 +1,438 @@
+{
+  "profiles": [
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2327
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2327
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2168
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2168
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3269
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3269
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3117
+    },
+    {
+      "view": "ai",
+      "font": "default",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3117
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2468
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2468
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2146
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2146
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3452
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3452
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3108
+    },
+    {
+      "view": "ai",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3108
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2289
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2289
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 768,
+      "height": 2146
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 768,
+      "height": 2146
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3230
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3230
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 3053
+    },
+    {
+      "view": "ai",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 3053
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 9181
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 9181
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 8703
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 8703
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 160,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 20537
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 160,
+      "language": "en",
+      "theme": "light",
+      "scroll": 160,
+      "height": 20537
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 160,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 18789
+    },
+    {
+      "view": "portfolio",
+      "font": "default",
+      "width": 160,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 160,
+      "height": 18789
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 9402
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 9402
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 8703
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 8703
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 160,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 21689
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 160,
+      "language": "en",
+      "theme": "light",
+      "scroll": 160,
+      "height": 21689
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 160,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 18508
+    },
+    {
+      "view": "portfolio",
+      "font": "DejaVu Sans",
+      "width": 160,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 160,
+      "height": 18508
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 9038
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "scroll": 390,
+      "height": 9038
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 390,
+      "height": 8591
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 390,
+      "height": 8591
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 160,
+      "language": "en",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 19740
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 160,
+      "language": "en",
+      "theme": "light",
+      "scroll": 160,
+      "height": 19740
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 160,
+      "language": "ar",
+      "theme": "dark",
+      "scroll": 160,
+      "height": 17644
+    },
+    {
+      "view": "portfolio",
+      "font": "Liberation Sans",
+      "width": 160,
+      "language": "ar",
+      "theme": "light",
+      "scroll": 160,
+      "height": 17644
+    }
+  ],
+  "errors": [],
+  "scope": "Offline fixtures; supplemental default/DejaVu/Liberation font-metric coverage"
+}

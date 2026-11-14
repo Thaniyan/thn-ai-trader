@@ -55,7 +55,7 @@ function composeEvidence(){if(!matchedReview())return;go('ai');if(!THNIntelligen
 const contextHome=document.createComment('shared research context');shell.before(contextHome);
 const topbar=document.querySelector('.terminal-topbar'),mobileChrome=matchMedia('(max-width:1100px)');
 function placeDesk(){
- const home=$('view-dashboard');if(home.firstElementChild!==lead)home.prepend(lead);
+ const home=$('view-dashboard');if(!window.THNCommand&&home.firstElementChild!==lead)home.prepend(lead);
  const terminal=$('proTerminal');if(deskReview.parentElement!==terminal.querySelector('.pro-research-rail'))terminal.querySelector('.pro-research-rail').prepend(deskReview);
  if(home.classList.contains('view-active')){$('evoLeadContext').append(shell);}else if(shell.previousSibling!==contextHome)contextHome.after(shell);
  if(mobileChrome.matches){if(topbar.parentElement!==document.querySelector('.app-shell'))document.querySelector('.app-shell').prepend(topbar);}else if(topbar.parentElement!==document.querySelector('.terminal-main'))document.querySelector('.terminal-main').prepend(topbar);
@@ -63,7 +63,7 @@ function placeDesk(){
 mobileChrome.addEventListener('change',placeDesk);window.addEventListener('thn:view',placeDesk);placeDesk();
 let deskBusy=false,deskRun=0,deskStatus='',deskPinnedSignature=null;
 const deskSignature=()=>{const c=THNContext.get();return JSON.stringify([c.symbol,c.interval,c.datasetId]);};
-$('evoRunDesk').onclick=async()=>{
+$('evoRunDesk').onclick=async(event)=>{
  if(deskBusy)return;const run=++deskRun,c=THNContext.get();deskBusy=true;deskPinnedSignature=null;deskStatus=['Validating selected market and preparing the evidence review…','جار التحقق من السوق المختار وإعداد مراجعة الأدلة…'];schedule();
  try{
   const priorAnalysis=typeof currentAnalysis==='undefined'?null:currentAnalysis;$('symbolInput').value=c.symbol;$('timeframe').value=({'15m':'scalp','1h':'intraday','1d':'swing'})[c.interval];await analyze();
@@ -72,17 +72,18 @@ $('evoRunDesk').onclick=async()=>{
   const signature=deskSignature(),priorReview=THNIntelligence.result();deskPinnedSignature=signature;await THNIntelligence.ask(tr('Review the market evidence, challenge the analysis and explain risk','راجع أدلة السوق وتحد التحليل واشرح المخاطر'));
   if(run!==deskRun||signature!==deskSignature())return;
   if(THNIntelligence.result()===priorReview)throw Error('Review unavailable');
-  deskStatus=['Review complete. Inspect the chart, counter-evidence and hypothetical scenarios below.','اكتملت المراجعة. افحص الرسم والأدلة المعارضة والسيناريوهات الافتراضية أدناه.'];if($('view-dashboard').classList.contains('view-active')){deskReview.scrollIntoView({block:'start',behavior:'instant'});deskReview.focus({preventScroll:true});}
+  deskStatus=['Review complete. Inspect the chart, counter-evidence and hypothetical scenarios below.','اكتملت المراجعة. افحص الرسم والأدلة المعارضة والسيناريوهات الافتراضية أدناه.'];if($('view-dashboard').classList.contains('view-active')&&!event?.inPlace){const disclosure=deskReview.closest('details');if(disclosure)disclosure.open=true;deskReview.scrollIntoView({block:'start',behavior:'instant'});deskReview.focus({preventScroll:true});}
  }catch{if(run===deskRun)deskStatus=['Analysis unavailable. No trade or substitute price was created. Retry explicitly.','التحليل غير متاح. لم تُنشأ صفقة أو أسعار بديلة. أعد المحاولة صراحةً.'];}
  finally{if(run===deskRun){deskBusy=false;deskPinnedSignature=null;schedule();}}
 };
+function cancelDeskReview(){++deskRun;deskBusy=false;deskPinnedSignature=null;THNIntelligence.cancel();window.THNAnalysisControl?.cancel();deskStatus=['Review cancelled. Matching retained evidence is separate from a completed new review.','أُلغيت المراجعة. الأدلة المطابقة المحفوظة منفصلة عن مراجعة جديدة مكتملة.'];schedule();}
 function invalidateDeskReview(){closeEvidence();if(deskBusy){++deskRun;deskBusy=false;deskPinnedSignature=null;THNIntelligence.cancel();}deskStatus=['Market changed. Start a fresh review for this instrument.','تغير السوق. ابدأ مراجعة جديدة لهذه الأداة.'];schedule();}
 window.addEventListener('thn:context',invalidateDeskReview);window.addEventListener('thn:research-context',()=>{if(deskBusy&&deskPinnedSignature&&deskPinnedSignature!==deskSignature())invalidateDeskReview();});
 function reviewedPlan(){try{return THNDecision.snapshot().plan||null;}catch{return null;}}
 function localPaperPlan(p){const c=THNContext.get(),r=window.THNIntelligence?.result?.(),b=THNDecision.brief(),identity=instrumentIdentity(c.symbol,THNResearch.series()?.provenance);return !!(!identity.proxy&&r&&!r.unverified&&r.outcome==='conditional'&&r.snapshot.fresh&&r.snapshot.symbol===c.symbol&&r.snapshot.interval===c.interval&&r.snapshot.selectedHash===c.datasetId&&r.snapshot.asOf<=Date.now()&&Date.now()-r.snapshot.asOf<=600000&&b?.complete&&!b.conflicting&&window.THNServiceHealth?.get()?.capabilities?.paperExecution===true&&p&&p.plannedStopLossWithCosts<=p.budget&&p.metrics.requiredMargin<=p.capital&&p.lots>=.01&&p.lots<=50&&[...$('directOrderSymbol').options].some(o=>o.value===p.symbol));}
 function preparePaperReview(){const p=reviewedPlan();if(!localPaperPlan(p)){notify(tr('Paper review unavailable: local opt-in and a matching, within-budget plan are required.','مراجعة المحاكاة غير متاحة: يلزم تفعيل محلي وخطة مطابقة ضمن الميزانية.'));return;}go('trading');for(const [id,value]of [['directOrderSymbol',p.symbol],['directOrderSide',p.side],['directOrderLots',p.lots],['directOrderSL',p.stop],['directOrderTP',p.targets[0]]])$(id).value=String(value);const ticket=$('directOrderSymbol');for(let node=ticket.parentElement;node;node=node.parentElement)if(node.tagName==='DETAILS')node.open=true;const tab=document.querySelector('#view-trading .subtab-btn[data-subtab="ticket"]');if(!tab){notify(tr('Original paper ticket unavailable; no order submitted.','تذكرة المحاكاة الأصلية غير متاحة؛ لم يرسل أمر.'));return;}tab.click();ticket.scrollIntoView({block:'center',behavior:'instant'});ticket.focus();notify(tr('Local paper draft only. Verify current quote, margin and account before explicit confirmation. No order was submitted.','مسودة محاكاة محلية فقط. تحقق من السعر الحالي والهامش والحساب قبل التأكيد الصريح. لم يُرسل أمر.'));}
 function reasoningChart(){
- go('trading');THNProfessional.setMode('research');THNResearch.chart.reset();for(const key of ['ema','levels'])if(!THNResearch.chart.layers[key])document.querySelector('[data-qlayer="'+key+'"]').click();$('qCandles').scrollIntoView({block:'center'});$('qCandles').focus();
+ go('trading');THNProfessional.setMode('research');THNResearch.chart.reset();for(const key of ['ema','levels'])if(!THNResearch.chart.layers[key])document.querySelector('[data-qlayer="'+key+'"]').click();$('qCandles').scrollIntoView({block:'center',behavior:'instant'});$('qCandles').focus({preventScroll:true});
 }
 const notice=document.createElement('p');notice.id='evoNotice';notice.className='evo-notice';notice.setAttribute('role','status');notice.hidden=true;flow.after(notice);
 
@@ -195,4 +196,4 @@ document.addEventListener('submit',event=>{if(event.target.id!=='evoDefaultForm'
 for(const event of ['thn:intelligence','thn:view','thn:context','thn:research-context','thn:series','thn:decision','thn:analysis','thn:evaluation-state','thn:evaluation','thn:plan','thn:journal','thn:library','thn:service-health','thn:storage-unavailable','storage'])window.addEventListener(event,schedule);
 document.addEventListener('click',event=>{if(event.target.closest('.nav-stack [data-view]'))schedule();});
 new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});
-window.THNEvolution={snapshot,refresh:schedule,renderCount:()=>renders,analysisReady:()=>analysisReady(THNContext.get())};render();
+window.THNEvolution={snapshot,cancelReview:cancelDeskReview,refresh:schedule,renderCount:()=>renders,analysisReady:()=>analysisReady(THNContext.get())};render();

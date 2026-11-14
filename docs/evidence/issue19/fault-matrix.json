@@ -1,0 +1,687 @@
+{
+  "scope": "Disposable local-paper fault injection; test evidence, not recovery semantics changes",
+  "scenarios": [
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "occurrence": 1,
+        "phase": "before",
+        "mode": "crash",
+        "boundary": "reserve"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json",
+        "operation": "rename",
+        "phase": "before",
+        "mode": "crash",
+        "boundary": "account"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "audit_log.json",
+        "operation": "write",
+        "phase": "before",
+        "mode": "crash",
+        "boundary": "audit"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "occurrence": 2,
+        "phase": "before",
+        "mode": "crash",
+        "boundary": "completion"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "occurrence": 1,
+        "phase": "after",
+        "mode": "crash",
+        "boundary": "reserve"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json",
+        "operation": "rename",
+        "phase": "after",
+        "mode": "crash",
+        "boundary": "account"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "audit_log.json",
+        "operation": "write",
+        "phase": "after",
+        "mode": "crash",
+        "boundary": "audit"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "occurrence": 2,
+        "phase": "after",
+        "mode": "crash",
+        "boundary": "completion"
+      },
+      "firstStatus": null,
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "write",
+        "phase": "before",
+        "mode": "ENOSPC",
+        "boundary": "reserve"
+      },
+      "firstStatus": 409,
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json.tmp",
+        "operation": "write",
+        "phase": "before",
+        "mode": "ENOSPC",
+        "boundary": "account"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "audit_log.json",
+        "operation": "write",
+        "phase": "before",
+        "mode": "ENOSPC",
+        "boundary": "audit"
+      },
+      "firstStatus": 200,
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "AUDIT_FAILURE_SWALLOWED"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "write",
+        "occurrence": 2,
+        "phase": "before",
+        "mode": "ENOSPC",
+        "boundary": "completion"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "write",
+        "phase": "before",
+        "mode": "EACCES",
+        "boundary": "reserve"
+      },
+      "firstStatus": 409,
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json.tmp",
+        "operation": "write",
+        "phase": "before",
+        "mode": "EACCES",
+        "boundary": "account"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "audit_log.json",
+        "operation": "write",
+        "phase": "before",
+        "mode": "EACCES",
+        "boundary": "audit"
+      },
+      "firstStatus": 200,
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "AUDIT_FAILURE_SWALLOWED"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "write",
+        "occurrence": 2,
+        "phase": "before",
+        "mode": "EACCES",
+        "boundary": "completion"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "fsync",
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "reserve"
+      },
+      "firstStatus": 409,
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json.tmp",
+        "operation": "fsync",
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "account"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json.tmp",
+        "operation": "fsync",
+        "occurrence": 2,
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "completion"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "reserve"
+      },
+      "firstStatus": 409,
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 200,
+      "retryCode": null,
+      "newKeyStatus": null,
+      "final": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "trading_accounts.json",
+        "operation": "rename",
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "account"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "rename",
+        "occurrence": 2,
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "completion"
+      },
+      "firstStatus": 500,
+      "disk": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 1,
+        "intent": "reserved",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CROSS_FILE_DIVERGENCE"
+    },
+    {
+      "fault": {
+        "file": "paper_intents.json",
+        "operation": "fsync",
+        "phase": "before",
+        "mode": "EIO",
+        "boundary": "reserve-directory-fsync"
+      },
+      "firstStatus": 409,
+      "disk": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "retryStatus": 409,
+      "retryCode": "PAPER_RECOVERY_REQUIRED",
+      "newKeyStatus": 409,
+      "final": {
+        "positions": 0,
+        "intent": "reserved",
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "limitation": "NO_ATOMICITY_CLAIM"
+    },
+    {
+      "fault": {
+        "boundary": "corrupt-intent"
+      },
+      "status": 409,
+      "code": "PAPER_RECOVERY_REQUIRED",
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "originalPreserved": true
+    },
+    {
+      "fault": {
+        "boundary": "corrupt-account"
+      },
+      "status": 500,
+      "originalPreserved": true,
+      "limitation": "CLIENT_SAFE_RECOVERY_MESSAGE_NOT_IMPLEMENTED_IN_MAIN"
+    },
+    {
+      "fault": {
+        "boundary": "corrupt-audit"
+      },
+      "status": 200,
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "limitation": "CORRUPT_AUDIT_REPLACED_NOT_RECOVERED"
+    },
+    {
+      "fault": {
+        "boundary": "orphan-writer"
+      },
+      "status": 409,
+      "code": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "disk": {
+        "positions": 0,
+        "intent": null,
+        "filledAudit": 0,
+        "writerMarker": true
+      },
+      "originalPreserved": true
+    },
+    {
+      "fault": {
+        "boundary": "mismatched-owner"
+      },
+      "status": 409,
+      "code": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      },
+      "originalPreserved": true
+    },
+    {
+      "fault": {
+        "boundary": "concurrent-writer"
+      },
+      "status": 409,
+      "code": "PAPER_WRITER_RECOVERY_REQUIRED",
+      "disk": {
+        "positions": 1,
+        "intent": "completed",
+        "filledAudit": 1,
+        "writerMarker": true
+      }
+    }
+  ]
+}

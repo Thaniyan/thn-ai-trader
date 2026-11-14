@@ -1,0 +1,244 @@
+{
+  "scope": "Real pinned Chromium CDP; controlled missing-DejaVu configuration before, same base plus verified upstream fonts after; not a claim of local Docker image execution.",
+  "reproducedHostedBoldSubstitution": [
+    {
+      "familyName": "Liberation Sans",
+      "postScriptName": "LiberationSans-Bold",
+      "isCustomFont": false,
+      "glyphCount": 11
+    }
+  ],
+  "before": {
+    "expectedFailure": "Chromium substituted the required DejaVu Sans profile: [{\"familyName\": \"Liberation Sans\", \"postScriptName\": \"LiberationSans\", \"isCustomFont\": false, \"glyphCount\": 11}]",
+    "browserVersion": "151.0.7922.34"
+  },
+  "after": {
+    "profiles": [
+      {
+        "language": "en",
+        "theme": "dark",
+        "width": 240,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "dark",
+        "width": 240,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "dark",
+        "width": 160,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "dark",
+        "width": 160,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "width": 240,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "width": 240,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "width": 160,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "width": 160,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 11
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "dark",
+        "width": 240,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 18
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "dark",
+        "width": 240,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 18
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "dark",
+        "width": 160,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 17
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "dark",
+        "width": 160,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 17
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "light",
+        "width": 240,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 18
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "light",
+        "width": 240,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 18
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "light",
+        "width": 160,
+        "weight": 400,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 17
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "light",
+        "width": 160,
+        "weight": 700,
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 17
+          }
+        ]
+      }
+    ],
+    "browserVersion": "151.0.7922.34"
+  }
+}
