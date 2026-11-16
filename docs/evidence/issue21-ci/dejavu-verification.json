@@ -1,0 +1,396 @@
+{
+  "scope": "Complete local final-source verification with pinned Chromium and checksum-verified supplemental fonts, not a claim of local Docker or live deployment execution.",
+  "baseCommit": "d4856d224e0517d8acc00216ed721038c42f7a6c",
+  "verifiedAtUTC": "2026-11-11T16:43:00.933464+00:00",
+  "counts": {
+    "coreNumericalUnitIntegration": 323,
+    "system": 10,
+    "security": 21,
+    "browserSuites": 36,
+    "fontProfiles": 72,
+    "dejavuRendererProfiles": 16,
+    "upstreamDejavuFonts": 22,
+    "originalEvidenceWorkflowFallbackProfiles": 8
+  },
+  "toolchain": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "python": "3.12.14",
+    "playwright": "1.62.0",
+    "chromiumRevision": 1234,
+    "chromium": "151.0.7922.34",
+    "axe": "4.10.3"
+  },
+  "fontSource": {
+    "url": "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.tar.bz2",
+    "sha256": "fa9ca4d13871dd122f61258a80d01751d603b4d3ee14095d65453b4e846e17d7",
+    "files": {
+      "DejaVuMathTeXGyre.ttf": "40da67c0b6b03076504fbda4bf3e7b4f20b35999c98063019a3392fe9b1294fe",
+      "DejaVuSans-Bold.ttf": "e6476c1b80502924294eed40894c5b18e06c181444ca953e5334262df9c27724",
+      "DejaVuSans-BoldOblique.ttf": "eb436dca0c2594b73d8b603b892e374fdfd8d885d25ffb4f18df4c4c0b49e50f",
+      "DejaVuSans-ExtraLight.ttf": "6cb0746a1f68d176bebe83752cee35ebdf726cb1a1e88a01fc038ddf76de9ea8",
+      "DejaVuSans-Oblique.ttf": "4af75fa16ee6d3ad43e1ecec41862c24954af26a55c6bb1ebb27bd486a50f5f4",
+      "DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
+      "DejaVuSansCondensed-Bold.ttf": "38098d0b8edd8430a0f53fb2831b5d36037563a998a620d3c87a4d7591766d20",
+      "DejaVuSansCondensed-BoldOblique.ttf": "43f9fd6b77edf174553cf94857c77c63de7ddb0c6751fd1390e73223518e128f",
+      "DejaVuSansCondensed-Oblique.ttf": "dc3526fa25fae4278c4e34b47d4c049b6923421c70921032a0db11bfe9c1b0cf",
+      "DejaVuSansCondensed.ttf": "8550cd5ca1acb65a8fc7877c46939cd0b4d909f8e7bc1e24716873d918c5e549",
+      "DejaVuSansMono-Bold.ttf": "bce60f1b4421acd9ea51ba6623d7024ecbe6817a953e3654df62a5e6bdf8f769",
+      "DejaVuSansMono-BoldOblique.ttf": "91713a71d550bba22c2a6b2bb2a9ad8f9a159e12e4e9f0a5b2677998ba21213e",
+      "DejaVuSansMono-Oblique.ttf": "742097840c541870e8d6dc5c9b37bb1ceeea6c0dedd1d475faf903ef9df734b0",
+      "DejaVuSansMono.ttf": "b4a6c3e4faab8773f4ff761d56451646409f29abedd68f05d38c2df667d3c582",
+      "DejaVuSerif-Bold.ttf": "c47b5527bcdc8dcf9ea8c77054454c5a884beaca2f44851a2a823ee639cbf07f",
+      "DejaVuSerif-BoldItalic.ttf": "8d3dd3d31350309042ed226af82b34539bd773518e6107cb352712853ba80308",
+      "DejaVuSerif-Italic.ttf": "2e39b1d50f90b933b00c7bb54a96afd3f86419b3d717c7cf202e36f2d4973e47",
+      "DejaVuSerif.ttf": "42d1edeb7952f31b1f96d767ed7030b08a39e0c372b0071641518864e2bffb51",
+      "DejaVuSerifCondensed-Bold.ttf": "e09aa87c60c3e8de7f4e6c7bfeec8fd9489b6cd975e3033259bca3d6009aed18",
+      "DejaVuSerifCondensed-BoldItalic.ttf": "4cfc5a3700c72413f51c4bb54f09617401a0a63eccb9ff577713e20afa047fa5",
+      "DejaVuSerifCondensed-Italic.ttf": "dfe5bf5336d62ca71de419cccf7fd18ab19a57245dc392891ee76347129807e1",
+      "DejaVuSerifCondensed.ttf": "685dcdfb8daf32a453d3426a4eb8d881c72146ddd999229354fb757511357995"
+    },
+    "licenseSHA256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93"
+  },
+  "originalBrowserSourcesUnchanged": {
+    "tests/browser_consistency.py": "a352b82b6bd0a9b40fcfcf1fe25e759e01582a1faa27b8d4a40244ded2335ca0",
+    "tests/browser_library_reliability.py": "6e505e8eadb66f389cb02b57591cedf9a9702345066d0d97dbd232dc5a1bbd5f",
+    "tests/browser_unified_workspace.py": "f1d0d4aa52d90de1e2e624caebaa6394e5ab7eb312009b1b460e74a54067832b",
+    "tests/browser_workstation.py": "9faf5855474a698f98df9743b5cfd46e0282e22f23467af43888d0e61b1bf4e9",
+    "tests/browser_journal_lifecycle.py": "d6ce0de34fc756b120c62f7d3d8962e97f1fcb043ba39aa45aa27a769f63fb9f",
+    "tests/browser_workflow_polish.py": "b76d5fcb9d84c8084ecaa0565513e549cf2a4fe6ff8474054f645ca15a0bb88b",
+    "tests/browser_recovery.py": "e561d89562014ebef1d91f7e00f68219f85570faa2af57c92e088e84139b9ecb",
+    "tests/browser_research_outage.py": "beb6c8fbeb940ae0d1cc55ef1abad09196826978162ea0bfc76990db2f4aa464",
+    "tests/browser_paper_review.py": "31a7385e7a8cfd7d8616e0a456eead927a53cf2a0e25ea8afd3feae0958eabed",
+    "tests/browser_research_risk.py": "ab2a676db07b5609ede0ff6b34b472adfc06a4297fc98cc15941d40cb1d1b955",
+    "tests/browser_dashboard_confidence.py": "a79a1f75dcbf334f6be478325e29eeb7afa8fcf6c254a5ca04abcc1ace8216ae",
+    "tests/browser_decision.py": "f92778b27f20c6a34b6924de16dfd42f8ca5b28bb300658e8448b342a328308f",
+    "tests/browser_experience.py": "1ed2bf079449ec92ea8df8870b5eb34bf689573fe31e339adb11f1bbf91a33e4",
+    "tests/browser_trading_remediation.py": "92e7b00438b1abe2a31afc40ab9e4893934cd35daaa011826195eeb442aa05bb",
+    "tests/browser_layout.py": "a2eb403adc22b7eb03513485d7da372d85575ce2ea47dbd88e0a3c5c055d3977",
+    "tests/browser_research_studio.py": "7724ea74aa0903bf775c954dbf8a7aa7d966fd279b94cfcb7fd169ef4bc2a194",
+    "tests/browser_maturity.py": "7fa3df88fc91d4a9b0a55dce9ae514efb78a1d6c917d23668b5644f844260719",
+    "tests/browser_command_center.py": "efdafe9444cc5223f65f1228195b8870a2f031e39b50203766a2b39c40729b38",
+    "tests/browser_visual_refinement.py": "9f3e26b8c3359b6e4cf3e1b10ac6fe58be40fec9e5b7f0f4e7466b97a02fc0ba",
+    "tests/browser_responsive_fonts.py": "ae3495af95ead9bf7ae39c23ea1b8df105fd8f077c139d2c82efb756583184c3",
+    "tests/browser_visual_identity.py": "681a38769ab070de9bb8b6d36569b5a615c3b14a3dbc5d26443eef74cabeee34",
+    "tests/browser_quality.py": "b9110b8ad193a47934da077dbb34d50c64ce2ca7421d504d19f83aa9383c30b0",
+    "tests/browser_evidence_workflow.py": "8764ee3d4920481cb47dc4804237bb9e30673a3d57b771163f47f7b50b629f53",
+    "tests/browser_trust.py": "53c4c118065f28d4f7ffa9c9ee90af9e87b1a8bc811bf7ced683cbbd5f1e9006",
+    "tests/browser_broker_workspace.py": "93dee4d88584a2ad95cb4e2c4f0b6544e889c13e11ebdbb9d5b14e156e677c8a",
+    "tests/browser_intelligence_memory.py": "123a6d1f11dca3f7e7306879fd5086b7dd73c7996cce13d6e36024a334d771f2",
+    "tests/browser_consolidation.py": "22de1745e8a202806bfb419f8b8f91c3a9ae1241bb287d4b72b6c06680eec814",
+    "tests/browser_confidence.py": "b5c9a2d9727cd558eff89bf9c5ffaa40da4ddc6a97457ca6cb511d13a9bfb890",
+    "tests/browser_evolution.py": "8d7ab8309d08cf40e9b1100bf65bc2ac1b07858529b5dd10db037c325677c0cf",
+    "tests/browser_professional.py": "ff18fe801a5be2c5479eece004e89dfa5668645b2ffe2b0c58a3ef41a90e7821",
+    "tests/browser_workspace_hierarchy.py": "0984736a1f86b170a30a843dc47c4673969483161c98b6f6f540bc60582c4fe6",
+    "tests/browser_terminal.py": "135efc05af020d9e1eb977850ee112939e3c4c04bbcd2ff916cc53f9b41d857b",
+    "tests/browser_assisted_desk.py": "928c7bdc51baff8c56e78403496fa4e88b5caf125ed13d8030281209f9a525e5",
+    "tests/browser_pilot.py": "39033b5e5beef7a3dace0d8e1bc375c365ff7b1cf7d1a2569c8969cb6e744137",
+    "tests/browser_research.py": "4795f52d5d8ef1479fc162d6a5bf80c7166cf2b8f2f60539a5c7ab3685e39ee8",
+    "tests/browser_intelligence.py": "fe620367e3c461b11b4c7760930d2889fb6b3d89db8627173337736352a619d9",
+    "scripts/ci/browser_suites.py": "4748a5e918fa6a125323e70805deee0ec0f3d6b9dea724b117549fe22e8e66b5",
+    "scripts/ci/run-browsers.py": "80d71a41456795bd7afa23b4e3b0d40c74d1381feb04aedcf6cf721c9677aa0b"
+  },
+  "changedSourceSHA256": {
+    ".github/workflows/ci.yml": "2a821a59ee897b891dd5ffcea1cb9193c7230b782823dfbc0976f6649e760eec",
+    "scripts/ci/install-test-fonts.py": "898182cfe6a64d87cca2ae603ddbd4dc8783320f63a6e141decbf6347d50b5e2",
+    "scripts/ci/check-browser-environment.py": "a28d3495ee80f0462c0048b5ed7c3e566275c9c8047728e3bfd50ee1cbb9898d",
+    "tests/browser-environment.test.mjs": "353a09eeb21e3506b8792bd423f02ed071f6101b3f22ac8a344ef2c57970ba30"
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 1.95
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 1.98
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 15.17
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.44
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.66
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.31
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.78
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.26
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 14.67
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 1.9
+    }
+  ],
+  "browserShards": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 994.47
+  },
+  "browserSuites": [
+    {
+      "suite": "workstation",
+      "shard": 0,
+      "seconds": 34.18,
+      "exit": 0
+    },
+    {
+      "suite": "research",
+      "shard": 1,
+      "seconds": 37.59,
+      "exit": 0
+    },
+    {
+      "suite": "research_outage",
+      "shard": 0,
+      "seconds": 4.2,
+      "exit": 0
+    },
+    {
+      "suite": "quality",
+      "shard": 1,
+      "seconds": 41.13,
+      "exit": 0
+    },
+    {
+      "suite": "decision",
+      "shard": 0,
+      "seconds": 42.58,
+      "exit": 0
+    },
+    {
+      "suite": "library_reliability",
+      "shard": 1,
+      "seconds": 4.16,
+      "exit": 0
+    },
+    {
+      "suite": "maturity",
+      "shard": 0,
+      "seconds": 65.43,
+      "exit": 0
+    },
+    {
+      "suite": "terminal",
+      "shard": 1,
+      "seconds": 148.52,
+      "exit": 0
+    },
+    {
+      "suite": "intelligence",
+      "shard": 0,
+      "seconds": 30.69,
+      "exit": 0
+    },
+    {
+      "suite": "intelligence_memory",
+      "shard": 1,
+      "seconds": 5.17,
+      "exit": 0
+    },
+    {
+      "suite": "layout",
+      "shard": 0,
+      "seconds": 46.4,
+      "exit": 0
+    },
+    {
+      "suite": "pilot",
+      "shard": 1,
+      "seconds": 20.12,
+      "exit": 0
+    },
+    {
+      "suite": "trust",
+      "shard": 0,
+      "seconds": 50.1,
+      "exit": 0
+    },
+    {
+      "suite": "professional",
+      "shard": 1,
+      "seconds": 175.15,
+      "exit": 0
+    },
+    {
+      "suite": "journal_lifecycle",
+      "shard": 0,
+      "seconds": 58.96,
+      "exit": 0
+    },
+    {
+      "suite": "trading_remediation",
+      "shard": 1,
+      "seconds": 72.77,
+      "exit": 0
+    },
+    {
+      "suite": "evolution",
+      "shard": 0,
+      "seconds": 80.19,
+      "exit": 0
+    },
+    {
+      "suite": "consolidation",
+      "shard": 1,
+      "seconds": 34.14,
+      "exit": 0
+    },
+    {
+      "suite": "experience",
+      "shard": 0,
+      "seconds": 73.12,
+      "exit": 0
+    },
+    {
+      "suite": "consistency",
+      "shard": 1,
+      "seconds": 37.88,
+      "exit": 0
+    },
+    {
+      "suite": "recovery",
+      "shard": 0,
+      "seconds": 147.32,
+      "exit": 0
+    },
+    {
+      "suite": "assisted_desk",
+      "shard": 1,
+      "seconds": 11.98,
+      "exit": 0
+    },
+    {
+      "suite": "paper_review",
+      "shard": 0,
+      "seconds": 7.59,
+      "exit": 0
+    },
+    {
+      "suite": "evidence_workflow",
+      "shard": 1,
+      "seconds": 59.14,
+      "exit": 0
+    },
+    {
+      "suite": "broker_workspace",
+      "shard": 0,
+      "seconds": 23.76,
+      "exit": 0
+    },
+    {
+      "suite": "visual_refinement",
+      "shard": 1,
+      "seconds": 20.89,
+      "exit": 0
+    },
+    {
+      "suite": "workflow_polish",
+      "shard": 0,
+      "seconds": 72.42,
+      "exit": 0
+    },
+    {
+      "suite": "visual_identity",
+      "shard": 1,
+      "seconds": 67.88,
+      "exit": 0
+    },
+    {
+      "suite": "confidence",
+      "shard": 0,
+      "seconds": 62.15,
+      "exit": 0
+    },
+    {
+      "suite": "dashboard_confidence",
+      "shard": 1,
+      "seconds": 23.89,
+      "exit": 0
+    },
+    {
+      "suite": "research_risk",
+      "shard": 0,
+      "seconds": 53.06,
+      "exit": 0
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "shard": 1,
+      "seconds": 72.0,
+      "exit": 0
+    },
+    {
+      "suite": "unified_workspace",
+      "shard": 0,
+      "seconds": 107.01,
+      "exit": 0
+    },
+    {
+      "suite": "research_studio",
+      "shard": 1,
+      "seconds": 70.41,
+      "exit": 0
+    },
+    {
+      "suite": "responsive_fonts",
+      "shard": 0,
+      "seconds": 35.0,
+      "exit": 0
+    },
+    {
+      "suite": "command_center",
+      "shard": 1,
+      "seconds": 32.34,
+      "exit": 0
+    }
+  ],
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [2.00ms]\n"
+  },
+  "hostedCI": "Must pass the new exact-head hosted gate after push; no hosted result is claimed by this pre-commit local evidence.",
+  "mainMergeOrProductionDeployment": false
+}

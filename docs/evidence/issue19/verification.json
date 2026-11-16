@@ -1,0 +1,123 @@
+{
+  "branch": "feature/integrated-research-workstation-issue19-20261110",
+  "baseCommit": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "implementationCommit": "4c76f624b0c214c43807cb582acbe36da2129363",
+  "scope": "Review candidate; no main merge or Production deployment",
+  "nonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 1.97
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 1.98
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 14.52
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.45
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.6
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.2
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.85
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.27
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 14.55
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 1.73
+    }
+  ],
+  "coreTests": 311,
+  "securityTests": 21,
+  "systemTests": 10,
+  "browser": {
+    "suites": 34,
+    "passed": 34,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 1538.12,
+    "chromium": "151.0.7922.34",
+    "playwright": "1.62.0",
+    "axe": "4.10.3",
+    "results": [
+      "tests/browser_workstation.py: PASS",
+      "tests/browser_research.py: PASS",
+      "tests/browser_research_outage.py: PASS",
+      "tests/browser_quality.py: PASS",
+      "tests/browser_decision.py: PASS",
+      "tests/browser_library_reliability.py: PASS",
+      "tests/browser_maturity.py: PASS",
+      "tests/browser_terminal.py: PASS",
+      "tests/browser_intelligence.py: PASS",
+      "tests/browser_intelligence_memory.py: PASS",
+      "tests/browser_layout.py: PASS",
+      "tests/browser_pilot.py: PASS",
+      "tests/browser_trust.py: PASS",
+      "tests/browser_professional.py: PASS",
+      "tests/browser_journal_lifecycle.py: PASS",
+      "tests/browser_trading_remediation.py: PASS",
+      "tests/browser_evolution.py: PASS",
+      "tests/browser_consolidation.py: PASS",
+      "tests/browser_experience.py: PASS",
+      "tests/browser_consistency.py: PASS",
+      "tests/browser_recovery.py: PASS",
+      "tests/browser_assisted_desk.py: PASS",
+      "tests/browser_paper_review.py: PASS",
+      "tests/browser_evidence_workflow.py: PASS",
+      "tests/browser_broker_workspace.py: PASS",
+      "tests/browser_visual_refinement.py: PASS",
+      "tests/browser_workflow_polish.py: PASS",
+      "tests/browser_visual_identity.py: PASS",
+      "tests/browser_confidence.py: PASS",
+      "tests/browser_dashboard_confidence.py: PASS",
+      "tests/browser_research_risk.py: PASS",
+      "tests/browser_workspace_hierarchy.py: PASS",
+      "tests/browser_unified_workspace.py: PASS",
+      "tests/browser_research_studio.py: PASS"
+    ],
+    "timeouts": "Original 240s per suite; professional 360s; CI job cap unchanged"
+  },
+  "frozenDependencyInstall": "PASS; lockfile unchanged; lifecycle scripts disabled",
+  "sourcePackageParity": "PASS before and after full browser gate",
+  "runtimeFiles": 84,
+  "artifactManifestSHA256": "d8a0c269436ade323e859f04cfc20bf0415ce920df8006df454589bc1aef3ded",
+  "numericalEngines": "Six canonical numerical modules unchanged; no account/intent/audit/adapter changes",
+  "faultDiagnostics": {
+    "scenarios": 29,
+    "scope": "Characterization only, not financial acceptance",
+    "unresolved": [
+      "Audit write failures swallowed after account persistence",
+      "Corrupt audit data can be replaced",
+      "Cross-file transaction divergence; manual recovery required"
+    ]
+  },
+  "externalVerification": "Owner handles PR/independent CI and Vercel verification; workspace CONNECT 403 to GitHub API and Vercel hosts; no policy/protection changes"
+}

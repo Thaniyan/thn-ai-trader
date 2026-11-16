@@ -1,0 +1,78 @@
+{
+  "scope": "Controlled offline positive fixtures, never real trade signals. Diagnostic preserves the original early assertion failure and proves independent-brief ordering; application unchanged.",
+  "baseCommit": "38b195733c9830aeed081072894a17a2da74b15f",
+  "firstFullGate": {
+    "browserPassed": 35,
+    "browserFailed": [
+      "command_center"
+    ],
+    "failure": "tests/browser_command_center.py:68 candidate GBPUSD assertion before independent brief delivery"
+  },
+  "diagnostic": {
+    "BEFORE_BRIEF": {
+      "fresh": true,
+      "candidate": null,
+      "warnings": [
+        "incomplete_frames",
+        "scenario_unavailable",
+        "risk_review_required"
+      ],
+      "action": "WAIT",
+      "context": {
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "7be8a7df0c3edac133e326a31160a470f6032ed9154e69b57fa97b3e8fd00646",
+        "barTime": 1794407601000
+      },
+      "brief": null
+    },
+    "AFTER_BRIEF": {
+      "fresh": true,
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "7be8a7df0c3edac133e326a31160a470f6032ed9154e69b57fa97b3e8fd00646",
+        "barTime": 1794407601000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "warnings": [
+        "risk_review_required"
+      ],
+      "action": "BUY",
+      "context": {
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "7be8a7df0c3edac133e326a31160a470f6032ed9154e69b57fa97b3e8fd00646",
+        "barTime": 1794407601000
+      },
+      "brief": {
+        "symbol": "GBPUSD",
+        "hash": "7be8a7df0c3edac133e326a31160a470f6032ed9154e69b57fa97b3e8fd00646"
+      }
+    }
+  },
+  "assertions": {
+    "originalAssertions": 46,
+    "currentAssertions": 51,
+    "removedOrAlteredAssertions": {},
+    "addedAssertions": 5
+  },
+  "targetedCompleteSuite": {
+    "exit": 0,
+    "profiles": 24,
+    "scope": "Complete Command Center suite, not just the previously failing step"
+  }
+}

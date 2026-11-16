@@ -1,0 +1,450 @@
+{
+  "verifiedAtUTC": "2026-11-14T14:17:16.128812+00:00",
+  "baseline": "5e358d99c654f5c022d21d8de0e85efcaace36bc",
+  "scope": "Complete local offline packaged-app gate. Hosted exact-head CI and Preview identity must be verified separately after this candidate is committed and pushed.",
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.3
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.22
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 15.79
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.43
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.63
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.29
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.83
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.28
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 20.34
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 2.3
+    }
+  ],
+  "coreTests": 337,
+  "systemTests": 10,
+  "securityTests": 21,
+  "browser": {
+    "suiteCount": 40,
+    "seconds": 1101.24,
+    "suites": [
+      {
+        "suite": "workstation",
+        "exit": 0,
+        "seconds": 33.67,
+        "logSha256": "78a992e9609938420569feca79d824222aeb6619b976905198017c82c83fdf1d"
+      },
+      {
+        "suite": "research",
+        "exit": 0,
+        "seconds": 39.89,
+        "logSha256": "27d4f7924cb054f3cb0c2aa6f87bd4328fe5e629b83136f5a0d43446426f531b"
+      },
+      {
+        "suite": "research_outage",
+        "exit": 0,
+        "seconds": 4.97,
+        "logSha256": "b9a43ee71b4e944c4c8415bd0de72c20bfd3a642cc591218acd010b1d0386e76"
+      },
+      {
+        "suite": "quality",
+        "exit": 0,
+        "seconds": 47.92,
+        "logSha256": "2a0df07e2f970e5a76d9ad342662e01f5430525ebeec8038a4bca35041c4b691"
+      },
+      {
+        "suite": "decision",
+        "exit": 0,
+        "seconds": 53.28,
+        "logSha256": "c5c505ee5df7a97d8198f5eba7a6d948f63bfd7147df1882c69c9ec6432e0b3c"
+      },
+      {
+        "suite": "library_reliability",
+        "exit": 0,
+        "seconds": 4.01,
+        "logSha256": "4f8f4b63d25ba87d31446d06e2a39b8467b4ad06cfe175eae573513e5b67a306"
+      },
+      {
+        "suite": "maturity",
+        "exit": 0,
+        "seconds": 63.96,
+        "logSha256": "6ef8eafc2b299ab855c34bc2956a3b695ab032c76bd3f5bea4f71c5dfe6dc2fc"
+      },
+      {
+        "suite": "terminal",
+        "exit": 0,
+        "seconds": 138.55,
+        "logSha256": "ffb4641d1acce5d05f844007a13b483d841f2d458da1013e938d295b1afc81e9"
+      },
+      {
+        "suite": "intelligence",
+        "exit": 0,
+        "seconds": 34.36,
+        "logSha256": "7c524b5cb03df8d16960b793906ab95960c17d00172ec21b0b21a8d798c9a08d"
+      },
+      {
+        "suite": "intelligence_memory",
+        "exit": 0,
+        "seconds": 6.51,
+        "logSha256": "c344306de027fb5ba7b53e27d36191507c1ff38a36b51fe37e747c63491f45a8"
+      },
+      {
+        "suite": "layout",
+        "exit": 0,
+        "seconds": 55.35,
+        "logSha256": "950aa54d94c62ca056dfc252f5850ade66649bdd4a722494ae0d73da7231dfae"
+      },
+      {
+        "suite": "pilot",
+        "exit": 0,
+        "seconds": 27.44,
+        "logSha256": "368c3b1d2932e88acbd1fa4c44dfd06deaec30855c0215a6376423992c88543c"
+      },
+      {
+        "suite": "trust",
+        "exit": 0,
+        "seconds": 53.18,
+        "logSha256": "7ffcd5df2d14849fa87cd26b1cc43ea1adc9b6576e2456ccbb50420b6447fe97"
+      },
+      {
+        "suite": "professional",
+        "exit": 0,
+        "seconds": 176.59,
+        "logSha256": "9169e2932276906b17b8ad69a10db4def67a0edb7124241e041df0933e3a428e"
+      },
+      {
+        "suite": "journal_lifecycle",
+        "exit": 0,
+        "seconds": 63.17,
+        "logSha256": "6375770b04b719a6630919130b6e3791a4109639be46fd681700508ec624588e"
+      },
+      {
+        "suite": "trading_remediation",
+        "exit": 0,
+        "seconds": 73.25,
+        "logSha256": "7a5d286a9a224d03e979236b309a959d77372cee2c6110a6cfca5f07ca45125e"
+      },
+      {
+        "suite": "evolution",
+        "exit": 0,
+        "seconds": 83.88,
+        "logSha256": "2339f91e8bab4cb6fe5da5952d0f0ca8c82cab3ff98a8743c407519d42e88a71"
+      },
+      {
+        "suite": "consolidation",
+        "exit": 0,
+        "seconds": 32.95,
+        "logSha256": "0d3a9a857a6e55ca50f5e32580483a364e03fd72307fab2979fec6744b1faf70"
+      },
+      {
+        "suite": "experience",
+        "exit": 0,
+        "seconds": 75.56,
+        "logSha256": "b7cb8282f63d15b047138d0369362bd079bc7c28c109d9e1597920540782761b"
+      },
+      {
+        "suite": "consistency",
+        "exit": 0,
+        "seconds": 36.86,
+        "logSha256": "344a89e238d786d35026cf17eca98e06355677d8cd0f9767bafd3dfcf8e85185"
+      },
+      {
+        "suite": "recovery",
+        "exit": 0,
+        "seconds": 151.44,
+        "logSha256": "3dbb67d9c4ff6216f23dec63078ea14dcffd701b204b05654f1e5bc3c29f9c45"
+      },
+      {
+        "suite": "assisted_desk",
+        "exit": 0,
+        "seconds": 13.47,
+        "logSha256": "72031c47014d54c8c2c42f80d3c1427a77c9e539c7c7435360fe0d49b8e36f25"
+      },
+      {
+        "suite": "paper_review",
+        "exit": 0,
+        "seconds": 8.28,
+        "logSha256": "3c08a808bedd85d06c676f7317319d49324c165119bf6787ee234e5dbb6553c0"
+      },
+      {
+        "suite": "evidence_workflow",
+        "exit": 0,
+        "seconds": 60.32,
+        "logSha256": "489eb910c8eb7da9f463e168a3d8bd724d6616742bca437a541b3262b41c7831"
+      },
+      {
+        "suite": "broker_workspace",
+        "exit": 0,
+        "seconds": 24.52,
+        "logSha256": "be602cd1a9b300f7d9e81a09f6f4e1f7f1ae37da4e56d654f800428451b7eda5"
+      },
+      {
+        "suite": "visual_refinement",
+        "exit": 0,
+        "seconds": 20.78,
+        "logSha256": "e20dfcade35a281b19405e074a71fbdd3c6ddf57b215ec0f0ea49f34be469f3c"
+      },
+      {
+        "suite": "workflow_polish",
+        "exit": 0,
+        "seconds": 77.65,
+        "logSha256": "1ee69cb9c4edb24784a4660ccdb076f823b0bad5e466ae62bb3aa2674f816411"
+      },
+      {
+        "suite": "visual_identity",
+        "exit": 0,
+        "seconds": 74.5,
+        "logSha256": "2d4890436e4556f5bb6c85d485fef7cd3673f0029cccb6520d912314d1c0ad20"
+      },
+      {
+        "suite": "confidence",
+        "exit": 0,
+        "seconds": 56.72,
+        "logSha256": "3b5a1d33daea99528540a8506d9881faa3e59c41d239482e0e84249f7d590cd4"
+      },
+      {
+        "suite": "dashboard_confidence",
+        "exit": 0,
+        "seconds": 23.57,
+        "logSha256": "4706b4203d7f2f5c02851f77af7bd0c4964eff1c22224ad94b2b1e9a9911b849"
+      },
+      {
+        "suite": "research_risk",
+        "exit": 0,
+        "seconds": 58.83,
+        "logSha256": "cb426c19fe18556b2fb48c4456faeb4b88aafe488e81dc9e800260bf3df232e8"
+      },
+      {
+        "suite": "workspace_hierarchy",
+        "exit": 0,
+        "seconds": 73.06,
+        "logSha256": "aa9b2685bf6abb82d6338d484e8f867fec9280770d69800cc5f2948c9e97693a"
+      },
+      {
+        "suite": "unified_workspace",
+        "exit": 0,
+        "seconds": 107.36,
+        "logSha256": "087661743f46f29ccf6f0a17e90c93f50a34fd56b1a7c8fa158c8850ab1c5e11"
+      },
+      {
+        "suite": "research_studio",
+        "exit": 0,
+        "seconds": 70.33,
+        "logSha256": "ee8dc59d82e80195f3b960d3ba5513e50821b445aa0d7b29754e8db2626a49cb"
+      },
+      {
+        "suite": "responsive_fonts",
+        "exit": 0,
+        "seconds": 36.23,
+        "logSha256": "a9d9edd6f2a40362e66b25d1c2c1695bd881848ca10c0dc5c083a15d3570d9c2"
+      },
+      {
+        "suite": "command_center",
+        "exit": 0,
+        "seconds": 32.26,
+        "logSha256": "a5208e6a564d8d866b4299ae5ee0a7faa8eaeb190b64b16a93e640d2bf418c15"
+      },
+      {
+        "suite": "command_workbench",
+        "exit": 0,
+        "seconds": 35.35,
+        "logSha256": "9a963c0e4486dd70f369ad37f2ea859d8abe274a31565cade5bac948298b9827"
+      },
+      {
+        "suite": "institutional_desk",
+        "exit": 0,
+        "seconds": 43.66,
+        "logSha256": "e9c458c932d4d8c2f413252367aeafd071f9d98551c0b14411ce10347d7ecada"
+      },
+      {
+        "suite": "command_trust",
+        "exit": 0,
+        "seconds": 23.17,
+        "logSha256": "c73cdeef36c01459b52ca7d476b36c2d07540688218118f82c7416905d656869"
+      },
+      {
+        "suite": "command_trust_candidate",
+        "exit": 0,
+        "seconds": 8.64,
+        "logSha256": "6ecf23e0545d293aa5f814651c7d1a9566aebd19a08c4f2a0a355c3909baab0e"
+      }
+    ]
+  },
+  "byteIdenticalSources": {
+    "tests/browser_assisted_desk.py": "928c7bdc51baff8c56e78403496fa4e88b5caf125ed13d8030281209f9a525e5",
+    "tests/browser_broker_workspace.py": "93dee4d88584a2ad95cb4e2c4f0b6544e889c13e11ebdbb9d5b14e156e677c8a",
+    "tests/browser_command_center.py": "efdafe9444cc5223f65f1228195b8870a2f031e39b50203766a2b39c40729b38",
+    "tests/browser_command_workbench.py": "bd1f8d4a3ba5c4d5b0ba5bf2ca3ba3c9306ee7934ea31ce9a51c4692a8ec8b44",
+    "tests/browser_confidence.py": "b5c9a2d9727cd558eff89bf9c5ffaa40da4ddc6a97457ca6cb511d13a9bfb890",
+    "tests/browser_consistency.py": "a352b82b6bd0a9b40fcfcf1fe25e759e01582a1faa27b8d4a40244ded2335ca0",
+    "tests/browser_consolidation.py": "22de1745e8a202806bfb419f8b8f91c3a9ae1241bb287d4b72b6c06680eec814",
+    "tests/browser_dashboard_confidence.py": "a79a1f75dcbf334f6be478325e29eeb7afa8fcf6c254a5ca04abcc1ace8216ae",
+    "tests/browser_decision.py": "f92778b27f20c6a34b6924de16dfd42f8ca5b28bb300658e8448b342a328308f",
+    "tests/browser_evidence_workflow.py": "8764ee3d4920481cb47dc4804237bb9e30673a3d57b771163f47f7b50b629f53",
+    "tests/browser_evolution.py": "8d7ab8309d08cf40e9b1100bf65bc2ac1b07858529b5dd10db037c325677c0cf",
+    "tests/browser_experience.py": "1ed2bf079449ec92ea8df8870b5eb34bf689573fe31e339adb11f1bbf91a33e4",
+    "tests/browser_institutional_desk.py": "7b92275555bbfbe3159023025c7e35a5810950acfe540357483bb8a77b470211",
+    "tests/browser_intelligence.py": "fe620367e3c461b11b4c7760930d2889fb6b3d89db8627173337736352a619d9",
+    "tests/browser_intelligence_memory.py": "123a6d1f11dca3f7e7306879fd5086b7dd73c7996cce13d6e36024a334d771f2",
+    "tests/browser_journal_lifecycle.py": "d6ce0de34fc756b120c62f7d3d8962e97f1fcb043ba39aa45aa27a769f63fb9f",
+    "tests/browser_layout.py": "a2eb403adc22b7eb03513485d7da372d85575ce2ea47dbd88e0a3c5c055d3977",
+    "tests/browser_library_reliability.py": "6e505e8eadb66f389cb02b57591cedf9a9702345066d0d97dbd232dc5a1bbd5f",
+    "tests/browser_maturity.py": "7fa3df88fc91d4a9b0a55dce9ae514efb78a1d6c917d23668b5644f844260719",
+    "tests/browser_paper_review.py": "31a7385e7a8cfd7d8616e0a456eead927a53cf2a0e25ea8afd3feae0958eabed",
+    "tests/browser_pilot.py": "39033b5e5beef7a3dace0d8e1bc375c365ff7b1cf7d1a2569c8969cb6e744137",
+    "tests/browser_professional.py": "ff18fe801a5be2c5479eece004e89dfa5668645b2ffe2b0c58a3ef41a90e7821",
+    "tests/browser_quality.py": "b9110b8ad193a47934da077dbb34d50c64ce2ca7421d504d19f83aa9383c30b0",
+    "tests/browser_recovery.py": "e561d89562014ebef1d91f7e00f68219f85570faa2af57c92e088e84139b9ecb",
+    "tests/browser_research.py": "4795f52d5d8ef1479fc162d6a5bf80c7166cf2b8f2f60539a5c7ab3685e39ee8",
+    "tests/browser_research_outage.py": "beb6c8fbeb940ae0d1cc55ef1abad09196826978162ea0bfc76990db2f4aa464",
+    "tests/browser_research_risk.py": "ab2a676db07b5609ede0ff6b34b472adfc06a4297fc98cc15941d40cb1d1b955",
+    "tests/browser_research_studio.py": "7724ea74aa0903bf775c954dbf8a7aa7d966fd279b94cfcb7fd169ef4bc2a194",
+    "tests/browser_responsive_fonts.py": "ae3495af95ead9bf7ae39c23ea1b8df105fd8f077c139d2c82efb756583184c3",
+    "tests/browser_terminal.py": "135efc05af020d9e1eb977850ee112939e3c4c04bbcd2ff916cc53f9b41d857b",
+    "tests/browser_trading_remediation.py": "92e7b00438b1abe2a31afc40ab9e4893934cd35daaa011826195eeb442aa05bb",
+    "tests/browser_trust.py": "53c4c118065f28d4f7ffa9c9ee90af9e87b1a8bc811bf7ced683cbbd5f1e9006",
+    "tests/browser_unified_workspace.py": "f1d0d4aa52d90de1e2e624caebaa6394e5ab7eb312009b1b460e74a54067832b",
+    "tests/browser_visual_identity.py": "681a38769ab070de9bb8b6d36569b5a615c3b14a3dbc5d26443eef74cabeee34",
+    "tests/browser_visual_refinement.py": "9f3e26b8c3359b6e4cf3e1b10ac6fe58be40fec9e5b7f0f4e7466b97a02fc0ba",
+    "tests/browser_workflow_polish.py": "b76d5fcb9d84c8084ecaa0565513e549cf2a4fe6ff8474054f645ca15a0bb88b",
+    "tests/browser_workspace_hierarchy.py": "0984736a1f86b170a30a843dc47c4673969483161c98b6f6f540bc60582c4fe6",
+    "tests/browser_workstation.py": "9faf5855474a698f98df9743b5cfd46e0282e22f23467af43888d0e61b1bf4e9",
+    "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+    "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+    "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+    "server/decision.js": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+    "server/replay.js": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "public/recommendation-core.js": "c4dbc58bb9c8c76d5ee45b0adbfbae0f2c7a42bfa1ee35066de92c0bfbc376ef",
+    "public/command-center-core.js": "c4f14e1487d7b4fe4233920e2c932589a6ac3e95326178bb8343aa450d027e21",
+    "public/confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "tests/browser-sharding.test.mjs": "aa40734ffcd2575d9506fc3ec1a908cc0516aa34ac7bfea72a91d22441e6f88e"
+  },
+  "verifiedRuntimeSha256": {
+    "public/analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
+    "public/analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
+    "public/app.js": "cb450f22566fa27c36f161c9cdde23f1b30374eed82e72c95f3308f437cdbe08",
+    "public/brand-mark.png": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567",
+    "public/brand-preview.png": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+    "public/broker-catalog.js": "ede478798c19f488717e79791008a959a9e40318c3680fb2a273906918257183",
+    "public/broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
+    "public/command-center-core.js": "c4f14e1487d7b4fe4233920e2c932589a6ac3e95326178bb8343aa450d027e21",
+    "public/command-center.css": "699096ca436d2b3d0cedfec5ecb77d9aed41ed8413b776c3b630d37dd9f2a218",
+    "public/command-center.js": "09eb2d8f1ca3056f58984d92ae9695cd9916fe1f753db76dd7140a48bb4d85be",
+    "public/command-evidence.js": "2336af500fd12ae5b817a68c943600f430cf8fe2c648c3dded3b44172f519785",
+    "public/command-trust-core.js": "e7fd852970d57e03e3e845a7e1594346f03d16ce8a094cf966e3255a297d56b2",
+    "public/command-trust.css": "ff4bb99e73e6d93fd3403dbe98c449e8ac6242ffcf221b6ef7a7ce659220423f",
+    "public/command-trust.js": "2248e89dd210d6787793718011d4b6f65ff1aa4e2ce857d477e77e7e9165c49f",
+    "public/command-workbench.css": "41e31c780ebe0aaf68319956c7fd867cd6702b9dcae8468a79f7c648b3db909d",
+    "public/command-workbench.js": "6fc5106fc49042a07d713d602fb8a90d508f24ea1a77b15185368ceb8dc61142",
+    "public/comparison-core.js": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849",
+    "public/confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "public/d3.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "public/decision-core.js": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3",
+    "public/decision-records.js": "d833fea5f75d55dc0208ed01dc910d2cd73609d3d40b667a9fa9dc0bbe41b2ca",
+    "public/decision-workspace.css": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382",
+    "public/decision-workspace.js": "43b825999a2d42a6dd3e050e303dcc8f3faf3b068affab76a997eed4c2dcfbf5",
+    "public/evidence-view.js": "6a8eb5e90895a0d2311d4bc34f33706657e209f5bad29d77f54c4d63787d86f4",
+    "public/index.html": "874a3cec424521ddce484a52166344737bd7cfa0ffc98825da2b641ed31877b1",
+    "public/instrument-identity.js": "b35e540a564b622bd6accfd2a1a734c7ee23ee43a00bad584ebc7c3b6deffbb0",
+    "public/intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "public/intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
+    "public/intelligence-workspace.js": "076b293319cfff31a8985a0050855ebd8cc73890605bc05a29a08982803f14a4",
+    "public/intelligence.css": "00a24d3938808ace039d9545aa3f8c5bf99755ee86fcb4e9ae0ee8db4857c00a",
+    "public/library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
+    "public/locale-secondary.js": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521",
+    "public/logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+    "public/manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+    "public/market-terminal.js": "6d8a3b2cbe00554507d79e17cab21333db7f46c4b3f8c11970c4afb4155902c8",
+    "public/platform-evolution.css": "d3ebc8fe5540877987c3dc4732e4905c758c17fc805303e17e14770744008fe8",
+    "public/platform-evolution.js": "91a326ccde483c24b32608b6b33330e30c9ecebdf50bc6359f069dabf23bdec2",
+    "public/preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
+    "public/professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
+    "public/professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
+    "public/professional-records.js": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "public/professional-workspace.js": "db61739a47e9c14bc9d6a35f900eed01f65b133c76054bb9e60230b87b284490",
+    "public/professional.css": "bfcf81c42f2d9281f5b33badf6a7a49bf205fdc30e740ed562b282c353679cfe",
+    "public/recommendation-core.js": "c4dbc58bb9c8c76d5ee45b0adbfbae0f2c7a42bfa1ee35066de92c0bfbc376ef",
+    "public/recommendation-view.js": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786",
+    "public/replay-contract.js": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "public/research-library.js": "10890357ab4e8bd28fafd657fb4d48fd01122d7888ff1b25be2e6a1d7725b321",
+    "public/research-quality.css": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a",
+    "public/research-quality.js": "38a253062a93507830f528297376566c4d8c516f8e15059a33c962c568b4d177",
+    "public/research-records.js": "9503045944499db0616ed42b586c95d842a20a49046228f73d39b243c97356ea",
+    "public/research-risk-comparison.js": "8623fdd57fc4792e3a18dc45567dedab0e5f764fe0413746104ac4d85a67d085",
+    "public/research-state.js": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253",
+    "public/research-studio-core.js": "e603a22f502a4a1237dcdb2421f8569a9669325325a526ebfd85b00fc74ee87c",
+    "public/research-studio.css": "5d5d675a2f23ff20b4eaeb1025a8e6879782107b4c5b494c3f08076646296dc1",
+    "public/research-studio.js": "e881b0b6814cd0646de61c1016481885677c42f196a36bf584f08e1d8f867260",
+    "public/research-terminal.css": "0c41a4d984f554d42ac44c4bd38aa8b69a24af468dd127d668fc6b1d164d74fd",
+    "public/research-workstation.js": "49fb2d5db447b8ba7ed6197b604c23719f7bef4e7347171ff89eb35fc9f557fb",
+    "public/research.css": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c",
+    "public/style.css": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8",
+    "public/terminal-research.js": "01db5f66c83b474706c2596293dd0b0143f95e07e5ab6f810b368da4580ef242",
+    "public/unified-workspace.css": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4",
+    "public/unified-workspace.js": "994fd61697b417cc8a8112d52f28ad724af992206d30d005e7f89b5e9bc284b5",
+    "public/validation-evidence.js": "dd3c9642d2ec92cacbf99be1dc3bf2323d1a71f869a0cff3e4a58ba9568f0a9c",
+    "public/visual-identity.css": "5a235e5ded3a3f944bb8a6301159d4a55d8ceb2b1b77aac4c4b01652db0e9f38",
+    "public/visual-identity.js": "7df01a27ebb7dc8d8b880660ca1b6f02a2d6d9f4673da77891ce51e5cc44f7d3",
+    "public/workflow-maturity.css": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b",
+    "public/workflow-maturity.js": "5a3b6f23e68e4345d4601053949f67a73d208f035617d0db04e24a925ce08ad6",
+    "public/workflow-polish.js": "e8c4a647a8fd8ace4e75d11a9ea5ce92c3243c1d62cf8a006dcc548956e0e905",
+    "public/workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
+    "public/workstation.css": "b56aa9f07fc8fe92995398b45d74ed33626fcd41e25a70413a10fb5d34bc1000",
+    "public/workstation.js": "2ff39a3a9c78af6b8708beb32051dc4f4a03efed2a007919d4409f065b695aa7",
+    "package.json": "698c40f755b8da80253457598be3b438788e845fa70e0d29c0311ec54e30ba97",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  },
+  "captureManifestSha256": "5e7bb5b86daf73a032dc50d391dfe9a2e91c1448f32c86ec837ad9b6da652cde",
+  "screenshots": {
+    "matchedPairs": 26,
+    "pngCount": 82
+  },
+  "originalBrowserAssertionsChanged": false,
+  "executionAuthorized": false,
+  "mainMergeAuthorized": false,
+  "productionDeploymentAuthorized": false,
+  "toolchain": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "python": "3.12.14",
+    "playwright": "1.62.0",
+    "chromiumRevision": 1234,
+    "chromiumVersion": "151.0.7922.34",
+    "axe": "4.10.3"
+  }
+}

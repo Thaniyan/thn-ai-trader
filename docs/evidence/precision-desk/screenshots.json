@@ -1,0 +1,289 @@
+{
+  "baseline": "623c888d1cd788bfc23cfa7dfb11619aaa9a562f",
+  "clock": "2026-11-11T17:10:00Z",
+  "scope": "Actual packaged application, offline synthetic provider. Controlled conditional/eligible analytical fixtures, original validated risk form. Not live trading or performance evidence.",
+  "pairs": [
+    {
+      "state": "wait",
+      "profile": "1440px en dark",
+      "before": "before-wait-1440-en-dark.png",
+      "after": "after-wait-1440-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "1440px ar light",
+      "before": "before-wait-1440-ar-light.png",
+      "after": "after-wait-1440-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "390px ar light",
+      "before": "before-wait-390-ar-light.png",
+      "after": "after-wait-390-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "320px ar light",
+      "before": "before-wait-320-ar-light.png",
+      "after": "after-wait-320-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px en dark",
+      "before": "before-conditional-1440-en-dark.png",
+      "after": "after-conditional-1440-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px ar light",
+      "before": "before-conditional-1440-ar-light.png",
+      "after": "after-conditional-1440-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "390px ar light",
+      "before": "before-conditional-390-ar-light.png",
+      "after": "after-conditional-390-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "320px ar light",
+      "before": "before-conditional-320-ar-light.png",
+      "after": "after-conditional-320-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "1440px en dark",
+      "before": "before-setup-1440-en-dark.png",
+      "after": "after-setup-1440-en-dark.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "390px ar light",
+      "before": "before-setup-390-ar-light.png",
+      "after": "after-setup-390-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "320px ar light",
+      "before": "before-setup-320-ar-light.png",
+      "after": "after-setup-320-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px en dark",
+      "before": "before-eligible-1440-en-dark.png",
+      "after": "after-eligible-1440-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px ar light",
+      "before": "before-eligible-1440-ar-light.png",
+      "after": "after-eligible-1440-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "390px ar light",
+      "before": "before-eligible-390-ar-light.png",
+      "after": "after-eligible-390-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "320px ar light",
+      "before": "before-eligible-320-ar-light.png",
+      "after": "after-eligible-320-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "1440px en dark",
+      "before": "before-expanded-trust-1440-en-dark.png",
+      "after": "after-expanded-trust-1440-en-dark.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "390px ar light",
+      "before": "before-expanded-trust-390-ar-light.png",
+      "after": "after-expanded-trust-390-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "320px ar light",
+      "before": "before-expanded-trust-320-ar-light.png",
+      "after": "after-expanded-trust-320-ar-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px en light",
+      "before": "before-historical-1440-en-light.png",
+      "after": "after-historical-1440-en-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px ar light",
+      "before": "before-historical-1440-ar-light.png",
+      "after": "after-historical-1440-ar-light.png"
+    }
+  ],
+  "files": [
+    {
+      "file": "before-wait-1440-en-dark.png",
+      "sha256": "2a8f1cb4fa96e441686bc974d609f6b50ca7518ac1eef9161248e102a5d1719f"
+    },
+    {
+      "file": "after-wait-1440-en-dark.png",
+      "sha256": "51197496b593363a4528898c488ac02933762069ec1d49304f656dd892a5743e"
+    },
+    {
+      "file": "before-wait-1440-ar-light.png",
+      "sha256": "da8a4e37547b89f3bc0ae7f2ed0486896d59e2aeff34305c2a3ab8558ba314fd"
+    },
+    {
+      "file": "after-wait-1440-ar-light.png",
+      "sha256": "531abc0569eb9ef1a8dc0f9e1b11b4926dfa21ab8f5136d355b8780005188a0a"
+    },
+    {
+      "file": "before-wait-390-ar-light.png",
+      "sha256": "64c323a93901f929e140320dd32c851e82b3ec90143d9d4dda805355e1ed62d9"
+    },
+    {
+      "file": "after-wait-390-ar-light.png",
+      "sha256": "424269c2ed689ab170bee7c33ecd0281069f4249fbb1389b65bf4320a2fca487"
+    },
+    {
+      "file": "before-wait-320-ar-light.png",
+      "sha256": "6cef58cab7edbe332df24c440d241e85f6720f5ab7087a68ad0f995d327199a6"
+    },
+    {
+      "file": "after-wait-320-ar-light.png",
+      "sha256": "4c7ffe3531acc76379b739d9bc06c61a38f5cb37207df45937963ed53ef8195f"
+    },
+    {
+      "file": "before-conditional-1440-en-dark.png",
+      "sha256": "dd3ba7a699f2646e755d255f6da6d69466cd2a9ec42bce2775ebfc7cc9352210"
+    },
+    {
+      "file": "after-conditional-1440-en-dark.png",
+      "sha256": "496f3cbd4506fd2033096739abb0c7ee807e44c8fcedc8a3239355b1648ad4ea"
+    },
+    {
+      "file": "before-conditional-1440-ar-light.png",
+      "sha256": "8d1f7e637b97e6e1355217f15e795aeff12a00b391b020e4c038fe274ce9f9c3"
+    },
+    {
+      "file": "after-conditional-1440-ar-light.png",
+      "sha256": "21ae30c8a0091a20ab8ab0167e09f8cf168bc2ee9aa0d73d5e1a4bd884cb6137"
+    },
+    {
+      "file": "before-conditional-390-ar-light.png",
+      "sha256": "0116b45932700d3c706c433c6ac4f26e3a68ceeee80c3564cad0ed75e1a04fe8"
+    },
+    {
+      "file": "after-conditional-390-ar-light.png",
+      "sha256": "2c597cc46a514a23058f76d293665170a42515a62a9f236e1652499b4014762e"
+    },
+    {
+      "file": "before-conditional-320-ar-light.png",
+      "sha256": "196955736bf5b5723366987589f01fa33775722bc1ccde87753650dfbeb2e408"
+    },
+    {
+      "file": "after-conditional-320-ar-light.png",
+      "sha256": "4c878f1dd1868bff884233253872f1b503414ee6f580180b369fb419a6b69292"
+    },
+    {
+      "file": "before-setup-1440-en-dark.png",
+      "sha256": "6646486e88eab56412babc13ee1de518eb307fad2cab3a8adf40ada9021e8acc"
+    },
+    {
+      "file": "after-setup-1440-en-dark.png",
+      "sha256": "62b655245bc581fcf738cf64beea7e8fe1e7727bc901fb69bdaabc71869f33f6"
+    },
+    {
+      "file": "before-setup-390-ar-light.png",
+      "sha256": "649fe0aec79203b6c6514cf51cf3ffd9ef10910533d3de0e2d19f9cd15186d20"
+    },
+    {
+      "file": "after-setup-390-ar-light.png",
+      "sha256": "e48fcb1294d98a77ca42116ef3e78bc7701edbf92e96e5a59ac30e2d7eb941f6"
+    },
+    {
+      "file": "before-setup-320-ar-light.png",
+      "sha256": "1eac87396b9cf54f4e9602526a2f83a0b51ef4d97ec6231842f44fa322133b9e"
+    },
+    {
+      "file": "after-setup-320-ar-light.png",
+      "sha256": "78281b5439c6b77c655294436432db1813f9bfa5c527bbf109b88b453d5945b4"
+    },
+    {
+      "file": "before-eligible-1440-en-dark.png",
+      "sha256": "9da58b04d7cb468273c13988babdfd80c7df4ca313117fc3a0a2eb3e9dba2738"
+    },
+    {
+      "file": "after-eligible-1440-en-dark.png",
+      "sha256": "287b1b1059e56db025c33d47a49ff882ac59fcf6d80a399075b9d29ff3ff0096"
+    },
+    {
+      "file": "before-eligible-1440-ar-light.png",
+      "sha256": "9d2f5fc1f78e9b1bb83fa36cddf9ed1b058ae0a8963e98924dbf715e2fc524b4"
+    },
+    {
+      "file": "after-eligible-1440-ar-light.png",
+      "sha256": "c0829b7524b45bc44f4987f27ebbd4715ec91aa8937bf21990d7fbb65e43de44"
+    },
+    {
+      "file": "before-eligible-390-ar-light.png",
+      "sha256": "bac736083e440c2d09fa15ad6f19ec820dde7d5585a1ce8fb99ce56e38cc9201"
+    },
+    {
+      "file": "after-eligible-390-ar-light.png",
+      "sha256": "108b1fc7e8f830dfb0ce9ed3937ecf7a322ed8c2119e9044f9ea98b97a4e7d86"
+    },
+    {
+      "file": "before-eligible-320-ar-light.png",
+      "sha256": "196955736bf5b5723366987589f01fa33775722bc1ccde87753650dfbeb2e408"
+    },
+    {
+      "file": "after-eligible-320-ar-light.png",
+      "sha256": "89bd4926feac0e6a7bda2a14cde1321c70c4767db33ee7f874ff11dad1fa301f"
+    },
+    {
+      "file": "before-expanded-trust-1440-en-dark.png",
+      "sha256": "e6806216e8e35c9a70abbec6f2e505f7679ff6bebad10130363b854b43574ff3"
+    },
+    {
+      "file": "after-expanded-trust-1440-en-dark.png",
+      "sha256": "eee0468d0c8047fb2d026c0d567384198f1f98fd45b3b6a8e192c316e7bfa1d6"
+    },
+    {
+      "file": "before-expanded-trust-390-ar-light.png",
+      "sha256": "48d8ee969b48cad41022a37efced156544ea613f0575653f15c402f50499b613"
+    },
+    {
+      "file": "after-expanded-trust-390-ar-light.png",
+      "sha256": "1e9168309f837411f0bdeec0c16f1759b40568c5a2d53076d8037a9e0f65e4b6"
+    },
+    {
+      "file": "before-expanded-trust-320-ar-light.png",
+      "sha256": "551c04486354f15557d1ac76d4226f6616712f581d018aab121687cba0a162bd"
+    },
+    {
+      "file": "after-expanded-trust-320-ar-light.png",
+      "sha256": "29077682fd5eaa3a6bbc1776dc889c237da4e9bf4a227d0226f59f3dd838e057"
+    },
+    {
+      "file": "before-historical-1440-en-light.png",
+      "sha256": "4101304917a6f0c76e86a011233e437c8bf286edc5262d8a1af388fd6b14f80f"
+    },
+    {
+      "file": "after-historical-1440-en-light.png",
+      "sha256": "1028f5e026240a1b3d6086286a3c9f4d5f5adbe96ce5a728a792709acb206cde"
+    },
+    {
+      "file": "before-historical-1440-ar-light.png",
+      "sha256": "f5cf2eb40f57345e7af8ffe626afdd81d2a8215c989eaed90eae7cae45e4cd75"
+    },
+    {
+      "file": "after-historical-1440-ar-light.png",
+      "sha256": "17e42348f0f2ac3cbdf0cc654c5a7bb5972c25c871b9c26aeeb70b0ddc6dc9b6"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "checks": [
+    "Chart UTC navigation, bounded range/history, original OHLC/indicators, no provider/model requests",
+    "One selected-history request, shared legacy focus and one explicit authoritative refresh",
+    "Source-linked evidence filters and append-only draft citations",
+    "Exact development/holdout/fold values, original ten checks, current-to-saved comparison, stale-input invalidation and immutable original",
+    "Unverified/incomplete comparison, missing snapshot disclosure, explicit retention, source/replay navigation and actual numerical reproduction",
+    "Historical-to-hypothetical planner continuity, empty-input invalidation and unavailable execution",
+    "Late old-market evaluation cannot become current validation in the unified summary",
+    "Cross-instrument compatibility warning and unavailable brief without substituted evidence or original-record mutation"
+  ],
+  "profiles": [
+    [
+      1440,
+      "en",
+      "dark"
+    ],
+    [
+      1440,
+      "en",
+      "light"
+    ],
+    [
+      1440,
+      "ar",
+      "dark"
+    ],
+    [
+      1440,
+      "ar",
+      "light"
+    ],
+    [
+      768,
+      "en",
+      "dark"
+    ],
+    [
+      768,
+      "en",
+      "light"
+    ],
+    [
+      768,
+      "ar",
+      "dark"
+    ],
+    [
+      768,
+      "ar",
+      "light"
+    ],
+    [
+      390,
+      "en",
+      "dark"
+    ],
+    [
+      390,
+      "en",
+      "light"
+    ],
+    [
+      390,
+      "ar",
+      "dark"
+    ],
+    [
+      390,
+      "ar",
+      "light"
+    ],
+    [
+      320,
+      "en",
+      "dark"
+    ],
+    [
+      320,
+      "en",
+      "light"
+    ],
+    [
+      320,
+      "ar",
+      "dark"
+    ],
+    [
+      320,
+      "ar",
+      "light"
+    ]
+  ],
+  "errors": [],
+  "browserVersion": "151.0.7922.34"
+}

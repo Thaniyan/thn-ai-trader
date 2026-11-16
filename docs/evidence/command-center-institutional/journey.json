@@ -1,0 +1,374 @@
+{
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 238,
+        "y": -129.765625,
+        "width": 848,
+        "height": 560
+      }
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "chart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "chart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "chart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "chart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      }
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      }
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "chart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      }
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "chart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      }
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      }
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "chart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      }
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "chart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      }
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      }
+    },
+    {
+      "width": 160,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 22,
+        "y": 1447.71875,
+        "width": 116,
+        "height": 480
+      }
+    },
+    {
+      "width": 160,
+      "language": "en",
+      "theme": "light",
+      "chart": {
+        "x": 22,
+        "y": 1447.71875,
+        "width": 116,
+        "height": 480
+      }
+    },
+    {
+      "width": 160,
+      "language": "ar",
+      "theme": "dark",
+      "chart": {
+        "x": 22,
+        "y": 1374.578125,
+        "width": 116,
+        "height": 480
+      }
+    },
+    {
+      "width": 160,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 22,
+        "y": 1374.578125,
+        "width": 116,
+        "height": 480
+      }
+    }
+  ],
+  "candidateProfiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "setup": {
+        "x": 1131,
+        "y": 679.515625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 1131,
+        "y": 547.34375,
+        "width": 276,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "setup": {
+        "x": 1131,
+        "y": 679.515625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 1131,
+        "y": 547.34375,
+        "width": 276,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "setup": {
+        "x": 33,
+        "y": 654.90625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 33,
+        "y": 522.734375,
+        "width": 276,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "setup": {
+        "x": 33,
+        "y": 654.90625,
+        "width": 276,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 33,
+        "y": 522.734375,
+        "width": 276,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "setup": {
+        "x": 655.1875,
+        "y": 726.515625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 655.1875,
+        "y": 594.34375,
+        "width": 335.796875,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "setup": {
+        "x": 655.1875,
+        "y": 726.515625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 655.1875,
+        "y": 594.34375,
+        "width": 335.796875,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "setup": {
+        "x": 33.015625,
+        "y": 710.515625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 33.015625,
+        "y": 578.34375,
+        "width": 335.796875,
+        "height": 120.171875
+      }
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "setup": {
+        "x": 33.015625,
+        "y": 710.515625,
+        "width": 335.796875,
+        "height": 249.984375
+      },
+      "confidence": {
+        "x": 33.015625,
+        "y": 578.34375,
+        "width": 335.796875,
+        "height": 120.171875
+      }
+    }
+  ],
+  "handoffProfiles": [
+    [
+      "ar",
+      "en"
+    ],
+    [
+      "en",
+      "ar"
+    ]
+  ],
+  "errors": [],
+  "scope": "Actual packaged app with offline synthetic providers; not live-market or Preview acceptance."
+}

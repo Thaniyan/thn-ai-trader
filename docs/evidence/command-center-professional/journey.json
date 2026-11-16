@@ -1,0 +1,584 @@
+{
+  "profiles": [
+    [
+      1440,
+      "en",
+      "dark"
+    ],
+    [
+      1440,
+      "en",
+      "light"
+    ],
+    [
+      1440,
+      "ar",
+      "dark"
+    ],
+    [
+      1440,
+      "ar",
+      "light"
+    ],
+    [
+      768,
+      "en",
+      "dark"
+    ],
+    [
+      768,
+      "en",
+      "light"
+    ],
+    [
+      768,
+      "ar",
+      "dark"
+    ],
+    [
+      768,
+      "ar",
+      "light"
+    ],
+    [
+      390,
+      "en",
+      "dark"
+    ],
+    [
+      390,
+      "en",
+      "light"
+    ],
+    [
+      390,
+      "ar",
+      "dark"
+    ],
+    [
+      390,
+      "ar",
+      "light"
+    ],
+    [
+      160,
+      "en",
+      "dark"
+    ],
+    [
+      160,
+      "en",
+      "light"
+    ],
+    [
+      160,
+      "ar",
+      "dark"
+    ],
+    [
+      160,
+      "ar",
+      "light"
+    ]
+  ],
+  "labelProfiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 676.6875,
+            "y": 69.79058074951172,
+            "width": 54.1875,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 122.34886169433594,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 55.79058074951172,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 41.79057693481445,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 27.790576934814453,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 676.6875,
+            "y": 69.79058074951172,
+            "width": 54.1875,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 122.34886169433594,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 55.79058074951172,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 41.79057693481445,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 27.790576934814453,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 676.671875,
+            "y": 69.79058074951172,
+            "width": 54.203125,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 122.34886169433594,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 55.79058074951172,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 41.79057693481445,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 27.790576934814453,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 676.671875,
+            "y": 69.79058074951172,
+            "width": 54.203125,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 122.34886169433594,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 55.79058074951172,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 41.79057693481445,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 670.65625,
+            "y": 27.790576934814453,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 179.8125,
+            "y": 68,
+            "width": 54.1875,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 97.32665252685547,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 54,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 40,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 26,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 179.8125,
+            "y": 68,
+            "width": 54.1875,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 97.32665252685547,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 54,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 40,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 26,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 179.796875,
+            "y": 68,
+            "width": 54.203125,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 97.32665252685547,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 54,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 40,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 26,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "labels": [
+        {
+          "label": "E",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 179.796875,
+            "y": 68,
+            "width": 54.203125,
+            "height": 11
+          }
+        },
+        {
+          "label": "SL",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 97.32665252685547,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T1",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 54,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T2",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 40,
+            "width": 60.21875,
+            "height": 11
+          }
+        },
+        {
+          "label": "T3",
+          "connected": true,
+          "direction": "ltr",
+          "box": {
+            "x": 173.78125,
+            "y": 26,
+            "width": 60.21875,
+            "height": 11
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Offline providers; positive setup uses controlled response fixtures, not a model or live market signal."
+}

@@ -32,7 +32,7 @@ with sync_playwright() as p:
  page.locator('#qInterval').select_option('1h');page.wait_for_function('THNResearch.series()?.provenance.interval === "1h"',timeout=40000)
  page.locator('.nav-stack [data-view="portfolio"]').click();control(page,'#qRun').click();page.wait_for_function('THNResearch.evaluation()',timeout=40000)
  report['research']=page.evaluate('({metrics:THNResearch.result().metrics,sample:THNResearch.result().sample})')
- assert page.locator('#qResult table').first.is_visible();assert page.evaluate('THNResearch.evaluation().development.sample.lastTime<THNResearch.evaluation().holdout.sample.firstTime');page.screenshot(path='work/v62-final-research.png')
+ control(page,'#qResult');assert page.locator('#qResult table').first.is_visible();assert page.evaluate('THNResearch.evaluation().development.sample.lastTime<THNResearch.evaluation().holdout.sample.firstTime');page.screenshot(path='work/v62-final-research.png')
  with page.expect_download() as download:control(page,'#qExport').click()
  payload=json.load(open(download.value.path()));assert payload['evaluation']['dataset']['hash'];assert payload['evaluation']['development']['sample']['lastTime']<payload['evaluation']['holdout']['sample']['firstTime'];assert 'accounts' not in payload;assert 'credentials' not in json.dumps(payload).lower()
  report['checks'].append('actual historical strategy run and export contains research only')

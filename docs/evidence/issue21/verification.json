@@ -1,0 +1,417 @@
+{
+  "scope": "Final complete local candidate verification after reconnect, against the production package with offline providers; not interactive Preview or Production acceptance.",
+  "baseCommit": "93dcbaf50c0a52d8444b34c6c1ccdd08796d2dd1",
+  "mainBaseline": "fb92c9604d16d0df45d3a13096c2f84a6d66546b",
+  "branch": "feature/integrated-research-workstation-issue19-20261110",
+  "toolchain": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "playwright": "1.62.0",
+    "chromiumRevision": 1234,
+    "browser": "Google Chrome for Testing 151.0.7922.34",
+    "axe": "4.10.3"
+  },
+  "counts": {
+    "coreNumericalUnitIntegration": 320,
+    "system": 10,
+    "security": 21,
+    "browserSuites": 36,
+    "commandCenterProfiles": 24,
+    "newUnitTests": 8
+  },
+  "nonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.18
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.04
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 15.54
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.47
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.81
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.25
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.9
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.28
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 18.64
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 2.07
+    }
+  ],
+  "browserShards": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 1017.29
+  },
+  "browserSuites": [
+    {
+      "suite": "workstation",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 32.63
+    },
+    {
+      "suite": "research",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 37.78
+    },
+    {
+      "suite": "research_outage",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 4.45
+    },
+    {
+      "suite": "quality",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 48.02
+    },
+    {
+      "suite": "decision",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 44.75
+    },
+    {
+      "suite": "library_reliability",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 3.95
+    },
+    {
+      "suite": "maturity",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 65.76
+    },
+    {
+      "suite": "terminal",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 143.39
+    },
+    {
+      "suite": "intelligence",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 31.41
+    },
+    {
+      "suite": "intelligence_memory",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 5.67
+    },
+    {
+      "suite": "layout",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 48.02
+    },
+    {
+      "suite": "pilot",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 20.67
+    },
+    {
+      "suite": "trust",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 53.1
+    },
+    {
+      "suite": "professional",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 178.25
+    },
+    {
+      "suite": "journal_lifecycle",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 57.44
+    },
+    {
+      "suite": "trading_remediation",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 75.19
+    },
+    {
+      "suite": "evolution",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 85.25
+    },
+    {
+      "suite": "consolidation",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 31.76
+    },
+    {
+      "suite": "experience",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 74.46
+    },
+    {
+      "suite": "consistency",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 40.16
+    },
+    {
+      "suite": "recovery",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 148.9
+    },
+    {
+      "suite": "assisted_desk",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 11.98
+    },
+    {
+      "suite": "paper_review",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 8.33
+    },
+    {
+      "suite": "evidence_workflow",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 59.62
+    },
+    {
+      "suite": "broker_workspace",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 25.11
+    },
+    {
+      "suite": "visual_refinement",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 20.52
+    },
+    {
+      "suite": "workflow_polish",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 82.62
+    },
+    {
+      "suite": "visual_identity",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 75.16
+    },
+    {
+      "suite": "confidence",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 65.0
+    },
+    {
+      "suite": "dashboard_confidence",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 30.55
+    },
+    {
+      "suite": "research_risk",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 59.46
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 70.87
+    },
+    {
+      "suite": "unified_workspace",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 98.1
+    },
+    {
+      "suite": "research_studio",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 73.72
+    },
+    {
+      "suite": "responsive_fonts",
+      "shard": 0,
+      "exit": 0,
+      "seconds": 32.13
+    },
+    {
+      "suite": "command_center",
+      "shard": 1,
+      "exit": 0,
+      "seconds": 31.53
+    }
+  ],
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [22.00ms]\n"
+  },
+  "artifactManifestSHA256": "736aa447de4dba1fb9017a48533c835aa41cbcb0477008cfa6c87f84258b5bc3",
+  "artifactRuntimeFiles": 87,
+  "implementationFingerprints": {
+    "public/analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
+    "public/analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
+    "public/app.js": "cb450f22566fa27c36f161c9cdde23f1b30374eed82e72c95f3308f437cdbe08",
+    "public/brand-mark.png": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567",
+    "public/brand-preview.png": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+    "public/broker-catalog.js": "ede478798c19f488717e79791008a959a9e40318c3680fb2a273906918257183",
+    "public/broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
+    "public/command-center-core.js": "c4f14e1487d7b4fe4233920e2c932589a6ac3e95326178bb8343aa450d027e21",
+    "public/command-center.css": "5e5cf9b05e1a18bfe81dd5db202c7a5cc5632aa795ce4f4187aa73b5f42958d9",
+    "public/command-center.js": "ef67fc5c3e47c086fdf4560aeca9eb5828237be4462b38b616a517b6c06197b6",
+    "public/comparison-core.js": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849",
+    "public/confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "public/d3.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "public/decision-core.js": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3",
+    "public/decision-records.js": "d833fea5f75d55dc0208ed01dc910d2cd73609d3d40b667a9fa9dc0bbe41b2ca",
+    "public/decision-workspace.css": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382",
+    "public/decision-workspace.js": "43b825999a2d42a6dd3e050e303dcc8f3faf3b068affab76a997eed4c2dcfbf5",
+    "public/evidence-view.js": "6a8eb5e90895a0d2311d4bc34f33706657e209f5bad29d77f54c4d63787d86f4",
+    "public/index.html": "f392574f296d6f2dbf25b1f97aa29c3d266c61992d176d5c4517219bdc0c2bfa",
+    "public/instrument-identity.js": "b35e540a564b622bd6accfd2a1a734c7ee23ee43a00bad584ebc7c3b6deffbb0",
+    "public/intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "public/intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
+    "public/intelligence-workspace.js": "076b293319cfff31a8985a0050855ebd8cc73890605bc05a29a08982803f14a4",
+    "public/intelligence.css": "00a24d3938808ace039d9545aa3f8c5bf99755ee86fcb4e9ae0ee8db4857c00a",
+    "public/library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
+    "public/locale-secondary.js": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521",
+    "public/logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+    "public/manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+    "public/market-terminal.js": "6d8a3b2cbe00554507d79e17cab21333db7f46c4b3f8c11970c4afb4155902c8",
+    "public/platform-evolution.css": "d3ebc8fe5540877987c3dc4732e4905c758c17fc805303e17e14770744008fe8",
+    "public/platform-evolution.js": "63e0141234cfd397ab1acec815cf34d21ab18a88b14fc3d72cc523c28d486c89",
+    "public/preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
+    "public/professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
+    "public/professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
+    "public/professional-records.js": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "public/professional-workspace.js": "db61739a47e9c14bc9d6a35f900eed01f65b133c76054bb9e60230b87b284490",
+    "public/professional.css": "bfcf81c42f2d9281f5b33badf6a7a49bf205fdc30e740ed562b282c353679cfe",
+    "public/recommendation-core.js": "c4dbc58bb9c8c76d5ee45b0adbfbae0f2c7a42bfa1ee35066de92c0bfbc376ef",
+    "public/recommendation-view.js": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786",
+    "public/replay-contract.js": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "public/research-library.js": "10890357ab4e8bd28fafd657fb4d48fd01122d7888ff1b25be2e6a1d7725b321",
+    "public/research-quality.css": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a",
+    "public/research-quality.js": "38a253062a93507830f528297376566c4d8c516f8e15059a33c962c568b4d177",
+    "public/research-records.js": "9503045944499db0616ed42b586c95d842a20a49046228f73d39b243c97356ea",
+    "public/research-risk-comparison.js": "8623fdd57fc4792e3a18dc45567dedab0e5f764fe0413746104ac4d85a67d085",
+    "public/research-state.js": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253",
+    "public/research-studio-core.js": "e603a22f502a4a1237dcdb2421f8569a9669325325a526ebfd85b00fc74ee87c",
+    "public/research-studio.css": "5d5d675a2f23ff20b4eaeb1025a8e6879782107b4c5b494c3f08076646296dc1",
+    "public/research-studio.js": "e881b0b6814cd0646de61c1016481885677c42f196a36bf584f08e1d8f867260",
+    "public/research-terminal.css": "0c41a4d984f554d42ac44c4bd38aa8b69a24af468dd127d668fc6b1d164d74fd",
+    "public/research-workstation.js": "49fb2d5db447b8ba7ed6197b604c23719f7bef4e7347171ff89eb35fc9f557fb",
+    "public/research.css": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c",
+    "public/style.css": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8",
+    "public/terminal-research.js": "01db5f66c83b474706c2596293dd0b0143f95e07e5ab6f810b368da4580ef242",
+    "public/unified-workspace.css": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4",
+    "public/unified-workspace.js": "994fd61697b417cc8a8112d52f28ad724af992206d30d005e7f89b5e9bc284b5",
+    "public/validation-evidence.js": "dd3c9642d2ec92cacbf99be1dc3bf2323d1a71f869a0cff3e4a58ba9568f0a9c",
+    "public/visual-identity.css": "5a235e5ded3a3f944bb8a6301159d4a55d8ceb2b1b77aac4c4b01652db0e9f38",
+    "public/visual-identity.js": "7df01a27ebb7dc8d8b880660ca1b6f02a2d6d9f4673da77891ce51e5cc44f7d3",
+    "public/workflow-maturity.css": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b",
+    "public/workflow-maturity.js": "5a3b6f23e68e4345d4601053949f67a73d208f035617d0db04e24a925ce08ad6",
+    "public/workflow-polish.js": "e8c4a647a8fd8ace4e75d11a9ea5ce92c3243c1d62cf8a006dcc548956e0e905",
+    "public/workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
+    "public/workstation.css": "b56aa9f07fc8fe92995398b45d74ed33626fcd41e25a70413a10fb5d34bc1000",
+    "public/workstation.js": "2ff39a3a9c78af6b8708beb32051dc4f4a03efed2a007919d4409f065b695aa7",
+    "package.json": "a1e1db2ea70e9c0627d2cd9219e87e95e516487adfa8849f3ad8735df1519480",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  },
+  "financialBoundaries": {
+    "serverFilesChanged": false,
+    "sixFrozenEnginesByteIdentical": true,
+    "formulasChanged": false,
+    "hostedModelActivated": false,
+    "hostedExecutionAuthorized": false,
+    "originalSavedRecordSchemaChanged": false,
+    "pr17Integrated": false
+  },
+  "priorFailedAttempt": {
+    "passed": 35,
+    "failed": [
+      "consistency"
+    ],
+    "error": "Route.fetch: socket hang up",
+    "seconds": 1051.86,
+    "diagnostic": "transport-diagnostic.json",
+    "originalFailureLog": "consistency-transport-failure.txt",
+    "preciseTransportOrigin": "Unproven. Two instrumented isolated suites and a full unmodified browser gate passed before final UI correction. The final current-source complete gate recorded here also passes. No assertion/interception change or retry was added."
+  },
+  "restartRecovery": "The subsequent final UI gate was interrupted by an environment restart and /tmp logs were lost. It is not counted as completed; this report records a complete fresh run with logs persisted under /workspace/thn-issue21-verification.",
+  "releaseState": {
+    "ownerAcceptance": "Required",
+    "mainIntegration": "Not authorized or performed",
+    "productionDeployment": "Not authorized or performed",
+    "githubCI": "Verify exact pushed head separately; local results do not establish CI.",
+    "vercelPreview": "Verify unique existing-project deployment identity separately; direct access may be proxy-restricted."
+  }
+}

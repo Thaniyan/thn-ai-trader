@@ -1,0 +1,1495 @@
+/* A+ is scoped to the real Command Center. Secondary owners retain their layouts. */
+.precision-desk {
+  --bg:#0b1119;
+  --bg-2:#101a25;
+  --bg-3:#192735;
+  --panel:#101a25;
+  --text:#e4eaf0;
+  --muted:#a1aebd;
+  --accent:#8cc6b9;
+  --green:#8cc6b9;
+  --red:#cf9aa2;
+  --border:#2c3c4c
+}
+.precision-desk[data-theme=light] {
+  --bg:#f1f4f6;
+  --bg-2:#fff;
+  --bg-3:#e8eef1;
+  --panel:#fff;
+  --text:#1a2c39;
+  --muted:#4c6070;
+  --accent:#28685d;
+  --green:#28685d;
+  --red:#9b4e5b;
+  --border:#c5d0d8
+}
+.precision-home .terminal-main {
+  padding:14px 24px
+}
+.precision-home .terminal-topbar {
+  border-radius:5px;
+  padding:12px 16px;
+  margin-bottom:8px;
+  min-height:56px
+}
+.precision-home .terminal-topbar h1 {
+  font-size:20px
+}
+.precision-home #view-dashboard #evoDeskLead {
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px 20px;
+  padding:12px 0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  margin:0 0 10px
+}
+.precision-home #view-dashboard #evoDeskLead .evo-lead-brand {
+  grid-column:1/-1
+}
+.precision-home #view-dashboard #evoDeskLead #evoLeadTitle {
+  font-size:16px;
+  margin:0
+}
+.precision-home #view-dashboard #evoLeadControls {
+  grid-column:1;
+  grid-row:auto
+}
+.precision-home #view-dashboard #deskPrimaryActions {
+  grid-column:2;
+  grid-row:2;
+  gap:8px;
+  margin:0
+}
+.precision-home #view-dashboard #deskPrimaryActions button {
+  min-height:44px;
+  font-size:13px;
+  padding:8px 12px;
+  max-width:none
+}
+.precision-home #view-dashboard #deskPrimaryActions button:first-child {
+  background:var(--accent);
+  color:var(--bg);
+  border-color:var(--accent)
+}
+.precision-home[data-theme=light] #deskPrimaryActions button:first-child {
+  color:#fff
+}
+.precision-home #view-dashboard #evoDeskLead .q-context input,.precision-home #view-dashboard #evoDeskLead .q-context select {
+  height:44px;
+  min-height:44px;
+  font-size:14px
+}
+.precision-home #view-dashboard #commandChooseButton {
+  width:44px;
+  height:44px;
+  min-width:44px
+}
+.precision-home #view-dashboard #evoLeadControls .q-context label {
+  font-size:12px
+}
+.precision-home #view-dashboard #evoProviderState {
+  font-size:11px;
+  margin-top:4px
+}
+.precision-home #view-dashboard #deskSourceStrip {
+  padding:6px 0;
+  border:0;
+  font-size:12px;
+  gap:12px
+}
+.precision-home #view-dashboard #deskSourceStrip button {
+  min-height:44px;
+  font-size:12px
+}
+.precision-home .workspace-links {
+  font-size:12px
+}
+.precision-home #view-dashboard #commandGrid {
+  grid-template-columns:minmax(0,68fr) minmax(360px,32fr);
+  gap:24px;
+  margin:12px 0 20px
+}
+.precision-home #view-dashboard #commandChartHost #proTerminal {
+  border-radius:5px;
+  background:var(--bg);
+  overflow:visible
+}
+.precision-home #view-dashboard #commandChartHost .pro-terminal-head {
+  padding:14px 18px;
+  gap:12px
+}
+.precision-home #view-dashboard #commandChartHost .pro-mode-switch button,.precision-home #view-dashboard #commandChartHost #proChartFocus {
+  font-size:12px;
+  min-height:44px;
+  padding:8px 12px
+}
+.precision-home #view-dashboard #commandChartHost .q-canvas-shell #qCandles {
+  height:560px;
+  max-height:none
+}
+.precision-home #view-dashboard #commandChartHost .q-toolbar {
+  gap:6px
+}
+.precision-home #view-dashboard #commandChartHost .q-toolbar button {
+  min-height:44px;
+  font-size:12px
+}
+.precision-home #view-dashboard #commandChartHost .pro-terminal-head h2 {
+  font-size:24px
+}
+.precision-home #view-dashboard #commandChartHost #proSelectedContext {
+  font-size:12px
+}
+.precision-home #view-dashboard #commandAssessment {
+  border:0;
+  border-radius:0;
+  background:transparent;
+  padding:0;
+  gap:12px
+}
+.precision-home .command-verdict h1 {
+  font-size:25px;
+  line-height:1.3;
+  margin:6px 0 10px
+}
+.precision-home .command-verdict p {
+  font-size:12px;
+  line-height:1.5
+}
+.precision-home #view-dashboard #precisionStatus {
+  font-size:12px;
+  font-weight:650;
+  color:var(--accent);
+  margin:0 0 6px
+}
+.precision-home #view-dashboard #precisionStatus[data-state=wait] {
+  color:var(--text)
+}
+.precision-home .command-kicker {
+  font-size:11px
+}
+.precision-home #view-dashboard #commandConfluence {
+  font-size:14px;
+  font-weight:500
+}
+.precision-home #view-dashboard #commandConfluence #dashboardConfidenceValue {
+  font-size:14px;
+  line-height:1.5
+}
+.precision-home .command-verdict .command-caveat {
+  font-size:11px
+}
+.precision-home .command-verdict .q-actions button {
+  font-size:12px;
+  min-height:44px
+}
+.precision-home .command-primary-reason {
+  border:0;
+  padding:0
+}
+.precision-home #view-dashboard #commandSetup {
+  border-top:1px solid var(--border);
+  padding-top:12px
+}
+.precision-home #view-dashboard #commandSetup h2 {
+  font-size:14px;
+  font-weight:550;
+  margin:8px 0
+}
+.precision-home #view-dashboard #commandSetup .command-levels {
+  display:block;
+  margin:8px 0;
+  border-top:1px solid var(--border)
+}
+.precision-home #view-dashboard #commandSetup .command-levels>div {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  min-height:44px;
+  padding:7px 0;
+  border-bottom:1px solid var(--border)
+}
+.precision-home #view-dashboard #commandSetup .command-levels dt {
+  font-size:13px
+}
+.precision-home #view-dashboard #commandSetup .command-levels dd {
+  margin:0;
+  min-width:0;
+  font-variant-numeric:tabular-nums
+}
+.precision-home #view-dashboard #commandSetup .command-levels button {
+  min-height:44px;
+  font-size:18px;
+  padding:4px 0;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  direction:ltr
+}
+.precision-home #view-dashboard #commandSetup .command-levels>div:first-child button {
+  font-size:25px
+}
+.precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(2) button {
+  color:var(--red);
+  font-size:21px
+}
+.precision-home #view-dashboard #commandSetup>p {
+  font-size:11px;
+  line-height:1.6;
+  margin:9px 0
+}
+.precision-home #view-dashboard #commandSetup>button {
+  min-height:44px;
+  font-size:12px;
+  margin-inline-end:6px
+}
+.precision-setup-detail h3 {
+  font-size:12px;
+  font-weight:650;
+  margin:12px 0 5px
+}
+.precision-setup-detail p {
+  font-size:12px;
+  line-height:1.6;
+  margin:5px 0
+}
+.precision-fact {
+  display:block;
+  width:100%;
+  text-align:start;
+  border:0;
+  border-inline-start:2px solid var(--border);
+  border-radius:0;
+  padding:6px 10px;
+  font-size:12px;
+  line-height:1.55;
+  background:transparent;
+  color:var(--text)
+}
+.precision-fact b {
+  font-size:11px;
+  display:block;
+  color:var(--muted);
+  font-weight:500
+}
+.precision-fact span {
+  display:block
+}
+.precision-conditions {
+  margin:12px 0;
+  border-block:1px solid var(--border)
+}
+.precision-conditions>div {
+  padding:9px 0
+}
+.precision-conditions dt {
+  font-size:12px;
+  color:var(--muted);
+  font-weight:600
+}
+.precision-conditions dd {
+  margin:4px 0 0;
+  font-size:12px;
+  line-height:1.6
+}
+.precision-counter b,.precision-counter span {
+  display:block;
+  font-size:11px
+}
+.precision-counter b {
+  color:var(--muted)
+}
+.precision-setup-detail .precision-boundary {
+  font-size:11px;
+  color:var(--muted)
+}
+.precision-home #view-dashboard #commandAssessment #dashboardConviction {
+  margin:0;
+  padding:10px 0;
+  border-block:1px solid var(--border);
+  gap:0
+}
+.precision-home .home-consensus {
+  width:100%
+}
+.precision-home .home-consensus>span {
+  font-size:10px
+}
+.precision-home .home-consensus p,.precision-home .home-consensus small {
+  font-size:11px;
+  line-height:1.5
+}
+.precision-home .home-consensus button {
+  min-height:44px;
+  font-size:12px
+}
+.precision-accessible-context {
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip-path:inset(50%);
+  white-space:nowrap!important
+}
+.precision-home #view-dashboard #dashboardEvidence {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  padding-top:0;
+  border-top:0
+}
+.precision-home #view-dashboard #dashboardEvidence>div {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:4px 10px;
+  padding:8px 0;
+  border:0;
+  border-bottom:1px solid var(--border)
+}
+.precision-home #view-dashboard #dashboardEvidence>div>span {
+  font-size:11px
+}
+.precision-home #view-dashboard #dashboardEvidence strong {
+  font-size:13px
+}
+.precision-home #view-dashboard #dashboardEvidence small {
+  font-size:10px;
+  grid-column:1/-1
+}
+.precision-home #view-dashboard #dashboardEvidence button {
+  font-size:12px;
+  min-height:44px;
+  grid-column:1/-1
+}
+.precision-home #view-dashboard #dashboardEvidence summary {
+  font-size:12px;
+  min-height:44px;
+  padding:12px 0
+}
+.precision-home #view-dashboard #precisionProbability {
+  font-size:11px;
+  line-height:1.6;
+  color:var(--muted);
+  margin:0
+}
+.precision-home #view-dashboard #trustReviewAction {
+  font-size:12px;
+  min-height:44px;
+  margin:0
+}
+.precision-home #view-dashboard #deskDecisionBrief {
+  font-size:12px
+}
+.precision-home #view-dashboard #deskDecisionBrief summary {
+  font-size:12px;
+  min-height:44px
+}
+.precision-home #view-dashboard #deskDecisionBrief strong {
+  font-size:11px
+}
+.precision-home #view-dashboard #deskHorizons {
+  padding:16px 0;
+  border-bottom:1px solid var(--border)
+}
+.precision-home #view-dashboard #deskHorizons button {
+  min-height:44px;
+  font-size:13px
+}
+.precision-home #view-dashboard #commandRationale {
+  margin:20px 0 0;
+  border-radius:0;
+  border-inline:0;
+  background:transparent;
+  padding:0
+}
+.precision-home #view-dashboard #commandRationale>summary {
+  font-size:14px;
+  min-height:52px;
+  padding:16px 0;
+  border-block:1px solid var(--border)
+}
+.precision-home #view-dashboard #precisionResearchNav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border)
+}
+.precision-home #view-dashboard #precisionResearchNav button {
+  font-size:13px;
+  min-height:44px
+}
+.precision-home #view-dashboard #commandTrust,.precision-home #view-dashboard #deskEvidenceWorkbench,.precision-home #view-dashboard #commandNotebook,.precision-home #view-dashboard #deskRetainedContext,.precision-home #view-dashboard #commandPlanner {
+  border-radius:0;
+  border-inline:0;
+  background:transparent;
+  padding:20px 0;
+  margin:0;
+  border-bottom:1px solid var(--border)
+}
+.precision-home #view-dashboard #trustHeader {
+  padding:16px 0;
+  gap:20px
+}
+.precision-home .trust-signals {
+  display:block
+}
+.precision-home .trust-signals article {
+  display:grid;
+  grid-template-columns:minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.4fr);
+  gap:16px;
+  padding:14px 0;
+  border:0;
+  border-bottom:1px solid var(--border);
+  align-items:baseline
+}
+.precision-home .trust-signals strong {
+  font-size:15px;
+  margin:0
+}
+.precision-home .trust-signals p,.precision-home .trust-signals span {
+  font-size:12px;
+  line-height:1.6
+}
+.precision-home .command-trust details {
+  padding:16px 0
+}
+.precision-home .trust-school-list {
+  display:block
+}
+.precision-home .trust-school-list article {
+  padding:16px 0;
+  border:0;
+  border-bottom:1px solid var(--border);
+  border-radius:0
+}
+.precision-home #view-dashboard #commandTrust p,.precision-home #view-dashboard #commandTrust dd,.precision-home #view-dashboard #commandTrust dt {
+  font-size:13px;
+  line-height:1.8
+}
+.precision-home #view-dashboard #commandNotebook label {
+  font-size:13px
+}
+.precision-home #view-dashboard #commandThesis {
+  font-size:14px;
+  min-height:100px
+}
+.precision-home #view-dashboard #commandPlannerTitle {
+  font-size:14px
+}
+.precision-home button:focus-visible,.precision-home summary:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:3px
+}
+.precision-home [tabindex='-1'] {
+  scroll-margin-block:24px
+}
+@media(min-width:1200px) {
+  .precision-home .app-shell {
+    grid-template-columns:104px minmax(0,1fr)
+  }
+  .precision-home .sidebar {
+    width:104px;
+    padding:12px 8px
+  }
+  .precision-home .sidebar .brand {
+    display:block;
+    text-align:center;
+    padding:8px 0
+  }
+  .precision-home .brand-lockup img {
+    width:36px;
+    height:36px
+  }
+  .precision-home .sidebar .brand-text strong {
+    font-size:14px
+  }
+  .precision-home .sidebar .brand-text small {
+    font-size:10px
+  }
+  .precision-home .sidebar .nav-stack .nav {
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    align-items:center;
+    text-align:center;
+    font-size:10px;
+    padding:8px 4px;
+    min-height:52px
+  }
+  .precision-home .sidebar .nav-stack .nav svg {
+    width:18px;
+    height:18px
+  }
+  .precision-home .sidebar .nav-stack {
+    gap:4px
+  }
+  .precision-home .sidebar .nav-group-title {
+    font-size:9px
+  }
+  .precision-home .sidebar-status-tag {
+    font-size:9px
+  }
+  .precision-home .sidebar .market-sessions {
+    font-size:10px
+  }
+}
+@media(min-width:901px) and (max-width:1199px) {
+  .precision-home #view-dashboard #commandGrid {
+    grid-template-columns:minmax(0,64fr) minmax(300px,36fr);
+    gap:16px
+  }
+  .precision-home .terminal-main {
+    padding-inline:16px
+  }
+  .precision-home #view-dashboard #evoDeskLead {
+    grid-template-columns:1fr
+  }
+  .precision-home #view-dashboard #deskPrimaryActions {
+    grid-column:1;
+    grid-row:auto
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    min-height:40px;
+    padding:3px 0
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels button {
+    min-height:40px;
+    font-size:16px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:first-child button {
+    font-size:22px
+  }
+  .precision-home .precision-setup-detail p,.precision-home .precision-conditions dd {
+    font-size:12px
+  }
+}
+@media(max-width:900px) {
+  .precision-home #view-dashboard #commandGrid {
+    display:flex;
+    flex-direction:column;
+    gap:24px
+  }
+  .precision-home #view-dashboard #commandChartHost,.precision-home #view-dashboard #commandAssessment {
+    width:100%
+  }
+  .precision-home #view-dashboard #evoDeskLead {
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:10px 0
+  }
+  .precision-home #view-dashboard #deskPrimaryActions {
+    grid-column:1;
+    grid-row:auto;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px
+  }
+  .precision-home #view-dashboard #deskPrimaryActions button {
+    font-size:12px;
+    max-width:none;
+    padding:8px 6px;
+    min-height:44px
+  }
+  .precision-home #view-dashboard #commandQuickAssessment {
+    display:block;
+    padding:10px 0;
+    margin:0;
+    border:0;
+    background:transparent
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:4px 12px
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict h1 {
+    font-size:18px;
+    grid-column:1/-1;
+    margin:2px 0 5px
+  }
+  .precision-home #view-dashboard #commandQuickAssessment #precisionStatus {
+    font-size:12px;
+    grid-column:1/-1
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict>p,.precision-home #view-dashboard #commandQuickAssessment .command-verdict>.command-kicker,.precision-home #view-dashboard #commandQuickAssessment .command-verdict>.q-actions {
+    grid-column:1/-1
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict .q-actions {
+    display:flex;
+    gap:8px
+  }
+  .precision-home #view-dashboard #commandChartHost .q-canvas-shell #qCandles {
+    height:480px;
+    max-height:none
+  }
+  .precision-home .terminal-main {
+    padding-inline:16px
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-terminal-head {
+    padding:12px
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-mode-switch button,.precision-home #view-dashboard #commandChartHost #proChartFocus {
+    min-height:44px;
+    font-size:12px
+  }
+  .precision-home #view-dashboard #commandChartHost .q-toolbar button {
+    font-size:12px;
+    min-height:44px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels {
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:0 12px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    display:block;
+    grid-column:span 2;
+    padding:12px 0
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(-n+2) {
+    grid-column:span 3
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels dt {
+    font-size:12px;
+    line-height:1.6
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels button {
+    font-size:16px;
+    min-height:44px;
+    direction:ltr;
+    text-align:start
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:first-child button {
+    font-size:25px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(2) button {
+    font-size:23px
+  }
+  .precision-home .precision-setup-detail p,.precision-home .precision-conditions dd {
+    font-size:14px;
+    line-height:1.8
+  }
+  .precision-home .precision-conditions dt {
+    font-size:13px
+  }
+  .precision-home .precision-fact,.precision-home .precision-fact b,.precision-home .precision-counter b,.precision-home .precision-counter span {
+    font-size:13px;
+    line-height:1.7
+  }
+  .precision-home .precision-setup-detail .precision-boundary {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #precisionProbability {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #commandSetup>p {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #commandSetup>button {
+    font-size:13px;
+    min-height:48px
+  }
+  .precision-home .trust-signals article {
+    grid-template-columns:1fr;
+    gap:8px
+  }
+  .precision-home .trust-signals strong {
+    font-size:16px
+  }
+  .precision-home .trust-signals p,.precision-home .trust-signals span {
+    font-size:13px
+  }
+  .precision-home #view-dashboard #trustHeader {
+    grid-template-columns:1fr
+  }
+  .precision-home .trust-review-grid {
+    grid-template-columns:1fr
+  }
+  .precision-home .trust-metrics {
+    grid-template-columns:1fr
+  }
+  .precision-home #view-dashboard #deskSourceStrip {
+    font-size:11px;
+    gap:6px
+  }
+  .precision-home #view-dashboard #commandResearchNav button {
+    min-height:44px
+  }
+}
+@media(max-width:350px) {
+  .precision-home .terminal-main {
+    padding-inline:12px
+  }
+  .precision-home #view-dashboard #deskPrimaryActions {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels {
+    gap:0 8px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels button {
+    font-size:14px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:first-child button {
+    font-size:22px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(2) button {
+    font-size:21px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels dt {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #commandResearchNav {
+    gap:6px
+  }
+}
+@media(max-width:240px) {
+  .precision-home #view-dashboard #commandSetup .command-levels {
+    display:block
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    display:block
+  }
+  .precision-home #view-dashboard #deskPrimaryActions {
+    grid-template-columns:1fr
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict {
+    display:block
+  }
+  .precision-home .trust-fields>div {
+    grid-template-columns:1fr
+  }
+}
+.precision-home .home-confidence-ring[hidden] {
+  display:none!important
+}
+.precision-fact {
+  margin:0
+}
+.precision-home #view-dashboard #dashboardConviction .home-confidence-ring {
+  display:flex;
+  width:48px;
+  height:auto;
+  min-width:48px;
+  min-height:44px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent!important;
+  box-shadow:none
+}
+.precision-home #view-dashboard #dashboardConviction .home-confidence-ring>div {
+  width:auto;
+  height:auto;
+  background:transparent;
+  display:flex;
+  flex-direction:column
+}
+.precision-home #view-dashboard #dashboardConviction .home-confidence-ring strong {
+  font-size:17px
+}
+.precision-home #view-dashboard #dashboardConviction .home-confidence-ring small {
+  font-size:11px
+}
+.precision-home #view-dashboard #commandAssessment #dashboardConviction {
+  gap:12px
+}
+@media(min-width:1200px) {
+  .precision-home .app-shell {
+    grid-template-columns:64px minmax(0,1fr)
+  }
+  .precision-home .sidebar {
+    width:64px;
+    padding:12px 6px
+  }
+  .precision-home .sidebar .brand-text {
+    display:none
+  }
+  .precision-home .sidebar .nav-stack .nav {
+    width:44px;
+    min-height:44px;
+    padding:8px;
+    justify-content:center;
+    flex-direction:row
+  }
+  .precision-home .sidebar .nav-stack .nav>span {
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip-path:inset(50%);
+    white-space:nowrap
+  }
+  .precision-home .sidebar .pro-nav-group {
+    font-size:8px;
+    letter-spacing:0;
+    overflow-wrap:anywhere
+  }
+  .precision-home .sidebar .nav-stack .nav svg {
+    width:20px;
+    height:20px;
+    flex-shrink:0
+  }
+  .precision-home .sidebar .brand img {
+    width:32px;
+    height:32px
+  }
+  .precision-home .sidebar-status-tag {
+    overflow-wrap:anywhere
+  }
+}
+/* Explicit placement replaces the legacy auto-row layout, without hiding inputs. */
+.precision-home .app-shell .terminal-main {
+  padding-top:12px
+}
+.precision-home .terminal-topbar {
+  margin-top:0
+}
+.precision-home #view-dashboard #evoDeskLead #evoLeadControls {
+  grid-row:1;
+  grid-column:1
+}
+.precision-home #view-dashboard #evoDeskLead #deskPrimaryActions {
+  grid-row:1;
+  grid-column:2;
+  display:flex;
+  flex-wrap:nowrap;
+  width:auto;
+  max-width:none
+}
+.precision-home #view-dashboard #evoDeskLead #deskSourceStrip {
+  grid-row:2;
+  grid-column:1/-1;
+  padding-block:0;
+  min-height:44px
+}
+.precision-home #view-dashboard #commandAssessment>#evoProviderState {
+  font-size:11px;
+  line-height:1.6;
+  color:var(--muted);
+  padding:6px 0;
+  margin:0
+}
+.precision-home #view-dashboard #commandSetup .command-levels>div {
+  padding-block:0;
+  min-height:44px
+}
+.precision-home #view-dashboard #commandSetup .command-levels button {
+  min-height:44px!important
+}
+.precision-home #view-dashboard #commandSetup>button {
+  display:inline-flex;
+  width:auto;
+  align-items:center;
+  justify-content:center;
+  vertical-align:top;
+  min-height:44px
+}
+.precision-home #view-dashboard .command-verdict>.command-kicker {
+  display:none
+}
+.precision-home #view-dashboard .command-verdict>.command-caveat {
+  position:absolute;
+  width:1px;
+  height:1px;
+  clip-path:inset(50%);
+  overflow:hidden
+}
+.precision-home #view-dashboard .precision-has-candidate .command-verdict>.command-primary-reason {
+  position:absolute;
+  width:1px;
+  height:1px;
+  clip-path:inset(50%);
+  overflow:hidden
+}
+.precision-home #view-dashboard #dashboardConviction .home-consensus {
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  flex-wrap:wrap
+}
+.precision-home #view-dashboard #precisionSchoolContext {
+  flex:1;
+  min-width:120px
+}
+.precision-home #view-dashboard #precisionSchoolContext>summary {
+  font-size:12px;
+  min-height:44px;
+  line-height:1.5;
+  cursor:pointer;
+  display:flex;
+  align-items:center
+}
+.precision-home #view-dashboard #precisionSchoolContext p,.precision-home #view-dashboard #precisionSchoolContext small,.precision-home #view-dashboard #precisionSchoolContext h2 {
+  font-size:12px;
+  line-height:1.6
+}
+.precision-home #view-dashboard #dashboardConviction .home-consensus>[data-cockpit=details] {
+  font-size:12px;
+  min-height:44px;
+  max-width:180px
+}
+.precision-home #view-dashboard #commandAssessment #dashboardConviction {
+  padding-block:6px
+}
+@media(max-width:1199px) {
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions {
+    grid-row:2;
+    grid-column:1
+  }
+  .precision-home #view-dashboard #evoDeskLead #deskSourceStrip {
+    grid-row:3
+  }
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions button {
+    flex:1
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    padding-block:0
+  }
+}
+@media(max-width:900px) {
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr))
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    padding-block:8px
+  }
+  .precision-home #view-dashboard #precisionSchoolContext>summary {
+    font-size:13px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(-n+2) {
+    padding-block:10px
+  }
+  .precision-home #view-dashboard #commandAssessment #dashboardConviction {
+    padding-block:12px
+  }
+}
+@media(max-width:350px) {
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+}
+.precision-home #view-dashboard #commandVerdict>.q-actions:empty {
+  display:none
+}
+.precision-home #view-dashboard #commandSetup .command-levels button {
+  line-height:1.2;
+  padding-block:6px
+}
+.precision-home #view-dashboard #commandRationaleTitle {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px
+}
+.precision-home #view-dashboard #commandRationaleTitle>button {
+  min-height:44px;
+  font-size:12px
+}
+.precision-home #view-dashboard #precisionFooterLinks {
+  display:block;
+  border:0;
+  padding:8px 0;
+  margin:0;
+  background:transparent
+}
+.precision-home #view-dashboard #precisionFooterLinks .q-context-actions {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:0;
+  padding:0
+}
+.precision-home #view-dashboard #precisionFooterLinks button {
+  font-size:12px;
+  min-height:44px;
+  padding:8px 10px
+}
+.precision-home #view-dashboard #commandSetup .precision-setup-detail .precision-boundary {
+  margin:0
+}
+.precision-home #view-dashboard #commandSetup {
+  padding-top:8px
+}
+.precision-home #view-dashboard #commandSetup h2 {
+  margin-block:4px;
+  font-size:13px
+}
+.precision-home #view-dashboard #commandSetup .command-levels {
+  margin-block:4px
+}
+.precision-home #view-dashboard #commandSetup>p {
+  margin-block:6px
+}
+.precision-home #view-dashboard #precisionSetupDetail h3 {
+  margin:8px 0 4px
+}
+.precision-home #view-dashboard #precisionSetupDetail .precision-fact {
+  padding-block:2px
+}
+.precision-home #view-dashboard #precisionSetupDetail .precision-conditions {
+  margin-block:8px
+}
+.precision-home #view-dashboard #precisionSetupDetail .precision-conditions>div {
+  padding-block:6px
+}
+.precision-home #view-dashboard #evoDeskLead {
+  padding-block:8px
+}
+.precision-home .terminal-topbar h1 {
+  line-height:1.2
+}
+.precision-home #view-dashboard #precisionContextRow {
+  grid-column:1/-1;
+  grid-row:2;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:16px;
+  align-items:center;
+  min-width:0
+}
+.precision-home #view-dashboard #precisionContextRow #deskSourceStrip {
+  grid-row:auto;
+  grid-column:auto;
+  margin:0
+}
+.precision-home #view-dashboard #precisionContextRow #dashboardConviction {
+  margin:0;
+  padding:0;
+  border:0;
+  gap:8px;
+  display:flex;
+  min-width:0
+}
+.precision-home #view-dashboard #precisionContextRow .home-consensus {
+  display:flex;
+  gap:6px;
+  flex-wrap:nowrap;
+  align-items:center
+}
+.precision-home #view-dashboard #precisionContextRow .home-consensus>[data-cockpit=details] {
+  max-width:115px;
+  padding-inline:4px
+}
+.precision-home #view-dashboard #precisionContextRow #precisionSchoolContext {
+  min-width:100px
+}
+.precision-home #view-dashboard #commandSetup .command-levels dd {
+  display:flex;
+  align-items:center
+}
+.precision-home #view-dashboard #proTerminal .pro-plotting {
+  display:grid;
+  grid-template-columns:minmax(0,1fr)
+}
+.precision-home #view-dashboard #proDrawingDock {
+  grid-column:1;
+  display:flex;
+  flex-direction:row;
+  gap:4px;
+  padding:4px 8px;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  border:0;
+  border-block-end:1px solid var(--border)
+}
+.precision-home #view-dashboard #proDrawingDock>button {
+  min-width:44px;
+  min-height:44px;
+  flex-shrink:0
+}
+.precision-home #view-dashboard #proTerminal .q-canvas-shell {
+  grid-column:1;
+  width:100%
+}
+.precision-home #view-dashboard #commandChartHost .q-layer-controls {
+  display:flex;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  gap:4px;
+  max-width:100%;
+  margin:0;
+  padding:4px 8px
+}
+.precision-home #view-dashboard #commandChartHost .q-layer-controls button {
+  min-height:44px;
+  font-size:12px;
+  flex-shrink:0;
+  white-space:nowrap
+}
+.precision-home #view-dashboard #commandChartHost .q-layer-controls button[data-qlayer=smc] {
+  min-width:100px
+}
+.precision-home #view-dashboard #commandChartHost .q-canvas-shell #qCandles {
+  height:560px
+}
+.precision-home #view-dashboard #evoDashboard {
+  padding:12px 0;
+  border:0;
+  border-radius:0;
+  background:transparent
+}
+.precision-home #view-dashboard #evoDashboard .evo-heading h2 {
+  font-size:15px
+}
+.precision-home #view-dashboard #evoDashboard .evo-heading p {
+  font-size:12px
+}
+.precision-home #view-dashboard #evoDashboard .evo-desk-metrics {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px
+}
+.precision-home #view-dashboard #evoDashboard .evo-metric {
+  padding:0;
+  border:0;
+  border-radius:0;
+  flex:1;
+  min-width:120px;
+  background:transparent
+}
+.precision-home #view-dashboard #evoDashboard .evo-metric strong {
+  font-size:16px
+}
+@media(min-width:901px) and (max-width:1199px) {
+  .precision-home #view-dashboard #precisionContextRow {
+    grid-row:3;
+    grid-template-columns:minmax(0,1fr) 280px;
+    gap:12px
+  }
+  .precision-home #view-dashboard #precisionContextRow .home-confidence-ring {
+    min-width:38px;
+    width:38px
+  }
+  .precision-home #view-dashboard #precisionContextRow #precisionSchoolContext {
+    min-width:90px
+  }
+  .precision-home #view-dashboard #precisionContextRow .home-consensus>[data-cockpit=details] {
+    font-size:11px;
+    max-width:90px
+  }
+  .precision-home #view-dashboard #precisionContextRow #precisionSchoolContext>summary {
+    font-size:11px
+  }
+}
+@media(max-width:900px) {
+  .precision-home .sidebar>.brand,.precision-home .sidebar>.sidebar-status-tag {
+    display:none
+  }
+  .precision-home #view-dashboard #precisionContextRow {
+    display:block;
+    grid-row:3
+  }
+  .precision-home #view-dashboard #commandChartHost .q-canvas-shell #qCandles {
+    height:330px;
+    max-height:none
+  }
+  .precision-home #view-dashboard #proDrawingDock {
+    padding-inline:4px
+  }
+  .precision-home #view-dashboard #commandChartHost .q-layer-controls button {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #deskChartNavigation button {
+    font-size:11px;
+    min-height:44px;
+    padding-inline:7px
+  }
+  .precision-home #view-dashboard #deskCandleReadout {
+    padding:8px 0
+  }
+  .precision-home #view-dashboard #deskChartNavigation {
+    margin:0;
+    padding:4px 0
+  }
+}
+/* Group prices by purpose: entry/stop, followed by the three independent targets. */
+@media(min-width:901px) {
+  .precision-home #view-dashboard #commandSetup .command-levels {
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:0 10px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div {
+    display:block;
+    grid-column:span 2;
+    padding-block:6px;
+    min-width:0
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(-n+2) {
+    grid-column:span 3
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels dt {
+    font-size:12px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels button {
+    font-size:16px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:first-child button {
+    font-size:25px
+  }
+  .precision-home #view-dashboard #commandSetup .command-levels>div:nth-child(2) button {
+    font-size:22px
+  }
+  .precision-home .sidebar .pro-nav-group {
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip-path:inset(50%)
+  }
+}
+@media(min-width:901px) and (max-width:1199px) {
+  .precision-home .app-shell {
+    grid-template-columns:64px minmax(0,1fr)
+  }
+  .precision-home .sidebar {
+    width:64px;
+    padding:12px 6px
+  }
+  .precision-home .sidebar .brand-text,.precision-home .sidebar .pro-nav-group {
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip-path:inset(50%)
+  }
+  .precision-home .sidebar .nav-stack .nav {
+    width:44px;
+    min-height:44px;
+    padding:8px;
+    justify-content:center
+  }
+  .precision-home .sidebar .nav-stack .nav>span {
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip-path:inset(50%)
+  }
+  .precision-home .sidebar .nav-stack .nav svg {
+    width:20px;
+    height:20px;
+    flex-shrink:0
+  }
+  .precision-home .sidebar-status-tag {
+    overflow-wrap:anywhere
+  }
+  .precision-home #view-dashboard #evoDeskLead {
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:8px
+  }
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions {
+    grid-row:1;
+    grid-column:2
+  }
+  .precision-home #view-dashboard #precisionContextRow {
+    grid-row:2
+  }
+}
+@media(min-width:901px) and (max-width:1100px) {
+  .precision-home .app-shell {
+    display:grid
+  }
+  .precision-home .sidebar {
+    position:sticky;
+    top:0;
+    height:100dvh;
+    border-inline-end:1px solid var(--border);
+    border-bottom:0;
+    display:flex;
+    flex-direction:column
+  }
+  .precision-home .sidebar .nav-stack {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow:visible;
+    padding-block:8px
+  }
+  .precision-home .sidebar .nav-stack .nav {
+    flex:0 0 44px;
+    min-width:44px
+  }
+  .precision-home .sidebar .nav-stack .nav svg {
+    display:block
+  }
+  .precision-home .terminal-topbar {
+    width:100%;
+    margin-inline:0
+  }
+  .precision-home #view-dashboard #evoDeskLead #deskPrimaryActions button {
+    white-space:nowrap
+  }
+}
+@media(min-width:901px) and (max-width:1100px) {
+  .precision-home .app-shell {
+    gap:0
+  }
+  .precision-home .app-shell>.terminal-topbar {
+    grid-column:2;
+    grid-row:1;
+    width:calc(100% - 32px);
+    margin:12px 16px 0;
+    align-self:start
+  }
+  .precision-home .app-shell>.sidebar {
+    grid-column:1;
+    grid-row:1/span 2
+  }
+  .precision-home .app-shell>.terminal-main {
+    grid-column:2;
+    grid-row:2
+  }
+  .precision-home .sidebar .nav-stack .nav svg {
+    display:block!important
+  }
+}
+@media(max-width:900px) {
+  .precision-home #view-dashboard #commandChartHost .pro-terminal-head {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:8px;
+    padding:10px
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-quote {
+    grid-column:1/-1
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-quote h2 {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    font-size:20px;
+    margin:0
+  }
+  .precision-home #view-dashboard #commandChartHost #proChartModes {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    min-width:0;
+    width:auto
+  }
+  .precision-home #view-dashboard #commandChartHost #proChartModes button {
+    flex:1;
+    min-height:44px;
+    padding:6px;
+    font-size:11px;
+    white-space:normal
+  }
+  .precision-home #view-dashboard #commandChartHost #proChartFocus {
+    min-height:44px;
+    padding:6px;
+    font-size:11px;
+    width:auto
+  }
+  .precision-home #view-dashboard #proDrawingDock {
+    flex-wrap:nowrap;
+    overflow-x:auto
+  }
+  .precision-home #view-dashboard #proDrawingDock>button {
+    flex:0 0 44px;
+    min-width:44px;
+    width:44px;
+    padding-inline:4px
+  }
+  .precision-home #view-dashboard #commandQuickAssessment {
+    padding-block:6px
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-verdict h1 {
+    margin-block:0
+  }
+  .precision-home #view-dashboard #commandQuickAssessment .command-primary-reason {
+    font-size:12px;
+    margin-block:4px
+  }
+}
+@media(max-width:900px) {
+  .precision-home #view-dashboard #commandChartHost .pro-instrument-quote {
+    grid-column:1/-1
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-instrument-quote h2 {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    font-size:20px;
+    margin:0
+  }
+  .precision-home #view-dashboard #commandChartHost .pro-instrument-quote p {
+    margin:4px 0;
+    font-size:12px
+  }
+}
+.precision-home #view-dashboard #precisionStatus[data-state=conditional] {
+  color:#e4c78a
+}
+.precision-home[data-theme=light] #view-dashboard #precisionStatus[data-state=conditional] {
+  color:#79591d
+}
+.precision-home #view-dashboard #commandSetup .command-levels>div {
+  border-inline:0;
+  border-top:0;
+  border-radius:0;
+  background:transparent
+}
+.precision-home .sidebar .pro-sidebar-utility {
+  overflow:hidden
+}
+.precision-home .sidebar .session-pill {
+  min-width:0;
+  max-width:100%;
+  overflow-wrap:anywhere
+}
+.precision-home #view-dashboard #evoDeskLead {
+  box-shadow:none
+}
+@media(max-width:900px) {
+  .precision-home #view-dashboard #precisionContextRow #deskSourceStrip {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:4px 8px;
+    align-items:center
+  }
+  .precision-home #view-dashboard #precisionContextRow #deskSourceStrip>div:first-child {
+    grid-column:1;
+    grid-row:1;
+    flex-wrap:wrap
+  }
+  .precision-home #view-dashboard #precisionContextRow #deskSourceStrip>button {
+    grid-column:2;
+    grid-row:1;
+    min-height:44px
+  }
+  .precision-home #view-dashboard #precisionContextRow #deskSourceStrip>div:nth-child(2) {
+    grid-column:1/-1;
+    grid-row:2
+  }
+  .precision-home #view-dashboard #precisionContextRow #deskSourceStrip>small {
+    grid-column:1/-1;
+    grid-row:3
+  }
+  .precision-home #view-dashboard #evoDeskLead {
+    margin-bottom:4px
+  }
+}
+@media(max-width:240px){.precision-home #view-dashboard #commandChartHost .pro-terminal-head{display:block}.precision-home #view-dashboard #commandChartHost #proChartModes{flex-wrap:wrap;flex-direction:column}.precision-home #view-dashboard #commandChartHost #proChartFocus{width:100%;margin-top:6px}.precision-home #view-dashboard #precisionContextRow #deskSourceStrip{display:block}.precision-home #view-dashboard #precisionContextRow #deskSourceStrip>div{display:flex;flex-wrap:wrap;overflow-wrap:anywhere}.precision-home #view-dashboard #precisionContextRow #deskSourceStrip>button{margin-block:4px}.precision-home #view-dashboard #precisionContextRow #deskSourceStrip>small{display:block}.precision-home #view-dashboard #commandRationaleTitle{flex-wrap:wrap}}
+/* Keep the original observed-price caption, beside the price instead of another row. */
+@media(max-width:900px){.precision-home #view-dashboard #commandChartHost .pro-terminal-head{padding:8px;gap:6px}.precision-home #view-dashboard #commandChartHost .pro-instrument-quote{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}.precision-home #view-dashboard #commandChartHost .pro-instrument-quote h2{flex:1;line-height:1.3}.precision-home #view-dashboard #commandChartHost .pro-instrument-quote p{margin:0;font-size:12px;white-space:normal}.precision-home #view-dashboard #commandChartHost #proChartModes{padding:0}.precision-home #view-dashboard #commandQuickAssessment .command-verdict{gap:0 8px}.precision-home #view-dashboard #commandQuickAssessment{padding-block:4px}.precision-home #view-dashboard #evoDeskLead{padding-block:4px}.precision-home #view-dashboard #commandGrid{margin-top:8px}}
+.precision-home #view-dashboard #precisionResearchActions{display:flex;justify-content:flex-end;padding-top:8px}.precision-home #view-dashboard #precisionResearchActions button{min-height:44px;font-size:13px}.precision-home #view-dashboard #commandSetup>[data-trust=candidate]{font-size:12px;min-height:44px;padding-inline:10px}
+/* On phones, keep drawing tools available directly below the chart, not above its candles. */
+@media(max-width:900px){.precision-home #view-dashboard #proTerminal .q-canvas-shell{grid-row:1}.precision-home #view-dashboard #proDrawingDock{grid-row:2;border-block-end:0;border-block-start:1px solid var(--border)}}
+@media(min-width:241px) and (max-width:350px){.precision-home #view-dashboard #evoDeskLead #deskPrimaryActions{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;max-width:100%}.precision-home #view-dashboard #evoDeskLead #deskPrimaryActions button{flex:0 0 auto;min-width:78px;min-height:44px;white-space:nowrap;padding-inline:8px}}
+/* Icon-only desktop navigation has explicit localized aria-label/title names.
+   Remove the duplicate hidden text box so it cannot escape the button geometry. */
+@media(min-width:901px){.precision-home .sidebar .nav-stack .nav>span{display:none}}
+@media(min-width:901px){.precision-home .sidebar .brand-text{display:none}}
+/* Brand remains visible once in the header; the icon rail keeps its accessible name. */
+@media(min-width:901px){.precision-home .terminal-topbar .brand-titles{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.precision-home .terminal-topbar .brand-titles .wordmark{display:inline-flex!important;font-size:14px!important;white-space:nowrap}.precision-home .terminal-topbar .brand-titles #proRouteTitle{margin:0}}
+@media(max-width:900px){.precision-home #view-dashboard #commandQuickAssessment #dashboardConviction{display:flex;align-items:center;gap:8px;padding:4px 0;margin:0;border:0;min-width:0}.precision-home #view-dashboard #commandQuickAssessment .home-consensus{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}.precision-home #view-dashboard #commandQuickAssessment #precisionSchoolContext{min-width:0;flex:1}.precision-home #view-dashboard #commandQuickAssessment #precisionSchoolContext>summary{font-size:12px;min-height:44px}.precision-home #view-dashboard #commandQuickAssessment .home-consensus>[data-cockpit=details]{font-size:12px;padding-inline:5px;min-height:44px}}
+@media(max-width:240px){.precision-home #view-dashboard #commandQuickAssessment .home-consensus{flex-wrap:wrap}}
+@media(min-width:601px) and (max-width:900px){.precision-home #view-dashboard #commandChartHost .q-canvas-shell #qCandles{height:480px;max-height:none}}

@@ -1,0 +1,2076 @@
+[
+  {
+    "mode": "wait",
+    "width": 1440,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 104,
+        "y": 493.921875,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 998.71875,
+        "y": 377.78125,
+        "width": 417.265625,
+        "height": 433.078125
+      },
+      "assessment": {
+        "x": 998.71875,
+        "y": 282.1875,
+        "width": 417.265625,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 1096,
+        "y": 203.9375,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 192,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 1044,
+        "y": 425.90625,
+        "width": 380,
+        "height": 472.15625
+      },
+      "assessment": {
+        "x": 1044,
+        "y": 254,
+        "width": 380,
+        "height": 157.90625
+      },
+      "confidence": {
+        "x": 193,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 506.08,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "wait",
+    "width": 1440,
+    "language": "en",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 104,
+        "y": 493.921875,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 998.71875,
+        "y": 377.78125,
+        "width": 417.265625,
+        "height": 433.078125
+      },
+      "assessment": {
+        "x": 998.71875,
+        "y": 282.1875,
+        "width": 417.265625,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 1096,
+        "y": 203.9375,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 192,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 1044,
+        "y": 425.90625,
+        "width": 380,
+        "height": 472.15625
+      },
+      "assessment": {
+        "x": 1044,
+        "y": 254,
+        "width": 380,
+        "height": 157.90625
+      },
+      "confidence": {
+        "x": 193,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 506.08,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "wait",
+    "width": 1440,
+    "language": "ar",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 481.28125,
+        "y": 506.3125,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 24.015625,
+        "y": 390.171875,
+        "width": 417.265625,
+        "height": 396.296875
+      },
+      "assessment": {
+        "x": 24.015625,
+        "y": 294.578125,
+        "width": 417.265625,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 24,
+        "y": 216.328125,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 432,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 406.71875,
+        "width": 380,
+        "height": 368.171875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 254,
+        "width": 380,
+        "height": 138.71875
+      },
+      "confidence": {
+        "x": 739.5625,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 493.69,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "wait",
+    "width": 1440,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 481.28125,
+        "y": 506.3125,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 24.015625,
+        "y": 390.171875,
+        "width": 417.265625,
+        "height": 396.296875
+      },
+      "assessment": {
+        "x": 24.015625,
+        "y": 294.578125,
+        "width": 417.265625,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 24,
+        "y": 216.328125,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 432,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 406.71875,
+        "width": 380,
+        "height": 368.171875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 254,
+        "width": 380,
+        "height": 138.71875
+      },
+      "confidence": {
+        "x": 739.5625,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 493.69,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "wait",
+    "width": 1024,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 96,
+        "y": 536.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 679.671875,
+        "y": 363.890625,
+        "width": 328.328125,
+        "height": 487.453125
+      },
+      "assessment": {
+        "x": 679.671875,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 728,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 96,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 628,
+        "y": 438.109375,
+        "width": 380,
+        "height": 472.15625
+      },
+      "assessment": {
+        "x": 628,
+        "y": 274,
+        "width": 380,
+        "height": 150.109375
+      },
+      "confidence": {
+        "x": 95,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 463.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "wait",
+    "width": 1024,
+    "language": "en",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 96,
+        "y": 536.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 679.671875,
+        "y": 363.890625,
+        "width": 328.328125,
+        "height": 487.453125
+      },
+      "assessment": {
+        "x": 679.671875,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 728,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 96,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 628,
+        "y": 438.109375,
+        "width": 380,
+        "height": 472.15625
+      },
+      "assessment": {
+        "x": 628,
+        "y": 274,
+        "width": 380,
+        "height": 150.109375
+      },
+      "confidence": {
+        "x": 95,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 463.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "wait",
+    "width": 1024,
+    "language": "ar",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 376.328125,
+        "y": 480.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 363.890625,
+        "width": 328.328125,
+        "height": 433.078125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 428,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 418.921875,
+        "width": 380,
+        "height": 368.171875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 274,
+        "width": 380,
+        "height": 130.921875
+      },
+      "confidence": {
+        "x": 621.703125,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 519.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "wait",
+    "width": 1024,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 376.328125,
+        "y": 480.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 363.890625,
+        "width": 328.328125,
+        "height": 433.078125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 83.59375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 428,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 418.921875,
+        "width": 380,
+        "height": 368.171875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 274,
+        "width": 380,
+        "height": 130.921875
+      },
+      "confidence": {
+        "x": 621.703125,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 519.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "wait",
+    "width": 768,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 32,
+        "y": 679.953125,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2064.4375,
+        "width": 736,
+        "height": 434.15625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 365.78125,
+        "width": 736,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 440.359375,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 32,
+        "y": 677.015625,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2061.5,
+        "width": 736,
+        "height": 456.578125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 298.796875,
+        "width": 736,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 433.421875,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 320.05,
+    "visibleChartAfter": 322.98
+  },
+  {
+    "mode": "wait",
+    "width": 768,
+    "language": "en",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 32,
+        "y": 679.953125,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2064.4375,
+        "width": 736,
+        "height": 434.15625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 365.78125,
+        "width": 736,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 440.359375,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 32,
+        "y": 677.015625,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2061.5,
+        "width": 736,
+        "height": 456.578125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 298.796875,
+        "width": 736,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 433.421875,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 320.05,
+    "visibleChartAfter": 322.98
+  },
+  {
+    "mode": "wait",
+    "width": 768,
+    "language": "ar",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 32,
+        "y": 679.953125,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2029.59375,
+        "width": 736,
+        "height": 395.78125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 365.78125,
+        "width": 736,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 440.359375,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 32,
+        "y": 677.015625,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2026.65625,
+        "width": 736,
+        "height": 437.390625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 298.796875,
+        "width": 736,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 433.421875,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 320.05,
+    "visibleChartAfter": 322.98
+  },
+  {
+    "mode": "wait",
+    "width": 768,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 32,
+        "y": 679.953125,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2029.59375,
+        "width": 736,
+        "height": 395.78125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 365.78125,
+        "width": 736,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 440.359375,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 32,
+        "y": 677.015625,
+        "width": 704,
+        "height": 480
+      },
+      "setup": {
+        "x": 16,
+        "y": 2026.65625,
+        "width": 736,
+        "height": 437.390625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 298.796875,
+        "width": 736,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 433.421875,
+        "width": 736,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 320.05,
+    "visibleChartAfter": 322.98
+  },
+  {
+    "mode": "wait",
+    "width": 390,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 700,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2054.828125,
+        "width": 358,
+        "height": 542.203125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 378.046875,
+        "width": 358,
+        "height": 93.765625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 471.8125,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 698.71875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2053.546875,
+        "width": 358,
+        "height": 611.90625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 153.8125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 466.53125,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 300,
+    "visibleChartAfter": 301.28
+  },
+  {
+    "mode": "wait",
+    "width": 390,
+    "language": "en",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 700,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2054.828125,
+        "width": 358,
+        "height": 542.203125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 378.046875,
+        "width": 358,
+        "height": 93.765625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 471.8125,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 698.71875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2053.546875,
+        "width": 358,
+        "height": 611.90625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 153.8125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 466.53125,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 300,
+    "visibleChartAfter": 301.28
+  },
+  {
+    "mode": "wait",
+    "width": 390,
+    "language": "ar",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 671.21875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2026.046875,
+        "width": 358,
+        "height": 478.53125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 368.046875,
+        "width": 358,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 442.625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 679.9375,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2034.765625,
+        "width": 358,
+        "height": 500.953125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 447.34375,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 328.78,
+    "visibleChartAfter": 320.06
+  },
+  {
+    "mode": "wait",
+    "width": 390,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 671.21875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2026.046875,
+        "width": 358,
+        "height": 478.53125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 368.046875,
+        "width": 358,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 442.625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 679.9375,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2034.765625,
+        "width": 358,
+        "height": 500.953125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 447.34375,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 328.78,
+    "visibleChartAfter": 320.06
+  },
+  {
+    "mode": "wait",
+    "width": 320,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 792.15625,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2305.5,
+        "width": 296,
+        "height": 653.046875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 93.765625
+      },
+      "confidence": {
+        "x": 12,
+        "y": 491.828125,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 786.875,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2300.21875,
+        "width": 296,
+        "height": 686.65625
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 153.8125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 482.546875,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 207.84,
+    "visibleChartAfter": 213.12
+  },
+  {
+    "mode": "wait",
+    "width": 320,
+    "language": "en",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 792.15625,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2305.5,
+        "width": 296,
+        "height": 653.046875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 93.765625
+      },
+      "confidence": {
+        "x": 12,
+        "y": 491.828125,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 786.875,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2300.21875,
+        "width": 296,
+        "height": 686.65625
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 153.8125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 482.546875,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 207.84,
+    "visibleChartAfter": 213.12
+  },
+  {
+    "mode": "wait",
+    "width": 320,
+    "language": "ar",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 773.375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2231.296875,
+        "width": 296,
+        "height": 564.296875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 472.640625,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 768.09375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2226.015625,
+        "width": 296,
+        "height": 578.71875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 12,
+        "y": 463.359375,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 226.62,
+    "visibleChartAfter": 231.91
+  },
+  {
+    "mode": "wait",
+    "width": 320,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 773.375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2231.296875,
+        "width": 296,
+        "height": 564.296875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 472.640625,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 768.09375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2226.015625,
+        "width": 296,
+        "height": 578.71875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 134.625
+      },
+      "confidence": {
+        "x": 12,
+        "y": 463.359375,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 226.62,
+    "visibleChartAfter": 231.91
+  },
+  {
+    "mode": "conditional",
+    "width": 1440,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 104,
+        "y": 493.921875,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 998.71875,
+        "y": 356.78125,
+        "width": 417.265625,
+        "height": 574.140625
+      },
+      "assessment": {
+        "x": 998.71875,
+        "y": 282.1875,
+        "width": 417.265625,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 1096,
+        "y": 203.9375,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 192,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 1044,
+        "y": 367.9375,
+        "width": 380,
+        "height": 626.3125
+      },
+      "assessment": {
+        "x": 1044,
+        "y": 254,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 193,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 506.08,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "conditional",
+    "width": 1440,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 481.28125,
+        "y": 506.3125,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 24.015625,
+        "y": 369.171875,
+        "width": 417.265625,
+        "height": 537.359375
+      },
+      "assessment": {
+        "x": 24.015625,
+        "y": 294.578125,
+        "width": 417.265625,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 24,
+        "y": 216.328125,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 432,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 367.9375,
+        "width": 380,
+        "height": 554.921875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 254,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 739.5625,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 493.69,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "conditional",
+    "width": 1024,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 96,
+        "y": 536.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 679.671875,
+        "y": 342.890625,
+        "width": 328.328125,
+        "height": 610.328125
+      },
+      "assessment": {
+        "x": 679.671875,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 728,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 96,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 628,
+        "y": 387.9375,
+        "width": 380,
+        "height": 626.3125
+      },
+      "assessment": {
+        "x": 628,
+        "y": 274,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 95,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 463.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "conditional",
+    "width": 1024,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 376.328125,
+        "y": 480.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 342.890625,
+        "width": 328.328125,
+        "height": 592.734375
+      },
+      "assessment": {
+        "x": 16,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 428,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 387.9375,
+        "width": 380,
+        "height": 554.921875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 274,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 621.703125,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 519.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "conditional",
+    "width": 390,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 700,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2054.828125,
+        "width": 358,
+        "height": 677.3125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 378.046875,
+        "width": 358,
+        "height": 93.765625
+      },
+      "confidence": {
+        "x": 16,
+        "y": 471.8125,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 652.34375,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2007.171875,
+        "width": 358,
+        "height": 784.828125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 420.15625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 300,
+    "visibleChartAfter": 330.0
+  },
+  {
+    "mode": "conditional",
+    "width": 390,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 671.21875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2006.046875,
+        "width": 358,
+        "height": 655.21875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 368.046875,
+        "width": 358,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 442.625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 652.75,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 1987.578125,
+        "width": 358,
+        "height": 696.265625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 420.15625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 328.78,
+    "visibleChartAfter": 330.0
+  },
+  {
+    "mode": "conditional",
+    "width": 320,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 773.375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2211.296875,
+        "width": 296,
+        "height": 677.3125
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 472.640625,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 740.90625,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2178.828125,
+        "width": 296,
+        "height": 733.546875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 12,
+        "y": 436.171875,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 226.62,
+    "visibleChartAfter": 259.09
+  },
+  {
+    "mode": "eligible",
+    "width": 1440,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 104,
+        "y": 493.921875,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 998.71875,
+        "y": 356.78125,
+        "width": 417.265625,
+        "height": 574.140625
+      },
+      "assessment": {
+        "x": 998.71875,
+        "y": 282.1875,
+        "width": 417.265625,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 1096,
+        "y": 203.9375,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 192,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 1044,
+        "y": 401.734375,
+        "width": 380,
+        "height": 626.3125
+      },
+      "assessment": {
+        "x": 1044,
+        "y": 254,
+        "width": 380,
+        "height": 133.734375
+      },
+      "confidence": {
+        "x": 193,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 506.08,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "eligible",
+    "width": 1440,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 481.28125,
+        "y": 506.3125,
+        "width": 854.71875,
+        "height": 560
+      },
+      "setup": {
+        "x": 24.015625,
+        "y": 369.171875,
+        "width": 417.265625,
+        "height": 537.359375
+      },
+      "assessment": {
+        "x": 24.015625,
+        "y": 294.578125,
+        "width": 417.265625,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 24,
+        "y": 216.328125,
+        "width": 320,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 432,
+        "y": 465.734375,
+        "width": 816,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 367.9375,
+        "width": 380,
+        "height": 554.921875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 254,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 739.5625,
+        "y": 181,
+        "width": 507.4375,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 493.69,
+    "visibleChartAfter": 534.27
+  },
+  {
+    "mode": "eligible",
+    "width": 1024,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 96,
+        "y": 536.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 679.671875,
+        "y": 342.890625,
+        "width": 328.328125,
+        "height": 610.328125
+      },
+      "assessment": {
+        "x": 679.671875,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 728,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 96,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 628,
+        "y": 421.734375,
+        "width": 380,
+        "height": 626.3125
+      },
+      "assessment": {
+        "x": 628,
+        "y": 274,
+        "width": 380,
+        "height": 133.734375
+      },
+      "confidence": {
+        "x": 95,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 463.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "eligible",
+    "width": 1024,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 376.328125,
+        "y": 480.03125,
+        "width": 551.671875,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 342.890625,
+        "width": 328.328125,
+        "height": 592.734375
+      },
+      "assessment": {
+        "x": 16,
+        "y": 268.296875,
+        "width": 328.328125,
+        "height": 62.59375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 190.046875,
+        "width": 280,
+        "height": 44
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 428,
+        "y": 541.734375,
+        "width": 500,
+        "height": 560
+      },
+      "setup": {
+        "x": 16,
+        "y": 387.9375,
+        "width": 380,
+        "height": 554.921875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 274,
+        "width": 380,
+        "height": 99.9375
+      },
+      "confidence": {
+        "x": 621.703125,
+        "y": 201,
+        "width": 307.296875,
+        "height": 44
+      }
+    },
+    "visibleChartBefore": 519.97,
+    "visibleChartAfter": 458.27
+  },
+  {
+    "mode": "eligible",
+    "width": 390,
+    "language": "en",
+    "theme": "dark",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 680.8125,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2035.640625,
+        "width": 358,
+        "height": 677.3125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 378.046875,
+        "width": 358,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 452.625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 652.34375,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2007.171875,
+        "width": 358,
+        "height": 784.828125
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 420.15625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 319.19,
+    "visibleChartAfter": 330.0
+  },
+  {
+    "mode": "eligible",
+    "width": 390,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 26,
+        "y": 671.21875,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 2006.046875,
+        "width": 358,
+        "height": 655.21875
+      },
+      "assessment": {
+        "x": 16,
+        "y": 368.046875,
+        "width": 358,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 16,
+        "y": 442.625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 26,
+        "y": 652.75,
+        "width": 338,
+        "height": 330
+      },
+      "setup": {
+        "x": 16,
+        "y": 1987.578125,
+        "width": 358,
+        "height": 696.265625
+      },
+      "assessment": {
+        "x": 16,
+        "y": 312.71875,
+        "width": 358,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 16,
+        "y": 420.15625,
+        "width": 358,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 328.78,
+    "visibleChartAfter": 330.0
+  },
+  {
+    "mode": "eligible",
+    "width": 320,
+    "language": "ar",
+    "theme": "light",
+    "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+    "before": {
+      "chart": {
+        "x": 22,
+        "y": 773.375,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2211.296875,
+        "width": 296,
+        "height": 677.3125
+      },
+      "assessment": {
+        "x": 12,
+        "y": 398.0625,
+        "width": 296,
+        "height": 74.578125
+      },
+      "confidence": {
+        "x": 12,
+        "y": 472.640625,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "after": {
+      "chart": {
+        "x": 22,
+        "y": 740.90625,
+        "width": 276,
+        "height": 330
+      },
+      "setup": {
+        "x": 12,
+        "y": 2178.828125,
+        "width": 296,
+        "height": 733.546875
+      },
+      "assessment": {
+        "x": 12,
+        "y": 328.734375,
+        "width": 296,
+        "height": 107.4375
+      },
+      "confidence": {
+        "x": 12,
+        "y": 436.171875,
+        "width": 296,
+        "height": 55
+      }
+    },
+    "visibleChartBefore": 226.62,
+    "visibleChartAfter": 259.09
+  }
+]

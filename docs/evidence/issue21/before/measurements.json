@@ -1,0 +1,18 @@
+[
+  {
+    "width": 1440,
+    "hash": "5d44114bead5a3ab796eb78d8fbe5d71229243c4766541712031dd8cacffe669",
+    "symbol": "EURUSD",
+    "bars": 90,
+    "chartY": 536.890625,
+    "chartWidth": 810
+  },
+  {
+    "width": 390,
+    "hash": "5d44114bead5a3ab796eb78d8fbe5d71229243c4766541712031dd8cacffe669",
+    "symbol": "EURUSD",
+    "bars": 45,
+    "chartY": 697.25,
+    "chartWidth": 312
+  }
+]

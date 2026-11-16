@@ -1,0 +1,1261 @@
+{
+  "reviewedBaseline": "5e358d99c654f5c022d21d8de0e85efcaace36bc",
+  "clock": "2026-11-11T17:10:00Z",
+  "scope": "Actual packaged app; fixed offline synthetic Yahoo/provider observations. Controlled eligible fixtures alter API responses explicitly; not live signals, probability calibration or Preview acceptance.",
+  "pairs": [
+    {
+      "profile": [
+        1440,
+        "en",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1440-en-dark.png",
+      "after": "after/desk-1440-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1440,
+        "en",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1440-en-light.png",
+      "after": "after/desk-1440-en-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1440,
+        "ar",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1440-ar-dark.png",
+      "after": "after/desk-1440-ar-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1440,
+        "ar",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1440-ar-light.png",
+      "after": "after/desk-1440-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1024,
+        "en",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1024-en-dark.png",
+      "after": "after/desk-1024-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1024,
+        "en",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1024-en-light.png",
+      "after": "after/desk-1024-en-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1024,
+        "ar",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1024-ar-dark.png",
+      "after": "after/desk-1024-ar-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1024,
+        "ar",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-1024-ar-light.png",
+      "after": "after/desk-1024-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        768,
+        "en",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-768-en-dark.png",
+      "after": "after/desk-768-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        768,
+        "en",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-768-en-light.png",
+      "after": "after/desk-768-en-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        768,
+        "ar",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-768-ar-dark.png",
+      "after": "after/desk-768-ar-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        768,
+        "ar",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-768-ar-light.png",
+      "after": "after/desk-768-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 684.734375,
+        "width": 658,
+        "height": 560
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        390,
+        "en",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-390-en-dark.png",
+      "after": "after/desk-390-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        390,
+        "en",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-390-en-light.png",
+      "after": "after/desk-390-en-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        390,
+        "ar",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-390-ar-dark.png",
+      "after": "after/desk-390-ar-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        390,
+        "ar",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-390-ar-light.png",
+      "after": "after/desk-390-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        320,
+        "en",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-320-en-dark.png",
+      "after": "after/desk-320-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 919.53125,
+        "width": 276,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 919.53125,
+        "width": 276,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        320,
+        "en",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-320-en-light.png",
+      "after": "after/desk-320-en-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 919.53125,
+        "width": 276,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 919.53125,
+        "width": 276,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        320,
+        "ar",
+        "dark"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-320-ar-dark.png",
+      "after": "after/desk-320-ar-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 842.03125,
+        "width": 276,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 842.03125,
+        "width": 276,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        320,
+        "ar",
+        "light"
+      ],
+      "kind": "normal synthetic provider observation",
+      "before": "before/desk-320-ar-light.png",
+      "after": "after/desk-320-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 842.03125,
+        "width": 276,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 842.03125,
+        "width": 276,
+        "height": 480
+      },
+      "candidate": null
+    },
+    {
+      "profile": [
+        1440,
+        "en",
+        "dark"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-1440-en-dark.png",
+      "after": "after-conditional/desk-1440-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 238,
+        "y": 427.234375,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    },
+    {
+      "profile": [
+        1440,
+        "ar",
+        "light"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-1440-ar-light.png",
+      "after": "after-conditional/desk-1440-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 354,
+        "y": 434.625,
+        "width": 848,
+        "height": 560
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    },
+    {
+      "profile": [
+        1024,
+        "en",
+        "dark"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-1024-en-dark.png",
+      "after": "after-conditional/desk-1024-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 78,
+        "y": 490.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    },
+    {
+      "profile": [
+        1024,
+        "ar",
+        "light"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-1024-ar-light.png",
+      "after": "after-conditional/desk-1024-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 413.8125,
+        "y": 520.234375,
+        "width": 532.1875,
+        "height": 560
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    },
+    {
+      "profile": [
+        390,
+        "en",
+        "dark"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-390-en-dark.png",
+      "after": "after-conditional/desk-390-en-dark.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 56,
+        "y": 668.421875,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    },
+    {
+      "profile": [
+        390,
+        "ar",
+        "light"
+      ],
+      "kind": "controlled eligible UI fixture",
+      "before": "before-conditional/desk-390-ar-light.png",
+      "after": "after-conditional/desk-390-ar-light.png",
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "datasetId": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa"
+      },
+      "beforeChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 667.828125,
+        "width": 312,
+        "height": 480
+      },
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "216d1454023c411862dba8b4f486d0a87df0692dcccd19982d4393887c2e43fa",
+        "barTime": 1794413400000,
+        "side": "BUY",
+        "entry": 1.121267,
+        "stop": 1.111267,
+        "targets": [
+          1.123267,
+          1.125267,
+          1.127267
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "before/desk-1440-en-dark.png",
+      "sha256": "4e1ecadfe2279c21b4c7f298bee04ee8b7f185b46b4618099fad40704a02c55d",
+      "bytes": 486425
+    },
+    {
+      "path": "before/desk-1440-en-light.png",
+      "sha256": "362fe1683a942ca17f60b11834c0e30ddbcfdd05788b9046e95f8641f77229cf",
+      "bytes": 476907
+    },
+    {
+      "path": "before/desk-1440-ar-dark.png",
+      "sha256": "67b91bd43bb6641df5b57946c25eec6f5b333b4d2a81ac3aecaa2218d2672462",
+      "bytes": 408553
+    },
+    {
+      "path": "before/desk-1440-ar-light.png",
+      "sha256": "349cb8c2bdcaef4aa35abc7fea83a8238a67cbcfe67d091191d2cd00668364bd",
+      "bytes": 399935
+    },
+    {
+      "path": "before/desk-1024-en-dark.png",
+      "sha256": "2d077c91b274ea41cf03d5db540ff3e7f888d9beb221bbf4a3ac4914ff06d76b",
+      "bytes": 434781
+    },
+    {
+      "path": "before/desk-1024-en-light.png",
+      "sha256": "f4cb3a9c804496fbd109c079ec8eb08bb4428bba766e3438b2ad40fbfd156b22",
+      "bytes": 427105
+    },
+    {
+      "path": "before/desk-1024-ar-dark.png",
+      "sha256": "cca43ed885bb4c36d7a266906886ea14e419807f43456fc21c93c1f48e9e512b",
+      "bytes": 363934
+    },
+    {
+      "path": "before/desk-1024-ar-light.png",
+      "sha256": "082ab46147937f4c7d1420d91ab8bc34c9efc8ce1c6ffeb4423a859a34a6918c",
+      "bytes": 356458
+    },
+    {
+      "path": "before/desk-768-en-dark.png",
+      "sha256": "4c046d5598ff877c403672b6dc50d415db9e39de7a57f96e11431d7c09881789",
+      "bytes": 432436
+    },
+    {
+      "path": "before/desk-768-en-light.png",
+      "sha256": "b1b4e8012bf4b3b5d39a4473fd744455b4c80917f5fa5ddcc5a7c6200f5f4f41",
+      "bytes": 423077
+    },
+    {
+      "path": "before/desk-768-ar-dark.png",
+      "sha256": "75f0f16b9c11dbea8095bc230d96eaa7ead3e7a947d38b2fdccc1d011ecd273b",
+      "bytes": 360896
+    },
+    {
+      "path": "before/desk-768-ar-light.png",
+      "sha256": "03fc7ca9ae2ef8cb28f22ecdd89577ee3da9d3ab5efa3653efba6466ff91615b",
+      "bytes": 351381
+    },
+    {
+      "path": "before/desk-390-en-dark.png",
+      "sha256": "01a0b411e52feacabdb64a577f6285e78b24573c788169e13d97a682c1936b1a",
+      "bytes": 387219
+    },
+    {
+      "path": "before/desk-390-en-light.png",
+      "sha256": "4f9220bdb45977ef38e6e060527d398296f3ac20959cbb43a40027867098d807",
+      "bytes": 381130
+    },
+    {
+      "path": "before/desk-390-ar-dark.png",
+      "sha256": "d8efd2df214a2431b4c526e146c68d5d9781c249ef9739e9d1bcf4782fe333dc",
+      "bytes": 319915
+    },
+    {
+      "path": "before/desk-390-ar-light.png",
+      "sha256": "172c9178fa476c5251b5eb024b610758d0ba1c54f547d4c6b42da918c82e51f6",
+      "bytes": 313902
+    },
+    {
+      "path": "before/desk-320-en-dark.png",
+      "sha256": "7af2a9f88a1c9a56bbae8bf69279e2b2cd1d0ea18b8a9b15088f9d81b7737616",
+      "bytes": 395486
+    },
+    {
+      "path": "before/desk-320-en-light.png",
+      "sha256": "b84934c710cc1add92fd62fadc0fc03997cec14f92f24d41d32dd05bda060d6c",
+      "bytes": 386859
+    },
+    {
+      "path": "before/desk-320-ar-dark.png",
+      "sha256": "af3d28e4b714811068aed196843503c985d7270fe359398df2fca5444281bbee",
+      "bytes": 325509
+    },
+    {
+      "path": "before/desk-320-ar-light.png",
+      "sha256": "c53564c0690fbfa54da7deab031b10e4c0d35c48a145d0642ee9219284a2108e",
+      "bytes": 317854
+    },
+    {
+      "path": "before/viewport-390-ar-light.png",
+      "sha256": "8d2a3e4ba61ea135745aacf34dacf309c5d02c9b98a6e79662a7103c85141fd1",
+      "bytes": 74995
+    },
+    {
+      "path": "before/viewport-1024-ar-light.png",
+      "sha256": "84ee88d4bbc53ae4bab57aca243f89bbd9ad5332a77d35c8f5fe8e1c7006872e",
+      "bytes": 141965
+    },
+    {
+      "path": "before/viewport-1024-en-dark.png",
+      "sha256": "c73870b5c1af9572b7c13e60bbb8693693f459f17b54bc06eedd0cd2558a60ed",
+      "bytes": 163239
+    },
+    {
+      "path": "before/viewport-1440-en-dark.png",
+      "sha256": "ad88eaa9efe2188f40f602315a15eedec5a6a0a341037a97bb4dd6e38ba5a411",
+      "bytes": 207401
+    },
+    {
+      "path": "before/viewport-390-en-dark.png",
+      "sha256": "07882a3c7de0016fb6028e13aadf7f680c018607c97f63aa24a4e8ef6ea6c269",
+      "bytes": 82107
+    },
+    {
+      "path": "before/viewport-1440-ar-light.png",
+      "sha256": "877ce0f04b3f58e1c92265ffa94a1c70276beb054fcf89f4410ec90431655894",
+      "bytes": 182193
+    },
+    {
+      "path": "after/desk-1440-en-dark.png",
+      "sha256": "9d5c8ec5860c22dd6a1208cddc46c9e92fbef2adc3700b9d620cef402c5c5965",
+      "bytes": 567735
+    },
+    {
+      "path": "after/desk-1440-en-light.png",
+      "sha256": "0350a5fbd6664251cbfb02513ebcd51c94d767017b553664995e0c562128ce43",
+      "bytes": 557654
+    },
+    {
+      "path": "after/desk-1440-ar-dark.png",
+      "sha256": "463189a2307f49771223f8288c0c9d78452eeb600cfc0e808d8a57844192b73f",
+      "bytes": 474249
+    },
+    {
+      "path": "after/desk-1440-ar-light.png",
+      "sha256": "b05834eb261342551ff6da43fc1dbef2037ab437f6fb2fcdeea538c133c0598a",
+      "bytes": 465052
+    },
+    {
+      "path": "after/desk-1024-en-dark.png",
+      "sha256": "a6bc08a894eb262921449dfacce6e0575f9a3c35a1599977ea572346834fab0a",
+      "bytes": 511531
+    },
+    {
+      "path": "after/desk-1024-en-light.png",
+      "sha256": "abf1e846a63a90d24875c11223d8f63bf7b57b134e74636876180387dc425ec9",
+      "bytes": 502837
+    },
+    {
+      "path": "after/desk-1024-ar-dark.png",
+      "sha256": "f826561276d0c96507c173e5e0d1671988768a06a4930ec905f2fae38236c017",
+      "bytes": 426226
+    },
+    {
+      "path": "after/desk-1024-ar-light.png",
+      "sha256": "ea36b7438418250a0730a0c6532943679b5a89cd662b4a40cada4c14db045564",
+      "bytes": 417813
+    },
+    {
+      "path": "after/desk-768-en-dark.png",
+      "sha256": "518486de7b11577ad1e2f772d1ff44c09d695c517b230691312abccca5d26bef",
+      "bytes": 512705
+    },
+    {
+      "path": "after/desk-768-en-light.png",
+      "sha256": "a60bfeab90687181a00f23525d109746068f20aa091fb13edd1340617c0995ed",
+      "bytes": 501796
+    },
+    {
+      "path": "after/desk-768-ar-dark.png",
+      "sha256": "b61380a51f989fdfa266078e9bbec3d232229318d1972a124587f7fad0d22901",
+      "bytes": 421677
+    },
+    {
+      "path": "after/desk-768-ar-light.png",
+      "sha256": "7fac6d3fba7723b57eb518f585c44532b3acfbe816adc322b607a7065d5f08da",
+      "bytes": 411129
+    },
+    {
+      "path": "after/desk-390-en-dark.png",
+      "sha256": "39638e99d0bc7ea6aaec456d14c7a7d6ac8d0b5e54952070248c7b7cf78864bb",
+      "bytes": 464675
+    },
+    {
+      "path": "after/desk-390-en-light.png",
+      "sha256": "3a5f17bd334d45e3bd74644f297d26c2ee27f2d5a4a9584f5f186206f3b87908",
+      "bytes": 457185
+    },
+    {
+      "path": "after/desk-390-ar-dark.png",
+      "sha256": "a73ed247d9d63edcac2e0b84bf00907a4fcb22bcca481f89a005b43d4beef526",
+      "bytes": 380809
+    },
+    {
+      "path": "after/desk-390-ar-light.png",
+      "sha256": "50b354f648c47f53c9d9d485b51d83ec9745c3218f53d3f0e19a034428f6239c",
+      "bytes": 373685
+    },
+    {
+      "path": "after/desk-320-en-dark.png",
+      "sha256": "2238b95f11728ff5ee3800a9feef5961794f76c691af58014d92cfb1a937ab65",
+      "bytes": 476951
+    },
+    {
+      "path": "after/desk-320-en-light.png",
+      "sha256": "63db7947fb2622f108896fa44d719886e22a22d0ed4fee59707f4de1e7eade61",
+      "bytes": 467225
+    },
+    {
+      "path": "after/desk-320-ar-dark.png",
+      "sha256": "a95b0ca955563d8aa72b14943a455b259060b03eb2e237eea8cf40833b3024f9",
+      "bytes": 387490
+    },
+    {
+      "path": "after/desk-320-ar-light.png",
+      "sha256": "80ed7fdc786ab8b61acf86431473843e28340702cacc257306741d0dca284152",
+      "bytes": 378238
+    },
+    {
+      "path": "after/viewport-390-ar-light.png",
+      "sha256": "64c323a93901f929e140320dd32c851e82b3ec90143d9d4dda805355e1ed62d9",
+      "bytes": 73991
+    },
+    {
+      "path": "after/viewport-1024-ar-light.png",
+      "sha256": "bb5cb275f432841753a205179578c74c34685d4bf8a689cdedf83cd5e5531867",
+      "bytes": 141206
+    },
+    {
+      "path": "after/viewport-1024-en-dark.png",
+      "sha256": "3e854fab033b39c1489d9800f7bea68ed03ac24baf0969cd233d9bd50ddc11e8",
+      "bytes": 162498
+    },
+    {
+      "path": "after/viewport-1440-en-dark.png",
+      "sha256": "2a8f1cb4fa96e441686bc974d609f6b50ca7518ac1eef9161248e102a5d1719f",
+      "bytes": 206018
+    },
+    {
+      "path": "after/viewport-390-en-dark.png",
+      "sha256": "73c20d1803252e99fa544228160c647744e3814cef00c89f06cdbcbaa0975fbe",
+      "bytes": 81217
+    },
+    {
+      "path": "after/viewport-1440-ar-light.png",
+      "sha256": "da8a4e37547b89f3bc0ae7f2ed0486896d59e2aeff34305c2a3ab8558ba314fd",
+      "bytes": 181320
+    },
+    {
+      "path": "after/trust-score-768-ar-dark.png",
+      "sha256": "0f2b52555478dc7021f9cccd5418389f390f361f74a2cca2c406bfdc5d762bae",
+      "bytes": 178066
+    },
+    {
+      "path": "after/trust-score-390-ar-light.png",
+      "sha256": "c477162029fbecade519d1cc8cce5f57adbfd80771eebad1da5d86207f9fc34b",
+      "bytes": 191338
+    },
+    {
+      "path": "after/trust-candidate-768-ar-dark.png",
+      "sha256": "f9466f7a968b4ea2dcb976f27606b97ef136e934c587c0b15b8124b7deeb69cd",
+      "bytes": 111616
+    },
+    {
+      "path": "after/trust-historical-en-dark.png",
+      "sha256": "9879e58ef38517fe9e3dc47629522282ce3b5b1408a551d484cfb0c53bcebed7",
+      "bytes": 179728
+    },
+    {
+      "path": "after/trust-historical-ar-dark.png",
+      "sha256": "f647ec22c89e4d7caccf58058f67e75978404742b75e79aed052eb93bc5bc1d8",
+      "bytes": 155153
+    },
+    {
+      "path": "after/trust-candidate-1024-en-light.png",
+      "sha256": "6ea5a8a5bbc1aedc13a76672e198eb1468da7b6ddfe0db578f8cbeb15d89e729",
+      "bytes": 136317
+    },
+    {
+      "path": "after/trust-score-1024-en-light.png",
+      "sha256": "80b38303c51e78a4db33d770f7985d6a96ea68d7da3fa30a6a44f1ca2c899940",
+      "bytes": 199582
+    },
+    {
+      "path": "after/trust-candidate-320-en-dark.png",
+      "sha256": "c224a37dfbc40b9f638605551c406bec5f79508d1d86e66899ea4b71b77e5f3a",
+      "bytes": 149028
+    },
+    {
+      "path": "after/trust-candidate-390-ar-light.png",
+      "sha256": "4d86840ee732e4fba63b1ae5c8e35331a055fef4e76e0f3a3b79361fecc72f09",
+      "bytes": 108130
+    },
+    {
+      "path": "after/trust-original-test-en-dark.png",
+      "sha256": "601dda2a010751800a77eef851d5317101b9e2803722ed6325408227e2f3f45c",
+      "bytes": 95001
+    },
+    {
+      "path": "after/trust-score-1440-en-dark.png",
+      "sha256": "74b0917cb35b4dfdcb5aeb1b9e6322e4a4524d1e6d4693680451ad1dfb195c41",
+      "bytes": 200812
+    },
+    {
+      "path": "after/trust-candidate-1440-en-dark.png",
+      "sha256": "cb0144b0116769dcaf736cd77b812d384c1b1ba52456abb121362111b18b16d4",
+      "bytes": 140328
+    },
+    {
+      "path": "after/trust-score-320-en-dark.png",
+      "sha256": "fe71b1241bd1834009779030592cefdd01a92f7f3fbedca48f7c24cb6d242062",
+      "bytes": 218258
+    },
+    {
+      "path": "before-conditional/desk-1440-en-dark.png",
+      "sha256": "6cc66f12d622e7dd2a46702bc09d7ffc556f56fb5b34a157e127c199a33111f3",
+      "bytes": 485429
+    },
+    {
+      "path": "before-conditional/desk-1440-ar-light.png",
+      "sha256": "93a455909c19036fd343e365f36c7d947971440746a1e7e3f89df7d183e647af",
+      "bytes": 406567
+    },
+    {
+      "path": "before-conditional/desk-1024-en-dark.png",
+      "sha256": "e3ce3ff81c2c54e2ae104e36a85feca771e4dabda0dcacdda3ba17086314633a",
+      "bytes": 436749
+    },
+    {
+      "path": "before-conditional/desk-1024-ar-light.png",
+      "sha256": "3452cdb0b520ed0bfe9e10eea42e814ff497b98c6cd24b37cfc94c0d260ed23c",
+      "bytes": 363341
+    },
+    {
+      "path": "before-conditional/desk-390-en-dark.png",
+      "sha256": "0ecef0c2432174f5f997b03f59505ceb713df31922d819ced4166c01a65b3dee",
+      "bytes": 391508
+    },
+    {
+      "path": "before-conditional/desk-390-ar-light.png",
+      "sha256": "8955a33536a4486a64bf247d3489fce8b2a93cc115712c21dc9a7fb48c4d335a",
+      "bytes": 322182
+    },
+    {
+      "path": "after-conditional/desk-1440-en-dark.png",
+      "sha256": "90bb176ece86c85e8ce5d2b033ea4999961e798cc6da2badf493a4105b2e5ad9",
+      "bytes": 569129
+    },
+    {
+      "path": "after-conditional/desk-1440-ar-light.png",
+      "sha256": "c149b4ea9d5a83d2cc00046b0bfc98baa2529501b6cdeaf8d03e25413bc5a0eb",
+      "bytes": 471908
+    },
+    {
+      "path": "after-conditional/desk-1024-en-dark.png",
+      "sha256": "a6acfbae90488052cd8468af51664bbbc9d1c7e0bf45d640762707964a23d6f4",
+      "bytes": 514094
+    },
+    {
+      "path": "after-conditional/desk-1024-ar-light.png",
+      "sha256": "fd6ab43bb67c85c599d27a57a30c49ff83900726db79cfaf3468f680b76f82af",
+      "bytes": 424871
+    },
+    {
+      "path": "after-conditional/desk-390-en-dark.png",
+      "sha256": "caf9b99208e052151b410a6d5494fea67ccfcaa7595430e7bb033cf496784138",
+      "bytes": 469083
+    },
+    {
+      "path": "after-conditional/desk-390-ar-light.png",
+      "sha256": "cfb227bbf6456581c1f040ff0999217192fb41723cd7f0c26340dc4f5fec61ad",
+      "bytes": 381417
+    },
+    {
+      "path": "after-conditional/trust-candidate-768-ar-dark.png",
+      "sha256": "65a68946eb39d627cd0a7dc27fa0b9a755e4d407ff3a7b3be98c951ad810789d",
+      "bytes": 137001
+    },
+    {
+      "path": "after-conditional/trust-candidate-1024-en-light.png",
+      "sha256": "b5ed62e990edf8140105001ad22e8d6e03bc7c6a2b29d32ff1a0dec78eba2daa",
+      "bytes": 160699
+    },
+    {
+      "path": "after-conditional/trust-candidate-320-en-dark.png",
+      "sha256": "a84d564c654ee743808b4646098143fa7a44ffb21f6a3a7798f42a25d7797d3b",
+      "bytes": 173409
+    },
+    {
+      "path": "after-conditional/trust-candidate-390-ar-light.png",
+      "sha256": "519404391e46f29cdb46b9a7f60464c0d7b8a0338d606ea521708c1572ebf302",
+      "bytes": 132362
+    },
+    {
+      "path": "after-conditional/trust-candidate-1440-en-dark.png",
+      "sha256": "f221b63c96c774c8c033c767957ad7a74ca2cef49a27d58400e3c4a1d2cadf99",
+      "bytes": 165630
+    }
+  ]
+}

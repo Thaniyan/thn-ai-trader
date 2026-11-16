@@ -17,7 +17,7 @@ with sync_playwright() as p:
  control(page,'#qCompareExperiments').click();assert page.locator('#q63Comparison svg').count()==1
  assert 'Normalized equity index (base 100, not USD)' in page.locator('#q63Comparison').inner_text()
  page.locator('.terminal-topbar [data-language=ar]').click();assert 'مؤشر حقوق مطبع' in page.locator('#q63Comparison').inner_text();page.locator('.terminal-topbar [data-language=en]').click();assert 'Normalized equity index' in page.locator('#q63Comparison').inner_text()
- page.locator('#qResult').screenshot(path='work/v63-report.png');page.locator('#q63Comparison').screenshot(path='work/v63-comparison.png')
+ control(page,'#qResult').screenshot(path='work/v63-report.png');page.locator('#q63Comparison').screenshot(path='work/v63-comparison.png')
  report['checks'].append('real chronological reports, directional strategies, bounded sensitivity, walk-forward and two-run comparison')
  with page.expect_download() as downloaded:control(page,'#qExport').click()
  exported=json.load(open(downloaded.value.path()));assert exported['applicationVersion']=='7.5.0' and exported['schemaVersion']=='THN-EVALUATION-6.3' and exported['analysisEngineVersion']=='6.3';assert exported['evaluation']['split'];assert exported['context']['datasetId']==exported['evaluation']['dataset']['hash'];assert 'credentials' not in json.dumps(exported).lower()

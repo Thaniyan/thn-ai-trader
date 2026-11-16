@@ -76,7 +76,16 @@
     const request=++focusRequest;const sym=selected;const interval=window.THNContext?.get().interval || '1h';
     $('focusChart').textContent=t('chartLoading');
     try {
-      const shared=window.THNResearch?.series?.();let data;if(shared?.symbol===sym&&shared.provenance.interval===interval)data=shared;else{const r=await fetch(`/api/research/series?symbol=${encodeURIComponent(sym)}&interval=${interval}`,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error();data=await r.json();}if(request!==focusRequest)return;
+      const context=window.THNContext?.get(),shared=window.THNResearch?.series?.();let data;
+      // The integrated chart owns selected history, refresh and race invalidation.
+      // An absent/mismatched shared series is unavailable, never a second fetch.
+      if(context?.symbol===sym){
+        if(shared?.symbol!==sym||shared.provenance.interval!==interval){
+          $('focusChart').textContent=t('noChart');$('focusPrice').textContent='—';$('focusProvider').textContent='—';$('focusTimestamp').textContent='—';$('focusState').textContent=t('unavailable');return;
+        }
+        data=shared;
+      }else{const r=await fetch(`/api/research/series?symbol=${encodeURIComponent(sym)}&interval=${interval}`,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error();data=await r.json();}
+      if(request!==focusRequest)return;
       const candles=(data.candles||[]).filter(c=>Number.isFinite(c.close)).slice(-160);
       if(data.provenance){$('focusPrice').textContent=number(candles.at(-1)?.close);$('focusProvider').textContent=`${data.provenance.source} · ${data.provenance.providerSymbol} · ${interval}`;$('focusTimestamp').textContent=`${t('timestamp')}: ${new Date(data.provenance.lastTime).toISOString()}`;$('focusState').textContent=t(data.provenance.status);} if(candles.length<2)throw Error();
       const values=candles.map(c=>c.close), min=Math.min(...values),max=Math.max(...values),range=max-min || 1;
@@ -85,7 +94,7 @@
     } catch {if(request===focusRequest)$('focusChart').textContent=t('noChart');}
   }
   window.addEventListener('thn:series',()=>{render();loadFocus();});
-  $('workRefresh').addEventListener('click',refresh);
+  $('workRefresh').addEventListener('click',()=>{const chartRefresh=$('qRefresh');if(chartRefresh&&!chartRefresh.disabled)chartRefresh.click();refresh();});
   $('workSearch').addEventListener('input',render);
   document.addEventListener('click',e=>{
     const btn=e.target.closest('[data-focus]');if(btn)select(btn.dataset.focus);

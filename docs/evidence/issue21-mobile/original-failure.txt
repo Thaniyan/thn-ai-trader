@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/thn-issue19-workstation/tests/browser_workspace_hierarchy.py", line 18, in <module>
+    assert chart['y']<750 and visible>250,(width,lang,theme,chart,visible)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (390, 'en', 'dark', {'x': 56, 'y': 750.640625, 'width': 312, 'height': 420}, 249.359375)
