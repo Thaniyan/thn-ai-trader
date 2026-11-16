@@ -70,8 +70,8 @@ export function attachCommandWorkbench(){
  function render(){
   const home=$('view-dashboard').classList.contains('view-active');if(home){if(tools.nextElementSibling!==historyHead)tools.after(historyHead);}else if(historyHome.nextElementSibling!==historyHead)historyHome.after(historyHead);if(home){if(provenance.parentElement!==retained)retained.append(provenance);}else provenanceHome.after(provenance);
   const plot=$('qCandles').closest('.q-canvas-shell').parentElement;if(home&&THNProfessional.mode()==='research'){if(feed.previousElementSibling!==plot)plot.after(feed);}else feedHome.after(feed);if(chartStatus.previousElementSibling!==feed&&home&&THNProfessional.mode()==='research')feed.after(chartStatus);
-  if(source.parentElement!==lead)lead.append(source);
-  const conviction=$('dashboardConviction');if(conviction.parentElement===$('commandAssessment')){if($('commandVerdict').nextElementSibling!==conviction)$('commandVerdict').after(conviction);if(conviction.nextElementSibling!==$('commandSetup'))conviction.after($('commandSetup'));}if($('commandSetup').nextElementSibling!==horizons)$('commandSetup').after(horizons);if(horizons.nextElementSibling!==decision)horizons.after(decision);
+  if(!window.THNPrecision&&source.parentElement!==lead)lead.append(source);
+  const conviction=$('dashboardConviction');if(!window.THNPrecision&&conviction.parentElement===$('commandAssessment')){if($('commandVerdict').nextElementSibling!==conviction)$('commandVerdict').after(conviction);if(conviction.nextElementSibling!==$('commandSetup'))conviction.after($('commandSetup'));}if(!window.THNPrecision&&$('commandSetup').nextElementSibling!==horizons)$('commandSetup').after(horizons);if(!window.THNPrecision&&horizons.nextElementSibling!==decision)horizons.after(decision);
   const c=THNContext.get(),m=THNCommand.state(),e=evidence(m),key=[c.symbol,c.interval,c.datasetId].join('|');if(key!==contextKey||!m.candidate){selectedLevel=null;contextKey=key;}
   replace(actions,button('analyze','Review market','راجع السوق',m.phase==='loading'?'disabled':'')+button('evidence','Evidence','الأدلة')+button('planner','Risk plan','خطة مخاطر')+button('notebook','Notes','ملاحظات')+(m.phase==='loading'?button('cancel','Cancel review','إلغاء المراجعة'):''));
   source.dataset.phase=m.phase;replace(source,`<div><span class="desk-status-dot" aria-hidden="true"></span><strong>${esc(c.symbol)} <bdi>${esc(c.interval)}</bdi></strong><bdi>${esc(e.source?.providerSymbol||'—')}</bdi></div><div><span>${tr('Closed bar open','افتتاح شمعة مغلقة')}: <bdi>${stamp(e.source?.lastTime)}</bdi></span></div>${button('source','Source','المصدر')}<small>${m.fresh?tr('Recent at retrieval · not a live quote','حديثة عند الاسترجاع · ليست سعراً حياً'):tr('Current context not verified · refresh or complete analysis','السياق الحالي غير متحقق · حدث البيانات أو أكمل التحليل')}</small>`);
@@ -86,7 +86,7 @@ export function attachCommandWorkbench(){
  }
  document.addEventListener('click',event=>{
   if(event.target.closest('#proResearchMode,#proTradingViewMode'))render();const action=event.target.closest('[data-desk]')?.dataset.desk;if(!action)return;
-  if(action==='analyze')$('commandVerdict').querySelector('[data-command=analyze]')?.click();
+  if(action==='analyze'&&!event.target.closest('[data-command=analyze]'))$('commandVerdict').querySelector('[data-command=analyze]')?.click();
   if(action==='cancel')document.querySelector('[data-command=cancel]')?.click();
   if(action==='evidence')focusSection('deskEvidenceTitle');
   if(action==='source'){focusSection('deskSourceCertificate');$('deskSourceCertificate').open=true;}
@@ -103,7 +103,7 @@ export function attachCommandWorkbench(){
   if(action==='inspect-reading'&&currentReading){THNStudio.inspect(currentReading.index,false);$('studioInspectorTitle').focus();}
   if(action==='range-source'&&currentReading?.rangeSource){const index=THNResearch.series()?.candles.findIndex(c=>c.time===currentReading.rangeSource.last);if(index>=0){THNStudio.inspect(index);$('studioInspectorTitle').focus();}}
   if(action.startsWith('school:')){filter='all';render();const school=$('deskSchool-'+action.slice(7));if(school){school.open=true;focusSection(school.id);school.querySelector('summary').focus({preventScroll:true});}}
-  if(action==='planner'){$('commandPlanner').open=true;$('commandPlannerTitle').focus();}
+  if(action==='planner'&&!event.target.closest('[data-command=prepare]')){$('commandPlanner').open=true;$('commandPlannerTitle').focus();}
   if(action==='reasoning'){$('commandRationale').open=true;$('commandRationaleTitle').focus();}
  });
  for(const region of [ledger,layerSource,decision])region.addEventListener('keydown',event=>{if(event.key==='Escape'&&returnFocus){returnTarget().focus({preventScroll:true});event.preventDefault();}});

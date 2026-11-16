@@ -25,3 +25,13 @@ def select_trust_suites(env):
         return list(TRUST_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(TRUST_SUITES) if position % count == index]
+
+# Approved A+ acceptance is additive; all forty earlier suites stay unchanged.
+PRECISION_SUITES = ['precision']
+
+def select_precision_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(PRECISION_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(PRECISION_SUITES) if position % count == index]

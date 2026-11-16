@@ -1,0 +1,81 @@
+import {precisionReview} from './precision-core.js';
+import {commandEvidence,decisionEvidence} from './command-evidence.js';
+import {escapeHTML as esc} from './decision-records.js';
+
+export function attachPrecisionDesk(){
+ const $=id=>document.getElementById(id),tr=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
+ const research=$('commandRationale'),body=$('commandReasoning');research.classList.add('precision-research');research.setAttribute('aria-label',tr('Research details','تفاصيل البحث'));
+ const secondaryLinks=$('m65Library').parentElement,linksHome=document.createComment('original context navigation');secondaryLinks.before(linksHome);const footerLinks=document.createElement('div');footerLinks.id='precisionFooterLinks';footerLinks.className='q-context precision-footer-links';$('commandGrid').after(footerLinks);
+ const sourceRow=document.createElement('div');sourceRow.id='precisionContextRow';$('evoDeskLead').append(sourceRow);
+ const chartExtras=['studioInspector','studioChartTools','deskLayerSource'];const extrasHome=new Map();for(const id of chartExtras){const el=$(id);if(el){const anchor=document.createComment('original '+id+' owner');el.before(anchor);extrasHome.set(id,anchor);}}
+ const researchActions=document.createElement('div');researchActions.id='precisionResearchActions';research.before(researchActions);
+ const nav=document.createElement('nav');nav.id='precisionResearchNav';nav.setAttribute('aria-label',tr('Research detail navigation','التنقل في تفاصيل البحث'));body.before(nav);
+ const detail=document.createElement('div');detail.id='precisionSetupDetail';detail.className='precision-setup-detail';
+ const status=document.createElement('p');status.id='precisionStatus';status.setAttribute('role','status');$('commandVerdict').prepend(status);
+ const provider=$('evoProviderState'),providerHome=document.createComment('original model-state caption');provider.before(providerHome);
+ const probability=document.createElement('p');probability.id='precisionProbability';probability.className='precision-probability';$('commandAssessment').append(probability);
+ new MutationObserver(()=>{if($('studioInspector')?.open&&$('studioInspector').parentElement===research)reveal();}).observe($('studioInspector'),{attributes:true,attributeFilter:['open']});
+ let candidateControl=null;
+ let explainControl=$('commandVerdict').querySelector('[data-command=reasoning]');
+ const cache=new WeakMap();let queued=false,returnFocus=null,returnKey=null,schoolOpen=false;
+ const button=(key,en,ar)=>`<button type="button" class="ghost small" data-precision="${key}">${tr(en,ar)}</button>`;
+ function markup(el,html){if(cache.get(el)===html)return;const focus=el.contains(document.activeElement)?document.activeElement:null,key=focus?.dataset.precision;el.innerHTML=html;cache.set(el,html);if(key)el.querySelector('[data-precision="'+CSS.escape(key)+'"]')?.focus({preventScroll:true});}
+ function reveal(){research.open=true;}
+ function goto(id){reveal();const node=$(id);for(let p=node?.parentElement;p&&p!==research;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;returnFocus=document.activeElement;returnKey=returnFocus?.dataset.precision||null;if(node){node.tabIndex=-1;node.focus({preventScroll:true});node.scrollIntoView({block:'start',behavior:'instant'});}}
+ function render(){
+  const home=$('view-dashboard').classList.contains('view-active');if(home){if(secondaryLinks.parentElement!==footerLinks)footerLinks.append(secondaryLinks);}else if(secondaryLinks.previousSibling!==linksHome)linksHome.after(secondaryLinks);document.documentElement.classList.toggle('precision-home',home);document.documentElement.classList.add('precision-desk');
+  const researchTitle=$('commandRationaleTitle');let caption=researchTitle.querySelector('.precision-research-caption');if(!caption){researchTitle.replaceChildren();caption=document.createElement('span');caption.className='precision-research-caption';researchTitle.append(caption);}caption.textContent=tr('Research details · evidence, historical validation & risk','تفاصيل البحث · الأدلة والتحقق التاريخي والمخاطر');
+  const mainActions=$('deskPrimaryActions'),analyze=mainActions.querySelector('[data-desk=analyze]'),risk=mainActions.querySelector('[data-desk=planner]');if(analyze){analyze.dataset.command='analyze';$('commandVerdict').querySelector('[data-command=analyze]')?.remove();}if(risk){risk.dataset.command='prepare';$('commandSetup').querySelector('[data-command=prepare]')?.remove();}
+  const explain=$('commandVerdict').querySelector('[data-command=reasoning]')||explainControl;if(explain){if(explainControl&&explainControl!==explain)explainControl.remove();explainControl=explain;if(explain.parentElement!==researchActions)researchActions.replaceChildren(explain);}
+  if(home){if($('deskSourceStrip').parentElement!==sourceRow)sourceRow.append($('deskSourceStrip'));for(const id of chartExtras){const el=$(id);if(el&&el.parentElement!==research)research.insertBefore(el,body);}}else{if($('deskSourceStrip').parentElement!==$('evoDeskLead'))$('evoDeskLead').append($('deskSourceStrip'));for(const [id,anchor]of extrasHome){const el=$(id);if(el&&anchor.isConnected&&el.previousSibling!==anchor)anchor.after(el);}}
+  // Retain the original disclosure, form nodes, listeners and return anchors.
+  for(const id of ['commandTrust','deskHorizons','deskEvidenceWorkbench','deskRetainedContext','commandPlanner','commandNotebook']){const el=$(id);if(el&&el.parentElement!==research)research.insertBefore(el,body);}
+  if(status.parentElement!==$('commandVerdict'))$('commandVerdict').prepend(status);
+  const c=THNContext.get(),m=THNCommand.state(),a=THNConfidence.review().analysis;
+  const e=commandEvidence({model:m,context:c,series:THNResearch.series(),brief:THNDecision.brief(),analysis:a}),reading=decisionEvidence({model:m,evidence:e,brief:THNDecision.brief()}),p=precisionReview({model:m,reading,analysis:a,evidence:e});
+  $('commandAssessment').dataset.precisionState=p.status;$('commandAssessment').classList.toggle('precision-has-candidate',!!p.candidate);
+  if(home){if(provider.parentElement!==$('commandAssessment'))$('commandAssessment').append(provider);}else if(provider.previousSibling!==providerHome)providerHome.after(provider);status.dataset.state=p.status;status.textContent=p.status==='eligible'?tr('Eligible for research review · not an order','مؤهل للمراجعة البحثية · ليس أمراً'):p.status==='conditional'?tr('Conditional · risk/activation review required','مشروط · يلزم فحص المخاطر والتفعيل'):tr('WAIT · no eligible setup','انتظار · لا إعداد مؤهل');
+  if(p.status==='eligible')$('commandVerdict').querySelector('h1').textContent=tr('Eligible for review · '+p.candidate.side,'مؤهل للمراجعة · '+(p.candidate.side==='BUY'?'شراء':'بيع'));
+  // Keep score ownership in the original cockpit. The duplicate assessment
+  // caption stays accessible while the single visible retained-score context
+  // uses the original controller's unmodified value and lifecycle.
+  $('commandConfluence')?.parentElement.classList.add('precision-accessible-context');
+  const ring=$('dashboardConviction').querySelector('.home-confidence-ring');if(ring)ring.hidden=false;
+  const consensus=$('dashboardConviction').querySelector('.home-consensus');
+  if(consensus&&!consensus.querySelector('#precisionSchoolContext')){const disclosure=document.createElement('details');disclosure.id='precisionSchoolContext';const title=document.createElement('summary');title.id='precisionSchoolContextTitle';title.textContent=tr('Heuristic context','السياق الاستدلالي');disclosure.append(title);disclosure.open=schoolOpen;const nodes=[...consensus.children].filter(n=>!n.matches('[data-cockpit]'));consensus.prepend(disclosure);for(const node of nodes)disclosure.append(node);disclosure.addEventListener('toggle',()=>{schoolOpen=disclosure.open;});}
+  if($('precisionSchoolContextTitle'))$('precisionSchoolContextTitle').textContent=tr('Heuristic context','السياق الاستدلالي');
+  const quick=$('commandQuickAssessment'),compact=matchMedia('(max-width:900px)').matches;
+  const assessment=$('commandAssessment'),verdict=$('commandVerdict'),conviction=$('dashboardConviction');
+  if($('commandSetup').parentElement!==assessment)assessment.append($('commandSetup'));
+  if($('deskDecisionBrief').parentElement!==assessment)assessment.append($('deskDecisionBrief'));
+  if(compact){if(verdict.parentElement!==quick)quick.prepend(verdict);}else if(verdict.parentElement!==assessment)assessment.prepend(verdict);
+  if(home&&!compact){if(conviction.parentElement!==sourceRow)sourceRow.append(conviction);}else if(home&&compact){if(conviction.parentElement!==quick)quick.append(conviction);}else if(conviction.parentElement!==assessment)$('commandSetup').after(conviction);
+  const schoolsButton=conviction.querySelector('[data-cockpit=details]');if(schoolsButton)schoolsButton.textContent=tr('Schools','المدارس');
+  if(compact){quick.classList.add('precision-mobile-context');}else quick.classList.remove('precision-mobile-context');
+  const name=f=>document.documentElement.lang==='ar'&&window.localizedSchoolName?window.localizedSchoolName(f.name):f.name;
+  const excerpt=text=>{const cut=text.indexOf(';');return cut>=0?text.slice(0,cut)+'…':text;};
+  const fact=f=>f?`<blockquote class="precision-fact"><b>${esc(name(f))}</b><span lang="en" dir="auto">${esc(excerpt(f.text))}</span></blockquote>`:tr('No matching retained supporting reason.','لا سبب مؤيد مسجل مطابق.');
+  const number=v=>Number.isFinite(v)?THNPresentation.price(v,c.symbol):tr('Unavailable','غير متاح');
+  const reason=p.candidate?`<h3>${tr('Entry rationale · original engine evidence','تفسير الدخول · أدلة المحرك الأصلي')}</h3>${p.entryFact?fact(p.entryFact):`<p>${tr('Supporting rationale not retained; no substitute is inferred.','لم يُحفظ تفسير مؤيد؛ لا يُستنتج بديل.')}</p>`}`:`<p>${p.status==='conditional'?tr('A hypothesis is pending. No eligible entry, stop or target references are released.','فرضية معلقة؛ لا تتوفر مراجع دخول أو وقف أو أهداف مؤهلة.'):tr('Review the recorded blocker before considering a hypothetical plan.','افحص المانع المسجل قبل النظر في خطة افتراضية.')}</p>`;
+  markup(detail,`${reason}<dl class="precision-conditions"><div><dt>${tr('Activation / confirmation','التفعيل / التأكيد')}</dt><dd>${p.scenario?`${p.scenario.direction==='bullish'?tr('Closed candle ≥ recorded trigger','شمعة مغلقة ≥ المحفز المسجل'):tr('Closed candle ≤ recorded trigger','شمعة مغلقة ≤ المحفز المسجل')} <bdi dir="ltr">${esc(number(p.scenario.trigger))}</bdi>`:tr('No eligible current activation reference. Inspect retained hypotheses in research details.','لا مرجع تفعيل حالي مؤهل. افحص الفرضيات المحفوظة في تفاصيل البحث.')}</dd></div><div><dt>${tr('Invalidation','الإبطال')}</dt><dd>${p.scenario?`${p.scenario.direction==='bullish'?tr('Close below recorded invalidation','إغلاق دون الإبطال المسجل'):tr('Close above recorded invalidation','إغلاق فوق الإبطال المسجل')} <bdi dir="ltr">${esc(number(p.scenario.invalidation))}</bdi> · `:''}${tr('A context change withdraws this assessment.','يسحب تغيير السياق هذا التقييم.')}</dd></div></dl>${p.counterFact?`<p class="precision-counter"><b>${(p.candidate?tr('Opposing evidence · excerpt','الدليل المعارض · مقتطف'):tr('Counter-evidence · direction unresolved','أدلة مضادة · الاتجاه غير محسوم'))}: ${esc(name(p.counterFact))}</b><span lang="en" dir="auto">${esc(excerpt(p.counterFact.text))}</span></p>`:''}`);
+  const incoming=$('trustHeader').querySelector('[data-trust=candidate]');if(incoming){if(candidateControl&&candidateControl!==incoming)candidateControl.remove();candidateControl=incoming;}if(candidateControl){candidateControl.textContent=tr('Inspect setup','فحص السيناريو');if(candidateControl.parentElement!==$('commandSetup'))$('commandSetup').append(candidateControl);}
+  const levels=$('commandSetup').querySelector('.command-levels');if(levels&&detail.previousElementSibling!==levels)levels.after(detail);
+  probability.textContent=tr('Calibrated win probability: unavailable. Historical fixed-rule tests do not validate this individual trade.','احتمال ربح معاير: غير متاح. لا تتحقق اختبارات القواعد الثابتة من هذه الصفقة المفردة.');
+  if($('dashboardEvidence').nextElementSibling!==probability)$('dashboardEvidence').after(probability);
+  markup(nav,button('trust','Confidence & historical testing','الأدلة والاختبار التاريخي')+button('evidence','Methods & timeframes','الطرق والأطر الزمنية')+button('risk','Original risk planner','مخطط المخاطر الأصلي')+button('notes','Notes & Library','الملاحظات والمكتبة')+button('method','Retained methodology','المنهجية المسجلة'));
+  // Navigation stays fully named even when its desktop text is visually compact.
+  document.querySelectorAll('.sidebar .nav[data-view]').forEach(el=>{el.title=el.textContent.trim();el.setAttribute('aria-label',el.textContent.trim());});
+  research.setAttribute('aria-label',tr('Research details','تفاصيل البحث'));nav.setAttribute('aria-label',tr('Research detail navigation','التنقل في تفاصيل البحث'));
+ }
+ // Open the single workspace before existing owner handlers focus their original nodes.
+ document.addEventListener('click',event=>{
+  const command=event.target.closest('[data-command]')?.dataset.command,desk=event.target.closest('[data-desk]')?.dataset.desk,trust=event.target.closest('[data-trust]')?.dataset.trust;
+  if(['reasoning','prepare','use-levels','save','validation','library','inspect-marker'].includes(command)||['evidence','source','source-details','planner','notebook','reasoning','layer-source','range-source','inspect-reading','source-bar'].includes(desk)||desk?.startsWith('school:')||desk?.startsWith('frame:')||trust)reveal();
+ },true);
+ document.addEventListener('click',event=>{const key=event.target.closest('[data-precision]')?.dataset.precision;if(!key)return;const id={trust:'trustTitle',evidence:'deskEvidenceTitle',risk:'commandPlannerTitle',notes:'commandThesis',method:'commandSourceTitle'}[key];if(key==='risk')$('commandPlanner').open=true;if(key==='method')$('commandSourceDetails').open=true;if(id)goto(id);});
+ research.addEventListener('keydown',event=>{if(event.key!=='Escape'||event.defaultPrevented)return;const target=returnFocus?.isConnected?returnFocus:returnKey?nav.querySelector('[data-precision="'+CSS.escape(returnKey)+'"]'):null;if(target){event.preventDefault();target.focus({preventScroll:true});}});
+ function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
+ for(const event of ['thn:command-render','thn:view','thn:plan'])window.addEventListener(event,render);window.addEventListener('thn:context',schedule);
+ new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});matchMedia('(max-width:900px)').addEventListener('change',schedule);
+ window.THNPrecision={render,review:()=>{const m=THNCommand.state(),c=THNContext.get(),e=commandEvidence({model:m,context:c,series:THNResearch.series(),brief:THNDecision.brief(),analysis:THNConfidence.review().analysis});return precisionReview({model:m,evidence:e,analysis:THNConfidence.review().analysis,reading:decisionEvidence({model:m,evidence:e,brief:THNDecision.brief()})});}};render();
+}
