@@ -45,4 +45,20 @@
 .heritage-home #view-dashboard #heritageConfidenceLimits{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
 .heritage-home #view-dashboard #heritageConfidenceTestAction{min-height:44px;width:100%;border:1px solid var(--accent);border-radius:10px;font-size:13px;font-weight:700;color:var(--text);background:color-mix(in srgb,var(--accent) 9%,var(--bg-2))}
 .heritage-home #view-dashboard #heritageConfidenceTestAction:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-@media(max-width:390px){.heritage-home #view-dashboard .heritage-confidence-facts{gap:6px}.heritage-home #view-dashboard .heritage-confidence-facts strong{font-size:14px}}
+/* On phones the decision/test stays adjacent to WAIT/BUY/SELL without
+   burying the dominant chart below a second explanatory dashboard. Full
+   evidence and explicit limitations remain available in the original review. */
+@media(max-width:900px){
+.heritage-home #view-dashboard #heritageDecisionConfidence{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px 8px;margin-top:6px;padding-top:7px}
+.heritage-home #view-dashboard .heritage-confidence-head{display:none}
+.heritage-home #view-dashboard .heritage-confidence-facts{display:flex;flex:1 1 180px;gap:8px;min-width:0}
+.heritage-home #view-dashboard .heritage-confidence-facts>div{display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+.heritage-home #view-dashboard .heritage-confidence-facts span{font-size:12px}
+.heritage-home #view-dashboard .heritage-confidence-facts strong{font-size:13px;white-space:nowrap}
+.heritage-home #view-dashboard #heritageConfidenceLimits{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.heritage-home #view-dashboard #heritageConfidenceTestAction{flex:0 1 auto;width:auto;min-height:44px;padding:6px 10px;font-size:12px}
+}
+@media(max-width:390px){
+.heritage-home #view-dashboard .heritage-confidence-facts{gap:5px}
+.heritage-home #view-dashboard .heritage-confidence-facts span{font-size:12px}
+}
