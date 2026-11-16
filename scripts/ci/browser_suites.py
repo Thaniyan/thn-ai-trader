@@ -35,3 +35,13 @@ def select_precision_suites(env):
         return list(PRECISION_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(PRECISION_SUITES) if position % count == index]
+
+# Original THN identity reconciliation extends every earlier acceptance suite.
+HERITAGE_SUITES = ['heritage']
+
+def select_heritage_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(HERITAGE_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(HERITAGE_SUITES) if position % count == index]

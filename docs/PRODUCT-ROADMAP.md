@@ -6,6 +6,17 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Owner visual reorientation — 2026-11-16
+
+The owner rejected A+ as final visual acceptance and requires the original THN
+navy/teal identity, clear Decision Center and adjacent hypothetical Trade Ticket,
+combined with the verified integrated chart/research/risk workflow. Continue PR20
+from e2646f9; use original screenshots as visual references only. Implementation
+and source boundaries: [THN identity reconciliation](THN-IDENTITY-RECONCILIATION.md).
+All41 existing browser suites remain mandatory, with additive acceptance coverage.
+The November10–17 calendar window is unchanged; the owner's operational "day three"
+label does not authorize a deadline reset, main merge or Production deployment.
+
 ## Authoritative Issue 21 — Trading Command Center
 
 Owner direction 2026-11-10: [Issue #21](https://github.com/Thaniyan/thn-ai-trader/issues/21).

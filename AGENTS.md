@@ -83,3 +83,17 @@ python3 scripts/ci/check-workflow.py; node scripts/ci/dependency-audit.mjs.
 Keep unit/integration/security/browser/accessibility/source/dependency gates fail-closed.
 Preserve v6.6 numerical engines, EN/AR, RTL, all nine views and Library compatibility.
 Hosted finance is unavailable, never ephemeral persistence presented as durable storage.
+
+## Owner original-identity reconciliation — 2026-11-16
+
+Owner direction: https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6912277240 .
+A+ at e2646f9 is a verified functional baseline, not final visual acceptance.
+Use the 25 supplied October 25 screenshots as visual references: recognizable THN
+branding, premium navy/teal, clear instrument selection, Decision Center and
+adjacent hypothetical Trade Ticket. Preserve the integrated native/TradingView
+chart, source validation, historical evaluator, original planner/Library and all
+existing gates. Do not restore legacy confidence/probability, AI-active or execution
+claims. Continue existing PR20; PR17/Issue18 remain separate. No main merge,
+Production deployment, hosted inference or trading activation is authorized.
+The published calendar remains November10–17; the owner's operational "day three"
+label does not reset that window or waive gates. Report actual verification status.

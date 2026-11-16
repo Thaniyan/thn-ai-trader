@@ -1,0 +1,415 @@
+{
+  "baseline": "e2646f9983fd18d0853b3b4ddf4f2a435fec44e0",
+  "clock": "2026-11-11T17:10:00Z",
+  "scope": "Actual packaged application, offline synthetic provider. Controlled conditional/eligible analytical fixtures, original validated risk form. Not live trading or performance evidence.",
+  "pairs": [
+    {
+      "state": "wait",
+      "profile": "1440px en dark",
+      "before": "before-wait-1440-en-dark.png",
+      "after": "after-wait-1440-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "1440px ar light",
+      "before": "before-wait-1440-ar-light.png",
+      "after": "after-wait-1440-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "1024px en dark",
+      "before": "before-wait-1024-en-dark.png",
+      "after": "after-wait-1024-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "1024px ar light",
+      "before": "before-wait-1024-ar-light.png",
+      "after": "after-wait-1024-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "390px en dark",
+      "before": "before-wait-390-en-dark.png",
+      "after": "after-wait-390-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "390px ar light",
+      "before": "before-wait-390-ar-light.png",
+      "after": "after-wait-390-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "320px ar light",
+      "before": "before-wait-320-ar-light.png",
+      "after": "after-wait-320-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px en dark",
+      "before": "before-conditional-1440-en-dark.png",
+      "after": "after-conditional-1440-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px ar light",
+      "before": "before-conditional-1440-ar-light.png",
+      "after": "after-conditional-1440-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1024px en dark",
+      "before": "before-conditional-1024-en-dark.png",
+      "after": "after-conditional-1024-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1024px ar light",
+      "before": "before-conditional-1024-ar-light.png",
+      "after": "after-conditional-1024-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "390px en dark",
+      "before": "before-conditional-390-en-dark.png",
+      "after": "after-conditional-390-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "390px ar light",
+      "before": "before-conditional-390-ar-light.png",
+      "after": "after-conditional-390-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "320px ar light",
+      "before": "before-conditional-320-ar-light.png",
+      "after": "after-conditional-320-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "1440px en dark",
+      "before": "before-setup-1440-en-dark.png",
+      "after": "after-setup-1440-en-dark.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "390px ar light",
+      "before": "before-setup-390-ar-light.png",
+      "after": "after-setup-390-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "320px ar light",
+      "before": "before-setup-320-ar-light.png",
+      "after": "after-setup-320-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px en dark",
+      "before": "before-eligible-1440-en-dark.png",
+      "after": "after-eligible-1440-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px ar light",
+      "before": "before-eligible-1440-ar-light.png",
+      "after": "after-eligible-1440-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1024px en dark",
+      "before": "before-eligible-1024-en-dark.png",
+      "after": "after-eligible-1024-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1024px ar light",
+      "before": "before-eligible-1024-ar-light.png",
+      "after": "after-eligible-1024-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "390px en dark",
+      "before": "before-eligible-390-en-dark.png",
+      "after": "after-eligible-390-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "390px ar light",
+      "before": "before-eligible-390-ar-light.png",
+      "after": "after-eligible-390-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "320px ar light",
+      "before": "before-eligible-320-ar-light.png",
+      "after": "after-eligible-320-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "1440px en dark",
+      "before": "before-expanded-trust-1440-en-dark.png",
+      "after": "after-expanded-trust-1440-en-dark.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "390px ar light",
+      "before": "before-expanded-trust-390-ar-light.png",
+      "after": "after-expanded-trust-390-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "320px ar light",
+      "before": "before-expanded-trust-320-ar-light.png",
+      "after": "after-expanded-trust-320-ar-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px en light",
+      "before": "before-historical-1440-en-light.png",
+      "after": "after-historical-1440-en-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px ar light",
+      "before": "before-historical-1440-ar-light.png",
+      "after": "after-historical-1440-ar-light.png"
+    }
+  ],
+  "files": [
+    {
+      "file": "before-wait-1440-en-dark.png",
+      "sha256": "51197496b593363a4528898c488ac02933762069ec1d49304f656dd892a5743e"
+    },
+    {
+      "file": "after-wait-1440-en-dark.png",
+      "sha256": "47c84b21371f904cfc5a06294ef7d09b99156470df75c0218186d04008320069"
+    },
+    {
+      "file": "before-wait-1440-ar-light.png",
+      "sha256": "531abc0569eb9ef1a8dc0f9e1b11b4926dfa21ab8f5136d355b8780005188a0a"
+    },
+    {
+      "file": "after-wait-1440-ar-light.png",
+      "sha256": "df296c2a2d5fb6ca725fbd0a070ae3902ed6b9a9f605b345248ccdfd910bf556"
+    },
+    {
+      "file": "before-wait-1024-en-dark.png",
+      "sha256": "bcff1bfe6b0857d0b0f0ee97a7681ded870827f4479732380e260af1d3591480"
+    },
+    {
+      "file": "after-wait-1024-en-dark.png",
+      "sha256": "17399e3ccff554ba551e3c37c44228439e77974e3b8f6c06258e4137d4d5ec68"
+    },
+    {
+      "file": "before-wait-1024-ar-light.png",
+      "sha256": "a545618df1c8908586bbff6a0ef6dd4bbfa6f5f876f94b9921279412bb8053c8"
+    },
+    {
+      "file": "after-wait-1024-ar-light.png",
+      "sha256": "de69d4162a9acdaa9184694251c9d8439d468a1c2d85ae70637b9db2b18ed35d"
+    },
+    {
+      "file": "before-wait-390-en-dark.png",
+      "sha256": "d0abac33a23d478dee2dac5e86dda297d895954795e90f25030e94641878b9c6"
+    },
+    {
+      "file": "after-wait-390-en-dark.png",
+      "sha256": "6b39616b7e24c7a7cd424b32ff165e1d12a392c50c41d60baacd658176ed23fe"
+    },
+    {
+      "file": "before-wait-390-ar-light.png",
+      "sha256": "a8abd4f8545ce04e99ad165b1d5563e2b4460c86f7624d2ed708a93660f252ad"
+    },
+    {
+      "file": "after-wait-390-ar-light.png",
+      "sha256": "8a412e773146353e5f289ffac6862381cc17d6b49ab412b7ca07d474a6bf6956"
+    },
+    {
+      "file": "before-wait-320-ar-light.png",
+      "sha256": "4c7ffe3531acc76379b739d9bc06c61a38f5cb37207df45937963ed53ef8195f"
+    },
+    {
+      "file": "after-wait-320-ar-light.png",
+      "sha256": "83140916e296e21e929b0e123c9f8ddf9c49099552cb2afb8940e242bd013810"
+    },
+    {
+      "file": "before-conditional-1440-en-dark.png",
+      "sha256": "414a483d5e075028efca582d5ce556b8ff4196234500bed2f1282af2489d1485"
+    },
+    {
+      "file": "after-conditional-1440-en-dark.png",
+      "sha256": "b2e0eead749665c83a83e65fb9acc6008aa337f9e176295ab162ec7200bdae99"
+    },
+    {
+      "file": "before-conditional-1440-ar-light.png",
+      "sha256": "f626e1fc60a64f758edba54d977a905390cf89bd9768220919c3da2dbcaf57f6"
+    },
+    {
+      "file": "after-conditional-1440-ar-light.png",
+      "sha256": "ec0125d56ce85d9d877e0057a481a09ea36ff7c6751110d5926b31266266d0b1"
+    },
+    {
+      "file": "before-conditional-1024-en-dark.png",
+      "sha256": "28b308d35f9e56177b90b98615b01c5bddea95f70b33b8ade8a4cfaebba04879"
+    },
+    {
+      "file": "after-conditional-1024-en-dark.png",
+      "sha256": "42648838f1e61aeff38fb19caa7122a411eba0c3cea9502a657ca78cf21ec0d8"
+    },
+    {
+      "file": "before-conditional-1024-ar-light.png",
+      "sha256": "18e07e440f4f61048888e0d327866620c714bca88fcb24d75e78777f746f1829"
+    },
+    {
+      "file": "after-conditional-1024-ar-light.png",
+      "sha256": "6ec018c50beb7969b5220b8a142e196af99115abe17e10de9387db7add80ac38"
+    },
+    {
+      "file": "before-conditional-390-en-dark.png",
+      "sha256": "429658850d2cffec180e40c507003cc7a8bd444f4f2e09eea952baac0c228105"
+    },
+    {
+      "file": "after-conditional-390-en-dark.png",
+      "sha256": "6a12dcc97737a1c1bb80344bab7872c3e53fea04878e7c90bb6460ef0ccb7796"
+    },
+    {
+      "file": "before-conditional-390-ar-light.png",
+      "sha256": "9ca27daac20fdb3760e32d8eb539cb39f9d770ad1ff0d9511bdfaca6befac738"
+    },
+    {
+      "file": "after-conditional-390-ar-light.png",
+      "sha256": "3074cf775dc829c0aee8afb042be4d6dcb5be9892175cc1656d21e6155ddcdbc"
+    },
+    {
+      "file": "before-conditional-320-ar-light.png",
+      "sha256": "03ce8826f76f2ed44b1a07ed971c148d81140990a4a8f63fc9846710ab4ae86b"
+    },
+    {
+      "file": "after-conditional-320-ar-light.png",
+      "sha256": "54b748b37bffe1c1b9de01fafd4f77caa7103971789cb5b3cf7a1ae2bf3eb563"
+    },
+    {
+      "file": "before-setup-1440-en-dark.png",
+      "sha256": "62b655245bc581fcf738cf64beea7e8fe1e7727bc901fb69bdaabc71869f33f6"
+    },
+    {
+      "file": "after-setup-1440-en-dark.png",
+      "sha256": "6de467ae3ce58f505019faaa519c1d766a19656923000140ec20b608ce688ca1"
+    },
+    {
+      "file": "before-setup-390-ar-light.png",
+      "sha256": "e48fcb1294d98a77ca42116ef3e78bc7701edbf92e96e5a59ac30e2d7eb941f6"
+    },
+    {
+      "file": "after-setup-390-ar-light.png",
+      "sha256": "f7cdcb79bf1a7fa5af28e66b88afa34feeba93c42d8fb979ad2bc2f7ce84231d"
+    },
+    {
+      "file": "before-setup-320-ar-light.png",
+      "sha256": "78281b5439c6b77c655294436432db1813f9bfa5c527bbf109b88b453d5945b4"
+    },
+    {
+      "file": "after-setup-320-ar-light.png",
+      "sha256": "03a0ece274cd0fa21dfd970f1b6b06b30733256faaa7324e8bb22af5b144eb69"
+    },
+    {
+      "file": "before-eligible-1440-en-dark.png",
+      "sha256": "cba0980727e303c938d1fea0330ea9a9689c9dbff1ab76d5cc76e81671c113b8"
+    },
+    {
+      "file": "after-eligible-1440-en-dark.png",
+      "sha256": "a70494e0dae9ef32e698378a3cd98774e633e9134bed4830c8be3e1a0ad5213a"
+    },
+    {
+      "file": "before-eligible-1440-ar-light.png",
+      "sha256": "2bcc6ca19044b59669cf9389f55901b1857c461c536cbce2aafa932ae4a86dec"
+    },
+    {
+      "file": "after-eligible-1440-ar-light.png",
+      "sha256": "54bb646c746159816ab5ce7b1fcd014a7ac10642fe81f3acb6db8360f1979647"
+    },
+    {
+      "file": "before-eligible-1024-en-dark.png",
+      "sha256": "38d027577cceb40465f0d4bbf506d67f46f361f7ef0354ed10ea6568a1d31755"
+    },
+    {
+      "file": "after-eligible-1024-en-dark.png",
+      "sha256": "544c7f868f1a379a318c4e40f1e5af4faaeb3de2801cf673a7473d0055448c81"
+    },
+    {
+      "file": "before-eligible-1024-ar-light.png",
+      "sha256": "0af23065e8dac69a39515093a716108ec0253cd580e4b25b1d20e0a3aeb33dd6"
+    },
+    {
+      "file": "after-eligible-1024-ar-light.png",
+      "sha256": "b25f5fcd93a8c9278e8a164c3b6544ec484a51d105290c62b83a2e9cf18dd6f9"
+    },
+    {
+      "file": "before-eligible-390-en-dark.png",
+      "sha256": "e63f36e3489c01b28a76439cb1a2a8ca997cbe56bcf48ddbe2888b716097b0e0"
+    },
+    {
+      "file": "after-eligible-390-en-dark.png",
+      "sha256": "de106176fd07f85113ccd773bd2bcdff3fe8e40812ebc4db8089b25f468db10f"
+    },
+    {
+      "file": "before-eligible-390-ar-light.png",
+      "sha256": "52b86ea5dccb8caf7ea13a0925e2ee03101ddf6e44f8816b130f83cba811d403"
+    },
+    {
+      "file": "after-eligible-390-ar-light.png",
+      "sha256": "9552c1071786e3c46c91bb9fb92b6c09934aec55780411c99e6ab80fc52d69fd"
+    },
+    {
+      "file": "before-eligible-320-ar-light.png",
+      "sha256": "89bd4926feac0e6a7bda2a14cde1321c70c4767db33ee7f874ff11dad1fa301f"
+    },
+    {
+      "file": "after-eligible-320-ar-light.png",
+      "sha256": "66ac2f1ccb43d28f30927f2b6c377ce4e16e1f4cc704f4b4542c49144805fece"
+    },
+    {
+      "file": "before-expanded-trust-1440-en-dark.png",
+      "sha256": "eee0468d0c8047fb2d026c0d567384198f1f98fd45b3b6a8e192c316e7bfa1d6"
+    },
+    {
+      "file": "after-expanded-trust-1440-en-dark.png",
+      "sha256": "0d10fffeb1e1d39acc10c4c1e3d87af199a6a147177889bb0b7928ab2a35198c"
+    },
+    {
+      "file": "before-expanded-trust-390-ar-light.png",
+      "sha256": "1e9168309f837411f0bdeec0c16f1759b40568c5a2d53076d8037a9e0f65e4b6"
+    },
+    {
+      "file": "after-expanded-trust-390-ar-light.png",
+      "sha256": "548d0b1e59f3c25bbf7b39737189369df2ccb2368137eed1b73bf0a06617c90a"
+    },
+    {
+      "file": "before-expanded-trust-320-ar-light.png",
+      "sha256": "29077682fd5eaa3a6bbc1776dc889c237da4e9bf4a227d0226f59f3dd838e057"
+    },
+    {
+      "file": "after-expanded-trust-320-ar-light.png",
+      "sha256": "49037c0831606e0617c433fd2b254a0a090877cf5dd5e5456f7c326d6881909a"
+    },
+    {
+      "file": "before-historical-1440-en-light.png",
+      "sha256": "1028f5e026240a1b3d6086286a3c9f4d5f5adbe96ce5a728a792709acb206cde"
+    },
+    {
+      "file": "after-historical-1440-en-light.png",
+      "sha256": "f8e219d0f8ea6b83e7274a160c1841d6f83dcb19d8f759853a9df77a7653795e"
+    },
+    {
+      "file": "before-historical-1440-ar-light.png",
+      "sha256": "17e42348f0f2ac3cbdf0cc654c5a7bb5972c25c871b9c26aeeb70b0ddc6dc9b6"
+    },
+    {
+      "file": "after-historical-1440-ar-light.png",
+      "sha256": "1368ce46145ff4f219c8add829c75521a22eb4e65b4762eb5641f16a46474d5b"
+    }
+  ]
+}
