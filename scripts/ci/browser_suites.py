@@ -45,3 +45,13 @@ def select_heritage_suites(env):
         return list(HERITAGE_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(HERITAGE_SUITES) if position % count == index]
+
+# Decision Center testing extends all42 verified workflows; no original selector changes.
+DECISION_VALIDATION_SUITES = ['decision_validation']
+
+def select_decision_validation_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(DECISION_VALIDATION_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(DECISION_VALIDATION_SUITES) if position % count == index]

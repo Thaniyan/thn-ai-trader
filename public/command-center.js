@@ -2,6 +2,7 @@ import './research-studio.js';
 import {attachCommandWorkbench} from './command-workbench.js';
 import {attachCommandTrust} from './command-trust.js';
 import {attachPrecisionDesk} from './precision-desk.js';
+import {attachDecisionValidation} from './decision-validation.js';
 import {attachHeritageDesk} from './heritage-desk.js';
 import {annotationLabels} from './command-evidence.js';
 import {commandAssessment,projectLevel,sourceAnchor,candidateResearchNote} from './command-center-core.js';
@@ -17,7 +18,9 @@ function replaceMarkup(host,value){
  if(markupCache.get(host)===value)return;
  const focus=host.contains(document.activeElement)?document.activeElement:null,focusId=focus?.id,action=focus?.dataset.command;
  const disclosures=[...host.querySelectorAll('details[id]')].map(node=>[node.id,node.open]);
- host.innerHTML=value;markupCache.set(host,value);
+ const retained=[...host.children].filter(node=>node.hasAttribute('data-command-preserve'));
+ for(const node of retained)node.remove();
+ host.innerHTML=value;host.append(...retained);markupCache.set(host,value);
  for(const [id,open]of disclosures){const node=host.querySelector('#'+CSS.escape(id));if(node)node.open=open;}
  if(focusId)host.querySelector('#'+CSS.escape(focusId))?.focus({preventScroll:true});else if(action)host.querySelector('[data-command="'+CSS.escape(action)+'"]')?.focus({preventScroll:true});
 }
@@ -127,4 +130,4 @@ new MutationObserver(schedule).observe(document.documentElement,{attributes:true
 document.addEventListener('visibilitychange',schedule);window.addEventListener('focus',schedule);
 matchMedia('(max-width:900px)').addEventListener('change',schedule);
 new MutationObserver(schedule).observe($('analyzeBtn'),{attributes:true,attributeFilter:['disabled']});
-attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();render();THNResearch.chart.draw();
+attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();attachDecisionValidation();render();THNResearch.chart.draw();

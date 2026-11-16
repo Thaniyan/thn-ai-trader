@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {decisionValidationEvidence as review} from '../public/decision-validation-core.js';
+const context={symbol:'EURUSD',interval:'1h',datasetId:'a'.repeat(64)};
+const analysis={symbol:context.symbol,timeframe:context.interval,evidence:{hash:context.datasetId},schools:[],consensusScore:1};
+const series={symbol:context.symbol,provenance:{interval:'1h',hash:context.datasetId,status:'recent',gapCount:0}};
+const evaluation={symbol:context.symbol,dataset:{interval:'1h',hash:context.datasetId}};
+const model={fresh:true,confidence:{confluence:76,testStatus:'complete',checks:[{pass:true},{pass:false}]},warnings:[]};
+const input={context,analysis,series,evaluation,model};
+test('inline validation copies authoritative confluence and requirement counts without inventing probability',()=>{const r=review(input);assert.equal(r.confluence,76);assert.equal(r.passed,1);assert.equal(r.total,2);assert.equal(r.status,'complete');assert.equal(r.reliability,'current');assert.equal(r.probability,null);});
+test('running, failed and changed inputs never present a current passed-check count',()=>{for(const [evaluationState,status] of [[{busy:true},'running'],[{failed:true},'failed'],[{dirty:true},'stale']]){const r=review({...input,evaluationState});assert.equal(r.status,status);assert.equal(r.passed,null);assert.equal(r.total,null);assert.equal(r.retained,true);}});
+test('unmatched context never reuses a score, source or historical result',()=>{for(const c of [{...context,symbol:'GBPUSD'},{...context,interval:'15m'},{...context,datasetId:'b'.repeat(64)}]){const r=review({...input,context:c});assert.equal(r.status,'stale');assert.equal(r.confluence,null);assert.equal(r.retained,false);assert.equal(r.provenance,null);assert.equal(r.reliability,'unavailable');}});
+test('source gaps and stale observations are explicit rather than a reliability guarantee',()=>{assert.equal(review({...input,series:{...series,provenance:{...series.provenance,gapCount:2}}}).reliability,'gaps');const r=review({...input,model:{...model,fresh:false,phase:'stale'},series:{...series,provenance:{...series.provenance,status:'stale'}}});assert.equal(r.reliability,'stale');assert.equal(r.confluence,null);});
+test('missing evidence and malformed score never become zero, a probability or invented outcome',()=>{const r=review({context});assert.equal(r.status,'untested');assert.equal(review({context,evaluationState:{dirty:true}}).status,'untested');assert.equal(r.confluence,null);assert.equal(r.passed,null);assert.equal(r.probability,null);assert.equal(review({...input,model:{...model,confidence:{...model.confidence,confluence:NaN}}}).confluence,null);});
+test('read-only presentation leaves research, evaluation and risk inputs immutable',()=>{const before=JSON.stringify(input);review(input);assert.equal(JSON.stringify(input),before);});

@@ -509,3 +509,13 @@ notes actions. Preserve all numerical engines and execution restrictions.
 Acceptance requires matched real-app visual evidence, original complete browser
 coverage, full exact-head CI and an existing-project Preview. Main/Production
 remain unapproved; next priority is owner acceptance of this coherent candidate.
+
+### Owner refinement: Decision Center assurance, 16 November
+
+[Owner requirements](https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6918001632):
+original THN identity direction approved; whole candidate remains under review.
+Integrate the original confluence widget, data freshness/reliability and original
+fixed-strategy evaluator lifecycle beneath BUY/SELL/WAIT. Keep one evaluator,
+immutable research and explicit hypothetical trade boundaries. Preserve all42
+browser suites and add inline lifecycle/RTL/keyboard coverage. PR20 only; main
+and Production remain subject to separate approval.

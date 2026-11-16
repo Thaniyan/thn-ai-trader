@@ -1,0 +1,17 @@
+[
+  {
+    "file": "after-completed-decision-1440-en-dark.png",
+    "sha256": "5f42461ad7b2caae0c8c1d8e81e42e39badbe55fd51b6c8335c0cdc92979d08c",
+    "state": "Original fixed-rule evaluator completed; this is an after-only detail, not a reconstructed before result."
+  },
+  {
+    "file": "after-completed-decision-390-ar-light.png",
+    "sha256": "7642381ea88a203de4362d70197b609fc1c61c0f93d4f7bf08695d58fe86b742",
+    "state": "Original fixed-rule evaluator completed; this is an after-only detail, not a reconstructed before result."
+  },
+  {
+    "file": "after-completed-decision-320-ar-light.png",
+    "sha256": "27e457100d627763fb60da339f63d5aafd3b3969a9ac270812b135655e25c98d",
+    "state": "Original fixed-rule evaluator completed; this is an after-only detail, not a reconstructed before result."
+  }
+]

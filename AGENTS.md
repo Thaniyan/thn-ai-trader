@@ -97,3 +97,13 @@ claims. Continue existing PR20; PR17/Issue18 remain separate. No main merge,
 Production deployment, hosted inference or trading activation is authorized.
 The published calendar remains November10–17; the owner's operational "day three"
 label does not reset that window or waive gates. Report actual verification status.
+
+## Owner Decision Center assurance integration — 2026-11-16
+
+Per https://github.com/Thaniyan/thn-ai-trader/pull/20#issuecomment-6918001632,
+restored THN identity is approved as a direction, not complete release acceptance.
+Place one compact existing confluence owner and historical test/reliability status
+inside the BUY/SELL/WAIT Decision Center. Reuse the single original evaluator,
+results, risk and Library owners; no invented per-trade probability or formula
+changes. Retain all42 existing browser suites and add focused lifecycle/EN/AR
+coverage. Continue existing PR20; no main merge or Production deployment.

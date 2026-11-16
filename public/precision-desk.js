@@ -48,8 +48,8 @@ export function attachPrecisionDesk(){
   const assessment=$('commandAssessment'),verdict=$('commandVerdict'),conviction=$('dashboardConviction');
   if($('commandSetup').parentElement!==assessment)assessment.append($('commandSetup'));
   if($('deskDecisionBrief').parentElement!==assessment)assessment.append($('deskDecisionBrief'));
-  if(compact){if(verdict.parentElement!==quick)quick.prepend(verdict);}else if(verdict.parentElement!==assessment)assessment.prepend(verdict);
-  if(home&&!compact){if(conviction.parentElement!==sourceRow)sourceRow.append(conviction);}else if(home&&compact){if(conviction.parentElement!==quick)quick.append(conviction);}else if(conviction.parentElement!==assessment)$('commandSetup').after(conviction);
+  if(home&&window.THNDecisionValidation){/* The inline Decision Center owns this original node. */}else if(compact){if(verdict.parentElement!==quick)quick.prepend(verdict);}else if(verdict.parentElement!==assessment)assessment.prepend(verdict);
+  if(home&&window.THNDecisionValidation){/* The inline Decision Center owns this original node. */}else if(home&&!compact){if(conviction.parentElement!==sourceRow)sourceRow.append(conviction);}else if(home&&compact){if(conviction.parentElement!==quick)quick.append(conviction);}else if(conviction.parentElement!==assessment)$('commandSetup').after(conviction);
   const schoolsButton=conviction.querySelector('[data-cockpit=details]');if(schoolsButton)schoolsButton.textContent=tr('Schools','المدارس');
   if(compact){quick.classList.add('precision-mobile-context');}else quick.classList.remove('precision-mobile-context');
   const name=f=>document.documentElement.lang==='ar'&&window.localizedSchoolName?window.localizedSchoolName(f.name):f.name;
@@ -61,7 +61,7 @@ export function attachPrecisionDesk(){
   const incoming=$('trustHeader').querySelector('[data-trust=candidate]');if(incoming){if(candidateControl&&candidateControl!==incoming)candidateControl.remove();candidateControl=incoming;}if(candidateControl){candidateControl.textContent=tr('Inspect setup','فحص السيناريو');if(candidateControl.parentElement!==$('commandSetup'))$('commandSetup').append(candidateControl);}
   const levels=$('commandSetup').querySelector('.command-levels');if(levels&&detail.previousElementSibling!==levels)levels.after(detail);
   probability.textContent=tr('Calibrated win probability: unavailable. Historical fixed-rule tests do not validate this individual trade.','احتمال ربح معاير: غير متاح. لا تتحقق اختبارات القواعد الثابتة من هذه الصفقة المفردة.');
-  if($('dashboardEvidence').nextElementSibling!==probability)$('dashboardEvidence').after(probability);
+  if(!(home&&window.THNDecisionValidation)&&$('dashboardEvidence').nextElementSibling!==probability)$('dashboardEvidence').after(probability);
   markup(nav,button('trust','Confidence & historical testing','الأدلة والاختبار التاريخي')+button('evidence','Methods & timeframes','الطرق والأطر الزمنية')+button('risk','Original risk planner','مخطط المخاطر الأصلي')+button('notes','Notes & Library','الملاحظات والمكتبة')+button('method','Retained methodology','المنهجية المسجلة'));
   // Navigation stays fully named even when its desktop text is visually compact.
   document.querySelectorAll('.sidebar .nav[data-view]').forEach(el=>{el.title=el.textContent.trim();el.setAttribute('aria-label',el.textContent.trim());});

@@ -1,0 +1,78 @@
+/* One original confluence owner, next to the decision and original evaluator action. */
+.heritage-home #view-dashboard #decisionValidation{grid-column:1/-1;min-width:0;border-top:1px solid var(--border);margin-top:6px;padding-top:4px}
+.heritage-home #view-dashboard #heritageConfidenceTestActions{display:flex;align-items:center;gap:8px;min-width:0}
+.heritage-home #view-dashboard #decisionConfluenceHost{min-width:0;flex:1}
+.heritage-home #view-dashboard #decisionConfluenceHost #dashboardConviction{display:flex;align-items:center;gap:6px;padding:0;margin:0;border:0;min-width:0;width:100%;background:transparent}
+.heritage-home #view-dashboard #decisionConfluenceHost .home-confidence-ring{flex:0 0 38px;min-width:0;width:38px}
+.heritage-home #view-dashboard #decisionConfluenceHost .home-consensus{display:flex;align-items:center;gap:6px;min-width:0;flex:1}
+.heritage-home #view-dashboard #decisionConfluenceHost #precisionSchoolContext{flex:1;min-width:0}
+.heritage-home #view-dashboard #decisionConfluenceHost #precisionSchoolContext>summary{font-size:12px;min-height:44px}
+.heritage-home #view-dashboard #decisionConfluenceHost [data-cockpit=details]{font-size:12px;min-height:44px;padding-inline:5px}
+.heritage-home #view-dashboard #heritageConfidenceTestAction{min-height:44px;font-size:12px;padding-inline:10px;flex-shrink:0;border-color:var(--accent)}
+.heritage-home #view-dashboard #decisionValidationStatus{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 12px;margin:0;font-size:11px;line-height:1.45}
+.heritage-home #view-dashboard #decisionValidationStatus>div{min-width:0}
+.heritage-home #view-dashboard #decisionValidationStatus dt{color:var(--muted)}
+.heritage-home #view-dashboard #decisionValidationStatus dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.heritage-home #view-dashboard #decisionValidation #precisionProbability{font-size:11px;line-height:1.5;padding:0;margin:4px 0 0;border:0;background:transparent;color:var(--muted)}
+@media(min-width:901px){
+ .heritage-home #view-dashboard #evoDeskLead>#commandVerdict{grid-column:1;grid-row:1;border:0;box-shadow:none;background:transparent;padding:0}
+ .heritage-home #view-dashboard #evoDeskLead>#heritageWelcome{grid-column:1;grid-row:2}
+ .heritage-home #view-dashboard #heritageIntro{display:none}
+ .heritage-home #view-dashboard #evoDeskLead #precisionContextRow:empty{display:none}
+ .heritage-home #view-dashboard #evoDeskLead #evoLeadControls{align-self:center}
+ .heritage-home #view-dashboard #commandVerdict #decisionValidation{grid-row:5}
+}
+@media(max-width:900px){
+ .heritage-home #view-dashboard #evoDeskLead{padding-block:8px;gap:6px}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:2px 6px;padding:6px 10px}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict>.command-kicker{grid-column:1/-1;grid-row:1;margin:0}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict h1{grid-column:1;grid-row:2;font-size:24px;margin:0}
+ .heritage-home #view-dashboard #commandQuickAssessment #heritageMethod{grid-column:2;grid-row:2;margin:0;align-self:center;font-size:10px}
+ .heritage-home #view-dashboard #commandVerdict #precisionStatus{grid-column:1/-1;grid-row:3;margin:0;font-size:11px}
+ .heritage-home #view-dashboard #commandVerdict>.command-primary-reason{grid-column:1/-1;grid-row:4;margin:0;font-size:12px;line-height:1.5}
+ .heritage-home #view-dashboard #commandVerdict #decisionValidation{grid-row:5;margin-top:3px;padding-top:2px}
+}
+@media(max-width:350px){.heritage-home #view-dashboard #heritageConfidenceTestActions{gap:4px}.heritage-home #view-dashboard #heritageConfidenceTestAction{padding-inline:6px}.heritage-home #view-dashboard #decisionValidationStatus{gap:4px 8px}.heritage-home #view-dashboard #commandQuickAssessment #commandVerdict{grid-template-columns:minmax(0,1fr) 92px;padding-inline:8px}}
+@media(max-width:240px){.heritage-home #view-dashboard #heritageConfidenceTestActions{flex-wrap:wrap}.heritage-home #view-dashboard #decisionValidationStatus{grid-template-columns:minmax(0,1fr)}.heritage-home #view-dashboard #commandQuickAssessment #commandVerdict{display:block}.heritage-home #view-dashboard #decisionConfluenceHost .home-consensus{flex-wrap:wrap}}
+@media(min-width:901px){.heritage-home #view-dashboard #evoDeskLead{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+/* Native actions move to the hero/research owners; their empty old row needs no space. */
+.heritage-home #view-dashboard #commandVerdict>.q-actions:empty{display:none}
+@media(max-width:900px){.heritage-home #view-dashboard #decisionValidationStatus{font-size:12px}}
+@media(max-width:240px){
+ .heritage-home #view-dashboard #decisionConfluenceHost{flex-basis:100%}
+ .heritage-home #view-dashboard #decisionConfluenceHost #dashboardConviction{flex-wrap:wrap}
+ .heritage-home #view-dashboard #decisionConfluenceHost .home-consensus{flex-basis:100%}
+ .heritage-home #view-dashboard #heritageConfidenceTestAction{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+}
+/* Keep both original chart modes and Focus chart in one accessible phone row. */
+@media(min-width:241px) and (max-width:350px){
+ .heritage-home #view-dashboard #commandChartHost .pro-terminal-head{display:grid;grid-template-columns:minmax(0,1fr) 60px;gap:6px}
+ .heritage-home #view-dashboard #commandChartHost .pro-instrument-quote{grid-column:1/-1}
+ .heritage-home #view-dashboard #commandChartHost #proChartModes{grid-column:1;grid-row:2}
+ .heritage-home #view-dashboard #commandChartHost #proChartModes button{padding-inline:6px;min-height:44px;white-space:normal}
+ .heritage-home #view-dashboard #commandChartHost #proChartFocus{grid-column:2;grid-row:2;min-height:44px;width:100%;white-space:normal;padding-inline:6px}
+}
+@media(max-width:900px){
+ .heritage-home #view-dashboard #commandQuickAssessment{padding-block:0}
+ .heritage-home #view-dashboard #commandGrid{margin-top:8px}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] h1{grid-column:1/-1;grid-row:2}
+ .heritage-home #view-dashboard #commandVerdict[data-heritage-state=eligible] #precisionStatus{grid-column:1;grid-row:3}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] #heritageMethod{grid-column:2;grid-row:3}
+}
+@media(min-width:241px) and (max-width:350px){
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] h1{font-size:20px}
+}
+@media(max-width:900px){
+ .heritage-home #view-dashboard #commandFullReviewStatus{display:block}
+ .heritage-home #view-dashboard #commandFullReviewStatus #commandReviewCaption{margin-inline-end:4px}
+ .heritage-home #view-dashboard #commandFullReviewStatus #evoDeskRunStatus{display:inline;margin:0}
+}
+@media(min-width:241px) and (max-width:350px){
+ .heritage-home #view-dashboard #decisionValidationStatus{grid-template-columns:minmax(0,1fr);gap:2px}
+ .heritage-home #view-dashboard #decisionValidationStatus>div{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+ .heritage-home #view-dashboard #decisionValidationStatus dt{flex-shrink:0}
+ .heritage-home #view-dashboard #decisionValidationStatus dd{text-align:end}
+}
+@media(min-width:241px) and (max-width:350px){.heritage-home #view-dashboard #evoDeskLead #deskPrimaryActions button{flex-basis:auto;width:auto;min-width:max-content}}
+
+.heritage-home #view-dashboard #heritageDecisionConfidence{grid-column:1/-1;grid-row:5;min-width:0}

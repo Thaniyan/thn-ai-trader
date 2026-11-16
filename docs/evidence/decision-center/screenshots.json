@@ -1,0 +1,331 @@
+{
+  "baseline": "d53c7368e911c922eafbb555e208ebcc2ced1d92",
+  "clock": "2026-11-11T17:10:00Z",
+  "scope": "Actual packaged application, offline synthetic provider. Controlled conditional/eligible analytical fixtures, original validated risk form. Not live trading or performance evidence.",
+  "pairs": [
+    {
+      "state": "wait",
+      "profile": "1440px en dark",
+      "before": "before-wait-1440-en-dark.png",
+      "after": "after-wait-1440-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "1440px ar light",
+      "before": "before-wait-1440-ar-light.png",
+      "after": "after-wait-1440-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "390px en dark",
+      "before": "before-wait-390-en-dark.png",
+      "after": "after-wait-390-en-dark.png"
+    },
+    {
+      "state": "wait",
+      "profile": "390px ar light",
+      "before": "before-wait-390-ar-light.png",
+      "after": "after-wait-390-ar-light.png"
+    },
+    {
+      "state": "wait",
+      "profile": "320px ar light",
+      "before": "before-wait-320-ar-light.png",
+      "after": "after-wait-320-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px en dark",
+      "before": "before-conditional-1440-en-dark.png",
+      "after": "after-conditional-1440-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "1440px ar light",
+      "before": "before-conditional-1440-ar-light.png",
+      "after": "after-conditional-1440-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "390px en dark",
+      "before": "before-conditional-390-en-dark.png",
+      "after": "after-conditional-390-en-dark.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "390px ar light",
+      "before": "before-conditional-390-ar-light.png",
+      "after": "after-conditional-390-ar-light.png"
+    },
+    {
+      "state": "conditional",
+      "profile": "320px ar light",
+      "before": "before-conditional-320-ar-light.png",
+      "after": "after-conditional-320-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "1440px en dark",
+      "before": "before-setup-1440-en-dark.png",
+      "after": "after-setup-1440-en-dark.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "390px ar light",
+      "before": "before-setup-390-ar-light.png",
+      "after": "after-setup-390-ar-light.png"
+    },
+    {
+      "state": "Full conditional setup",
+      "profile": "320px ar light",
+      "before": "before-setup-320-ar-light.png",
+      "after": "after-setup-320-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px en dark",
+      "before": "before-eligible-1440-en-dark.png",
+      "after": "after-eligible-1440-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "1440px ar light",
+      "before": "before-eligible-1440-ar-light.png",
+      "after": "after-eligible-1440-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "390px en dark",
+      "before": "before-eligible-390-en-dark.png",
+      "after": "after-eligible-390-en-dark.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "390px ar light",
+      "before": "before-eligible-390-ar-light.png",
+      "after": "after-eligible-390-ar-light.png"
+    },
+    {
+      "state": "eligible",
+      "profile": "320px ar light",
+      "before": "before-eligible-320-ar-light.png",
+      "after": "after-eligible-320-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "1440px en dark",
+      "before": "before-expanded-trust-1440-en-dark.png",
+      "after": "after-expanded-trust-1440-en-dark.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "390px ar light",
+      "before": "before-expanded-trust-390-ar-light.png",
+      "after": "after-expanded-trust-390-ar-light.png"
+    },
+    {
+      "state": "Expanded confidence / historical workspace",
+      "profile": "320px ar light",
+      "before": "before-expanded-trust-320-ar-light.png",
+      "after": "after-expanded-trust-320-ar-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px en light",
+      "before": "before-historical-1440-en-light.png",
+      "after": "after-historical-1440-en-light.png"
+    },
+    {
+      "state": "Completed fixed-rule evaluation \u00b7 insufficient sample, not trade validation",
+      "profile": "1440px ar light",
+      "before": "before-historical-1440-ar-light.png",
+      "after": "after-historical-1440-ar-light.png"
+    }
+  ],
+  "files": [
+    {
+      "file": "before-wait-1440-en-dark.png",
+      "sha256": "a9b94c49fd13bbcee0d6ad0010ce58eb09503c8f6b795d122bd6d586ce3f0cac"
+    },
+    {
+      "file": "after-wait-1440-en-dark.png",
+      "sha256": "07a34b5dfec00f8578d681d0cd43c54d813a208fcaa32ed3e49e4a256af422e4"
+    },
+    {
+      "file": "before-wait-1440-ar-light.png",
+      "sha256": "38be1c452dcddd52cf2a8e549456b7842d0590054a0f020dbd82c73d94775565"
+    },
+    {
+      "file": "after-wait-1440-ar-light.png",
+      "sha256": "aad4e4e0492920f06e12449e7f99950b3a21d1cc2aec2d6daa2ce5261b0044ac"
+    },
+    {
+      "file": "before-wait-390-en-dark.png",
+      "sha256": "b5eaed1afff185654601cf9c16dbff37980d9f61f289ffe3cd688bd19755366e"
+    },
+    {
+      "file": "after-wait-390-en-dark.png",
+      "sha256": "fdc3757f7a0a04f90419d4256fd71e242352cfb3d5317456291e3f0117b2c224"
+    },
+    {
+      "file": "before-wait-390-ar-light.png",
+      "sha256": "cb4f9f5cebcc69324e85b22d3c344dff790b026aaf052ac31824855775a1a8ea"
+    },
+    {
+      "file": "after-wait-390-ar-light.png",
+      "sha256": "d00ee4331c229968f92655fb38c2ffcd14d94268e8ac1343f0ef374135eed3f6"
+    },
+    {
+      "file": "before-wait-320-ar-light.png",
+      "sha256": "9e3adef70ced69052d35fc0cc05bb07fd7bd20b808ba2bf96d01c742b30d3513"
+    },
+    {
+      "file": "after-wait-320-ar-light.png",
+      "sha256": "69a43236fa305bae8ccffb087d5e8dabf3b719abf24569a73a804644593f6760"
+    },
+    {
+      "file": "before-conditional-1440-en-dark.png",
+      "sha256": "a20a7418e1deb31aadc623cd81f576b0a449ecebb2ad04dd8480f90974b03105"
+    },
+    {
+      "file": "after-conditional-1440-en-dark.png",
+      "sha256": "0dbd12a7a6ede0b23ce85f3b7d6cc5bc828871d4b54ebf27aa5f7080f27d8b14"
+    },
+    {
+      "file": "before-conditional-1440-ar-light.png",
+      "sha256": "7c1e36892cc4e78816cf4e8775372379a0a50165e3cce9f119dab07ff8ee647e"
+    },
+    {
+      "file": "after-conditional-1440-ar-light.png",
+      "sha256": "88e9fb6a692c55153b41c4561c2511ff47798ec94313b51a3f0b3cb09013880e"
+    },
+    {
+      "file": "before-conditional-390-en-dark.png",
+      "sha256": "18d360a7f548fbabefef8387ba4a9a77b6c88d1f8f64d479f7c1852fc8114d8b"
+    },
+    {
+      "file": "after-conditional-390-en-dark.png",
+      "sha256": "d96cea974a0ed3efdf5e9f1bd5fd7e9d7d3a99d9e79c1ab4e92ad7b5c31b101e"
+    },
+    {
+      "file": "before-conditional-390-ar-light.png",
+      "sha256": "8fd89dae7de6d28ba73aef01b4835f8a3f803d7b2eca567b86d8d784749368a4"
+    },
+    {
+      "file": "after-conditional-390-ar-light.png",
+      "sha256": "e3bbf200b7eb92ef6297768f7bed3b1ee33aa3c93680f1486d120e4a0a52dc47"
+    },
+    {
+      "file": "before-conditional-320-ar-light.png",
+      "sha256": "0e793b7a45273a5e803038b93f6d9fe0a1c833ce18187a27ea46ce05f995d806"
+    },
+    {
+      "file": "after-conditional-320-ar-light.png",
+      "sha256": "50f15e83ddeb6eba31b1e331956aa356c497402bf2a130d5778f308f78b5699a"
+    },
+    {
+      "file": "before-setup-1440-en-dark.png",
+      "sha256": "df292d294f5eb948ee971ab6f7d9121567202961edb4d467b9d4db36148728bb"
+    },
+    {
+      "file": "after-setup-1440-en-dark.png",
+      "sha256": "c8963442d42e3bcbe04e6388e9e7d02f3d54cf72a05a38c8b89c7c7fa8e9a00f"
+    },
+    {
+      "file": "before-setup-390-ar-light.png",
+      "sha256": "ceff1c6e034924809bbe163cf2c5d5667c13c95dd23e686abc8b8392bfbf96bf"
+    },
+    {
+      "file": "after-setup-390-ar-light.png",
+      "sha256": "60e30b5ef0685fde7e0181f8e982f0195faca1396aabf02de2eb6154f9738fed"
+    },
+    {
+      "file": "before-setup-320-ar-light.png",
+      "sha256": "876dacfb7e76ad8df5869a715b2395deb1877d1ab647d953db87b5da5cf1e269"
+    },
+    {
+      "file": "after-setup-320-ar-light.png",
+      "sha256": "03a0ece274cd0fa21dfd970f1b6b06b30733256faaa7324e8bb22af5b144eb69"
+    },
+    {
+      "file": "before-eligible-1440-en-dark.png",
+      "sha256": "c3a26a0c4c26200a02f285743ca02d75a25cf9e3d94b361cd13857e8d0865f9f"
+    },
+    {
+      "file": "after-eligible-1440-en-dark.png",
+      "sha256": "9f396581cff5209144cd081541107cf9144d28a3a103f6d744980baa5747da56"
+    },
+    {
+      "file": "before-eligible-1440-ar-light.png",
+      "sha256": "3e40ce16faebc6b305fc2e85621aa37fed46ae32634b47dc20c4422da234524b"
+    },
+    {
+      "file": "after-eligible-1440-ar-light.png",
+      "sha256": "f88897448c267831e1165aa6168cd29f0ef1885684381807ba51cca9527ea49f"
+    },
+    {
+      "file": "before-eligible-390-en-dark.png",
+      "sha256": "161cf824dc7f78ee87f2fc2f0e13ec5077f92c88ad47aa2624829038dfa05082"
+    },
+    {
+      "file": "after-eligible-390-en-dark.png",
+      "sha256": "576a129f0383318555e1a91df376aceae7d199a3abce16bcb14eb6d5fb4e8988"
+    },
+    {
+      "file": "before-eligible-390-ar-light.png",
+      "sha256": "89c9a08a07bd41f6639e87f627c965a69c2f044cc07a0256089c2b2bd8d1bc05"
+    },
+    {
+      "file": "after-eligible-390-ar-light.png",
+      "sha256": "b109b22443497748e34e394f9241cd80a1026b05be28d0a003c6d6a4ce5d1374"
+    },
+    {
+      "file": "before-eligible-320-ar-light.png",
+      "sha256": "7992400dcc4e6fef40f3c61ffec6369aa5056790d711f66df6903f0cb5893d22"
+    },
+    {
+      "file": "after-eligible-320-ar-light.png",
+      "sha256": "eff3acbff2a463d45ff79422448daf5f9220bc64838802fc5684acaa73143200"
+    },
+    {
+      "file": "before-expanded-trust-1440-en-dark.png",
+      "sha256": "fac0661af63efaac24f508e39d2dce4baef54eaae94cfbd06edde901e064cf64"
+    },
+    {
+      "file": "after-expanded-trust-1440-en-dark.png",
+      "sha256": "4455865af02501514494c98eb8e72a112e217120746fafd9fefe135a7f127b6e"
+    },
+    {
+      "file": "before-expanded-trust-390-ar-light.png",
+      "sha256": "6b43858b11c637872dc222a5462314b444c2aa4c704f0dbf0d587ed562eeab1f"
+    },
+    {
+      "file": "after-expanded-trust-390-ar-light.png",
+      "sha256": "f86c8481a6e37ef3c15a11abbbb98a17bf9161a5602a96ec251a3d641d4683e1"
+    },
+    {
+      "file": "before-expanded-trust-320-ar-light.png",
+      "sha256": "3b4468e327ac6018348bbf9bd1b2e69891d74a4d46f5617804526164769015cc"
+    },
+    {
+      "file": "after-expanded-trust-320-ar-light.png",
+      "sha256": "722d2dc5dd719c187b1100119726f22ba0f244ae62fa5c8060f05f7b36a34ea4"
+    },
+    {
+      "file": "before-historical-1440-en-light.png",
+      "sha256": "554acdf2e1b4a8381d7ebad52f2b654575b7c8f0ca48214e981a924c8d144f03"
+    },
+    {
+      "file": "after-historical-1440-en-light.png",
+      "sha256": "27f97c78077e317e427e040ff5b736152d6d717cfb9eab75cab0b7e480c28669"
+    },
+    {
+      "file": "before-historical-1440-ar-light.png",
+      "sha256": "1368ce46145ff4f219c8add829c75521a22eb4e65b4762eb5641f16a46474d5b"
+    },
+    {
+      "file": "after-historical-1440-ar-light.png",
+      "sha256": "165a1ac60d517bc88a783f26d9004f673257b49be24ba794c7d847a9c2a19250"
+    }
+  ]
+}

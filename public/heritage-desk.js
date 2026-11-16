@@ -1,5 +1,4 @@
 import {escapeHTML as esc} from './decision-records.js';
-import {trustEvidence} from './command-trust-core.js';
 
 // Reconcile THN's original identity with the current single owned workstation.
 // This module presents retained results; it calculates no financial values.
@@ -12,17 +11,6 @@ export function attachHeritageDesk(){
  const markets=document.createElement('nav');markets.id='heritageMarkets';
  welcome.append(markets);
  const meaning=document.createElement('p');meaning.id='heritageLevelMeaning';meaning.setAttribute('role','status');
- const confidence=document.createElement('section');
- confidence.id='heritageDecisionConfidence';
- confidence.className='heritage-decision-confidence';
- confidence.setAttribute('role','group');
- confidence.setAttribute('aria-labelledby','heritageConfidenceTitle');
- confidence.innerHTML='<div class="heritage-confidence-head"><strong id="heritageConfidenceTitle"></strong><span id="heritageConfidenceStatus" role="status"></span></div><div class="heritage-confidence-facts"><div><span id="heritageConfidenceEvidenceLabel"></span><strong id="heritageConfidenceEvidence" dir="ltr">—</strong></div><div><span id="heritageConfidenceTestLabel"></span><strong id="heritageConfidenceTest"></strong></div></div><p id="heritageConfidenceLimits"></p><button type="button" id="heritageConfidenceTestAction" class="ghost" aria-describedby="heritageConfidenceLimits"></button>';
- const confidenceAction=confidence.querySelector('#heritageConfidenceTestAction');
- confidenceAction.addEventListener('click',()=>{
-  // Delegate to the single original historical evaluator; opening never submits it.
-  document.querySelector('#trustHeader [data-trust="test"]')?.click();
- });
  let selected=null,lastContext='',queued=false;
  const meanings={
   E:['Entry is a recorded research reference, not an executable quote.','الدخول مرجع بحثي مسجل وليس سعر تنفيذ.'],
@@ -60,24 +48,6 @@ export function attachHeritageDesk(){
   let mode=$('heritageMethod');if(!mode){mode=document.createElement('p');mode.id='heritageMethod';}
   mode.textContent=tr('Rules · hosted model off','قواعد حتمية · النموذج المستضاف غير مفعل');
   if(mode.parentElement!==$('commandVerdict'))$('commandVerdict').append(mode);
-  if(confidence.parentElement!==$('commandVerdict'))$('commandVerdict').append(confidence);
-  const trust=trustEvidence({model:m,analysis:THNConfidence.review().analysis,
-   evaluation:THNResearch.evaluation?.(),evaluationState:THNResearch.evaluationState?.(),context:c});
-  const tests={untested:tr('Not tested','لم يُختبر'),running:tr('Test running','الاختبار جارٍ'),
-   failed:tr('Latest test failed','فشل آخر اختبار'),changed:tr('Results need review','النتائج بحاجة للمراجعة'),
-   complete:tr('Recorded test','اختبار مسجل')};
-  const passed=trust.checks.filter(v=>v.pass).length;
-  $('heritageConfidenceTitle').textContent=tr('Evidence & historical testing','الأدلة والاختبار التاريخي');
-  $('heritageConfidenceStatus').textContent=trust.current?tr('Current evidence','أدلة حالية'):tr('Evidence unavailable','الأدلة غير متاحة');
-  $('heritageConfidenceEvidenceLabel').textContent=tr('Heuristic confluence','توافق الأدلة الاستدلالي');
-  $('heritageConfidenceEvidence').textContent=trust.current&&Number.isFinite(trust.confluence)?trust.confluence+' / 100':'—';
-  $('heritageConfidenceTestLabel').textContent=tr('Fixed-rule historical test','الاختبار التاريخي لقواعد ثابتة');
-  $('heritageConfidenceTest').textContent=trust.validationCurrent?
-   tr('Checks passed: ','متطلبات ناجحة: ')+passed+' / '+trust.checks.length:(tests[trust.status]||tests.untested);
-  $('heritageConfidenceLimits').textContent=tr(
-   'Historical testing checks fixed strategies, not this individual setup. Confluence is not a win probability; calibrated trade probability is unavailable.',
-   'الاختبار التاريخي يفحص قواعد الاستراتيجية، لا هذه الصفقة الفردية. التوافق ليس احتمال ربح؛ واحتمال نجاح الصفقة المعاير غير متاح.');
-  confidenceAction.textContent=tr('Test confidence · original evaluator','اختبار الثقة · المقيم التاريخي الأصلي');
   const levels=$('commandSetup').querySelector('.command-levels');
   const levelButtons=levels?.querySelectorAll('[data-desk^="level:"]')||[];
   if(review.candidate&&selected){
@@ -91,7 +61,7 @@ export function attachHeritageDesk(){
   const inspect=$('commandSetup').querySelector('[data-trust=candidate]');if(inspect)inspect.textContent=tr('Why these levels?','لماذا هذه المستويات؟');
   if(review.candidate)for(const b of levelButtons){const guide=levelGuide(b.dataset.desk.slice(6));b.title=guide;const label=b.closest('dd')?.previousElementSibling?.textContent||'';b.setAttribute('aria-label',label+': '+b.textContent.trim()+'. '+guide);}
   $('commandAssessment').setAttribute('aria-label',tr('Decision Center and hypothetical Trade Ticket','مركز القرار وبطاقة التداول الافتراضية'));
-  const note=$('precisionProbability');note.textContent=tr('Heuristic evidence ≠ historical validation. Calibrated win probability is unavailable.','الأدلة الاستدلالية لا تعني تحققاً تاريخياً. احتمال الربح المعاير غير متاح.');
+  const note=$('precisionProbability');if(!window.THNDecisionValidation)note.textContent=tr('Heuristic evidence ≠ historical validation. Calibrated win probability is unavailable.','الأدلة الاستدلالية لا تعني تحققاً تاريخياً. احتمال الربح المعاير غير متاح.');
  }
  document.addEventListener('click',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
  document.addEventListener('focusin',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
