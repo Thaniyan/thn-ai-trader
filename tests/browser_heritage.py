@@ -6,6 +6,18 @@ with sync_playwright() as p:
  b=p.chromium.launch(executable_path=os.environ['CHROMIUM_PATH'],args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000});page.route('https://**/*',lambda r:r.abort());page.on('pageerror',lambda e:result['errors'].append(str(e)));posts=[];page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
  page.goto(os.environ['TEST_URL']);page.wait_for_function('window.THNHeritage&&THNCommand.state().fresh&&THNMarketTerminal.catalog().length');page.locator('.nav-stack [data-view=dashboard]').click();saved=page.evaluate('JSON.stringify(THNLibrary.entries())');page.evaluate('window.__heritageChart=THNResearch.chart')
  expect(page.locator('#commandVerdict')).to_contain_text('AI Decision Center');expect(page.locator('#commandSetup')).to_contain_text('TRADE TICKET');expect(page.locator('#commandVerdict h1')).to_have_text('WAIT');expect(page.locator('#heritageMethod')).to_contain_text('hosted model off');assert page.locator('#commandSetup .command-levels>div').count()==0
+ # Confidence review is in the verdict panel, and delegates to the original tester.
+ expect(page.locator('#heritageDecisionConfidence')).to_be_visible()
+ expect(page.locator('#heritageConfidenceLimits')).to_contain_text('not this individual setup')
+ expect(page.locator('#heritageConfidenceEvidence')).to_have_text('—')
+ before_test=len(posts)
+ page.locator('#heritageConfidenceTestAction').click()
+ expect(page.locator('#trustTestTitle')).to_be_focused()
+ assert page.locator('#trustTest').evaluate('(el)=>el.open')
+ assert page.locator('#commandRationale').evaluate('(el)=>el.open')
+ assert len(posts)==before_test,'Opening historical validation must never submit a test'
+ page.locator('#trustTestTitle').press('Escape')
+ expect(page.locator('#heritageConfidenceTestAction')).to_be_focused()
  # Real supported catalog selection delegates to the existing context owner.
  page.locator('#heritageMarkets [data-command="pick:GBPUSD"]').click();page.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNCommand.state().fresh&&THNDecision.brief()?.symbol==="GBPUSD"');expect(page.locator('#commandVerdict .command-kicker')).to_contain_text('GBPUSD');assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved
  def analysis(route):
