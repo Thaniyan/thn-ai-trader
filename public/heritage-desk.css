@@ -30,3 +30,19 @@
 @media(min-width:901px){.heritage-home #view-dashboard #heritageIntro .heritage-eyebrow{display:none}.heritage-home #view-dashboard #commandVerdict{display:grid;grid-template-columns:minmax(0,1fr) 100px;gap:4px 8px;padding:10px 12px}.heritage-home #view-dashboard #commandVerdict>.command-kicker{grid-column:1/-1;grid-row:1;margin:0}.heritage-home #view-dashboard #commandVerdict h1{grid-column:1;grid-row:2;font-size:26px;line-height:1.3;margin:0;align-self:center}.heritage-home #view-dashboard #heritageMethod{grid-column:2;grid-row:2;margin:0;align-self:center;font-size:11px;line-height:1.5}.heritage-home #view-dashboard #precisionStatus{grid-column:1/-1;grid-row:3;margin:0}.heritage-home #view-dashboard #commandVerdict>.command-primary-reason{grid-column:1/-1;grid-row:4;margin:0}.heritage-home #view-dashboard #commandVerdict>.command-kicker+.command-primary-reason{margin:0}.heritage-home #view-dashboard #commandGrid{grid-template-columns:minmax(0,1fr) 380px}}
 /* Compact key/value conditions keep all confirmation and invalidation text readable. */
 @media(min-width:901px){.heritage-home #view-dashboard #precisionSetupDetail .precision-conditions{margin-block:6px}.heritage-home #view-dashboard #precisionSetupDetail .precision-conditions>div{display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,.64fr);gap:8px;align-items:baseline;padding-block:4px}.heritage-home #view-dashboard #precisionSetupDetail .precision-conditions dd{margin:0}}
+
+
+/* Compact confidence verification directly under BUY / SELL / WAIT.
+   All scores and test results are read-only projections of original engines. */
+.heritage-home #view-dashboard #heritageDecisionConfidence{border-top:1px solid var(--border);margin-top:12px;padding-top:12px;display:grid;gap:9px;min-width:0}
+.heritage-home #view-dashboard .heritage-confidence-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.heritage-home #view-dashboard .heritage-confidence-head strong{font-size:14px;line-height:1.5;font-weight:750;color:var(--text)}
+.heritage-home #view-dashboard #heritageConfidenceStatus{font-size:12px;line-height:1.5;color:var(--muted)}
+.heritage-home #view-dashboard .heritage-confidence-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.heritage-home #view-dashboard .heritage-confidence-facts>div{display:grid;gap:4px;min-width:0}
+.heritage-home #view-dashboard .heritage-confidence-facts span{font-size:12px;line-height:1.55;color:var(--muted)}
+.heritage-home #view-dashboard .heritage-confidence-facts strong{font-size:16px;line-height:1.4;overflow-wrap:anywhere;color:var(--text);font-variant-numeric:tabular-nums}
+.heritage-home #view-dashboard #heritageConfidenceLimits{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.heritage-home #view-dashboard #heritageConfidenceTestAction{min-height:44px;width:100%;border:1px solid var(--accent);border-radius:10px;font-size:13px;font-weight:700;color:var(--text);background:color-mix(in srgb,var(--accent) 9%,var(--bg-2))}
+.heritage-home #view-dashboard #heritageConfidenceTestAction:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(max-width:390px){.heritage-home #view-dashboard .heritage-confidence-facts{gap:6px}.heritage-home #view-dashboard .heritage-confidence-facts strong{font-size:14px}}
