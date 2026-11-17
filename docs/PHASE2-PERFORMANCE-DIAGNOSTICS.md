@@ -78,7 +78,9 @@ Durations are bounded to24h with a clipping indicator, counters are bounded,
 unknown stages/fields are rejected or omitted, and nonfinite values become null.
 No raw observations, token, model prose, credentials, arbitrary exception strings
 or provider-selected diagnostic names are serialized. Stage telemetry remains
-available when the worker is terminated. Fixed failure codes remain compatible.
+available when the worker is terminated. Fixed failure codes remain compatible; `UNSUPPORTED_QUESTION` refuses generation
+before inventory. The Arabic CLI uses a supported research question, and both
+languages are checked against the original saved-committee contract.
 
 ## Source-preserving performance changes
 
@@ -181,14 +183,15 @@ passing offline mock is not a successful real-model pilot.
 ## Completed local verification
 
 [Machine-readable commands and results](PHASE2-PERFORMANCE-VERIFICATION.json):
-415 core/numerical/integration tests,21 dedicated security tests,10 system checks,
+417 core/numerical/integration tests,21 dedicated security tests,10 system checks,
 and all44 original browser/accessibility suites passed. Build, lint, production
 packaging, workflow validation, dependency audit, canonical/source integrity and
-Git object checks passed. The21 new performance regressions include a complete
+Git object checks passed. The23 new performance regressions include a complete
 supervised worker + literal-loopback HTTP fixture in both languages, exactly one
 inventory per request, blocked-worker termination, late-result rejection, stage
-privacy, source/schema equivalence and bounded A/B aggregation. The final core
-rerun includes that end-to-end test; runtime hashes remained unchanged throughout
+privacy, source/schema equivalence and bounded A/B aggregation. The final full gate also checks supported Arabic
+question routing and saved-record compatibility, and refuses unsupported model
+requests before inference; runtime hashes remained unchanged throughout
 the browser gate. No existing assertion or test timeout was relaxed.
 
 The read-only qwen3:1.7b check returned unavailable in this Cloud environment.

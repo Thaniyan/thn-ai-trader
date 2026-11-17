@@ -43,7 +43,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  if(env.THN_AI_PILOT_THREADS!==undefined&&!['1','2','4'].includes(env.THN_AI_PILOT_THREADS))throw Error('Invalid local pilot thread count');
  const pilotThreads=Number(env.THN_AI_PILOT_THREADS||'1');
  const snapshot=syntheticPilotSnapshot(snapshotAt??now(),caseName);
- const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
+ const question=language==='ar'?'تحليل EURUSD':'Analyze EURUSD';
  let modelAttempts=0,generationCalls=0,failureCode=null,timings=null,runtime=null;
  const timing=createInferenceTiming({clock,onStage});
  const started=clock();

@@ -1,7 +1,7 @@
 // Public-safe diagnostic categories for the isolated research pilot.
 // Never expose arbitrary exception messages, raw provider text or secret-bearing payloads.
 const codes=new Set(['TIMEOUT','CONTEXT_LIMIT','INVALID_JSON','INVALID_SCHEMA',
- 'UNSUPPORTED_CLAIM','MODEL_RESPONSE_INVALID','MODEL_UNAVAILABLE','CONTEXT_CHANGED','UNKNOWN']);
+ 'UNSUPPORTED_CLAIM','MODEL_RESPONSE_INVALID','MODEL_UNAVAILABLE','CONTEXT_CHANGED','UNSUPPORTED_QUESTION','UNKNOWN']);
 export function classifyPilotFailure(error){
  if(error?.code && codes.has(error.code))return error.code;
  if(error?.name==='TimeoutError'||error?.name==='AbortError')return 'TIMEOUT';

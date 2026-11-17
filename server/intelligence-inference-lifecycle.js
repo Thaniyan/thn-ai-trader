@@ -21,6 +21,7 @@ export async function interpretVerifiedEvidence({
   generation:null,providerFallback:reason,financialExecution:false});
  try{
  if(baseline.outcome==='context_mismatch')return fallback('Context mismatch; model not called.');
+ if(baseline.outcome==='unsupported_question'){if(typeof onDiagnostic==='function')onDiagnostic('UNSUPPORTED_QUESTION');return fallback('Unsupported research question; model not called.');}
  if(routeQuestion(question).join(',')==='risk')return fallback('Execution or risk-only request is not eligible for model generation.');
  if(!snapshot?.fresh){if(typeof onDiagnostic==='function')onDiagnostic('CONTEXT_CHANGED');return fallback('Fresh, matched source evidence required; no model called.');}
  if(typeof provider!=='function')return fallback('Model provider unavailable; deterministic evidence retained.');

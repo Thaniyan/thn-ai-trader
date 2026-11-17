@@ -133,3 +133,10 @@ test('default supervised CLI completes the real local HTTP pipeline with one inv
  finally{server.closeAllConnections();await new Promise(r=>server.close(r));}
  assert.equal(tags,2);assert.equal(shows,2);assert.equal(chats,2);
 });
+test('English and Arabic pilot questions produce record-compatible specialist roles, not unsupported wrappers',async()=>{
+ const {cleanCommittee}=await import('../public/intelligence-memory.js');
+ for(const language of ['en','ar']){let calls=0;const r=await runPilot({mode:'--run',model:'fixture:local',language,env,now:()=>at,generate:async(_cfg,s,q)=>{assert.equal(q,language==='ar'?'تحليل EURUSD':'Analyze EURUSD');const committee=await interpretVerifiedEvidence({snapshot:s,question:q,language,now:()=>at,provider:async()=>{calls++;return answer(s)}});assert.equal(committee.outcome,'conflicting');assert.equal(committee.roles.length,2);assert.doesNotThrow(()=>cleanCommittee({...committee,modelCalls:calls}));return answer(s)}});assert.equal(r.accepted,true);assert.equal(calls,1);}
+});
+test('unsupported free-form questions cannot invoke a model or receive generative labels',async()=>{
+ let calls=0,code;const r=await interpretVerifiedEvidence({snapshot:syntheticPilotSnapshot(at),question:'Write a poem',now:()=>at,provider:async()=>{calls++;return answer(syntheticPilotSnapshot(at))},onDiagnostic:c=>code=c});assert.equal(calls,0);assert.equal(r.method,'deterministic');assert.equal(r.outcome,'unsupported_question');assert.equal(code,'UNSUPPORTED_QUESTION');
+});
