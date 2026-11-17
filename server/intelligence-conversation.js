@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import {committee} from './intelligence.js';
 import {validateLocalSnapshot} from './intelligence-local.js';
+import {interpretVerifiedEvidence} from './intelligence-inference-lifecycle.js';
 const freeze=v=>{if(v&&typeof v==='object'){for(const child of Object.values(v))freeze(child);Object.freeze(v);}return v;};
 const contextKey=input=>JSON.stringify({symbol:input.symbol,interval:input.interval,expectedHash:input.expectedHash,hypotheticalPlan:input.hypotheticalPlan,evaluationParameters:input.evaluationParameters,trainFraction:input.trainFraction,minimumTrades:input.minimumTrades});
 export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessions=8,maxTurns=6}={}){
@@ -13,8 +14,16 @@ export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessi
   if(s.busy||s.turns>=maxTurns)throw Object.assign(Error('Conversation busy or turn ceiling reached'),{status:429});validateLocalSnapshot(s.snapshot,now());
   const result=committee(s.snapshot,input.question,input.language);if(result.outcome==='context_mismatch')return result;
   s.busy=true;s.turns++;const before=provider.stats().modelCalls;
-  try{result.generation=await provider(s.snapshot,input.question,{authorization,signal,history:s.history.slice(-4),language:input.language});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;s.history.push({role:'user',content:input.question},{role:'assistant',content:result.summary});s.history=s.history.slice(-4);}
-  catch(error){if(signal?.aborted)throw error;result.providerFallback='Generative answer unavailable or rejected; deterministic evidence retained.';}
+  try{
+   const interpreted=await interpretVerifiedEvidence({snapshot:s.snapshot,question:input.question,provider,
+    authorization,signal,history:s.history.slice(-4),language:input.language,now,currentSnapshotId:()=>s.snapshot.id});
+   if(interpreted.method==='llm-assisted'){
+    result.generation=interpreted.generation;result.method='llm-assisted';result.summary=interpreted.summary;
+    result.model=interpreted.model;result.provider=interpreted.provider;
+    s.history.push({role:'user',content:input.question},{role:'assistant',content:result.summary});
+    s.history=s.history.slice(-4);
+   }else result.providerFallback=interpreted.providerFallback;
+  }catch(error){if(signal?.aborted)throw error;result.providerFallback='Generative answer unavailable or rejected; deterministic evidence retained.';}
   finally{result.modelCalls=provider.stats().modelCalls-before;s.busy=false;}
   return {...result,conversation:{id,snapshotId:s.snapshot.id,turn:s.turns,maxTurns,expiresAt:s.createdAt+ttl,debateRounds:1}};
  }
