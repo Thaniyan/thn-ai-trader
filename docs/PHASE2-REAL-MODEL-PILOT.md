@@ -32,6 +32,25 @@ Sources:
 4. Only in an authorized local process, set in the terminal (not Git, screenshots, browser storage or chat) `THN_AI_PROVIDER=ollama`, `THN_AI_MODEL=<verified tag>`, `THN_AI_ENABLED=1`, a private `THN_AI_AUTH_TOKEN` and strict per-process `THN_AI_MAX_REQUESTS`, `THN_AI_MAX_OUTPUT_TOKENS`, `THN_AI_TOTAL_TOKEN_CEILING`; keep `THN_LOCAL_PAPER=0`. Local auth and budgets are not durable shared spend accounting.
 5. All browser-side attempts are explicit opt-in and isolated to the Research Assistant. Never send the token to a hosted preview. No order/broker/paper/live permissions are added.
 
+
+## Reproducible operator CLI (added to PR #23)
+
+The isolated pilot runner is `scripts/pilot-local-ai.mjs`. The script does not download or install weights, run orders, change hosted configuration or print provider prose. It accepts only an exact installed-model tag and an EN/AR locale; `--check` performs read-only inventory, while `--run` is a separate explicit local-only action.
+
+```sh
+# No model calls, no download, no credentials needed:
+node scripts/pilot-local-ai.mjs --check --model qwen3:1.7b en
+
+# ONLY after operator installs/approves a model and configures private local
+# environment credentials and all bounded THN_AI_* settings:
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b ar
+```
+
+For `--run`, the terminal environment must explicitly set `THN_AI_ENABLED=1`, a privately chosen `THN_AI_AUTH_TOKEN`, `THN_AI_MAX_REQUESTS`, `THN_AI_MAX_OUTPUT_TOKENS`, `THN_AI_TOTAL_TOKEN_CEILING`, and `THN_LOCAL_PAPER=0`. The script invokes only the existing loopback Ollama adapter and the strict interpretation verifier, on frozen **synthetic** EURUSD/15m+1h+1d observations. Request reservations must not exceed the configured token ceiling. It reports model digest, accepted/fallback, citation/claim counts and latency if available; it deliberately suppresses actual prose, secrets and original data. Acceptance is a technical contract result, not independent human appraisal.
+
+The script exits nonzero for an unavailable model, disabled/invalid budget configuration, rejected generation or invalid runtime. This prevents treating an invalid response as a passed pilot. The run mode requires a real installed local model; passing CI mocks does **not** prove real inference. Do not copy credentials into chat, source files, PR comments or screenshot evidence.
+
 ## Test matrix and quality gate
 Use frozen, synthetic or pre-approved historical observations (never real brokerage credentials, personal data or private records). For each model run at least two distinct instances of each:
 - aligned bullish, bearish and neutral/WAIT evidence;
