@@ -12,6 +12,7 @@ export async function interpretVerifiedEvidence({
  const fallback=reason=>({...baseline,method:'deterministic',model:null,provider:null,
   generation:null,providerFallback:reason,financialExecution:false});
  if(baseline.outcome==='context_mismatch')return fallback('Context mismatch; model not called.');
+ if(routeQuestion(question).join(',')==='risk')return fallback('Execution or risk-only request is not eligible for model generation.');
  if(!snapshot?.fresh)return fallback('Fresh, matched source evidence required; no model called.');
  if(typeof provider!=='function')return fallback('Model provider unavailable; deterministic evidence retained.');
  try{
@@ -27,6 +28,9 @@ export async function interpretVerifiedEvidence({
   const allowed=new Set([...contractFields,'method','provider','model','latencyMs','usage','reservation','interpretationUnverified']);
   if(Object.keys(result||{}).some(k=>!allowed.has(k)))throw Error('Unexpected provider output');
   const verified=validateGeneration(material,snapshot,{strict:true,expectedRoles:routeQuestion(question)});
+  // Structured citations alone do not make instruction-like model prose safe.
+  const instruction=/\b(?:ignore|override|discard|bypass)\s+(?:all\s+)?(?:previous|system|developer|safety|instructions?|rules?)\b|\b(?:disable|bypass)\s+(?:safety|checks?|validation|guardrails?)\b|تجاهل\s+(?:التعليمات|القواعد|الضوابط)|تعطيل\s+(?:التحقق|الحماية|الأمان)/i;
+  if([verified.summary,...verified.uncertainties].some(s=>instruction.test(s)))throw Error('Instruction-like model response rejected');
   if(result.method!=='llm'||!['ollama','openai'].includes(result.provider)||typeof result.model!=='string'||!result.model.length)throw Error('Unverified model identity');
   return {...baseline,method:'llm-assisted',model:result.model,provider:result.provider,
    summary:verified.summary,generation:{...verified,method:'llm',provider:result.provider,model:result.model},
