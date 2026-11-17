@@ -10,7 +10,7 @@ function snapshot(){
  const s=evidenceSnapshot(brief);assert.equal(s.fresh,true);return s;
 }
 function generated(s){return {schema:'THN-GENERATION-7.1',snapshotId:s.id,symbol:s.symbol,interval:s.interval,summary:'Directions disagree. Inspect opposing evidence.',citations:['frame-1h','frame-1d'],claims:[{reference:'frame-1h',field:'trend',value:'bullish'}],roles:['technical','manager'],evidenceState:evidenceState(s),uncertainties:['The observations disagree.'],method:'llm',provider:'ollama',model:'offline-fixture'};}
-const go=(s,provider,extra={})=>interpretVerifiedEvidence({snapshot:s,provider,question:'Analyze EURUSD',now, ...extra});
+const go=(s,provider,extra={})=>interpretVerifiedEvidence({snapshot:s,provider,question:'Analyze EURUSD',now:()=>now, ...extra});
 test('verified simulated response is clearly labeled, cites source and cannot alter deterministic verdict',async()=>{
  const s=snapshot(),original=JSON.stringify(s);
  const r=await go(s,async()=>generated(s));
