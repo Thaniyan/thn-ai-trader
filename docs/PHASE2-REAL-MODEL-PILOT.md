@@ -106,3 +106,18 @@ $env:THN_AI_PILOT_KEEP_ALIVE = '5m'
 node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
 ```
 Keep the 12-second interpretation deadline unchanged and report `failureCode`, `elapsedMs`, `matchedCitations`, `matchedClaims`. Compare to the prior warmed full-prompt pilot (12,029 ms and `TIMEOUT`) without claiming speedup until measured. No hosted enablement, Production deploy or trading authorization.
+
+## P2.3d — Bounded local CPU thread comparison (2026-11-17)
+
+The owner's Intel Core i7-7600U has two physical cores and four logical processors. On a single *non-THN* local Ollama `/api/generate` benchmark with `think:false`, `num_predict:160`: two threads generated 112 tokens in 11.61s (9.64 tokens/s); four threads generated 126 tokens in 9.89s (12.74 tokens/s). This is suggestive, not conclusive: token counts differ, and the benchmark did **not** include the THN evidence/JSON schema.
+
+The **isolated local CLI only** now permits explicit `THN_AI_PILOT_THREADS=2` or `=4` (or `=1`); omission retains the original one-thread default. Unsupported counts fail closed. All existing strict validation, 12s timeout, loopback and auth gates, model digest verification, and deterministic fallback are unchanged. With the existing authenticated Windows PowerShell environment:
+```powershell
+cd "$HOME\thn-ai-trader"
+git pull --ff-only
+$env:THN_AI_PILOT_COMPACT = "1"
+$env:THN_AI_PILOT_KEEP_ALIVE = "5m"
+$env:THN_AI_PILOT_THREADS = "4"
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
+```
+Only an **actual accepted strict-citation result**, rather than a faster generic token rate, would advance real-model qualification. Report `accepted`, `failureCode`, `elapsedMs`, `matchedCitations` and `matchedClaims`, and do not extrapolate from this one benchmark.

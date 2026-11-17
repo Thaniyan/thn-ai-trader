@@ -181,3 +181,29 @@ test('invalid local compact flag fails closed without inference',async()=>{
   generate:async()=>{calls++}}));
  assert.equal(calls,0);
 });
+
+test('pilot thread count defaults to one, and two or four require explicit local opt-in',async()=>{
+ const env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+  THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'12000'};
+ const inspect=async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000});
+ let seen=[];
+ for(const [override,expected] of [[undefined,1],['2',2],['4',4]]){
+  const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',
+   env:{...env,...(override?{THN_AI_PILOT_THREADS:override}:{})},
+   inspect,generate:async(_e,_s,_q,o)=>{seen.push(o.pilotThreads);throw Error('Local provider timeout')}});
+  assert.equal(result.pilotThreads,expected);
+  assert.equal(result.failureCode,'TIMEOUT');
+  assert.equal(result.accepted,false);assert.equal(result.fallback,true);
+ }
+ assert.deepEqual(seen,[1,2,4]);
+});
+test('pilot rejects unsupported thread counts before attempting generation',async()=>{
+ let calls=0;
+ await assert.rejects(runPilot({mode:'--run',model:'fixture:local',language:'en',
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'fixture',THN_LOCAL_PAPER:'0',
+   THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'12000',
+   THN_AI_PILOT_THREADS:'8'},
+  inspect:async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000}),
+  generate:async()=>{calls++}}));
+ assert.equal(calls,0);
+});

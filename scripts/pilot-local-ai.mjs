@@ -34,6 +34,8 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  const pilotKeepAlive=env.THN_AI_PILOT_KEEP_ALIVE==='5m'?'5m':0;
  if(env.THN_AI_PILOT_COMPACT!==undefined&&!['0','1'].includes(env.THN_AI_PILOT_COMPACT))throw Error('Invalid local pilot compact mode');
  const pilotCompact=env.THN_AI_PILOT_COMPACT==='1';
+ if(env.THN_AI_PILOT_THREADS!==undefined&&!['1','2','4'].includes(env.THN_AI_PILOT_THREADS))throw Error('Invalid local pilot thread count');
+ const pilotThreads=Number(env.THN_AI_PILOT_THREADS||'1');
  const snapshot=syntheticPilotSnapshot(now());
  const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
  let modelAttempts=0,failureCode=null;
@@ -41,7 +43,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  const answer=await interpretVerifiedEvidence({snapshot,question,language,now,
   provider:async(s,q,options)=>{modelAttempts++;
    return generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
-    pilotKeepAlive,pilotCompact,
+    pilotKeepAlive,pilotCompact,pilotThreads,
     onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');}});
   },
   currentSnapshotId:()=>snapshot.id,
@@ -49,7 +51,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  return {...reference,generationTested:modelAttempts>0,accepted:answer.method==='llm-assisted',fallback:answer.method!=='llm-assisted',
    failureCode:answer.method==='llm-assisted'?null:(failureCode||'UNKNOWN'),
    elapsedMs:Math.max(0,Math.min(30000,Math.round(performance.now()-started))),
-   keepAlive:pilotKeepAlive,compactPilot:pilotCompact,
+   keepAlive:pilotKeepAlive,compactPilot:pilotCompact,pilotThreads,
    snapshotId:snapshot.id,sourceIds:snapshot.refs.map(r=>r.id),
    latencyMs:answer.generation?.latencyMs??null,matchedCitations:answer.generation?.citations?.length??0,
    matchedClaims:answer.generation?.claims?.length??0,
