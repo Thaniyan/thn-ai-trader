@@ -47,3 +47,44 @@ test('rejected fixture model response emits no prose, secrets or fake success',a
  assert.equal(result.humanReviewRequired,true);
  assert.equal(JSON.stringify(result).includes('private-fixture'),false);
 });
+
+test('accepted strict synthetic interpretation reports bounded real latency and valid citations without prose',async()=>{
+ const {evidenceState}=await import('../public/intelligence-generation.js');
+ const now=1800000000000,expected=syntheticPilotSnapshot(now);
+ let calls=0;
+ const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',now:()=>now,
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+   THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000'},
+  inspect:async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000}),
+  generate:async(_env,source)=>{calls++;assert.equal(source.id,expected.id);return {
+   schema:'THN-GENERATION-7.1',snapshotId:source.id,symbol:'EURUSD',interval:'1h',
+   summary:'The directional evidence disagrees. Investigate opposing observations.',
+   citations:['frame-1h','frame-1d'],
+   claims:[{reference:'frame-1h',field:'trend',value:'bullish'}],
+   roles:['technical','manager'],evidenceState:evidenceState(source),
+   uncertainties:['Opposing trends remain unresolved.'],
+   method:'llm',provider:'ollama',model:'fixture:local',latencyMs:215,
+  };}});
+ assert.equal(calls,1);
+ assert.equal(result.generationTested,true);assert.equal(result.accepted,true);assert.equal(result.fallback,false);
+ assert.equal(result.latencyMs,215);assert.equal(result.matchedCitations,2);assert.equal(result.matchedClaims,1);
+ assert.equal(result.financialExecution,false);assert.equal(result.noPredictiveProbability,true);
+ assert.equal(JSON.stringify(result).includes('private-fixture'),false);
+ assert.equal(JSON.stringify(result).includes('The directional evidence'),false);
+});
+test('unbounded or corrupt provider timing is not published as a measured latency',async()=>{
+ const {evidenceState}=await import('../public/intelligence-generation.js');
+ const at=1800000000000;
+ const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',now:()=>at,
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+   THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000'},
+  inspect:async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000}),
+  generate:async(_env,source)=>({
+   schema:'THN-GENERATION-7.1',snapshotId:source.id,symbol:source.symbol,interval:source.interval,
+   summary:'The evidence conflicts. Review its sources.',citations:['frame-1h'],
+   claims:[{reference:'frame-1h',field:'trend',value:'bullish'}],
+   roles:['technical','manager'],evidenceState:evidenceState(source),uncertainties:['The sources disagree.'],
+   method:'llm',provider:'ollama',model:'fixture:local',latencyMs:Infinity,
+  })});
+ assert.equal(result.accepted,true);assert.equal(result.latencyMs,null);
+});

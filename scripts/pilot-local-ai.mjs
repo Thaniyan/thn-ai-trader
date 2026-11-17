@@ -32,11 +32,14 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  if(env.THN_LOCAL_PAPER==='1'||!providerAvailability(config).available||providerAvailability(config).provider!=='ollama')throw Error('Explicit local provider authorization, budgets and paper-off required');
  const snapshot=syntheticPilotSnapshot(now());
  const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
+ let modelAttempts=0;
  const answer=await interpretVerifiedEvidence({snapshot,question,language,now,
-  provider:async(s,q,options)=>generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
-   onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');}}),
+  provider:async(s,q,options)=>{modelAttempts++;
+   return generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
+    onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');}});
+  },
   currentSnapshotId:()=>snapshot.id});
- return {...reference,generationTested:true,accepted:answer.method==='llm-assisted',fallback:answer.method!=='llm-assisted',
+ return {...reference,generationTested:modelAttempts>0,accepted:answer.method==='llm-assisted',fallback:answer.method!=='llm-assisted',
    snapshotId:snapshot.id,sourceIds:snapshot.refs.map(r=>r.id),
    latencyMs:answer.generation?.latencyMs??null,matchedCitations:answer.generation?.citations?.length??0,
    matchedClaims:answer.generation?.claims?.length??0,

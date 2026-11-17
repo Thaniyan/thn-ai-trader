@@ -44,8 +44,10 @@ export async function interpretVerifiedEvidence({
   const instruction=/\b(?:ignore|override|discard|bypass)\s+(?:all\s+)?(?:previous|system|developer|safety|instructions?|rules?)\b|\b(?:disable|bypass)\s+(?:safety|checks?|validation|guardrails?)\b|تجاهل\s+(?:التعليمات|القواعد|الضوابط)|تعطيل\s+(?:التحقق|الحماية|الأمان)/i;
   if([verified.summary,...verified.uncertainties].some(s=>instruction.test(s)))throw Error('Instruction-like model response rejected');
   if(result.method!=='llm'||!['ollama','openai'].includes(result.provider)||typeof result.model!=='string'||!/^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,159}$/.test(result.model))throw Error('Unverified model identity');
+  // Expose only bounded, verified telemetry; no arbitrary provider metadata or prose.
+  const latencyMs=Number.isSafeInteger(result.latencyMs)&&result.latencyMs>=0&&result.latencyMs<=30000?result.latencyMs:null;
   return {...baseline,method:'llm-assisted',model:result.model,provider:result.provider,
-   summary:verified.summary,generation:{...verified,method:'llm',provider:result.provider,model:result.model},
+   summary:verified.summary,generation:{...verified,method:'llm',provider:result.provider,model:result.model,latencyMs},
    financialExecution:false};
  }catch(error){
   if(signal?.aborted)throw error;
