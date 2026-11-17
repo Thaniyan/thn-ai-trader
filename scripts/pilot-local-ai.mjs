@@ -33,7 +33,8 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  const snapshot=syntheticPilotSnapshot(now());
  const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
  const answer=await interpretVerifiedEvidence({snapshot,question,language,now,
-  provider:async(s,q,options)=>generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal}),
+  provider:async(s,q,options)=>generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
+   onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');}}),
   currentSnapshotId:()=>snapshot.id});
  return {...reference,generationTested:true,accepted:answer.method==='llm-assisted',fallback:answer.method!=='llm-assisted',
    snapshotId:snapshot.id,sourceIds:snapshot.refs.map(r=>r.id),
