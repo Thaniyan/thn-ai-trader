@@ -1,9 +1,9 @@
 // Isolated real-model research pilot. Never installs weights, changes provider config or executes trades.
 import {pathToFileURL} from 'node:url';
-import crypto from 'node:crypto';
 import {evidenceSnapshot} from '../server/intelligence.js';
 import {inspectLocalModel,generateLocal} from '../server/intelligence-local.js';
 import {interpretVerifiedEvidence} from '../server/intelligence-inference-lifecycle.js';
+import {providerAvailability} from '../server/intelligence-provider.js';
 
 export function syntheticPilotSnapshot(at=Date.now()){
  if(!Number.isFinite(at))throw Error('Invalid clock');
@@ -29,7 +29,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
  const reference={mode:mode==='--check'?'read-only':'explicit-local-pilot',model:installed.model,digest:installed.digest,
   sizeBytes:installed.sizeBytes,generationTested:false,syntheticOnly:true,financialExecution:false};
  if(mode==='--check')return reference;
- if(env.THN_AI_ENABLED!=='1'||!env.THN_AI_AUTH_TOKEN||env.THN_LOCAL_PAPER==='1')throw Error('Explicit local research authorization and paper-off required');
+ if(env.THN_LOCAL_PAPER==='1'||!providerAvailability(config).available||providerAvailability(config).provider!=='ollama')throw Error('Explicit local provider authorization, budgets and paper-off required');
  const snapshot=syntheticPilotSnapshot(now());
  const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
  const answer=await interpretVerifiedEvidence({snapshot,question,language,now,
