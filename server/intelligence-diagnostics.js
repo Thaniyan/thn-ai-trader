@@ -9,6 +9,7 @@ export function classifyPilotFailure(error){
  // Match exact first-party invariant errors only, never pass through the message.
  const m=error?.message;
  if(m==='Local context window exceeded'||m==='Local pilot reserved token ceiling exceeded')return 'CONTEXT_LIMIT';
+ if(m==='Fresh immutable server evidence required')return 'CONTEXT_CHANGED';
  if(m==='Local provider timeout'||m==='Interpretation deadline exceeded')return 'TIMEOUT';
  if(m==='Malformed local response')return 'INVALID_JSON';
  if(m==='Invalid model schema or citation'||m==='Unexpected model field'||

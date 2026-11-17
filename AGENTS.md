@@ -121,3 +121,15 @@ coverage remains mandatory; Heritage checks withdrawal at the synchronous contex
 boundary and additionally verifies any subsequently completed BTCUSD candidate.
 Push only this existing development branch after all local gates pass. Do not
 merge main, deploy Production, enable hosted/paid AI or real/paper execution.
+
+## Owner local inference performance and diagnostics — 2026-11-17
+
+Continue existing draft PR23 / feature/ai-evidence-interpreter-phase2-20261116 from
+owner head a5bbef8551ed1a31701fd3f87a24acc2e34709ac, per comment6953635952.
+Keep the12s request ceiling, strict source/schema validation, exact local model
+identity, authentication and bounded reservations. Add monotonic acceptance checks,
+redacted stage diagnostics and independent CLI supervision; compare only bounded,
+explicit local synthetic workloads. No auto model pull, hosted/paid AI, financial
+execution, main merge or Production deployment. Real Windows hardware is not
+accessible from Cloud; never claim live-device verification from offline fixtures.
+All original regression gates remain mandatory; publish only to the existing branch.

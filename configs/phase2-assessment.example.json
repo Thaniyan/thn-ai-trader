@@ -1,0 +1,11 @@
+{
+  "schema": "THN-LOCAL-ASSESSMENT-1",
+  "models": [{"model":"qwen3:1.7b","digest":"8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7","optional":false}],
+  "languages": ["en","ar"],
+  "threads": [2],
+  "conditions": ["warm"],
+  "profiles": ["full","compact"],
+  "cases": ["conflicting","neutral"],
+  "repetitions": 1,
+  "prepareModel": true
+}

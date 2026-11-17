@@ -121,3 +121,17 @@ $env:THN_AI_PILOT_THREADS = "4"
 node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
 ```
 Only an **actual accepted strict-citation result**, rather than a faster generic token rate, would advance real-model qualification. Report `accepted`, `failureCode`, `elapsedMs`, `matchedCitations` and `matchedClaims`, and do not extrapolate from this one benchmark.
+
+## Performance/timeout diagnostics milestone — owner comment6953635952
+
+The isolated CLI now has monotonic acceptance checks, safe stage diagnostics,
+one inventory per request, and independent worker supervision. Its12s policy is
+unchanged. Optional compact requests use an equivalent request-bound schema,
+without dropping evidence or weakening validation. Serial A/B batches and safe
+aggregation compare EN/AR, cold/warm and1/2/4 threads with exact installed digests
+and cumulative budgets; no models are pulled automatically.
+
+Read [performance semantics and evaluation gates](PHASE2-PERFORMANCE-DIAGNOSTICS.md)
+and [PowerShell5.1 instructions](PHASE2-PERFORMANCE-WINDOWS.md). Owner-reported23s
+settlement has not been reproduced on the actual Windows computer; it is not proof
+that generation completed. No accepted real-model result is claimed by this change.
