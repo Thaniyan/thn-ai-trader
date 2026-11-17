@@ -66,7 +66,7 @@ test('accepted strict synthetic interpretation reports bounded real latency and 
    method:'llm',provider:'ollama',model:'fixture:local',latencyMs:215,
   };}});
  assert.equal(calls,1);
- assert.equal(result.generationTested,true);assert.equal(result.accepted,true);assert.equal(result.fallback,false);
+ assert.equal(result.generationTested,true);assert.equal(result.accepted,true);assert.equal(result.fallback,false);assert.equal(result.failureCode,null);
  assert.equal(result.latencyMs,215);assert.equal(result.matchedCitations,2);assert.equal(result.matchedClaims,1);
  assert.equal(result.financialExecution,false);assert.equal(result.noPredictiveProbability,true);
  assert.equal(JSON.stringify(result).includes('private-fixture'),false);
@@ -87,4 +87,31 @@ test('unbounded or corrupt provider timing is not published as a measured latenc
    method:'llm',provider:'ollama',model:'fixture:local',latencyMs:Infinity,
   })});
  assert.equal(result.accepted,true);assert.equal(result.latencyMs,null);
+});
+
+test('safe local pilot codes distinguish timeout, context, malformed JSON and false citations without leaking text',async()=>{
+ const {classifyPilotFailure}=await import('../server/intelligence-diagnostics.js');
+ assert.equal(classifyPilotFailure(new Error('Local provider timeout')),'TIMEOUT');
+ assert.equal(classifyPilotFailure(new Error('Local context window exceeded')),'CONTEXT_LIMIT');
+ assert.equal(classifyPilotFailure(new SyntaxError('private-fixture raw provider text')),'INVALID_JSON');
+ assert.equal(classifyPilotFailure(new Error('Invalid model schema or citation')),'INVALID_SCHEMA');
+ assert.equal(classifyPilotFailure(new Error('Invented fact or calculation')),'UNSUPPORTED_CLAIM');
+ assert.equal(classifyPilotFailure(new Error('provider returned secret private-fixture')),'UNKNOWN');
+ const env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+   THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000'};
+ const inspect=async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000});
+ for(const [error,expected] of [
+  [Error('Local context window exceeded'),'CONTEXT_LIMIT'],
+  [Error('Local provider timeout'),'TIMEOUT'],
+  [new SyntaxError('private-fixture raw model response'),'INVALID_JSON'],
+  [Error('Invented fact or calculation'),'UNSUPPORTED_CLAIM'],
+  [Error('private-fixture unexpected exception'),'UNKNOWN']
+ ]){
+  const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',
+    now:()=>1800000000000,env,inspect,generate:async()=>{throw error}});
+  assert.equal(result.accepted,false);assert.equal(result.fallback,true);
+  assert.equal(result.failureCode,expected);
+  assert.equal(JSON.stringify(result).includes('private-fixture'),false);
+  assert.equal(JSON.stringify(result).includes(error.message),false);
+ }
 });

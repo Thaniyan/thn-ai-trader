@@ -73,3 +73,6 @@ A single successful response establishes actual inference but **does not** estab
 - P2.3d: stop at a separate release gate. No merge to main/Production, hosted activation or paid provider without explicit owner permission.
 
 **Current blocker:** no permitted accessible Ollama runtime or installed model has been identified for genuine inference testing. Offline/CI mocks cannot substitute for that result.
+
+## Safe failure diagnosis for local pilot
+The `--run` output now includes a fixed `failureCode` when strict interpretation falls back. Codes are `TIMEOUT` (local or outer deadline), `CONTEXT_LIMIT` (bounded context or reservation), `INVALID_JSON`, `INVALID_SCHEMA`, `UNSUPPORTED_CLAIM` (unsourced data or prohibited prose), `MODEL_RESPONSE_INVALID`, `MODEL_UNAVAILABLE`, `CONTEXT_CHANGED`, or `UNKNOWN`. Only these enums are emitted; raw model responses, private tokens, and arbitrary error messages remain suppressed. A code is a **failure category, not evidence of model quality**. Do not loosen the validation or increase the 12-second local timeout to make a failed model pass.

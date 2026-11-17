@@ -1,6 +1,7 @@
 import {committee,routeQuestion} from './intelligence.js';
 import {validateGeneration} from '../public/intelligence-generation.js';
 import {validateLocalSnapshot} from './intelligence-local.js';
+import {classifyPilotFailure} from './intelligence-diagnostics.js';
 
 const freeze=value=>{if(value&&typeof value==='object'){for(const child of Object.values(value))freeze(child);Object.freeze(value);}return value;};
 
@@ -8,7 +9,7 @@ const freeze=value=>{if(value&&typeof value==='object'){for(const child of Objec
 // Deterministic evidence is always authoritative and is never modified by a model.
 export async function interpretVerifiedEvidence({
  snapshot,question,provider,authorization,language='en',signal,history=[],
- now=Date.now,currentSnapshotId=()=>snapshot?.id,timeoutMs=12000
+ now=Date.now,currentSnapshotId=()=>snapshot?.id,timeoutMs=12000,onDiagnostic=null
 }={}){
  // Providers receive a frozen private copy, never the caller's authoritative record.
  snapshot=freeze(structuredClone(snapshot));
@@ -19,7 +20,7 @@ export async function interpretVerifiedEvidence({
   generation:null,providerFallback:reason,financialExecution:false});
  if(baseline.outcome==='context_mismatch')return fallback('Context mismatch; model not called.');
  if(routeQuestion(question).join(',')==='risk')return fallback('Execution or risk-only request is not eligible for model generation.');
- if(!snapshot?.fresh)return fallback('Fresh, matched source evidence required; no model called.');
+ if(!snapshot?.fresh){if(typeof onDiagnostic==='function')onDiagnostic('CONTEXT_CHANGED');return fallback('Fresh, matched source evidence required; no model called.');}
  if(typeof provider!=='function')return fallback('Model provider unavailable; deterministic evidence retained.');
  try{
   validateLocalSnapshot(snapshot,now());
@@ -33,7 +34,7 @@ export async function interpretVerifiedEvidence({
   const result=await Promise.race([provider(snapshot,question,{authorization,language,signal:controller.signal,history:structuredClone(history)}),interrupted]);
   signal?.throwIfAborted();
   validateLocalSnapshot(snapshot,now());
-  if(currentSnapshotId()!==snapshot.id)return fallback('Evidence context changed; late model output discarded.');
+  if(currentSnapshotId()!==snapshot.id){if(typeof onDiagnostic==='function')onDiagnostic('CONTEXT_CHANGED');return fallback('Evidence context changed; late model output discarded.');}
   // Accept only an exact structured generation, not a loose plausible summary.
   const contractFields=['schema','snapshotId','symbol','interval','summary','citations','claims','roles','evidenceState','uncertainties'];
   const material=Object.fromEntries(contractFields.filter(k=>Object.hasOwn(result||{},k)).map(k=>[k,result[k]]));
@@ -51,6 +52,7 @@ export async function interpretVerifiedEvidence({
    financialExecution:false};
  }catch(error){
   if(signal?.aborted)throw error;
+  if(typeof onDiagnostic==='function')onDiagnostic(classifyPilotFailure(error));
   return fallback('Model output unavailable, invalid or stale; deterministic evidence retained.');
  }finally{clearTimeout(timer);if(abort)signal?.removeEventListener('abort',abort);}
 }
