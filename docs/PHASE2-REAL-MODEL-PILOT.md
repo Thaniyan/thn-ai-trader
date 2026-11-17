@@ -94,3 +94,15 @@ node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
 ```
 
 A warm run **can still return `TIMEOUT`** on actual cited technical analysis. Do not increase the deadline or accept incomplete/unsupported answers to make a benchmark pass. Compare `elapsedMs`, `accepted`, `failureCode`, `matchedCitations`, and `matchedClaims` to the previously measured cold behavior. The broader product's provider path retains `keep_alive:0` by default and Production is not activated.
+
+## P2.3c — Opt-in compact pilot contract
+
+For the **isolated local CLI only**, set `THN_AI_PILOT_COMPACT=1` to use a shorter research prompt, a compact but source-preserving evidence projection, and Ollama `think:false` (suppressing optional model reasoning tokens). Default is unchanged. The compact projection keeps every reference ID, timeframe, direction, cited source, provider symbol and dataset hash, availability time, status, exact claimable indicator inputs, missing-data and limitations. The original frozen full evidence snapshot remains the authoritative validation target; **do not remove evidence citations or lower the validator requirements**. The compact mode is neither a claim of better accuracy nor evidence of acceptance until verified against real Qwen3 replies.
+
+For the user's existing Windows PowerShell session after `git pull --ff-only` and local auth environment setup:
+```powershell
+$env:THN_AI_PILOT_COMPACT = '1'
+$env:THN_AI_PILOT_KEEP_ALIVE = '5m'
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
+```
+Keep the 12-second interpretation deadline unchanged and report `failureCode`, `elapsedMs`, `matchedCitations`, `matchedClaims`. Compare to the prior warmed full-prompt pilot (12,029 ms and `TIMEOUT`) without claiming speedup until measured. No hosted enablement, Production deploy or trading authorization.

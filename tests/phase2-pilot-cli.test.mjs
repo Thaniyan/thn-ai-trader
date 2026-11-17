@@ -145,3 +145,39 @@ test('invalid warm-keep-alive input is refused before any generation request',as
   generate:async()=>{calls++;}}));
  assert.equal(calls,0);
 });
+
+test('compact mode preserves source-linked reference identity and is not active by default',async()=>{
+ const {compactPilotEvidence}=await import('../server/intelligence-local.js');
+ const s=syntheticPilotSnapshot(1800000000000),compact=compactPilotEvidence(s);
+ assert.equal(compact.snapshotId,s.id);
+ assert.deepEqual(compact.refs.map(r=>r.id),s.refs.map(r=>r.id));
+ for(let i=0;i<s.refs.length;i++){
+  const a=s.refs[i],b=compact.refs[i];
+  for(const key of ['interval','trend','source','providerSymbol','datasetHash','availableAt','status','inputs'])
+   assert.deepEqual(b[key],a[key]);
+ }
+ assert.deepEqual(compact.missing,s.missing);
+ assert.deepEqual(compact.limitations,s.limitations);
+ const env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+  THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'12000'};
+ const inspect=async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000});
+ let seen=[];
+ for(const mode of [undefined,'1']){
+  const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',
+   env:{...env,...(mode?{THN_AI_PILOT_COMPACT:mode}:{})},
+   inspect,generate:async(_e,_s,_q,o)=>{seen.push(o);throw Error('Local provider timeout')}});
+  assert.equal(result.compactPilot,mode==='1');
+  assert.equal(result.accepted,false);assert.equal(result.failureCode,'TIMEOUT');
+ }
+ assert.deepEqual(seen.map(x=>x.pilotCompact),[false,true]);
+});
+test('invalid local compact flag fails closed without inference',async()=>{
+ let calls=0;
+ await assert.rejects(runPilot({mode:'--run',model:'fixture:local',language:'en',
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'fixture',THN_LOCAL_PAPER:'0',
+   THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'12000',
+   THN_AI_PILOT_COMPACT:'yes'},
+  inspect:async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000}),
+  generate:async()=>{calls++}}));
+ assert.equal(calls,0);
+});
