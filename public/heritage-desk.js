@@ -65,6 +65,9 @@ export function attachHeritageDesk(){
  }
  document.addEventListener('click',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
  document.addEventListener('focusin',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
+ function withdraw(){selected=null;meaning.remove();for(const b of $('commandSetup').querySelectorAll('[aria-describedby=heritageLevelMeaning]'))b.removeAttribute('aria-describedby');}
+ window.addEventListener('thn:context',withdraw);
+ window.addEventListener('thn:research-context',()=>{const c=THNContext.get();if([c.symbol,c.interval,c.datasetId].join('|')!==lastContext)withdraw();});
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
  for(const event of ['thn:command-render','thn:view','thn:plan','thn:evaluation','thn:evaluation-state','thn:context','thn:analysis'])window.addEventListener(event,schedule);
  window.addEventListener('thn:catalog',schedule);matchMedia('(max-width:900px)').addEventListener('change',schedule);

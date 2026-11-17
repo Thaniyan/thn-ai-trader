@@ -1,0 +1,12 @@
+/* The existing THN navy/teal tokens own both themes; disclosure stays below chart. */
+.precision-home #view-dashboard #precisionResearchActions{flex-wrap:wrap;gap:8px;min-width:0}
+.precision-home #view-dashboard #precisionResearchActions button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.command-interpretation{border-block-start:1px solid var(--border);padding-block:24px;margin-block-start:12px;min-width:0;overflow-wrap:anywhere}
+.command-interpretation header{display:flex;justify-content:space-between;gap:16px;align-items:start}
+.command-interpretation h3{font-size:1.2rem;margin:4px 0 12px}.command-interpretation h4{font-size:1rem;margin:0 0 12px}
+.command-interpretation .interpretation-eyebrow{font-size:.75rem;letter-spacing:.05em;margin:0;color:var(--muted)}
+.interpretation-method{font-size:.8rem;color:var(--muted);max-width:220px}.interpretation-boundary,.interpretation-origin,.interpretation-availability{color:var(--muted);font-size:.85rem;line-height:1.7}
+.interpretation-actions,.interpretation-citations{display:flex;flex-wrap:wrap;gap:8px;margin-block:16px}
+.interpretation-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-block:1px solid var(--border);padding-block:20px;margin-block:20px}.interpretation-grid section{min-width:0}.interpretation-grid ul{margin:0;padding-inline-start:20px}.interpretation-grid li{margin-block:8px;line-height:1.65}
+.interpretation-summary{font-size:1.05rem;line-height:1.8;max-width:90ch}.command-interpretation details{margin-block:14px}.command-interpretation summary{cursor:pointer;padding-block:8px}.command-interpretation [aria-disabled=true]{opacity:.65}.command-interpretation button{white-space:normal;max-width:100%}.command-interpretation [hidden]{display:none}
+@media(max-width:600px){.command-interpretation header{display:block}.interpretation-grid{grid-template-columns:1fr;gap:20px}.interpretation-actions{align-items:stretch}.interpretation-actions button{flex:1 1 140px}.command-interpretation{padding-block:18px}}

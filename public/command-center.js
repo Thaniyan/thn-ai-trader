@@ -2,6 +2,7 @@ import './research-studio.js';
 import {attachCommandWorkbench} from './command-workbench.js';
 import {attachCommandTrust} from './command-trust.js';
 import {attachPrecisionDesk} from './precision-desk.js';
+import {attachCommandInterpretation} from './command-interpretation.js';
 import {attachDecisionValidation} from './decision-validation.js';
 import {attachHeritageDesk} from './heritage-desk.js';
 import {annotationLabels} from './command-evidence.js';
@@ -22,7 +23,7 @@ function replaceMarkup(host,value){
  for(const node of retained)node.remove();
  host.innerHTML=value;host.append(...retained);markupCache.set(host,value);
  for(const [id,open]of disclosures){const node=host.querySelector('#'+CSS.escape(id));if(node)node.open=open;}
- if(focusId)host.querySelector('#'+CSS.escape(focusId))?.focus({preventScroll:true});else if(action)host.querySelector('[data-command="'+CSS.escape(action)+'"]')?.focus({preventScroll:true});
+ if(focus?.isConnected)focus.focus({preventScroll:true});else if(focusId)host.querySelector('#'+CSS.escape(focusId))?.focus({preventScroll:true});else if(action)host.querySelector('[data-command="'+CSS.escape(action)+'"]')?.focus({preventScroll:true});
 }
 document.documentElement.classList.add('command-center');
 const home=$('view-dashboard'),lead=$('evoDeskLead');
@@ -48,7 +49,7 @@ const originalRail=$('proTerminal').querySelector('.pro-research-rail');original
 const chart=THNResearch.chart,canvas=$('qCandles'),overlay=document.createElementNS('http://www.w3.org/2000/svg','svg');overlay.id='commandOverlay';overlay.setAttribute('aria-hidden','true');canvas.parentElement.append(overlay);let annotations=true,coordinates=[];
 const legend=document.createElement('details');legend.id='commandLegend';legend.className='command-legend';legend.innerHTML='<summary id="commandLegendTitle"></summary><div id="commandLegendItems"></div>';canvas.closest('.q-canvas-shell').after(legend);
 const feed=document.createElement('p');feed.id='commandFeedNote';feed.className='command-feed-note';$('proTerminal').querySelector('.pro-terminal-head').after(feed);
-function state(){const confidence=THNConfidence.review();let plan=null;try{plan=THNDecision.snapshot().plan;}catch{}return commandAssessment({context:THNContext.get(),series:THNResearch.series(),analysis:confidence.analysis,brief:THNDecision.brief(),catalog:THNMarketTerminal.catalog(),plan,evaluation:THNResearch.evaluation?.(),evaluationState:THNResearch.evaluationState?.(),review:THNIntelligence.result(),reviewLanguage:THNIntelligence.state().language,language:document.documentElement.lang,busy:$('analyzeBtn').disabled||THNIntelligence.state().busy||$('evoRunDesk').disabled});}
+function state(){const confidence=THNConfidence.review();let plan=null;try{plan=THNDecision.snapshot().plan;}catch{}return commandAssessment({context:THNContext.get(),series:THNResearch.series(),analysis:confidence.analysis,brief:THNDecision.brief(),catalog:THNMarketTerminal.catalog(),plan,evaluation:THNResearch.evaluation?.(),evaluationState:THNResearch.evaluationState?.(),review:THNIntelligence.view().result,reviewLanguage:THNIntelligence.state().language,language:document.documentElement.lang,busy:$('analyzeBtn').disabled||THNIntelligence.state().busy||$('evoRunDesk').disabled});}
 function place(){
  const active=home.classList.contains('view-active');
  if(active&&$('tradeToast')?.dataset.kind==='research-signal')hideTradeToast();
@@ -130,4 +131,4 @@ new MutationObserver(schedule).observe(document.documentElement,{attributes:true
 document.addEventListener('visibilitychange',schedule);window.addEventListener('focus',schedule);
 matchMedia('(max-width:900px)').addEventListener('change',schedule);
 new MutationObserver(schedule).observe($('analyzeBtn'),{attributes:true,attributeFilter:['disabled']});
-attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();attachDecisionValidation();render();THNResearch.chart.draw();
+attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();attachDecisionValidation();attachCommandInterpretation();render();THNResearch.chart.draw();

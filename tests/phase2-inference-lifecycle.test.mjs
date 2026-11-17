@@ -91,3 +91,38 @@ test('instruction takeover and execution-only question never receive generated t
  const e=await interpretVerifiedEvidence({snapshot:s,question:'Execute order now',provider:prompt,now});
  assert.equal(e.method,'deterministic');assert.equal(calls,1);
 });
+
+test('a provider ignoring cancellation is interrupted without waiting for its response',async()=>{
+ const ctrl=new AbortController();let providerSignal;
+ const task=go(snapshot(),async(_s,_q,options)=>{providerSignal=options.signal;return new Promise(()=>{});},{signal:ctrl.signal});
+ ctrl.abort();await assert.rejects(task,{name:'AbortError'});assert.equal(providerSignal.aborted,true);
+});
+test('bounded deadline aborts an uncooperative provider and retains the deterministic evidence',async()=>{
+ let providerSignal;const s=snapshot();
+ const result=await go(s,async(_s,_q,options)=>{providerSignal=options.signal;return new Promise(()=>{});},{timeoutMs:10});
+ assert.equal(result.method,'deterministic');assert.equal(result.generation,null);assert.equal(providerSignal.aborted,true);
+ assert.equal(result.snapshot.id,s.id);assert.equal(result.financialExecution,false);
+});
+test('provider cannot mutate the evidence copy or the authoritative caller record',async()=>{
+ const s=snapshot(),original=JSON.stringify(s);
+ const result=await go(s,async evidence=>{evidence.refs[0].inputs.close=900;return generated(evidence)});
+ assert.equal(result.method,'deterministic');assert.equal(JSON.stringify(s),original);
+});
+test('deleted and expired conversations reject late interpretations and release busy state',async()=>{
+ const {createConversations}=await import('../server/intelligence-conversation.js');
+ for(const expire of [false,true]){
+  const s=snapshot();let release,calls=0,clock=now;
+  const provider=async()=>{calls++;await new Promise(resolve=>release=resolve);return generated(s)};
+  provider.stats=()=>({modelCalls:calls});
+  const svc=createConversations({provider,now:()=>clock,ttl:100});
+  const input={symbol:s.symbol,interval:s.interval,expectedHash:s.selectedHash,question:'Analyze EURUSD'};
+  const id=svc.start(s,input),pending=svc.respond(id,input);
+  if(expire)clock+=101;else svc.remove(id);
+  release();await assert.rejects(pending,error=>error.status===409);assert.equal(svc.count(),0);
+ }
+});
+test('evidence aging while a provider runs cannot become accepted generation',async()=>{
+ const s=snapshot();let clock=now;
+ const result=await go(s,async()=>{clock+=24*3600000;return generated(s)},{now:()=>clock});
+ assert.equal(result.method,'deterministic');assert.equal(result.generation,null);
+});

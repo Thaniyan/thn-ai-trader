@@ -107,3 +107,17 @@ inside the BUY/SELL/WAIT Decision Center. Reuse the single original evaluator,
 results, risk and Library owners; no invented per-trade probability or formula
 changes. Retain all42 existing browser suites and add focused lifecycle/EN/AR
 coverage. Continue existing PR20; no main merge or Production deployment.
+
+## Owner Phase2 interpretation integration — 2026-11-17
+
+Continue existing PR #23 / feature/ai-evidence-interpreter-phase2-20261116,
+from fbc8f67013026d5fe0dade7455fab662835077c8 on released main d75dc60.
+Reuse the original assistant and strict evidence contracts. Fix instrument-switch
+withdrawal and asynchronous interpretation lifecycle; integrate EN/AR source-linked
+explanations into the existing Command Center. Model fixtures are offline mocks,
+never claims of verified installed inference. Preserve deterministic decisions,
+all six frozen numerical files and every financial/security restriction. Original
+coverage remains mandatory; Heritage checks withdrawal at the synchronous context
+boundary and additionally verifies any subsequently completed BTCUSD candidate.
+Push only this existing development branch after all local gates pass. Do not
+merge main, deploy Production, enable hosted/paid AI or real/paper execution.

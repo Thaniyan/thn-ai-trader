@@ -49,3 +49,70 @@ Use exact JSON fixtures for bullish/bearish/mixed/WAIT and EN/AR and explicitly 
 **P2.4:** choose hosted design and budget/privacy/security **only after** separately explicit owner approval; eventual roll-out behind an off-by-default flag and exact-release acceptance.
 
 **Not included:** PR #17, Issue #18 paper durability, trading execution or production model activation.
+
+## P2.2 integrated lifecycle and Command Center — 2026-11-17 candidate
+
+The Command Center's **Evidence interpretation** action opens research details
+without leaving the main page. Its review delegates to the **existing** Research
+Assistant; it does not introduce a second model client, provider, conversation
+store, financial engine or signal policy. The original assistant remains available
+for questions, saved evidence and independently authorized local runtime settings.
+
+The projection presents the frozen symbol/timeframe, review time, method, opposing
+directional hypotheses, source observations, dataset identities and uncertainty.
+Upward and downward observations are labeled by thesis rather than flattening
+specialist lists: a bullish observation opposing the bearish thesis must not be
+misrepresented as opposing the bullish thesis. Native disclosures keep original
+chart visibility and the adjacent hypothetical Trade Ticket unchanged. Source
+buttons open the recorded reference and move keyboard focus; Escape restores it.
+
+Live response admission reuses `cleanCommittee` and strict `validateGeneration`.
+Unexpected model responses to deterministic requests, fabricated facts, mismatched
+model identities, instrument/timeframe/hash changes and imported/unverified current
+claims fail closed. Context, assumptions, language and evidence-age changes
+withdraw the current projection. Failed, cancelled and pending requests do not
+present a retained answer as the new response. Current-chart actions explicitly leave a saved assistant selection before reviewing
+the chart; the full-review and question handoffs share that same owner boundary.
+Conversation history and saved
+records are preserved; they are not silently reevaluated.
+
+The provider boundary uses a frozen private evidence copy, bounded request deadline
+and independent cancellation race. A provider ignoring its abort signal cannot
+keep the assistant busy indefinitely or publish a late result. Expired/deleted
+conversations reject late responses and release busy state. Structured facts must
+match recorded references; model prose remains explicitly unverified. No provider
+was installed, connected or activated. The generated-response browser path uses
+an explicitly labeled offline mock only.
+
+### Heritage investigation
+
+The unmodified browser suite failed locally at the BTCUSD candidate assertion.
+Instrument-event diagnostics captured `candidate: null` while the old level
+explanation still existed at `thn:context`; its removal was deferred to the next
+animation frame. The production fix withdraws that explanation and its description
+references **synchronously** on context/dataset changes; expensive full rendering
+remains coalesced. It changes no candidate eligibility or financial calculation.
+
+There is also a test synchronization defect: the positive analysis fixture applies
+to BTCUSD as well as EURUSD. An assertion made after separate Playwright round
+trips can race a newly completed, valid BTCUSD analysis. The regression now records
+the candidate and level explanation at the actual context event and preserves the
+null/absent withdrawal assertions there. It additionally waits for completed BTCUSD
+research and verifies any new candidate against its instrument, timeframe, dataset
+and chart. No sleeps, thresholds, timeouts, assertions or financial guards were
+relaxed to prevent new valid research from appearing.
+
+### Verification and review boundary
+
+`tests/browser_phase2_interpretation.py` extends the original browser roster with
+20 responsive EN/AR/theme + axe profiles, reference focus/Escape, cancellation,
+language/hash/instrument late-response rejection, strict simulated generation,
+fabricated-claim rejection, saved-to-current handoffs through both review actions,
+retained-panel focus and original Library/plan immutability. Offline unit
+coverage adds uncooperative-provider deadlines/cancellation, immutable evidence,
+conversation expiry/deletion and client admission/withdrawal.
+
+All original suites remain mandatory. Exact final gate counts, matched screenshots,
+commit identity, hosted job results and Preview identity are reported separately
+for the completed candidate. This document does not authorize release to main or
+Production or claim that an actual model has been run.

@@ -4,7 +4,7 @@ import {validateLocalSnapshot} from './intelligence-local.js';
 import {interpretVerifiedEvidence} from './intelligence-inference-lifecycle.js';
 const freeze=v=>{if(v&&typeof v==='object'){for(const child of Object.values(v))freeze(child);Object.freeze(v);}return v;};
 const contextKey=input=>JSON.stringify({symbol:input.symbol,interval:input.interval,expectedHash:input.expectedHash,hypotheticalPlan:input.hypotheticalPlan,evaluationParameters:input.evaluationParameters,trainFraction:input.trainFraction,minimumTrades:input.minimumTrades});
-export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessions=8,maxTurns=6}={}){
+export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessions=8,maxTurns=6,timeoutMs=12000}={}){
  const sessions=new Map();
  function expire(){for(const [id,s] of sessions)if(now()-s.createdAt>=ttl&&!s.busy)sessions.delete(id);}
  function start(snapshot,input){expire();validateLocalSnapshot(snapshot,now());if(sessions.size>=maxSessions)throw Object.assign(Error('Conversation capacity reached'),{status:429});const id=crypto.randomBytes(24).toString('hex');sessions.set(id,{snapshot:freeze(structuredClone(snapshot)),context:contextKey(input),history:[],turns:0,busy:false,createdAt:now()});return id;}
@@ -16,14 +16,15 @@ export function createConversations({provider,now=Date.now,ttl=10*60000,maxSessi
   s.busy=true;s.turns++;const before=provider.stats().modelCalls;
   try{
    const interpreted=await interpretVerifiedEvidence({snapshot:s.snapshot,question:input.question,provider,
-    authorization,signal,history:s.history.slice(-4),language:input.language,now,currentSnapshotId:()=>s.snapshot.id});
+    authorization,signal,history:s.history.slice(-4),language:input.language,now,timeoutMs,currentSnapshotId:()=>sessions.get(id)===s&&now()-s.createdAt<ttl?s.snapshot.id:null});
+   if(sessions.get(id)!==s||now()-s.createdAt>=ttl)throw Object.assign(Error('Conversation expired; start with new evidence'),{status:409});
    if(interpreted.method==='llm-assisted'){
     result.generation=interpreted.generation;result.method='llm-assisted';result.summary=interpreted.summary;
     result.model=interpreted.model;result.provider=interpreted.provider;
     s.history.push({role:'user',content:input.question},{role:'assistant',content:result.summary});
     s.history=s.history.slice(-4);
    }else result.providerFallback=interpreted.providerFallback;
-  }catch(error){if(signal?.aborted)throw error;result.providerFallback='Generative answer unavailable or rejected; deterministic evidence retained.';}
+  }catch(error){if(signal?.aborted||error.status===409)throw error;result.providerFallback='Generative answer unavailable or rejected; deterministic evidence retained.';}
   finally{result.modelCalls=provider.stats().modelCalls-before;s.busy=false;}
   return {...result,conversation:{id,snapshotId:s.snapshot.id,turn:s.turns,maxTurns,expiresAt:s.createdAt+ttl,debateRounds:1}};
  }

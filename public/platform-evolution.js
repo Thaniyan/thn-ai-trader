@@ -69,7 +69,7 @@ $('evoRunDesk').onclick=async(event)=>{
   const priorAnalysis=typeof currentAnalysis==='undefined'?null:currentAnalysis;$('symbolInput').value=c.symbol;$('timeframe').value=({'15m':'scalp','1h':'intraday','1d':'swing'})[c.interval];await analyze();
   if(run!==deskRun||THNContext.get().symbol!==c.symbol||THNContext.get().interval!==c.interval)return;
   if(currentAnalysis===priorAnalysis||!analysisReady(THNContext.get()))throw Error('Analysis not ready');
-  const signature=deskSignature(),priorReview=THNIntelligence.result();deskPinnedSignature=signature;await THNIntelligence.ask(tr('Review the market evidence, challenge the analysis and explain risk','راجع أدلة السوق وتحد التحليل واشرح المخاطر'));
+  const signature=deskSignature(),priorReview=THNIntelligence.result();deskPinnedSignature=signature;await THNIntelligence.reviewCurrent(tr('Review the market evidence, challenge the analysis and explain risk','راجع أدلة السوق وتحد التحليل واشرح المخاطر'));
   if(run!==deskRun||signature!==deskSignature())return;
   if(THNIntelligence.result()===priorReview)throw Error('Review unavailable');
   deskStatus=['Review complete. Inspect the chart, counter-evidence and hypothetical scenarios below.','اكتملت المراجعة. افحص الرسم والأدلة المعارضة والسيناريوهات الافتراضية أدناه.'];if($('view-dashboard').classList.contains('view-active')&&!event?.inPlace){const disclosure=deskReview.closest('details');if(disclosure)disclosure.open=true;deskReview.scrollIntoView({block:'start',behavior:'instant'});deskReview.focus({preventScroll:true});}

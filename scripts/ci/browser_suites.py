@@ -55,3 +55,13 @@ def select_decision_validation_suites(env):
         return list(DECISION_VALIDATION_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(DECISION_VALIDATION_SUITES) if position % count == index]
+
+# Phase2 assistant lifecycle acceptance is additive to every original suite.
+PHASE2_SUITES = ['phase2_interpretation']
+
+def select_phase2_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(PHASE2_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(PHASE2_SUITES) if position % count == index]
