@@ -5,7 +5,7 @@ import {interpretVerifiedEvidence} from '../server/intelligence-inference-lifecy
 import {evidenceState} from '../public/intelligence-generation.js';
 const now=1800000000000;
 function snapshot(){
- const brief={symbol:'EURUSD',interval:'1h',asOf:now,selected:{provenance:{hash:'a'.repeat(64)},events:[]},
+ const brief={symbol:'EURUSD',interval:'1h',asOf:now,selected:{provenance:{hash:'2'.repeat(64)},events:[]},
  frames:['15m','1h','1d'].map((interval,i)=>({interval,available:true,trend:i===2?'bearish':'bullish',close:1.1,provenance:{source:'OFFLINE TEST',providerSymbol:'EURUSD=X',hash:String(i+1).repeat(64),lastTime:now-86400000,status:'recent'}}))};
  const s=evidenceSnapshot(brief);assert.equal(s.fresh,true);return s;
 }
