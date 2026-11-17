@@ -40,7 +40,7 @@ test('rejected fixture model response emits no prose, secrets or fake success',a
  let calls=0;
  const result=await runPilot({mode:'--run',model:'fixture:local',language:'ar',
   now:()=>1800000000000,
-  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0'},
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000'},
   inspect:async()=>({model:'fixture:local',digest:'c'.repeat(64),sizeBytes:1400000000}),
   generate:async()=>{calls++;throw Error('private-fixture inaccessible')}});
  assert.equal(calls,1);assert.equal(result.accepted,false);assert.equal(result.fallback,true);
