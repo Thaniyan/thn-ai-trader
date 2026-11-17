@@ -76,3 +76,21 @@ A single successful response establishes actual inference but **does not** estab
 
 ## Safe failure diagnosis for local pilot
 The `--run` output now includes a fixed `failureCode` when strict interpretation falls back. Codes are `TIMEOUT` (local or outer deadline), `CONTEXT_LIMIT` (bounded context or reservation), `INVALID_JSON`, `INVALID_SCHEMA`, `UNSUPPORTED_CLAIM` (unsourced data or prohibited prose), `MODEL_RESPONSE_INVALID`, `MODEL_UNAVAILABLE`, `CONTEXT_CHANGED`, or `UNKNOWN`. Only these enums are emitted; raw model responses, private tokens, and arbitrary error messages remain suppressed. A code is a **failure category, not evidence of model quality**. Do not loosen the validation or increase the 12-second local timeout to make a failed model pass.
+
+## P2.3b — Bounded local warm-model comparison (2026-11-17)
+
+**Observed on the owner's Windows workstation:** simple `/api/generate` request with `keep_alive:'5m'` measured 14.67s cold (5.10s load, 9.03s generation, 133 output tokens) and 6.58s warm (0.02s load, 6.46s generation, 99 output tokens). These measurements are **not** the THN structured-evidence task, and neither accuracy nor passing the 12s THN deadline is established. The earlier THN pilot still returned `TIMEOUT` and deterministic fallback.
+
+Only the isolated `scripts/pilot-local-ai.mjs --run` path can opt in to keeping loaded weights briefly via a new terminal-only `THN_AI_PILOT_KEEP_ALIVE=5m` variable. Omitting it still sends `keep_alive:0`; invalid values are rejected. The provider's 12s local timeout, independent 12s interpretation deadline, strict source/citation validation, hosted disable, zero trade execution, token reservation bounds, exact model metadata checks and safety fallback remain unchanged. The CLI reports `elapsedMs` for the complete attempt **even on rejection**, so the measured failure can be distinguished from an accepted response's `latencyMs`. Neither raw generated text nor secrets are printed.
+
+Read-only model warm-up is not performed by this code and no weights are downloaded. For a controlled comparison, the operator can explicitly load the installed model using its local, literal-loopback API and then run the pilot immediately. Example *from an existing Windows PowerShell session where local pilot opt-in/authentication already exist*:
+
+```powershell
+$env:THN_AI_PILOT_KEEP_ALIVE = '5m'
+# Uses existing local Ollama installation; this is a separate explicit warm-up request.
+$warm = @{model='qwen3:1.7b';keep_alive='5m'} | ConvertTo-Json
+Invoke-RestMethod -Uri 'http://127.0.0.1:11434/api/generate' -Method Post -ContentType 'application/json' -Body $warm | Out-Null
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en
+```
+
+A warm run **can still return `TIMEOUT`** on actual cited technical analysis. Do not increase the deadline or accept incomplete/unsupported answers to make a benchmark pass. Compare `elapsedMs`, `accepted`, `failureCode`, `matchedCitations`, and `matchedClaims` to the previously measured cold behavior. The broader product's provider path retains `keep_alive:0` by default and Production is not activated.

@@ -50,8 +50,10 @@ export function validateLocalSnapshot(snapshot,now=Date.now()){
  if(snapshot?.schema!=='THN-EVIDENCE-7'||!/^[a-f0-9]{64}$/.test(id)||crypto.createHash('sha256').update(JSON.stringify(material)).digest('hex')!==id||!snapshot.fresh||snapshot.asOf>now||now-snapshot.asOf>10*60000||!snapshot.refs.length||snapshot.refs.some(r=>!Number.isFinite(r.availableAt)||r.availableAt>snapshot.asOf)||snapshot.refs.find(r=>r.interval===snapshot.interval)?.datasetHash!==snapshot.selectedHash)throw Error('Fresh immutable server evidence required');
  return snapshot;
 }
-export async function generateLocal(env,snapshot,question,{authorization,signal,history=[],transport=loopbackJSON,onRequest=()=>{},language='en',onModelCall=()=>{}}={}){
+export async function generateLocal(env,snapshot,question,{authorization,signal,history=[],transport=loopbackJSON,onRequest=()=>{},language='en',onModelCall=()=>{},pilotKeepAlive=0}={}){
  const config=localConfiguration(env);if(!config||!authenticated(authorization,env))throw Error('Local provider unavailable or unauthenticated');validateLocalSnapshot(snapshot);
+ // Off by default. Only a caller explicitly requesting the isolated pilot may retain weights briefly.
+ if(pilotKeepAlive!==0&&pilotKeepAlive!=='5m')throw Error('Invalid local pilot keep-alive');
  if(conflictsWithInstrument(question,snapshot.symbol)||routeQuestion(question).join(',')==='risk')throw Error('Conflicting context or execution request');
  if([env.THN_AI_AUTH_TOKEN,env.OPENAI_API_KEY].filter(v=>v&&v.length>=8).some(v=>question.includes(v)||JSON.stringify(history).includes(v)))throw Error('Credential-like input rejected');
  const roles=routeQuestion(question),evidence={snapshotId:snapshot.id,symbol:snapshot.symbol,interval:snapshot.interval,asOf:snapshot.asOf,refs:snapshot.refs,missing:snapshot.missing,limitations:snapshot.limitations,evidenceState:evidenceState(snapshot)};
@@ -60,7 +62,7 @@ export async function generateLocal(env,snapshot,question,{authorization,signal,
  const reservation=Buffer.byteLength(JSON.stringify({messages,format:GENERATION_FORMAT}))+512+Number(env.THN_AI_MAX_OUTPUT_TOKENS);if(reservation>config.context)throw Error('Local context window exceeded');
  const timeout=Number(env.THN_AI_TIMEOUT_MS||12000);if(!Number.isInteger(timeout)||timeout<100||timeout>12000)throw Error('Invalid local timeout');
  const timerSignal=AbortSignal.timeout(timeout),bounded=signal?AbortSignal.any([signal,timerSignal]):timerSignal;bounded.throwIfAborted();onRequest(reservation);
- const start=performance.now();const operation=(async()=>{await inspectLocalModel(env,{transport,signal:bounded});bounded.throwIfAborted();onModelCall();return transport(config.endpoint,'/api/chat',{signal:bounded,timeout,body:{model:env.THN_AI_MODEL,messages,format:GENERATION_FORMAT,stream:false,keep_alive:0,options:{temperature:0.2,num_predict:Number(env.THN_AI_MAX_OUTPUT_TOKENS),num_ctx:config.context,num_thread:1}}});})();
+ const start=performance.now();const operation=(async()=>{await inspectLocalModel(env,{transport,signal:bounded});bounded.throwIfAborted();onModelCall();return transport(config.endpoint,'/api/chat',{signal:bounded,timeout,body:{model:env.THN_AI_MODEL,messages,format:GENERATION_FORMAT,stream:false,keep_alive:pilotKeepAlive,options:{temperature:0.2,num_predict:Number(env.THN_AI_MAX_OUTPUT_TOKENS),num_ctx:config.context,num_thread:1}}});})();
  let abort;const interrupted=new Promise((_,reject)=>{abort=()=>reject(bounded.reason||Error('Aborted'));bounded.addEventListener('abort',abort,{once:true});});
  let data;try{data=await Promise.race([operation,interrupted]);}finally{bounded.removeEventListener('abort',abort);}bounded.throwIfAborted();
  signal?.throwIfAborted();if(data.done!==true||data.message?.role!=='assistant'||data.message.tool_calls?.length||data.model!==env.THN_AI_MODEL||typeof data.message.content!=='string'||data.message.content.length>12000)throw Error('Incomplete, mismatched or tool-calling model response');

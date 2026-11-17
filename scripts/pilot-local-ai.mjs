@@ -30,18 +30,24 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
   sizeBytes:installed.sizeBytes,generationTested:false,syntheticOnly:true,financialExecution:false};
  if(mode==='--check')return reference;
  if(env.THN_LOCAL_PAPER==='1'||!providerAvailability(config).available||providerAvailability(config).provider!=='ollama')throw Error('Explicit local provider authorization, budgets and paper-off required');
+ if(env.THN_AI_PILOT_KEEP_ALIVE!==undefined&&!['0','5m'].includes(env.THN_AI_PILOT_KEEP_ALIVE))throw Error('Invalid local pilot keep-alive');
+ const pilotKeepAlive=env.THN_AI_PILOT_KEEP_ALIVE==='5m'?'5m':0;
  const snapshot=syntheticPilotSnapshot(now());
  const question=language==='ar'?'حلل EURUSD':'Analyze EURUSD';
  let modelAttempts=0,failureCode=null;
+ const started=performance.now();
  const answer=await interpretVerifiedEvidence({snapshot,question,language,now,
   provider:async(s,q,options)=>{modelAttempts++;
    return generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
+    pilotKeepAlive,
     onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');}});
   },
   currentSnapshotId:()=>snapshot.id,
   onDiagnostic:code=>{failureCode=code;}});
  return {...reference,generationTested:modelAttempts>0,accepted:answer.method==='llm-assisted',fallback:answer.method!=='llm-assisted',
    failureCode:answer.method==='llm-assisted'?null:(failureCode||'UNKNOWN'),
+   elapsedMs:Math.max(0,Math.min(30000,Math.round(performance.now()-started))),
+   keepAlive:pilotKeepAlive,
    snapshotId:snapshot.id,sourceIds:snapshot.refs.map(r=>r.id),
    latencyMs:answer.generation?.latencyMs??null,matchedCitations:answer.generation?.citations?.length??0,
    matchedClaims:answer.generation?.claims?.length??0,

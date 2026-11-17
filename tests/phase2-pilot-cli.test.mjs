@@ -115,3 +115,33 @@ test('safe local pilot codes distinguish timeout, context, malformed JSON and fa
   assert.equal(JSON.stringify(result).includes(error.message),false);
  }
 });
+
+test('local pilot retains model for 5m only on explicit opt-in, leaves default at zero',async()=>{
+ const env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+  THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000'};
+ const inspect=async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000});
+ const options=[],generate=async(_env,_snapshot,_question,optionsArg)=>{
+  options.push(optionsArg);throw Error('Local provider timeout');
+ };
+ for(const [keepAlive,expected] of [[undefined,0],['5m','5m']]){
+  const result=await runPilot({mode:'--run',model:'fixture:local',language:'en',
+   now:()=>1800000000000,env:{...env,...(keepAlive?{THN_AI_PILOT_KEEP_ALIVE:keepAlive}:{})},
+   inspect,generate});
+  assert.equal(result.keepAlive,expected);
+  assert.equal(options.at(-1).pilotKeepAlive,expected);
+  assert.equal(result.failureCode,'TIMEOUT');
+  assert.equal(result.accepted,false);assert.equal(result.fallback,true);
+  assert.ok(Number.isInteger(result.elapsedMs)&&result.elapsedMs>=0&&result.elapsedMs<=30000);
+ }
+ assert.equal(options.length,2);
+});
+test('invalid warm-keep-alive input is refused before any generation request',async()=>{
+ let calls=0;
+ await assert.rejects(runPilot({mode:'--run',model:'fixture:local',language:'en',
+  env:{THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:'private-fixture',THN_LOCAL_PAPER:'0',
+  THN_AI_MAX_REQUESTS:'2',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'10000',
+  THN_AI_PILOT_KEEP_ALIVE:'24h'},
+  inspect:async()=>({model:'fixture:local',digest:'e'.repeat(64),sizeBytes:1400000000}),
+  generate:async()=>{calls++;}}));
+ assert.equal(calls,0);
+});
