@@ -120,6 +120,8 @@ identity, exact copied levels, viewport geometry and public-content fingerprints
 The final commit must match the tested/captured source fingerprint; timestamps in
 the application clock naturally differ. No screenshot was drawn or fabricated.
 
+Twelve additional browser cases verify genuinely rendered DejaVu faces through Chromium CDP, full desktop tickets and Eligible phone-chart visibility. All36 original Day5 profiles and every pre-existing assertion remain mandatory.
+
 Ten new unit/regression cases cover labels, missing/mismatched source identity,
 original recommendation/record immutability, unchanged scoring during missing
 frames, source-bound model projection, and45-suite coverage. Day5 browser
@@ -164,6 +166,41 @@ The source control now explicitly spans both quote columns; the price remains
 inside its own quote. Day5's36 profiles additionally assert price containment and
 non-intersection with the mode controls. This was a visual-review finding, not a
 false claim that the earlier test suite detected it.
+
+## Hosted candidate70021f3 and font-hardening follow-up
+
+The first Day5 candidate `70021f39c58eae510ea21842ef7e984f242aa4dc`
+passed all local gates and was normally pushed to this existing draft PR. Both
+hosted source/test and audit jobs passed, but both browser shards failed:
+[push44360014930](https://github.com/Thaniyan/thn-ai-trader/actions/runs/44360014930)
+and [PR44360034615](https://github.com/Thaniyan/thn-ai-trader/actions/runs/44360034615).
+The public annotations expose only browser-step exit1; detailed logs require
+sign-in and the supported GitHub API returns Forbidden here. Exact hosted
+tracebacks were requested; no inaccessible traceback is invented below.
+
+The Cloud workspace's default system font is OpenAI Sans, unlike the pinned CI
+font set. The [process-scoped diagnostic configuration](evidence/day5/dejavu-diagnostic-fontconfig.xml) includes the complete system font configuration and only changes the generic default for the launched QA process; it is not applied to the application or hosted CI. A process-scoped DejaVu diagnostic reproduced two actual regressions
+with unchanged assertions: the original institutional test's1024px ticket ended
+at1002.02px (limit1000), and Day5's390px Eligible chart began at731.52px
+(limit720). This is confirmed local evidence, not a claim to have read hosted logs.
+The pinned CI Docker image could not be pulled locally (`Forbidden`); no internet
+policy, protection, dependency, font package or CI timeout was changed.
+
+The activation label is now the clearer `Activation rule`, with more width for
+its complete recorded condition/invalidation. All financial cautions remain
+unchanged. The full Eligible phone heading uses22px typography; research/model
+qualifiers share a proportionate row rather than forcing needless wrapping.
+The DejaVu Eligible chart now begins at696.92px EN and677.42px AR. No content is
+hidden and none of the original thresholds/assertions is reduced.
+
+Eight desktop and four Eligible phone regression cases verify the **actual**
+DejaVu platform fonts via CDP, unchanged records, price containment, complete
+tickets, chart placement and axe results. All four native affected suites and the complete restarted45-suite
+DejaVu-profile gate passed against the corrected source, including all12
+actual-font cases. The Cloud reconnect interrupted an earlier partial run;
+none of its partial results was substituted for the successful full rerun. New exact-commit hosted
+results/Preview are reported separately after the normal corrective push.
+Do not treat the earlier successful deployment as a successful browser gate.
 
 ## Blockers and Day 6 priorities
 

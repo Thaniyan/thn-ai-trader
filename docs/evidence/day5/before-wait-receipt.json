@@ -1,7 +1,7 @@
 {
   "baselineSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
   "source": "exact baseline public files",
-  "sourceHEAD": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
+  "sourceHEAD": "70021f39c58eae510ea21842ef7e984f242aa4dc",
   "publicTreeSHA256": "5e9e7ec3bef458486f67b594e8397e34027ebbb167841027f5139e2640e60998",
   "publicFileSHA256": {
     "analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
@@ -138,8 +138,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -195,8 +195,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -252,8 +252,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -309,8 +309,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -366,8 +366,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -423,8 +423,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,

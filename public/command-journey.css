@@ -128,7 +128,7 @@
  .heritage-home #view-dashboard #commandSetup>:not(button){grid-column:1/-1}
  .heritage-home #view-dashboard #commandSetup>button{width:100%;min-width:0;margin:0;min-height:44px;padding:4px;font-size:11px;line-height:1.4;white-space:normal}
  .heritage-home #view-dashboard #commandSetup h2{margin-block:4px}
- .heritage-home #view-dashboard #commandSetup .precision-conditions>div{grid-template-columns:minmax(0,.35fr) minmax(0,.65fr)}
+ .heritage-home #view-dashboard #commandSetup .precision-conditions>div{grid-template-columns:minmax(0,.3fr) minmax(0,.7fr)}
  .heritage-home #view-dashboard #commandSetup #precisionLevelRationale{margin-block:4px 0}
  .heritage-home #view-dashboard #commandSetup #precisionSetupDetail .precision-conditions{margin-block:4px}
 }
@@ -151,3 +151,12 @@
  .heritage-home #view-dashboard #commandSetup #precisionSetupDetail .precision-conditions{margin-block:2px}
  .heritage-home #view-dashboard #commandSetup #precisionSetupDetail .precision-conditions>div{padding-block:3px}
 }
+/* Keep the full research qualifier and model status together. A long Eligible
+   heading must not consume an extra phone row when system fonts are wider. */
+@media(min-width:281px) and (max-width:900px){
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible]{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] #precisionStatus{grid-column:1;grid-row:3}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] #heritageMethod{grid-column:2;grid-row:3}
+ .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] #heritageDecisionConfidence{grid-row:4}
+}
+@media(min-width:351px) and (max-width:900px){.heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] h1{font-size:22px}}

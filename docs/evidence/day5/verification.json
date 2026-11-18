@@ -1,6 +1,6 @@
 {
   "scope": "Final packaged candidate; offline synthetic providers/model protocol fixtures. Not real-market/model or Production qualification.",
-  "checkedAtUTC": "2026-11-18T17:31:44.933956+00:00",
+  "checkedAtUTC": "2026-11-18T19:14:19.607519+00:00",
   "baseSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
   "branch": "feature/ai-evidence-interpreter-phase2-20261116",
   "releaseState": "DRAFT owner acceptance only; no main/Production/financial execution authorization",
@@ -16,52 +16,52 @@
     {
       "gate": "build",
       "exit": 0,
-      "seconds": 2.67
+      "seconds": 2.7
     },
     {
       "gate": "lint",
       "exit": 0,
-      "seconds": 2.57
+      "seconds": 2.63
     },
     {
       "gate": "core",
       "exit": 0,
-      "seconds": 25.5
+      "seconds": 23.35
     },
     {
       "gate": "system",
       "exit": 0,
-      "seconds": 0.67
+      "seconds": 0.45
     },
     {
       "gate": "security",
       "exit": 0,
-      "seconds": 2.54
+      "seconds": 1.73
     },
     {
       "gate": "package",
       "exit": 0,
-      "seconds": 0.24
+      "seconds": 0.22
     },
     {
       "gate": "workflow",
       "exit": 0,
-      "seconds": 0.98
+      "seconds": 0.92
     },
     {
       "gate": "dependencies",
       "exit": 0,
-      "seconds": 0.33
+      "seconds": 0.27
     },
     {
       "gate": "integrity",
       "exit": 0,
-      "seconds": 29.77
+      "seconds": 23.73
     },
     {
       "gate": "git-fsck",
       "exit": 0,
-      "seconds": 3.11
+      "seconds": 2.74
     }
   ],
   "counts": {
@@ -70,6 +70,7 @@
     "system": 10,
     "browserSuites": 45,
     "newDay5Profiles": 36,
+    "additionalRenderedFontProfiles": 12,
     "originalTestFilesUnchanged": 109
   },
   "browser": {
@@ -83,326 +84,327 @@
         "exit": 0
       }
     ],
-    "seconds": 1425.16
+    "seconds": 1345.09,
+    "note": "Full original gate restarted after Cloud reconnect; interrupted partial suites are not counted."
   },
   "suites": [
     {
       "suite": "workstation",
       "shard": 0,
       "result": "PASS",
-      "seconds": 36.0,
+      "seconds": 36.2,
       "logSHA256": "78a992e9609938420569feca79d824222aeb6619b976905198017c82c83fdf1d"
     },
     {
       "suite": "research_outage",
       "shard": 0,
       "result": "PASS",
-      "seconds": 4.62,
+      "seconds": 4.14,
       "logSHA256": "b9a43ee71b4e944c4c8415bd0de72c20bfd3a642cc591218acd010b1d0386e76"
     },
     {
       "suite": "decision",
       "shard": 0,
       "result": "PASS",
-      "seconds": 54.44,
-      "logSHA256": "b053bdeed8ec82eb980081c6edb61deba206d02df53be7d9f2b782880caa20ec"
+      "seconds": 51.75,
+      "logSHA256": "b328dcacf9216af9693136bde4e577821be7dba41245df1ae489daff8a9359b6"
     },
     {
       "suite": "maturity",
       "shard": 0,
       "result": "PASS",
-      "seconds": 71.09,
-      "logSHA256": "a98317fb9ced642045221b4118ea9949df2c30123adfcec7af7e84dbb89d7a58"
+      "seconds": 65.31,
+      "logSHA256": "63b6044e7dbaee386f999ba76459cd81fe4c81f354bfb297e40817953fd9447a"
     },
     {
       "suite": "intelligence",
       "shard": 0,
       "result": "PASS",
-      "seconds": 36.68,
+      "seconds": 35.19,
       "logSHA256": "7c524b5cb03df8d16960b793906ab95960c17d00172ec21b0b21a8d798c9a08d"
     },
     {
       "suite": "layout",
       "shard": 0,
       "result": "PASS",
-      "seconds": 58.35,
+      "seconds": 52.23,
       "logSHA256": "950aa54d94c62ca056dfc252f5850ade66649bdd4a722494ae0d73da7231dfae"
     },
     {
       "suite": "trust",
       "shard": 0,
       "result": "PASS",
-      "seconds": 57.86,
+      "seconds": 52.4,
       "logSHA256": "7ffcd5df2d14849fa87cd26b1cc43ea1adc9b6576e2456ccbb50420b6447fe97"
     },
     {
       "suite": "journal_lifecycle",
       "shard": 0,
       "result": "PASS",
-      "seconds": 76.09,
-      "logSHA256": "39663ffdb4adc937c73ec03c9f4c5c36341a0aeaab2dead78cc2e76d26d3aaa8"
+      "seconds": 68.48,
+      "logSHA256": "8f015b9d38a500b47cf914d7f6823a667463e0289d2937bca55a4bd455e88d65"
     },
     {
       "suite": "evolution",
       "shard": 0,
       "result": "PASS",
-      "seconds": 93.46,
+      "seconds": 86.66,
       "logSHA256": "2339f91e8bab4cb6fe5da5952d0f0ca8c82cab3ff98a8743c407519d42e88a71"
     },
     {
       "suite": "experience",
       "shard": 0,
       "result": "PASS",
-      "seconds": 86.46,
+      "seconds": 83.47,
       "logSHA256": "b7cb8282f63d15b047138d0369362bd079bc7c28c109d9e1597920540782761b"
     },
     {
       "suite": "recovery",
       "shard": 0,
       "result": "PASS",
-      "seconds": 172.17,
+      "seconds": 162.09,
       "logSHA256": "3dbb67d9c4ff6216f23dec63078ea14dcffd701b204b05654f1e5bc3c29f9c45"
     },
     {
       "suite": "paper_review",
       "shard": 0,
       "result": "PASS",
-      "seconds": 8.96,
+      "seconds": 8.36,
       "logSHA256": "3c08a808bedd85d06c676f7317319d49324c165119bf6787ee234e5dbb6553c0"
     },
     {
       "suite": "broker_workspace",
       "shard": 0,
       "result": "PASS",
-      "seconds": 26.36,
+      "seconds": 23.1,
       "logSHA256": "be602cd1a9b300f7d9e81a09f6f4e1f7f1ae37da4e56d654f800428451b7eda5"
     },
     {
       "suite": "workflow_polish",
       "shard": 0,
       "result": "PASS",
-      "seconds": 82.68,
+      "seconds": 78.6,
       "logSHA256": "1ee69cb9c4edb24784a4660ccdb076f823b0bad5e466ae62bb3aa2674f816411"
     },
     {
       "suite": "confidence",
       "shard": 0,
       "result": "PASS",
-      "seconds": 70.2,
+      "seconds": 59.34,
       "logSHA256": "3b5a1d33daea99528540a8506d9881faa3e59c41d239482e0e84249f7d590cd4"
     },
     {
       "suite": "research_risk",
       "shard": 0,
       "result": "PASS",
-      "seconds": 60.57,
+      "seconds": 56.71,
       "logSHA256": "cb426c19fe18556b2fb48c4456faeb4b88aafe488e81dc9e800260bf3df232e8"
     },
     {
       "suite": "unified_workspace",
       "shard": 0,
       "result": "PASS",
-      "seconds": 108.94,
+      "seconds": 108.34,
       "logSHA256": "087661743f46f29ccf6f0a17e90c93f50a34fd56b1a7c8fa158c8850ab1c5e11"
     },
     {
       "suite": "responsive_fonts",
       "shard": 0,
       "result": "PASS",
-      "seconds": 40.72,
+      "seconds": 41.07,
       "logSHA256": "a9d9edd6f2a40362e66b25d1c2c1695bd881848ca10c0dc5c083a15d3570d9c2"
     },
     {
       "suite": "command_workbench",
       "shard": 0,
       "result": "PASS",
-      "seconds": 36.6,
+      "seconds": 35.59,
       "logSHA256": "9a963c0e4486dd70f369ad37f2ea859d8abe274a31565cade5bac948298b9827"
     },
     {
       "suite": "command_trust",
       "shard": 0,
       "result": "PASS",
-      "seconds": 27.05,
+      "seconds": 24.27,
       "logSHA256": "c73cdeef36c01459b52ca7d476b36c2d07540688218118f82c7416905d656869"
     },
     {
       "suite": "precision",
       "shard": 0,
       "result": "PASS",
-      "seconds": 34.24,
+      "seconds": 31.99,
       "logSHA256": "4a6123333683b1d1cd845927a909a532741142f58831ce6f89709409a4c2d44d"
     },
     {
       "suite": "heritage",
       "shard": 0,
       "result": "PASS",
-      "seconds": 30.5,
+      "seconds": 29.5,
       "logSHA256": "72f638e61eecf97ab9500122d729508f23ba14c98867cdae79da69a73a39a5d5"
     },
     {
       "suite": "decision_validation",
       "shard": 0,
       "result": "PASS",
-      "seconds": 29.99,
+      "seconds": 27.44,
       "logSHA256": "5b974df46c1340aaa8c1505afa33d4b30d6ccc9418c9f739b08a2efd484361e6"
     },
     {
       "suite": "phase2_interpretation",
       "shard": 0,
       "result": "PASS",
-      "seconds": 39.21,
+      "seconds": 38.14,
       "logSHA256": "95dc3623dd76ce602d085b5eea2c1f8e18a619cd72df10a4126dc9b3ae80da5c"
     },
     {
       "suite": "day5",
       "shard": 0,
       "result": "PASS",
-      "seconds": 81.48,
-      "logSHA256": "036a1455f1f3684378b23b5f96ad4d6b27b30011ee0f7573b7f96e0485872be5"
+      "seconds": 84.33,
+      "logSHA256": "ff921e7aab616179862f2f43429890fd7995db7bfc723bcf0c12ccd6f26199cc"
     },
     {
       "suite": "research",
       "shard": 1,
       "result": "PASS",
-      "seconds": 40.0,
-      "logSHA256": "47ebcf84e28b25c1aea10fa1ff08300633f3b38b3ee2125b5130f93336fa4b8a"
+      "seconds": 41.93,
+      "logSHA256": "05c1d7530f409278d7a4520767e1b8432b29fdc38ae58f5339346570d8eaeb60"
     },
     {
       "suite": "quality",
       "shard": 1,
       "result": "PASS",
-      "seconds": 49.07,
-      "logSHA256": "c06daaab7387f3b3d0024245967feed3b7cd42e0e7c30178fe0714d74065f064"
+      "seconds": 38.3,
+      "logSHA256": "1981b6968b6fc2f0db3dd818ba434b29f598ffafb30d97f3fa2f7b3ca7f42f60"
     },
     {
       "suite": "library_reliability",
       "shard": 1,
       "result": "PASS",
-      "seconds": 4.47,
+      "seconds": 4.56,
       "logSHA256": "4f8f4b63d25ba87d31446d06e2a39b8467b4ad06cfe175eae573513e5b67a306"
     },
     {
       "suite": "terminal",
       "shard": 1,
       "result": "PASS",
-      "seconds": 152.62,
-      "logSHA256": "5fe56f92576c94febb59c08c02e80e8b0e074a76bd70b106c6a66f7e8d378e4e"
+      "seconds": 149.28,
+      "logSHA256": "373e91f8d47886e7bb97c37fd14d2ad2d3cc70345d75586b19f9e8065b799f63"
     },
     {
       "suite": "intelligence_memory",
       "shard": 1,
       "result": "PASS",
-      "seconds": 6.5,
+      "seconds": 6.22,
       "logSHA256": "c344306de027fb5ba7b53e27d36191507c1ff38a36b51fe37e747c63491f45a8"
     },
     {
       "suite": "pilot",
       "shard": 1,
       "result": "PASS",
-      "seconds": 25.48,
+      "seconds": 19.67,
       "logSHA256": "368c3b1d2932e88acbd1fa4c44dfd06deaec30855c0215a6376423992c88543c"
     },
     {
       "suite": "professional",
       "shard": 1,
       "result": "PASS",
-      "seconds": 197.93,
+      "seconds": 182.9,
       "logSHA256": "9169e2932276906b17b8ad69a10db4def67a0edb7124241e041df0933e3a428e"
     },
     {
       "suite": "trading_remediation",
       "shard": 1,
       "result": "PASS",
-      "seconds": 77.84,
+      "seconds": 76.87,
       "logSHA256": "7a5d286a9a224d03e979236b309a959d77372cee2c6110a6cfca5f07ca45125e"
     },
     {
       "suite": "consolidation",
       "shard": 1,
       "result": "PASS",
-      "seconds": 34.79,
+      "seconds": 34.09,
       "logSHA256": "0d3a9a857a6e55ca50f5e32580483a364e03fd72307fab2979fec6744b1faf70"
     },
     {
       "suite": "consistency",
       "shard": 1,
       "result": "PASS",
-      "seconds": 40.01,
+      "seconds": 38.79,
       "logSHA256": "344a89e238d786d35026cf17eca98e06355677d8cd0f9767bafd3dfcf8e85185"
     },
     {
       "suite": "assisted_desk",
       "shard": 1,
       "result": "PASS",
-      "seconds": 13.52,
+      "seconds": 12.55,
       "logSHA256": "72031c47014d54c8c2c42f80d3c1427a77c9e539c7c7435360fe0d49b8e36f25"
     },
     {
       "suite": "evidence_workflow",
       "shard": 1,
       "result": "PASS",
-      "seconds": 64.83,
+      "seconds": 62.88,
       "logSHA256": "489eb910c8eb7da9f463e168a3d8bd724d6616742bca437a541b3262b41c7831"
     },
     {
       "suite": "visual_refinement",
       "shard": 1,
       "result": "PASS",
-      "seconds": 22.68,
+      "seconds": 21.14,
       "logSHA256": "e20dfcade35a281b19405e074a71fbdd3c6ddf57b215ec0f0ea49f34be469f3c"
     },
     {
       "suite": "visual_identity",
       "shard": 1,
       "result": "PASS",
-      "seconds": 90.25,
+      "seconds": 81.99,
       "logSHA256": "2d4890436e4556f5bb6c85d485fef7cd3673f0029cccb6520d912314d1c0ad20"
     },
     {
       "suite": "dashboard_confidence",
       "shard": 1,
       "result": "PASS",
-      "seconds": 26.57,
+      "seconds": 24.96,
       "logSHA256": "4706b4203d7f2f5c02851f77af7bd0c4964eff1c22224ad94b2b1e9a9911b849"
     },
     {
       "suite": "workspace_hierarchy",
       "shard": 1,
       "result": "PASS",
-      "seconds": 70.97,
+      "seconds": 73.35,
       "logSHA256": "aa9b2685bf6abb82d6338d484e8f867fec9280770d69800cc5f2948c9e97693a"
     },
     {
       "suite": "research_studio",
       "shard": 1,
       "result": "PASS",
-      "seconds": 74.54,
+      "seconds": 73.83,
       "logSHA256": "ee8dc59d82e80195f3b960d3ba5513e50821b445aa0d7b29754e8db2626a49cb"
     },
     {
       "suite": "command_center",
       "shard": 1,
       "result": "PASS",
-      "seconds": 38.47,
+      "seconds": 34.8,
       "logSHA256": "a5208e6a564d8d866b4299ae5ee0a7faa8eaeb190b64b16a93e640d2bf418c15"
     },
     {
       "suite": "institutional_desk",
       "shard": 1,
       "result": "PASS",
-      "seconds": 57.37,
+      "seconds": 51.7,
       "logSHA256": "e9c458c932d4d8c2f413252367aeafd071f9d98551c0b14411ce10347d7ecada"
     },
     {
       "suite": "command_trust_candidate",
       "shard": 1,
       "result": "PASS",
-      "seconds": 10.68,
+      "seconds": 9.88,
       "logSHA256": "6ecf23e0545d293aa5f814651c7d1a9566aebd19a08c4f2a0a355c3909baab0e"
     }
   ],
-  "publicTreeSHA256": "8eaaa07d9ea4af9e53cbd96de2c86e70d586047feb2c30b4d164e63a061d5ee5",
+  "publicTreeSHA256": "4ce90cdae33c34324e9acb2b8e4ff306adf93fa8bb967be0f30ba3fbed839758",
   "testedSourceSHA256": {
     "public/analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
     "public/analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
@@ -417,7 +419,7 @@
     "public/command-evidence.js": "2c697b0b8cede99ce717a4e697bfd75833a10134dd0da5caa18c142018155040",
     "public/command-interpretation.css": "b9c3379344c0ce42f1c7688bbf8cf2d4f007ec9b4c15bcbb2fa796d196846433",
     "public/command-interpretation.js": "da97b1fd75e2bd39e702ebc4c0e5e25def836848ae68b025d2710730b14645ba",
-    "public/command-journey.css": "00507bbb481be74b1a814e9446b0698d2ecd49f042422baa2429ab0773a1dac2",
+    "public/command-journey.css": "071e182ca205b49f35c55bd249b3bb2633c0a919ffadbdd5c4e06308ddf5bc58",
     "public/command-trust-core.js": "e7fd852970d57e03e3e845a7e1594346f03d16ce8a094cf966e3255a297d56b2",
     "public/command-trust.css": "ff4bb99e73e6d93fd3403dbe98c449e8ac6242ffcf221b6ef7a7ce659220423f",
     "public/command-trust.js": "a8bb59843b76d6d1505da190b2d496842a4c6f226d113536ae0a1eaddd33b66a",
@@ -452,7 +454,7 @@
     "public/platform-evolution.js": "60b8733cec10ae9126f1dedd2a909a9483cc8d51fa77be9760e7715c31119b26",
     "public/precision-core.js": "32a896a65acf3881cf1548d16c199e32364f841c046bbe3716c92e9c132364e1",
     "public/precision-desk.css": "bbbbf443aad290ac0a1608d90dffe9674a0c8e071888fd110576ff6e4da1a664",
-    "public/precision-desk.js": "b3f39d1829a62333f6d54f2f2c305ce9423adc245a83f6f9cb1d12ad121ee737",
+    "public/precision-desk.js": "629e1408f16fc401bc9e9091ab51fe56d1a3865b260a4e083142bba8bf3807bf",
     "public/preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
     "public/professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
     "public/professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
@@ -505,6 +507,11 @@
   "financialIntegrity": "Original six protected engines, recommendation algorithm, backend and dependency files unchanged. Source matching is restrictive display admission only. Hosted/live/paper execution and hosted/paid AI remain disabled.",
   "resolvedFailures": [
     {
+      "suite": "local DejaVu reproduction after hosted70021f3 failure",
+      "observed": "Institutional1024 EN ticket bottom1002.02px; Day5 Eligible390 EN chart y731.52px. Hosted exact traceback unavailable through public annotations/API.",
+      "fix": "Full warnings retained; shorter Activation rule label, more condition width, proportionate mobile qualifiers and22px full Eligible heading. Add12 actual-platform-font regression cases. New source must pass native affected suites, complete DejaVu-profile gate and fresh hosted CI."
+    },
+    {
       "suite": "manual visual review + new Day5 overlap assertions",
       "observed": "1024px Arabic source control forced observed price outside its quote into chart mode controls.",
       "fix": "Source spans both quote grid columns; all36 Day5 profiles assert observed-price containment and no mode-control intersection."
@@ -537,5 +544,252 @@
     "Genuine local inference qualification remains unestablished; no hosted/paid model is enabled.",
     "390x844 cannot display the entire chart and ticket in its opening viewport; native scrolling, Focus chart and direct Trade setup action remain available.",
     "GitHub API blocked with Forbidden; public PR/check/deployment metadata available. Preview interactive access must be checked after push without changing protection."
-  ]
+  ],
+  "renderedFontProof": {
+    "desktop": [
+      {
+        "width": 1440,
+        "language": "en",
+        "theme": "dark",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 1084,
+          "y": 464.015625,
+          "width": 340,
+          "height": 487.09375
+        }
+      },
+      {
+        "width": 1440,
+        "language": "en",
+        "theme": "light",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 1084,
+          "y": 464.015625,
+          "width": 340,
+          "height": 487.09375
+        }
+      },
+      {
+        "width": 1440,
+        "language": "ar",
+        "theme": "dark",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5
+        }
+      },
+      {
+        "width": 1440,
+        "language": "ar",
+        "theme": "light",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5
+        }
+      },
+      {
+        "width": 1024,
+        "language": "en",
+        "theme": "dark",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 688,
+          "y": 484.015625,
+          "width": 320,
+          "height": 503.59375
+        }
+      },
+      {
+        "width": 1024,
+        "language": "en",
+        "theme": "light",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 688,
+          "y": 484.015625,
+          "width": 320,
+          "height": 503.59375
+        }
+      },
+      {
+        "width": 1024,
+        "language": "ar",
+        "theme": "dark",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5
+        }
+      },
+      {
+        "width": 1024,
+        "language": "ar",
+        "theme": "light",
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ],
+        "ticket": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5
+        }
+      }
+    ],
+    "mobile": [
+      {
+        "language": "en",
+        "theme": "dark",
+        "chart": {
+          "x": 26,
+          "y": 696.921875,
+          "width": 338,
+          "height": 330
+        },
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "chart": {
+          "x": 26,
+          "y": 696.921875,
+          "width": 338,
+          "height": 330
+        },
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 25
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "dark",
+        "chart": {
+          "x": 26,
+          "y": 677.421875,
+          "width": 338,
+          "height": 330
+        },
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 20
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "theme": "light",
+        "chart": {
+          "x": 26,
+          "y": 677.421875,
+          "width": 338,
+          "height": 330
+        },
+        "renderedFonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans-Bold",
+            "isCustomFont": false,
+            "glyphCount": 20
+          }
+        ]
+      }
+    ]
+  },
+  "localBrowserEnvironment": "Process-scoped DejaVu system-font diagnostic profile, with all existing fonts retained. Pinned CI image pull Forbidden; native affected suites also run separately.",
+  "nativeAffectedSuites": {
+    "passed": [
+      "institutional_desk",
+      "confidence",
+      "decision_validation",
+      "day5"
+    ],
+    "logSHA256": "9dcfb36bdea9716a11540990b28565b2d268db83658b73ca27243daa2c611e88"
+  },
+  "diagnosticFontConfigSHA256": "6d615508ff679e9b84040cc7ff87db68ac4602c5e57feeb3d72087c88a068ca9",
+  "earlierHostedFailures": {
+    "head": "70021f39c58eae510ea21842ef7e984f242aa4dc",
+    "pushRun": "44360014930",
+    "prRun": "44360034615",
+    "result": "Both browser shards failed; source/tests and dependency audits succeeded. Exact hosted traceback inaccessible. Confirmed local DejaVu reproductions corrected; fresh exact-head hosted verification remains mandatory."
+  }
 }

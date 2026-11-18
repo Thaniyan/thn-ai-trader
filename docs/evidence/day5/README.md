@@ -4,7 +4,7 @@
 
 Before: exact public files from `6275939fd7d2dd892a37d2298cc1c28455baaa9e`. After: the frozen packaged candidate, linked to its final commit through the recorded public-file fingerprint. The same running fixture backend supplies all pairs. Every pair has identical dataset/bar identity, confluence and copied candidate values. The ordinary wall clock differs.
 
-After public-tree SHA256: `8eaaa07d9ea4af9e53cbd96de2c86e70d586047feb2c30b4d164e63a061d5ee5`.
+After public-tree SHA256: `4ce90cdae33c34324e9acb2b8e4ff306adf93fa8bb967be0f30ba3fbed839758`.
 
 ## Measured opening fold
 

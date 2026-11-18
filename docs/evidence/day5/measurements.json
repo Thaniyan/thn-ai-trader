@@ -1,7 +1,7 @@
 {
   "baselineSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
   "beforePublicTreeSHA256": "5e9e7ec3bef458486f67b594e8397e34027ebbb167841027f5139e2640e60998",
-  "afterPublicTreeSHA256": "8eaaa07d9ea4af9e53cbd96de2c86e70d586047feb2c30b4d164e63a061d5ee5",
+  "afterPublicTreeSHA256": "4ce90cdae33c34324e9acb2b8e4ff306adf93fa8bb967be0f30ba3fbed839758",
   "sameFixedOfflineBackend": true,
   "scope": "Actual application renders; offline synthetic/controlled analysis fixtures, not market/model qualification.",
   "comparisons": [
@@ -15,8 +15,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -87,8 +87,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -135,10 +135,10 @@
           "x": 16,
           "y": 495.703125,
           "width": 340,
-          "height": 401.859375,
+          "height": 383.859375,
           "top": 495.703125,
           "right": 356,
-          "bottom": 897.5625,
+          "bottom": 879.5625,
           "left": 16
         },
         "levels": {
@@ -159,8 +159,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -231,8 +231,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -303,8 +303,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -375,8 +375,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -447,8 +447,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -495,10 +495,10 @@
           "x": 1084,
           "y": 464.015625,
           "width": 340,
-          "height": 488.09375,
+          "height": 468.5,
           "top": 464.015625,
           "right": 1424,
-          "bottom": 952.109375,
+          "bottom": 932.515625,
           "left": 1084
         },
         "levels": {
@@ -519,8 +519,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -591,8 +591,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -639,10 +639,10 @@
           "x": 688,
           "y": 484.015625,
           "width": 320,
-          "height": 488.09375,
+          "height": 470.09375,
           "top": 484.015625,
           "right": 1008,
-          "bottom": 972.109375,
+          "bottom": 954.109375,
           "left": 688
         },
         "levels": {
@@ -663,8 +663,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -735,8 +735,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {
@@ -807,8 +807,8 @@
       "context": {
         "symbol": "EURUSD",
         "interval": "1h",
-        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-        "barTime": 1795016634000
+        "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+        "barTime": 1795021876000
       },
       "before": {
         "chart": {

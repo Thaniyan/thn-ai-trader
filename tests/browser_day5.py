@@ -53,6 +53,22 @@ with sync_playwright() as p:
   route.fulfill(response=response,json=d)
  page.route('**/api/analyze',analysis);page.route('**/api/research/brief?**',brief);page.evaluate('THNWorkspace.selectMarket("EURUSD")');page.wait_for_function('THNCommand.state().candidate?.symbol==="EURUSD"');candidate=page.evaluate('THNCommand.state().candidate');profiles('Conditional BUY');assert page.evaluate('THNCommand.state().candidate')==candidate
  expect(page.locator('#precisionStatus')).to_contain_text('المخاطر' if page.locator('html').get_attribute('lang')=='ar' else 'risk');expect(page.locator('.precision-confirmation-state')).to_have_attribute('data-confirmation','recorded')
+ # Exercise a real installed fallback face, not only the Cloud workstation's default.
+ font_style=page.add_style_tag(content='body{font-family:"DejaVu Sans",sans-serif!important}')
+ font_cdp=page.context.new_cdp_session(page);font_cdp.send('DOM.enable');font_cdp.send('CSS.enable');result['fontProfiles']=[]
+ try:
+  for width,lang,theme in itertools.product([1440,1024],['en','ar'],['dark','light']):
+   page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme);page.evaluate('document.fonts.ready');page.evaluate('scrollTo(0,0)')
+   expect(page.locator('#commandSetup h2')).to_contain_text('المسجلة' if lang=='ar' else 'Recorded')
+   doc=font_cdp.send('DOM.getDocument');node=font_cdp.send('DOM.querySelector',{'nodeId':doc['root']['nodeId'],'selector':'#commandSetup h2'});fonts=font_cdp.send('CSS.getPlatformFontsForNode',{'nodeId':node['nodeId']})['fonts'];assert fonts and all(f['familyName']=='DejaVu Sans' and not f['isCustomFont'] and f['glyphCount']>0 for f in fonts),(width,lang,theme,fonts)
+   ticket=page.locator('#commandSetup').bounding_box();assert ticket['y']>=0 and ticket['y']+ticket['height']<=1000,(width,lang,theme,ticket)
+   assert page.locator('.pro-instrument-quote').evaluate('(e)=>{const q=e.getBoundingClientRect(),p=document.getElementById("proObservedClose").getBoundingClientRect(),m=document.getElementById("proChartModes").getBoundingClientRect();return p.left>=q.left-1&&p.right<=q.right+1&&!(p.left<m.right&&p.right>m.left&&p.top<m.bottom&&p.bottom>m.top)}'),(width,lang,theme,'fallback price overlap')
+   assert page.evaluate('THNCommand.state().candidate')==candidate
+   bad=page.evaluate('async()=> (await axe.run(document.querySelector("#commandSetup"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>v.id)');assert not bad,(width,lang,theme,bad)
+   result['fontProfiles'].append({'width':width,'language':lang,'theme':theme,'renderedFonts':fonts,'ticket':ticket})
+ finally:
+  font_cdp.detach();font_style.evaluate('(e)=>e.remove()')
+ print('PASS: eight genuinely rendered DejaVu EN/AR/theme desktop ticket profiles',flush=True)
  page.locator('#deskPrimaryActions [data-desk=setup]').click();page.locator('#precisionLevelRationaleTitle').click();expect(page.locator('#precisionLevelRationale')).to_have_attribute('open','');page.locator('#precisionLevelRationaleTitle').focus();page.locator('html').evaluate('(e)=>e.dataset.theme="light"');expect(page.locator('#precisionLevelRationaleTitle')).to_be_focused();page.locator('html').evaluate('(e)=>e.lang="en"');expect(page.locator('#precisionLevelRationaleTitle')).to_be_focused();expect(page.locator('.precision-entry-boundary')).to_contain_text('provider execution quote');assert page.evaluate('THNCommand.state().candidate')==candidate
  page.locator('[data-command=chart]').click();expect(page.locator('#qCandles')).to_be_focused()
  level=page.locator('#commandSetup [data-desk="level:E"]');level.click();expect(page.locator('#qCandles')).to_be_focused();expect(page.locator('#commandOverlay line[data-level=E]')).to_have_attribute('data-active','true');page.locator('#qCandles').press('Escape');expect(level).to_be_focused()
@@ -69,6 +85,17 @@ with sync_playwright() as p:
  before=len(posts);capital=page.locator('#planCapital').input_value();leverage=page.locator('#planLeverage').input_value();page.locator('[data-command=use-levels]').click();expect(page.locator('#planEntry')).to_be_focused();assert len(posts)==before;assert page.locator('#planCapital').input_value()==capital and page.locator('#planLeverage').input_value()==leverage
  for k,v in {'planCapital':'10000','planRisk':'1','planLeverage':'100','qRisk_spread':'0','qRisk_slippage':'0','qRisk_commission':'0'}.items():page.locator('#'+k).fill(v)
  page.locator('#workRiskForm button[type=submit]').click();page.wait_for_function('THNPrecision.review().status==="eligible"');assert page.evaluate('THNDecision.plan().executionAuthorized') is False;plan=page.evaluate('JSON.stringify(THNDecision.plan())');page.locator('#commandRationale').evaluate('(e)=>e.open=false');profiles('Eligible research');assert page.evaluate('JSON.stringify(THNDecision.plan())')==plan
+ # The longer Eligible title must also keep the phone chart visible in fallback fonts.
+ font_style=page.add_style_tag(content='body{font-family:"DejaVu Sans",sans-serif!important}');font_cdp=page.context.new_cdp_session(page);font_cdp.send('DOM.enable');font_cdp.send('CSS.enable');result['mobileFontProfiles']=[]
+ try:
+  for lang,theme in itertools.product(['en','ar'],['dark','light']):
+   page.set_viewport_size({'width':390,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme);expect(page.locator('#commandVerdict h1')).to_contain_text('مؤهل' if lang=='ar' else 'Eligible');page.evaluate('document.fonts.ready');page.evaluate('scrollTo(0,0)')
+   doc=font_cdp.send('DOM.getDocument');node=font_cdp.send('DOM.querySelector',{'nodeId':doc['root']['nodeId'],'selector':'#commandVerdict h1'});fonts=font_cdp.send('CSS.getPlatformFontsForNode',{'nodeId':node['nodeId']})['fonts'];assert fonts and all(f['familyName']=='DejaVu Sans' and not f['isCustomFont'] and f['glyphCount']>0 for f in fonts),(lang,theme,fonts)
+   chart=page.locator('#qCandles').bounding_box();visible=max(0,min(1000,chart['y']+chart['height'])-max(0,chart['y']));assert chart['y']<720 and visible>280,(lang,theme,chart);assert page.evaluate('JSON.stringify(THNDecision.plan())')==plan
+   bad=page.evaluate('async()=> (await axe.run(document.querySelector("#commandVerdict"),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>v.id)');assert not bad,(lang,theme,bad);result['mobileFontProfiles'].append({'language':lang,'theme':theme,'chart':chart,'renderedFonts':fonts})
+ finally:
+  font_cdp.detach();font_style.evaluate('(e)=>e.remove()')
+ print('PASS: four genuinely rendered DejaVu EN/AR/theme Eligible phone profiles',flush=True)
  # Disabled model is not an obstacle to the current deterministic baseline.
  assert page.evaluate('THNCommand.state().verified_model_interpretation') is None;assert not page.evaluate('THNIntelligence.state().available')
  # Mobile ticket remains reachable in the real TradingView mode owner, without duplicating the chart.

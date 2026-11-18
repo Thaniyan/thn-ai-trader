@@ -1,8 +1,8 @@
 {
   "baselineSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
   "source": "packaged working tree; verify fingerprint against final commit",
-  "sourceHEAD": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
-  "publicTreeSHA256": "8eaaa07d9ea4af9e53cbd96de2c86e70d586047feb2c30b4d164e63a061d5ee5",
+  "sourceHEAD": "70021f39c58eae510ea21842ef7e984f242aa4dc",
+  "publicTreeSHA256": "4ce90cdae33c34324e9acb2b8e4ff306adf93fa8bb967be0f30ba3fbed839758",
   "publicFileSHA256": {
     "command-evidence.js": "2c697b0b8cede99ce717a4e697bfd75833a10134dd0da5caa18c142018155040",
     "broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
@@ -16,7 +16,7 @@
     "command-workbench.js": "13dadda098eaed4f606f050505bd13d795c7bde265eee5f4ef7f7dc2b5893c8c",
     "analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
     "library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
-    "precision-desk.js": "b3f39d1829a62333f6d54f2f2c305ce9423adc245a83f6f9cb1d12ad121ee737",
+    "precision-desk.js": "629e1408f16fc401bc9e9091ab51fe56d1a3865b260a4e083142bba8bf3807bf",
     "precision-desk.css": "bbbbf443aad290ac0a1608d90dffe9674a0c8e071888fd110576ff6e4da1a664",
     "manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
     "workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
@@ -81,7 +81,7 @@
     "intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
     "intelligence-view-state.js": "a1412deb1da135fd62d5db22ce4e7d49743c42c781993ca4baa23b21b948fc2a",
     "heritage-desk.js": "2213c899fb2ac854c90ae14d2c7629dbcce442ba48dc1ad218190f3315c786f0",
-    "command-journey.css": "00507bbb481be74b1a814e9446b0698d2ecd49f042422baa2429ab0773a1dac2",
+    "command-journey.css": "071e182ca205b49f35c55bd249b3bb2633c0a919ffadbdd5c4e06308ddf5bc58",
     "logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
     "command-trust.css": "ff4bb99e73e6d93fd3403dbe98c449e8ac6242ffcf221b6ef7a7ce659220423f",
     "intelligence-workspace.js": "f9b87557b35d24e21871b9946c4faf92073e078a2a6b925e9423e0853bde2919",
@@ -139,8 +139,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -179,10 +179,10 @@
           "x": 16,
           "y": 495.703125,
           "width": 340,
-          "height": 401.859375,
+          "height": 383.859375,
           "top": 495.703125,
           "right": 356,
-          "bottom": 897.5625,
+          "bottom": 879.5625,
           "left": 16
         }
       },
@@ -196,8 +196,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -253,8 +253,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -310,8 +310,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -367,8 +367,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
@@ -424,8 +424,8 @@
         "context": {
           "symbol": "EURUSD",
           "interval": "1h",
-          "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
-          "barTime": 1795016634000
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
         },
         "candidate": null,
         "confluence": 56,
