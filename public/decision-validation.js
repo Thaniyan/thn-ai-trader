@@ -14,19 +14,20 @@ export function attachDecisionValidation(){
   if(home){
    const verdict=$('commandVerdict'),actions=verdict.querySelector(':scope>.q-actions');
    if(actions&&!actions.children.length&&!actions.textContent.trim())actions.replaceChildren();
-   const host=compact?$('commandQuickAssessment'):$('evoDeskLead');
-   if(verdict.parentElement!==host)host.prepend(verdict);
+   const host=compact?$('commandQuickAssessment'):$('commandAssessment');
+   if(verdict.parentElement!==host||host.firstElementChild!==verdict)host.prepend(verdict);
    if($('dashboardConviction').parentElement!==$('decisionConfluenceHost'))$('decisionConfluenceHost').append($('dashboardConviction'));
    let limits=$('heritageConfidenceLimits');if(!limits){limits=document.createElement('div');limits.id='heritageConfidenceLimits';limits.setAttribute('role','note');root.append(limits);}
    if($('precisionProbability').parentElement!==limits)limits.append($('precisionProbability'));
-   if($('precisionSchoolContextTitle'))$('precisionSchoolContextTitle').textContent=tr('Evidence','الأدلة');
+   if($('precisionSchoolContextTitle'))$('precisionSchoolContextTitle').textContent=tr('School confluence','توافق المدارس');
    if($('precisionStatus').dataset.state==='eligible')$('precisionStatus').textContent=tr('Research only · not an order','للبحث فقط · ليس أمراً');
    $('precisionProbability').textContent=tr('Fixed-rule test, not this individual setup. Calibrated win probability unavailable.','اختبار قواعد ثابتة، لا هذا السيناريو الفردي. احتمال الربح المعاير غير متاح.');
   }
   root.setAttribute('aria-label',tr('Decision evidence and historical validation','أدلة القرار والتحقق التاريخي'));
   const data=decisionValidationEvidence({model:THNCommand.state(),context:THNContext.get(),analysis:THNConfidence.review().analysis,evaluation:THNResearch.evaluation?.(),evaluationState:THNResearch.evaluationState?.(),series:THNResearch.series()});
-  root.dataset.validation=data.status;root.dataset.reliability=data.reliability;
-  if(home){const value=data.confluence===null?'—':String(data.confluence);$('dashboardConfidenceValue').textContent=value;const ring=$('dashboardConviction').querySelector('.home-confidence-ring');const score=ring?.querySelector(':scope>div');if(score){score.id='heritageConfidenceEvidence';const denominator=score.querySelector('small');if(denominator)denominator.textContent='/ 100';}ring?.setAttribute('aria-label',tr('Heuristic evidence strength: ','قوة الأدلة الاستدلالية: ')+value+'/100');if($('precisionSchoolContextTitle'))$('precisionSchoolContextTitle').textContent=data.confluence===null?tr('Unavailable','غير متاحة'):tr('Evidence','الأدلة');}
+  const model=THNCommand.state(),reliability=model.fresh&&(model.warnings.includes('source_identity_unverified')||model.warnings.includes('currency_mismatch'))?'identity_mismatch':model.fresh&&model.identity.proxy?'proxy':data.reliability;
+  root.dataset.validation=data.status;root.dataset.reliability=reliability;
+  if(home){const value=data.confluence===null?'—':String(data.confluence);$('dashboardConfidenceValue').textContent=value;const ring=$('dashboardConviction').querySelector('.home-confidence-ring');const score=ring?.querySelector(':scope>div');if(score){score.id='heritageConfidenceEvidence';const denominator=score.querySelector('small');if(denominator)denominator.textContent='/ 100';}ring?.setAttribute('aria-label',tr('Heuristic evidence strength: ','قوة الأدلة الاستدلالية: ')+value+'/100');if($('precisionSchoolContextTitle'))$('precisionSchoolContextTitle').textContent=data.confluence===null?tr('Unavailable','غير متاحة'):tr('School confluence','توافق المدارس');}
   const label={untested:tr('Not tested','لم يُختبر'),running:tr('Running…','جار الاختبار…'),failed:tr('Failed · retry','فشل · أعد المحاولة'),stale:tr('Stale · review','قديم · راجع'),complete:tr('Complete','مكتمل')}[data.status];
   $('decisionHistoryLabel').textContent=tr('Fixed-rule test','اختبار قواعد ثابتة');
   $('decisionHistoryState').textContent=label;
@@ -34,11 +35,11 @@ export function attachDecisionValidation(){
   $('decisionHistoryMeaning').textContent=data.passed===null?'':tr('met','مستوفاة');
   $('decisionHistoryStatus').title=tr('Passed requirements are not a win rate. This evaluates fixed rules, not this individual trade.','المتطلبات الناجحة ليست معدل فوز. يقيم الاختبار قواعد ثابتة وليس هذه الصفقة المفردة.');
   $('decisionDataLabel').textContent=tr('Data reliability','موثوقية البيانات');
-  $('decisionDataStatus').textContent={current:tr('Recent · matched','حديثة · مطابقة'),stale:tr('Stale','قديمة'),gaps:tr('Gaps · review','فجوات · راجع'),unavailable:tr('Unavailable','غير متاحة')}[data.reliability];
+  $('decisionDataStatus').textContent={identity_mismatch:tr('Identity mismatch · review','عدم تطابق الهوية · راجع'),proxy:tr('Proxy observations · review','مشاهدات بديلة · راجع'),current:tr('Recent · matched','حديثة · مطابقة'),stale:tr('Stale','قديمة'),gaps:tr('Gaps · review','فجوات · راجع'),unavailable:tr('Unavailable','غير متاحة')}[reliability];
   $('decisionDataStatus').title=data.provenance?[data.provenance.source,data.provenance.providerSymbol,Number.isFinite(data.provenance.lastTime)?new Date(data.provenance.lastTime).toISOString():''].filter(Boolean).join(' · '):tr('No matching current source evidence.','لا أدلة مصدر حالية مطابقة.');
   const view=data.status==='complete'||data.status==='stale'&&data.retained;
   const action=$('heritageConfidenceTestAction');action.dataset.trust=view?'history':'test';action.setAttribute('aria-controls',view?'trustHistorical':'trustTest');action.disabled=false;
-  action.textContent=data.status==='running'?tr('Running…','جار الاختبار…'):view?tr('View test','عرض الاختبار'):tr('Test','اختبار');action.setAttribute('aria-label',data.status==='running'?tr('Inspect running historical test','فحص الاختبار التاريخي الجاري'):view?tr('View original historical validation','عرض التحقق التاريخي الأصلي'):tr('Open original historical confidence test','فتح اختبار الثقة التاريخي الأصلي'));
+  action.textContent=data.status==='running'?tr('Running…','جار الاختبار…'):view?tr('View test','عرض الاختبار'):tr('Historical test','اختبار تاريخي');action.setAttribute('aria-label',data.status==='running'?tr('Inspect running historical test','فحص الاختبار التاريخي الجاري'):view?tr('View original historical validation','عرض التحقق التاريخي الأصلي'):tr('Open original historical confidence test','فتح اختبار الثقة التاريخي الأصلي'));
  }
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
  for(const event of ['thn:command-render','thn:view','thn:analysis','thn:evaluation','thn:evaluation-state','thn:context','thn:series'])window.addEventListener(event,render);

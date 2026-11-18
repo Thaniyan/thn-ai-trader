@@ -6,6 +6,18 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Current owner program — Day5, 2026-11-18
+
+[Day5 authority](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-6979451886):
+continue existing draft PR23 on `feature/ai-evidence-interpreter-phase2-20261116`
+from6275939. This supersedes older active-branch and calendar references below.
+Complete the actual deterministic one-page journey and source-bound chart/ticket
+experience; real-model qualification is separate. Preserve original engines,
+recommendation/scoring algorithms, records and all financial restrictions.
+[Acceptance pack](DAY5-COMMAND-CENTER-ACCEPTANCE.md) records implementation,
+capability limits, actual paired screenshots, regression evidence and Day6 work.
+Main/Production remain separately gated; no automatic merge, execution or paid AI.
+
 ## Owner visual reorientation — 2026-11-16
 
 The owner rejected A+ as final visual acceptance and requires the original THN

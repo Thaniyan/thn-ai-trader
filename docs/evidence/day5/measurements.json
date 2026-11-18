@@ -1,0 +1,873 @@
+{
+  "baselineSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
+  "beforePublicTreeSHA256": "5e9e7ec3bef458486f67b594e8397e34027ebbb167841027f5139e2640e60998",
+  "afterPublicTreeSHA256": "8eaaa07d9ea4af9e53cbd96de2c86e70d586047feb2c30b4d164e63a061d5ee5",
+  "sameFixedOfflineBackend": true,
+  "scope": "Actual application renders; offline synthetic/controlled analysis fixtures, not market/model qualification.",
+  "comparisons": [
+    {
+      "case": "wait",
+      "width": 1440,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 192,
+          "y": 615.234375,
+          "width": 816,
+          "height": 560,
+          "top": 615.234375,
+          "right": 1008,
+          "bottom": 1175.234375,
+          "left": 192
+        },
+        "visibleChart": 384.765625,
+        "ticket": {
+          "x": 1044,
+          "y": 403.5,
+          "width": 380,
+          "height": 474.15625,
+          "top": 403.5,
+          "right": 1424,
+          "bottom": 877.65625,
+          "left": 1044
+        },
+        "levels": {
+          "x": 1059,
+          "y": 466.5,
+          "width": 350,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "visibleChart": 542.265625,
+        "ticket": {
+          "x": 1084,
+          "y": 495.703125,
+          "width": 340,
+          "height": 420.0625,
+          "top": 495.703125,
+          "right": 1424,
+          "bottom": 915.765625,
+          "left": 1084
+        },
+        "levels": {
+          "x": 1099,
+          "y": 552.703125,
+          "width": 310,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "wait",
+      "width": 1440,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 432,
+          "y": 617.9375,
+          "width": 816,
+          "height": 560,
+          "top": 617.9375,
+          "right": 1248,
+          "bottom": 1177.9375,
+          "left": 432
+        },
+        "visibleChart": 382.0625,
+        "ticket": {
+          "x": 16,
+          "y": 406.203125,
+          "width": 380,
+          "height": 368.171875,
+          "top": 406.203125,
+          "right": 396,
+          "bottom": 774.375,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 469.203125,
+          "width": 350,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "visibleChart": 542.265625,
+        "ticket": {
+          "x": 16,
+          "y": 495.703125,
+          "width": 340,
+          "height": 401.859375,
+          "top": 495.703125,
+          "right": 356,
+          "bottom": 897.5625,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 552.703125,
+          "width": 310,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "wait",
+      "width": 1024,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 96,
+          "y": 691.234375,
+          "width": 500,
+          "height": 560,
+          "top": 691.234375,
+          "right": 596,
+          "bottom": 1251.234375,
+          "left": 96
+        },
+        "visibleChart": 308.765625,
+        "ticket": {
+          "x": 628,
+          "y": 423.5,
+          "width": 380,
+          "height": 456.5625,
+          "top": 423.5,
+          "right": 1008,
+          "bottom": 880.0625,
+          "left": 628
+        },
+        "levels": {
+          "x": 641,
+          "y": 486.5,
+          "width": 354,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 96,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 656,
+          "bottom": 1037.734375,
+          "left": 96
+        },
+        "visibleChart": 522.265625,
+        "ticket": {
+          "x": 688,
+          "y": 508.203125,
+          "width": 320,
+          "height": 420.0625,
+          "top": 508.203125,
+          "right": 1008,
+          "bottom": 928.265625,
+          "left": 688
+        },
+        "levels": {
+          "x": 701,
+          "y": 565.203125,
+          "width": 294,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "wait",
+      "width": 1024,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 428,
+          "y": 693.9375,
+          "width": 500,
+          "height": 560,
+          "top": 693.9375,
+          "right": 928,
+          "bottom": 1253.9375,
+          "left": 428
+        },
+        "visibleChart": 306.0625,
+        "ticket": {
+          "x": 16,
+          "y": 426.203125,
+          "width": 380,
+          "height": 368.171875,
+          "top": 426.203125,
+          "right": 396,
+          "bottom": 794.375,
+          "left": 16
+        },
+        "levels": {
+          "x": 29,
+          "y": 489.203125,
+          "width": 354,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "visibleChart": 522.265625,
+        "ticket": {
+          "x": 16,
+          "y": 508.203125,
+          "width": 320,
+          "height": 401.859375,
+          "top": 508.203125,
+          "right": 336,
+          "bottom": 910.0625,
+          "left": 16
+        },
+        "levels": {
+          "x": 29,
+          "y": 565.203125,
+          "width": 294,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "wait",
+      "width": 390,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 26,
+          "y": 713.8125,
+          "width": 338,
+          "height": 330,
+          "top": 713.8125,
+          "right": 364,
+          "bottom": 1043.8125,
+          "left": 26
+        },
+        "visibleChart": 286.1875,
+        "ticket": {
+          "x": 16,
+          "y": 2068.640625,
+          "width": 358,
+          "height": 564.625,
+          "top": 2068.640625,
+          "right": 374,
+          "bottom": 2633.265625,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 2133.640625,
+          "width": 328,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 26,
+          "y": 678.09375,
+          "width": 338,
+          "height": 330,
+          "top": 678.09375,
+          "right": 364,
+          "bottom": 1008.09375,
+          "left": 26
+        },
+        "visibleChart": 321.90625,
+        "ticket": {
+          "x": 33,
+          "y": 1165.09375,
+          "width": 324,
+          "height": 546.140625,
+          "top": 1165.09375,
+          "right": 357,
+          "bottom": 1711.234375,
+          "left": 33
+        },
+        "levels": {
+          "x": 48,
+          "y": 1230.09375,
+          "width": 294,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "wait",
+      "width": 390,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 26,
+          "y": 696.40625,
+          "width": 338,
+          "height": 330,
+          "top": 696.40625,
+          "right": 364,
+          "bottom": 1026.40625,
+          "left": 26
+        },
+        "visibleChart": 303.59375,
+        "ticket": {
+          "x": 16,
+          "y": 2031.234375,
+          "width": 358,
+          "height": 542.234375,
+          "top": 2031.234375,
+          "right": 374,
+          "bottom": 2573.46875,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 2096.234375,
+          "width": 328,
+          "height": 0
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 26,
+          "y": 678.09375,
+          "width": 338,
+          "height": 330,
+          "top": 678.09375,
+          "right": 364,
+          "bottom": 1008.09375,
+          "left": 26
+        },
+        "visibleChart": 321.90625,
+        "ticket": {
+          "x": 33,
+          "y": 1165.09375,
+          "width": 324,
+          "height": 482.171875,
+          "top": 1165.09375,
+          "right": 357,
+          "bottom": 1647.265625,
+          "left": 33
+        },
+        "levels": {
+          "x": 48,
+          "y": 1230.09375,
+          "width": 294,
+          "height": 0
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 1440,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 192,
+          "y": 602.234375,
+          "width": 816,
+          "height": 560,
+          "top": 602.234375,
+          "right": 1008,
+          "bottom": 1162.234375,
+          "left": 192
+        },
+        "visibleChart": 397.765625,
+        "ticket": {
+          "x": 1044,
+          "y": 390.5,
+          "width": 380,
+          "height": 572.3125,
+          "top": 390.5,
+          "right": 1424,
+          "bottom": 962.8125,
+          "left": 1044
+        },
+        "levels": {
+          "x": 1059,
+          "y": 453.5,
+          "width": 350,
+          "height": 155
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "visibleChart": 542.265625,
+        "ticket": {
+          "x": 1084,
+          "y": 464.015625,
+          "width": 340,
+          "height": 488.09375,
+          "top": 464.015625,
+          "right": 1424,
+          "bottom": 952.109375,
+          "left": 1084
+        },
+        "levels": {
+          "x": 1099,
+          "y": 521.015625,
+          "width": 310,
+          "height": 151
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 1440,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 432,
+          "y": 617.9375,
+          "width": 816,
+          "height": 560,
+          "top": 617.9375,
+          "right": 1248,
+          "bottom": 1177.9375,
+          "left": 432
+        },
+        "visibleChart": 382.0625,
+        "ticket": {
+          "x": 16,
+          "y": 406.203125,
+          "width": 380,
+          "height": 535.015625,
+          "top": 406.203125,
+          "right": 396,
+          "bottom": 941.21875,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 469.203125,
+          "width": 350,
+          "height": 155
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "visibleChart": 542.265625,
+        "ticket": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 521.015625,
+          "width": 310,
+          "height": 151
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 1024,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 96,
+          "y": 678.234375,
+          "width": 500,
+          "height": 560,
+          "top": 678.234375,
+          "right": 596,
+          "bottom": 1238.234375,
+          "left": 96
+        },
+        "visibleChart": 321.765625,
+        "ticket": {
+          "x": 628,
+          "y": 410.5,
+          "width": 380,
+          "height": 572.3125,
+          "top": 410.5,
+          "right": 1008,
+          "bottom": 982.8125,
+          "left": 628
+        },
+        "levels": {
+          "x": 641,
+          "y": 473.5,
+          "width": 354,
+          "height": 155
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 96,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 656,
+          "bottom": 1037.734375,
+          "left": 96
+        },
+        "visibleChart": 522.265625,
+        "ticket": {
+          "x": 688,
+          "y": 484.015625,
+          "width": 320,
+          "height": 488.09375,
+          "top": 484.015625,
+          "right": 1008,
+          "bottom": 972.109375,
+          "left": 688
+        },
+        "levels": {
+          "x": 701,
+          "y": 541.015625,
+          "width": 294,
+          "height": 151
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 1024,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 428,
+          "y": 693.9375,
+          "width": 500,
+          "height": 560,
+          "top": 693.9375,
+          "right": 928,
+          "bottom": 1253.9375,
+          "left": 428
+        },
+        "visibleChart": 306.0625,
+        "ticket": {
+          "x": 16,
+          "y": 426.203125,
+          "width": 380,
+          "height": 535.015625,
+          "top": 426.203125,
+          "right": 396,
+          "bottom": 961.21875,
+          "left": 16
+        },
+        "levels": {
+          "x": 29,
+          "y": 489.203125,
+          "width": 354,
+          "height": 155
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "visibleChart": 522.265625,
+        "ticket": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 484.015625,
+          "right": 336,
+          "bottom": 951.515625,
+          "left": 16
+        },
+        "levels": {
+          "x": 29,
+          "y": 541.015625,
+          "width": 294,
+          "height": 151
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 390,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 26,
+          "y": 677.8125,
+          "width": 338,
+          "height": 330,
+          "top": 677.8125,
+          "right": 364,
+          "bottom": 1007.8125,
+          "left": 26
+        },
+        "visibleChart": 322.1875,
+        "ticket": {
+          "x": 16,
+          "y": 2032.640625,
+          "width": 358,
+          "height": 702.359375,
+          "top": 2032.640625,
+          "right": 374,
+          "bottom": 2735,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 2097.640625,
+          "width": 328,
+          "height": 167
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 26,
+          "y": 678.40625,
+          "width": 338,
+          "height": 330,
+          "top": 678.40625,
+          "right": 364,
+          "bottom": 1008.40625,
+          "left": 26
+        },
+        "visibleChart": 321.59375,
+        "ticket": {
+          "x": 33,
+          "y": 1165.40625,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1165.40625,
+          "right": 357,
+          "bottom": 1820.203125,
+          "left": 33
+        },
+        "levels": {
+          "x": 48,
+          "y": 1230.40625,
+          "width": 294,
+          "height": 167
+        }
+      }
+    },
+    {
+      "case": "conditional",
+      "width": 390,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "sameContextAndCandidate": true,
+      "context": {
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "832a0c48f258bdeca636345dde3c706323bc9f43d62da125829407a483845b7f",
+        "barTime": 1795016634000
+      },
+      "before": {
+        "chart": {
+          "x": 26,
+          "y": 678.40625,
+          "width": 338,
+          "height": 330,
+          "top": 678.40625,
+          "right": 364,
+          "bottom": 1008.40625,
+          "left": 26
+        },
+        "visibleChart": 321.59375,
+        "ticket": {
+          "x": 16,
+          "y": 2013.234375,
+          "width": 358,
+          "height": 655.078125,
+          "top": 2013.234375,
+          "right": 374,
+          "bottom": 2668.3125,
+          "left": 16
+        },
+        "levels": {
+          "x": 31,
+          "y": 2078.234375,
+          "width": 328,
+          "height": 167
+        }
+      },
+      "after": {
+        "chart": {
+          "x": 26,
+          "y": 661.90625,
+          "width": 338,
+          "height": 330,
+          "top": 661.90625,
+          "right": 364,
+          "bottom": 991.90625,
+          "left": 26
+        },
+        "visibleChart": 330.0,
+        "ticket": {
+          "x": 33,
+          "y": 1148.90625,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1148.90625,
+          "right": 357,
+          "bottom": 1784.515625,
+          "left": 33
+        },
+        "levels": {
+          "x": 48,
+          "y": 1213.90625,
+          "width": 294,
+          "height": 167
+        }
+      }
+    }
+  ]
+}

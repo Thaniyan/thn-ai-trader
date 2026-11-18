@@ -65,3 +65,13 @@ def select_phase2_suites(env):
         return list(PHASE2_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(PHASE2_SUITES) if position % count == index]
+
+# Day5 extends the existing gate; every earlier roster/assertion remains unchanged.
+DAY5_SUITES = ['day5']
+
+def select_day5_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(DAY5_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(DAY5_SUITES) if position % count == index]
