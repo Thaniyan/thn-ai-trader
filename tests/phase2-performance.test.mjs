@@ -129,7 +129,7 @@ test('default supervised CLI completes the real local HTTP pipeline with one inv
   }
   res.setHeader('Content-Type','application/json');res.end(JSON.stringify(value));
  });});server.listen(11434,'127.0.0.1');await once(server,'listening');
- try{for(const language of ['en','ar']){const r=await supervisePilot({mode:'--run',model:'fixture:local',language,env:{...env,THN_AI_PILOT_COMPACT:'1',THN_AI_EXPECTED_DIGEST:'a'.repeat(64)}});assert.equal(r.accepted,true);assert.equal(r.digest,'a'.repeat(64));assert.equal(r.timings.stages.inventory.count,1);assert.equal(r.supervision.runtimeSettlementVerified,true);assert.equal(r.runtime.responseReceived,true);assert.equal(r.languageEvidence.requested,language);assert.equal(language==='ar'?r.languageEvidence.arabicScriptPresent:r.languageEvidence.latinScriptPresent,true);assert.equal(JSON.stringify(r).includes(secret),false);}}
+ try{for(const language of ['en','ar']){const r=await supervisePilot({mode:'--run',model:'fixture:local',language,env:{...env,THN_AI_PILOT_COMPACT:'1',THN_AI_PILOT_KEEP_ALIVE:'5m',THN_AI_PILOT_THREADS:'2',THN_AI_EXPECTED_DIGEST:'a'.repeat(64)}});assert.equal(r.accepted,true);assert.deepEqual(r.requestedSettings,{compactPilot:true,keepAlive:'5m',pilotThreads:2});assert.deepEqual(r.workerConfirmedSettings,r.requestedSettings);assert.equal(r.settingsConfirmation,'request_prepared');assert.equal(r.runtimeSettingsVerified,false);assert.equal(r.digest,'a'.repeat(64));assert.equal(r.timings.stages.inventory.count,1);assert.equal(r.supervision.runtimeSettlementVerified,true);assert.equal(r.runtime.responseReceived,true);assert.equal(r.languageEvidence.requested,language);assert.equal(language==='ar'?r.languageEvidence.arabicScriptPresent:r.languageEvidence.latinScriptPresent,true);assert.equal(JSON.stringify(r).includes(secret),false);}}
  finally{server.closeAllConnections();await new Promise(r=>server.close(r));}
  assert.equal(tags,2);assert.equal(shows,2);assert.equal(chats,2);
 });
@@ -139,4 +139,47 @@ test('English and Arabic pilot questions produce record-compatible specialist ro
 });
 test('unsupported free-form questions cannot invoke a model or receive generative labels',async()=>{
  let calls=0,code;const r=await interpretVerifiedEvidence({snapshot:syntheticPilotSnapshot(at),question:'Write a poem',now:()=>at,provider:async()=>{calls++;return answer(syntheticPilotSnapshot(at))},onDiagnostic:c=>code=c});assert.equal(calls,0);assert.equal(r.method,'deterministic');assert.equal(r.outcome,'unsupported_question');assert.equal(code,'UNSUPPORTED_QUESTION');
+});
+
+const requestedSettings={compactPilot:true,keepAlive:'5m',pilotThreads:2};
+const settingsEnv={...env,THN_AI_PILOT_COMPACT:'1',THN_AI_PILOT_KEEP_ALIVE:'5m',THN_AI_PILOT_THREADS:'2'};
+const settingsWorker=new URL('./fixtures/pilot-worker.mjs',import.meta.url);
+function assertRequestedSettings(r){
+ assert.deepEqual(r.requestedSettings,requestedSettings);for(const k of Object.keys(requestedSettings))assert.equal(r[k],requestedSettings[k]);
+ assert.equal(r.accepted,false);assert.equal(r.fallback,true);assert.equal(r.runtimeSettingsVerified,false);assert.equal(JSON.stringify(r).includes(secret),false);
+}
+test('timeout preserves requested settings independently of worker acknowledgement and termination',async()=>{
+ for(const [tag,confirmation] of [['unconfirmed','unconfirmed'],['hang','worker_validated'],['prepared','request_prepared'],['spin','worker_validated']]){
+  const r=await supervisePilot({mode:'--run',model:'settings:'+tag,language:'en',env:settingsEnv,policyMs:500,workerURL:settingsWorker});
+  assertRequestedSettings(r);assert.equal(r.failureCode,'TIMEOUT');assert.equal(r.settingsConfirmation,confirmation);assert.deepEqual(r.workerConfirmedSettings,confirmation==='unconfirmed'?null:requestedSettings);assert.equal(r.supervision.workerTerminationRequested,true);assert.equal(r.supervision.runtimeSettlementVerified,false);
+ }
+});
+test('worker exit and uncaught error preserve requested settings without inventing dispatched requests',async()=>{
+ for(const tag of ['exit','error']){const r=await supervisePilot({mode:'--run',model:'settings:'+tag,language:'ar',env:settingsEnv,policyMs:2000,workerURL:settingsWorker});assertRequestedSettings(r);assert.equal(r.failureCode,'UNKNOWN');assert.equal(r.settingsConfirmation,'worker_validated');assert.deepEqual(r.workerConfirmedSettings,requestedSettings);assert.equal(r.supervision.deadlineExceeded,false);}
+});
+test('ordinary inventory rejection confirms validation only and retains nondefault settings in projected fallback',async()=>{
+ const phases=[];const r=await runPilot({mode:'--run',model:'fixture:local',language:'ar',env:settingsEnv,onSettingsReport:r=>phases.push(r.phase),inspect:async()=>{throw Error(secret)}});
+ const safe=safePilotReport(r,{model:'fixture:local',secrets:[secret]});assertRequestedSettings(safe);assert.deepEqual(phases,['worker_validated']);assert.equal(safe.settingsConfirmation,'worker_validated');assert.deepEqual(safe.workerConfirmedSettings,requestedSettings);assert.equal(safe.generationTested,false);
+});
+test('invalid requested settings fail before worker launch; genuine defaults remain explicit',async()=>{
+ for(const patch of [{THN_AI_PILOT_COMPACT:'true'},{THN_AI_PILOT_KEEP_ALIVE:'forever'},{THN_AI_PILOT_THREADS:'8'},{THN_AI_PILOT_THREADS:''},{THN_AI_PILOT_THREADS:2}])await assert.rejects(supervisePilot({env:{...settingsEnv,...patch},workerURL:new URL('./fixtures/does-not-exist.mjs',import.meta.url)}),/Invalid local pilot/);
+ const r=await supervisePilot({mode:'--run',model:'fixture:local',language:'en',env,workerURL:settingsWorker});assert.deepEqual(r.requestedSettings,{compactPilot:false,keepAlive:0,pilotThreads:1});assert.equal(r.workerConfirmedSettings,null);assert.equal(r.settingsConfirmation,'unconfirmed');
+});
+test('settings projection never fabricates missing defaults, trusts mismatched acknowledgements or leaks raw fields',async()=>{
+ const empty=safePilotReport(null);assert.equal(empty.keepAlive,null);assert.equal(empty.compactPilot,null);assert.equal(empty.pilotThreads,null);assert.equal(empty.requestedSettings,null);
+ const r=await supervisePilot({mode:'--run',model:'settings:mismatch',language:'en',env:settingsEnv,policyMs:500,workerURL:settingsWorker});assertRequestedSettings(r);assert.equal(r.settingsConfirmation,'worker_validated');
+ for(const patch of [{workerConfirmedSettings:{...requestedSettings,pilotThreads:4}},{settingsConfirmation:secret}]){const r=safePilotReport({requestedSettings,workerConfirmedSettings:requestedSettings,settingsConfirmation:'request_prepared',...patch});assert.equal(r.workerConfirmedSettings,null);assert.equal(r.settingsConfirmation,'unconfirmed');assert.equal(JSON.stringify(r).includes(secret),false);}
+ const r2=safePilotReport({requestedSettings:{...requestedSettings,private:secret},workerConfirmedSettings:requestedSettings,settingsConfirmation:'request_prepared',runtimeSettingsVerified:true,compactPilot:false,keepAlive:0,pilotThreads:1});assert.deepEqual(r2.requestedSettings,requestedSettings);assert.equal(r2.compactPilot,true);assert.equal(r2.runtimeSettingsVerified,false);assert.equal(JSON.stringify(r2).includes(secret),false);
+});
+test('real supervised EN/AR HTTP timeout retains settings encoded in the unfinished generation request',async()=>{
+ const chats=[];
+ const server=http.createServer((req,res)=>{let text='';req.on('data',b=>text+=b);req.on('end',()=>{
+  const body=text?JSON.parse(text):{};
+  if(req.url==='/api/chat'){chats.push(body);return;}
+  const value=req.url==='/api/tags'?{models:[{name:'fixture:local',digest:'a'.repeat(64),size:1400000000}]}:{model_info:{'general.architecture':'offline-fixture'},capabilities:['completion']};
+  res.setHeader('Content-Type','application/json');res.end(JSON.stringify(value));
+ });});server.listen(11434,'127.0.0.1');await once(server,'listening');
+ try{for(const language of ['en','ar']){const r=await supervisePilot({mode:'--run',model:'fixture:local',language,env:settingsEnv,policyMs:1000});assertRequestedSettings(r);assert.equal(r.failureCode,'TIMEOUT');assert.equal(r.settingsConfirmation,'request_prepared');assert.deepEqual(r.workerConfirmedSettings,requestedSettings);assert.equal(r.runtime.responseReceived,false);assert.equal(r.supervision.runtimeSettlementVerified,false);assert.equal(r.timings.stages.generation.state,'unsettled');}}
+ finally{server.closeAllConnections();await new Promise(r=>server.close(r));}
+ assert.equal(chats.length,2);for(const body of chats){assert.equal(body.think,false);assert.equal(body.keep_alive,'5m');assert.equal(body.options.num_thread,2);}
 });

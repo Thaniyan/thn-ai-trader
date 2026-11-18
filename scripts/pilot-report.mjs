@@ -2,6 +2,15 @@ import {INFERENCE_STAGES} from '../server/intelligence-timing.js';
 import {classifyPilotFailure} from '../server/intelligence-diagnostics.js';
 const num=(v,max=86400000)=>Number.isSafeInteger(v)&&v>=0&&v<=max?v:null;
 const ids=v=>Array.isArray(v)&&v.length<=12&&v.every(x=>/^(frame-(15m|1h|1d)|evaluation|risk-plan|event-[0-5])$/.test(x))?[...v]:[];
+export function validatedPilotSettings(env){
+ if(env.THN_AI_PILOT_KEEP_ALIVE!==undefined&&!['0','5m'].includes(env.THN_AI_PILOT_KEEP_ALIVE))throw Error('Invalid local pilot keep-alive');
+ if(env.THN_AI_PILOT_COMPACT!==undefined&&!['0','1'].includes(env.THN_AI_PILOT_COMPACT))throw Error('Invalid local pilot compact mode');
+ if(env.THN_AI_PILOT_THREADS!==undefined&&!['1','2','4'].includes(env.THN_AI_PILOT_THREADS))throw Error('Invalid local pilot thread count');
+ return Object.freeze({compactPilot:env.THN_AI_PILOT_COMPACT==='1',keepAlive:env.THN_AI_PILOT_KEEP_ALIVE==='5m'?'5m':0,pilotThreads:Number(env.THN_AI_PILOT_THREADS||'1')});
+}
+export function safePilotSettings(value){
+ return value&&typeof value.compactPilot==='boolean'&&[0,'5m'].includes(value.keepAlive)&&[1,2,4].includes(value.pilotThreads)?{compactPilot:value.compactPilot,keepAlive:value.keepAlive,pilotThreads:value.pilotThreads}:null;
+}
 // Deliberate projection, not recursive redaction of an arbitrary provider/worker object.
 export function safePilotReport(raw,{model,secrets=[]}={}){
  const text=v=>typeof v==='string'&&!secrets.filter(Boolean).some(s=>v.includes(s));
@@ -15,8 +24,14 @@ export function safePilotReport(raw,{model,secrets=[]}={}){
   accepted:raw?.accepted===true&&!!valid,fallback:!(raw?.accepted===true&&valid),failureCode:expired?'TIMEOUT':raw?.accepted&&!valid?'MODEL_RESPONSE_INVALID':failure,
   configuredProviderDeadlineMs:num(raw?.configuredProviderDeadlineMs,12000),elapsedMs:num(raw?.elapsedMs),totalElapsedMs:num(raw?.totalElapsedMs),latencyMs:num(raw?.latencyMs),elapsedScope:'request including inventory, generation and strict validation',
   matchedCitations:num(raw?.matchedCitations,12)||0,matchedClaims:num(raw?.matchedClaims,6)||0,verifiedCitationIds:ids(raw?.verifiedCitationIds),
-  snapshotId:hash(raw?.snapshotId),sourceIds:ids(raw?.sourceIds),keepAlive:raw?.keepAlive==='5m'?'5m':0,compactPilot:raw?.compactPilot===true,pilotThreads:[1,2,4].includes(raw?.pilotThreads)?raw.pilotThreads:1,
+  snapshotId:hash(raw?.snapshotId),sourceIds:ids(raw?.sourceIds),keepAlive:[0,'5m'].includes(raw?.keepAlive)?raw.keepAlive:null,compactPilot:typeof raw?.compactPilot==='boolean'?raw.compactPilot:null,pilotThreads:[1,2,4].includes(raw?.pilotThreads)?raw.pilotThreads:null,
   humanReviewRequired:true,noPredictiveProbability:true};
+ const requested=safePilotSettings(raw?.requestedSettings),confirmed=safePilotSettings(raw?.workerConfirmedSettings);
+ const matching=requested&&confirmed&&['worker_validated','request_prepared'].includes(raw?.settingsConfirmation)&&Object.keys(requested).every(k=>requested[k]===confirmed[k]);
+ result.requestedSettings=requested;result.workerConfirmedSettings=matching?confirmed:null;
+ result.settingsConfirmation=matching&&['worker_validated','request_prepared'].includes(raw?.settingsConfirmation)?raw.settingsConfirmation:'unconfirmed';
+ result.runtimeSettingsVerified=false;
+ if(requested)Object.assign(result,requested);
  if(['conflicting','bullish','bearish','neutral','missing','stale'].includes(raw?.caseName))result.caseName=raw.caseName;
  if(raw?.timings){const t=raw.timings;result.timings={elapsedMs:num(t.elapsedMs),policyMs:num(t.policyMs,12000),requestElapsedMs:num(t.requestElapsedMs),deadlineExceeded:t.deadlineExceeded===true,deadlineObservedMs:num(t.deadlineObservedMs),settlementOverrunMs:num(t.settlementOverrunMs),timingClipped:t.timingClipped===true,stages:Object.fromEntries(INFERENCE_STAGES.map(name=>{const s=t.stages?.[name];return [name,{elapsedMs:num(s?.elapsedMs),count:num(s?.count,20)||0,state:['not_started','unsettled','settled'].includes(s?.state)?s.state:'not_started'}];}))};}
  if(raw?.runtime)result.runtime=Object.fromEntries(['reportedLoadMs','reportedPromptMs','reportedGenerationMs','reportedTotalMs','promptTokens','completionTokens','requestBytes','requestedUnits','reservedUnits'].map(k=>[k,num(raw.runtime[k],k.endsWith('Tokens')?8192:['requestBytes','requestedUnits','reservedUnits'].includes(k)?65536:86400000)]));

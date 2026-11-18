@@ -71,7 +71,7 @@ export function localGenerationFormat(snapshot,roles){
  p.claims.items.properties.reference={enum:snapshot.refs.map(r=>r.id)};
  return format;
 }
-export async function generateLocal(env,snapshot,question,{authorization,signal,history=[],transport=loopbackJSON,onRequest=()=>{},language='en',onModelCall=()=>{},pilotKeepAlive=0,pilotCompact=false,pilotThreads=1,deadline=null,timing=null,inspect=inspectLocalModel,onInspection=()=>{},onRuntime=()=>{}}={}){
+export async function generateLocal(env,snapshot,question,{authorization,signal,history=[],transport=loopbackJSON,onRequest=()=>{},language='en',onModelCall=()=>{},pilotKeepAlive=0,pilotCompact=false,pilotThreads=1,deadline=null,timing=null,inspect=inspectLocalModel,onInspection=()=>{},onRuntime=()=>{},onPreparedSettings=()=>{}}={}){
  const config=localConfiguration(env);if(!config||!authenticated(authorization,env))throw Error('Local provider unavailable or unauthenticated');
  const timeout=Number(env.THN_AI_TIMEOUT_MS||12000);if(!Number.isInteger(timeout)||timeout<100||timeout>12000)throw Error('Invalid local timeout');
  const budget=deadline&&deadline.remaining()<=timeout?deadline:createInferenceDeadline({timeoutMs:timeout,signal:deadline?.signal||signal});
@@ -102,7 +102,10 @@ export async function generateLocal(env,snapshot,question,{authorization,signal,
   if(installed.model!==env.THN_AI_MODEL||!installed.installed||!installed.localWeightsVerified)throw Error('Installed local weights required');
   if(env.THN_AI_EXPECTED_DIGEST&&(!/^[a-f0-9]{64}$/.test(env.THN_AI_EXPECTED_DIGEST)||installed.digest!==env.THN_AI_EXPECTED_DIGEST))throw Error('Installed local weights required');
   onInspection(installed);budget.check();onModelCall();
-  const data=await metrics.measure('generation',()=>budget.run(()=>transport(config.endpoint,'/api/chat',{signal:budget.signal,timeout:Math.max(1,Math.floor(Math.min(timeout,budget.remaining()))),body:{model:env.THN_AI_MODEL,messages:request.messages,format:request.format,stream:false,keep_alive:pilotKeepAlive,...(pilotCompact?{think:false}:{}),options:{temperature:0.2,num_predict:Number(env.THN_AI_MAX_OUTPUT_TOKENS),num_ctx:config.context,num_thread:pilotThreads}}})));
+  const data=await metrics.measure('generation',()=>budget.run(()=>{const body={model:env.THN_AI_MODEL,messages:request.messages,format:request.format,stream:false,keep_alive:pilotKeepAlive,...(pilotCompact?{think:false}:{}),options:{temperature:0.2,num_predict:Number(env.THN_AI_MAX_OUTPUT_TOKENS),num_ctx:config.context,num_thread:pilotThreads}};
+   // This confirms only the encoded request, never that Ollama applied runtime options.
+   try{onPreparedSettings({compactPilot:body.think===false,keepAlive:body.keep_alive,pilotThreads:body.options.num_thread});}catch{}
+   budget.check();return transport(config.endpoint,'/api/chat',{signal:budget.signal,timeout:Math.max(1,Math.floor(Math.min(timeout,budget.remaining()))),body});}));
   budget.check();
   const duration=k=>Number.isSafeInteger(data[k])&&data[k]>=0&&data[k]<=86400000*1e6?Math.round(data[k]/1e6):null;
   const counter=k=>Number.isInteger(data[k])&&data[k]>=0&&data[k]<=config.context?data[k]:null;

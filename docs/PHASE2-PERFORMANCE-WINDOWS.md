@@ -53,6 +53,60 @@ exits0. Check `accepted`, `failureCode`, request/stage timings, supervision and
 matched claims, not just wall time. `runtimeSettlementVerified:false` on timeout
 means **do not assume Ollama finished**. Confirm idle before another trial.
 
+## Verify timeout settings reporting (2026-11-18 correction)
+
+The supervisor now validates and retains the requested settings before starting
+its worker. The previous timeout-only report used defaults when the worker had
+not returned its final result; this did not establish that those defaults were
+sent to Ollama. The owner-observed 12003ms timeout remains a rejected inference,
+not an accepted model result or proof of completed generation.
+
+After the branch update and existing private opt-in above, run one bounded trial:
+
+```powershell
+$env:THN_AI_TIMEOUT_MS = '12000'
+$env:THN_AI_PILOT_COMPACT = '1'
+$env:THN_AI_PILOT_KEEP_ALIVE = '5m'
+$env:THN_AI_PILOT_THREADS = '2'
+node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en |
+    Out-File -FilePath "$env:TEMP\thn-settings-en.json" -Encoding utf8
+$pilotExit = $LASTEXITCODE
+$r = Get-Content "$env:TEMP\thn-settings-en.json" -Raw | ConvertFrom-Json
+$r | Select-Object compactPilot, keepAlive, pilotThreads, requestedSettings,
+    workerConfirmedSettings, settingsConfirmation, runtimeSettingsVerified,
+    failureCode, accepted, supervision, timings | ConvertTo-Json -Depth 8
+if ($r.requestedSettings.compactPilot -ne $true -or
+    $r.requestedSettings.keepAlive -ne '5m' -or
+    $r.requestedSettings.pilotThreads -ne 2) {
+    throw 'Requested settings were not preserved.'
+}
+"Pilot exit: $pilotExit"
+```
+
+The top-level `compactPilot`, `keepAlive`, `pilotThreads` fields are compatibility
+aliases for **validated requested settings**, not claims about runtime behavior.
+`requestedSettings` must read `true`, `5m`, `2`, even if startup, inventory,
+generation or worker termination prevents a final worker result.
+
+- `settingsConfirmation: unconfirmed`: no matching worker acknowledgement arrived;
+  `workerConfirmedSettings` is null. Do not substitute defaults for unknown values.
+- `worker_validated`: the worker independently validated the same settings, but
+  preparation of the generation request has not been confirmed.
+- `request_prepared`: the worker confirmed the actual encoded request uses the
+  compact profile (`think:false`), `keep_alive:'5m'` and `options.num_thread:2`.
+  This receipt is emitted immediately before calling the loopback transport. It
+  is not proof of server receipt, completed inference or actual scheduling.
+- `runtimeSettingsVerified` remains false: Ollama has not independently attested
+  that it applied these settings. Even a successful response cannot establish it.
+
+After confirming Ollama is idle, repeat the exact trial with `ar` and a different
+output file (`thn-settings-ar.json`). Do not run both concurrently or retry a
+timeout while the runtime may still be busy. Exit2/TIMEOUT is still a failed
+inference; this correction improves reporting, not model qualification or speed.
+Invalid settings still reject the pilot before worker launch without logging
+their raw values. Existing reports with missing settings project null rather
+than inventing requested defaults.
+
 ## A/B batches, without changing the12s policy
 
 The example explicitly permits empty-chat cold unload/warm load via

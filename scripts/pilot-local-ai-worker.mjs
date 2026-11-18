@@ -7,6 +7,7 @@ try{
  const remaining=Math.floor(workerData.policyMs-elapsed());
  if(remaining<1)throw Error('Startup exhausted budget');
  const result=await runPilot({...workerData.options,env:workerData.env,timeoutMs:remaining,
+  onSettingsReport:report=>parentPort.postMessage({type:'settings',...report}),
   onStage:event=>parentPort.postMessage({type:'stage',...event}),onRuntimeReport:runtime=>parentPort.postMessage({type:'runtime',runtime}),onInventoryReport:inventory=>parentPort.postMessage({type:'inventory',inventory})});
  parentPort.postMessage({type:'result',result});
 }catch{parentPort.postMessage({type:'error'});}finally{clearInterval(heartbeat);}

@@ -3,7 +3,7 @@ import {pathToFileURL} from 'node:url';
 import {evidenceSnapshot} from '../server/intelligence.js';
 import {inspectLocalModel,generateLocal} from '../server/intelligence-local.js';
 import {interpretVerifiedEvidence} from '../server/intelligence-inference-lifecycle.js';
-import {safePilotReport} from './pilot-report.mjs';
+import {safePilotReport,validatedPilotSettings} from './pilot-report.mjs';
 import {createInferenceTiming} from '../server/intelligence-timing.js';
 import {providerAvailability} from '../server/intelligence-provider.js';
 
@@ -25,7 +25,7 @@ export function parsePilotArgs(args){
  if(args.length!==4||!['--check','--run'].includes(args[0])||args[1]!=='--model'||!/^([A-Za-z0-9][A-Za-z0-9._-]{0,69})(?::[A-Za-z0-9][A-Za-z0-9._-]{0,28})?$/.test(args[2])||!['en','ar'].includes(args[3]))throw Error('Usage: node scripts/pilot-local-ai.mjs --check|--run --model <installed-local-tag> en|ar');
  return {mode:args[0],model:args[2],language:args[3]};
 }
-export async function runPilot({mode,model,language,env=process.env,inspect=inspectLocalModel,generate=generateLocal,now=Date.now,clock=()=>performance.now(),timeoutMs=12000,onStage=null,onReservation=null,onRuntimeReport=null,onInventoryReport=null,caseName='conflicting',snapshotAt=null}){
+export async function runPilot({mode,model,language,env=process.env,inspect=inspectLocalModel,generate=generateLocal,now=Date.now,clock=()=>performance.now(),timeoutMs=12000,onStage=null,onReservation=null,onRuntimeReport=null,onInventoryReport=null,onSettingsReport=null,caseName='conflicting',snapshotAt=null}){
  if(!['--check','--run'].includes(mode)||!['en','ar'].includes(language)||typeof model!=='string')throw Error('Invalid pilot selection');
  if(env.VERCEL||env.AWS_LAMBDA_FUNCTION_NAME||env.NETLIFY||env.K_SERVICE||env.CF_PAGES)throw Error('Hosted environments are prohibited');
  const config={...env,THN_AI_MODEL:model,THN_AI_PROVIDER:'ollama'};
@@ -36,12 +36,11 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
   sizeBytes:installed?.sizeBytes||null,generationTested:false,syntheticOnly:true,financialExecution:false,modelInspectionVerified:!!installed});
  if(mode==='--check')return reference();
  if(env.THN_LOCAL_PAPER==='1'||!providerAvailability(config).available||providerAvailability(config).provider!=='ollama')throw Error('Explicit local provider authorization, budgets and paper-off required');
- if(env.THN_AI_PILOT_KEEP_ALIVE!==undefined&&!['0','5m'].includes(env.THN_AI_PILOT_KEEP_ALIVE))throw Error('Invalid local pilot keep-alive');
- const pilotKeepAlive=env.THN_AI_PILOT_KEEP_ALIVE==='5m'?'5m':0;
- if(env.THN_AI_PILOT_COMPACT!==undefined&&!['0','1'].includes(env.THN_AI_PILOT_COMPACT))throw Error('Invalid local pilot compact mode');
- const pilotCompact=env.THN_AI_PILOT_COMPACT==='1';
- if(env.THN_AI_PILOT_THREADS!==undefined&&!['1','2','4'].includes(env.THN_AI_PILOT_THREADS))throw Error('Invalid local pilot thread count');
- const pilotThreads=Number(env.THN_AI_PILOT_THREADS||'1');
+ const requestedSettings=validatedPilotSettings(env);
+ const {keepAlive:pilotKeepAlive,compactPilot:pilotCompact,pilotThreads}=requestedSettings;
+ let settingsConfirmation='worker_validated';
+ const reportSettings=phase=>{settingsConfirmation=phase;try{onSettingsReport?.({phase,settings:requestedSettings});}catch{}};
+ reportSettings(settingsConfirmation);
  const snapshot=syntheticPilotSnapshot(snapshotAt??now(),caseName);
  const question=language==='ar'?'تحليل EURUSD':'Analyze EURUSD';
  let modelAttempts=0,generationCalls=0,failureCode=null,timings=null,runtime=null;
@@ -51,6 +50,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
   provider:async(s,q,options)=>{modelAttempts++;
    return generate(config,s,q,{authorization:'Bearer '+env.THN_AI_AUTH_TOKEN,language,signal:options.signal,
     pilotKeepAlive,pilotCompact,pilotThreads,deadline:options.deadline,timing:options.timing,inspect,
+    onPreparedSettings:settings=>{if(Object.keys(requestedSettings).every(k=>settings[k]===requestedSettings[k]))reportSettings('request_prepared');},
     onInspection:value=>{installed=value;try{onInventoryReport?.(safePilotReport({...value,modelInspectionVerified:true},{model,secrets:[env.THN_AI_AUTH_TOKEN,env.OPENAI_API_KEY]}));}catch{}},onModelCall:()=>{generationCalls++;},onRuntime:value=>{runtime={...runtime,...value};try{onRuntimeReport?.(safePilotReport({runtime}).runtime);}catch{}},
     onRequest:count=>{if(!Number.isInteger(count)||count<1||count>Number(config.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Local pilot reserved token ceiling exceeded');onReservation?.(count);}});
   },
@@ -60,7 +60,7 @@ export async function runPilot({mode,model,language,env=process.env,inspect=insp
    failureCode:answer.method==='llm-assisted'?null:(failureCode||'UNKNOWN'),
    elapsedMs:Math.max(0,Math.min(86400000,Math.round(clock()-started))),
    configuredProviderDeadlineMs:Number(env.THN_AI_TIMEOUT_MS||12000),elapsedScope:'request including inventory, generation and strict validation',totalElapsedMs:Math.max(0,Math.min(86400000,Math.round(clock()-totalStarted))),timings,runtime,caseName,
-   keepAlive:pilotKeepAlive,compactPilot:pilotCompact,pilotThreads,
+   keepAlive:pilotKeepAlive,compactPilot:pilotCompact,pilotThreads,requestedSettings,workerConfirmedSettings:requestedSettings,settingsConfirmation,runtimeSettingsVerified:false,
    snapshotId:snapshot.id,sourceIds:snapshot.refs.map(r=>r.id),
    latencyMs:answer.generation?.latencyMs??null,matchedCitations:answer.generation?.citations?.length??0,
    matchedClaims:answer.generation?.claims?.length??0,verifiedCitationIds:answer.generation?.citations||[],
