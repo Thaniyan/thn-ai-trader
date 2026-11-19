@@ -1,0 +1,118 @@
+{
+  "profiles": [
+    [
+      1440,
+      "en",
+      "dark"
+    ],
+    [
+      1440,
+      "en",
+      "light"
+    ],
+    [
+      1440,
+      "ar",
+      "dark"
+    ],
+    [
+      1440,
+      "ar",
+      "light"
+    ],
+    [
+      768,
+      "en",
+      "dark"
+    ],
+    [
+      768,
+      "en",
+      "light"
+    ],
+    [
+      768,
+      "ar",
+      "dark"
+    ],
+    [
+      768,
+      "ar",
+      "light"
+    ],
+    [
+      390,
+      "en",
+      "dark"
+    ],
+    [
+      390,
+      "en",
+      "light"
+    ],
+    [
+      390,
+      "ar",
+      "dark"
+    ],
+    [
+      390,
+      "ar",
+      "light"
+    ],
+    [
+      320,
+      "en",
+      "dark"
+    ],
+    [
+      320,
+      "en",
+      "light"
+    ],
+    [
+      320,
+      "ar",
+      "dark"
+    ],
+    [
+      320,
+      "ar",
+      "light"
+    ],
+    [
+      160,
+      "en",
+      "dark"
+    ],
+    [
+      160,
+      "en",
+      "light"
+    ],
+    [
+      160,
+      "ar",
+      "dark"
+    ],
+    [
+      160,
+      "ar",
+      "light"
+    ]
+  ],
+  "errors": [],
+  "mockModelOnly": true,
+  "checks": [
+    "deterministic assistant reuse",
+    "source focus and Escape",
+    "EN/AR dark/light axe",
+    "cancel/language/hash/instrument late response rejection",
+    "strict simulated generation",
+    "BUY/SELL/WAIT and original level preservation",
+    "saved-to-current review boundaries",
+    "fabricated facts rejected",
+    "immutable library and plan",
+    "hosted execution off"
+  ]
+}

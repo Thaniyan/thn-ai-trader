@@ -107,3 +107,93 @@ inside the BUY/SELL/WAIT Decision Center. Reuse the single original evaluator,
 results, risk and Library owners; no invented per-trade probability or formula
 changes. Retain all42 existing browser suites and add focused lifecycle/EN/AR
 coverage. Continue existing PR20; no main merge or Production deployment.
+
+## Owner Phase2 interpretation integration — 2026-11-17
+
+Continue existing PR #23 / feature/ai-evidence-interpreter-phase2-20261116,
+from fbc8f67013026d5fe0dade7455fab662835077c8 on released main d75dc60.
+Reuse the original assistant and strict evidence contracts. Fix instrument-switch
+withdrawal and asynchronous interpretation lifecycle; integrate EN/AR source-linked
+explanations into the existing Command Center. Model fixtures are offline mocks,
+never claims of verified installed inference. Preserve deterministic decisions,
+all six frozen numerical files and every financial/security restriction. Original
+coverage remains mandatory; Heritage checks withdrawal at the synchronous context
+boundary and additionally verifies any subsequently completed BTCUSD candidate.
+Push only this existing development branch after all local gates pass. Do not
+merge main, deploy Production, enable hosted/paid AI or real/paper execution.
+
+## Owner local inference performance and diagnostics — 2026-11-17
+
+Continue existing draft PR23 / feature/ai-evidence-interpreter-phase2-20261116 from
+owner head a5bbef8551ed1a31701fd3f87a24acc2e34709ac, per comment6953635952.
+Keep the12s request ceiling, strict source/schema validation, exact local model
+identity, authentication and bounded reservations. Add monotonic acceptance checks,
+redacted stage diagnostics and independent CLI supervision; compare only bounded,
+explicit local synthetic workloads. No auto model pull, hosted/paid AI, financial
+execution, main merge or Production deployment. Real Windows hardware is not
+accessible from Cloud; never claim live-device verification from offline fixtures.
+All original regression gates remain mandatory; publish only to the existing branch.
+
+## Owner Day5 product completion — 2026-11-18
+
+Continue existing draft PR23 from 6275939fd7d2dd892a37d2298cc1c28455baaa9e,
+per https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-6979451886 .
+Complete the real deterministic single-page research journey, chart/Decision
+Center/ticket hierarchy, EN/AR and source-context withdrawal. Reuse original
+chart, evaluator, planner and Library; no numerical/recommendation algorithm or
+financial permission changes. Source-identity matching is a read-only display
+admission boundary, not provider authentication. Preserve all44 existing browser
+suites and add Day5 acceptance, paired actual screenshots and geometry. Genuine
+model qualification is separate and not a prerequisite for deterministic UX.
+Keep PR23 DRAFT; no main merge, Production, hosted/paid AI or paper/live execution.
+
+## Owner Day6 focused acceptance — 2026-11-19
+
+Per https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7000692246,
+keep the five accepted Day5 UX areas intact and stabilize the remaining eligible
+Trade Ticket on the existing draft PR23 branch from c3f9942. Verify controlled
+BUY/SELL, missing/stale/incompatible evidence, responsive EN/AR and original risk
+validation. Fix only demonstrated blockers; do not redesign the accepted interface.
+Synthetic admission is not real-provider eligibility. Preserve every original
+assertion, engine and financial restriction; full gates and exact-head CI remain
+mandatory. Report live-access restrictions and Day7 acceptance explicitly.
+Push only feature/ai-evidence-interpreter-phase2-20261116; no main merge,
+Production, paid/hosted inference or paper/live execution is authorized.
+
+## Owner operational-capability gates — 2026-11-19
+
+Per https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7005335553,
+final release is explicitly withheld. Day5/Day6 UI acceptance and green CI do not
+qualify real market providers or a model. Continue existing draft PR23 only.
+Audit actual feeds, precise WAIT prerequisites and strict local-model readiness;
+implement read-only diagnostics without weakening commandAssessment,12s deadline,
+financial engines, source/citation contracts or46 original browser suites.
+Real-provider / real-device model evidence, licensing, calendar/currency integrity
+and independent launch acceptance are separate gates. No unapproved provider,
+model installation, paid/hosted inference, policy change, financial execution,
+main merge or Production deployment. Current audit and ordered checkpoints:
+docs/OPERATIONAL-CAPABILITY-AUDIT.md.
+
+## Owner Windows provider qualification — 2026-11-19
+
+PR23 comment7013242375 establishes owner-observed real-provider reachability:
+27 successful API calls, nine contexts, no retained candidate. Only posted totals
+are available; do not invent row causes or verified closure calendars. Preserve
+all guards while adding aggregate rejection/gap/metadata diagnostics. BTCUSDT is
+not USD Bitcoin; GC=F is not spot XAUUSD. No conversion, provider-route change,
+new provider, model installation or execution is authorized. See
+[provider qualification](docs/PROVIDER-QUALIFICATION-20261119.md) for exact next
+Windows acceptance. All prior tests and financial formulas remain mandatory.
+
+## Owner reconciled Windows audit — 2026-11-19
+
+PR23 comment7015373102 confirms all nine original gap/rejection reconciliations.
+Bounded aggregate geometry/null/session-shape diagnostics only: preserve every
+accepted UI rule, original test, adapter filter, financial engine and eligibility
+blocker. No calendar-based admission, quote conversion or new route is approved.
+EURUSD36 daily geometry rejects need actual comparison/size evidence; weekend
+shapes are not verified closures. Native USD BTC and genuine spot XAUUSD require
+separate source/license/contract review. Implementation/next acceptance:
+docs/SESSION-QUALITY-REVIEW-20261119.md and docs/DATA-SOURCE-PROPOSALS.md.
+Keep existing PR23 draft/branch; no main merge, Production, new provider access,
+AI activation/model installation or financial execution.

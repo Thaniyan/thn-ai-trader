@@ -43,6 +43,17 @@ with sync_playwright() as p:
    page.locator('#commandChooseButton').click();expect(page.locator('#commandSearch')).to_be_focused();assert page.locator('#commandChooser #heritageMarkets button').count()>0;page.locator('#commandSearch').press('Escape');expect(page.locator('#commandChooseButton')).to_be_focused()
   result['profiles'].append([width,lang,theme])
  # New context must withdraw the original price references and level explanation.
- page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click();page.locator('#heritageMarkets [data-command="pick:BTCUSD"]').click();page.wait_for_function('THNContext.get().symbol==="BTCUSD"');assert page.evaluate('THNPrecision.review().candidate') is None;expect(page.locator('#heritageLevelMeaning')).to_have_count(0);assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved
+ page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click()
+ # Observe withdrawal at the actual transition, not after a scheduling-dependent
+ # round trip: the controlled fixture also permits a NEW valid BTCUSD candidate.
+ page.evaluate("()=>{window.__heritageTransition=null;addEventListener('thn:context',()=>{window.__heritageTransition={symbol:THNContext.get().symbol,candidate:THNPrecision.review().candidate,meaning:!!document.getElementById('heritageLevelMeaning')};},{once:true});}")
+ page.locator('#heritageMarkets [data-command="pick:BTCUSD"]').click();page.wait_for_function('THNContext.get().symbol==="BTCUSD"&&window.__heritageTransition')
+ assert page.evaluate('__heritageTransition.symbol')=='BTCUSD';assert page.evaluate('__heritageTransition.candidate') is None;assert not page.evaluate('__heritageTransition.meaning')
+ expect(page.locator('#heritageLevelMeaning')).to_have_count(0);assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved
+ # New completed evidence may qualify; it must never contain the old instrument,
+ # dataset or chart identity. No financial result is suppressed to satisfy a test.
+ page.wait_for_function('THNCommand.state().fresh&&THNDecision.brief()?.symbol==="BTCUSD"')
+ result['instrumentSwitch']={'transition':page.evaluate('__heritageTransition'),'completedCandidate':page.evaluate('THNPrecision.review().candidate')}
+ assert page.evaluate('(()=>{const candidate=THNPrecision.review().candidate,c=THNContext.get();return !candidate||candidate.symbol===c.symbol&&candidate.interval===c.interval&&candidate.hash===c.datasetId&&candidate.hash===THNResearch.chart.data.provenance.hash;})()')
  assert not any('/api/order' in u or '/api/paper/' in u for u in posts);assert not page.evaluate('THNServiceHealth.get().capabilities.paperExecution');assert not result['errors'],result['errors'];b.close()
 (out/'heritage-results.json').write_text(json.dumps(result,indent=2));print('PASS: catalog-owned selection, recorded level meaning and keyboard/source handoffs,16 EN/AR/theme profiles, immutable records, stale withdrawal and hosted restrictions')

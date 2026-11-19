@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?range=5d&interval=15m",
+    "exit": 56,
+    "response": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Thu, 19 Nov 2026 13:12:46 GMT\nserver: envoy\nconnection: close\n\ncurl: (56) CONNECT tunnel failed, response 403\n"
+  },
+  {
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?range=5d&interval=15m",
+    "exit": 56,
+    "response": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Thu, 19 Nov 2026 13:12:46 GMT\nserver: envoy\nconnection: close\n\ncurl: (56) CONNECT tunnel failed, response 403\n"
+  },
+  {
+    "url": "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=15m&limit=60",
+    "exit": 56,
+    "response": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Thu, 19 Nov 2026 13:12:46 GMT\nserver: envoy\nconnection: close\n\ncurl: (56) CONNECT tunnel failed, response 403\n"
+  },
+  {
+    "url": "http://127.0.0.1:11434/api/tags",
+    "exit": 7,
+    "response": "curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Could not connect to server\n"
+  }
+]

@@ -6,6 +6,18 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
+## Current owner program — Day5, 2026-11-18
+
+[Day5 authority](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-6979451886):
+continue existing draft PR23 on `feature/ai-evidence-interpreter-phase2-20261116`
+from6275939. This supersedes older active-branch and calendar references below.
+Complete the actual deterministic one-page journey and source-bound chart/ticket
+experience; real-model qualification is separate. Preserve original engines,
+recommendation/scoring algorithms, records and all financial restrictions.
+[Acceptance pack](DAY5-COMMAND-CENTER-ACCEPTANCE.md) records implementation,
+capability limits, actual paired screenshots, regression evidence and Day6 work.
+Main/Production remain separately gated; no automatic merge, execution or paid AI.
+
 ## Owner visual reorientation — 2026-11-16
 
 The owner rejected A+ as final visual acceptance and requires the original THN
@@ -519,3 +531,33 @@ fixed-strategy evaluator lifecycle beneath BUY/SELL/WAIT. Keep one evaluator,
 immutable research and explicit hypothetical trade boundaries. Preserve all42
 browser suites and add inline lifecycle/RTL/keyboard coverage. PR20 only; main
 and Production remain subject to separate approval.
+
+## Phase2 Day6 — eligible Ticket acceptance, 19 November 2026
+
+Continue existing draft PR23 from owner-accepted Day5 baseline c3f9942; preserve
+its five accepted UX checks. The remaining Ticket check is isolated in
+[the Day6 acceptance and Day7 checklist](DAY6-TICKET-ACCEPTANCE.md).
+A reproduced P1 collapsed two six-decimal engine targets into the same rounded
+Ticket price. Retained-reference presentation preserves the six recorded decimals;
+all financial engines, backend, dependencies and original tests remain intact.
+An actual-DejaVu diagnostic also exposed target-price wrapping; only existing
+target-cell inline padding is reduced, preserving type size, grid and44px controls.
+New controlled BUY/SELL UI acceptance covers48 profiles, source/context negatives,
+partial targets, concurrent response withdrawal and original-planner integrity.
+Real provider qualification remains distinct from offline admission fixtures.
+Exact-head CI, matching existing-project Preview and explicit owner acceptance
+precede any main/Production release. No execution or paid/hosted model activation.
+
+## Owner release withheld — operational capability gates, 19 November 2026
+
+[Binding plan](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7005335553)
+supersedes any interpretation of Day7 as a forced release. The accepted interface
+remains a foundation; real feeds, genuine strict AI interpretation and observed
+safe research setups are not established by mock tests or Preview metadata.
+See [the current capability/provider/model audit](OPERATIONAL-CAPABILITY-AUDIT.md)
+for actual CONNECT403 and unmocked API503 observations, FX session-gap and crypto
+USD/USDT constraints, strict OpenAI adapter incompatibility, model options and
+ordered owner approval checkpoints. The current improvement is passive source-aware
+diagnostics plus a bounded loopback audit CLI, not relaxed eligibility or inference
+activation. Preserve all46 prior suites, add diagnostic coverage, publish only the
+existing draft PR23 branch and keep main/Production unapproved.

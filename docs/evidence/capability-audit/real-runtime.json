@@ -1,0 +1,737 @@
+{
+  "schema": "THN-RUNTIME-AUDIT-1",
+  "asOf": "2026-11-19T13:40:37.351Z",
+  "scope": "Read-only loopback application requests. Source metadata is not independent provider authentication. No inference, execution, hypothetical capital or eligibility is fabricated.",
+  "provider": {
+    "configurationAvailable": false,
+    "hostedDisabled": true,
+    "qualification": "UNVERIFIED"
+  },
+  "samples": [
+    {
+      "symbol": "EURUSD",
+      "interval": "15m",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "15m",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "interval": "1h",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "interval": "1d",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1d",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "BTCUSD",
+      "interval": "15m",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "BTCUSD",
+          "interval": "15m",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "BTCUSD",
+      "interval": "1h",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "BTCUSD",
+          "interval": "1h",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "BTCUSD",
+      "interval": "1d",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "BTCUSD",
+          "interval": "1d",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "interval": "15m",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "XAUUSD",
+          "interval": "15m",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "proxy_context",
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "interval": "1h",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "XAUUSD",
+          "interval": "1h",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "proxy_context",
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "interval": "1d",
+      "frameFailures": [
+        {
+          "interval": "15m",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1h",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        {
+          "interval": "1d",
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      ],
+      "endpoints": {
+        "series": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        },
+        "brief": {
+          "ok": false,
+          "status": 503,
+          "code": "REQUEST_FAILED"
+        },
+        "analysis": {
+          "ok": false,
+          "status": 503,
+          "code": "MARKET_DATA_UNAVAILABLE"
+        }
+      },
+      "readiness": {
+        "schema": "THN-READINESS-1",
+        "context": {
+          "symbol": "XAUUSD",
+          "interval": "1d",
+          "hash": null,
+          "barTime": null
+        },
+        "phase": "unavailable",
+        "sourceIdentityMatched": false,
+        "observation": null,
+        "frames": [
+          {
+            "interval": "15m",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1h",
+            "available": false,
+            "observation": null
+          },
+          {
+            "interval": "1d",
+            "available": false,
+            "observation": null
+          }
+        ],
+        "reasons": [
+          "proxy_context",
+          "history_unavailable",
+          "analysis_required",
+          "incomplete_frames",
+          "risk_review_required",
+          "currency_mismatch"
+        ],
+        "candidateRetained": false,
+        "risk": "unreviewed",
+        "aiState": "unavailable",
+        "historicalTestState": "untested",
+        "upstreamIndependence": "not_established",
+        "calendarState": "unverified",
+        "providerAuthentication": "not_established",
+        "executionAuthorized": false,
+        "probability": null
+      }
+    }
+  ],
+  "executionAuthorized": false,
+  "liveEligibleTicket": "NOT_VERIFIED"
+}

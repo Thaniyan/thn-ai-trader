@@ -1,0 +1,106 @@
+{
+  "scope": "Offline diagnostic interface only; no real feed/model qualification",
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 160,
+      "language": "en",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 160,
+      "language": "en",
+      "theme": "light",
+      "axeViolations": []
+    },
+    {
+      "width": 160,
+      "language": "ar",
+      "theme": "dark",
+      "axeViolations": []
+    },
+    {
+      "width": 160,
+      "language": "ar",
+      "theme": "light",
+      "axeViolations": []
+    }
+  ],
+  "aggregateDiagnostics": "PASS",
+  "contextWithdrawal": "PASS",
+  "providerOutage": "PASS",
+  "libraryUnchanged": true,
+  "errors": []
+}

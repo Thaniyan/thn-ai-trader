@@ -1,0 +1,424 @@
+{
+  "fixture": "Original offline provider, fixed 2026-11-11T17:10:00Z; not live market data or model output",
+  "baselinePublicSource": "fbc8f67013026d5fe0dade7455fab662835077c8 (byte-identical to released PR20 public source)",
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 192,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 192,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "beforeChart": {
+        "x": 192,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 192,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 432,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 432,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "beforeChart": {
+        "x": 432,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 432,
+        "y": 615.234375,
+        "width": 816,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 96,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 96,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "beforeChart": {
+        "x": 96,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 96,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 428,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 428,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "beforeChart": {
+        "x": 428,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "afterChart": {
+        "x": 428,
+        "y": 691.234375,
+        "width": 500,
+        "height": 560
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "beforeChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "beforeChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "afterChart": {
+        "x": 32,
+        "y": 682.3125,
+        "width": 704,
+        "height": 480
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 26,
+        "y": 719.328125,
+        "width": 338,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 26,
+        "y": 719.328125,
+        "width": 338,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "beforeChart": {
+        "x": 26,
+        "y": 719.328125,
+        "width": 338,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 26,
+        "y": 719.328125,
+        "width": 338,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 26,
+        "y": 685.234375,
+        "width": 338,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 26,
+        "y": 685.234375,
+        "width": 338,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "beforeChart": {
+        "x": 26,
+        "y": 685.234375,
+        "width": 338,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 26,
+        "y": 685.234375,
+        "width": 338,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 22,
+        "y": 764.484375,
+        "width": 276,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 764.484375,
+        "width": 276,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "light",
+      "beforeChart": {
+        "x": 22,
+        "y": 764.484375,
+        "width": 276,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 764.484375,
+        "width": 276,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 320,
+      "language": "ar",
+      "theme": "dark",
+      "beforeChart": {
+        "x": 22,
+        "y": 746.890625,
+        "width": 276,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 746.890625,
+        "width": 276,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    },
+    {
+      "width": 320,
+      "language": "ar",
+      "theme": "light",
+      "beforeChart": {
+        "x": 22,
+        "y": 746.890625,
+        "width": 276,
+        "height": 330
+      },
+      "afterChart": {
+        "x": 22,
+        "y": 746.890625,
+        "width": 276,
+        "height": 330
+      },
+      "sameChartGeometry": true,
+      "sameDataset": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/phase2-evidence/before-1440-en-dark.png",
+      "sha256": "d8a093bb3f8d11c34f79c0ef8fe1aba93d22eddf71cd6506eddc907a98e4f5f6"
+    },
+    {
+      "path": "docs/phase2-evidence/after-1440-en-dark.png",
+      "sha256": "c23921f11d8a8093e103c3fb8e5b98a613314bf0b68701740753c9a9c5e48fcb"
+    },
+    {
+      "path": "docs/phase2-evidence/evidence-1440-en-dark.png",
+      "sha256": "24c13e03b1e5c251d707bd5fb9ccc699334b36f593ffb940b6e33825d8848206"
+    },
+    {
+      "path": "docs/phase2-evidence/before-1440-ar-light.png",
+      "sha256": "4cb2ab8969dedb636146a52af8f102054a9edbb90ce53490a73a970e3faf9fc0"
+    },
+    {
+      "path": "docs/phase2-evidence/after-1440-ar-light.png",
+      "sha256": "3f09158cd02e81671ed0219a189907d12432dcff9241f836ee4e6f15875f860d"
+    },
+    {
+      "path": "docs/phase2-evidence/evidence-1440-ar-light.png",
+      "sha256": "fc0f88882e70032a5c9d7646cc2b93812e8bbab02b90f426caa0ed72214c47a2"
+    },
+    {
+      "path": "docs/phase2-evidence/before-390-ar-light.png",
+      "sha256": "1c8aba7771e7fd2b7537d7d15016e810f77230ceda02c87d9defab650424ba27"
+    },
+    {
+      "path": "docs/phase2-evidence/after-390-ar-light.png",
+      "sha256": "de7f2660e19c74ee1360f0610be41e68ab3013e27be0dac4cf16f4333e09fe2d"
+    },
+    {
+      "path": "docs/phase2-evidence/evidence-390-ar-light.png",
+      "sha256": "27f554b2f82373506da7128dcd878342c2e4055c972666f8a4efa46a0291008f"
+    }
+  ]
+}

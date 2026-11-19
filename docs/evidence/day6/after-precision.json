@@ -1,0 +1,23 @@
+{
+  "scope": "Controlled admission; unchanged original engine prices, corrected Ticket presentation",
+  "originalDecision": "BUY LIMIT",
+  "raw": {
+    "entry": 1.100019,
+    "stop": 1.100013,
+    "targets": [
+      1.100029,
+      1.100034,
+      1.100038
+    ]
+  },
+  "display": {
+    "E": "1.100019",
+    "SL": "1.100013",
+    "T1": "1.100029",
+    "T2": "1.100034",
+    "T3": "1.100038"
+  },
+  "eligible": "eligible",
+  "riskValidated": true,
+  "distinctRawTargetsCollapsed": false
+}
