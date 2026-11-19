@@ -86,3 +86,12 @@ def select_day6_suites(env):
         return list(DAY6_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(DAY6_SUITES) if (position + 1) % count == index]
+
+# Operational diagnostics extend all46 original suites; no earlier roster moves.
+READINESS_SUITES = ['readiness']
+def select_readiness_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(READINESS_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(READINESS_SUITES) if (position+1)%count==index]

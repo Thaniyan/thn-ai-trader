@@ -159,3 +159,17 @@ assertion, engine and financial restriction; full gates and exact-head CI remain
 mandatory. Report live-access restrictions and Day7 acceptance explicitly.
 Push only feature/ai-evidence-interpreter-phase2-20261116; no main merge,
 Production, paid/hosted inference or paper/live execution is authorized.
+
+## Owner operational-capability gates — 2026-11-19
+
+Per https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7005335553,
+final release is explicitly withheld. Day5/Day6 UI acceptance and green CI do not
+qualify real market providers or a model. Continue existing draft PR23 only.
+Audit actual feeds, precise WAIT prerequisites and strict local-model readiness;
+implement read-only diagnostics without weakening commandAssessment,12s deadline,
+financial engines, source/citation contracts or46 original browser suites.
+Real-provider / real-device model evidence, licensing, calendar/currency integrity
+and independent launch acceptance are separate gates. No unapproved provider,
+model installation, paid/hosted inference, policy change, financial execution,
+main merge or Production deployment. Current audit and ordered checkpoints:
+docs/OPERATIONAL-CAPABILITY-AUDIT.md.

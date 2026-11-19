@@ -163,3 +163,6 @@
 /* Day6: leave room for all six retained decimals in the existing target cells.
    Preserve type size, grid, gaps and44px controls; no truncation or price rounding. */
 .heritage-home #view-dashboard #commandSetup .command-levels>div:nth-child(n+3){padding-inline:2px}
+/* Only the operational disclosure: retain complete timestamps/codes at narrow widths. */
+.command-center #commandReadiness{min-width:0;overflow-wrap:anywhere}
+.command-center #commandReadiness bdi,.command-center #commandReadiness code{white-space:normal;overflow-wrap:anywhere}

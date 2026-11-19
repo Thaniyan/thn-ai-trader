@@ -547,3 +547,17 @@ partial targets, concurrent response withdrawal and original-planner integrity.
 Real provider qualification remains distinct from offline admission fixtures.
 Exact-head CI, matching existing-project Preview and explicit owner acceptance
 precede any main/Production release. No execution or paid/hosted model activation.
+
+## Owner release withheld — operational capability gates, 19 November 2026
+
+[Binding plan](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7005335553)
+supersedes any interpretation of Day7 as a forced release. The accepted interface
+remains a foundation; real feeds, genuine strict AI interpretation and observed
+safe research setups are not established by mock tests or Preview metadata.
+See [the current capability/provider/model audit](OPERATIONAL-CAPABILITY-AUDIT.md)
+for actual CONNECT403 and unmocked API503 observations, FX session-gap and crypto
+USD/USDT constraints, strict OpenAI adapter incompatibility, model options and
+ordered owner approval checkpoints. The current improvement is passive source-aware
+diagnostics plus a bounded loopback audit CLI, not relaxed eligibility or inference
+activation. Preserve all46 prior suites, add diagnostic coverage, publish only the
+existing draft PR23 branch and keep main/Production unapproved.

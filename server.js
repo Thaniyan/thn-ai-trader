@@ -215,6 +215,7 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
         source: "Yahoo Finance chart data",
         providerSymbol: symbolInfo.yahoo,
         currency: result?.meta?.currency || "USD",
+        providerCurrencyPresent: typeof result?.meta?.currency === "string" && result.meta.currency.trim().length > 0,
         exchangeName: result?.meta?.exchangeName || "Primary Exchange",
         // Preserve the local-paper adapter contract; analytical use separately rejects absent provider time.
         providerTimePresent: Number.isFinite(result?.meta?.regularMarketTime) && result.meta.regularMarketTime > 0,
@@ -1625,7 +1626,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname === "/api/research/catalog") {
       const forex=["EURUSD","GBPUSD","AUDUSD","NZDUSD","USDJPY","USDCHF","USDCAD"].map(symbol=>({symbol,category:"Forex",providerSymbol:symbol+"=X",proxy:false,identity:instrumentIdentity(symbol,{providerSymbol:symbol+"=X",source:"Yahoo Finance"}),contract:getContractSpec(symbol)}));
       const others=[...new Map([...SYMBOL_ALIASES.values()].map(v=>[v.display,v])).values()].map(v=>({symbol:v.display,category:["XAUUSD","XAGUSD"].includes(v.display)?"Metals":["USOIL","BRENT"].includes(v.display)?"Oil":v.assetClass,providerSymbol:v.yahoo,proxy:v.assetClass==="Commodity"||/USDT$/.test(v.display),identity:instrumentIdentity(v.display,{providerSymbol:v.yahoo,source:"Yahoo Finance"}),contract:getContractSpec(v.display)}));
-      return sendJson(res,200,{ok:true,instruments:[...forex,...others],provider:"Yahoo Finance; Binance fallback where supported",intervals:["15m","1h","1d"],availability:"Candidate mappings only; requested observations must be fetched and verified. No live bid/ask or streaming claim."});
+      return sendJson(res,200,{ok:true,instruments:[...forex,...others],provider:"Yahoo Finance for non-crypto; Binance spot first for crypto, Yahoo fallback",intervals:["15m","1h","1d"],availability:"Candidate mappings only; requested observations must be fetched and verified. No live bid/ask or streaming claim."});
     }
     if (req.method === "POST" && url.pathname === "/api/research/plan") {
       return sendJson(res,200,{ok:true,plan:budgetPlan(await readBody(req))});
