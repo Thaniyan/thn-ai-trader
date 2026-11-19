@@ -10,6 +10,19 @@ AI research service or a genuinely eligible live-provider Ticket. Day7 was an
 assessment milestone. No merge, Production, provider purchase, new model,
 hosted/paid inference, financial execution or security-policy change is authorized.
 
+## Updated owner Windows evidence — same day
+
+[Owner observation and next acceptance](PROVIDER-QUALIFICATION-20261119.md)
+supersedes any universal absence-of-data interpretation of the earlier Cloud
+observations below. Owner Windows returned27 successful research API responses
+across nine contexts with recent available frames. EURUSD quality/neutral reasons,
+BTCUSDT/USD scope mismatch and GC=F futures/spot incompatibility remain blockers.
+No real candidate was retained. Posted aggregates do not determine individual
+rejection causes or verified session closures. A1 is partial owner-device
+reachability; C1 remains NOT_VERIFIED; B1 remains NO_GO. The matrix below records
+the earlier Cloud audit, not a failed Windows connection or a provider outage.
+The new aggregate taxonomy changes no qualification or execution policy.
+
 ## Capability and blocker matrix
 
 VERIFIED_REAL means an actual non-fixture observation, not a marketing claim.

@@ -95,3 +95,12 @@ def select_readiness_suites(env):
         return list(READINESS_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position,suite in enumerate(READINESS_SUITES) if (position+1)%count==index]
+
+# Aggregate provider-quality UI coverage extends every existing suite.
+PROVIDER_QUALITY_SUITES = ['provider_quality']
+def select_provider_quality_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(PROVIDER_QUALITY_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(PROVIDER_QUALITY_SUITES) if (position+1)%count==index]

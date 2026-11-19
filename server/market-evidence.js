@@ -1,3 +1,4 @@
+import {marketDiagnostics} from './provider-diagnostics.js';
 import {prepareSeries,INTERVAL_MS,researchError} from './research.js';
 
 // Data-boundary validation only: authoritative indicator/backtest formulas stay unchanged.
@@ -12,5 +13,6 @@ export function closedMarket(market,asOf=Date.now()) {
   const through=Math.min(asOf,market.marketTime);
   const series=prepareSeries(market,market.interval,through);
   const last=series.candles.at(-1);
-  return {...market,candles:series.candles,evidence:{...series.provenance,asOf,observedAt:market.marketTime,availableAt:last.time+step,timestampConvention:'bar-open; available after interval close',excludedUnclosedBars:market.candles.filter(c=>c.time+step>through).length}};
+  const dataDiagnostics=marketDiagnostics({...market,evidence:{asOf}},series);
+  return {...market,dataDiagnostics,candles:series.candles,evidence:{...series.provenance,asOf,observedAt:market.marketTime,availableAt:last.time+step,timestampConvention:'bar-open; available after interval close',excludedUnclosedBars:market.candles.filter(c=>c.time+step>through).length}};
 }

@@ -173,3 +173,14 @@ and independent launch acceptance are separate gates. No unapproved provider,
 model installation, paid/hosted inference, policy change, financial execution,
 main merge or Production deployment. Current audit and ordered checkpoints:
 docs/OPERATIONAL-CAPABILITY-AUDIT.md.
+
+## Owner Windows provider qualification — 2026-11-19
+
+PR23 comment7013242375 establishes owner-observed real-provider reachability:
+27 successful API calls, nine contexts, no retained candidate. Only posted totals
+are available; do not invent row causes or verified closure calendars. Preserve
+all guards while adding aggregate rejection/gap/metadata diagnostics. BTCUSDT is
+not USD Bitcoin; GC=F is not spot XAUUSD. No conversion, provider-route change,
+new provider, model installation or execution is authorized. See
+[provider qualification](docs/PROVIDER-QUALIFICATION-20261119.md) for exact next
+Windows acceptance. All prior tests and financial formulas remain mandatory.

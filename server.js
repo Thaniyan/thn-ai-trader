@@ -1,3 +1,4 @@
+import {recordProviderRows} from './server/provider-diagnostics.js';
 import {budgetPlan} from './server/plan-budget.js';
 import {instrumentIdentity,researchIdentity} from './public/instrument-identity.js';
 import {createPaperIntents,ensurePaperWriter} from './server/paper-intents.js';
@@ -149,14 +150,16 @@ async function fetchBinanceCandles(symbolInfo, timeframe = "intraday") {
     if (!res.ok) throw new Error(`Binance HTTP ${res.status}`);
     const data = await res.json();
     if (!Array.isArray(data) || data.length < 30) throw new Error("Insufficient Binance candles");
-    const candles = data.map(k => ({
+    const rows = data.map(k => ({
       time: Number(k[0]),
       open: parseFloat(k[1]),
       high: parseFloat(k[2]),
       low: parseFloat(k[3]),
       close: parseFloat(k[4]),
       volume: parseFloat(k[5])
-    })).filter(c => [c.open, c.high, c.low, c.close].every(Number.isFinite) && c.low > 0 && c.high >= Math.max(c.open, c.close) && c.low <= Math.min(c.open, c.close));
+    }));
+    const candles = rows.filter(c => [c.open, c.high, c.low, c.close].every(Number.isFinite) && c.low > 0 && c.high >= Math.max(c.open, c.close) && c.low <= Math.min(c.open, c.close));
+    recordProviderRows(rows,candles,{provider:"binance",requestedSymbol:symbol});
     const cfg = TIMEFRAME_CONFIG[String(timeframe || "intraday").toLowerCase()] || TIMEFRAME_CONFIG.intraday;
     return {
       candles,
@@ -198,16 +201,18 @@ async function fetchYahooCandles(symbolInfo, timeframe = "intraday") {
       const quote = result?.indicators?.quote?.[0];
       const timestamps = result?.timestamp || [];
       if (!quote || timestamps.length < 35) throw new Error("Insufficient candles");
-      const candles = timestamps.map((t, i) => ({
+      const rows = timestamps.map((t, i) => ({
         time: t * 1000,
         open: quote.open?.[i],
         high: quote.high?.[i],
         low: quote.low?.[i],
         close: quote.close?.[i],
         volume: quote.volume?.[i] || 0
-      })).filter(c => c.open != null && c.high != null && c.low != null && c.close != null &&
+      }));
+      const candles = rows.filter(c => c.open != null && c.high != null && c.low != null && c.close != null &&
                       [c.open, c.high, c.low, c.close].every(v => typeof v === "number" && Number.isFinite(v) && v > 0) &&
                       c.high >= Math.max(c.open, c.close) && c.low <= Math.min(c.open, c.close));
+      recordProviderRows(rows,candles,{provider:"yahoo",requestedSymbol:symbolInfo.yahoo,meta:result.meta});
       if (candles.length < 35) throw new Error("Not enough valid candles");
       return {
         candles,
@@ -1637,7 +1642,7 @@ const server = http.createServer(async (req, res) => {
       const interval = url.searchParams.get("interval") || "1h";
       if (!Object.hasOwn(INTERVAL_MS, interval)) return sendJson(res, 400, { ok: false, code: "INVALID_MARKET_REQUEST" });
       const market = await getResearchMarketData(symbol, interval);
-      return sendJson(res, 200, { ok: true, symbol: market.symbolInfo.display, ...prepareSeries(market, interval) });
+      return sendJson(res, 200, { ok: true, symbol: market.symbolInfo.display, ...prepareSeries(market, interval), dataDiagnostics:market.dataDiagnostics });
     }
     if (req.method === "GET" && url.pathname === "/api/research/mtf") {
       const symbol = url.searchParams.get("symbol") || "EURUSD";
@@ -1740,6 +1745,7 @@ const server = http.createServer(async (req, res) => {
       const body = await readBody(req);
       const market = await getResearchMarketData(body.symbol || "EURUSD", body.timeframe || "intraday");
       const analysis = buildAnalysis(market, body);
+      analysis.dataDiagnostics=market.dataDiagnostics;
       analysis.identity=researchIdentity(analysis.symbol,analysis.timeframe,analysis.evidence,'legacy-window-14');
       analysis.applicationVersion='7.5.0';analysis.schemaVersion='legacy-analysis-1';analysis.analysisEngineVersion='legacy-window-14';
       analysis.indicatorMethodology={rsi14:'simple rolling 14 changes (not Wilder)',atr14:'simple rolling 14 true ranges (not Wilder)',ema:'SMA-seeded EMA; full closed-bar window',window:market.candles.length,datasetHash:analysis.evidence?.hash,lastTime:analysis.evidence?.lastTime};
