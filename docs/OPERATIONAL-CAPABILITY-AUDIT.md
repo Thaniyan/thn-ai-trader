@@ -10,6 +10,15 @@ AI research service or a genuinely eligible live-provider Ticket. Day7 was an
 assessment milestone. No merge, Production, provider purchase, new model,
 hosted/paid inference, financial execution or security-policy change is authorized.
 
+## Reconciled Windows evidence and bounded follow-up
+
+[Latest session/geometry review](SESSION-QUALITY-REVIEW-20261119.md) records the
+owner's nine successful reconciliation contexts at c773e5c. Missing OHLC and36
+daily EURUSD geometry rejects are measured categories; their exact causes and
+licensed historical session classifications remain unverified. Native USD Bitcoin
+and spot gold [proposals](DATA-SOURCE-PROPOSALS.md) are pending approval, not enabled
+routes. The deeper collector changes no accepted interface or admission rule.
+
 ## Updated owner Windows evidence — same day
 
 [Owner observation and next acceptance](PROVIDER-QUALIFICATION-20261119.md)

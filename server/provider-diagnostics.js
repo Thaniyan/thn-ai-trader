@@ -1,3 +1,5 @@
+import {shapeProjection} from '../public/provider-shape-contract.js';
+import {rowDetailCollector,gapShapeDetails} from './provider-shapes.js';
 // Aggregate observations only. Never changes rows, timestamps, hashes or eligibility.
 const evidence=new WeakMap(),stepMs={'15m':900000,'1h':3600000,'1d':86400000};
 const validTime=t=>Number.isFinite(t)&&t>0&&t<=8640000000000000;
@@ -6,17 +8,20 @@ const buckets=['missing_ohlc','nonfinite_or_nonnumeric_ohlc','nonpositive_ohlc',
 export function recordProviderRows(rows,kept,{provider,requestedSymbol,meta={}}={}){
  meta=meta&&typeof meta==='object'&&!Array.isArray(meta)?meta:{};
  if(rows.length>20000){evidence.set(kept,{state:'limit_exceeded'});return;}
+ let timezone=null;
+ if(typeof meta.exchangeTimezoneName==='string'&&/^[A-Za-z0-9_+\-/]{1,80}$/.test(meta.exchangeTimezoneName))try{new Intl.DateTimeFormat('en',{timeZone:meta.exchangeTimezoneName}).format(0);timezone=meta.exchangeTimezoneName;}catch{}
+ const collector=rowDetailCollector(timezone);
  const accepted=new Set(kept),rejections=Object.fromEntries(buckets.map(k=>[k,0])),rejectedTimes=[];
  let retainedInvalidTime=0;
- for(const r of rows){
+ for(const [index,r] of rows.entries()){
   if(accepted.has(r)){if(!validTime(r.time))retainedInvalidTime++;continue;}
   const values=[r.open,r.high,r.low,r.close];
   const reason=values.some(v=>v==null)?buckets[0]:values.some(v=>typeof v!=='number'||!Number.isFinite(v))?buckets[1]:values.some(v=>v<=0)?buckets[2]:r.high<Math.max(r.open,r.close)||r.low>Math.min(r.open,r.close)?buckets[3]:buckets[4];
+  collector.add(r,reason,index);
   rejections[reason]++;rejectedTimes.push(validTime(r.time)?r.time:null);
  }
- let timezone=null;
- if(typeof meta.exchangeTimezoneName==='string'&&/^[A-Za-z0-9_+\-/]{1,80}$/.test(meta.exchangeTimezoneName))try{new Intl.DateTimeFormat('en',{timeZone:meta.exchangeTimezoneName}).format(0);timezone=meta.exchangeTimezoneName;}catch{}
- evidence.set(kept,{state:'recorded',rawCount:rows.length,acceptedCount:kept.length,rejections,rejectedTimes,retainedInvalidTime,
+ const detail=collector.finish();
+ evidence.set(kept,{rowDetails:detail.report,rejectedPoints:detail.points,state:'recorded',rawCount:rows.length,acceptedCount:kept.length,rejections,rejectedTimes,retainedInvalidTime,
   metadata:{provider:provider==='binance'?'binance':'yahoo',requestedSymbol:symbol(requestedSymbol),reportedSymbol:symbol(meta.symbol),reportedCurrency:typeof meta.currency==='string'&&/^[A-Za-z]{3,8}$/.test(meta.currency)?meta.currency:null,
    reportedProductType:typeof meta.instrumentType==='string'&&/^[A-Za-z_\-]{1,30}$/.test(meta.instrumentType)?meta.instrumentType:null,
    reportedTimezone:timezone,reportedUtcOffsetSeconds:Number.isInteger(meta.gmtoffset)&&Math.abs(meta.gmtoffset)<=50400?meta.gmtoffset:null,
@@ -44,7 +49,8 @@ export function marketDiagnostics(market,series){
  const excluded=market.candles.filter(r=>r.time+step>Math.min(p.providerTime,market.evidence?.asOf??Infinity)).length;
  const locations={beforeSelected:0,withinSelected:0,afterSelected:0,unknownTime:0};
  if(raw?.state==='recorded')for(const time of raw.rejectedTimes)locations[time===null?'unknownTime':time<p.firstTime?'beforeSelected':time>p.lastTime?'afterSelected':'withinSelected']++;
- return {schema:'THN-DATA-QUALITY-1',symbol:market.symbolInfo?.display||null,interval:p.interval,datasetHash:p.hash,
+ const detail={clockRuntime:{icu:process.versions.icu,tzdb:process.versions.tz},schema:'THN-PROVIDER-SHAPES-1',rowLimit:20000,selectedLimit:2000,rows:raw?.rowDetails?structuredClone(raw.rowDetails):null,gaps:gapShapeDetails(rows,step,raw?.metadata?.reportedTimezone,raw?.rejectedPoints),calendarVerified:false,closureClassification:'UNDETERMINED',qualificationChanged:false};
+ return {detail:shapeProjection(detail,{missing:raw?.rejections?.missing_ohlc,geometry:raw?.rejections?.invalid_ohlc_geometry,gaps:p.gapCount},raw?.metadata?.reportedTimezone),schema:'THN-DATA-QUALITY-1',symbol:market.symbolInfo?.display||null,interval:p.interval,datasetHash:p.hash,
   originalCounters:{gapCount:p.gapCount,discardedRows:p.discardedRows},
   adapter:raw?.state==='recorded'?{state:'recorded',scope:'full_provider_response',rawCount:raw.rawCount,acceptedCount:raw.acceptedCount,rejectedCount:raw.rejectedTimes.length,rejectionReasons:{...raw.rejections},rejectionLocations:locations,retainedInvalidTimestampCount:raw.retainedInvalidTime}: {state:'unavailable'},
   selectedWindow:{scope:'retained_closed_tail',count:rows.length,firstTime:p.firstTime,lastTime:p.lastTime,excludedNotClosedOrAfterObservation:excluded,trimmedClosedRows:Math.max(0,market.candles.length-excluded-rows.length)},

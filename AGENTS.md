@@ -184,3 +184,16 @@ not USD Bitcoin; GC=F is not spot XAUUSD. No conversion, provider-route change,
 new provider, model installation or execution is authorized. See
 [provider qualification](docs/PROVIDER-QUALIFICATION-20261119.md) for exact next
 Windows acceptance. All prior tests and financial formulas remain mandatory.
+
+## Owner reconciled Windows audit — 2026-11-19
+
+PR23 comment7015373102 confirms all nine original gap/rejection reconciliations.
+Bounded aggregate geometry/null/session-shape diagnostics only: preserve every
+accepted UI rule, original test, adapter filter, financial engine and eligibility
+blocker. No calendar-based admission, quote conversion or new route is approved.
+EURUSD36 daily geometry rejects need actual comparison/size evidence; weekend
+shapes are not verified closures. Native USD BTC and genuine spot XAUUSD require
+separate source/license/contract review. Implementation/next acceptance:
+docs/SESSION-QUALITY-REVIEW-20261119.md and docs/DATA-SOURCE-PROPOSALS.md.
+Keep existing PR23 draft/branch; no main merge, Production, new provider access,
+AI activation/model installation or financial execution.

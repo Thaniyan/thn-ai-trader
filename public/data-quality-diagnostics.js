@@ -1,10 +1,11 @@
+import {shapeProjection} from './provider-shape-contract.js';
 import {escapeHTML as esc} from './decision-records.js';
 const integer=v=>Number.isSafeInteger(v)&&v>=0&&v<=20000?v:null;
 const token=v=>typeof v==='string'&&/^[A-Za-z0-9^=:.\-/+_]{1,80}$/.test(v)?v:null;
 const counts=(v,keys)=>Object.fromEntries(keys.map(k=>[k,integer(v?.[k])]));
 export function qualityProjection(value,context,provenance){
  if(value?.schema!=='THN-DATA-QUALITY-1'||!provenance||value.symbol!==context.symbol||value.interval!==context.interval||value.datasetHash!==context.hash||value.datasetHash!==provenance.hash||value.originalCounters?.gapCount!==provenance.gapCount||value.originalCounters?.discardedRows!==provenance.discardedRows)return null;
- return {schema:value.schema,symbol:context.symbol,interval:context.interval,datasetHash:value.datasetHash,
+ return {detail:shapeProjection(value.detail,{missing:value.adapter?.rejectionReasons?.missing_ohlc,geometry:value.adapter?.rejectionReasons?.invalid_ohlc_geometry,gaps:provenance.gapCount},value.metadata?.reportedTimezone),schema:value.schema,symbol:context.symbol,interval:context.interval,datasetHash:value.datasetHash,
   originalCounters:counts(value.originalCounters,['gapCount','discardedRows']),
   adapter:{state:value.adapter?.state==='recorded'?'recorded':'unavailable',scope:'full_provider_response',...counts(value.adapter,['rawCount','acceptedCount','rejectedCount','retainedInvalidTimestampCount']),
    rejectionReasons:counts(value.adapter?.rejectionReasons,['missing_ohlc','nonfinite_or_nonnumeric_ohlc','nonpositive_ohlc','invalid_ohlc_geometry','other_adapter_rejection']),
