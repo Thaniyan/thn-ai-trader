@@ -1,6 +1,13 @@
 import {recommendationReason} from './recommendation-core.js';
 import {observationExpiry} from './command-center-core.js';
 
+// The retained legacy-analysis-1 prices have six decimals. Quote/axis rounding
+// must not collapse distinct entry/stop/target references in the Trade Ticket.
+// Presentation only: no conversion, sizing, price generation or engine mutation.
+export function formatRetainedLevel(value,language='en'){
+ return typeof value==='number'&&Number.isFinite(value)&&value>0?new Intl.NumberFormat(language==='ar'?'ar-OM':'en-US',{maximumFractionDigits:6}).format(value):'—';
+}
+
 // Label layout only. Original price coordinates remain untouched.
 export function annotationLabels(points,plot){
  if(!plot||![plot.top,plot.bottom].every(Number.isFinite)||plot.bottom<=plot.top)return [];

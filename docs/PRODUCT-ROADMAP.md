@@ -531,3 +531,19 @@ fixed-strategy evaluator lifecycle beneath BUY/SELL/WAIT. Keep one evaluator,
 immutable research and explicit hypothetical trade boundaries. Preserve all42
 browser suites and add inline lifecycle/RTL/keyboard coverage. PR20 only; main
 and Production remain subject to separate approval.
+
+## Phase2 Day6 — eligible Ticket acceptance, 19 November 2026
+
+Continue existing draft PR23 from owner-accepted Day5 baseline c3f9942; preserve
+its five accepted UX checks. The remaining Ticket check is isolated in
+[the Day6 acceptance and Day7 checklist](DAY6-TICKET-ACCEPTANCE.md).
+A reproduced P1 collapsed two six-decimal engine targets into the same rounded
+Ticket price. Retained-reference presentation preserves the six recorded decimals;
+all financial engines, backend, dependencies and original tests remain intact.
+An actual-DejaVu diagnostic also exposed target-price wrapping; only existing
+target-cell inline padding is reduced, preserving type size, grid and44px controls.
+New controlled BUY/SELL UI acceptance covers48 profiles, source/context negatives,
+partial targets, concurrent response withdrawal and original-planner integrity.
+Real provider qualification remains distinct from offline admission fixtures.
+Exact-head CI, matching existing-project Preview and explicit owner acceptance
+precede any main/Production release. No execution or paid/hosted model activation.

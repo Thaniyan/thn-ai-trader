@@ -1,4 +1,4 @@
-import {commandEvidence,decisionEvidence,chartReading} from './command-evidence.js';
+import {commandEvidence,decisionEvidence,chartReading,formatRetainedLevel} from './command-evidence.js';
 import {escapeHTML as esc} from './decision-records.js';
 import {recommendationReason} from './recommendation-core.js';
 
@@ -51,7 +51,7 @@ export function attachCommandWorkbench(){
   replace(chartStatus,`<span role="status" id="deskLevelStatus">${esc(title)}</span>${button('source-bar','Locate source candle','تحديد شمعة المصدر',model.candidate?'':'disabled')}<small>${tr('Reference zones · no order, sizing or expected return','مناطق مرجعية · لا أمر أو حجم أو عائد متوقع')}</small>`);
   $('commandSetup').querySelectorAll('.command-levels>div').forEach((row,index)=>{
    const label=['E','SL','T1','T2','T3'][index],dd=row.querySelector('dd');if(!dd)return;
-   const value=model.candidate?(index===0?model.candidate.entry:index===1?model.candidate.stop:model.candidate.targets[index-2]):null;const text=number(value);
+   const value=model.candidate?(index===0?model.candidate.entry:index===1?model.candidate.stop:model.candidate.targets[index-2]):null;const text=formatRetainedLevel(value,document.documentElement.lang);
    if(!model.candidate||!Number.isFinite(value)){if(dd.querySelector('button'))dd.textContent='—';return;}
    if(dd.querySelector('button')?.dataset.desk!==('level:'+label)||dd.textContent!==text)dd.innerHTML=button('level:'+label,esc(text),esc(text),`aria-label="${esc(tr('Inspect recorded ','فحص المرجع المسجل ')+label)}"`);
    dd.querySelector('button')?.setAttribute('aria-pressed',String(selectedLevel===label));

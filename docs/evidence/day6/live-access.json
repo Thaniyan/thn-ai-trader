@@ -1,0 +1,6 @@
+{
+  "url": "https://thn-ai-trader-ghq23b88p-s139354s-projects.vercel.app",
+  "exit": 56,
+  "response": "HTTP/1.1 403 Forbidden\ncontent-length: 16\ncontent-type: text/plain\ndate: Thu, 19 Nov 2026 05:38:33 GMT\nserver: envoy\nconnection: close\n\ncurl: (56) CONNECT tunnel failed, response 403\n",
+  "scope": "Real Preview request; no fixture, credentials or bypass."
+}

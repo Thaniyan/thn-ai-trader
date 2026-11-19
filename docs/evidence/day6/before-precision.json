@@ -1,0 +1,23 @@
+{
+  "scope": "Controlled admission; unchanged original engine prices, baseline application",
+  "originalDecision": "BUY LIMIT",
+  "raw": {
+    "entry": 1.100019,
+    "stop": 1.100013,
+    "targets": [
+      1.100029,
+      1.100034,
+      1.100038
+    ]
+  },
+  "display": {
+    "E": "1.10002",
+    "SL": "1.10001",
+    "T1": "1.10003",
+    "T2": "1.10003",
+    "T3": "1.10004"
+  },
+  "eligible": "eligible",
+  "riskValidated": true,
+  "distinctRawTargetsCollapsed": true
+}

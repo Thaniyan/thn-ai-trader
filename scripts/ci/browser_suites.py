@@ -75,3 +75,14 @@ def select_day5_suites(env):
         return list(DAY5_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(DAY5_SUITES) if position % count == index]
+
+# Focused Day6 acceptance extends all45 original suites. Offset balances its
+# matrix onto the second existing worker; no original suite is moved or skipped.
+DAY6_SUITES = ['day6']
+
+def select_day6_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(DAY6_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(DAY6_SUITES) if (position + 1) % count == index]

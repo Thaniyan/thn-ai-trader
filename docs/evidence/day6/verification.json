@@ -1,0 +1,451 @@
+{
+  "scope": "Complete local final-source gates; hosted CI/Preview are separately verified after push. Synthetic provider/admission fixtures are not live qualification.",
+  "baselineSHA": "c3f9942b9c987012502700a905633dd3ea42d5d0",
+  "tools": {
+    "node": "v24.19.0",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34 (pinned revision1234)",
+    "axe": "4.10.3"
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.72
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.7
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 23.89
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.46
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.8
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.23
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.85
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.27
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 24.44
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.07
+    }
+  ],
+  "counts": {
+    "core": 437,
+    "security": 21,
+    "system": 10,
+    "browserSuites": 46,
+    "originalSuitesPreserved": 45,
+    "day6Profiles": 48,
+    "additionalActualDejaVuProfiles": 48,
+    "negativeCases": 14
+  },
+  "frozenInstall": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    }
+  },
+  "browser": {
+    "results": [
+      {
+        "shard": 0,
+        "exit": 0
+      },
+      {
+        "shard": 1,
+        "exit": 0
+      }
+    ],
+    "seconds": 1472.29,
+    "suites": [
+      {
+        "suite": "workstation",
+        "shard": 0,
+        "logSHA256": "78a992e9609938420569feca79d824222aeb6619b976905198017c82c83fdf1d"
+      },
+      {
+        "suite": "research_outage",
+        "shard": 0,
+        "logSHA256": "b9a43ee71b4e944c4c8415bd0de72c20bfd3a642cc591218acd010b1d0386e76"
+      },
+      {
+        "suite": "decision",
+        "shard": 0,
+        "logSHA256": "3fda5bd48d02858e55695d8b7a5db70a46442305d9273bc314c82e762d0c2a69"
+      },
+      {
+        "suite": "maturity",
+        "shard": 0,
+        "logSHA256": "0be605221e19e49130e3b48c21799cc1bfb636f996a4ec0366b166498f35fde6"
+      },
+      {
+        "suite": "intelligence",
+        "shard": 0,
+        "logSHA256": "7c524b5cb03df8d16960b793906ab95960c17d00172ec21b0b21a8d798c9a08d"
+      },
+      {
+        "suite": "layout",
+        "shard": 0,
+        "logSHA256": "950aa54d94c62ca056dfc252f5850ade66649bdd4a722494ae0d73da7231dfae"
+      },
+      {
+        "suite": "trust",
+        "shard": 0,
+        "logSHA256": "7ffcd5df2d14849fa87cd26b1cc43ea1adc9b6576e2456ccbb50420b6447fe97"
+      },
+      {
+        "suite": "journal_lifecycle",
+        "shard": 0,
+        "logSHA256": "96282b62c8288bebcf722e6fa46f32989b927b0238191dbccd8c0d5165898715"
+      },
+      {
+        "suite": "evolution",
+        "shard": 0,
+        "logSHA256": "2339f91e8bab4cb6fe5da5952d0f0ca8c82cab3ff98a8743c407519d42e88a71"
+      },
+      {
+        "suite": "experience",
+        "shard": 0,
+        "logSHA256": "b7cb8282f63d15b047138d0369362bd079bc7c28c109d9e1597920540782761b"
+      },
+      {
+        "suite": "recovery",
+        "shard": 0,
+        "logSHA256": "3dbb67d9c4ff6216f23dec63078ea14dcffd701b204b05654f1e5bc3c29f9c45"
+      },
+      {
+        "suite": "paper_review",
+        "shard": 0,
+        "logSHA256": "3c08a808bedd85d06c676f7317319d49324c165119bf6787ee234e5dbb6553c0"
+      },
+      {
+        "suite": "broker_workspace",
+        "shard": 0,
+        "logSHA256": "be602cd1a9b300f7d9e81a09f6f4e1f7f1ae37da4e56d654f800428451b7eda5"
+      },
+      {
+        "suite": "workflow_polish",
+        "shard": 0,
+        "logSHA256": "1ee69cb9c4edb24784a4660ccdb076f823b0bad5e466ae62bb3aa2674f816411"
+      },
+      {
+        "suite": "confidence",
+        "shard": 0,
+        "logSHA256": "3b5a1d33daea99528540a8506d9881faa3e59c41d239482e0e84249f7d590cd4"
+      },
+      {
+        "suite": "research_risk",
+        "shard": 0,
+        "logSHA256": "cb426c19fe18556b2fb48c4456faeb4b88aafe488e81dc9e800260bf3df232e8"
+      },
+      {
+        "suite": "unified_workspace",
+        "shard": 0,
+        "logSHA256": "087661743f46f29ccf6f0a17e90c93f50a34fd56b1a7c8fa158c8850ab1c5e11"
+      },
+      {
+        "suite": "responsive_fonts",
+        "shard": 0,
+        "logSHA256": "a9d9edd6f2a40362e66b25d1c2c1695bd881848ca10c0dc5c083a15d3570d9c2"
+      },
+      {
+        "suite": "command_workbench",
+        "shard": 0,
+        "logSHA256": "9a963c0e4486dd70f369ad37f2ea859d8abe274a31565cade5bac948298b9827"
+      },
+      {
+        "suite": "command_trust",
+        "shard": 0,
+        "logSHA256": "c73cdeef36c01459b52ca7d476b36c2d07540688218118f82c7416905d656869"
+      },
+      {
+        "suite": "precision",
+        "shard": 0,
+        "logSHA256": "4a6123333683b1d1cd845927a909a532741142f58831ce6f89709409a4c2d44d"
+      },
+      {
+        "suite": "heritage",
+        "shard": 0,
+        "logSHA256": "72f638e61eecf97ab9500122d729508f23ba14c98867cdae79da69a73a39a5d5"
+      },
+      {
+        "suite": "decision_validation",
+        "shard": 0,
+        "logSHA256": "5b974df46c1340aaa8c1505afa33d4b30d6ccc9418c9f739b08a2efd484361e6"
+      },
+      {
+        "suite": "phase2_interpretation",
+        "shard": 0,
+        "logSHA256": "95dc3623dd76ce602d085b5eea2c1f8e18a619cd72df10a4126dc9b3ae80da5c"
+      },
+      {
+        "suite": "day5",
+        "shard": 0,
+        "logSHA256": "ff921e7aab616179862f2f43429890fd7995db7bfc723bcf0c12ccd6f26199cc"
+      },
+      {
+        "suite": "research",
+        "shard": 1,
+        "logSHA256": "ef6d657d85e94f0b5ac3655d050d8a16dd2a69274dd3befe5fbd7649526ec1d4"
+      },
+      {
+        "suite": "quality",
+        "shard": 1,
+        "logSHA256": "4c9999c7c9073cfe82274deee2a222f7f3629c74833aa15500574b1ec1c071c0"
+      },
+      {
+        "suite": "library_reliability",
+        "shard": 1,
+        "logSHA256": "4f8f4b63d25ba87d31446d06e2a39b8467b4ad06cfe175eae573513e5b67a306"
+      },
+      {
+        "suite": "terminal",
+        "shard": 1,
+        "logSHA256": "2f6a5ab79ea0ddb2446c22bb798dad46f1e0ddaf2063628a224320d6f7caf3e4"
+      },
+      {
+        "suite": "intelligence_memory",
+        "shard": 1,
+        "logSHA256": "c344306de027fb5ba7b53e27d36191507c1ff38a36b51fe37e747c63491f45a8"
+      },
+      {
+        "suite": "pilot",
+        "shard": 1,
+        "logSHA256": "368c3b1d2932e88acbd1fa4c44dfd06deaec30855c0215a6376423992c88543c"
+      },
+      {
+        "suite": "professional",
+        "shard": 1,
+        "logSHA256": "9169e2932276906b17b8ad69a10db4def67a0edb7124241e041df0933e3a428e"
+      },
+      {
+        "suite": "trading_remediation",
+        "shard": 1,
+        "logSHA256": "7a5d286a9a224d03e979236b309a959d77372cee2c6110a6cfca5f07ca45125e"
+      },
+      {
+        "suite": "consolidation",
+        "shard": 1,
+        "logSHA256": "0d3a9a857a6e55ca50f5e32580483a364e03fd72307fab2979fec6744b1faf70"
+      },
+      {
+        "suite": "consistency",
+        "shard": 1,
+        "logSHA256": "344a89e238d786d35026cf17eca98e06355677d8cd0f9767bafd3dfcf8e85185"
+      },
+      {
+        "suite": "assisted_desk",
+        "shard": 1,
+        "logSHA256": "72031c47014d54c8c2c42f80d3c1427a77c9e539c7c7435360fe0d49b8e36f25"
+      },
+      {
+        "suite": "evidence_workflow",
+        "shard": 1,
+        "logSHA256": "489eb910c8eb7da9f463e168a3d8bd724d6616742bca437a541b3262b41c7831"
+      },
+      {
+        "suite": "visual_refinement",
+        "shard": 1,
+        "logSHA256": "e20dfcade35a281b19405e074a71fbdd3c6ddf57b215ec0f0ea49f34be469f3c"
+      },
+      {
+        "suite": "visual_identity",
+        "shard": 1,
+        "logSHA256": "2d4890436e4556f5bb6c85d485fef7cd3673f0029cccb6520d912314d1c0ad20"
+      },
+      {
+        "suite": "dashboard_confidence",
+        "shard": 1,
+        "logSHA256": "4706b4203d7f2f5c02851f77af7bd0c4964eff1c22224ad94b2b1e9a9911b849"
+      },
+      {
+        "suite": "workspace_hierarchy",
+        "shard": 1,
+        "logSHA256": "aa9b2685bf6abb82d6338d484e8f867fec9280770d69800cc5f2948c9e97693a"
+      },
+      {
+        "suite": "research_studio",
+        "shard": 1,
+        "logSHA256": "ee8dc59d82e80195f3b960d3ba5513e50821b445aa0d7b29754e8db2626a49cb"
+      },
+      {
+        "suite": "command_center",
+        "shard": 1,
+        "logSHA256": "a5208e6a564d8d866b4299ae5ee0a7faa8eaeb190b64b16a93e640d2bf418c15"
+      },
+      {
+        "suite": "institutional_desk",
+        "shard": 1,
+        "logSHA256": "e9c458c932d4d8c2f413252367aeafd071f9d98551c0b14411ce10347d7ecada"
+      },
+      {
+        "suite": "command_trust_candidate",
+        "shard": 1,
+        "logSHA256": "6ecf23e0545d293aa5f814651c7d1a9566aebd19a08c4f2a0a355c3909baab0e"
+      },
+      {
+        "suite": "day6",
+        "shard": 1,
+        "logSHA256": "8008d4ed0bb04bf9afab1f68d7368c2fd7c22d8ecb67ee3125345d6470bbb0f3"
+      }
+    ]
+  },
+  "preCorrectionDiagnostic": {
+    "native46SuiteExit": 0,
+    "nativeSourceReceiptSHA256": "d00b68f93bdb429ad90c144db0049b8af9ae2e67d76c362593714aaf9f3905d0",
+    "actualDejaVuExit": 1,
+    "failure": "GBPUSD T1 complete retained price must fit on one readable line",
+    "failedLogSHA256": "c5dbbba812e95a150215f7d6dc8712ee448fa0056f739e16086de5c0a5199584",
+    "resolution": "Only target-cell inline padding8px to2px; unchanged font size, grid, gap,44px controls and price values. Final full gate and actual-DejaVu matrix rerun."
+  },
+  "gateLogSHA256": {
+    "build.log": "5b77bd253a0f449be1c217778c44304bb7f64d6ddd081ddced4e8b2bab41a628",
+    "core.log": "bacd30df872ca496a6704494f019eced41c9a015c679683c3ac46eb27068147d",
+    "dependencies.log": "3d4d6438c86c09cdc323c757ab634aae5fe05bf748eb8786dfb3ae9debb2db45",
+    "git-fsck.log": "d78710bd256177a16da5fb11ecd94fa1ff65dab29eb3cc546019c5534d2a3b18",
+    "integrity.log": "c6d3e1f85a8fd64aa0a3671f3409fce54d57f0db0a679523f0802c5398a69698",
+    "lint.log": "b1f79836fc79ba31c2791133c96f8d51bd796074f879bdae0b683d3e61d91410",
+    "package.log": "6930b0f7fba95e3bacdff019c6b6e85d046d69e237d1f21aa2cc54bd6cf40455",
+    "security.log": "ac23deee5773c4da4beb68e84cc4589dcd3dad9f8112dc31e59f2c1afc899c72",
+    "system.log": "5c3e7f236d7b21613b94bc90e350bff408ab648ad02d52c59e7095f87764437a",
+    "workflow.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtimeSourceSHA256": {
+    "public/analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
+    "public/analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
+    "public/app.js": "cb450f22566fa27c36f161c9cdde23f1b30374eed82e72c95f3308f437cdbe08",
+    "public/brand-mark.png": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567",
+    "public/brand-preview.png": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+    "public/broker-catalog.js": "ede478798c19f488717e79791008a959a9e40318c3680fb2a273906918257183",
+    "public/broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
+    "public/command-center-core.js": "d34da4b53b95ed5346599371db2584a840412298a5bfd5a72e82f4b9f6899f16",
+    "public/command-center.css": "699096ca436d2b3d0cedfec5ecb77d9aed41ed8413b776c3b630d37dd9f2a218",
+    "public/command-center.js": "d69178c7870ea6a74ddfd3b1b8e4ecfad51cb04a419626022e8d8e1939f5e181",
+    "public/command-evidence.js": "cd2b48e0b7ddecd27742cb470ac6cd128ee48eb07534d51e6517faab7c8e6ead",
+    "public/command-interpretation.css": "b9c3379344c0ce42f1c7688bbf8cf2d4f007ec9b4c15bcbb2fa796d196846433",
+    "public/command-interpretation.js": "da97b1fd75e2bd39e702ebc4c0e5e25def836848ae68b025d2710730b14645ba",
+    "public/command-journey.css": "5e93d30ee233fb50c04f70f7b5bc462e145395cccbbae996bca7869c72d54756",
+    "public/command-trust-core.js": "e7fd852970d57e03e3e845a7e1594346f03d16ce8a094cf966e3255a297d56b2",
+    "public/command-trust.css": "ff4bb99e73e6d93fd3403dbe98c449e8ac6242ffcf221b6ef7a7ce659220423f",
+    "public/command-trust.js": "a8bb59843b76d6d1505da190b2d496842a4c6f226d113536ae0a1eaddd33b66a",
+    "public/command-workbench.css": "41e31c780ebe0aaf68319956c7fd867cd6702b9dcae8468a79f7c648b3db909d",
+    "public/command-workbench.js": "3b73738f3915eb43154267815de87f7ebc0a4f24704975fa24a82c85162f04c5",
+    "public/comparison-core.js": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849",
+    "public/confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "public/d3.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "public/decision-core.js": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3",
+    "public/decision-records.js": "d833fea5f75d55dc0208ed01dc910d2cd73609d3d40b667a9fa9dc0bbe41b2ca",
+    "public/decision-validation-core.js": "8825417ed504d50a939f6f9de730ac291a15a2def9a0973e035a4689608c867b",
+    "public/decision-validation.css": "00876b45c693808c83c77fe0cf9898e1c445cee5a4a92e9aa45c7d009fbc3a8e",
+    "public/decision-validation.js": "aeaa24bc21dafbd06a3dffc6a806abc7a998c10f7a573189d8a89e84209eae96",
+    "public/decision-workspace.css": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382",
+    "public/decision-workspace.js": "43b825999a2d42a6dd3e050e303dcc8f3faf3b068affab76a997eed4c2dcfbf5",
+    "public/evidence-view.js": "6a8eb5e90895a0d2311d4bc34f33706657e209f5bad29d77f54c4d63787d86f4",
+    "public/heritage-desk.css": "cf4d71a16a31e8dfe729d866754bad70271fd50e2ccc3e26046ae06ae163fc47",
+    "public/heritage-desk.js": "2213c899fb2ac854c90ae14d2c7629dbcce442ba48dc1ad218190f3315c786f0",
+    "public/index.html": "d4d6c203cb4bd1f1b653fa7def10fec8ad0cf098fe7c856a66ae3b6a2d9ed0f1",
+    "public/instrument-identity.js": "b35e540a564b622bd6accfd2a1a734c7ee23ee43a00bad584ebc7c3b6deffbb0",
+    "public/intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "public/intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
+    "public/intelligence-view-state.js": "a1412deb1da135fd62d5db22ce4e7d49743c42c781993ca4baa23b21b948fc2a",
+    "public/intelligence-workspace.js": "f9b87557b35d24e21871b9946c4faf92073e078a2a6b925e9423e0853bde2919",
+    "public/intelligence.css": "00a24d3938808ace039d9545aa3f8c5bf99755ee86fcb4e9ae0ee8db4857c00a",
+    "public/library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
+    "public/locale-secondary.js": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521",
+    "public/logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+    "public/manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+    "public/market-terminal.js": "6d8a3b2cbe00554507d79e17cab21333db7f46c4b3f8c11970c4afb4155902c8",
+    "public/platform-evolution.css": "d3ebc8fe5540877987c3dc4732e4905c758c17fc805303e17e14770744008fe8",
+    "public/platform-evolution.js": "60b8733cec10ae9126f1dedd2a909a9483cc8d51fa77be9760e7715c31119b26",
+    "public/precision-core.js": "32a896a65acf3881cf1548d16c199e32364f841c046bbe3716c92e9c132364e1",
+    "public/precision-desk.css": "bbbbf443aad290ac0a1608d90dffe9674a0c8e071888fd110576ff6e4da1a664",
+    "public/precision-desk.js": "c576051244cfb6c0fdea7fcd85feb9b8b2ca0df88aa6e766871c9bddd011a8e3",
+    "public/preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
+    "public/professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
+    "public/professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
+    "public/professional-records.js": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "public/professional-workspace.js": "db61739a47e9c14bc9d6a35f900eed01f65b133c76054bb9e60230b87b284490",
+    "public/professional.css": "bfcf81c42f2d9281f5b33badf6a7a49bf205fdc30e740ed562b282c353679cfe",
+    "public/recommendation-core.js": "2c985694cf1c55430937c6fbcbabccf4224b792e66218135767d7073109faf66",
+    "public/recommendation-view.js": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786",
+    "public/replay-contract.js": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "public/research-library.js": "10890357ab4e8bd28fafd657fb4d48fd01122d7888ff1b25be2e6a1d7725b321",
+    "public/research-quality.css": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a",
+    "public/research-quality.js": "38a253062a93507830f528297376566c4d8c516f8e15059a33c962c568b4d177",
+    "public/research-records.js": "9503045944499db0616ed42b586c95d842a20a49046228f73d39b243c97356ea",
+    "public/research-risk-comparison.js": "8623fdd57fc4792e3a18dc45567dedab0e5f764fe0413746104ac4d85a67d085",
+    "public/research-state.js": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253",
+    "public/research-studio-core.js": "e603a22f502a4a1237dcdb2421f8569a9669325325a526ebfd85b00fc74ee87c",
+    "public/research-studio.css": "5d5d675a2f23ff20b4eaeb1025a8e6879782107b4c5b494c3f08076646296dc1",
+    "public/research-studio.js": "e881b0b6814cd0646de61c1016481885677c42f196a36bf584f08e1d8f867260",
+    "public/research-terminal.css": "0c41a4d984f554d42ac44c4bd38aa8b69a24af468dd127d668fc6b1d164d74fd",
+    "public/research-workstation.js": "49fb2d5db447b8ba7ed6197b604c23719f7bef4e7347171ff89eb35fc9f557fb",
+    "public/research.css": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c",
+    "public/style.css": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8",
+    "public/terminal-research.js": "01db5f66c83b474706c2596293dd0b0143f95e07e5ab6f810b368da4580ef242",
+    "public/unified-workspace.css": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4",
+    "public/unified-workspace.js": "c29a4b6bf60942d7899c028e5a3c8fcec89079650d9b9da778b6dcebf8743b8e",
+    "public/validation-evidence.js": "dd3c9642d2ec92cacbf99be1dc3bf2323d1a71f869a0cff3e4a58ba9568f0a9c",
+    "public/visual-identity.css": "5a235e5ded3a3f944bb8a6301159d4a55d8ceb2b1b77aac4c4b01652db0e9f38",
+    "public/visual-identity.js": "7df01a27ebb7dc8d8b880660ca1b6f02a2d6d9f4673da77891ce51e5cc44f7d3",
+    "public/workflow-maturity.css": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b",
+    "public/workflow-maturity.js": "5a3b6f23e68e4345d4601053949f67a73d208f035617d0db04e24a925ce08ad6",
+    "public/workflow-polish.js": "e8c4a647a8fd8ace4e75d11a9ea5ce92c3243c1d62cf8a006dcc548956e0e905",
+    "public/workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
+    "public/workstation.css": "b56aa9f07fc8fe92995398b45d74ed33626fcd41e25a70413a10fb5d34bc1000",
+    "public/workstation.js": "2ff39a3a9c78af6b8708beb32051dc4f4a03efed2a007919d4409f065b695aa7",
+    "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  },
+  "acceptanceReceiptSHA256": "f059bcd77228ab4c5d3a604890595d00606e42ee4e3a3090721053ff50bd1f9b",
+  "fontDiagnostic": {
+    "receiptSHA256": "ac1209f363f6d9b89926cfada87996fda542ba3d81e6843fc0ba310f94f7d832",
+    "logSHA256": "8008d4ed0bb04bf9afab1f68d7368c2fd7c22d8ecb67ee3125345d6470bbb0f3",
+    "fontconfigSHA256": "6d615508ff679e9b84040cc7ff87db68ac4602c5e57feeb3d72087c88a068ca9",
+    "actualCDPFamily": "DejaVu Sans",
+    "profiles": 48,
+    "ceilingSeconds": 240
+  },
+  "limitations": [
+    "Controlled admission is not genuine eligible live-provider setup.",
+    "Preview interactive request fails at workspace CONNECT proxy before TLS.",
+    "TradingView protocol fixture is not verified live candles.",
+    "Real-model qualification and financial execution are not activated."
+  ]
+}

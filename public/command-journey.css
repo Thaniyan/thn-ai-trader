@@ -160,3 +160,6 @@
  .heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] #heritageDecisionConfidence{grid-row:4}
 }
 @media(min-width:351px) and (max-width:900px){.heritage-home #view-dashboard #commandQuickAssessment #commandVerdict[data-heritage-state=eligible] h1{font-size:22px}}
+/* Day6: leave room for all six retained decimals in the existing target cells.
+   Preserve type size, grid, gaps and44px controls; no truncation or price rounding. */
+.heritage-home #view-dashboard #commandSetup .command-levels>div:nth-child(n+3){padding-inline:2px}
