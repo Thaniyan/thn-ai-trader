@@ -19,9 +19,24 @@ export async function supervisePilot({env=process.env,workerURL=new URL('./pilot
    const elapsedMs=Math.min(86400000,Math.max(0,Math.round(clock())));
    worker.unref();void worker.terminate().catch(()=>{});
    const observedStages=Object.fromEntries(INFERENCE_STAGES.map(name=>{const s=stages.get(name);return [name,{elapsedMs:s?Math.max(0,Math.round(s.duration+(s.active===null?0:clock()-s.active))):null,state:!s?'not_started':s.active===null?'settled':'unsettled',count:s?.count||0}];}));
-   const safe={mode:'explicit-local-pilot',model:null,digest:null,sizeBytes:null,syntheticOnly:true,financialExecution:false,generationTested:false,accepted:false,fallback:true,failureCode:timeout?'TIMEOUT':'UNKNOWN',matchedCitations:0,matchedClaims:0,humanReviewRequired:true,noPredictiveProbability:true};
+   const workerTimedOut=projection.failureCode==='TIMEOUT',timedOut=timeout||workerTimedOut;
+   const responseReceived=latestRuntime?.responseReceived===true||projection.runtime?.responseReceived===true;
+   const generationTransportSettled=observedStages.generation.state==='settled'||projection.timings?.stages?.generation?.state==='settled';
+   const generationStarted=observedStages.generation.count>0||projection.timings?.stages?.generation?.count>0;
+   // A cancelled transport promise may settle before the parent's deadline event.
+   // Without a complete response, neither ordering proves generation completion.
+   if(timedOut&&!responseReceived&&generationStarted)observedStages.generation.state='unsettled';
+   const timing=timeout?{policyMs,requestElapsedMs:elapsedMs,elapsedMs,deadlineExceeded:true,deadlineObservedMs:elapsedMs,settlementOverrunMs:Math.max(0,elapsedMs-policyMs),stages:observedStages,timingClipped:false}:projection.timings;
+   if(timedOut&&!responseReceived&&generationStarted&&timing){timing.stages={...timing.stages,generation:{...timing.stages?.generation,state:'unsettled'}};}
+   const safe={mode:'explicit-local-pilot',model:null,digest:null,sizeBytes:null,syntheticOnly:true,financialExecution:false,generationTested:false,accepted:false,fallback:true,failureCode:timedOut?'TIMEOUT':'UNKNOWN',matchedCitations:0,matchedClaims:0,humanReviewRequired:true,noPredictiveProbability:true};
    // Worker messages contain the already redacted runner result, never provider text.
-   resolve({...safe,...projection,...requestedSettings,requestedSettings,workerConfirmedSettings,settingsConfirmation,runtimeSettingsVerified:false,...(timeout&&inventory?{model:inventory.model,digest:inventory.digest,sizeBytes:inventory.sizeBytes,modelInspectionVerified:inventory.modelInspectionVerified}:{}),...(timeout&&latestRuntime?{runtime:latestRuntime}:{}),...(timeout?{accepted:false,fallback:true,failureCode:'TIMEOUT',matchedCitations:0,matchedClaims:0}:{}),supervision:{policyMs,elapsedMs,deadlineExceeded:timeout,settlementOverrunMs:Math.max(0,elapsedMs-policyMs),workerStartupMs:startupMs,heartbeatGapMs:lastHeartbeat===null?null:Math.max(0,Math.round(clock()-lastHeartbeat)),workerResponsiveness:lastHeartbeat===null?'unknown':clock()-lastHeartbeat<=Math.min(500,policyMs/2)?'responsive_at_settlement':'unresponsive_at_settlement',lastStage:latest?.stage||null,lastStageState:latest?.state||null,workerTerminationRequested:true,runtimeSettlementVerified:!timeout&&projection.runtime?.responseReceived===true,cancellationRequested:timeout},...(timeout?{generationTested:stages.has('generation'),timings:{policyMs,requestElapsedMs:elapsedMs,elapsedMs,deadlineExceeded:true,deadlineObservedMs:elapsedMs,settlementOverrunMs:Math.max(0,elapsedMs-policyMs),stages:observedStages,timingClipped:false},elapsedMs,elapsedScope:'supervised attempt including worker startup; runtime settlement unverified'}:{})});
+   resolve({...safe,...projection,...requestedSettings,requestedSettings,workerConfirmedSettings,settingsConfirmation,runtimeSettingsVerified:false,
+    ...(timedOut&&inventory?{model:inventory.model,digest:inventory.digest,sizeBytes:inventory.sizeBytes,modelInspectionVerified:inventory.modelInspectionVerified}:{}),
+    ...(timedOut&&latestRuntime?{runtime:responseReceived&&projection.runtime?.responseReceived?projection.runtime:latestRuntime}:{}),
+    ...(timedOut?{accepted:false,fallback:true,failureCode:'TIMEOUT',matchedCitations:0,matchedClaims:0}:{}),
+    supervision:{policyMs,elapsedMs,deadlineExceeded:timeout,workerTimedOut,generationTransportSettled,settlementOverrunMs:Math.max(0,elapsedMs-policyMs),workerStartupMs:startupMs,heartbeatGapMs:lastHeartbeat===null?null:Math.max(0,Math.round(clock()-lastHeartbeat)),workerResponsiveness:lastHeartbeat===null?'unknown':clock()-lastHeartbeat<=Math.min(500,policyMs/2)?'responsive_at_settlement':'unresponsive_at_settlement',lastStage:latest?.stage||null,lastStageState:latest?.state||null,workerTerminationRequested:true,runtimeSettlementVerified:!timedOut&&responseReceived,cancellationRequested:timedOut},
+    ...(timing?{timings:timing}:{}),
+    ...(timeout?{generationTested:stages.has('generation'),elapsedMs,elapsedScope:'supervised attempt including worker startup; runtime settlement unverified'}:{})});
   };
   // Node may round a fractional timer delay down. Recheck the absolute deadline
   // so an early timer callback cannot falsely label an in-budget attempt TIMEOUT.
