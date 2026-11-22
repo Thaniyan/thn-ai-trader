@@ -1,13 +1,15 @@
 // Public-safe diagnostic categories for the isolated research pilot.
 // Never expose arbitrary exception messages, raw provider text or secret-bearing payloads.
 const codes=new Set(['TIMEOUT','CONTEXT_LIMIT','INVALID_JSON','INVALID_SCHEMA',
- 'UNSUPPORTED_CLAIM','MODEL_RESPONSE_INVALID','MODEL_UNAVAILABLE','CONTEXT_CHANGED','UNSUPPORTED_QUESTION','UNKNOWN']);
+ 'UNSUPPORTED_CLAIM','MODEL_RESPONSE_INVALID','MODEL_UNAVAILABLE','CONTEXT_CHANGED','UNSUPPORTED_QUESTION','BUDGET_EXHAUSTED','UNKNOWN']);
 export function classifyPilotFailure(error){
  if(error?.code && codes.has(error.code))return error.code;
+ if(['ECONNREFUSED','ECONNRESET','EHOSTUNREACH','ENOTFOUND'].includes(error?.code))return 'MODEL_UNAVAILABLE';
  if(error?.name==='TimeoutError'||error?.name==='AbortError')return 'TIMEOUT';
  if(error instanceof SyntaxError)return 'INVALID_JSON';
  // Match exact first-party invariant errors only, never pass through the message.
  const m=error?.message;
+ if(m==='Provider budget exhausted')return 'BUDGET_EXHAUSTED';
  if(m==='Local context window exceeded'||m==='Local pilot reserved token ceiling exceeded')return 'CONTEXT_LIMIT';
  if(m==='Fresh immutable server evidence required')return 'CONTEXT_CHANGED';
  if(m==='Local provider timeout'||m==='Interpretation deadline exceeded')return 'TIMEOUT';

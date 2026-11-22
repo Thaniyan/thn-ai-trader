@@ -10,3 +10,10 @@
 .interpretation-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-block:1px solid var(--border);padding-block:20px;margin-block:20px}.interpretation-grid section{min-width:0}.interpretation-grid ul{margin:0;padding-inline-start:20px}.interpretation-grid li{margin-block:8px;line-height:1.65}
 .interpretation-summary{font-size:1.05rem;line-height:1.8;max-width:90ch}.command-interpretation details{margin-block:14px}.command-interpretation summary{cursor:pointer;padding-block:8px}.command-interpretation [aria-disabled=true]{opacity:.65}.command-interpretation button{white-space:normal;max-width:100%}.command-interpretation [hidden]{display:none}
 @media(max-width:600px){.command-interpretation header{display:block}.interpretation-grid{grid-template-columns:1fr;gap:20px}.interpretation-actions{align-items:stretch}.interpretation-actions button{flex:1 1 140px}.command-interpretation{padding-block:18px}}
+/* One source-bound research flow; optional local access remains a disclosure. */
+.interpretation-controlbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 0;border-block:1px solid var(--border);font-size:.85rem;color:var(--muted)}
+.interpretation-controlbar select{width:auto;max-width:100%;min-width:0;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:9px}
+#interpretationQuestionForm label,#interpretationLocal label{display:block;margin-block:12px 6px;font-weight:600}
+#interpretationQuestion,#interpretationToken{box-sizing:border-box;width:100%;max-width:100%;min-width:0;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px;font:inherit}
+#interpretationQuestion{resize:vertical}#interpretationLocal{padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.interpretation-failure{padding-inline-start:12px;border-inline-start:3px solid var(--accent);line-height:1.7}

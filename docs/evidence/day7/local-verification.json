@@ -1,0 +1,467 @@
+{
+  "schema": "THN-DAY7-VERIFICATION-1",
+  "date": "2026-11-22",
+  "timezone": "Asia/Muscat",
+  "baseCommit": "53a835c9a1b82c02b1ae332078d9b535fa0ad0e3",
+  "scope": "REAL_APPLICATION_API_WORKER_AND_UI_WITH_SYNTHETIC_PROTOCOL_ONLY",
+  "realModelInferencePerformed": false,
+  "modelQualification": "NOT_VERIFIED",
+  "lastActualOwnerModel": "NO_GO_TIMEOUT_12003MS_NO_RESPONSE",
+  "sourceQualification": "NOT_VERIFIED",
+  "realQualifiedTicket": "NOT_VERIFIED",
+  "tests": {
+    "core": 519,
+    "newCore": 11,
+    "security": 21,
+    "system": 10,
+    "browserSuites": 49,
+    "newBrowserSuites": 1,
+    "newENARThemeProfiles": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 4.41
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 5.15
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 66.81
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.82
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 3.08
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.37
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 1.16
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.36
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 26.39
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 2.99
+    }
+  ],
+  "browser": {
+    "shards": {
+      "mode": "canonical-sequential-no-sharding",
+      "results": [
+        {
+          "shard": "all",
+          "exit": 0
+        }
+      ],
+      "seconds": 2384.89,
+      "originalCommand": "npm run test:browser",
+      "suiteTimeoutsUnchanged": true
+    },
+    "suites": [
+      {
+        "suite": "workstation.py\ntests/browser_workstation",
+        "result": "PASS",
+        "seconds": 30.98,
+        "shard": "canonical"
+      },
+      {
+        "suite": "research.py\ntests/browser_research",
+        "result": "PASS",
+        "seconds": 35.52,
+        "shard": "canonical"
+      },
+      {
+        "suite": "research_outage.py\ntests/browser_research_outage",
+        "result": "PASS",
+        "seconds": 4.0,
+        "shard": "canonical"
+      },
+      {
+        "suite": "quality.py\ntests/browser_quality",
+        "result": "PASS",
+        "seconds": 40.82,
+        "shard": "canonical"
+      },
+      {
+        "suite": "decision.py\ntests/browser_decision",
+        "result": "PASS",
+        "seconds": 44.27,
+        "shard": "canonical"
+      },
+      {
+        "suite": "library_reliability.py\ntests/browser_library_reliability",
+        "result": "PASS",
+        "seconds": 3.49,
+        "shard": "canonical"
+      },
+      {
+        "suite": "maturity.py\ntests/browser_maturity",
+        "result": "PASS",
+        "seconds": 56.39,
+        "shard": "canonical"
+      },
+      {
+        "suite": "terminal.py\ntests/browser_terminal",
+        "result": "PASS",
+        "seconds": 129.71,
+        "shard": "canonical"
+      },
+      {
+        "suite": "intelligence.py\ntests/browser_intelligence",
+        "result": "PASS",
+        "seconds": 29.29,
+        "shard": "canonical"
+      },
+      {
+        "suite": "intelligence_memory.py\ntests/browser_intelligence_memory",
+        "result": "PASS",
+        "seconds": 5.0,
+        "shard": "canonical"
+      },
+      {
+        "suite": "layout.py\ntests/browser_layout",
+        "result": "PASS",
+        "seconds": 44.57,
+        "shard": "canonical"
+      },
+      {
+        "suite": "pilot.py\ntests/browser_pilot",
+        "result": "PASS",
+        "seconds": 22.64,
+        "shard": "canonical"
+      },
+      {
+        "suite": "trust.py\ntests/browser_trust",
+        "result": "PASS",
+        "seconds": 45.18,
+        "shard": "canonical"
+      },
+      {
+        "suite": "professional.py\ntests/browser_professional",
+        "result": "PASS",
+        "seconds": 154.25,
+        "shard": "canonical"
+      },
+      {
+        "suite": "journal_lifecycle.py\ntests/browser_journal_lifecycle",
+        "result": "PASS",
+        "seconds": 63.29,
+        "shard": "canonical"
+      },
+      {
+        "suite": "trading_remediation.py\ntests/browser_trading_remediation",
+        "result": "PASS",
+        "seconds": 70.8,
+        "shard": "canonical"
+      },
+      {
+        "suite": "evolution.py\ntests/browser_evolution",
+        "result": "PASS",
+        "seconds": 79.21,
+        "shard": "canonical"
+      },
+      {
+        "suite": "consolidation.py\ntests/browser_consolidation",
+        "result": "PASS",
+        "seconds": 26.8,
+        "shard": "canonical"
+      },
+      {
+        "suite": "experience.py\ntests/browser_experience",
+        "result": "PASS",
+        "seconds": 68.39,
+        "shard": "canonical"
+      },
+      {
+        "suite": "consistency.py\ntests/browser_consistency",
+        "result": "PASS",
+        "seconds": 30.79,
+        "shard": "canonical"
+      },
+      {
+        "suite": "recovery.py\ntests/browser_recovery",
+        "result": "PASS",
+        "seconds": 139.27,
+        "shard": "canonical"
+      },
+      {
+        "suite": "assisted_desk.py\ntests/browser_assisted_desk",
+        "result": "PASS",
+        "seconds": 12.97,
+        "shard": "canonical"
+      },
+      {
+        "suite": "paper_review.py\ntests/browser_paper_review",
+        "result": "PASS",
+        "seconds": 6.83,
+        "shard": "canonical"
+      },
+      {
+        "suite": "evidence_workflow.py\ntests/browser_evidence_workflow",
+        "result": "PASS",
+        "seconds": 61.39,
+        "shard": "canonical"
+      },
+      {
+        "suite": "broker_workspace.py\ntests/browser_broker_workspace",
+        "result": "PASS",
+        "seconds": 25.98,
+        "shard": "canonical"
+      },
+      {
+        "suite": "visual_refinement.py\ntests/browser_visual_refinement",
+        "result": "PASS",
+        "seconds": 20.68,
+        "shard": "canonical"
+      },
+      {
+        "suite": "workflow_polish.py\ntests/browser_workflow_polish",
+        "result": "PASS",
+        "seconds": 80.89,
+        "shard": "canonical"
+      },
+      {
+        "suite": "visual_identity.py\ntests/browser_visual_identity",
+        "result": "PASS",
+        "seconds": 67.45,
+        "shard": "canonical"
+      },
+      {
+        "suite": "confidence.py\ntests/browser_confidence",
+        "result": "PASS",
+        "seconds": 53.11,
+        "shard": "canonical"
+      },
+      {
+        "suite": "dashboard_confidence.py\ntests/browser_dashboard_confidence",
+        "result": "PASS",
+        "seconds": 23.6,
+        "shard": "canonical"
+      },
+      {
+        "suite": "research_risk.py\ntests/browser_research_risk",
+        "result": "PASS",
+        "seconds": 54.69,
+        "shard": "canonical"
+      },
+      {
+        "suite": "workspace_hierarchy.py\ntests/browser_workspace_hierarchy",
+        "result": "PASS",
+        "seconds": 70.16,
+        "shard": "canonical"
+      },
+      {
+        "suite": "unified_workspace.py\ntests/browser_unified_workspace",
+        "result": "PASS",
+        "seconds": 99.64,
+        "shard": "canonical"
+      },
+      {
+        "suite": "research_studio.py\ntests/browser_research_studio",
+        "result": "PASS",
+        "seconds": 63.75,
+        "shard": "canonical"
+      },
+      {
+        "suite": "responsive_fonts.py\ntests/browser_responsive_fonts",
+        "result": "PASS",
+        "seconds": 37.7,
+        "shard": "canonical"
+      },
+      {
+        "suite": "command_center.py\ntests/browser_command_center",
+        "result": "PASS",
+        "seconds": 32.28,
+        "shard": "canonical"
+      },
+      {
+        "suite": "command_workbench.py\ntests/browser_command_workbench",
+        "result": "PASS",
+        "seconds": 35.33,
+        "shard": "canonical"
+      },
+      {
+        "suite": "institutional_desk.py\ntests/browser_institutional_desk",
+        "result": "PASS",
+        "seconds": 49.02,
+        "shard": "canonical"
+      },
+      {
+        "suite": "command_trust.py\ntests/browser_command_trust",
+        "result": "PASS",
+        "seconds": 24.77,
+        "shard": "canonical"
+      },
+      {
+        "suite": "command_trust_candidate.py\ntests/browser_command_trust_candidate",
+        "result": "PASS",
+        "seconds": 8.59,
+        "shard": "canonical"
+      },
+      {
+        "suite": "precision.py\ntests/browser_precision",
+        "result": "PASS",
+        "seconds": 32.7,
+        "shard": "canonical"
+      },
+      {
+        "suite": "heritage.py\ntests/browser_heritage",
+        "result": "PASS",
+        "seconds": 29.62,
+        "shard": "canonical"
+      },
+      {
+        "suite": "decision_validation.py\ntests/browser_decision_validation",
+        "result": "PASS",
+        "seconds": 27.98,
+        "shard": "canonical"
+      },
+      {
+        "suite": "phase2_interpretation.py\ntests/browser_phase2_interpretation",
+        "result": "PASS",
+        "seconds": 41.36,
+        "shard": "canonical"
+      },
+      {
+        "suite": "day5.py\ntests/browser_day5",
+        "result": "PASS",
+        "seconds": 86.95,
+        "shard": "canonical"
+      },
+      {
+        "suite": "day6.py\ntests/browser_day6",
+        "result": "PASS",
+        "seconds": 85.69,
+        "shard": "canonical"
+      },
+      {
+        "suite": "readiness.py\ntests/browser_readiness",
+        "result": "PASS",
+        "seconds": 53.55,
+        "shard": "canonical"
+      },
+      {
+        "suite": "provider_quality.py\ntests/browser_provider_quality",
+        "result": "PASS",
+        "seconds": 58.23,
+        "shard": "canonical"
+      },
+      {
+        "suite": "day7_research.py\ntests/browser_day7_research",
+        "result": "PASS",
+        "seconds": 14.94,
+        "shard": "canonical"
+      }
+    ]
+  },
+  "preservation": {
+    "base": "53a835c9a1b82c02b1ae332078d9b535fa0ad0e3",
+    "unchanged": {
+      "server/research.js": true,
+      "server/backtest.js": true,
+      "server/evaluation.js": true,
+      "server/decision.js": true,
+      "server/replay.js": true,
+      "public/research-chart.js": true,
+      "public/instrument-identity.js": true,
+      "public/precision-core.js": true,
+      "public/command-center-core.js": true,
+      "package.json": true,
+      "bun.lock": true,
+      ".github/workflows/ci.yml": true
+    },
+    "existingAssertionsChanged": false,
+    "existingBrowserSuitesPreserved": 48,
+    "addedBrowserSuites": 1,
+    "fixtureChange": "Original pilot fixture supplies its already known synthetic digest; no assertions modified.",
+    "realModelInferencePerformed": false,
+    "productionDeployed": false
+  },
+  "candidateFileSHA256": {
+    "AGENTS.md": "f4f8f5ea7454f68efaf8bcfa6f648be51ba31fbaa887567b0597abbd948bd40d",
+    "public/command-interpretation.css": "e98d774c4b605945bda9fe1802d4c93b447a8c21535a92b1f275c333b152b360",
+    "public/command-interpretation.js": "d019623fc571ad7ef7ad58fabfe9c7975a47f7884e5de22e573a044e6811c375",
+    "public/intelligence-view-state.js": "06102ce54b4096bcc8f594a824ad4e678f90725407d59465d022d6eef04dc477",
+    "public/intelligence-workspace.js": "64a0a62bed56729e6d723ee675f0d3db130d09f5109c72f706df4c242b419103",
+    "scripts/ci/browser_suites.py": "38079a4ba0e7dd9d6f7f11da8b3a1ffe047715897d183eeb47b24efd758dcbab",
+    "scripts/ci/run-browsers.py": "9fe219d12f455b764f05cd0399868c36164e3cd2230ddb26ec8343e0948f6fad",
+    "scripts/pilot-report.mjs": "0ba5ea54889fae9162b9008e333f5dfa565b3f48d8a6046442ea1ac26f13cc5a",
+    "server.js": "de9c27eaf691de0ad6f61a9c4881954628db932e7d12a5cd80cbbcbe8a9ae0d9",
+    "server/intelligence-conversation.js": "1716e55e4197be1fd227a035133109a716a767ba17d1dd85ac804d31d415150f",
+    "server/intelligence-diagnostics.js": "3a3b4d3e2682b08880dc3b39eeaf776028b45fdfae1741bc72965c7cc9b10b6f",
+    "server/intelligence-inference-lifecycle.js": "9d75ae8f85745edd2f7f6f12cc9d1d1a37e464c62f795a974b164f2b1eaa6299",
+    "server/intelligence-provider.js": "a86cc30976a4e85d7edf1724c9a051f7e90122a25acc1ad2eda2b160258182c5",
+    "tests/pilot-fixture.mjs": "8c76393d3192a9c7b3a69c6b7e386a8e0db14f6bdc5492f1ccad700a74139473",
+    "docs/DAY7-RESEARCH-INTEGRATION.md": "0fdc8153198f7334dad9174ab2d75c1a98f03516c2944ebfbda847c6883b1723",
+    "docs/DAY7-WINDOWS-QUALIFICATION.md": "8bf6d8582e6155e12977df3721157644482c5c3d260465eb9941e9e8060f5d4e",
+    "docs/DAY8-TICKET-ACCEPTANCE.md": "7809755a1ee4c36edab335c8085edce8d773516df2f470f0778d59ffc25955b7",
+    "server/intelligence-settings.js": "a564dece8bdb98bd0b592842fa0d19b4c050b3e6d2b6f3f291df81193c8fdcbc",
+    "server/intelligence-supervisor.js": "509346d758bf274f0ba0774dec685d237087029bc864c8f39efa01569618d360",
+    "server/intelligence-worker.js": "3a96ef0a5df3ce06dc43a68c7788b79270b0ace5dd2cd4a2a08d6cdb0f0899d1",
+    "tests/browser_day7_research.py": "d775d9882d82e581dcd33924b8cda2b20e50de6669b7f53e39d69c074cf048e9",
+    "tests/day7-flat-provider.mjs": "b2f8874093526cedacd376f7260946533652f84c9c3f778b232822c3ea453057",
+    "tests/day7-integration.test.mjs": "0aaa0da6753bbf2f256433015da0955fac5f9cbcd3293776b72483c3ee05f0c0",
+    "tests/day7-runtime.mjs": "f33f9f0d8c4365f75555a1077dd77fc6c7932a690674bb5351876ef4a72e9ea2",
+    "tests/day7-view.test.mjs": "345b456189b383424f514dd74dd00e10192a4658800fbb8c69821e01f336070c",
+    "tests/fixtures/research-worker.mjs": "edbcceeeff9a7b1b50689677688fe9dffa341f02d042a5d54b4e74fb92866946"
+  },
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [2.00ms]\n"
+  },
+  "localTestEnvironment": {
+    "privateFileTestTMPDIR": "/dev/shm",
+    "reason": "Empty Git marker directories exist above /tmp. Unchanged private-evidence guards correctly refuse it; valid outside-Git OS temp was used. No marker or guard was changed.",
+    "coreAndSystemSecurityFixturesSerialBeforeBrowserShards": true
+  },
+  "resolvedTestOrchestrationFailure": "An overlapping targeted synthetic runtime occupied11434 during the first browser pilot. Overlap stopped, logs preserved, complete49-suite gate rerun without assertion/threshold/timeout changes.",
+  "resolvedCompatibilityFailure": "Original browser_assisted_desk correctly rejected extra fields in the closed8-field assistant state API. Restored the original API and introduced a separate read-only researchState projection; assertion unchanged and full gate rerun.",
+  "recoveryInvestigation": {
+    "concurrentLocalRun": "TIMEOUT_240S",
+    "unchangedIsolatedSuiteSeconds": 135.66,
+    "isolatedExit": 0,
+    "assertionsAndTimeoutsUnchanged": true,
+    "finalLocalMode": "Original canonical unsharded npm run test:browser; every49 suite sequential",
+    "interpretation": "Concurrent local execution contributes to timing uncertainty; exact low-level cause not established. No functional assertion failed in the isolated suite."
+  },
+  "sourceAndFinancialAdmissionChanged": false,
+  "executionEnabled": false,
+  "hostedAIEnabled": false,
+  "realVersusFixture": "All generation responses here are synthetic protocol fixtures, not model-quality or real-source acceptance."
+}

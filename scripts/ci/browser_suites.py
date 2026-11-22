@@ -104,3 +104,11 @@ def select_provider_quality_suites(env):
         return list(PROVIDER_QUALITY_SUITES)
     index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position,suite in enumerate(PROVIDER_QUALITY_SUITES) if (position+1)%count==index]
+
+# Day7 actual UI/API/worker protocol fixture; all48 prior suites retained.
+DAY7_RESEARCH_SUITES=['day7_research']
+def select_day7_research_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY7_RESEARCH_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(DAY7_RESEARCH_SUITES) if (position+1)%count==index]

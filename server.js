@@ -3,6 +3,7 @@ import {budgetPlan} from './server/plan-budget.js';
 import {instrumentIdentity,researchIdentity} from './public/instrument-identity.js';
 import {createPaperIntents,ensurePaperWriter} from './server/paper-intents.js';
 import {closedMarket} from './server/market-evidence.js';
+import {createInferenceDeadline} from './server/intelligence-timing.js';
 import {createConversations} from './server/intelligence-conversation.js';
 import {localPilotRequest,authenticated,inspectLocalModel} from './server/intelligence-local.js';
 import {cleanCommittee,reflectCommittee} from './public/intelligence-memory.js';
@@ -1566,7 +1567,7 @@ const server = http.createServer(async (req, res) => {
       if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
       if(Date.now()-lastModelProbe<3000)return sendJson(res,429,{ok:false,code:'PROBE_COOLDOWN'});lastModelProbe=Date.now();
       if(providerAvailability().provider!=='ollama')return sendJson(res,400,{ok:false,code:'LOCAL_PROVIDER_REQUIRED'});
-      try{const model=await inspectLocalModel();return sendJson(res,200,{ok:true,reachable:true,...model});}
+      try{const model=await inspectLocalModel();if(!/^[a-f0-9]{64}$/.test(process.env.THN_AI_EXPECTED_DIGEST||'')||model.digest!==process.env.THN_AI_EXPECTED_DIGEST)throw Error('Reviewed digest required');return sendJson(res,200,{ok:true,reachable:true,...model,digestVerified:true,modelQualification:'NOT_VERIFIED'});}
       catch{return sendJson(res,200,{ok:true,reachable:false,installed:false,generationTested:false});}
     }
     if(req.method==='POST'&&url.pathname==='/api/intelligence/conversation/delete'){
@@ -1579,38 +1580,43 @@ const server = http.createServer(async (req, res) => {
     if(req.method==='POST'&&url.pathname==='/api/intelligence'){
       if(activeIntelligence>=2)return sendJson(res,429,{ok:false,code:'RESEARCH_BUSY'});
       if(Number(req.headers['content-length'])>16000)return sendJson(res,413,{ok:false,code:'PAYLOAD_TOO_LARGE'});
-      activeIntelligence++;
-      const cancellation=new AbortController(),abort=()=>cancellation.abort(),closed=()=>{if(!res.writableEnded)abort()};req.on('aborted',abort);res.on('close',closed);
+      activeIntelligence++;let requestBudget=null;
+      const cancellation=new AbortController(),abort=()=>cancellation.abort(),closed=()=>{if(!res.writableEnded)abort()};req.on('aborted',abort);res.on('close',closed);requestBudget=createInferenceDeadline({signal:cancellation.signal});
       try{
-        const input=await readBody(req),symbol=input.symbol,interval=input.interval;
+        const input=await requestBudget.run(()=>readBody(req)),symbol=input.symbol,interval=input.interval;
         if(JSON.stringify(input).length>16000||typeof input.question!=='string'||/-----BEGIN .*PRIVATE KEY-----|\b(?:ghp_|github_pat_|sk-proj-)[A-Za-z0-9_-]{20,}/.test(input.question)||input.question.length>1500||!(/^[A-Z0-9^=:.\-]{1,32}$/.test(symbol))||!Object.hasOwn(INTERVAL_MS,interval))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_REQUEST'});
         if(input.mode!=null&&!['llm','deterministic'].includes(input.mode))return sendJson(res,400,{ok:false,code:'INVALID_INTELLIGENCE_MODE'});
+        if(input.mode!=='llm'){requestBudget.dispose();requestBudget=null;}
         if(input.mode==='llm'){
           if(!localPilotRequest(req)||!providerAvailability().available)return sendJson(res,503,{ok:false,code:'LOCAL_GENERATION_DISABLED'});
           if(!authenticated(req.headers.authorization))return sendJson(res,401,{ok:false,code:'LOCAL_AI_AUTH_REQUIRED'});
+          if(!/^[a-f0-9]{64}$/.test(input.expectedHash||''))return sendJson(res,400,{ok:false,code:'EXPECTED_RESEARCH_HASH_REQUIRED'});
           if(['record','snapshot','history','messages','tools','endpoint','model'].some(k=>Object.hasOwn(input,k)))return sendJson(res,400,{ok:false,code:'UNTRUSTED_GENERATIVE_INPUT'});
-          if(input.sessionId){const result=await intelligenceConversations.respond(input.sessionId,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...result});return;}
+          requestBudget.check();
+          if(input.sessionId){const result=await requestBudget.run(()=>intelligenceConversations.respond(input.sessionId,input,{authorization:req.headers.authorization,signal:requestBudget.signal,deadline:requestBudget}));if(!res.destroyed)return sendJson(res,200,{ok:true,...result});return;}
         }
-        const asOf=Date.now(),[mtf,series]=await Promise.all([multiTimeframe(symbol,getResearchMarketData,asOf),getResearchMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+        const asOf=Date.now(),load=()=>Promise.all([multiTimeframe(symbol,getResearchMarketData,asOf),getResearchMarketData(symbol,interval).then(m=>prepareSeries(m,interval,asOf)).catch(()=>null)]);
+        const [mtf,series]=await (requestBudget?requestBudget.run(load):load());
         let evaluation=null;
         if(input.evaluationParameters&&series&&input.expectedHash===series.provenance.hash){try{evaluation=evaluateResearch(series,symbol,input.evaluationParameters,{trainFraction:input.trainFraction??0.7,minimumTrades:input.minimumTrades??5});}catch{}}
         let riskPlan=null;if(input.hypotheticalPlan&&series&&input.expectedHash===series.provenance.hash){try{riskPlan=createPlan(input.hypotheticalPlan);}catch{}}
+        requestBudget?.check();
         const snapshot=evidenceSnapshot(buildBrief(series,{...mtf,asOf:Date.now()},symbol,interval),{evaluation,riskPlan}),result=committee(snapshot,input.question,input.language);
         if(input.expectedHash&&input.expectedHash!==snapshot.selectedHash)result.contextWarning='Dataset differs from the chart selection; review evidence before use.';
         if(input.mode==='llm'&&result.outcome!=='context_mismatch'){
           if(input.expectedHash&&input.expectedHash!==snapshot.selectedHash)return sendJson(res,409,{ok:false,code:'CHART_CONTEXT_CHANGED'});
           if(providerAvailability().provider==='ollama'){
-            try{const id=intelligenceConversations.start(snapshot,input);const generated=await intelligenceConversations.respond(id,input,{authorization:req.headers.authorization,signal:cancellation.signal});if(!res.destroyed)return sendJson(res,200,{ok:true,...generated});return;}
-            catch(error){if(cancellation.signal.aborted)throw error;result.providerFallback='Local conversation unavailable: fresh complete evidence is required.';}
+            let newSession=null;try{newSession=intelligenceConversations.start(snapshot,input);const generated=await requestBudget.run(()=>intelligenceConversations.respond(newSession,input,{authorization:req.headers.authorization,signal:requestBudget.signal,deadline:requestBudget}));if(!res.destroyed)return sendJson(res,200,{ok:true,...generated});intelligenceConversations.remove(newSession);return;}
+            catch(error){if(newSession)intelligenceConversations.remove(newSession);if(cancellation.signal.aborted||requestBudget?.signal.aborted)throw error;result.providerFallback='Local conversation unavailable: fresh complete evidence is required.';}
           }else{
             const before=intelligenceProvider.stats().modelCalls;
-            try{result.generation=await intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:cancellation.signal});result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
+            try{result.generation=await requestBudget.run(()=>intelligenceProvider(snapshot,input.question,{authorization:req.headers.authorization,signal:requestBudget.signal,deadline:requestBudget}));result.method='llm-assisted';result.summary=result.generation.summary;result.model=result.generation.model;result.provider=result.generation.provider;}
             catch{result.providerFallback='Generative response unavailable or rejected; deterministic evidence retained.';}
             finally{result.modelCalls=intelligenceProvider.stats().modelCalls-before;}
           }
         }
         if(!req.aborted&&!res.destroyed)return sendJson(res,200,{ok:true,...result});
-      }finally{activeIntelligence--;req.off('aborted',abort);res.off('close',closed);}
+      }catch(error){if(requestBudget?.signal.aborted&&!cancellation.signal.aborted){if(!res.destroyed)return sendJson(res,504,{ok:false,code:'TIMEOUT',modelQualification:'NOT_VERIFIED'});}throw error;}finally{requestBudget?.dispose();activeIntelligence--;req.off('aborted',abort);res.off('close',closed);}
       return;
     }
     if (req.method === "GET" && url.pathname === "/api/research/brief") {

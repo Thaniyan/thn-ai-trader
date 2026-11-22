@@ -1,0 +1,78 @@
+{
+  "syntheticRuntimeOnly": true,
+  "actualModelQualification": "NOT_VERIFIED",
+  "profiles": [
+    [
+      1440,
+      "en",
+      "dark"
+    ],
+    [
+      1440,
+      "en",
+      "light"
+    ],
+    [
+      1440,
+      "ar",
+      "dark"
+    ],
+    [
+      1440,
+      "ar",
+      "light"
+    ],
+    [
+      768,
+      "en",
+      "dark"
+    ],
+    [
+      768,
+      "en",
+      "light"
+    ],
+    [
+      768,
+      "ar",
+      "dark"
+    ],
+    [
+      768,
+      "ar",
+      "light"
+    ],
+    [
+      390,
+      "en",
+      "dark"
+    ],
+    [
+      390,
+      "en",
+      "light"
+    ],
+    [
+      390,
+      "ar",
+      "dark"
+    ],
+    [
+      390,
+      "ar",
+      "light"
+    ]
+  ],
+  "checks": [
+    "same-page inventory and explicit model selection",
+    "actual API and isolated worker",
+    "frozen followup",
+    "citation focus and Escape",
+    "Library save and credential-free export",
+    "EN/AR RTL and axe",
+    "cancelled late output refused",
+    "unchanged hypothetical plan and candidate",
+    "no execution calls"
+  ],
+  "errors": []
+}
