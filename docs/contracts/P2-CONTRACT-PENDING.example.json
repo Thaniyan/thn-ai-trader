@@ -1,0 +1,67 @@
+{
+  "schema": "THN-P2-CONTRACT-1",
+  "mode": "OWNER_PRIVATE",
+  "purpose": "SOURCE_REVISION",
+  "originalSHA256": "d0b0435ff1b685a250c60d208fda058d44aff8c69bab744f3074dc64b55add0d",
+  "candidateSHA256": "UNSET",
+  "original": {
+    "sourceId": "yahoo-finance",
+    "providerSymbol": "EURUSD=X",
+    "instrument": "EURUSD",
+    "product": "OTC_FX",
+    "base": "EUR",
+    "quote": "USD",
+    "interval": "1d",
+    "format": "YAHOO_CHART_1",
+    "bar": {
+      "timezone": "UNSET",
+      "sessionBoundary": "UNSET",
+      "quoteBasis": "UNSET",
+      "adjustment": "UNADJUSTED",
+      "timestampConvention": "BAR_OPEN_UTC",
+      "aggregation": "SOURCE_SUPPLIED_1D",
+      "semanticsEvidenceId": "UNSET"
+    }
+  },
+  "candidate": {
+    "sourceId": "yahoo-finance",
+    "providerSymbol": "EURUSD=X",
+    "instrument": "EURUSD",
+    "product": "OTC_FX",
+    "base": "EUR",
+    "quote": "USD",
+    "interval": "1d",
+    "format": "YAHOO_CHART_1",
+    "bar": {
+      "timezone": "UNSET",
+      "sessionBoundary": "UNSET",
+      "quoteBasis": "UNSET",
+      "adjustment": "UNADJUSTED",
+      "timestampConvention": "BAR_OPEN_UTC",
+      "aggregation": "SOURCE_SUPPLIED_1D",
+      "semanticsEvidenceId": "UNSET"
+    }
+  },
+  "rights": {
+    "status": "PENDING",
+    "approvalId": "UNSET",
+    "originalEvidenceId": "UNSET",
+    "candidateEvidenceId": "UNSET",
+    "retentionEvidenceId": "UNSET"
+  },
+  "revision": {
+    "kind": "SOURCE_DECLARED_CORRECTION",
+    "revisionId": "UNSET",
+    "attributionEvidenceId": "UNSET",
+    "originalSHA256": "d0b0435ff1b685a250c60d208fda058d44aff8c69bab744f3074dc64b55add0d"
+  },
+  "independence": null,
+  "restrictions": {
+    "network": false,
+    "priceWrites": false,
+    "providerActivation": false,
+    "production": false,
+    "admission": false,
+    "execution": false
+  }
+}

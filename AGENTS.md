@@ -233,3 +233,17 @@ revision or lawfully approved independent comparison, with rights/identity/bar
 semantics and immutable-case acceptance. Vendor contact/new access/routing and
 policy changes need explicit approval. No prices, engines, eligibility, providers,
 AI/trading, main or Production change is authorized; PR23 remains draft.
+
+## Owner Day6/10 implementation — 2026-11-22
+
+PR23 comment7079692557 authorizes immediate bounded offline P2 implementation and
+parallel existing local-AI preparation. Day6 is22 November; Day10 is26 November
+(Asia/Muscat), an acceptance target, not automatic GO. Do not remain in generic
+diagnostics/docs. P2 must have no network, price write, production/admission hook;
+pin the private P1 original, account for36 cases or block explicitly on absent
+inputs/contract, use a closed schema and redact exports. Prepare existing strict
+local-model qualification without inventory HTTP, activation, downloads or installs
+on Day6. Preserve12s, source/citation identity, financial engines, accepted UI,
+existing tests, no hosted/paid inference and no execution. Push verified work to
+existing PR23 branch, full exact-head CI; keep draft, no main/Production. Status,
+working demo and dated remaining gates: docs/DAY6-10-ACCEPTANCE.md.
