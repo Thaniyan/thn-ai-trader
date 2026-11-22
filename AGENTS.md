@@ -208,3 +208,15 @@ violations outside every closure exception. Source/licensing/access decisions,
 calendar comparison and any later admission change need distinct explicit scope.
 No new provider, eligibility/engine/UI change, AI/trading activation, main merge
 or Production is authorized. Preserve the existing verified57eee183 candidate.
+
+## Owner controlled Priority1 execution — 2026-11-22
+
+The owner explicitly authorized publishing the documentation-only resolution
+package first (6e7652e), then a narrowly scoped read-only EURUSD daily source/
+mapping/bar investigation through existing authorized access. A one-shot local
+case tracer is within that scope; no generic audit expansion, public raw prices
+or individual records, repair/tolerance/calendar waiver, new provider, routing or
+eligibility change is authorized. Preserve private immutable originals and label
+synthetic tests separately. Actual root cause remains unestablished when source
+access is blocked. See docs/EURUSD-P1-INVESTIGATION-20261122.md. Keep PR23 draft;
+no main merge, Production, AI activation, paid services/models or execution.

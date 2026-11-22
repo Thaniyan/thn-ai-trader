@@ -1,0 +1,28 @@
+{
+  "schema": "THN-EURUSD-P1-1",
+  "scope": "EXISTING_SOURCE_READ_ONLY_CURRENT_CAPTURE",
+  "capturedAt": "2026-11-22T07:32:57.654Z",
+  "mappingIdentity": "774b2f1c5fb7be9b4aeb929d30f4e7f0d6cacdf4fcda17c4ed3176f558a11520",
+  "sourceRequests": [
+    {
+      "host": "query1.finance.yahoo.com",
+      "status": null,
+      "received": false,
+      "failure": "SOURCE_REQUEST_FAILED"
+    },
+    {
+      "host": "query2.finance.yahoo.com",
+      "status": null,
+      "received": false,
+      "failure": "SOURCE_REQUEST_FAILED"
+    }
+  ],
+  "apiStatus": 503,
+  "privateOriginals": [],
+  "analysisFailure": null,
+  "result": null,
+  "state": "BLOCKED_OR_UNVERIFIED",
+  "qualificationChanged": false,
+  "calendarExceptionApplied": false,
+  "executionAuthorized": false
+}

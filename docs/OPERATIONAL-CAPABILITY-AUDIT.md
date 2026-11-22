@@ -10,6 +10,15 @@ AI research service or a genuinely eligible live-provider Ticket. Day7 was an
 assessment milestone. No merge, Production, provider purchase, new model,
 hosted/paid inference, financial execution or security-policy change is authorized.
 
+## Priority1 source-boundary investigation
+
+[Controlled P1 trace and Windows execution](EURUSD-P1-INVESTIGATION-20261122.md):
+the resolution package is published documentation-only at6e7652e. Existing Yahoo
+access is proxy-blocked in Cloud; no actual source body or verified root cause
+was obtained. A one-shot EURUSD daily investigator preserves private originals
+and checks source/mapping/closed-bar fidelity without changing application code.
+Synthetic regression evidence is explicitly separate from the owner's36 records.
+
 ## Resolution phase — 22 November 2026
 
 The [owner-verified resolution and approval plan](PROVIDER-RESOLUTION-PLAN-20261122.md)
