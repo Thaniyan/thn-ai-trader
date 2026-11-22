@@ -1,5 +1,9 @@
 # Native Bitcoin USD and spot gold — engineering review, proposals only
 
+Latest decision package: [22 November resolution plan](PROVIDER-RESOLUTION-PLAN-20261122.md).
+The diagnostic collection gates below are now complete; replacement-source rights,
+contracts and explicit access/routing approvals remain outstanding.
+
 Owner scope: PR23 comment7015373102. No new data route, network access, provider,
 subscription, account, quote conversion or financial permission is enabled.
 These are engineering proposals for independent data/financial owner review,

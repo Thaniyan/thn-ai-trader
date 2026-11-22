@@ -10,6 +10,17 @@ AI research service or a genuinely eligible live-provider Ticket. Day7 was an
 assessment milestone. No merge, Production, provider purchase, new model,
 hosted/paid inference, financial execution or security-policy change is authorized.
 
+## Resolution phase — 22 November 2026
+
+The [owner-verified resolution and approval plan](PROVIDER-RESOLUTION-PLAN-20261122.md)
+supersedes the collection-first next steps below. The Windows audit at57eee183
+passed9 contexts,18 original flags and72 detailed checks. Diagnostic collection
+is complete for this investigation. Resolve the36 genuine daily EURUSD geometry
+anomalies at source, obtain a source-specific calendar contract, and make explicit
+native-USD Bitcoin/spot-gold product and licensing decisions. No new diagnostic
+layer, source activation, quality waiver or financial policy change is authorized.
+Earlier audit sections remain historical evidence, not the current work queue.
+
 ## Reconciled Windows evidence and bounded follow-up
 
 [Latest session/geometry review](SESSION-QUALITY-REVIEW-20261119.md) records the
