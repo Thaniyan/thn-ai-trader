@@ -10,14 +10,18 @@ AI research service or a genuinely eligible live-provider Ticket. Day7 was an
 assessment milestone. No merge, Production, provider purchase, new model,
 hosted/paid inference, financial execution or security-policy change is authorized.
 
-## Priority1 source-boundary investigation
+## Priority1 verified source-stage result — 22 November 2026
 
-[Controlled P1 trace and Windows execution](EURUSD-P1-INVESTIGATION-20261122.md):
-the resolution package is published documentation-only at6e7652e. Existing Yahoo
-access is proxy-blocked in Cloud; no actual source body or verified root cause
-was obtained. A one-shot EURUSD daily investigator preserves private originals
-and checks source/mapping/closed-bar fidelity without changing application code.
-Synthetic regression evidence is explicitly separate from the owner's36 records.
+The [owner's real Windows capture](EURUSD-P1-INVESTIGATION-20261122.md) at62ea56ad
+establishes36 invalid geometry rows in the current Yahoo response. The reviewed
+mapper, closed-bar engine and API agree. No application-path defect is demonstrated;
+upstream construction cause and older historical36-record identity remain unknown.
+The earlier Cloud proxy failures below are historical access evidence, not the
+current global source-provenance conclusion. No repeat capture is needed.
+
+[Next: attributable correction and independent-source qualification](SOURCE-CORRECTION-QUALIFICATION-PLAN-20261122.md).
+Rights, instrument/bar semantics, immutable evidence and acceptance precede any
+new upstream route or adoption. No source/eligibility/financial change is approved.
 
 ## Resolution phase — 22 November 2026
 

@@ -5,7 +5,49 @@ The resolution package was committed and pushed first, documentation-only, at
 `6e7652e2042815332c659342c01198d03dfe89ad`. All273 existing non-documentation
 files were unchanged by that commit. Main remains d75dc60.
 
-## Exact findings and limits
+## Verified Windows result — source-response origin established
+
+[Owner evidence7076985015](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7076985015)
+and its [redacted transcription](evidence/eurusd-p1/owner-windows-verified.json)
+complete the real P1 capture gate. The owner ran the investigator at62ea56ad on
+Windows using the existing authorized route. This is real source-stage evidence,
+not a synthetic test or a Cloud replay. Original source bytes/sidecars remain
+private on the owner's device; do not request their upload or public record data.
+
+|Observed field|Verified redacted result|
+|---|---|
+|Capture|2026-11-22T09:09:27.231Z (13:09 Muscat)|
+|Source / application API|query1.finance.yahoo.com HTTP200 / API200|
+|Original response body|140144 Fetch-decoded bytes; owner unchanged check true|
+|Original body SHA256|`d0b0435ff1b685a250c60d208fda058d44aff8c69bab744f3074dc64b55add0d`|
+|Raw / adapter-retained / excluded|1305 /1264 /41 (5 missing +36 geometry)|
+|Nonzero geometry masks|2:6;3:12;8:7;12:11; all other masks0|
+|Independent boundaries|highBelowOpen12; highBelowClose18; lowAboveOpen11; lowAboveClose18; rangeInverted0|
+|Severity below0.01 /[0.01,1) /[1,10) /at least10bp|0 /19 /16 /1|
+|Reviewed mapper block|SHA256 `774b2f1c5fb7be9b4aeb929d30f4e7f0d6cacdf4fcda17c4ed3176f558a11520` matched|
+|enginePreservesMappedClosedBars / apiMatchesExpectedClosedBars|true /true|
+|Expected dataset hash|`1abcdf5ad53784b6a6c002f93a603921a2e24ff17c3ec8cc3bcb35d6513a0af8`|
+|Outcome|analysisFailure null; COMPARISON_COMPLETE; exit0; SOURCE_RESPONSE|
+|Still unestablished|Upstream bar-construction cause; individual earlier historical36-record identity|
+|Permissions/policy|qualificationChanged false; calendarExceptionApplied false; executionAuthorized false|
+
+**Current capture verdict:**36 invalid OHLC records are present in the Yahoo
+response before the app processes them. No mapping, closed-bar or API discrepancy
+is demonstrated in this tested path. Strict rejection worked:1264 is the
+adapter-retained count, not a claim that raw invalid rows entered the API or that
+all retained rows are closed/eligible. Successful stage comparisons establish
+fidelity of the validated subset, not feed quality or a qualified Ticket.
+
+This supersedes the earlier absence-of-source-body limitation **for this owner
+capture**. It does not diagnose why Yahoo/upstream assembled those values, prove
+license rights or identify the earlier historical records individually. No price
+repair, tolerance or calendar exception is authorized. Keep source originals and
+sidecars immutable and private. Do not repeat the successful fetch just to collect
+another diagnostic report.
+
+[Next milestone: attributable correction and independent-source qualification](SOURCE-CORRECTION-QUALIFICATION-PLAN-20261122.md).
+
+## Earlier code review and Cloud access limits — historical evidence
 
 Owner's05:18:28.718Z Windows sample at57eee183 supplies real aggregate evidence:
 36 EURUSD daily geometry rejects (masks2:6,3:12,8:7,12:11),19 breaches in[0.01,1)bp,
@@ -45,9 +87,11 @@ path returned503 MARKET_DATA_UNAVAILABLE; neither source response was captured.
 No synthetic substitute was used in the actual network attempt. Network policy
 was not changed and no new host, endpoint or provider was introduced.
 
-**Root cause for the actual36 records is not yet established.** No application
-mapping defect is demonstrated. No source response was obtained here to prove
-proximate source origin; no evidence explains the provider's internal aggregation.
+**Historical Cloud-attempt conclusion:** no source body was obtained in that
+attempt. The later owner capture above establishes current source-response
+origin, while provider-internal aggregation cause remains unverified. No
+application mapping defect was demonstrated in either code review or the
+successful owner stage comparison.
 The blocked capture report remains BLOCKED_OR_UNVERIFIED with no stage result or
 private source originals. This is not a successful real-data stage comparison.
 
@@ -101,7 +145,12 @@ those fields. A current matching36-count pattern does not identify the original
 historical36 records: the tool always reports historical36RecordIdentity as
 NOT_ESTABLISHED. A clean current response does not prove old records were fixed.
 
-## Windows execution using existing authorized access
+## Windows execution reference — completed gate, no repeat requested
+
+The owner has completed this procedure successfully. Retain it for reproducibility;
+it is not the next task and no private source file/individual-record upload is
+requested. The new work is correction/source qualification in the linked plan.
+
 
 Use the existing repository/dependencies and Node24.5+ (the pinned project version
 is24.19.0). No service activation, provider credential, model install or new access
@@ -138,8 +187,9 @@ A failure is evidence to inspect privately, not permission to loosen guards.
 |Current raw response is clean|Record this capture only; do not declare historical36 corrected|An archived original/correction pair with traceable identity is needed to dispose of old cases. Never silently rewrite Library research|
 |No body, unsupported source identity, malformed contract, size limit or timeout|Keep BLOCKED_OR_UNVERIFIED and current WAIT restrictions|No fabricated hashes/counts, counter waiver, redirect/new host access or unsupported root-cause claim|
 
-No price correction is proposed for immediate application: none is supported by
-real source-level evidence available in this environment. An upstream correction
+Source-response geometry violations are now established by the owner capture.
+No application-side price correction is justified: the reviewed path preserved
+source values and rejected the invalid records correctly. An upstream correction
 would be valid new input only if attributable and strictly valid; not a locally
 manufactured repair or silent re-evaluation of historical research. Calendar
 exceptions cannot excuse any of the36 genuine geometry records.
@@ -155,14 +205,12 @@ exclusive/read-only snapshot preservation/hash checking, redaction, unavailable
 source outcomes and cancellation of oversized streams without partial originals, and source-deadline
 abort enforcement even after a body has been privately captured. Test fixtures cannot establish a real provider root cause.
 
-The next meaningful gate is one successful Windows P1 capture with immutable
-originals, a reviewed pinned mapping, enginePreservesMappedClosedBars true and
-apiMatchesExpectedClosedBars true. Then inspect the measured raw geometry count
-and proximateOrigin. Do not rerun the nine-context generic audit. If source-origin
-violations are confirmed, use the conditional source-correction route above;
-if comparisons mismatch, stop for code-level investigation before proposing a fix.
-Actual vendor-internal cause or historical-case identity remains unestablished
-unless separately supported by source records/revisions.
+The real P1 capture gate is complete at62ea56ad, as recorded above. The next
+implementation-ready milestone is the private correction/approved independent-source
+case comparison specified in [the source plan](SOURCE-CORRECTION-QUALIFICATION-PLAN-20261122.md).
+No additional generic instrumentation or repeated source fetch is required.
+Provider-internal cause and older historical-case identity remain unknown unless
+separately supported by attributable source records/revisions.
 
 PR23 stays draft. Main, Production, financial engines, accepted UI, eligibility,
 strict validation, provider selection, calendar rules and security restrictions

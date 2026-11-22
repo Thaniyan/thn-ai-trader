@@ -1,6 +1,8 @@
 # Native Bitcoin USD and spot gold — engineering review, proposals only
 
-Latest decision package: [22 November resolution plan](PROVIDER-RESOLUTION-PLAN-20261122.md).
+Current P1 result and next source gate: [correction and independent-source plan](SOURCE-CORRECTION-QUALIFICATION-PLAN-20261122.md). Current Yahoo source-response geometry violations are verified; no provider/routing/admission approval follows.
+
+Earlier decision package: [22 November resolution plan](PROVIDER-RESOLUTION-PLAN-20261122.md).
 The diagnostic collection gates below are now complete; replacement-source rights,
 contracts and explicit access/routing approvals remain outstanding.
 

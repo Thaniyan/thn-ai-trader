@@ -220,3 +220,16 @@ eligibility change is authorized. Preserve private immutable originals and label
 synthetic tests separately. Actual root cause remains unestablished when source
 access is blocked. See docs/EURUSD-P1-INVESTIGATION-20261122.md. Keep PR23 draft;
 no main merge, Production, AI activation, paid services/models or execution.
+
+## Owner verified P1 source stage — 2026-11-22
+
+PR23 comment7076985015 completes the real Windows P1 gate at62ea56ad:36 invalid
+OHLC rows directly in the Yahoo response; reviewed mapping/closed-bar/API agree.
+Current source-response origin is established. Upstream construction cause and
+individual older historical36-record identity are not. Do not request/upload the
+owner's private original or rows, add generic diagnostics or repeat the fetch.
+Next is docs/SOURCE-CORRECTION-QUALIFICATION-PLAN-20261122.md: attributable source
+revision or lawfully approved independent comparison, with rights/identity/bar
+semantics and immutable-case acceptance. Vendor contact/new access/routing and
+policy changes need explicit approval. No prices, engines, eligibility, providers,
+AI/trading, main or Production change is authorized; PR23 remains draft.
