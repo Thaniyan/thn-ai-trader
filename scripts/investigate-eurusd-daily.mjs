@@ -11,7 +11,7 @@ const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const pinnedMapping='774b2f1c5fb7be9b4aeb929d30f4e7f0d6cacdf4fcda17c4ed3176f558a11520';
 const limit=2*1024*1024;
 let used=false;
-export function mappingIdentity(source){const start=source.indexOf('async function fetchYahooCandles('),a=source.indexOf('const rows = timestamps.map(',start),b=source.indexOf('recordProviderRows(rows,candles,',a);if(start<0||a<start||b<a||b-a>12000||hash(source.slice(a,b).trim())!==pinnedMapping)throw Error('ADAPTER_REVIEW_REQUIRED');return pinnedMapping;}
+export function mappingIdentity(source){source=source.replace(/\r\n/g,'\n');const start=source.indexOf('async function fetchYahooCandles('),a=source.indexOf('const rows = timestamps.map(',start),b=source.indexOf('recordProviderRows(rows,candles,',a);if(start<0||a<start||b<a||b-a>12000||hash(source.slice(a,b).trim())!==pinnedMapping)throw Error('ADAPTER_REVIEW_REQUIRED');return pinnedMapping;}
 export function compareCapture(body,api,asOf=Date.now()){
  let source;try{source=JSON.parse(body);}catch{throw Error('SOURCE_JSON_INVALID');}
  const r=source?.chart?.result?.[0],q=r?.indicators?.quote?.[0],times=r?.timestamp;

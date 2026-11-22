@@ -63,7 +63,7 @@
   "finalCore": {
     "tests": 482,
     "fail": 0,
-    "logSHA256": "8a9a008a4283a483af87af6fd0121ca113e5c620d0ee0f7b0d5f4a243df42c18",
+    "logSHA256": "a3d906f8444421be628a2f431c5e24ba956dcb171c5843979bdd8785b69426f6",
     "note": "Final operator source and all core tests rerun after bounded-stream/deadline hardening; supersedes earlier core run."
   },
   "browser": {
@@ -423,8 +423,8 @@
     "server/provider-diagnostics.js": "dd80fa07224e051ca3dca0107ac9794ddbccddceb62efdfbe9540731ac1a8338",
     "server/provider-shapes.js": "bf13489321ebda43899775d532307926eba846bd36df44adb969bce9a9a917c8"
   },
-  "operatorToolSHA256": "faf0e53fd3e7a519641d78d1b1e7de5104d165781696c703a1497bc48281814a",
-  "operatorTestsSHA256": "f7f904012fa130a67c1b88d4aef2becffdaa4f505c414fc1c6d499dc99461aa4",
+  "operatorToolSHA256": "7aa18e80e49277eda5cbc44970d09416b908e4a980702d1774a194459afd5b9a",
+  "operatorTestsSHA256": "e545d9bfa35b45ccc88cc8cfeb3a37051bc8e454c7e592c21e506041a1cf859f",
   "packagedRuntimeManifestSHA256": "595acb740fecd4024c8743fcf4f146a9340fd7619eb47d0dfb6e7df3565cf2c6",
   "operatorToolExcludedFromProduction": true,
   "actualSourceBodiesObtained": 0,

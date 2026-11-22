@@ -279,5 +279,5 @@
     "tests/workspace_controls.py": "4e2ca25e765eca37d35f6fee3d7e3089c428c66412baab5d182ac515bd455bfc",
     "vercel.json": "8b6e70a37c4fffadf4b8c2fe824eb081c874dd855a6cc326de3375430e8a95e0"
   },
-  "operatorToolSHA256": "faf0e53fd3e7a519641d78d1b1e7de5104d165781696c703a1497bc48281814a"
+  "operatorToolSHA256": "7aa18e80e49277eda5cbc44970d09416b908e4a980702d1774a194459afd5b9a"
 }

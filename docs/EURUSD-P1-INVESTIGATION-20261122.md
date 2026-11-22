@@ -79,7 +79,8 @@ retain the hash sidecars. Do not use a shared/synchronised or repository folder.
 
 The trace is deliberately specific:
 
-1. Pin the exact reviewed production mapping/filter block. Any drift stops the
+1. Pin the reviewed production mapping/filter block, normalizing only checkout
+   CRLF line endings to LF. Substantive drift stops the
    tool for code review rather than silently using a different reconstruction.
 2. Inspect original quote arrays without price conversion; aggregate geometry
    masks, boundaries and severity using the existing diagnostic collector.
@@ -149,7 +150,7 @@ Nine targeted tests use **controlled synthetic prices**, constructed to reproduc
 the publicly supplied comparison/severity count pattern, not the owner's records.
 They exercise the actual unchanged application handler and frozen bar engine,
 adjusted-close isolation, pipeline mismatch refusal, clean-current versus unknown
-historical identity, mapping drift/source-contract failure, private-path exclusion,
+historical identity, mapping drift/source-contract failure and CRLF checkout compatibility, private-path exclusion,
 exclusive/read-only snapshot preservation/hash checking, redaction, unavailable
 source outcomes and cancellation of oversized streams without partial originals, and source-deadline
 abort enforcement even after a body has been privately captured. Test fixtures cannot establish a real provider root cause.
