@@ -275,3 +275,15 @@ No source/calendaring/admission change, new provider access, inference, install,
 execution, main merge or Production. Keep PR23 draft on its existing branch;
 November26 remains conditional final acceptance. Implementation evidence:
 docs/DAY8-TICKET-IMPLEMENTATION.md.
+
+## Owner Day9 real-device acceptance — advanced23 November2026
+
+PR23 comment7101808552 accepts Day8ff8e853 and prioritizes actual Windows source,
+Ticket/browser and separately authorized installed-model EN/AR observations.
+Use docs/DAY9-OWNER-ACCEPTANCE.md and the bounded exact-head wrapper of the existing
+runtime audit; do not add generic diagnostics or fabricate positive admission.
+Collector software, synthetic regression and Preview metadata do not qualify real
+sources, model or Ticket. No inference without separate narrow owner consent;
+retain12s, budgets, strict citations, prior12003ms NO_GO and every original gate.
+Day9/Day10 scheduled25/26 November; evidence must use actual dates. Keep PR23 draft,
+accepted UI/engines/eligibility/providers unchanged, no main/Production or execution.

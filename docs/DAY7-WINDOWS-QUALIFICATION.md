@@ -1,5 +1,9 @@
 # Day 7 — minimal private Windows handoff
 
+Current owner workflow: [Day9 single acceptance handoff](DAY9-OWNER-ACCEPTANCE.md).
+The historical instructions below remain reference; do not run both workflows or
+duplicate inference attempts. Day9 requires separate narrow EN/AR authorization.
+
 Run in the existing checkout on the owner device. No installation, runtime startup,
 AI_ENABLED assignment or inference is included in the read-only steps below.
 Never send credentials, prompts, raw OHLC, private records or model prose in chat.

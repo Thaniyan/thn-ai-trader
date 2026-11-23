@@ -1,0 +1,335 @@
+{
+  "recordedAt": "2026-11-23T17:30:40+04:00",
+  "testedBase": "ff8e85311698e01bf5bf1b0f09337a5c8fbe1862",
+  "scope": "Day9 owner acceptance wrapper and handoff; actual app runtime byte-identical to verified Day8",
+  "core": 536,
+  "security": 21,
+  "system": 10,
+  "browserSuites": [
+    {
+      "suite": "workstation",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "research_outage",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "decision",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "maturity",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "intelligence",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "layout",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "trust",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "journal_lifecycle",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "evolution",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "experience",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "recovery",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "paper_review",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "broker_workspace",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "workflow_polish",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "confidence",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "research_risk",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "unified_workspace",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "responsive_fonts",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "command_workbench",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "command_trust",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "precision",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "heritage",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "decision_validation",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "phase2_interpretation",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "day5",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "day8_ticket",
+      "status": "PASS",
+      "shard": 0
+    },
+    {
+      "suite": "research",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "quality",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "library_reliability",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "terminal",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "intelligence_memory",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "pilot",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "professional",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "trading_remediation",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "consolidation",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "consistency",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "assisted_desk",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "evidence_workflow",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "visual_refinement",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "visual_identity",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "dashboard_confidence",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "workspace_hierarchy",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "research_studio",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "command_center",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "institutional_desk",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "command_trust_candidate",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "day6",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "readiness",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "provider_quality",
+      "status": "PASS",
+      "shard": 1
+    },
+    {
+      "suite": "day7_research",
+      "status": "PASS",
+      "shard": 1
+    }
+  ],
+  "failed": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.7
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.61
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.25
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 63.4
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.56
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 2.46
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.34
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.94
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.3
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 36.79
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.74
+    }
+  ],
+  "artifactManifestSHA256": "50c23dce1de9c8b3664bc5440048b6e7a92ab9b17d2a2d26e76db9b148ce2635",
+  "runtimeUnchangedFromDay8": true,
+  "dependenciesUnchanged": true,
+  "newAcceptanceTests": 6,
+  "positiveTickets": "SYNTHETIC only; original engines under controlled admission",
+  "cloudObservation": "UNMOCKED Cloud app, no bars obtained,503,WAIT in12 profiles; NOT owner Windows or qualified market data",
+  "ownerWindows": "NOT_VERIFIED",
+  "realMarketTicket": "NOT_VERIFIED",
+  "realModel": "NOT_VERIFIED; prior actual12003ms/no-response trial NO_GO",
+  "inferenceAuthorization": "PENDING separate owner consent; no real inference performed",
+  "fullOperationalReadiness": "NO_GO",
+  "historicalLanguageClickTimeout": "Earlier Day8 isolated timeout cause remains unestablished; see Day8 trust-language investigation. Day9 current suite result recorded above.",
+  "hostedCi": "Verify both exact candidate workflows after push; this is local evidence only",
+  "mainMerged": false,
+  "productionDeployed": false,
+  "financialExecutionEnabled": false
+}

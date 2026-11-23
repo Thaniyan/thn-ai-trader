@@ -6,7 +6,21 @@ approval language is reference material; the owner's current direct development
 and deployment instructions govern delivery. Reference illustrations are design
 inspiration, not shipped assets or claims about operational capabilities.
 
-## Current owner program — Day5, 2026-11-18
+## Current owner program — Day9 acceptance, 2026-11-23
+
+[Day9 authority](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7101808552)
+accepts verified Day8 `ff8e853` and prioritizes real owner-device evidence on draft
+PR23, existing `feature/ai-evidence-interpreter-phase2-20261116`. Use the single
+[Windows and browser acceptance handoff](DAY9-OWNER-ACCEPTANCE.md): existing-source
+one-context check, source-bound Ticket walkthrough, read-only model inventory and
+separately authorized EN/AR inference. No generic diagnostics or arbitrary redesign.
+Real source/model/Ticket remain NOT_VERIFIED; prior12003ms model trial remains
+NO_GO. Day9/Day10 are25/26 November; preparation advanced23 November. Source rights,
+native-USD BTC, genuine spot XAUUSD and FX correction/calendar decisions are still
+separate approvals. Green engineering gates never imply operational GO, main
+integration, Production deployment or financial execution approval.
+
+## Earlier owner program — Day5, 2026-11-18
 
 [Day5 authority](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-6979451886):
 continue existing draft PR23 on `feature/ai-evidence-interpreter-phase2-20261116`
