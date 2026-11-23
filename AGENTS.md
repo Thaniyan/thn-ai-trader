@@ -260,3 +260,18 @@ Synthetic loopback protocol fixtures may verify real application endpoints/UI;
 they never establish real model/data/Ticket acceptance. Preserve every existing
 assertion and accepted chart-first design. Keep existing PR23 draft; no main or
 Production. The26 November acceptance target remains conditional on real gates.
+
+## Owner Day8 Ticket implementation — execution advanced22 November2026
+
+PR23 comment7083295848 accepts verified Day7 head19d47f8 and authorizes substantial
+existing-source Ticket integration, scheduled24 November. Keep the original
+recommendation/candidate, risk and historical engines. Exact retained Entry/SL/
+available targets and source context must bind the Ticket's risk-review label;
+a separate input-valid plan cannot validate different recorded levels. Reject
+blank assumptions, withdraw changed-context responses, reuse original chart,
+inline evaluator and Library owners. All49 prior suites remain mandatory plus
+Day8 coverage. Synthetic admission is never real source/model/Ticket acceptance.
+No source/calendaring/admission change, new provider access, inference, install,
+execution, main merge or Production. Keep PR23 draft on its existing branch;
+November26 remains conditional final acceptance. Implementation evidence:
+docs/DAY8-TICKET-IMPLEMENTATION.md.

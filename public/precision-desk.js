@@ -1,4 +1,4 @@
-import {precisionReview} from './precision-core.js';
+import {ticketAssessment as precisionReview} from './research-ticket-core.js';
 import {commandEvidence,decisionEvidence,formatRetainedLevel} from './command-evidence.js';
 import {escapeHTML as esc} from './decision-records.js';
 

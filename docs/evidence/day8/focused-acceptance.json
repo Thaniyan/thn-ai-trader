@@ -1,0 +1,36 @@
+{
+  "originalAssertionsAndTimeoutsUnchanged": true,
+  "scope": "Actual packaged app, controlled synthetic positive admission only; no real model/source/Ticket qualification.",
+  "suites": [
+    {
+      "suite": "day5",
+      "passed": true,
+      "lastOutput": "PASS: Day5 36 responsive EN/AR/theme profiles, first-fold geometry, source navigation, mobile single ticket, synchronous context/overlay withdrawal, original risk validation, immutable notes/Library and execution off"
+    },
+    {
+      "suite": "institutional_desk",
+      "passed": true,
+      "lastOutput": "PASS: 20 bilingual/theme/responsive plus8 complete first-viewport candidate profiles, original OHLC/zoom/source inspection, decision citations, one-page actions, stale invalidation and financial restrictions"
+    },
+    {
+      "suite": "precision",
+      "passed": true,
+      "lastOutput": "PASS: 20 A+ layout plus12 validated Eligible EN/AR/theme/size profiles, original Conditional\u2192validated Eligible\u2192invalidated lifecycle, sourced reason, keyboard workflow, immutable records and execution restrictions"
+    },
+    {
+      "suite": "day6",
+      "passed": true,
+      "lastOutput": "PASS Day6:48 eligible BUY/SELL responsive language/theme/mode profiles;14 negative cases; original engine prices and risk validation; UI-only qualification."
+    },
+    {
+      "suite": "day8_ticket",
+      "passed": true,
+      "lastOutput": "PASS Day8: 24 BUY/SELL EN/AR/theme/responsive profiles, exact risk binding, empty assumptions, source-hash cancellation and original chart/evaluator owners."
+    },
+    {
+      "suite": "evidence_workflow",
+      "passed": true,
+      "lastOutput": "{\"profiles\": 16, \"fallbackProfiles\": 8, \"errors\": [], \"realModelRun\": false, \"automaticInferenceRequests\": 0}"
+    }
+  ]
+}

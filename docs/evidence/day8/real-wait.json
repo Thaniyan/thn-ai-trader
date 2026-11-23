@@ -1,0 +1,42 @@
+{
+  "scope": "Single current EURUSD/1h application load through unchanged authorized Yahoo routes. No fixture/provider substitution, inference, execution or source qualification.",
+  "realSourceQualification": "NOT_VERIFIED",
+  "realTicketQualification": "NOT_VERIFIED",
+  "symbol": "EURUSD",
+  "interval": "1h",
+  "phase": "unavailable",
+  "fresh": false,
+  "warnings": [
+    "history_unavailable",
+    "analysis_required",
+    "incomplete_frames",
+    "risk_review_required",
+    "currency_mismatch"
+  ],
+  "candidatePresent": false,
+  "ticketState": "wait",
+  "executionAuthorized": false,
+  "modelInterpretationPresent": false,
+  "sourceResponses": [
+    {
+      "endpoint": "/api/research/series",
+      "status": 503,
+      "ok": false,
+      "code": "MARKET_DATA_UNAVAILABLE",
+      "frames": []
+    },
+    {
+      "endpoint": "/api/analyze",
+      "status": 503,
+      "ok": false,
+      "code": "MARKET_DATA_UNAVAILABLE",
+      "frames": []
+    }
+  ],
+  "waitObserved": true,
+  "renderedWaitLabel": "No eligible setup",
+  "capabilities": {
+    "liveTrading": false,
+    "paperExecution": false
+  }
+}

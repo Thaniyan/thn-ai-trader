@@ -1,0 +1,80 @@
+{
+  "scope": "Actual original Institutional Desk fixture, controlled SYNTHETIC admission only. Not a real qualified trade.",
+  "firstCandidateFailure": {
+    "width": 1440,
+    "language": "en",
+    "theme": "dark",
+    "top": 464.015625,
+    "height": 603.5,
+    "bottom": 1067.515625
+  },
+  "originalLimit": 1000,
+  "fontsOrThresholdsChanged": false,
+  "currentProfiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "top": 464.015625,
+      "height": 452,
+      "bottom": 916.015625
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "top": 464.015625,
+      "height": 452,
+      "bottom": 916.015625
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "top": 464.015625,
+      "height": 451.5,
+      "bottom": 915.515625
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "top": 464.015625,
+      "height": 451.5,
+      "bottom": 915.515625
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "top": 484.015625,
+      "height": 453.59375,
+      "bottom": 937.609375
+    },
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "top": 484.015625,
+      "height": 453.59375,
+      "bottom": 937.609375
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "top": 484.015625,
+      "height": 451.5,
+      "bottom": 935.515625
+    },
+    {
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "top": 484.015625,
+      "height": 451.5,
+      "bottom": 935.515625
+    }
+  ],
+  "minimumSparePixels": 62.390625
+}

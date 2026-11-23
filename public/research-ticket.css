@@ -1,0 +1,28 @@
+/* An integrated progressive review, inside the single original Ticket. */
+#researchTicketReview{display:contents;font-size:12px;line-height:1.6}
+#researchTicketDetails:not([open]){display:inline-block;vertical-align:top;max-width:100%;margin-block-start:4px}
+#researchTicketDetails[open]{display:block;max-width:100%;margin-block-start:8px}
+#researchTicketRiskState{font-size:11px;font-weight:600;color:var(--muted)}
+#researchTicketRiskState[data-state=matched]{color:var(--accent)}
+#researchTicketReview summary{padding-block:8px;cursor:pointer;font-weight:650;min-height:44px}
+#researchTicketReview .ticket-review-body{min-width:0;overflow-wrap:anywhere}
+#researchTicketReview section{padding-block:12px;border-block-start:1px solid var(--border)}
+#researchTicketReview h3{font-size:13px;margin:0 0 8px}
+#researchTicketReview p{margin:8px 0}
+#researchTicketReview code{display:block;white-space:normal;overflow-wrap:anywhere;font-size:11px}
+#researchTicketReview .ticket-risk-metrics{margin:0;display:grid;gap:8px}
+#researchTicketReview .ticket-risk-metrics>div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px}
+#researchTicketReview dt{color:var(--muted)}
+#researchTicketReview dd{margin:0;font-weight:650}
+#researchTicketReview .ticket-target-outcomes{list-style:none;padding:0;display:grid;gap:10px}
+#researchTicketReview .ticket-target-outcomes li{display:grid;gap:3px}
+#researchTicketReview .q-actions{display:flex;flex-wrap:wrap;gap:8px}
+#researchTicketReview button{max-width:100%;white-space:normal;min-height:44px;overflow-wrap:anywhere}
+#researchTicketReview .ticket-review-footer{color:var(--muted);border-block-start:1px solid var(--border);padding-block-start:10px}
+
+@media(min-width:901px){
+ .heritage-home #view-dashboard #commandSetup.source-bound-ticket{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .source-bound-ticket #researchTicketDetails:not([open]){display:block;margin:0;min-width:0;align-self:start}
+ .source-bound-ticket #researchTicketDetails>summary{min-height:44px;padding:4px;font-size:11px;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+ .source-bound-ticket #researchTicketDetails[open]{grid-column:1/-1}
+}

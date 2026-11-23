@@ -1,5 +1,9 @@
 # Day 8 — source-qualified hypothetical Ticket acceptance
 
+Implementation advanced22 November2026: see [the working Ticket increment](DAY8-TICKET-IMPLEMENTATION.md).
+This original operator/source acceptance contract remains required; software
+implementation and synthetic PASS do not satisfy its real-world gates.
+
 Tuesday 24 November 2026 (Asia/Muscat), existing draft PR #23. Prepared against
 `53a835c9a1b82c02b1ae332078d9b535fa0ad0e3` for the
 [Day 7 directive](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7080639499).

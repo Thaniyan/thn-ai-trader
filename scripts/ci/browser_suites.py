@@ -112,3 +112,11 @@ def select_day7_research_suites(env):
     if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY7_RESEARCH_SUITES)
     index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position,suite in enumerate(DAY7_RESEARCH_SUITES) if (position+1)%count==index]
+
+# Day8 source-bound Ticket workflow; every original suite stays mandatory.
+DAY8_TICKET_SUITES=['day8_ticket']
+def select_day8_ticket_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY8_TICKET_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(DAY8_TICKET_SUITES) if position%count==index]

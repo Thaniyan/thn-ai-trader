@@ -68,7 +68,7 @@ export function attachHeritageDesk(){
     const key=button.dataset.desk.slice(6);if(key===selected)button.setAttribute('aria-describedby','heritageLevelMeaning');else button.removeAttribute('aria-describedby');button.title=levelGuide(key);
    }
   }else{meaning.remove();for(const b of levelButtons)b.removeAttribute('aria-describedby');}
-  const inspect=$('commandSetup').querySelector('[data-trust=candidate]');if(inspect)inspect.textContent=tr('Why these levels?','لماذا هذه المستويات؟');
+  const inspect=$('commandSetup').querySelector('[data-trust=candidate]');if(inspect){inspect.textContent=tr('Why levels?','لماذا المستويات؟');inspect.setAttribute('aria-label',tr('Why these levels?','لماذا هذه المستويات؟'));}
   if(review.candidate)for(const b of levelButtons){const guide=levelGuide(b.dataset.desk.slice(6));b.title=guide;const label=b.closest('dd')?.previousElementSibling?.textContent||'';b.setAttribute('aria-label',label+': '+b.textContent.trim()+'. '+guide+' '+tr('Inspect on the THN chart; Escape returns here.','افحص على رسم THN؛ يعيدك Escape إلى هنا.'));}
   $('commandAssessment').setAttribute('aria-label',tr('Decision Center and hypothetical Trade Ticket','مركز القرار وبطاقة التداول الافتراضية'));
   const note=$('precisionProbability');if(!window.THNDecisionValidation)note.textContent=tr('Heuristic evidence ≠ historical validation. Calibrated win probability is unavailable.','الأدلة الاستدلالية لا تعني تحققاً تاريخياً. احتمال الربح المعاير غير متاح.');

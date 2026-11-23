@@ -1,0 +1,42 @@
+{
+  "failedGate": {
+    "passed": 49,
+    "failed": [
+      "command_trust"
+    ],
+    "location": "tests/browser_command_trust.py:23",
+    "failure": "30s Playwright language-button click timeout at performing click action"
+  },
+  "diagnosticOriginalSuite": "PASS:20 profiles; normal next-frame language transitions; state projections0.1-0.5ms",
+  "unchangedOriginalRepetitions": [
+    {
+      "attempt": 1,
+      "passed": true,
+      "profiles": 20
+    },
+    {
+      "attempt": 2,
+      "passed": true,
+      "profiles": 20
+    },
+    {
+      "attempt": 3,
+      "passed": true,
+      "profiles": 20
+    },
+    {
+      "attempt": 4,
+      "passed": true,
+      "profiles": 20
+    },
+    {
+      "attempt": 5,
+      "passed": true,
+      "profiles": 20
+    }
+  ],
+  "rootCause": "NOT_ESTABLISHED; no recurrence in bounded targeted diagnostics",
+  "applicationChangedForThisFailure": false,
+  "assertionsTimeoutsAndSelectorsUnchanged": true,
+  "requiredNextGate": "Fresh complete50-suite gate and both exact-head hosted workflows; no claim of PASS here."
+}

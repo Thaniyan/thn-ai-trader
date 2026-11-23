@@ -1,0 +1,511 @@
+{
+  "beforeSourceCommit": "19d47f8011b958d58cb77337d90a7efc6af44b6d",
+  "imageEditingPerformed": false,
+  "images": [
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-1440-en-dark.png",
+      "sha256": "f55fb9967283970ae0ab487b72c4e7bc4090efb533333b5e06f4151c46e3b856",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-1440-en-dark.png",
+      "sha256": "9c0d040302b007aeb501be10f55b9b27a12f588f9835e40844e157a24b01145e",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-1440-en-light.png",
+      "sha256": "6c0fc7230fc863784b4193b1aa088b6d0adb424fc977f59528ee449d52e0aef5",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-1440-en-light.png",
+      "sha256": "3e9d9e75ee3aa1d35c6801b316b809e82ccef1563c217c4a63fda913867a47ca",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-1440-ar-dark.png",
+      "sha256": "5dccc45e738740a5a40036df6a76e43fe334328ad6781586439d2c7cbfc47f72",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-1440-ar-dark.png",
+      "sha256": "c038bfab266531107f1f824aee0c55b580a6df843af9b0e6eb8c2fce90dd4de1",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-1440-ar-light.png",
+      "sha256": "ed1333f9be921840ec7cd25eff48a0151ee68838b3f93718f5127d27886836f3",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-1440-ar-light.png",
+      "sha256": "a59de451eaab2a80c8be14514bd3e4ceb60bd4ddf72ed4254f797602cbf9ebfd",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-768-en-dark.png",
+      "sha256": "b0dd7dbb7c4afc2e781ab50a48ef1acc23a9cd2f27e7cfde0dcf122ab1117ad0",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-768-en-dark.png",
+      "sha256": "14c6a6b3fe7396005ba86a67dd6a177862b31dd8a8f91e8892fc2751dea114ca",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-768-en-light.png",
+      "sha256": "0ba351c90a65e5eb15fe54468f3482b9907950f476ac3137adb9980a9c71a5ff",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-768-en-light.png",
+      "sha256": "b77c83eac10ab02be828db7b47181a88922496cac1c6aa4b25e5a7365171dd69",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-768-ar-dark.png",
+      "sha256": "c78c76823514b9b190a3764aced70f9f623a6b3f23307015230e71f426c412af",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-768-ar-dark.png",
+      "sha256": "acc184a35b4a6a91c3f2541c9103ff093020ee2e6e4db0e321334e3f6fffac56",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-768-ar-light.png",
+      "sha256": "82dd2acd0c770da206c942aa720b894428304874b6f07e9d73c0437e23d14965",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-768-ar-light.png",
+      "sha256": "8510e3928a00c0485ec039bfc22f1e0e3c3140eb136294fb6dfd31673f153013",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-390-en-dark.png",
+      "sha256": "b6af59a785edbc1444fd013120f546967335f03c5e59398f604f665df5bdb743",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-390-en-dark.png",
+      "sha256": "dee8824bfc26e1107178f7a96f21fe672b41348aaf8a9dee9ade77af758c1ee0",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-390-en-light.png",
+      "sha256": "9d0c7f49bf239cf95731f13f2365a011b4af87f2733802b99e0da643d96d29d8",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-390-en-light.png",
+      "sha256": "9c8aa4fefc245a34c11363fe758670cb2eea2ce96daca3c0e98bc3467e5b9093",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-GBPUSD-390-ar-dark.png",
+      "sha256": "c6c4c6b9cf4763d294558ef840ee17d9c70a978ea0399ac5f5b5571297a2acb5",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-GBPUSD-390-ar-dark.png",
+      "sha256": "46647ff0b0047731fb9c358ab5e83e06c4207371bcdb2c3056bce7d41ff27380",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-GBPUSD-390-ar-light.png",
+      "sha256": "cec84774ce0748ea72c6036c79dfe770cceb5da259319788cbc183df6963c2d7",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-GBPUSD-390-ar-light.png",
+      "sha256": "7612a8015fff630e2a7dda659788263aec85eb06e03184e711ffc1e8ea662da4",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-1440-en-dark.png",
+      "sha256": "2445f563014274328928750f00c121886fdb5ce76a1e02df55a46295e35ea87a",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-1440-en-dark.png",
+      "sha256": "16bfda2ee936fc2e69fd4d3bcb1d7f26b1862f8d7212cdcb764c4748259705ff",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-1440-en-light.png",
+      "sha256": "3f71a380030e88efa843bc6e6c13296e60a1fd289f5f856c7fb846effd40ba2f",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-1440-en-light.png",
+      "sha256": "31c03291ce54f5c0e0de1b5768c91491a84a1de901ba33dce035d93fd6d8d7ff",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-1440-ar-dark.png",
+      "sha256": "9af1e8f6c5e9a9bc6d87183943e0342fc71f1754bf65f322f76ab783d05d38b9",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-1440-ar-dark.png",
+      "sha256": "35cfd3186e6003021b0966910e4879c61d233cbd89ed3942159e1103bac307f2",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-1440-ar-light.png",
+      "sha256": "4e61221872bddcfcb025ba20668e7c26c0fa6b1e7fec2931dcaaa9867b7b1457",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-1440-ar-light.png",
+      "sha256": "44f7b4dba693aa4fc99dc55b5c9dfb1bd237086c2d8027159dd5dbe1f4ccaaab",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-768-en-dark.png",
+      "sha256": "35c7fb6de6ee44cd46d1aa7aaaa2046a8863f5f60cc5317c71dba12b8b8b0786",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-768-en-dark.png",
+      "sha256": "a00b0511fb550388b61330ae92a4aced8ab0b9d18a77cb983fad18cdd2ff688e",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-768-en-light.png",
+      "sha256": "1ac7e3e3c9d9ea9899d0b77d826d80749055cded0298f0c203b5487a58b83e69",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-768-en-light.png",
+      "sha256": "d102bc419fa1ba4f3e7983f2231e35c7f2c0b7f3530daa31dc901b62b390b9c8",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-768-ar-dark.png",
+      "sha256": "85986c909869ba4d4468c31fb6cf6b58980e1596775807b92bf514b9356c0706",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-768-ar-dark.png",
+      "sha256": "1b22724fd2d197cdb365e82654921dddfbab1650e52e6acdaed04206a4282b8c",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-768-ar-light.png",
+      "sha256": "b61068c532ac8fe1887d8136a9919a4adb1d75cfada45f8a10d01c9ae4a0ed9d",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-768-ar-light.png",
+      "sha256": "c8658fa9f62b9091e3b468fc8eefb006167a3aea0a1d6e289f021f4a1c290c3e",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-390-en-dark.png",
+      "sha256": "8ce1e411c6e024c94a962c5944a73ed83b9cb71df4c866f3c8f42ffa3e5c8c64",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-390-en-dark.png",
+      "sha256": "9c87a537bfcc386dd191d6c64cc39aa2aa6410587ceba2b8a848546f955b568b",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-390-en-light.png",
+      "sha256": "bd0c4d8ae2809ecd7ad763ca16d8032e141f5ff4d658d7b8b67bb09b93a1dc1d",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-390-en-light.png",
+      "sha256": "5e9b3880932320d6798cc51e6ec6f320fc0c0e14cd76907d397409c924973761",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/before-EURUSD-390-ar-dark.png",
+      "sha256": "da69f5939a81b1b2279b2cb439c4e7c41ac771681792daef14420d3c9145f0d1",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "path": "screenshots/after-EURUSD-390-ar-dark.png",
+      "sha256": "16f9771f8c7f11b4e69773b3e432dba07874f7a80c9a74aac799badc05a4ca0a",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "before",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/before-EURUSD-390-ar-light.png",
+      "sha256": "17bec96f9926fb4c8706271354063a32e2578972093678c50b2e1a05c1a9d5ce",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "stage": "after",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "path": "screenshots/after-EURUSD-390-ar-light.png",
+      "sha256": "7435136c3069fbda26608681a7372c20d09f354710bf0d40fa4d70a4c66f2aa7",
+      "scope": "Actual application viewport with synthetic admitted history; source timestamps generated independently per capture run; not real qualification"
+    },
+    {
+      "path": "screenshots/after-GBPUSD-1440-ar-light-risk-viewport.png",
+      "sha256": "5a25966634f1a4230ea196736aa27879f20efe033610ab394dd8825856c82e8c",
+      "scope": "Actual synthetic application viewport; not real qualification"
+    },
+    {
+      "path": "screenshots/after-GBPUSD-1440-en-dark-risk-viewport.png",
+      "sha256": "1bfaeb802e81e924e1c9db5a538c35285afad0ecc19ac9df9dd92ac93b85ad7d",
+      "scope": "Actual synthetic application viewport; not real qualification"
+    },
+    {
+      "path": "screenshots/after-GBPUSD-390-ar-light-risk-viewport.png",
+      "sha256": "e94a62d910e953fee00564c2077fde6fbf1ee0985156a9168c88bcea38cf09ea",
+      "scope": "Actual synthetic application viewport; not real qualification"
+    },
+    {
+      "path": "screenshots/after-WAIT-1440-en-dark.png",
+      "sha256": "d39fd48328fce22fb6704adfcc1afd9ffabf4eaa54ab9a9bb6158767078f77c0",
+      "scope": "Actual synthetic application viewport; not real qualification"
+    },
+    {
+      "path": "screenshots/after-WAIT-390-ar-light.png",
+      "sha256": "d5b4c9ac60c97c89a011d354f47fa2284cae7fc1abc44569ed4dd2d719616a25",
+      "scope": "Actual synthetic application viewport; not real qualification"
+    }
+  ]
+}

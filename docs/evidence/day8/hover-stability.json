@@ -1,0 +1,75 @@
+{
+  "scope": "Real pointer at the actual assistant submit boundary; offline synthetic application, no model inference. Same normal hover operation on original and fixed CSS.",
+  "baselineCommit": "19d47f8011b958d58cb77337d90a7efc6af44b6d",
+  "originalAssertionAndTimeoutsUnchanged": true,
+  "originalFullEvidenceWorkflowAfterFix": {
+    "profiles": 16,
+    "fallbackProfiles": 8,
+    "pageErrors": 0,
+    "automaticInferenceRequests": 0
+  },
+  "profiles": [
+    {
+      "stage": "before",
+      "language": "en",
+      "frames": 30,
+      "states": [
+        {
+          "y": 466.890625,
+          "transform": "matrix(1, 0, 0, 1, 0, -1)",
+          "hover": true
+        },
+        {
+          "y": 467.890625,
+          "transform": "none",
+          "hover": false
+        }
+      ],
+      "stable": false
+    },
+    {
+      "stage": "before",
+      "language": "ar",
+      "frames": 30,
+      "states": [
+        {
+          "y": 467.703125,
+          "transform": "matrix(1, 0, 0, 1, 0, -1)",
+          "hover": true
+        },
+        {
+          "y": 468.703125,
+          "transform": "none",
+          "hover": false
+        }
+      ],
+      "stable": false
+    },
+    {
+      "stage": "after",
+      "language": "en",
+      "frames": 30,
+      "states": [
+        {
+          "y": 479.890625,
+          "transform": "none",
+          "hover": true
+        }
+      ],
+      "stable": true
+    },
+    {
+      "stage": "after",
+      "language": "ar",
+      "frames": 30,
+      "states": [
+        {
+          "y": 468.703125,
+          "transform": "none",
+          "hover": true
+        }
+      ],
+      "stable": true
+    }
+  ]
+}
