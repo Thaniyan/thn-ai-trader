@@ -329,3 +329,13 @@ formulas, quality thresholds, calendar exceptions, source routes or eligibility.
 Actual nine-context owner evidence is historical, not a fresh54-context capture.
 No inference/model activation, provider access expansion, execution, main merge or
 Production. Preserve all original tests; existing PR23 branch/draft only.
+
+## Owner paper-review CI stabilization —24 November2026
+
+PR23 comment7142514875 supplies the exact hidden-control failure at685bc89b.
+Fix the demonstrated navigation/disclosure race, retaining original paper review
+eligibility, assertions and deadlines. Native progressive controls must retain
+their home preference without a queued route render hiding user-opened tools.
+Run affected and complete browser/accessibility gates plus all release checks;
+report both exact-head workflows separately. No hosted execution, financial/source
+policy change, real inference, main merge or Production is authorized. PR23 stays draft.

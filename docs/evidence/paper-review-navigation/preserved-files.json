@@ -1,0 +1,18 @@
+{
+  "public/platform-evolution.js": {
+    "unchangedFrom": "685bc89b53816ec7ac79c22ba3d35f4f5349462a",
+    "sha256": "6ada300a8536eeef0546bac547219d22b186b8488a8f843455d4f55a991cfa80"
+  },
+  "public/command-center.js": {
+    "unchangedFrom": "685bc89b53816ec7ac79c22ba3d35f4f5349462a",
+    "sha256": "d50799db603505b4e5dc8970aede036e3d0a4b173b32ae99f32095dff33b05d0"
+  },
+  "tests/browser_paper_review.py": {
+    "unchangedFrom": "685bc89b53816ec7ac79c22ba3d35f4f5349462a",
+    "sha256": "e04a3fbbd80f413fc1e88a99cf330134a4944f8dae1edb5b39e7bebb73111f03"
+  },
+  "tests/workspace_controls.py": {
+    "unchangedFrom": "685bc89b53816ec7ac79c22ba3d35f4f5349462a",
+    "sha256": "de9853ddca739165ac10e8a7e342db78141f767ba5e23d80f1d27cd2dd6a108c"
+  }
+}

@@ -36,6 +36,23 @@ try:
   page.locator('#commandRationale').evaluate('(e)=>e.open=false');page.locator('#workspaceMoreTitle').click();expect(page.locator('#evoDashboard')).to_be_visible();expect(page.locator('#flowWatchlist')).to_be_visible();page.locator('#workspaceMore').press('Escape');expect(page.locator('#workspaceMoreTitle')).to_be_focused();assert not page.locator('#workspaceMore').evaluate('(e)=>e.open')
   # A single original zoom callback, chart identity and state across view changes.
   count=page.evaluate('THNResearch.chart.count');page.locator('[data-desk=zoom-in]').click();assert page.evaluate('THNResearch.chart.count')==max(12,int(count*.8));page.locator('#qReset').click();page.locator('.nav-stack [data-view=trading]').click();expect(page.locator('#proChartTools>summary')).to_be_visible();page.locator('.nav-stack [data-view=dashboard]').click();assert page.evaluate('THNResearch.chart===__cohesiveChart');assert page.locator('#qCandles').count()==1;expect(page.locator('#evoRunDesk')).to_be_visible();assert page.evaluate('JSON.stringify(THNLibrary.records())')==saved
+  # Route restoration must be synchronous: otherwise an already-open chart
+  # disclosure can close after a caller discovers/opens its eligible controls.
+  # These native route clicks inspect the event boundary; no paper control,
+  # service capability or financial state is created or made visible by the test.
+  result['routeDisclosureProfiles']=[]
+  for width,lang,theme in itertools.product([1440,390],['en','ar'],['dark','light']):
+   page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+   if page.locator('#commandAdvancedChart').evaluate('(e)=>e.open'):page.locator('#commandAdvancedChartTitle').click()
+   page.evaluate("document.querySelector('.nav-stack [data-view=risk]').click()")
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+   closed=page.evaluate("()=>{document.querySelector('.nav-stack [data-view=dashboard]').click();return document.getElementById('commandAdvancedChart').open;}");assert closed is False,(width,lang,theme,'home preference must be restored before the route event returns')
+   page.locator('#commandAdvancedChartTitle').focus();page.keyboard.press('Enter');expect(page.locator('#commandAdvancedChart')).to_have_attribute('open','')
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');assert page.locator('#commandAdvancedChart').evaluate('(e)=>e.open'),(width,lang,theme,'queued render must not close user-opened controls')
+   page.evaluate("document.querySelector('.nav-stack [data-view=risk]').click()")
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+   opened=page.evaluate("()=>{document.querySelector('.nav-stack [data-view=dashboard]').click();return document.getElementById('commandAdvancedChart').open;}");assert opened is True,(width,lang,theme,'open home preference must be retained')
+   page.locator('#commandAdvancedChartTitle').click();result['routeDisclosureProfiles'].append({'width':width,'language':lang,'theme':theme,'closedRestoredSynchronously':True,'keyboardOpenSurvivesQueuedRender':True,'openPreferenceRetained':True})
   # Raw direction must disappear in the synchronous source-context boundary.
   withdrawn=page.evaluate('()=>{THNContext.set({datasetId:"f".repeat(64)},"wait-context-test");return document.querySelector("#workspaceAnalyticalDirection")?.dataset.signal||"unavailable";}');assert withdrawn=='unavailable';assert page.evaluate('THNCommand.state().candidate') is None;assert page.locator('#commandSetup .command-levels>div').count()==0
   assert not any('/api/orders' in u or '/api/paper/' in u for u in posts);assert not result['errors'],result['errors'];(out/'results.json').write_text(json.dumps(result,indent=2));browser.close()

@@ -17,9 +17,18 @@ export function attachCommandWorkspace(){
  const historyHead=$('qRefresh').closest('.panel-head');
  const chartPanel=document.querySelector('.q-chart-panel'),chartExtras=[...chartPanel.children].filter(n=>n.tagName==='DETAILS'||n.id==='proActiveTool'||n.matches('p[data-r=noteMethod]'));
  const legacy=[...home.children].find(n=>n.tagName==='BUTTON');
+ // View restoration must finish in the navigation event, before any caller
+ // inspects or opens progressive controls. The existing native toggle listener
+ // owns the home preference; the legacy off-home expansion must not overwrite it.
+ function syncChartDisclosure(){
+  const active=home.classList.contains('view-active');
+  if(active&&!lastHome)$('commandAdvancedChart').open=homeChartOpen;
+  lastHome=active;
+ }
+ window.addEventListener('thn:view',syncChartDisclosure,{capture:true});
  function render(){
   const active=home.classList.contains('view-active');document.documentElement.classList.toggle('cohesive-home',active);
-  if(active&&!lastHome)$('commandAdvancedChart').open=homeChartOpen;lastHome=active;
+  syncChartDisclosure();
   more.querySelector('summary').textContent=tr('More tools & research activity','أدوات إضافية ونشاط البحث');
   if(!active){$('commandFeedNote').hidden=false;for(const node of [...chartExtras,$('commandLegend'),historyHead,$('qSeriesStatus'),$('commandLegacyActions'),$('commandFullReviewStatus'),$('evoAssistantAccess'),$('deskDecisionBrief'),$('trustReviewAction'),$('evoProviderState')])restore(node);return;}
   for(const node of [$('flowWatchlist'),$('precisionFooterLinks'),$('evoDashboard'),legacy,$('evoBriefDetails'),$('m65DashboardDetails'),$('studioJourney')])dock(node,$('workspaceMoreBody'));

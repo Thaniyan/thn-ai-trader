@@ -1,0 +1,66 @@
+[
+  {
+    "width": 1440,
+    "language": "en",
+    "theme": "dark",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 1440,
+    "language": "en",
+    "theme": "light",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 1440,
+    "language": "ar",
+    "theme": "dark",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 1440,
+    "language": "ar",
+    "theme": "light",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 390,
+    "language": "en",
+    "theme": "dark",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 390,
+    "language": "en",
+    "theme": "light",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 390,
+    "language": "ar",
+    "theme": "dark",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  },
+  {
+    "width": 390,
+    "language": "ar",
+    "theme": "light",
+    "closedRestoredSynchronously": true,
+    "keyboardOpenSurvivesQueuedRender": true,
+    "openPreferenceRetained": true
+  }
+]

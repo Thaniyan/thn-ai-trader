@@ -8,6 +8,10 @@ inspiration, not shipped assets or claims about operational capabilities.
 
 ## Current owner program — Day9 acceptance, 2026-11-23
 
+24 November stabilization: [paper-review navigation race](PAPER-REVIEW-NAVIGATION-20261124.md)
+restores native chart disclosure preferences synchronously on route changes.
+Original local-paper eligibility and every hosted execution restriction remain unchanged.
+
 24 November WAIT priority: [source-grounded root-cause review and one bounded Windows matrix](WAIT-ROOT-CAUSE-REVIEW-20261124.md) follows comment7132365813. Raw direction is now separated from admission; no financial/source/admission policy is waived. Current54-context real evidence remains unobserved in Cloud; operational Ticket qualification is NOT_VERIFIED.
 
 24 November update: [measured Qwen EN timeout and offline request optimization](LOCAL-AI-REQUEST-EFFICIENCY-20261124.md)
