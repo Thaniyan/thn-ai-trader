@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Original assistant/Command Center integration; all model output is an OFFLINE MOCK."""
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -8,7 +9,7 @@ with sync_playwright() as p:
  page.route('https://**/*',lambda r:r.abort());page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
  page.goto(os.environ['TEST_URL']);page.wait_for_function('window.THNCommandInterpretation&&THNCommand.state().fresh&&THNDecision.brief()?.selected.provenance.hash===THNContext.get().datasetId')
  page.locator('.nav-stack [data-view=dashboard]').click();saved=page.evaluate('JSON.stringify(THNLibrary.entries())');plan=page.evaluate('JSON.stringify(THNDecision.plan())');chart=page.evaluate('window.__phase2Chart=THNResearch.chart;true')
- page.locator('#interpretationOpen').click();expect(page.locator('#interpretationTitle')).to_be_focused()
+ control(page,'#interpretationOpen').click();expect(page.locator('#interpretationTitle')).to_be_focused()
  page.evaluate('()=>{window.__phase2Settled=false;addEventListener("thn:command-render",()=>{if(THNIntelligence.view().phase==="ready"&&!THNIntelligence.state().busy)__phase2Settled=true;});}')
  page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().current&&!THNIntelligence.state().busy&&window.__phase2Settled');expect(page.locator('[data-interpretation=run]')).to_be_focused()
  assert page.evaluate('THNIntelligence.result().method==="deterministic"&&THNIntelligence.result().modelCalls===0&&THNIntelligence.result().financialExecution===false')
@@ -31,7 +32,7 @@ with sync_playwright() as p:
  for launcher in ['interpretation','full-review']:
   page.locator('.nav-stack [data-view=ai]').click();page.locator('#i7Memory').select_option(entry);assert not page.evaluate('THNIntelligence.view().current')
   page.locator('.nav-stack [data-view=dashboard]').click()
-  if launcher=='interpretation':page.locator('#interpretationOpen').click();page.locator('[data-interpretation=run]').click()
+  if launcher=='interpretation':control(page,'#interpretationOpen').click();page.locator('[data-interpretation=run]').click()
   else:page.locator('#evoRunDesk').click()
   page.wait_for_function('THNIntelligence.view().current&&!THNIntelligence.state().busy&&!document.getElementById("evoRunDesk").disabled')
   assert page.evaluate('!THNIntelligence.result().unverified&&THNIntelligence.result().snapshot.selectedHash===THNContext.get().datasetId')
@@ -51,7 +52,7 @@ with sync_playwright() as p:
   if action!='cancel':assert not page.evaluate('THNIntelligence.view().current')
   if action in ['assumptions','instrument']:
    page.evaluate('THNWorkspace.refreshMarket()' if action=='assumptions' else 'THNWorkspace.selectMarket("EURUSD")');page.wait_for_function('THNResearch.series()?.symbol==="EURUSD"&&THNDecision.brief()?.symbol==="EURUSD"&&THNContext.get().datasetId===THNResearch.series()?.provenance.hash')
-  page.locator('#interpretationOpen').click()
+  control(page,'#interpretationOpen').click()
  # Offline mock of separately authorized LOCAL pilot only. No model/runtime is enabled.
  page.route('**/api/intelligence/provider',lambda r:r.fulfill(json={'available':True,'provider':'ollama','model':'offline-fixture','hostedDisabled':False}))
  page.reload();page.wait_for_function('window.THNIntelligence?.state().available&&THNDecision.brief()?.selected.provenance.hash===THNContext.get().datasetId')
@@ -79,14 +80,14 @@ with sync_playwright() as p:
   data['generation']={'schema':'THN-GENERATION-7.1','snapshotId':s['id'],'symbol':s['symbol'],'interval':s['interval'],'summary':summary,'citations':[ref['id']],'claims':[{'reference':ref['id'],'field':'trend','value':ref['trend']}],'roles':[r['role'] for r in data['roles']],'evidenceState':'insufficient' if not s['fresh'] else 'conflicting' if {'bullish','bearish'}<=trends else 'consistent','uncertainties':['Opposing observations remain.'],'provider':'ollama','model':'offline-fixture'}
   if malformed['value']:data['generation']['claims'][0]['value']='fabricated'
   route.fulfill(response=response,json=data)
- page.route('**/api/intelligence',generated);page.locator('.nav-stack [data-view=dashboard]').click();page.locator('#interpretationOpen').click();page.wait_for_function('THNCommand.state().fresh');before_projection=page.evaluate('JSON.stringify({action:THNCommand.state().recommendation.action,candidate:THNCommand.state().candidate})');page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().current&&THNIntelligence.result().method==="llm-assisted"')
+ page.route('**/api/intelligence',generated);page.locator('.nav-stack [data-view=dashboard]').click();control(page,'#interpretationOpen').click();page.wait_for_function('THNCommand.state().fresh');before_projection=page.evaluate('JSON.stringify({action:THNCommand.state().recommendation.action,candidate:THNCommand.state().candidate})');page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().current&&THNIntelligence.result().method==="llm-assisted"')
  assert page.evaluate('JSON.stringify({action:THNCommand.state().recommendation.action,candidate:THNCommand.state().candidate})')==before_projection
  expect(page.locator('#interpretationStatus')).to_contain_text('human review required');expect(page.locator('.interpretation-origin')).to_contain_text('ollama / offline-fixture')
  for side,symbol in [('SELL','EURUSD'),('WAIT','GBPUSD')]:
   candidate_fixture['side']=side;page.locator('#heritageMarkets [data-command="pick:'+symbol+'"]').click();page.wait_for_function('(side)=>THNCommand.state().fresh&&THNConfidence.review().analysis?.decision===side',arg=side)
   assert page.evaluate('THNCommand.state().candidate?.side||"WAIT"')==side
   before_projection=page.evaluate('JSON.stringify({action:THNCommand.state().recommendation.action,candidate:THNCommand.state().candidate})')
-  page.locator('#interpretationOpen').click();page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().current&&THNIntelligence.result().method==="llm-assisted"&&!THNIntelligence.state().busy')
+  control(page,'#interpretationOpen').click();page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().current&&THNIntelligence.result().method==="llm-assisted"&&!THNIntelligence.state().busy')
   assert page.evaluate('JSON.stringify({action:THNCommand.state().recommendation.action,candidate:THNCommand.state().candidate})')==before_projection
  accepted=page.evaluate('JSON.stringify(THNIntelligence.result())');malformed['value']=True;page.locator('[data-interpretation=run]').click();page.wait_for_function('THNIntelligence.view().phase==="error"&&!THNIntelligence.state().busy');assert page.evaluate('JSON.stringify(THNIntelligence.result())')==accepted;assert page.evaluate('THNCommand.state().verified_model_interpretation') is None;assert page.evaluate('THNWorkspace.recommendation().interpretation') is None
  assert page.evaluate('JSON.stringify(THNLibrary.entries())')==saved;assert page.evaluate('JSON.stringify(THNDecision.plan())')==plan

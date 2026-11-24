@@ -575,3 +575,18 @@ ordered owner approval checkpoints. The current improvement is passive source-aw
 diagnostics plus a bounded loopback audit CLI, not relaxed eligibility or inference
 activation. Preserve all46 prior suites, add diagnostic coverage, publish only the
 existing draft PR23 branch and keep main/Production unapproved.
+
+## Owner Windows UX consolidation — 23 November 2026
+
+The owner observed real EURUSD closed candles and quality-blocked WAIT at3ed2236.
+This confirms baseline chart/WAIT behavior, not an eligible real-market Ticket,
+source rights or successful real-model inference. The authorized integrated UX
+candidate keeps the navy/teal chart-first workspace, one original Analyze owner,
+adjacent decision/Ticket and distinct heuristic, data, history and risk labels.
+Original advanced tools and research activity remain in named native disclosures.
+See [implementation and acceptance boundaries](COMMAND-CENTER-CONSOLIDATION-20261123.md)
+and the [single owner-device handoff](DAY9-OWNER-ACCEPTANCE.md). Full original tests,
+new quality-WAIT coverage, paired actual screenshots and exact-head hosted gates
+precede owner acceptance. November26 is a review target, not automatic GO. Existing
+PR23 stays draft; no main, Production, source/eligibility/formula/model or execution
+change is authorized.

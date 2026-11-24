@@ -76,7 +76,7 @@ function render(){
  if(homeTitle){homeTitle.textContent=rec.action==='WAIT'?tr('WAIT · no entry','انتظر · لا دخول'):rec.action==='BUY'?tr('BUY setup','سيناريو شراء'):rec.action==='SELL'?tr('SELL setup','سيناريو بيع'):tr('AVOID entry','تجنب الدخول');const host=homeTitle.parentElement;let bias=$('workspaceConsensus');if(!bias){bias=document.createElement('span');bias.id='workspaceConsensus';homeTitle.after(bias);}bias.textContent=confidenceLabel(review.analysis?.consensusLabel);host.firstElementChild.textContent=tr('RECOMMENDATION & CONFIDENCE','التوصية والثقة');}
  const title=document.querySelector('#analysisCockpit .cockpit-decision h3');if(title){title.textContent=recommendationTitle(rec,language);title.dataset.recommendationAction=rec.action;const explanation=title.nextElementSibling;if(explanation?.tagName==='P')explanation.textContent=rec.reasons.slice(0,2).map(code=>recommendationReason(code,language)).join(' ')||tr('Review the current quote and validate hypothetical risk before entry.','راجع السعر الحالي وتحقق من المخاطر الافتراضية قبل الدخول.');}
  $('cockpitTitle').textContent=tr('Analysis & trading recommendation','التحليل وتوصية التداول');
- $('evoRunDesk').textContent=$('evoRunDesk').disabled?tr('Reviewing market…','جار مراجعة السوق…'):tr('Analyze & recommend','تحليل وتوصية');
+ $('evoRunDesk').textContent=$('evoRunDesk').disabled?tr('Reviewing market…','جار مراجعة السوق…'):tr('Analyze market','تحليل السوق');
 }
 for(const event of ['thn:view','thn:analysis','thn:decision','thn:series','thn:intelligence','thn:evaluation','thn:plan','thn:library','thn:desk-state'])window.addEventListener(event,schedule);
 new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});

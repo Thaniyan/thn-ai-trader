@@ -11,7 +11,7 @@ export function attachCommandInterpretation(){
  nav.onclick=()=>{returnFocus=nav;$('commandRationale').open=true;$('interpretationTitle').focus();};
  function render(){
   if(panel.parentElement!==$('commandReasoning'))$('commandReasoning').append(panel);
-  if(nav.parentElement!==$('precisionResearchActions'))$('precisionResearchActions').append(nav);
+  const navHost=window.THNCommandWorkspace?$('precisionResearchNav'):$('precisionResearchActions');if(nav.parentElement!==navHost)navHost.append(nav);
   nav.textContent=tr('Evidence interpretation','تفسير الأدلة');
   const view=window.THNIntelligence?.view?.()||{phase:'idle',current:false},sourceReady=THNCommand.state().sourceIdentityMatched!==false,r=sourceReady?view.result:null,c=window.THNContext.get(),lang=document.documentElement.lang;
   clearTimeout(expiryTimer);if(r)expiryTimer=setTimeout(render,Math.max(1,Math.min(2147483647,r.snapshot.asOf+600000-Date.now()+1)));

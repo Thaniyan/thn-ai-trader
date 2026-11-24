@@ -120,3 +120,12 @@ def select_day8_ticket_suites(env):
     if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY8_TICKET_SUITES)
     index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position,suite in enumerate(DAY8_TICKET_SUITES) if position%count==index]
+
+# Owner Windows UX review: additive real-application consolidation acceptance.
+COHESIVE_SUITES = ['cohesive_workspace']
+def select_cohesive_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(COHESIVE_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(COHESIVE_SUITES) if (position+1)%count==index]

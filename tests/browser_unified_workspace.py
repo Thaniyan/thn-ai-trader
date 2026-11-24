@@ -1,3 +1,4 @@
+from workspace_controls import control
 """A complete market -> recommendation -> evidence -> risk -> saved-research workflow."""
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -34,8 +35,8 @@ with sync_playwright() as p:
  response=returned[0].fetch();returned[0].fulfill(response=response);page.evaluate('()=>window.__oldReturn');page.unroute('**/api/analyze');assert page.evaluate('JSON.stringify(THNConfidence.review().analysis)')==accepted
  results['checks'].append('Returning to a market starts a fresh request after invalidation; matching active requests coalesce and old responses cannot replace it')
  # Explicit review adds the authoritative committee explanation, never fake model claims.
- page.locator('#evoRunDesk').click();page.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');expect(page.locator('#evoDecisionDesk')).to_be_focused();expect(page.locator('#evoAssistantSummary')).to_have_text(page.evaluate('THNIntelligence.result().summary'));assert page.evaluate('THNIntelligence.result().modelCalls')==0;assert page.locator('#evoDecisionDesk').evaluate('(e)=>e.parentElement.classList.contains("pro-research-rail")')
- opener=page.locator('#evoDecisionDesk [data-evo=evidence]');opener.click();expect(page.locator('#evoEvidenceDialog')).to_be_visible();page.keyboard.press('Escape');expect(opener).to_be_focused();results['checks'].append('One chart with integrated recommendation, cited committee review and modal focus restoration')
+ page.locator('#evoRunDesk').click();page.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');expect(page.locator('#commandVerdict')).to_be_focused();expect(page.locator('#evoAssistantSummary')).to_have_text(page.evaluate('THNIntelligence.result().summary'));assert page.evaluate('THNIntelligence.result().modelCalls')==0;assert page.locator('#evoDecisionDesk').evaluate('(e)=>e.parentElement.classList.contains("pro-research-rail")')
+ opener=control(page,'#evoDecisionDesk [data-evo=evidence]');opener.click();expect(page.locator('#evoEvidenceDialog')).to_be_visible();page.keyboard.press('Escape');expect(opener).to_be_focused();results['checks'].append('One chart with integrated recommendation, cited committee review and modal focus restoration')
  # The historical test remains a different measure from the recommendation.
  go('ai');page.locator('#analysisCockpit').get_by_role('button',name='Confidence test',exact=True).click();page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"');assert len(page.evaluate('THNConfidence.review().checks'))==10;assert page.evaluate('THNWorkspace.recommendation().probability') is None
  # Validate and save a separate hypothetical risk scenario using the original engine.

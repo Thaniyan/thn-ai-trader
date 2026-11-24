@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Complete Command Center/API/worker flow; SYNTHETIC loopback protocol, no model."""
 import os,pathlib,subprocess,select,json,itertools
 from playwright.sync_api import sync_playwright,expect
@@ -9,7 +10,7 @@ try:
   b=p.chromium.launch(executable_path=os.environ['CHROMIUM_PATH'],args=['--no-sandbox']);page=b.new_page(viewport={'width':1440,'height':1000});errors=[];posts=[]
   page.route('https://**/*',lambda r:r.abort());page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None)
   page.goto(url);page.wait_for_function('window.THNCommandInterpretation&&THNIntelligence.researchState().available&&THNCommand.state().fresh&&THNDecision.brief()?.selected.provenance.hash===THNContext.get().datasetId')
-  page.locator('.nav-stack [data-view=dashboard]').click();page.locator('#interpretationOpen').click();page.locator('#interpretationLocal').evaluate('(e)=>e.open=true')
+  page.locator('.nav-stack [data-view=dashboard]').click();control(page,'#interpretationOpen').click();page.locator('#interpretationLocal').evaluate('(e)=>e.open=true')
   assert page.locator('#interpretationMode option[value=llm]').is_disabled()
   page.locator('#interpretationToken').fill('test-only-operator-token');page.locator('[data-interpretation=check]').click();page.wait_for_function('THNIntelligence.researchState().runtimeInstalled&&!THNIntelligence.researchState().checking')
   assert page.evaluate('THNIntelligence.researchState().qualification')=='NOT_VERIFIED';assert not any(u.endswith('/api/intelligence') for u in posts),'Inventory must not generate'

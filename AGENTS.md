@@ -287,3 +287,18 @@ sources, model or Ticket. No inference without separate narrow owner consent;
 retain12s, budgets, strict citations, prior12003ms NO_GO and every original gate.
 Day9/Day10 scheduled25/26 November; evidence must use actual dates. Keep PR23 draft,
 accepted UI/engines/eligibility/providers unchanged, no main/Production or execution.
+
+## Owner Windows UX review — 23 November2026
+
+PR23 comment7104506663 confirms actual Windows EURUSD candles and honest quality-
+blocked WAIT at3ed2236, not real-model or eligible-Ticket qualification. The owner
+now authorizes cohesive main-workstation consolidation: one Analyze path, adjacent
+decision/Ticket, distinct heuristic/data/history/risk labels, progressive original
+tools, EN/AR responsiveness and genuine browser before/after evidence. This updates
+the prior instruction to leave the accepted interface unchanged, not any financial,
+source or AI restriction. Keep all original suites/assertions/timeouts; update only
+navigation through newly visible native disclosures and the approved primary-result
+focus target. Add consolidation coverage. Existing-model inventory remains read-
+only; real EN/AR inference requires separate consent and unchanged12s. Keep PR23
+draft, no main/Production, new sources/models, paid AI or execution. November26 is
+explicit final acceptance review, never automatic GO.

@@ -52,6 +52,17 @@ raw prices, source timestamps, local paths, prompts, tokens or answer text.
 
 ## B. Actual browser walkthrough — same context, no forced setup
 
+For the consolidated candidate following the owner's 23 November Windows review,
+use the single **Analyze market** action. Completion focuses the Decision Center.
+**Explain score** and the historical-test action open the original inline research
+owners; opening them does not run a historical evaluation. **Research workspace**
+contains source evidence, AI interpretation, hypothetical risk and saved notes.
+**Chart settings, drawings & original tools** and **More tools & research activity**
+retain the advanced chart tools, Watchlist and legacy review. These are native
+keyboard disclosures, not removed functionality. Verify Escape returns focus.
+The compact data-qualification label can be **Blocked** even when source metadata
+says recent; heuristic confluence alone never qualifies a Ticket.
+
 Open the exact-commit existing Preview if accessible, or the identity-confirmed
 existing local app. Record **Preview** or **LOCAL**, not interchangeable acceptance.
 Do not change sources, thresholds, prices, AI configuration or browser state with

@@ -1,0 +1,518 @@
+{
+  "baseline": "3ed22362d9f574e2941b7b04d5fb29dc7edd4aba",
+  "date": "2026-11-24",
+  "timezone": "Asia/Muscat",
+  "scope": "Local engineering verification on actual packaged application; offline synthetic providers/model protocol fixtures. No real market/model/Ticket qualification.",
+  "core": {
+    "passed": 540,
+    "failed": 0,
+    "skipped": 0
+  },
+  "security": {
+    "passed": 21,
+    "failed": 0
+  },
+  "system": {
+    "passed": 10,
+    "failed": 0
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.73
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.38
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.28
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 54.76
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.53
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.89
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.25
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.99
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.28
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 30.95
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.04
+    }
+  ],
+  "browser": {
+    "passed": 51,
+    "failed": 0,
+    "originalSuitesRetained": 50,
+    "newSuites": 1,
+    "suites": [
+      {
+        "suite": "workstation",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 34.33
+      },
+      {
+        "suite": "research_outage",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 4.61
+      },
+      {
+        "suite": "decision",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 47.18
+      },
+      {
+        "suite": "maturity",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 108.03
+      },
+      {
+        "suite": "intelligence",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 34.5
+      },
+      {
+        "suite": "layout",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 58.14
+      },
+      {
+        "suite": "trust",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 57.21
+      },
+      {
+        "suite": "journal_lifecycle",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 69.61
+      },
+      {
+        "suite": "evolution",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 98.32
+      },
+      {
+        "suite": "experience",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 83.92
+      },
+      {
+        "suite": "recovery",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 170.65
+      },
+      {
+        "suite": "paper_review",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 8.66
+      },
+      {
+        "suite": "broker_workspace",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 24.25
+      },
+      {
+        "suite": "workflow_polish",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 84.09
+      },
+      {
+        "suite": "confidence",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 63.46
+      },
+      {
+        "suite": "research_risk",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 57.97
+      },
+      {
+        "suite": "unified_workspace",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 107.14
+      },
+      {
+        "suite": "responsive_fonts",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 46.28
+      },
+      {
+        "suite": "command_workbench",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 37.99
+      },
+      {
+        "suite": "command_trust",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 34.06
+      },
+      {
+        "suite": "precision",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 38.88
+      },
+      {
+        "suite": "heritage",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 32.55
+      },
+      {
+        "suite": "decision_validation",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 31.77
+      },
+      {
+        "suite": "phase2_interpretation",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 46.17
+      },
+      {
+        "suite": "day5",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 94.74
+      },
+      {
+        "suite": "day8_ticket",
+        "shard": 0,
+        "result": "PASS",
+        "seconds": 96.95
+      },
+      {
+        "suite": "research",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 39.89
+      },
+      {
+        "suite": "quality",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 45.52
+      },
+      {
+        "suite": "library_reliability",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 4.7
+      },
+      {
+        "suite": "terminal",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 188.56
+      },
+      {
+        "suite": "intelligence_memory",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 6.09
+      },
+      {
+        "suite": "pilot",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 21.77
+      },
+      {
+        "suite": "professional",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 199.4
+      },
+      {
+        "suite": "trading_remediation",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 76.69
+      },
+      {
+        "suite": "consolidation",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 33.36
+      },
+      {
+        "suite": "consistency",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 38.81
+      },
+      {
+        "suite": "assisted_desk",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 13.97
+      },
+      {
+        "suite": "evidence_workflow",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 67.01
+      },
+      {
+        "suite": "visual_refinement",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 22.58
+      },
+      {
+        "suite": "visual_identity",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 88.6
+      },
+      {
+        "suite": "dashboard_confidence",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 33.01
+      },
+      {
+        "suite": "workspace_hierarchy",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 67.05
+      },
+      {
+        "suite": "research_studio",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 77.14
+      },
+      {
+        "suite": "command_center",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 40.47
+      },
+      {
+        "suite": "institutional_desk",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 48.01
+      },
+      {
+        "suite": "command_trust_candidate",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 11.75
+      },
+      {
+        "suite": "day6",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 110.08
+      },
+      {
+        "suite": "readiness",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 53.64
+      },
+      {
+        "suite": "provider_quality",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 59.8
+      },
+      {
+        "suite": "day7_research",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 20.18
+      },
+      {
+        "suite": "cohesive_workspace",
+        "shard": 1,
+        "result": "PASS",
+        "seconds": 25.46
+      }
+    ]
+  },
+  "newQualityWaitProfiles": 12,
+  "realInferencePerformed": false,
+  "productExecutionEnabled": false,
+  "sourceReceipt": "measurements.json",
+  "originalTestReview": [
+    {
+      "file": "tests/browser_assisted_desk.py",
+      "originalAssertStatements": 21,
+      "currentAssertStatements": 21,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_command_center.py",
+      "originalAssertStatements": 51,
+      "currentAssertStatements": 51,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_dashboard_confidence.py",
+      "originalAssertStatements": 8,
+      "currentAssertStatements": 8,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_day5.py",
+      "originalAssertStatements": 68,
+      "currentAssertStatements": 68,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_day7_research.py",
+      "originalAssertStatements": 26,
+      "currentAssertStatements": 26,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_evidence_workflow.py",
+      "originalAssertStatements": 26,
+      "currentAssertStatements": 26,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_experience.py",
+      "originalAssertStatements": 24,
+      "currentAssertStatements": 24,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_institutional_desk.py",
+      "originalAssertStatements": 24,
+      "currentAssertStatements": 24,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_layout.py",
+      "originalAssertStatements": 4,
+      "currentAssertStatements": 4,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_library_reliability.py",
+      "originalAssertStatements": 4,
+      "currentAssertStatements": 4,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_maturity.py",
+      "originalAssertStatements": 54,
+      "currentAssertStatements": 54,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_paper_review.py",
+      "originalAssertStatements": 11,
+      "currentAssertStatements": 11,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_phase2_interpretation.py",
+      "originalAssertStatements": 21,
+      "currentAssertStatements": 21,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_quality.py",
+      "originalAssertStatements": 33,
+      "currentAssertStatements": 33,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_recovery.py",
+      "originalAssertStatements": 30,
+      "currentAssertStatements": 30,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_research_studio.py",
+      "originalAssertStatements": 38,
+      "currentAssertStatements": 38,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_terminal.py",
+      "originalAssertStatements": 67,
+      "currentAssertStatements": 67,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_unified_workspace.py",
+      "originalAssertStatements": 30,
+      "currentAssertStatements": 30,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_workflow_polish.py",
+      "originalAssertStatements": 18,
+      "currentAssertStatements": 18,
+      "numericConstantsUnchanged": true
+    },
+    {
+      "file": "tests/browser_workspace_hierarchy.py",
+      "originalAssertStatements": 17,
+      "currentAssertStatements": 17,
+      "numericConstantsUnchanged": true
+    }
+  ],
+  "earlierAttempts": "First complete attempt had documented navigation/layout/contrast failures. Focused run was interrupted by environment restart. Other partial runs preserved an obsolete duplicate-Analyze selector and a genuine1024px DejaVu Ticket overflow. The canonical Analyze cancellation and spacing corrections passed all six affected complete suites before both full shards were restarted. Screenshot review also fixed legacy CSS overriding the closed source disclosure. Earlier failures are not counted as successful complete runs.",
+  "release": "PR23 draft only. Owner new-candidate Windows acceptance, real source/model/Ticket qualification and separate release approval outstanding; full operational release NO_GO."
+}

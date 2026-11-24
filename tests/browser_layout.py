@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Chromium geometry gate for the shared shell, EN/AR and emulated browser zoom.
 Viewport CSS width and DPR vary inversely, as with desktop browser page zoom.
 Fixtures are offline; this is the actual production package, not a mock DOM.
@@ -34,7 +35,7 @@ results=[]
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
  context=browser.new_context();page=context.new_page()
- page.goto(os.environ['TEST_URL']);page.wait_for_selector('#evoDashboard .evo-heading');page.evaluate('document.fonts.ready');page.wait_for_timeout(300)
+ page.goto(os.environ['TEST_URL']);page.locator('#workspaceMoreTitle').click();page.wait_for_selector('#evoDashboard .evo-heading');page.evaluate('document.fonts.ready');page.wait_for_timeout(300)
  cdp=context.new_cdp_session(page)
  for width,lang,zoom,theme in itertools.product([1920,1440,1280,1024,820,768,760,640,390,320],['en','ar'],[.8,1,1.25,1.5,2],['dark','light']):
   csswidth=round(width/zoom);height=round(900/zoom)

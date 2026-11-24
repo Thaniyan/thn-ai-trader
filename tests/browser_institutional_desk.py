@@ -1,4 +1,5 @@
 """Owner acceptance: source-bound decision reading and original chart inspection."""
+from workspace_controls import control
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
 out=pathlib.Path(os.environ.get('TEST_OUTPUT','work/institutional-desk'));out.mkdir(parents=True,exist_ok=True)
@@ -59,7 +60,7 @@ with sync_playwright() as p:
  # Source navigation must leave header controls genuinely clickable, without forced clicks or retries.
  page.set_viewport_size({'width':1440,'height':1000})
  for original,target in [('ar','en'),('en','ar')]:
-  page.locator('.terminal-topbar [data-language='+original+']').click();page.locator('.nav-stack [data-view=dashboard]').click();page.locator('#evoReasoningChart').click();expect(page.locator('#qCandles')).to_be_focused();page.locator('.terminal-topbar [data-language='+target+']').click();expect(page.locator('html')).to_have_attribute('lang',target);assert page.evaluate('THNResearch.chart===window.__deskChart');result['handoffProfiles'].append([original,target])
+  page.locator('.terminal-topbar [data-language='+original+']').click();page.locator('.nav-stack [data-view=dashboard]').click();control(page,'#evoReasoningChart').click();expect(page.locator('#qCandles')).to_be_focused();page.locator('.terminal-topbar [data-language='+target+']').click();expect(page.locator('html')).to_have_attribute('lang',target);assert page.evaluate('THNResearch.chart===window.__deskChart');result['handoffProfiles'].append([original,target])
  page.locator('#proTradingViewMode').click();expect(page.locator('#commandFeedNote')).to_be_visible();expect(page.locator('#qCandles')).to_be_hidden();assert page.evaluate('THNCommand.state().executionAuthorized') is False;page.locator('#proResearchMode').click();expect(page.locator('#qCandles')).to_be_visible()
  assert not any('/api/order' in u or '/api/paper/' in u for u in posts);assert not result['errors'],result['errors'];b.close()
 (out/'institutional-desk-results.json').write_text(json.dumps(result,indent=2));print('PASS: 20 bilingual/theme/responsive plus8 complete first-viewport candidate profiles, original OHLC/zoom/source inspection, decision citations, one-page actions, stale invalidation and financial restrictions')

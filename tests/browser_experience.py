@@ -15,7 +15,7 @@ with sync_playwright() as p:
  assert page.evaluate('THNPresentation.price(157.1234567,"USDJPY","en")')=='157.123'
  assert page.evaluate('THNPresentation.price(1.1234567,"EURUSD","en")')=='1.12346'
  assert page.locator('#evoBriefDetails').get_attribute('open') is None
- raw=page.evaluate('THNResearch.series().candles.at(-1).close');assert page.locator('#evoDashboard .evo-close').inner_text()==page.evaluate('(p)=>THNPresentation.price(p,"EURUSD")',raw)
+ raw=page.evaluate('THNResearch.series().candles.at(-1).close');assert control(page,'#evoDashboard .evo-close').inner_text()==page.evaluate('(p)=>THNPresentation.price(p,"EURUSD")',raw)
  result['checks'].append('A: instrument-aware display, exact raw candles retained, compact Dashboard and advanced original access')
  go('markets');page.locator('#r66Search').fill('USDJPY');page.locator('[data-r66-chart="USDJPY"]').click();ready('USDJPY');assert page.evaluate('THNContext.get().symbol')=='USDJPY'
  go('trading');page.locator('#proChartTools > summary').click();assert page.locator('#qDrawingMode').is_visible()

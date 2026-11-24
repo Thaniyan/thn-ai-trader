@@ -4,6 +4,7 @@ import {attachCommandWorkbench} from './command-workbench.js';
 import {attachCommandTrust} from './command-trust.js';
 import {attachPrecisionDesk} from './precision-desk.js';
 import {attachResearchTicket} from './research-ticket.js';
+import {attachCommandWorkspace} from './command-workspace.js';
 import {attachCommandInterpretation} from './command-interpretation.js';
 import {attachDecisionValidation} from './decision-validation.js';
 import {attachHeritageDesk} from './heritage-desk.js';
@@ -135,4 +136,4 @@ new MutationObserver(schedule).observe(document.documentElement,{attributes:true
 document.addEventListener('visibilitychange',schedule);window.addEventListener('focus',schedule);
 matchMedia('(max-width:900px)').addEventListener('change',schedule);
 new MutationObserver(schedule).observe($('analyzeBtn'),{attributes:true,attributeFilter:['disabled']});
-attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();attachDecisionValidation();attachCommandInterpretation();attachResearchTicket();render();THNResearch.chart.draw();
+attachCommandWorkbench();attachCommandTrust();attachPrecisionDesk();attachHeritageDesk();attachDecisionValidation();attachCommandInterpretation();attachResearchTicket();attachCommandWorkspace();render();THNResearch.chart.draw();
