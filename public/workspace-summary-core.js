@@ -9,3 +9,14 @@ export function workspaceSummary(model,review){
   blockers,primary:blockers.filter(code=>code!=='risk_review_required'||review?.candidate).slice(0,2),dataState:sourceBlockers.length?'blocked':model?.fresh&&model?.sourceIdentityMatched?'matched':'unavailable',next,
   riskState:review?.validatedPlan?(review.risk==='within_budget'?'reviewed':'over_budget'):'unreviewed',probability:null,executionAuthorized:false};
 }
+
+// Retained analytical direction is distinct from admission and risk validation.
+// No re-scoring, source exception, price or candidate is produced here.
+export function analyticalSummary(model){
+ const r=model?.recommendation,p=r?.provenance,c=model?.context;
+ const current=!!(model?.fresh&&p&&c?.hash&&p.hash===c.hash&&p.interval===c.interval&&p.lastTime===c.barTime);
+ const signal=current&&['BUY','SELL','BUY LIMIT','SELL LIMIT','WAIT'].includes(r?.signal)?r.signal:null;
+ const bias=current&&['bullish','bearish'].includes(r?.bias)?r.bias:current?'neutral':null;
+ const count=v=>Number.isSafeInteger(v)&&v>=0?v:null;
+ return {current,signal,bias,gaps:current?count(p.gapCount):null,discardedRows:current?count(p.discardedRows):null,candidateRetained:!!model?.candidate,probability:null,executionAuthorized:false};
+}

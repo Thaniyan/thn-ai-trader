@@ -2,6 +2,8 @@
 import http from 'node:http';
 import {pathToFileURL} from 'node:url';
 import {researchReadiness} from '../public/research-readiness.js';
+export const AUDIT_SYMBOLS=Object.freeze(['EURUSD','GBPUSD','AUDUSD','NZDUSD','USDJPY','USDCHF','USDCAD','XAUUSD','XAGUSD','USOIL','BRENT','BTCUSD','BTCUSDT','ETHUSD','ETHUSDT','SPX','NAS100','US30']);
+export const AUDIT_INTERVALS=Object.freeze(['15m','1h','1d']);
 const codes=new Set(['MARKET_DATA_UNAVAILABLE','INVALID_MARKET_REQUEST','INVALID_OBSERVATION_TIME','INVALID_OBSERVATION_CURRENCY','INSUFFICIENT_HISTORY','INVALID_CANDLES','INTERVAL_MISMATCH','REQUEST_TIMEOUT','RESPONSE_LIMIT','MALFORMED_RESPONSE','CONNECTION_FAILED']);
 export function auditBase(raw){const u=new URL(raw);if(u.protocol!=='http:'||u.hostname!=='127.0.0.1'||!u.port||u.username||u.password||u.pathname!=='/'||u.search||u.hash)throw Error('Literal loopback HTTP base required');return u.origin;}
 export function auditRequest(url,{body}={}){
@@ -18,7 +20,7 @@ export function auditRequest(url,{body}={}){
 }
 export async function auditRuntime({base,symbols=['EURUSD'],intervals=['15m','1h','1d'],transport=auditRequest}){
  const origin=auditBase(base);
- if(!Array.isArray(symbols)||!symbols.length||symbols.length>3||new Set(symbols).size!==symbols.length||symbols.some(s=>!['EURUSD','GBPUSD','USDJPY','BTCUSD','ETHUSD','XAUUSD'].includes(s))||!Array.isArray(intervals)||!intervals.length||intervals.length>3||new Set(intervals).size!==intervals.length||intervals.some(v=>!['15m','1h','1d'].includes(v)))throw Error('Bounded supported symbols and intervals required');
+ if(!Array.isArray(symbols)||!symbols.length||symbols.length>3||new Set(symbols).size!==symbols.length||symbols.some(s=>!AUDIT_SYMBOLS.includes(s))||!Array.isArray(intervals)||!intervals.length||intervals.length>3||new Set(intervals).size!==intervals.length||intervals.some(v=>!['15m','1h','1d'].includes(v)))throw Error('Bounded supported symbols and intervals required');
  const read=(path,body)=>transport(origin+path,body?{body}:{});
  const catalog=await read('/api/research/catalog'),provider=await read('/api/intelligence/provider');
  const samples=[];

@@ -1,0 +1,174 @@
+{
+  "scope": "SYNTHETIC upstream geometry row; original adapter/analysis/risk and actual app. NOT real market/model qualification.",
+  "profiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "height": 1491,
+      "chart": {
+        "x": 192,
+        "y": 449.734375,
+        "width": 856,
+        "height": 560
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "height": 1491,
+      "chart": {
+        "x": 192,
+        "y": 449.734375,
+        "width": 856,
+        "height": 560
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "height": 1491,
+      "chart": {
+        "x": 392,
+        "y": 449.734375,
+        "width": 856,
+        "height": 560
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "height": 1491,
+      "chart": {
+        "x": 392,
+        "y": 449.734375,
+        "width": 856,
+        "height": 560
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "height": 2178,
+      "chart": {
+        "x": 32,
+        "y": 693.609375,
+        "width": 704,
+        "height": 480
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "height": 2178,
+      "chart": {
+        "x": 32,
+        "y": 693.609375,
+        "width": 704,
+        "height": 480
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "height": 2179,
+      "chart": {
+        "x": 32,
+        "y": 693.609375,
+        "width": 704,
+        "height": 480
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "height": 2179,
+      "chart": {
+        "x": 32,
+        "y": 693.609375,
+        "width": 704,
+        "height": 480
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "height": 2287,
+      "chart": {
+        "x": 26,
+        "y": 716.796875,
+        "width": 338,
+        "height": 330
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "height": 2287,
+      "chart": {
+        "x": 26,
+        "y": 716.796875,
+        "width": 338,
+        "height": 330
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "height": 2208,
+      "chart": {
+        "x": 26,
+        "y": 716.796875,
+        "width": 338,
+        "height": 330
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "height": 2208,
+      "chart": {
+        "x": 26,
+        "y": 716.796875,
+        "width": 338,
+        "height": 330
+      },
+      "candidate": false,
+      "qualityBlocked": true
+    }
+  ],
+  "errors": []
+}

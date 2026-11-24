@@ -115,3 +115,5 @@
  .cohesive-home #view-dashboard #heritageConfidenceTestAction{max-width:76px;white-space:normal;padding-inline:3px;font-size:11px}
  .cohesive-home #view-dashboard #trustReviewAction{max-width:50px;white-space:normal;font-size:10px;padding-inline:2px}
 }
+
+#workspaceAnalyticalDirection{display:block;font-size:11px;font-weight:400;letter-spacing:normal;line-height:1.5;color:var(--muted);margin:0;overflow-wrap:anywhere;min-width:0}
