@@ -8,6 +8,15 @@ inspiration, not shipped assets or claims about operational capabilities.
 
 ## Current owner program — Day9 acceptance, 2026-11-23
 
+24 November update: [measured Qwen EN timeout and offline request optimization](LOCAL-AI-REQUEST-EFFICIENCY-20261124.md)
+follows owner comment7125786633. The real trial did not complete; do not infer model
+load/prompt/decode causality from absent counters. The compact-path candidate shares
+repeated input provenance losslessly and makes concise generation settings explicit,
+without changing the output schema,12s ceiling, budgets or financial restrictions.
+Measured byte savings are not token/latency or real-model qualification. Existing
+PR23 remains draft; any renewed real EN trial, then AR only after EN acceptance,
+requires separate consent and an independently reviewed exact model identity.
+
 [Day9 authority](https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7101808552)
 accepts verified Day8 `ff8e853` and prioritizes real owner-device evidence on draft
 PR23, existing `feature/ai-evidence-interpreter-phase2-20261116`. Use the single

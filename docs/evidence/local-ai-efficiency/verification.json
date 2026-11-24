@@ -1,0 +1,447 @@
+{
+  "date": "2026-11-24",
+  "baseline": "7a79e44c0a13c9a77d19dde66172eb12fb1403b0",
+  "syntheticAndMockOnly": true,
+  "realInferencePerformed": false,
+  "modelQualification": "NOT_VERIFIED",
+  "operationalAiRelease": "NO_GO",
+  "policyMs": 12000,
+  "core": {
+    "pass": 553,
+    "fail": 0,
+    "skip": 0
+  },
+  "security": {
+    "pass": 21,
+    "fail": 0
+  },
+  "system": {
+    "pass": 10,
+    "fail": 0
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 3.02
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.98
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.3
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 65.31,
+      "tests": 553,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.42
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.79
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.2
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 1.11
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.24
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 30.22
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.34
+    }
+  ],
+  "browsers": {
+    "pass": 51,
+    "fail": 0,
+    "suites": [
+      {
+        "suite": "workstation",
+        "seconds": 35.07,
+        "pass": true
+      },
+      {
+        "suite": "research_outage",
+        "seconds": 4.4,
+        "pass": true
+      },
+      {
+        "suite": "decision",
+        "seconds": 51.01,
+        "pass": true
+      },
+      {
+        "suite": "maturity",
+        "seconds": 69.33,
+        "pass": true
+      },
+      {
+        "suite": "intelligence",
+        "seconds": 39.41,
+        "pass": true
+      },
+      {
+        "suite": "layout",
+        "seconds": 56.71,
+        "pass": true
+      },
+      {
+        "suite": "trust",
+        "seconds": 53.35,
+        "pass": true
+      },
+      {
+        "suite": "journal_lifecycle",
+        "seconds": 67.06,
+        "pass": true
+      },
+      {
+        "suite": "evolution",
+        "seconds": 100.64,
+        "pass": true
+      },
+      {
+        "suite": "experience",
+        "seconds": 80.72,
+        "pass": true
+      },
+      {
+        "suite": "recovery",
+        "seconds": 171.92,
+        "pass": true
+      },
+      {
+        "suite": "paper_review",
+        "seconds": 8.96,
+        "pass": true
+      },
+      {
+        "suite": "broker_workspace",
+        "seconds": 25.46,
+        "pass": true
+      },
+      {
+        "suite": "workflow_polish",
+        "seconds": 75.69,
+        "pass": true
+      },
+      {
+        "suite": "confidence",
+        "seconds": 64.17,
+        "pass": true
+      },
+      {
+        "suite": "research_risk",
+        "seconds": 60.75,
+        "pass": true
+      },
+      {
+        "suite": "unified_workspace",
+        "seconds": 107.16,
+        "pass": true
+      },
+      {
+        "suite": "responsive_fonts",
+        "seconds": 47.73,
+        "pass": true
+      },
+      {
+        "suite": "command_workbench",
+        "seconds": 37.96,
+        "pass": true
+      },
+      {
+        "suite": "command_trust",
+        "seconds": 33.75,
+        "pass": true
+      },
+      {
+        "suite": "precision",
+        "seconds": 38.1,
+        "pass": true
+      },
+      {
+        "suite": "heritage",
+        "seconds": 33.48,
+        "pass": true
+      },
+      {
+        "suite": "decision_validation",
+        "seconds": 32.87,
+        "pass": true
+      },
+      {
+        "suite": "phase2_interpretation",
+        "seconds": 50.19,
+        "pass": true
+      },
+      {
+        "suite": "day5",
+        "seconds": 98.93,
+        "pass": true
+      },
+      {
+        "suite": "day8_ticket",
+        "seconds": 100.75,
+        "pass": true
+      },
+      {
+        "suite": "research",
+        "seconds": 39.77,
+        "pass": true
+      },
+      {
+        "suite": "quality",
+        "seconds": 46.41,
+        "pass": true
+      },
+      {
+        "suite": "library_reliability",
+        "seconds": 4.6,
+        "pass": true
+      },
+      {
+        "suite": "terminal",
+        "seconds": 156.08,
+        "pass": true
+      },
+      {
+        "suite": "intelligence_memory",
+        "seconds": 6.23,
+        "pass": true
+      },
+      {
+        "suite": "pilot",
+        "seconds": 21.1,
+        "pass": true
+      },
+      {
+        "suite": "professional",
+        "seconds": 198.26,
+        "pass": true
+      },
+      {
+        "suite": "trading_remediation",
+        "seconds": 75.62,
+        "pass": true
+      },
+      {
+        "suite": "consolidation",
+        "seconds": 36.83,
+        "pass": true
+      },
+      {
+        "suite": "consistency",
+        "seconds": 39.55,
+        "pass": true
+      },
+      {
+        "suite": "assisted_desk",
+        "seconds": 12.97,
+        "pass": true
+      },
+      {
+        "suite": "evidence_workflow",
+        "seconds": 68.61,
+        "pass": true
+      },
+      {
+        "suite": "visual_refinement",
+        "seconds": 22.39,
+        "pass": true
+      },
+      {
+        "suite": "visual_identity",
+        "seconds": 82.57,
+        "pass": true
+      },
+      {
+        "suite": "dashboard_confidence",
+        "seconds": 25.61,
+        "pass": true
+      },
+      {
+        "suite": "workspace_hierarchy",
+        "seconds": 75.65,
+        "pass": true
+      },
+      {
+        "suite": "research_studio",
+        "seconds": 80.77,
+        "pass": true
+      },
+      {
+        "suite": "command_center",
+        "seconds": 37.42,
+        "pass": true
+      },
+      {
+        "suite": "institutional_desk",
+        "seconds": 50.88,
+        "pass": true
+      },
+      {
+        "suite": "command_trust_candidate",
+        "seconds": 11.52,
+        "pass": true
+      },
+      {
+        "suite": "day6",
+        "seconds": 107.0,
+        "pass": true
+      },
+      {
+        "suite": "readiness",
+        "seconds": 54.48,
+        "pass": true
+      },
+      {
+        "suite": "provider_quality",
+        "seconds": 61.97,
+        "pass": true
+      },
+      {
+        "suite": "day7_research",
+        "seconds": 22.31,
+        "pass": true
+      },
+      {
+        "suite": "cohesive_workspace",
+        "seconds": 31.66,
+        "pass": true
+      }
+    ],
+    "interruption": "46 original passing results retained; five unfinished suites restarted against checksum-identical package after chat pause. Original assertions and 240/360-second timeouts preserved. No unreported or skipped suite."
+  },
+  "tooling": {
+    "node": "24.19.0",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34",
+    "chromiumRevision": 1234,
+    "axe": "4.10.3",
+    "bun": "1.4.3"
+  },
+  "protected": {
+    "baseline": "7a79e44c0a13c9a77d19dde66172eb12fb1403b0",
+    "publicAndWorkflowUnchanged": true,
+    "files": [
+      {
+        "path": "server/research.js",
+        "unchanged": true,
+        "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b"
+      },
+      {
+        "path": "server/backtest.js",
+        "unchanged": true,
+        "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637"
+      },
+      {
+        "path": "server/evaluation.js",
+        "unchanged": true,
+        "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a"
+      },
+      {
+        "path": "server/decision.js",
+        "unchanged": true,
+        "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a"
+      },
+      {
+        "path": "server/replay.js",
+        "unchanged": true,
+        "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90"
+      },
+      {
+        "path": "public/research-chart.js",
+        "unchanged": true,
+        "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b"
+      },
+      {
+        "path": "public/intelligence-generation.js",
+        "unchanged": true,
+        "sha256": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae"
+      },
+      {
+        "path": "server/intelligence-timing.js",
+        "unchanged": true,
+        "sha256": "f14bb5e9ed97e192459f43fcb07c49f930ea8300fc5baf39e07abf9ac946c8a6"
+      },
+      {
+        "path": "server/intelligence-inference-lifecycle.js",
+        "unchanged": true,
+        "sha256": "9d75ae8f85745edd2f7f6f12cc9d1d1a37e464c62f795a974b164f2b1eaa6299"
+      },
+      {
+        "path": "scripts/pilot-supervisor.mjs",
+        "unchanged": true,
+        "sha256": "1fbc11c0c1a9d0ad18067527f356940aca89e67f4c9e29867b91adf6cd21de7d"
+      },
+      {
+        "path": "scripts/pilot-local-ai-worker.mjs",
+        "unchanged": true,
+        "sha256": "179986da2f2a41177b7aa2d90cdefb31224198bf38687d5699bd7a93ecb54ea5"
+      },
+      {
+        "path": "scripts/pilot-local-ai.mjs",
+        "unchanged": true,
+        "sha256": "5437b60dc8668c3c2d472afd1905cca4b6bbb6a3f5c6f700aea3b7d52816b688"
+      },
+      {
+        "path": "package.json",
+        "unchanged": true,
+        "sha256": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4"
+      },
+      {
+        "path": "bun.lock",
+        "unchanged": true,
+        "sha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+      }
+    ]
+  },
+  "frozenInstall": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [4.00ms]\n"
+  },
+  "limits": [
+    "No actual Ollama tokens, load, prompt, decoding duration or latency measured.",
+    "Request options encoded, not confirmed as applied.",
+    "All source evidence and strict output fields retained; real interpretation quality unverified.",
+    "New EN inference requires separate authorization and reviewed independent model identity; AR only after accepted EN.",
+    "No main merge, Production deployment, financial execution or provider activation."
+  ]
+}

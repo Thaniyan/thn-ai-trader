@@ -302,3 +302,18 @@ focus target. Add consolidation coverage. Existing-model inventory remains read-
 only; real EN/AR inference requires separate consent and unchanged12s. Keep PR23
 draft, no main/Production, new sources/models, paid AI or execution. November26 is
 explicit final acceptance review, never automatic GO.
+
+## Owner measured Qwen timeout and offline efficiency —24 November2026
+
+PR23 comment7125786633 records the single authorized real EN Qwen3:1.7b trial:
+TIMEOUT12007–12011ms, worker startup333.7889ms, responsive at settlement,
+generation started but no complete response/counters. AR was not attempted.
+Inventory/self-matched digest is not an independently reviewed trust anchor.
+Optimize only the existing local input/request path offline; keep the full strict
+output schema, immutable source/citation/opposition/missing evidence,12s whole-
+request ceiling, budgets and every financial/provider restriction. Compact input
+sharing must round-trip every retained JSON evidence field; never hydrate missing
+model output. Keep real-model qualification NOT_VERIFIED/NO_GO and renewed EN/AR
+consent separate. No inventory/inference/model activation/download, hosted/paid AI,
+source/eligibility changes, main merge or Production is authorized. Existing PR23
+branch/draft only; complete all gates and exact-head CI before owner review.

@@ -9,6 +9,7 @@ import {evidenceState,GENERATION_FORMAT,validateGeneration} from '../public/inte
 import {syntheticPilotSnapshot,runPilot} from '../scripts/pilot-local-ai.mjs';
 import {supervisePilot} from '../scripts/pilot-supervisor.mjs';
 import {safePilotReport} from '../scripts/pilot-report.mjs';
+import {unpackLocalEvidence} from '../server/intelligence-request-codec.js';
 import {assessmentPlan,runAssessment,summarizeAssessment,combineAssessments} from '../scripts/assess-local-ai.mjs';
 const at=1800000000000,secret='private-performance-fixture';
 const env={THN_AI_ENABLED:'1',THN_AI_AUTH_TOKEN:secret,THN_LOCAL_PAPER:'0',THN_AI_MAX_REQUESTS:'8',THN_AI_MAX_OUTPUT_TOKENS:'500',THN_AI_TOTAL_TOKEN_CEILING:'40000',THN_AI_CONTEXT_TOKENS:'4096'};
@@ -38,7 +39,7 @@ test('local generation measures inventory separately, preserves EN/AR/history an
  for(const language of ['en','ar']){
   const m=createInferenceTiming(),seen=[];const cfg={...env,THN_AI_MODEL:'fixture:local',THN_AI_EXPECTED_DIGEST:'a'.repeat(64)};
   const r=await generateLocal(cfg,s,'Analyze EURUSD',{authorization:'Bearer '+secret,language,pilotCompact:true,history:[{role:'user',content:'Explain evidence'}],timing:m,inspect:async()=>{inventories++;return installed(cfg.THN_AI_MODEL)},transport:async(_url,_path,o)=>{seen.push(o.body);return {model:cfg.THN_AI_MODEL,done:true,message:{role:'assistant',content:JSON.stringify(Object.fromEntries(GENERATION_FORMAT.required.map(k=>[k,answer(s)[k]])))}}}});
-  assert.equal(r.method,'llm');assert.equal(seen.length,1);assert.ok(seen[0].messages.some(x=>x.content==='Explain evidence'));assert.ok(seen[0].messages.some(x=>x.content.includes('"language":"'+language+'"')));assert.equal(seen[0].think,false);assert.equal(seen[0].format.properties.snapshotId.const,s.id);const wire=JSON.parse(seen[0].messages[1].content),reconstructed={...wire.evidence};for(const key of ['snapshotId','symbol','interval','evidenceState'])reconstructed[key]=seen[0].format.properties[key].const;assert.deepEqual(reconstructed,JSON.parse(JSON.stringify(compactPilotEvidence(s))));const t=m.report();assert.equal(t.stages.inventory.count,1);assert.equal(t.stages.generation.count,1);assert.equal(t.stages.parsingValidation.count,1);
+  assert.equal(r.method,'llm');assert.equal(seen.length,1);assert.ok(seen[0].messages.some(x=>x.content==='Explain evidence'));assert.ok(seen[0].messages.some(x=>x.content.includes('"language":"'+language+'"')));assert.equal(seen[0].think,false);assert.equal(seen[0].format.properties.snapshotId.const,s.id);const wire=JSON.parse(seen[0].messages[1].content),reconstructed=unpackLocalEvidence(wire.evidence);for(const key of ['snapshotId','symbol','interval','evidenceState'])reconstructed[key]=seen[0].format.properties[key].const;assert.deepEqual(reconstructed,JSON.parse(JSON.stringify(compactPilotEvidence(s))));const t=m.report();assert.equal(t.stages.inventory.count,1);assert.equal(t.stages.generation.count,1);assert.equal(t.stages.parsingValidation.count,1);
  }
  assert.equal(inventories,2);let calls=0;
  await assert.rejects(generateLocal({...env,THN_AI_MODEL:'fixture:local',THN_AI_EXPECTED_DIGEST:'b'.repeat(64)},s,'Analyze',{authorization:'Bearer '+secret,inspect:async()=>installed('fixture:local'),transport:async()=>{calls++}}));assert.equal(calls,0);

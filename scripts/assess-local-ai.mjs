@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import crypto from 'node:crypto';
+import {LOCAL_REQUEST_VERSION} from '../server/intelligence-request-codec.js';
 import {pathToFileURL} from 'node:url';
 import {inspectLocalModel,localConfiguration,loopbackJSON} from '../server/intelligence-local.js';
 import {providerAvailability} from '../server/intelligence-provider.js';
@@ -69,13 +70,14 @@ export async function runAssessment(config,{env=process.env,inspect=inspectLocal
  }
  const cells=[...new Set(rows.map(r=>[r.model,r.threads,r.condition,r.profile].join('|')))].map(key=>cellSummary(key,rows.filter(r=>[r.model,r.threads,r.condition,r.profile].join('|')===key)));
  const summary=summarizeAssessment(rows);if(cells.some(c=>c.decision==='NO_GO'))summary.decision='NO_GO';
- return {schema:'THN-LOCAL-ASSESSMENT-1',batchId:crypto.randomUUID(),fixtureVersion:'THN-PILOT-SYNTHETIC-1',optimizerVersion:'bound-schema-1',settings:{context,outputTokens:Number(env.THN_AI_MAX_OUTPUT_TOKENS)},syntheticOnly:true,frozenEvidenceAt,financialExecution:false,parallelism:1,worstCaseReservedUnits:plan.trials*context,requestPolicyMs:12000,preparationHasSeparate12sBudget:true,preparationCallCeiling:config.prepareModel?plan.trials:0,modelBytesAreNotRamMeasurement:true,rows,summary,cells};
+ return {schema:'THN-LOCAL-ASSESSMENT-1',batchId:crypto.randomUUID(),fixtureVersion:'THN-PILOT-SYNTHETIC-1',optimizerVersion:LOCAL_REQUEST_VERSION,settings:{context,outputTokens:Number(env.THN_AI_MAX_OUTPUT_TOKENS)},syntheticOnly:true,frozenEvidenceAt,financialExecution:false,parallelism:1,worstCaseReservedUnits:plan.trials*context,requestPolicyMs:12000,preparationHasSeparate12sBudget:true,preparationCallCeiling:config.prepareModel?plan.trials:0,modelBytesAreNotRamMeasurement:true,rows,summary,cells};
 }
 export function combineAssessments(reports,{secrets=[]}={}){
  if(!Array.isArray(reports)||reports.length<1||reports.length>64)throw Error('Invalid report set');
- const ids=new Set(),rows=[];let settings;
+ const ids=new Set(),rows=[];let settings,optimizerVersion;
  for(const report of reports){
-  if(report?.schema!=='THN-LOCAL-ASSESSMENT-1'||report.fixtureVersion!=='THN-PILOT-SYNTHETIC-1'||report.optimizerVersion!=='bound-schema-1'||report.requestPolicyMs!==12000||!Array.isArray(report.rows)||report.rows.length>20||!/^[a-f0-9-]{36}$/.test(report.batchId)||ids.has(report.batchId))throw Error('Incompatible or duplicate batch');
+  if(report?.schema!=='THN-LOCAL-ASSESSMENT-1'||report.fixtureVersion!=='THN-PILOT-SYNTHETIC-1'||!['bound-schema-1',LOCAL_REQUEST_VERSION].includes(report.optimizerVersion)||report.requestPolicyMs!==12000||!Array.isArray(report.rows)||report.rows.length>20||!/^[a-f0-9-]{36}$/.test(report.batchId)||ids.has(report.batchId))throw Error('Incompatible or duplicate batch');
+  if(optimizerVersion&&optimizerVersion!==report.optimizerVersion)throw Error('Different request encodings');optimizerVersion=report.optimizerVersion;
   if(!Number.isInteger(report.settings?.context)||report.settings.context<2048||report.settings.context>8192||!Number.isInteger(report.settings.outputTokens)||report.settings.outputTokens<32||report.settings.outputTokens>800)throw Error('Invalid report settings');
   if(settings&&JSON.stringify(settings)!==JSON.stringify(report.settings))throw Error('Different resource conditions');settings={context:report.settings.context,outputTokens:report.settings.outputTokens};ids.add(report.batchId);
   for(const row of report.rows){
@@ -87,7 +89,7 @@ export function combineAssessments(reports,{secrets=[]}={}){
  }
  const cells=[...new Set(rows.map(r=>[r.model,r.digest,r.threads,r.condition,r.profile].join('|')))].map(cell=>cellSummary(cell,rows.filter(r=>[r.model,r.digest,r.threads,r.condition,r.profile].join('|')===cell)));
  const summary=summarizeAssessment(rows);if(cells.some(c=>c.decision==='NO_GO'))summary.decision='NO_GO';
- return {schema:'THN-LOCAL-ASSESSMENT-SUMMARY-1',batchCount:ids.size,settings,operatorReportsUnattested:true,financialExecution:false,summary,cells};
+ return {schema:'THN-LOCAL-ASSESSMENT-SUMMARY-1',batchCount:ids.size,optimizerVersion,settings,operatorReportsUnattested:true,financialExecution:false,summary,cells};
 }
 async function main(args){
  try{
