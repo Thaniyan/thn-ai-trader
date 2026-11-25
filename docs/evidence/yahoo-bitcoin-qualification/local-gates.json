@@ -2,11 +2,11 @@
   "baseline": "db6938deac253dabbd10361a8dc95c7f647e544a",
   "scope": "SYNTHETIC audit transport tests plus original packaged-application gates; no actual Yahoo qualification",
   "core": {
-    "passed": 581,
+    "passed": 583,
     "failed": 0
   },
   "auditFocused": {
-    "passed": 19,
+    "passed": 21,
     "failed": 0
   },
   "security": 21,
@@ -140,5 +140,20 @@
   "usageRights": "NOT_VERIFIED",
   "sourceRoutingChanged": false,
   "eligibilityChanged": false,
-  "executionActivated": false
+  "executionActivated": false,
+  "browserScope": "All51 local suites on identical production application/package; audit-only identity-report correction subsequently verified by583 core and21 focused tests. Full exact-head hosted browser gates required separately.",
+  "finalAuditIdentityReportingCorrection": {
+    "corePassed": 583,
+    "focusedPassed": 21,
+    "build": "PASS",
+    "lint": "PASS",
+    "auditSyntax": "PASS",
+    "security": "PASS21",
+    "system": "PASS10",
+    "workflow": "PASS",
+    "dependencyAudit": "PASS_ZERO_ADVISORIES_WITH_EXISTING_PINNED_BUN_1.4.3",
+    "dependencySetupIssue": "Initial follow-up invocation omitted pinned Bun PATH; corrected harness, original fail-closed audit unchanged",
+    "packageManifestSHA256": "7fbf687202e471309948449562610c803d4b8cf59cffa332edcd86ace237c24d",
+    "productionArtifactIdenticalTo51SuiteLocalRun": true
+  }
 }
