@@ -1,0 +1,113 @@
+{
+  "profiles": [
+    [
+      1440,
+      "en",
+      "dark"
+    ],
+    [
+      1440,
+      "en",
+      "light"
+    ],
+    [
+      1440,
+      "ar",
+      "dark"
+    ],
+    [
+      1440,
+      "ar",
+      "light"
+    ],
+    [
+      1024,
+      "en",
+      "dark"
+    ],
+    [
+      1024,
+      "en",
+      "light"
+    ],
+    [
+      1024,
+      "ar",
+      "dark"
+    ],
+    [
+      1024,
+      "ar",
+      "light"
+    ],
+    [
+      390,
+      "en",
+      "dark"
+    ],
+    [
+      390,
+      "en",
+      "light"
+    ],
+    [
+      390,
+      "ar",
+      "dark"
+    ],
+    [
+      390,
+      "ar",
+      "light"
+    ],
+    [
+      320,
+      "en",
+      "dark"
+    ],
+    [
+      320,
+      "en",
+      "light"
+    ],
+    [
+      320,
+      "ar",
+      "dark"
+    ],
+    [
+      320,
+      "ar",
+      "light"
+    ]
+  ],
+  "errors": [],
+  "source": "Offline original provider; controlled candidate fixture is not a live signal.",
+  "instrumentSwitch": {
+    "transition": {
+      "symbol": "BTCUSD",
+      "candidate": null,
+      "meaning": false
+    },
+    "completedCandidate": {
+      "source": "rule_based_evidence",
+      "policy": "retained-engine-levels-1",
+      "symbol": "BTCUSD",
+      "interval": "1h",
+      "hash": "ebfa9a1296803a64a202daf5d82eafc6381ac1f9d3cecfcc36b0aaaca5f490ec",
+      "barTime": 1794894879000,
+      "side": "BUY",
+      "entry": 1.121267,
+      "stop": 1.111267,
+      "targets": [
+        1.123267,
+        1.125267,
+        1.127267
+      ],
+      "executionAuthorized": false,
+      "entryQuoteVerified": false,
+      "capital": null,
+      "lots": null
+    }
+  }
+}

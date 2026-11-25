@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Connected desk acceptance. Real local APIs with offline provider fixtures; no model run."""
 import os,json,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -13,13 +14,13 @@ with sync_playwright() as p:
   s.locator('#evoRunDesk').click()
  data=review.value.json();assert review.value.status==200 and data['method']=='deterministic' and data['modelCalls']==0 and data['financialExecution'] is False
  assert len(data['roles'])==6;assert all(ref in {r['id'] for r in data['snapshot']['refs']} for role in data['roles'] for ref in role['references'])
- s.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');expect(s.locator('#evoAssistantSummary')).to_have_text(data['summary']);expect(s.locator('#evoDecisionDesk')).to_be_focused()
- assert s.locator('#evoDecisionDesk').bounding_box()['y']>=-1
+ s.wait_for_function('document.getElementById("evoDeskRunStatus").textContent.startsWith("Review complete")');expect(s.locator('#evoAssistantSummary')).to_have_text(data['summary']);expect(s.locator('#commandVerdict')).to_be_focused()
+ assert s.locator('#commandVerdict').bounding_box()['y']>=-1
  if data['outcome']=='insufficient':expect(s.locator('#evoDecisionOutcome')).to_contain_text('Wait')
  assert set(s.evaluate('Object.keys(THNIntelligence.state())'))=={'available','hostedDisabled','provider','model','mode','busy','method','language'}
  checks.append('One click -> actual analysis API -> six-role cited deterministic review; no model/financial authority; result receives focus')
  previous_structure=s.evaluate('THNResearch.chart.layers.smc');s.locator('#qCandles').focus();s.keyboard.press('ArrowLeft');assert s.evaluate('THNResearch.chart.offset')>0
- s.locator('#evoDecisionDesk [data-evo="reasoning-chart"]').click();expect(s.locator('#view-trading')).to_be_visible();assert s.locator('#proTerminal').count()==1 and s.locator('#evoDecisionDesk').count()==1
+ control(s,'#evoDecisionDesk [data-evo="reasoning-chart"]').click();expect(s.locator('#view-trading')).to_be_visible();assert s.locator('#proTerminal').count()==1 and s.locator('#evoDecisionDesk').count()==1
  assert s.evaluate('THNResearch.chart.layers.ema&&THNResearch.chart.layers.levels');expect(s.locator('#qCandles')).to_be_focused();assert s.evaluate('THNResearch.chart.layers.smc')==previous_structure;assert s.evaluate('THNResearch.chart.offset')==0
  checks.append('Same chart and same review node in Terminal; latest matched viewport, actual EMA/level layers and explicit structure preference preserved')
  go('risk');s.locator('#planEntry').fill('1.1');s.locator('#planStop').fill('1.09');s.locator('#planTarget').fill('1.12');s.locator('#planSide').select_option('BUY');s.locator('#workRiskForm button[type=submit]').click();s.wait_for_function('THNDecision.plan()!==null')
@@ -43,7 +44,7 @@ with sync_playwright() as p:
   for view in ['dashboard','markets','trading','ai','risk','portfolio','journal','brokers','settings']:
    nav=s.locator('.nav-stack [data-view='+view+']');nav.focus();r=nav.bounding_box();assert r and r['x']>=-1 and r['x']+r['width']<=391;go(view)
   go('dashboard');expect(s.locator('#evoDeskLead #qSymbol')).to_be_visible();s.screenshot(path=str(out/(lang+'-mobile.png')),full_page=True)
- s.locator('#evoAssistantAccess').click();expect(s.locator('#view-ai')).to_be_visible();expect(s.locator('#i7Question')).to_be_focused();assert s.evaluate('THNContext.get().symbol')=='GBPUSD'
+ control(s,'#evoAssistantAccess').click();expect(s.locator('#view-ai')).to_be_visible();expect(s.locator('#i7Question')).to_be_focused();assert s.evaluate('THNContext.get().symbol')=='GBPUSD'
  checks.append('EN/AR mobile branding precedes compact navigation; all nine choices reveal fully on focus and navigate; one context input survives view switches')
  assert not any(method=='POST' and ('/api/broker/' in url or '/api/accounts' in url) for method,url,body in requests)
  assert not errors,errors

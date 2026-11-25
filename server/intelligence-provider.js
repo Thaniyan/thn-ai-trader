@@ -1,3 +1,4 @@
+import {supervisedLocal} from './intelligence-supervisor.js';
 // Optional authenticated provider: deterministic research is always the default.
 import {generateLocal,localConfiguration,authenticated,loopbackJSON} from './intelligence-local.js';
 export {validateGeneration} from '../public/intelligence-generation.js';
@@ -12,13 +13,13 @@ export function providerAvailability(env=process.env){
 export function createProvider({env=process.env,transport=fetch,localTransport=loopbackJSON}={}){
  let requests=0,reservedTokens=0,busy=false,successfulResponses=0,modelCalls=0;
  const reserve=count=>{if(requests>=Number(env.THN_AI_MAX_REQUESTS)||reservedTokens+count>Number(env.THN_AI_TOTAL_TOKEN_CEILING))throw Error('Provider budget exhausted');requests++;reservedTokens+=count;};
- const generate=async function(snapshot,question,{signal,authorization,history=[],language='en'}={}){
+ const generate=async function(snapshot,question,{signal,authorization,history=[],language='en',deadline,timing}={}){
   const status=providerAvailability(env),maxOutput=Number(env.THN_AI_MAX_OUTPUT_TOKENS);
   if(!status.available||!authenticated(authorization,env))throw Error('Provider unavailable or unauthenticated');
   if(busy)throw Error('Provider already processing a request');busy=true;
   try{
    signal?.throwIfAborted();
-   if(status.provider==='ollama'){const result=await generateLocal(env,snapshot,question,{authorization,signal,history,language,transport:localTransport,onRequest:reserve,onModelCall:()=>{modelCalls++}});successfulResponses++;return result;}
+   if(status.provider==='ollama'){const result=await (localTransport===loopbackJSON?supervisedLocal:generateLocal)(env,snapshot,question,{authorization,signal,history,language,deadline,timing,transport:localTransport,onRequest:reserve,onModelCall:()=>{modelCalls++}});successfulResponses++;return result;}
    // Existing fixed-destination OpenAI path retained. It is never activated by UI discovery.
    const content=JSON.stringify({question,evidence:snapshot});if(content.length>12000)throw Error('Provider input too large');if(!snapshot.fresh)throw Error('Fresh evidence required for generation');
    reserve(Buffer.byteLength(content)+maxOutput);

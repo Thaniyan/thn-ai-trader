@@ -1,0 +1,38 @@
+{
+  "scope": "SYNTHETIC admitted conditional candidate, actual rendered DejaVu. Not real Ticket or risk qualification.",
+  "originalFailure": {
+    "width": 1024,
+    "language": "en",
+    "theme": "dark",
+    "viewportHeight": 1000,
+    "ticketBottom": 1017.109375
+  },
+  "fixedFontProfiles": [
+    {
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "renderedFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans",
+          "isCustomFont": false,
+          "glyphCount": 25
+        },
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 18
+        }
+      ],
+      "ticket": {
+        "x": 688,
+        "y": 508.515625,
+        "width": 320,
+        "height": 475.59375
+      }
+    }
+  ],
+  "originalAssertionsUnchanged": true
+}

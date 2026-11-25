@@ -1,0 +1,41 @@
+{
+  "scope": "ACTUAL_OWNER_MODE_NO_PRIVATE_ORIGINAL_SUPPLIED",
+  "exitCode": 2,
+  "result": {
+    "schema": "THN-P2-RESULT-1",
+    "scope": "OWNER_PRIVATE_OFFLINE",
+    "state": "BLOCKED",
+    "assessment": "NOT_VERIFIED",
+    "caseAssessment": "NOT_VERIFIED",
+    "reason": "ORIGINAL_REQUIRED",
+    "expectedCases": 36,
+    "observedCases": null,
+    "caseAccounting": "NOT_AVAILABLE",
+    "dispositions": {
+      "SOURCE_REVISION_VALID": 0,
+      "REFERENCE_VALID_NOT_CORRECTION": 0,
+      "STILL_INVALID": 0,
+      "MISSING_OR_OUT_OF_COVERAGE": 0,
+      "AMBIGUOUS_KEY": 0,
+      "CONTRACT_UNAVAILABLE": 0,
+      "CANDIDATE_UNAVAILABLE": 0,
+      "ATTRIBUTION_UNAVAILABLE": 0,
+      "SEMANTICS_INCOMPATIBLE": 0,
+      "EVIDENCE_UNVERIFIED": 0
+    },
+    "hashes": {
+      "original": null,
+      "candidate": null
+    },
+    "contractHash": null,
+    "contractStatus": "NOT_EVALUATED",
+    "rights": "NOT_VERIFIED",
+    "sourceQualification": "NOT_VERIFIED",
+    "historicalEarlier36Identity": "NOT_ESTABLISHED",
+    "financialExecution": false,
+    "qualificationChanged": false,
+    "networkRequests": 0,
+    "priceWrites": 0,
+    "inputIntegrity": "UNCHANGED"
+  }
+}

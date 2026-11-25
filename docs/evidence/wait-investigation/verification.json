@@ -1,0 +1,380 @@
+{
+  "date": "2026-11-24",
+  "baseline": "60b301f5838eca9cdf29598ea7c05cd9274442bc",
+  "core": {
+    "pass": 562,
+    "fail": 0,
+    "skip": 0
+  },
+  "security": {
+    "pass": 21,
+    "fail": 0
+  },
+  "system": {
+    "pass": 10,
+    "fail": 0
+  },
+  "browsers": {
+    "pass": 51,
+    "fail": 0,
+    "allOriginalSuitesRetained": true,
+    "assertionsThresholdsTimeoutsUnchanged": true,
+    "finalFullRunUninterrupted": true,
+    "suites": [
+      {
+        "suite": "workstation",
+        "seconds": 35.91,
+        "pass": true
+      },
+      {
+        "suite": "research_outage",
+        "seconds": 5.12,
+        "pass": true
+      },
+      {
+        "suite": "decision",
+        "seconds": 47.39,
+        "pass": true
+      },
+      {
+        "suite": "maturity",
+        "seconds": 69.54,
+        "pass": true
+      },
+      {
+        "suite": "intelligence",
+        "seconds": 36.34,
+        "pass": true
+      },
+      {
+        "suite": "layout",
+        "seconds": 57.61,
+        "pass": true
+      },
+      {
+        "suite": "trust",
+        "seconds": 51.84,
+        "pass": true
+      },
+      {
+        "suite": "journal_lifecycle",
+        "seconds": 66.09,
+        "pass": true
+      },
+      {
+        "suite": "evolution",
+        "seconds": 95.94,
+        "pass": true
+      },
+      {
+        "suite": "experience",
+        "seconds": 90.08,
+        "pass": true
+      },
+      {
+        "suite": "recovery",
+        "seconds": 162.85,
+        "pass": true
+      },
+      {
+        "suite": "paper_review",
+        "seconds": 8.54,
+        "pass": true
+      },
+      {
+        "suite": "broker_workspace",
+        "seconds": 73.47,
+        "pass": true
+      },
+      {
+        "suite": "workflow_polish",
+        "seconds": 98.82,
+        "pass": true
+      },
+      {
+        "suite": "confidence",
+        "seconds": 69.33,
+        "pass": true
+      },
+      {
+        "suite": "research_risk",
+        "seconds": 59.11,
+        "pass": true
+      },
+      {
+        "suite": "unified_workspace",
+        "seconds": 115.79,
+        "pass": true
+      },
+      {
+        "suite": "responsive_fonts",
+        "seconds": 46.51,
+        "pass": true
+      },
+      {
+        "suite": "command_workbench",
+        "seconds": 35.61,
+        "pass": true
+      },
+      {
+        "suite": "command_trust",
+        "seconds": 31.89,
+        "pass": true
+      },
+      {
+        "suite": "precision",
+        "seconds": 39.07,
+        "pass": true
+      },
+      {
+        "suite": "heritage",
+        "seconds": 33.85,
+        "pass": true
+      },
+      {
+        "suite": "decision_validation",
+        "seconds": 31.65,
+        "pass": true
+      },
+      {
+        "suite": "phase2_interpretation",
+        "seconds": 43.25,
+        "pass": true
+      },
+      {
+        "suite": "day5",
+        "seconds": 96.23,
+        "pass": true
+      },
+      {
+        "suite": "day8_ticket",
+        "seconds": 104.13,
+        "pass": true
+      },
+      {
+        "suite": "research",
+        "seconds": 41.46,
+        "pass": true
+      },
+      {
+        "suite": "quality",
+        "seconds": 44.71,
+        "pass": true
+      },
+      {
+        "suite": "library_reliability",
+        "seconds": 4.61,
+        "pass": true
+      },
+      {
+        "suite": "terminal",
+        "seconds": 150.65,
+        "pass": true
+      },
+      {
+        "suite": "intelligence_memory",
+        "seconds": 6.85,
+        "pass": true
+      },
+      {
+        "suite": "pilot",
+        "seconds": 22.03,
+        "pass": true
+      },
+      {
+        "suite": "professional",
+        "seconds": 183.24,
+        "pass": true
+      },
+      {
+        "suite": "trading_remediation",
+        "seconds": 82.71,
+        "pass": true
+      },
+      {
+        "suite": "consolidation",
+        "seconds": 35.6,
+        "pass": true
+      },
+      {
+        "suite": "consistency",
+        "seconds": 37.97,
+        "pass": true
+      },
+      {
+        "suite": "assisted_desk",
+        "seconds": 13.16,
+        "pass": true
+      },
+      {
+        "suite": "evidence_workflow",
+        "seconds": 65.71,
+        "pass": true
+      },
+      {
+        "suite": "visual_refinement",
+        "seconds": 22.26,
+        "pass": true
+      },
+      {
+        "suite": "visual_identity",
+        "seconds": 94.03,
+        "pass": true
+      },
+      {
+        "suite": "dashboard_confidence",
+        "seconds": 26.86,
+        "pass": true
+      },
+      {
+        "suite": "workspace_hierarchy",
+        "seconds": 77.61,
+        "pass": true
+      },
+      {
+        "suite": "research_studio",
+        "seconds": 139.47,
+        "pass": true
+      },
+      {
+        "suite": "command_center",
+        "seconds": 37.57,
+        "pass": true
+      },
+      {
+        "suite": "institutional_desk",
+        "seconds": 58.99,
+        "pass": true
+      },
+      {
+        "suite": "command_trust_candidate",
+        "seconds": 11.77,
+        "pass": true
+      },
+      {
+        "suite": "day6",
+        "seconds": 109.06,
+        "pass": true
+      },
+      {
+        "suite": "readiness",
+        "seconds": 56.56,
+        "pass": true
+      },
+      {
+        "suite": "provider_quality",
+        "seconds": 62.01,
+        "pass": true
+      },
+      {
+        "suite": "day7_research",
+        "seconds": 21.24,
+        "pass": true
+      },
+      {
+        "suite": "cohesive_workspace",
+        "seconds": 24.93,
+        "pass": true
+      }
+    ]
+  },
+  "focusedProfiles": 12,
+  "newUnitCases": 9,
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.54
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.61
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.33
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 56.89
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.45
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.8
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.21
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.86
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.27
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 31.52
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.16
+    }
+  ],
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [2.00ms]\n"
+  },
+  "artifact": {
+    "output": "/workspace/thn-issue19-workstation/.vercel/output",
+    "runtimeFiles": 123,
+    "artifactFiles": 127,
+    "manifestSHA256": "28d0621baf13a5232254f80fc756ef7395007168762779642d521cd9eb329f62"
+  },
+  "protectedFileCount": 25,
+  "history": "Earlier partial runs stopped for measured mobile-caption layout review. First complete run had50 passes/one Day5 failure: duplicate caption put an admitted1024px Ticket17.1px below the viewport. Removed the duplicate only for admitted candidates; original assertion unchanged. Only the final full frozen-source run is counted. Added withdrawal probe accepts a removed caption as withdrawal, never stale text. Original assertions remain.",
+  "tooling": {
+    "node": "24.19.0",
+    "playwright": "1.62.0",
+    "chromium": "151.0.7922.34",
+    "chromiumRevision": 1234,
+    "axe": "4.10.3",
+    "bun": "1.4.3"
+  },
+  "realEvidence": {
+    "freshCloudMarketRows": 0,
+    "ownerQuantifiedBatchContexts": 9,
+    "current54ContextMatrix": "NOT_OBSERVED",
+    "realEligibleTicket": "NOT_VERIFIED",
+    "modelQualification": "NOT_VERIFIED",
+    "releaseDecision": "NO_GO"
+  },
+  "sourceChanged": false,
+  "eligibilityChanged": false,
+  "financialExecution": false,
+  "realInferencePerformed": false
+}

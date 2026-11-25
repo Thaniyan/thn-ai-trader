@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Real main-page command journey, retained engines, coordinate identity and fail-closed states."""
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -12,7 +13,7 @@ with sync_playwright() as p:
  page.locator('#commandSearch').fill('EURUSD');expect(page.locator('#commandInstruments button')).to_have_count(1);page.locator('#commandSearch').press('ArrowUp');expect(page.locator('#commandInstruments [data-command="pick:EURUSD"]')).to_be_focused();page.locator('#commandInstruments [data-command="pick:EURUSD"]').click();assert not page.locator('#commandChooser').evaluate('(e)=>e.open');expect(page.locator('#commandConfluence')).to_have_text(str(page.evaluate('THNCommand.state().confluence')))
  assert page.evaluate('THNCommand.state().probability') is None;assert page.evaluate('THNCommand.state().candidate') is None;expect(page.locator('#commandSetup')).to_contain_text('No valid setup');assert not page.locator('#commandOverlay line').count()
  page.route(EMBED_URL,lambda route:route.fulfill(status=200,content_type='application/javascript',body=TOOLBAR_ONLY));page.locator('#proTradingViewMode').click();page.wait_for_function('THNProfessional.mode()==="manual"');assert page.evaluate('THNResearch.chart===window.__commandChart');expect(page.locator('#commandFeedNote')).to_contain_text('independent');page.locator('#proResearchMode').click();expect(page.locator('#qCandles')).to_be_visible()
- page.locator('[data-command=reasoning]').click();expect(page.locator('#commandRationaleTitle')).to_be_focused();assert page.locator('#commandRationale').evaluate('(e)=>e.open');expect(page.locator('#commandReasoning')).to_contain_text('Eight technical perspectives');page.locator('#commandSourceTitle').click();page.locator('#commandSourceTitle').focus();page.evaluate('document.documentElement.dataset.theme="light"');expect(page.locator('#commandSourceTitle')).to_be_focused();assert page.locator('#commandSourceDetails').evaluate('(e)=>e.open');page.evaluate('document.documentElement.dataset.theme="dark"');expect(page.locator('#commandSourceTitle')).to_be_focused();page.locator('#commandRationaleTitle').click()
+ control(page,'[data-command=reasoning]').click();expect(page.locator('#commandRationaleTitle')).to_be_focused();assert page.locator('#commandRationale').evaluate('(e)=>e.open');expect(page.locator('#commandReasoning')).to_contain_text('Eight technical perspectives');page.locator('#commandSourceTitle').click();page.locator('#commandSourceTitle').focus();page.evaluate('document.documentElement.dataset.theme="light"');expect(page.locator('#commandSourceTitle')).to_be_focused();assert page.locator('#commandSourceDetails').evaluate('(e)=>e.open');page.evaluate('document.documentElement.dataset.theme="dark"');expect(page.locator('#commandSourceTitle')).to_be_focused();page.locator('#commandRationaleTitle').click()
  # Controlled positive evidence fixtures exercise the UI without changing any production calculations.
  def positive_analysis(route):
   response=route.fetch();data=response.json();entry=data['entry'];data.update({'decision':'BUY','consensusLabel':'BULLISH','confidence':80,'grade':'A','stopLoss':entry-.01,'targets':[entry+.002,entry+.004,entry+.006]});route.fulfill(response=response,json=data)
@@ -31,7 +32,7 @@ with sync_playwright() as p:
  page.locator('#qCandles').focus();page.keyboard.press('+');page.keyboard.press('ArrowLeft');page.wait_for_function('THNCommand.coordinates().length>0')
  for point in page.evaluate('THNCommand.coordinates()'):
   expected=page.evaluate('(price)=>{const p=THNResearch.chart.plot;return p.top+(p.max-price)/(p.max-p.min)*p.height}',point['value']);assert abs(expected-point['y'])<.01
- page.locator('#commandLegendTitle').click();page.locator('[data-command=inspect-marker]').click();expect(page.locator('#studioInspectorTitle')).to_be_focused();assert page.locator('#studioInspector').evaluate('(e)=>e.open')
+ control(page,'#commandLegendTitle').click();page.locator('[data-command=inspect-marker]').click();expect(page.locator('#studioInspectorTitle')).to_be_focused();assert page.locator('#studioInspector').evaluate('(e)=>e.open')
  # Copy only recorded price references; never capital, leverage, sizing, or an order.
  capital=page.locator('#planCapital').input_value();leverage=page.locator('#planLeverage').input_value();before_posts=len(posts);page.locator('[data-command=use-levels]').click();expect(page.locator('#planEntry')).to_be_focused();assert len(posts)==before_posts;assert page.locator('#planCapital').input_value()==capital and page.locator('#planLeverage').input_value()==leverage
  assert float(page.locator('#planEntry').input_value())==candidate['entry'];assert float(page.locator('#planStop').input_value())==candidate['stop'];assert float(page.locator('#d64Target3').input_value())==candidate['targets'][2];expect(page.locator('#commandPlannerNote')).to_contain_text('does not change account leverage')
@@ -56,7 +57,7 @@ with sync_playwright() as p:
   result['profiles'].append([width,lang,theme])
  # A user cancellation aborts the actual pending analysis, preserves context and never creates an order.
  page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click();pending=[]
- page.route('**/api/analyze',lambda route:pending.append(route));page.locator('[data-command=analyze]').click();page.wait_for_function('document.getElementById("analyzeBtn").disabled');expect(page.locator('[data-command=cancel]')).to_be_visible();before_cancel=page.evaluate('THNContext.get()')
+ page.route('**/api/analyze',lambda route:pending.append(route));page.locator('#evoRunDesk').click();page.wait_for_function('document.getElementById("analyzeBtn").disabled');expect(page.locator('[data-command=cancel]')).to_be_visible();before_cancel=page.evaluate('THNContext.get()')
  with page.expect_event('requestfailed',predicate=lambda request:request.url.endswith('/api/analyze')):page.locator('[data-command=cancel]').click()
  for route in pending:route.abort()
  pending.clear()

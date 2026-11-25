@@ -55,3 +55,77 @@ def select_decision_validation_suites(env):
         return list(DECISION_VALIDATION_SUITES)
     index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
     return [suite for position, suite in enumerate(DECISION_VALIDATION_SUITES) if position % count == index]
+
+# Phase2 assistant lifecycle acceptance is additive to every original suite.
+PHASE2_SUITES = ['phase2_interpretation']
+
+def select_phase2_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(PHASE2_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(PHASE2_SUITES) if position % count == index]
+
+# Day5 extends the existing gate; every earlier roster/assertion remains unchanged.
+DAY5_SUITES = ['day5']
+
+def select_day5_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(DAY5_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(DAY5_SUITES) if position % count == index]
+
+# Focused Day6 acceptance extends all45 original suites. Offset balances its
+# matrix onto the second existing worker; no original suite is moved or skipped.
+DAY6_SUITES = ['day6']
+
+def select_day6_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(DAY6_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position, suite in enumerate(DAY6_SUITES) if (position + 1) % count == index]
+
+# Operational diagnostics extend all46 original suites; no earlier roster moves.
+READINESS_SUITES = ['readiness']
+def select_readiness_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(READINESS_SUITES)
+    index, count = int(env['THN_BROWSER_SHARD_INDEX']), int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(READINESS_SUITES) if (position+1)%count==index]
+
+# Aggregate provider-quality UI coverage extends every existing suite.
+PROVIDER_QUALITY_SUITES = ['provider_quality']
+def select_provider_quality_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(PROVIDER_QUALITY_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(PROVIDER_QUALITY_SUITES) if (position+1)%count==index]
+
+# Day7 actual UI/API/worker protocol fixture; all48 prior suites retained.
+DAY7_RESEARCH_SUITES=['day7_research']
+def select_day7_research_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY7_RESEARCH_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(DAY7_RESEARCH_SUITES) if (position+1)%count==index]
+
+# Day8 source-bound Ticket workflow; every original suite stays mandatory.
+DAY8_TICKET_SUITES=['day8_ticket']
+def select_day8_ticket_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:return list(DAY8_TICKET_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(DAY8_TICKET_SUITES) if position%count==index]
+
+# Owner Windows UX review: additive real-application consolidation acceptance.
+COHESIVE_SUITES = ['cohesive_workspace']
+def select_cohesive_suites(env):
+    select_suites(env)
+    if env.get('THN_BROWSER_SHARD_INDEX') is None:
+        return list(COHESIVE_SUITES)
+    index,count=int(env['THN_BROWSER_SHARD_INDEX']),int(env['THN_BROWSER_SHARD_COUNT'])
+    return [suite for position,suite in enumerate(COHESIVE_SUITES) if (position+1)%count==index]

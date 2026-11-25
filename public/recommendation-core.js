@@ -64,6 +64,10 @@ export function recommendationReview({context={},series=null,analysis=null,brief
 }
 
 const labels={
+ contract_unavailable:['Contract specification unavailable.','مواصفات العقد غير متاحة.'],
+ currency_mismatch:['Observed currency is unavailable or does not match the instrument.','عملة المشاهدات غير متاحة أو لا تطابق الأداة.'],
+ invalid_recorded_levels:['Recorded levels fail direction or ordering checks.','تفشل المستويات المسجلة في شروط الاتجاه أو الترتيب.'],
+ source_identity_unverified:['Provider identity or currency is missing or differs between the selected observations, catalog and retained analysis.','هوية المزود أو العملة ناقصة أو تختلف بين المشاهدات المختارة والقائمة والتحليل المحفوظ.'],
  analysis_running:['The assessment is updating; wait for the current result.','يجري تحديث التقييم؛ انتظر النتيجة الحالية.'],
  history_unavailable:['Selected market history is unavailable.','سجل السوق المختار غير متاح.'],
  data_quality:['Observed gaps, omitted rows or unavailable quality counts limit entry assessment.','تحد الفجوات والصفوف المحذوفة أو غياب عدادات الجودة من تقييم الدخول.'],

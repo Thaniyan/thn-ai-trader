@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "19d47f8011b958d58cb77337d90a7efc6af44b6d",
+  "scope": "Actual immutable Day7 package rendering; controlled SYNTHETIC admission. No real qualification.",
+  "observations": [
+    {
+      "case": "separate-entry-label",
+      "symbol": "GBPUSD",
+      "entryMatches": false,
+      "status": "eligible"
+    },
+    {
+      "case": "separate-entry-label",
+      "symbol": "EURUSD",
+      "entryMatches": false,
+      "status": "eligible"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "unchangedFrom": "db6938deac253dabbd10361a8dc95c7f647e544a",
+  "sha256": {
+    "server.js": "de9c27eaf691de0ad6f61a9c4881954628db932e7d12a5cd80cbbcbe8a9ae0d9",
+    "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+    "server/market-evidence.js": "7e40f6d72355bdbb1eb5d1372c742e8358002a8f428372d80e2802e5da7fea59",
+    "server/provider-diagnostics.js": "dd80fa07224e051ca3dca0107ac9794ddbccddceb62efdfbe9540731ac1a8338",
+    "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+    "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+    "public/recommendation-core.js": "47dd153e1c5bc6aa45425e876ca20e81ce897f8ec025be173e274947a3706aa6",
+    "public/command-center-core.js": "d34da4b53b95ed5346599371db2584a840412298a5bfd5a72e82f4b9f6899f16",
+    "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  }
+}

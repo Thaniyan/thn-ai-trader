@@ -1,0 +1,95 @@
+{
+  "baselineCommit": "d0203266ba0b8eef61f1f1217f8155947026eef2",
+  "reportedFailure": {
+    "run": 45045870816,
+    "job": 137280231907,
+    "test": "tests/phase2-performance.test.mjs:174",
+    "actual": "settled",
+    "expected": "unsettled"
+  },
+  "rootCause": "Cancellation settles the HTTP promise without proving external generation completion; worker timeout and parent watchdog ordering previously changed the reported generation state.",
+  "deterministicRegressions": {
+    "count": 3,
+    "passed": 3,
+    "cases": [
+      "worker timeout before parent watchdog, no response",
+      "received response followed by timeout",
+      "parent watchdog after transport cleanup, no response"
+    ]
+  },
+  "affectedRegressionSuite": {
+    "tests": 47,
+    "passed": 47,
+    "failed": 0
+  },
+  "requiredNonBrowserGates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.55
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.4
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.29
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 54.75
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.44
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.79
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.99
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.24
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 27.7
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.0
+    }
+  ],
+  "coreTests": 522,
+  "securityTests": 21,
+  "systemTests": 10,
+  "productionArtifactManifestSha256": "032739b291e98fef5865f24edc645ee8c5402314836b7c50a42cad5df41aac42",
+  "productionArtifactUnchanged": true,
+  "localBrowserEvidence": {
+    "baselineCommit": "d0203266ba0b8eef61f1f1217f8155947026eef2",
+    "suites": 49,
+    "passed": 49,
+    "basis": "Complete canonical gate at baseline; correction changes only CLI supervisor and new tests/documentation, with byte-identical packaged application."
+  },
+  "freshHostedCi": "Must verify both workflows after correction commit; this pre-commit record does not claim hosted success.",
+  "originalAssertionsAndTimeoutsUnchanged": true,
+  "realInferenceRun": false,
+  "realModelQualification": "NOT_VERIFIED",
+  "priorOwnerTrial": "NO_GO: 12003 ms, no response",
+  "mainMerged": false,
+  "productionDeployed": false
+}

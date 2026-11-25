@@ -1,0 +1,591 @@
+{
+  "baselineSHA": "6275939fd7d2dd892a37d2298cc1c28455baaa9e",
+  "source": "packaged working tree; verify fingerprint against final commit",
+  "sourceHEAD": "70021f39c58eae510ea21842ef7e984f242aa4dc",
+  "publicTreeSHA256": "4ce90cdae33c34324e9acb2b8e4ff306adf93fa8bb967be0f30ba3fbed839758",
+  "publicFileSHA256": {
+    "command-evidence.js": "2c697b0b8cede99ce717a4e697bfd75833a10134dd0da5caa18c142018155040",
+    "broker-workspace.js": "b014af01f3c83ba20eb7d8256197d7f315c27e743b91bea8b3cd99d7673d0df7",
+    "research-state.js": "160f61742002c21d7a7f9747ccd1bd59623a1afe5909928b87b58c16ac191253",
+    "decision-validation-core.js": "8825417ed504d50a939f6f9de730ac291a15a2def9a0973e035a4689608c867b",
+    "professional-records.js": "1ee4359cdba2c0052e2c3ea1c5da5d9a09ec14c3c33615a6f4d089f418c424c8",
+    "visual-identity.css": "5a235e5ded3a3f944bb8a6301159d4a55d8ceb2b1b77aac4c4b01652db0e9f38",
+    "command-center-core.js": "d34da4b53b95ed5346599371db2584a840412298a5bfd5a72e82f4b9f6899f16",
+    "command-workbench.css": "41e31c780ebe0aaf68319956c7fd867cd6702b9dcae8468a79f7c648b3db909d",
+    "workstation.css": "b56aa9f07fc8fe92995398b45d74ed33626fcd41e25a70413a10fb5d34bc1000",
+    "command-workbench.js": "13dadda098eaed4f606f050505bd13d795c7bde265eee5f4ef7f7dc2b5893c8c",
+    "analysis-cockpit.js": "b7817147dfcb9e4f4d4ebcce3fa4bfd07e2d725372a05cf975d336a7493b4fb1",
+    "library-core.js": "614161b8bac3ee3b14073b2833421192bb2ce4988f78afe64ee35b29cb320845",
+    "precision-desk.js": "629e1408f16fc401bc9e9091ab51fe56d1a3865b260a4e083142bba8bf3807bf",
+    "precision-desk.css": "bbbbf443aad290ac0a1608d90dffe9674a0c8e071888fd110576ff6e4da1a664",
+    "manifest.json": "94f76fc7842990f6771eb02ff57fb1525bba06e71ea4cd49380290c6b936fad4",
+    "workspace-refinement.css": "2ef11cd3972cd121606810fbbf410f799017f369917d6900954b3a110ee9df3c",
+    "confidence-core.js": "442117c2fcb90202e5dc1315f85e90ff3c965d4e7ea3944eb45f3f99d97850a0",
+    "command-trust-core.js": "e7fd852970d57e03e3e845a7e1594346f03d16ce8a094cf966e3255a297d56b2",
+    "decision-workspace.css": "1ce7d512077500b521ca8a5e675ed7249be2fd9bdb24c17f2f2cfbebbcbc3382",
+    "intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "unified-workspace.js": "c29a4b6bf60942d7899c028e5a3c8fcec89079650d9b9da778b6dcebf8743b8e",
+    "professional.css": "bfcf81c42f2d9281f5b33badf6a7a49bf205fdc30e740ed562b282c353679cfe",
+    "locale-secondary.js": "5b8babedfffdb2d016a6a177e8539e521259332a71ac9c78363ef7eb2c434521",
+    "workflow-maturity.css": "0ee5f7498b1ea6ce444672c73df79e7a4423abbc21a7c5106db2cb1a39afe92b",
+    "workflow-polish.js": "e8c4a647a8fd8ace4e75d11a9ea5ce92c3243c1d62cf8a006dcc548956e0e905",
+    "research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "decision-core.js": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3",
+    "recommendation-core.js": "2c985694cf1c55430937c6fbcbabccf4224b792e66218135767d7073109faf66",
+    "preferences.js": "b8b2bf8dcbce4a62c0154256e9c958def62b21a63d8630605934733baeba08a2",
+    "research-risk-comparison.js": "8623fdd57fc4792e3a18dc45567dedab0e5f764fe0413746104ac4d85a67d085",
+    "decision-workspace.js": "43b825999a2d42a6dd3e050e303dcc8f3faf3b068affab76a997eed4c2dcfbf5",
+    "broker-catalog.js": "ede478798c19f488717e79791008a959a9e40318c3680fb2a273906918257183",
+    "decision-records.js": "d833fea5f75d55dc0208ed01dc910d2cd73609d3d40b667a9fa9dc0bbe41b2ca",
+    "intelligence.css": "00a24d3938808ace039d9545aa3f8c5bf99755ee86fcb4e9ae0ee8db4857c00a",
+    "platform-evolution.js": "60b8733cec10ae9126f1dedd2a909a9483cc8d51fa77be9760e7715c31119b26",
+    "heritage-desk.css": "cf4d71a16a31e8dfe729d866754bad70271fd50e2ccc3e26046ae06ae163fc47",
+    "index.html": "d4d6c203cb4bd1f1b653fa7def10fec8ad0cf098fe7c856a66ae3b6a2d9ed0f1",
+    "workstation.js": "2ff39a3a9c78af6b8708beb32051dc4f4a03efed2a007919d4409f065b695aa7",
+    "professional-chart.js": "d245b30a7c71e7e7ef84dc0bbccc63d749815417b2b9645786666a9a426026d5",
+    "research-quality.js": "38a253062a93507830f528297376566c4d8c516f8e15059a33c962c568b4d177",
+    "command-center.js": "0b5c2f5570329354d11f6c591d79bebf8fcbc0b5c256bba441423d7c13541398",
+    "recommendation-view.js": "1e2d8e5827051f4677003ed0ce7f689dfe8d216d320a8ddbc68215f0df041786",
+    "unified-workspace.css": "1e60acf0760f41c9c004e15f143dfc5e993af32928dbc6ba5c44470487a68ae4",
+    "evidence-view.js": "6a8eb5e90895a0d2311d4bc34f33706657e209f5bad29d77f54c4d63787d86f4",
+    "research-workstation.js": "49fb2d5db447b8ba7ed6197b604c23719f7bef4e7347171ff89eb35fc9f557fb",
+    "research-studio-core.js": "e603a22f502a4a1237dcdb2421f8569a9669325325a526ebfd85b00fc74ee87c",
+    "app.js": "cb450f22566fa27c36f161c9cdde23f1b30374eed82e72c95f3308f437cdbe08",
+    "validation-evidence.js": "dd3c9642d2ec92cacbf99be1dc3bf2323d1a71f869a0cff3e4a58ba9568f0a9c",
+    "visual-identity.js": "7df01a27ebb7dc8d8b880660ca1b6f02a2d6d9f4673da77891ce51e5cc44f7d3",
+    "decision-validation.css": "00876b45c693808c83c77fe0cf9898e1c445cee5a4a92e9aa45c7d009fbc3a8e",
+    "professional-workspace.js": "db61739a47e9c14bc9d6a35f900eed01f65b133c76054bb9e60230b87b284490",
+    "research-terminal.css": "0c41a4d984f554d42ac44c4bd38aa8b69a24af468dd127d668fc6b1d164d74fd",
+    "command-interpretation.js": "da97b1fd75e2bd39e702ebc4c0e5e25def836848ae68b025d2710730b14645ba",
+    "precision-core.js": "32a896a65acf3881cf1548d16c199e32364f841c046bbe3716c92e9c132364e1",
+    "command-center.css": "699096ca436d2b3d0cedfec5ecb77d9aed41ed8413b776c3b630d37dd9f2a218",
+    "brand-preview.png": "eab1f4e4b83a5a398ac7db1ce3f294d297a2b5e33cc0987ca6d377f670b829c9",
+    "research-quality.css": "43ddb8b6c43866ba5cd104c22cf8b2e569eabaa7ad115b4b9bff0bb43d33fa5a",
+    "style.css": "fd2fd054a18a10d40ab3cf67c7c10bea0f920833cba3dcf8564707d97e9ef8b8",
+    "d3.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "research-records.js": "9503045944499db0616ed42b586c95d842a20a49046228f73d39b243c97356ea",
+    "platform-evolution.css": "d3ebc8fe5540877987c3dc4732e4905c758c17fc805303e17e14770744008fe8",
+    "market-terminal.js": "6d8a3b2cbe00554507d79e17cab21333db7f46c4b3f8c11970c4afb4155902c8",
+    "replay-contract.js": "b5279796cba0105067636fc18dcba17d76170d925617ede9ffeca4ad1c90f7b9",
+    "decision-validation.js": "aeaa24bc21dafbd06a3dffc6a806abc7a998c10f7a573189d8a89e84209eae96",
+    "terminal-research.js": "01db5f66c83b474706c2596293dd0b0143f95e07e5ab6f810b368da4580ef242",
+    "command-interpretation.css": "b9c3379344c0ce42f1c7688bbf8cf2d4f007ec9b4c15bcbb2fa796d196846433",
+    "professional-markets.js": "92a90a52011a3ea8da8dbd9d9985888320f76c43b20b4b2febf536812fb40985",
+    "analysis-cockpit.css": "d865e2260d23d936350121b9ecd0bfaa07baee97784cec313a1d29603b3cc0de",
+    "brand-mark.png": "e64235df548b5d5e522ef7b1b5379437b4b05a8f644c72b1bbd485457dd7f567",
+    "research-studio.js": "e881b0b6814cd0646de61c1016481885677c42f196a36bf584f08e1d8f867260",
+    "command-trust.js": "a8bb59843b76d6d1505da190b2d496842a4c6f226d113536ae0a1eaddd33b66a",
+    "workflow-maturity.js": "5a3b6f23e68e4345d4601053949f67a73d208f035617d0db04e24a925ce08ad6",
+    "research-studio.css": "5d5d675a2f23ff20b4eaeb1025a8e6879782107b4c5b494c3f08076646296dc1",
+    "instrument-identity.js": "b35e540a564b622bd6accfd2a1a734c7ee23ee43a00bad584ebc7c3b6deffbb0",
+    "intelligence-memory.js": "1dc2d14fe4290d81cfb4be97e2021b7f67e3a05a608c36266768b40ed3ec1cd6",
+    "intelligence-view-state.js": "a1412deb1da135fd62d5db22ce4e7d49743c42c781993ca4baa23b21b948fc2a",
+    "heritage-desk.js": "2213c899fb2ac854c90ae14d2c7629dbcce442ba48dc1ad218190f3315c786f0",
+    "command-journey.css": "071e182ca205b49f35c55bd249b3bb2633c0a919ffadbdd5c4e06308ddf5bc58",
+    "logo.svg": "2bb9e58f543f56e7739091dcd1f93303c571ad9fa0504752134c5a405227388b",
+    "command-trust.css": "ff4bb99e73e6d93fd3403dbe98c449e8ac6242ffcf221b6ef7a7ce659220423f",
+    "intelligence-workspace.js": "f9b87557b35d24e21871b9946c4faf92073e078a2a6b925e9423e0853bde2919",
+    "research.css": "d5e2b62601bdc88fb0c9dd2227923f46e0908f9294dcee3bef89b2b999367b6c",
+    "comparison-core.js": "3953210dbe372757a603f0371961651d50592d1b0f41c0dff98f0450f3414849",
+    "research-library.js": "10890357ab4e8bd28fafd657fb4d48fd01122d7888ff1b25be2e6a1d7725b321"
+  },
+  "case": "eligible",
+  "scope": "Actual app; OFFLINE synthetic provider. Conditional/SELL/eligible fixtures do not establish real signals, model quality or market readiness.",
+  "profiles": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "geometry": {
+        "qCandles": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "commandVerdict": {
+          "x": 1084,
+          "y": 210,
+          "width": 340,
+          "height": 277.015625,
+          "top": 210,
+          "right": 1424,
+          "bottom": 487.015625,
+          "left": 1084
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 468.5,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 967.515625,
+          "left": 1084
+        }
+      },
+      "ticketLevels": {
+        "x": 1099,
+        "y": 556.015625,
+        "width": 310,
+        "height": 151
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "geometry": {
+        "qCandles": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "commandVerdict": {
+          "x": 16,
+          "y": 210,
+          "width": 340,
+          "height": 242.015625,
+          "top": 210,
+          "right": 356,
+          "bottom": 452.015625,
+          "left": 16
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "ticketLevels": {
+        "x": 31,
+        "y": 521.015625,
+        "width": 310,
+        "height": 151
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "geometry": {
+        "qCandles": {
+          "x": 96,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 656,
+          "bottom": 1037.734375,
+          "left": 96
+        },
+        "commandVerdict": {
+          "x": 688,
+          "y": 230,
+          "width": 320,
+          "height": 277.015625,
+          "top": 230,
+          "right": 1008,
+          "bottom": 507.015625,
+          "left": 688
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 470.09375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 989.109375,
+          "left": 688
+        }
+      },
+      "ticketLevels": {
+        "x": 701,
+        "y": 576.015625,
+        "width": 294,
+        "height": 151
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "geometry": {
+        "qCandles": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "commandVerdict": {
+          "x": 16,
+          "y": 230,
+          "width": 320,
+          "height": 277.015625,
+          "top": 230,
+          "right": 336,
+          "bottom": 507.015625,
+          "left": 16
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 519.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 519.015625,
+          "right": 336,
+          "bottom": 986.515625,
+          "left": 16
+        }
+      },
+      "ticketLevels": {
+        "x": 29,
+        "y": 576.015625,
+        "width": 294,
+        "height": 151
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "language": "en",
+      "theme": "dark",
+      "geometry": {
+        "commandVerdict": {
+          "x": 16,
+          "y": 254.390625,
+          "width": 358,
+          "height": 208.015625,
+          "top": 254.390625,
+          "right": 374,
+          "bottom": 462.40625,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 657,
+          "width": 338,
+          "height": 330,
+          "top": 657,
+          "right": 364,
+          "bottom": 987,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1144,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1144,
+          "right": 357,
+          "bottom": 1798.796875,
+          "left": 33
+        }
+      },
+      "ticketLevels": {
+        "x": 48,
+        "y": 1209,
+        "width": 294,
+        "height": 167
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "language": "ar",
+      "theme": "light",
+      "geometry": {
+        "commandVerdict": {
+          "x": 16,
+          "y": 254.390625,
+          "width": 358,
+          "height": 221.515625,
+          "top": 254.390625,
+          "right": 374,
+          "bottom": 475.90625,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 670.5,
+          "width": 338,
+          "height": 330,
+          "top": 670.5,
+          "right": 364,
+          "bottom": 1000.5,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1157.5,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1157.5,
+          "right": 357,
+          "bottom": 1793.109375,
+          "left": 33
+        }
+      },
+      "ticketLevels": {
+        "x": 48,
+        "y": 1222.5,
+        "width": 294,
+        "height": 167
+      },
+      "assessment": {
+        "context": {
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000
+        },
+        "candidate": {
+          "source": "rule_based_evidence",
+          "policy": "retained-engine-levels-1",
+          "symbol": "EURUSD",
+          "interval": "1h",
+          "hash": "0fb03bb3d7918511cb3cdbe1fb34867087816cea501b593aaf9199aaa8eb678c",
+          "barTime": 1795021876000,
+          "side": "BUY",
+          "entry": 1.121267,
+          "stop": 1.111267,
+          "targets": [
+            1.123267,
+            1.125267,
+            1.127267
+          ],
+          "executionAuthorized": false,
+          "entryQuoteVerified": false,
+          "capital": null,
+          "lots": null
+        },
+        "confluence": 80,
+        "phase": "ready",
+        "probability": null,
+        "executionAuthorized": false
+      }
+    }
+  ],
+  "shortPhoneProfiles": [
+    {
+      "width": 390,
+      "height": 844,
+      "language": "en",
+      "theme": "dark",
+      "chart": {
+        "x": 26,
+        "y": 657,
+        "width": 338,
+        "height": 330
+      },
+      "decision": {
+        "x": 16,
+        "y": 254.390625,
+        "width": 358,
+        "height": 208.015625
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "language": "ar",
+      "theme": "light",
+      "chart": {
+        "x": 26,
+        "y": 670.5,
+        "width": 338,
+        "height": 330
+      },
+      "decision": {
+        "x": 16,
+        "y": 254.390625,
+        "width": 358,
+        "height": 221.515625
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,70 @@
+{
+  "renderedApplication": true,
+  "imageEditingPerformed": false,
+  "syntheticDataOnly": true,
+  "profiles": [
+    {
+      "profile": "phase2-evidence-1440-en-dark.png",
+      "scope": "Actual application render with OFFLINE_SYNTHETIC_MARKET_DATA; deterministic mode, references expanded; not model or live-market acceptance",
+      "beforeSourceCommit": "53a835c9a1b82c02b1ae332078d9b535fa0ad0e3",
+      "before": {
+        "sha256": "2cd8b23beff46e7ea504f0c130361ae769a4bfb46551b0e2a8cb377791c71996",
+        "pixels": [
+          1182,
+          2458
+        ],
+        "artifact": "before/phase2-evidence-1440-en-dark.png"
+      },
+      "after": {
+        "sha256": "892ce7c30be629dcbcd4beaf99662508cbe6a326ad80db1a83ae3879f600c743",
+        "pixels": [
+          1182,
+          2842
+        ],
+        "artifact": "after/phase2-evidence-1440-en-dark.png"
+      }
+    },
+    {
+      "profile": "phase2-evidence-1440-ar-light.png",
+      "scope": "Actual application render with OFFLINE_SYNTHETIC_MARKET_DATA; deterministic mode, references expanded; not model or live-market acceptance",
+      "beforeSourceCommit": "53a835c9a1b82c02b1ae332078d9b535fa0ad0e3",
+      "before": {
+        "sha256": "f64dac6bbc55c9f98bcca9fde10ed9685ea3aafca402f22cbd2475d5910ce291",
+        "pixels": [
+          1182,
+          767
+        ],
+        "artifact": "before/phase2-evidence-1440-ar-light.png"
+      },
+      "after": {
+        "sha256": "5e62193c0695ac54e618099a745c5e2826e361d3eb21774e0bd8d8492f5c2204",
+        "pixels": [
+          1182,
+          1159
+        ],
+        "artifact": "after/phase2-evidence-1440-ar-light.png"
+      }
+    },
+    {
+      "profile": "phase2-evidence-390-ar-light.png",
+      "scope": "Actual application render with OFFLINE_SYNTHETIC_MARKET_DATA; deterministic mode, references expanded; not model or live-market acceptance",
+      "beforeSourceCommit": "53a835c9a1b82c02b1ae332078d9b535fa0ad0e3",
+      "before": {
+        "sha256": "ceb05c5c250579fb7636bc51abf3e7701090df15393fc386d22779cf1bd08bc1",
+        "pixels": [
+          304,
+          1113
+        ],
+        "artifact": "before/phase2-evidence-390-ar-light.png"
+      },
+      "after": {
+        "sha256": "3768f668e9045480f5ee6ce0e5f9d4bd85eb16aa628a8874ce96759596ec186b",
+        "pixels": [
+          304,
+          1647
+        ],
+        "artifact": "after/phase2-evidence-390-ar-light.png"
+      }
+    }
+  ]
+}

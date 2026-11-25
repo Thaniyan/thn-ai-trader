@@ -1,0 +1,54 @@
+{
+  "evidenceType": "OWNER_SUPPLIED_REAL_WINDOWS_REDACTED_P1",
+  "sourceReference": "https://github.com/Thaniyan/thn-ai-trader/pull/23#issuecomment-7076985015",
+  "applicationCommit": "62ea56ad7a8df0e2fe4fd3f4dc5c431ef610b357",
+  "capturedAt": "2026-11-22T09:09:27.231Z",
+  "sourceHost": "query1.finance.yahoo.com",
+  "sourceHttpStatus": 200,
+  "apiHttpStatus": 200,
+  "originalBody": {
+    "bytes": 140144,
+    "sha256": "d0b0435ff1b685a250c60d208fda058d44aff8c69bab744f3074dc64b55add0d",
+    "ownerImmutableCheckUnchanged": true,
+    "location": "OWNER_PRIVATE_OUTSIDE_GIT_NOT_UPLOADED"
+  },
+  "mappingBlockSHA256": "774b2f1c5fb7be9b4aeb929d30f4e7f0d6cacdf4fcda17c4ed3176f558a11520",
+  "rawRows": 1305,
+  "adapterRetainedRows": 1264,
+  "missingRows": 5,
+  "sourceGeometry": {
+    "count": 36,
+    "nonzeroComparisonMasks": {
+      "2": 6,
+      "3": 12,
+      "8": 7,
+      "12": 11
+    },
+    "boundaryCounts": {
+      "highBelowOpen": 12,
+      "highBelowClose": 18,
+      "lowAboveOpen": 11,
+      "lowAboveClose": 18,
+      "rangeInverted": 0
+    },
+    "severityBuckets": {
+      "under0_01bp": 0,
+      "from0_01To1bp": 19,
+      "from1To10bp": 16,
+      "atLeast10bp": 1
+    }
+  },
+  "enginePreservesMappedClosedBars": true,
+  "apiMatchesExpectedClosedBars": true,
+  "expectedDatasetHash": "1abcdf5ad53784b6a6c002f93a603921a2e24ff17c3ec8cc3bcb35d6513a0af8",
+  "analysisFailure": null,
+  "state": "COMPARISON_COMPLETE",
+  "exitCode": 0,
+  "proximateOrigin": "SOURCE_RESPONSE",
+  "upstreamBarConstructionCause": "NOT_ESTABLISHED",
+  "historical36RecordIdentity": "NOT_ESTABLISHED",
+  "qualificationChanged": false,
+  "calendarExceptionApplied": false,
+  "executionAuthorized": false,
+  "scopeLimit": "Owner evidence, not a Cloud replay or independent inspection of the private body; no individual records, timestamps or prices included. Matching aggregates do not establish older case identity, source licensing or eligible research setup."
+}

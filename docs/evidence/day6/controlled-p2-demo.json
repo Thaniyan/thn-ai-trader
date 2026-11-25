@@ -1,0 +1,84 @@
+{
+  "scope": "CONTROLLED_SYNTHETIC_DEMO_NOT_SOURCE_MODEL_OR_TICKET_QUALIFICATION",
+  "networkRequests": 0,
+  "priceWrites": 0,
+  "rows": [
+    {
+      "name": "valid_fixture_revision",
+      "state": "COMPARISON_COMPLETE_REQUIRES_SOURCE_REVIEW",
+      "assessment": "PASS",
+      "reason": "DECLARED_SOURCE_REVISION_VALID_NOT_ADMISSION",
+      "cases": 36,
+      "dispositions": {
+        "SOURCE_REVISION_VALID": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "missing_candidate",
+      "state": "BLOCKED",
+      "assessment": "NOT_VERIFIED",
+      "reason": "CANDIDATE_REQUIRED",
+      "cases": 36,
+      "dispositions": {
+        "CANDIDATE_UNAVAILABLE": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "missing_contract",
+      "state": "NO_COMPARISON",
+      "assessment": "NOT_VERIFIED",
+      "reason": "CONTRACT_REQUIRED",
+      "cases": 36,
+      "dispositions": {
+        "CONTRACT_UNAVAILABLE": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "bad_hash",
+      "state": "BLOCKED",
+      "assessment": "NOT_VERIFIED",
+      "reason": "CANDIDATE_HASH_MISMATCH",
+      "cases": 36,
+      "dispositions": {
+        "EVIDENCE_UNVERIFIED": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "pending_rights",
+      "state": "NO_COMPARISON",
+      "assessment": "NOT_VERIFIED",
+      "reason": "RIGHTS_NOT_APPROVED",
+      "cases": 36,
+      "dispositions": {
+        "CONTRACT_UNAVAILABLE": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "different_semantics",
+      "state": "NO_COMPARISON",
+      "assessment": "NOT_VERIFIED",
+      "reason": "BAR_SEMANTICS_MISMATCH",
+      "cases": 36,
+      "dispositions": {
+        "SEMANTICS_INCOMPATIBLE": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    },
+    {
+      "name": "still_invalid",
+      "state": "COMPARISON_FAILED",
+      "assessment": "FAIL",
+      "reason": "UNRESOLVED_CASES_OR_SNAPSHOT_QUALITY",
+      "cases": 36,
+      "dispositions": {
+        "STILL_INVALID": 36
+      },
+      "sourceQualification": "NOT_VERIFIED"
+    }
+  ]
+}

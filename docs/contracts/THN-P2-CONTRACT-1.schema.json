@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "THN P2 contract \u2014 declarations only; not a license or admission approval",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mode",
+    "purpose",
+    "originalSHA256",
+    "candidateSHA256",
+    "original",
+    "candidate",
+    "rights",
+    "revision",
+    "independence",
+    "restrictions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "THN-P2-CONTRACT-1"
+    },
+    "mode": {
+      "enum": [
+        "OWNER_PRIVATE",
+        "CONTROLLED_FIXTURE"
+      ]
+    },
+    "purpose": {
+      "enum": [
+        "SOURCE_REVISION",
+        "INDEPENDENT_REFERENCE"
+      ]
+    },
+    "originalSHA256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "candidateSHA256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "original": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "providerSymbol",
+        "instrument",
+        "product",
+        "base",
+        "quote",
+        "interval",
+        "format",
+        "bar"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        },
+        "providerSymbol": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9=^:.\\-]{1,32}$"
+        },
+        "instrument": {
+          "const": "EURUSD"
+        },
+        "product": {
+          "const": "OTC_FX"
+        },
+        "base": {
+          "const": "EUR"
+        },
+        "quote": {
+          "const": "USD"
+        },
+        "interval": {
+          "const": "1d"
+        },
+        "format": {
+          "enum": [
+            "YAHOO_CHART_1",
+            "THN_P2_BARS_1"
+          ]
+        },
+        "bar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "timezone",
+            "sessionBoundary",
+            "quoteBasis",
+            "adjustment",
+            "timestampConvention",
+            "aggregation",
+            "semanticsEvidenceId"
+          ],
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "sessionBoundary": {
+              "type": "string",
+              "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+            },
+            "quoteBasis": {
+              "enum": [
+                "BID",
+                "ASK",
+                "MID",
+                "TRADE",
+                "INDICATIVE"
+              ]
+            },
+            "adjustment": {
+              "const": "UNADJUSTED"
+            },
+            "timestampConvention": {
+              "const": "BAR_OPEN_UTC"
+            },
+            "aggregation": {
+              "const": "SOURCE_SUPPLIED_1D"
+            },
+            "semanticsEvidenceId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+            }
+          }
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "providerSymbol",
+        "instrument",
+        "product",
+        "base",
+        "quote",
+        "interval",
+        "format",
+        "bar"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        },
+        "providerSymbol": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9=^:.\\-]{1,32}$"
+        },
+        "instrument": {
+          "const": "EURUSD"
+        },
+        "product": {
+          "const": "OTC_FX"
+        },
+        "base": {
+          "const": "EUR"
+        },
+        "quote": {
+          "const": "USD"
+        },
+        "interval": {
+          "const": "1d"
+        },
+        "format": {
+          "enum": [
+            "YAHOO_CHART_1",
+            "THN_P2_BARS_1"
+          ]
+        },
+        "bar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "timezone",
+            "sessionBoundary",
+            "quoteBasis",
+            "adjustment",
+            "timestampConvention",
+            "aggregation",
+            "semanticsEvidenceId"
+          ],
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "sessionBoundary": {
+              "type": "string",
+              "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+            },
+            "quoteBasis": {
+              "enum": [
+                "BID",
+                "ASK",
+                "MID",
+                "TRADE",
+                "INDICATIVE"
+              ]
+            },
+            "adjustment": {
+              "const": "UNADJUSTED"
+            },
+            "timestampConvention": {
+              "const": "BAR_OPEN_UTC"
+            },
+            "aggregation": {
+              "const": "SOURCE_SUPPLIED_1D"
+            },
+            "semanticsEvidenceId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+            }
+          }
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "approvalId",
+        "originalEvidenceId",
+        "candidateEvidenceId",
+        "retentionEvidenceId"
+      ],
+      "properties": {
+        "status": {
+          "const": "APPROVED_PRIVATE_OFFLINE_COMPARE"
+        },
+        "approvalId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        },
+        "originalEvidenceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        },
+        "candidateEvidenceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        },
+        "retentionEvidenceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+        }
+      }
+    },
+    "revision": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "revisionId",
+            "attributionEvidenceId",
+            "originalSHA256"
+          ],
+          "properties": {
+            "kind": {
+              "const": "SOURCE_DECLARED_CORRECTION"
+            },
+            "revisionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+            },
+            "attributionEvidenceId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+            },
+            "originalSHA256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "independence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "lineageEvidenceId"
+          ],
+          "properties": {
+            "status": {
+              "const": "DECLARED_DISTINCT_UPSTREAM"
+            },
+            "lineageEvidenceId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "restrictions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "network",
+        "priceWrites",
+        "providerActivation",
+        "production",
+        "admission",
+        "execution"
+      ],
+      "properties": {
+        "network": {
+          "const": false
+        },
+        "priceWrites": {
+          "const": false
+        },
+        "providerActivation": {
+          "const": false
+        },
+        "production": {
+          "const": false
+        },
+        "admission": {
+          "const": false
+        },
+        "execution": {
+          "const": false
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "OWNER_PRIVATE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "originalSHA256": {
+            "const": "d0b0435ff1b685a250c60d208fda058d44aff8c69bab744f3074dc64b55add0d"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "purpose": {
+            "const": "SOURCE_REVISION"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "revision": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "revisionId",
+              "attributionEvidenceId",
+              "originalSHA256"
+            ],
+            "properties": {
+              "kind": {
+                "const": "SOURCE_DECLARED_CORRECTION"
+              },
+              "revisionId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+              },
+              "attributionEvidenceId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+              },
+              "originalSHA256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "independence": {
+            "type": "null"
+          },
+          "candidate": {
+            "properties": {
+              "format": {
+                "const": "YAHOO_CHART_1"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "revision": {
+            "type": "null"
+          },
+          "independence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "lineageEvidenceId"
+            ],
+            "properties": {
+              "status": {
+                "const": "DECLARED_DISTINCT_UPSTREAM"
+              },
+              "lineageEvidenceId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "baseline": "60b301f5838eca9cdf29598ea7c05cd9274442bc",
+  "files": [
+    {
+      "path": "server/research.js",
+      "unchanged": true,
+      "sha256": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b"
+    },
+    {
+      "path": "server/backtest.js",
+      "unchanged": true,
+      "sha256": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637"
+    },
+    {
+      "path": "server/evaluation.js",
+      "unchanged": true,
+      "sha256": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a"
+    },
+    {
+      "path": "server/decision.js",
+      "unchanged": true,
+      "sha256": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a"
+    },
+    {
+      "path": "server/replay.js",
+      "unchanged": true,
+      "sha256": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90"
+    },
+    {
+      "path": "public/research-chart.js",
+      "unchanged": true,
+      "sha256": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b"
+    },
+    {
+      "path": "public/recommendation-core.js",
+      "unchanged": true,
+      "sha256": "47dd153e1c5bc6aa45425e876ca20e81ce897f8ec025be173e274947a3706aa6"
+    },
+    {
+      "path": "public/command-center-core.js",
+      "unchanged": true,
+      "sha256": "d34da4b53b95ed5346599371db2584a840412298a5bfd5a72e82f4b9f6899f16"
+    },
+    {
+      "path": "public/precision-core.js",
+      "unchanged": true,
+      "sha256": "32a896a65acf3881cf1548d16c199e32364f841c046bbe3716c92e9c132364e1"
+    },
+    {
+      "path": "public/research-ticket-core.js",
+      "unchanged": true,
+      "sha256": "40094ac99ffb2e95ea923e4438d79716748de33c7eca3c411169575f3b038aed"
+    },
+    {
+      "path": "server.js",
+      "unchanged": true,
+      "sha256": "de9c27eaf691de0ad6f61a9c4881954628db932e7d12a5cd80cbbcbe8a9ae0d9"
+    },
+    {
+      "path": "server/riskEngine.js",
+      "unchanged": true,
+      "sha256": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a"
+    },
+    {
+      "path": "server/market-evidence.js",
+      "unchanged": true,
+      "sha256": "7e40f6d72355bdbb1eb5d1372c742e8358002a8f428372d80e2802e5da7fea59"
+    },
+    {
+      "path": "public/decision-core.js",
+      "unchanged": true,
+      "sha256": "426b5447e8fada61aa90b3781c947ae9da7b5db9a72aa3169bc97ef3e2ba71f3"
+    },
+    {
+      "path": "public/intelligence-generation.js",
+      "unchanged": true,
+      "sha256": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae"
+    },
+    {
+      "path": "package.json",
+      "unchanged": true,
+      "sha256": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4"
+    },
+    {
+      "path": "bun.lock",
+      "unchanged": true,
+      "sha256": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "unchanged": true,
+      "sha256": "2a821a59ee897b891dd5ffcea1cb9193c7230b782823dfbc0976f6649e760eec"
+    },
+    {
+      "path": "server/intelligence-local.js",
+      "unchanged": true,
+      "sha256": "469e9d4f4834d4a1726f1db2537909d7aada3e9c027036ac5f42e0708f6fe40d"
+    },
+    {
+      "path": "server/intelligence-request-codec.js",
+      "unchanged": true,
+      "sha256": "8e5855a42e376fa184b26b7e5df11c0e1e6b2344b15b8e5d0f1d8df1ff6a658d"
+    },
+    {
+      "path": "server/intelligence-timing.js",
+      "unchanged": true,
+      "sha256": "f14bb5e9ed97e192459f43fcb07c49f930ea8300fc5baf39e07abf9ac946c8a6"
+    },
+    {
+      "path": "server/intelligence-inference-lifecycle.js",
+      "unchanged": true,
+      "sha256": "9d75ae8f85745edd2f7f6f12cc9d1d1a37e464c62f795a974b164f2b1eaa6299"
+    },
+    {
+      "path": "scripts/pilot-local-ai.mjs",
+      "unchanged": true,
+      "sha256": "5437b60dc8668c3c2d472afd1905cca4b6bbb6a3f5c6f700aea3b7d52816b688"
+    },
+    {
+      "path": "scripts/pilot-supervisor.mjs",
+      "unchanged": true,
+      "sha256": "1fbc11c0c1a9d0ad18067527f356940aca89e67f4c9e29867b91adf6cd21de7d"
+    },
+    {
+      "path": "scripts/pilot-local-ai-worker.mjs",
+      "unchanged": true,
+      "sha256": "179986da2f2a41177b7aa2d90cdefb31224198bf38687d5699bd7a93ecb54ea5"
+    }
+  ]
+}

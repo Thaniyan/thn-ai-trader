@@ -1,0 +1,28 @@
+{
+  "baseline": "893fac045173371996c727efdd1d1afb26d157af",
+  "originalTestFilesByteIdentical": 116,
+  "acceptedCSSByteIdentical": true,
+  "protectedSourceSHA256": {
+    "server/research.js": "a85c5730192eb3b91cc326e2536ee21ec2efd5e8fac544386cf9eb830d25d98b",
+    "server/backtest.js": "c2dc005a9aa3c65eefe9f64f7153ee4be03793d99a501350da52b34e0ea4c637",
+    "server/evaluation.js": "ba7a1ddb8c6a1488cd2c9ec5070de5b2accbb570a7af576b608b1846d026a86a",
+    "server/decision.js": "f8cb4c82cef86b0834a07ae3ac2ad674641a86aa46696fa492be0f7e5be9185a",
+    "server/replay.js": "53b7454973c617bf0b33a3de88499f9f9be12726ca2e59dbd5336c4be8ccfb90",
+    "public/research-chart.js": "f37d4dfdf6dd34bcd0e9db951ef98490c786a9e398a6087939977a27c3b4a78b",
+    "server/riskEngine.js": "1c6591623ae8ea1530f423d7e56169bafdb08e8d10cd2af4ef4a9ab8bd29562a",
+    "server/plan-budget.js": "4053ba086869313135d304c5a03ef4ab0654d1c0da73866c6037a983a6e9b85f",
+    "public/command-center-core.js": "d34da4b53b95ed5346599371db2584a840412298a5bfd5a72e82f4b9f6899f16",
+    "public/recommendation-core.js": "2c985694cf1c55430937c6fbcbabccf4224b792e66218135767d7073109faf66",
+    "public/precision-core.js": "32a896a65acf3881cf1548d16c199e32364f841c046bbe3716c92e9c132364e1",
+    "server/intelligence-provider.js": "3c003ab8ffd6fbc1bebb19d4129fad0bd084b22f37536aa80a95a2fd2ad47e3f",
+    "server/intelligence-timing.js": "f14bb5e9ed97e192459f43fcb07c49f930ea8300fc5baf39e07abf9ac946c8a6",
+    "scripts/pilot-supervisor.mjs": "fb3710182cbecce4d5fa4373344646d312ec69d8ad22d5a61bd17d24aa85f22a",
+    "scripts/pilot-report.mjs": "39ac11640612448c53a37ac05854b45179b903d03ba7cea7ed031882a13096eb",
+    "server/intelligence-local.js": "47fe8e2a703e28927c9b58ddc63caa9d1e7d9b02eccfb028ce4feaf5a9339487",
+    "server/intelligence-inference-lifecycle.js": "4833fef93c39b6927d18dcc7392100bdc22e3965665272f7b92ac5627813a000",
+    "public/intelligence-generation.js": "d0c35dd26898858e44db9db141c14d0b3f13d403df81c0ee60cd0b9de884a8ae",
+    "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+    "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+  },
+  "scope": "Aggregate diagnostic only; exact adapter predicates retained, no source-route, currency, eligibility, numerical, AI or execution policy change."
+}

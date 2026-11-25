@@ -1,0 +1,130 @@
+{
+  "baseline": "685bc89b53816ec7ac79c22ba3d35f4f5349462a",
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.72
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.83
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.37
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 57.94
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.96
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 2.26
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.22
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.89
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.26
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 33.5
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 4.49
+    }
+  ],
+  "browsers": [
+    {
+      "shard": 0,
+      "passed": 26,
+      "suites": [
+        "browser_workstation.py",
+        "browser_research_outage.py",
+        "browser_decision.py",
+        "browser_maturity.py",
+        "browser_intelligence.py",
+        "browser_layout.py",
+        "browser_trust.py",
+        "browser_journal_lifecycle.py",
+        "browser_evolution.py",
+        "browser_experience.py",
+        "browser_recovery.py",
+        "browser_paper_review.py",
+        "browser_broker_workspace.py",
+        "browser_workflow_polish.py",
+        "browser_confidence.py",
+        "browser_research_risk.py",
+        "browser_unified_workspace.py",
+        "browser_responsive_fonts.py",
+        "browser_command_workbench.py",
+        "browser_command_trust.py",
+        "browser_precision.py",
+        "browser_heritage.py",
+        "browser_decision_validation.py",
+        "browser_phase2_interpretation.py",
+        "browser_day5.py",
+        "browser_day8_ticket.py"
+      ]
+    },
+    {
+      "shard": 1,
+      "passed": 25,
+      "suites": [
+        "browser_research.py",
+        "browser_quality.py",
+        "browser_library_reliability.py",
+        "browser_terminal.py",
+        "browser_intelligence_memory.py",
+        "browser_pilot.py",
+        "browser_professional.py",
+        "browser_trading_remediation.py",
+        "browser_consolidation.py",
+        "browser_consistency.py",
+        "browser_assisted_desk.py",
+        "browser_evidence_workflow.py",
+        "browser_visual_refinement.py",
+        "browser_visual_identity.py",
+        "browser_dashboard_confidence.py",
+        "browser_workspace_hierarchy.py",
+        "browser_research_studio.py",
+        "browser_command_center.py",
+        "browser_institutional_desk.py",
+        "browser_command_trust_candidate.py",
+        "browser_day6.py",
+        "browser_readiness.py",
+        "browser_provider_quality.py",
+        "browser_day7_research.py",
+        "browser_cohesive_workspace.py"
+      ]
+    }
+  ],
+  "pinnedChromium": "151.0.7922.34 (Playwright1.62.0 revision1234)",
+  "sourceFrozen": true,
+  "realMarketQualification": false,
+  "realModelRun": false,
+  "financialExecutionEnabled": false
+}

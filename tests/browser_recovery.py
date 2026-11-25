@@ -40,14 +40,15 @@ with sync_playwright() as p:
  s.locator('#proChartTools > summary').click();before=s.evaluate('THNResearch.chart.count');s.locator('#qZoomIn').click();assert s.evaluate('THNResearch.chart.count')<before;s.locator('#qReset').click()
  expected=s.evaluate('THNPresentation.price(THNResearch.series().candles.at(-1).close,THNContext.get().symbol)');expect(s.locator('#proObservedClose')).to_have_text(expected)
  expect(s.locator('.pro-technical-card #proTechnicalEvidence')).to_be_visible();assert s.locator('.pro-technical-card dt').all_text_contents()==['EMA20','RSI14','ATR14']
+ go('dashboard');control(s,'#evoDashboard .evo-desk-metrics strong')
  assert s.locator('#evoDashboard .evo-desk-metrics .evo-metric').count()==3
  assert s.locator('#evoDashboard .evo-desk-metrics strong').nth(0).inner_text()==s.evaluate('String(THNLibrary.records().length)')
- go('markets');s.go_back();expect(s.locator('#proRouteTitle')).to_have_text('Chart' if s.url.endswith('#trading') else 'Trading Command Center')
+ go('trading');go('markets');s.go_back();expect(s.locator('#proRouteTitle')).to_have_text('Chart' if s.url.endswith('#trading') else 'Trading Command Center')
  levels=control(s,'#proSummaryLevels');expect(levels).to_be_visible()
  frame=s.evaluate('THNDecision.brief().frames.find(f=>f.interval===THNContext.get().interval)')
  for value in [frame['support'],frame['resistance']]:assert s.evaluate('(v)=>THNPresentation.price(v,"GBPUSD")',value) in s.locator('#proSummaryLevels').inner_text()
  s.locator('#qInterval').select_option('15m');matched('GBPUSD','15m');assert s.evaluate('THNResearch.chart.context.interval')=='15m'
- s.reload();s.wait_for_function('window.THNEvolution&&THNResearch.series()');expect(s.locator('#view-dashboard #qCandles')).to_be_visible();go('trading');s.locator('#proAnalyzeContext').click();s.wait_for_function('THNEvolution.analysisReady()');go('trading');s.locator('#proSaveIdea').click();expect(s.locator('#proRecords')).to_contain_text('Research idea');assert s.evaluate('THNRecords.select(getJournal()).length')==0
+ go('dashboard');s.reload();s.wait_for_function('window.THNEvolution&&THNResearch.series()');expect(s.locator('#view-dashboard #qCandles')).to_be_visible();go('trading');s.locator('#proAnalyzeContext').click();s.wait_for_function('THNEvolution.analysisReady()');go('trading');s.locator('#proSaveIdea').click();expect(s.locator('#proRecords')).to_contain_text('Research idea');assert s.evaluate('THNRecords.select(getJournal()).length')==0
  go('trading');s.locator('#proTradingViewMode').click();s.wait_for_function('THNTradingViewStatus().iframeLoaded');expect(s.locator('#qCandles')).not_to_be_visible();expect(s.locator('#proDrawingDock')).not_to_be_visible();assert not s.evaluate('THNTradingViewStatus().candleReady');s.locator('#proTVRecovery > summary').click();s.locator('#proTVFallback').click();expect(s.locator('#qCandles')).to_be_visible()
  results['journeys']=['Landing confidence visible; same chart accessible by scrolling','Exact same chart/state across desk and terminal','Focus routing and Escape restoration','Search and timeframe -> matched evidence','Visible toggles, drawing dock and native zoom change the actual chart','Summary equals authoritative frame values','Reload -> real analysis -> research idea (never profit)','Official widget protocol -> honest THN fallback']
  # A real provider failure clears selected values. Do not inject analysis or prices.

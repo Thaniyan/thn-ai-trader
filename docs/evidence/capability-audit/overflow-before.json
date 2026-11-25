@@ -1,0 +1,17 @@
+{
+  "width": 160,
+  "language": "en",
+  "scrollWidth": 188,
+  "disclosureOpen": true,
+  "rationaleOpen": true,
+  "elements": [
+    {
+      "tag": "BDI",
+      "text": "2026-11-19T13:01:59.000Z / 2026-11-19T14:01:59.000Z",
+      "width": 115.140625,
+      "right": 188.140625,
+      "wrap": "normal",
+      "whiteSpace": "normal"
+    }
+  ]
+}

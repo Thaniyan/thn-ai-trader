@@ -1,0 +1,449 @@
+{
+  "schema": "THN-DAY6-LOCAL-VERIFICATION-1",
+  "date": "2026-11-22",
+  "timezone": "Asia/Muscat",
+  "baseCommit": "1ef63e58f9b0a53a8cb90eef96a45a502a803138",
+  "scope": "OFFLINE_IMPLEMENTATION_AND_FIXTURE_REGRESSION_NOT_REAL_SOURCE_MODEL_OR_TICKET_QUALIFICATION",
+  "tools": {
+    "node": "24.19.0",
+    "bun": "1.4.3",
+    "playwright": "1.62.0",
+    "browser": "Google Chrome for Testing 151.0.7922.34",
+    "playwrightBrowserRevision": 1234,
+    "axe": "4.10.3"
+  },
+  "tests": {
+    "core": 508,
+    "newP2": 18,
+    "newOfflineAIPreparation": 8,
+    "security": 21,
+    "system": 10,
+    "browserSuites": 48,
+    "failed": 0,
+    "skipped": 0
+  },
+  "nonBrowserGates": [
+    {
+      "gate": "new-script-syntax",
+      "exit": 0,
+      "seconds": 0.07
+    },
+    {
+      "gate": "new-script-syntax",
+      "exit": 0,
+      "seconds": 0.05
+    },
+    {
+      "gate": "new-script-syntax",
+      "exit": 0,
+      "seconds": 0.03
+    },
+    {
+      "gate": "new-script-syntax",
+      "exit": 0,
+      "seconds": 0.04
+    },
+    {
+      "gate": "new-script-syntax",
+      "exit": 0,
+      "seconds": 0.05
+    },
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 3.87
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 3.77
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 33.56
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.62
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 2.26
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.32
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.92
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.27,
+      "toolEnvironment": "Pinned Bun1.4.3 PATH restored; initial missing-tool attempt retained in original log"
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 44.53,
+      "toolEnvironment": "Pinned Bun1.4.3 PATH restored; initial missing-tool attempt retained in original log"
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 6.27,
+      "toolEnvironment": "Pinned Bun1.4.3 PATH restored; initial missing-tool attempt retained in original log"
+    }
+  ],
+  "browser": {
+    "shards": {
+      "results": [
+        {
+          "shard": 0,
+          "exit": 0
+        },
+        {
+          "shard": 1,
+          "exit": 0
+        }
+      ],
+      "seconds": 1434.09
+    },
+    "suites": [
+      {
+        "suite": "workstation.py\ntests/browser_workstation",
+        "result": "PASS",
+        "seconds": 37.75,
+        "shard": 0
+      },
+      {
+        "suite": "research_outage.py\ntests/browser_research_outage",
+        "result": "PASS",
+        "seconds": 4.76,
+        "shard": 0
+      },
+      {
+        "suite": "decision.py\ntests/browser_decision",
+        "result": "PASS",
+        "seconds": 50.72,
+        "shard": 0
+      },
+      {
+        "suite": "maturity.py\ntests/browser_maturity",
+        "result": "PASS",
+        "seconds": 77.66,
+        "shard": 0
+      },
+      {
+        "suite": "intelligence.py\ntests/browser_intelligence",
+        "result": "PASS",
+        "seconds": 34.99,
+        "shard": 0
+      },
+      {
+        "suite": "layout.py\ntests/browser_layout",
+        "result": "PASS",
+        "seconds": 56.24,
+        "shard": 0
+      },
+      {
+        "suite": "trust.py\ntests/browser_trust",
+        "result": "PASS",
+        "seconds": 55.87,
+        "shard": 0
+      },
+      {
+        "suite": "journal_lifecycle.py\ntests/browser_journal_lifecycle",
+        "result": "PASS",
+        "seconds": 75.69,
+        "shard": 0
+      },
+      {
+        "suite": "evolution.py\ntests/browser_evolution",
+        "result": "PASS",
+        "seconds": 89.6,
+        "shard": 0
+      },
+      {
+        "suite": "experience.py\ntests/browser_experience",
+        "result": "PASS",
+        "seconds": 85.51,
+        "shard": 0
+      },
+      {
+        "suite": "recovery.py\ntests/browser_recovery",
+        "result": "PASS",
+        "seconds": 163.87,
+        "shard": 0
+      },
+      {
+        "suite": "paper_review.py\ntests/browser_paper_review",
+        "result": "PASS",
+        "seconds": 8.05,
+        "shard": 0
+      },
+      {
+        "suite": "broker_workspace.py\ntests/browser_broker_workspace",
+        "result": "PASS",
+        "seconds": 31.88,
+        "shard": 0
+      },
+      {
+        "suite": "workflow_polish.py\ntests/browser_workflow_polish",
+        "result": "PASS",
+        "seconds": 82.03,
+        "shard": 0
+      },
+      {
+        "suite": "confidence.py\ntests/browser_confidence",
+        "result": "PASS",
+        "seconds": 63.03,
+        "shard": 0
+      },
+      {
+        "suite": "research_risk.py\ntests/browser_research_risk",
+        "result": "PASS",
+        "seconds": 55.23,
+        "shard": 0
+      },
+      {
+        "suite": "unified_workspace.py\ntests/browser_unified_workspace",
+        "result": "PASS",
+        "seconds": 111.07,
+        "shard": 0
+      },
+      {
+        "suite": "responsive_fonts.py\ntests/browser_responsive_fonts",
+        "result": "PASS",
+        "seconds": 46.74,
+        "shard": 0
+      },
+      {
+        "suite": "command_workbench.py\ntests/browser_command_workbench",
+        "result": "PASS",
+        "seconds": 39.84,
+        "shard": 0
+      },
+      {
+        "suite": "command_trust.py\ntests/browser_command_trust",
+        "result": "PASS",
+        "seconds": 34.5,
+        "shard": 0
+      },
+      {
+        "suite": "precision.py\ntests/browser_precision",
+        "result": "PASS",
+        "seconds": 35.34,
+        "shard": 0
+      },
+      {
+        "suite": "heritage.py\ntests/browser_heritage",
+        "result": "PASS",
+        "seconds": 32.24,
+        "shard": 0
+      },
+      {
+        "suite": "decision_validation.py\ntests/browser_decision_validation",
+        "result": "PASS",
+        "seconds": 32.25,
+        "shard": 0
+      },
+      {
+        "suite": "phase2_interpretation.py\ntests/browser_phase2_interpretation",
+        "result": "PASS",
+        "seconds": 38.7,
+        "shard": 0
+      },
+      {
+        "suite": "day5.py\ntests/browser_day5",
+        "result": "PASS",
+        "seconds": 90.08,
+        "shard": 0
+      },
+      {
+        "suite": "research.py\ntests/browser_research",
+        "result": "PASS",
+        "seconds": 41.48,
+        "shard": 1
+      },
+      {
+        "suite": "quality.py\ntests/browser_quality",
+        "result": "PASS",
+        "seconds": 45.32,
+        "shard": 1
+      },
+      {
+        "suite": "library_reliability.py\ntests/browser_library_reliability",
+        "result": "PASS",
+        "seconds": 4.67,
+        "shard": 1
+      },
+      {
+        "suite": "terminal.py\ntests/browser_terminal",
+        "result": "PASS",
+        "seconds": 149.12,
+        "shard": 1
+      },
+      {
+        "suite": "intelligence_memory.py\ntests/browser_intelligence_memory",
+        "result": "PASS",
+        "seconds": 5.77,
+        "shard": 1
+      },
+      {
+        "suite": "pilot.py\ntests/browser_pilot",
+        "result": "PASS",
+        "seconds": 26.21,
+        "shard": 1
+      },
+      {
+        "suite": "professional.py\ntests/browser_professional",
+        "result": "PASS",
+        "seconds": 198.1,
+        "shard": 1
+      },
+      {
+        "suite": "trading_remediation.py\ntests/browser_trading_remediation",
+        "result": "PASS",
+        "seconds": 77.04,
+        "shard": 1
+      },
+      {
+        "suite": "consolidation.py\ntests/browser_consolidation",
+        "result": "PASS",
+        "seconds": 33.19,
+        "shard": 1
+      },
+      {
+        "suite": "consistency.py\ntests/browser_consistency",
+        "result": "PASS",
+        "seconds": 40.09,
+        "shard": 1
+      },
+      {
+        "suite": "assisted_desk.py\ntests/browser_assisted_desk",
+        "result": "PASS",
+        "seconds": 14.83,
+        "shard": 1
+      },
+      {
+        "suite": "evidence_workflow.py\ntests/browser_evidence_workflow",
+        "result": "PASS",
+        "seconds": 63.74,
+        "shard": 1
+      },
+      {
+        "suite": "visual_refinement.py\ntests/browser_visual_refinement",
+        "result": "PASS",
+        "seconds": 22.28,
+        "shard": 1
+      },
+      {
+        "suite": "visual_identity.py\ntests/browser_visual_identity",
+        "result": "PASS",
+        "seconds": 89.46,
+        "shard": 1
+      },
+      {
+        "suite": "dashboard_confidence.py\ntests/browser_dashboard_confidence",
+        "result": "PASS",
+        "seconds": 26.76,
+        "shard": 1
+      },
+      {
+        "suite": "workspace_hierarchy.py\ntests/browser_workspace_hierarchy",
+        "result": "PASS",
+        "seconds": 68.41,
+        "shard": 1
+      },
+      {
+        "suite": "research_studio.py\ntests/browser_research_studio",
+        "result": "PASS",
+        "seconds": 78.04,
+        "shard": 1
+      },
+      {
+        "suite": "command_center.py\ntests/browser_command_center",
+        "result": "PASS",
+        "seconds": 38.83,
+        "shard": 1
+      },
+      {
+        "suite": "institutional_desk.py\ntests/browser_institutional_desk",
+        "result": "PASS",
+        "seconds": 50.13,
+        "shard": 1
+      },
+      {
+        "suite": "command_trust_candidate.py\ntests/browser_command_trust_candidate",
+        "result": "PASS",
+        "seconds": 9.91,
+        "shard": 1
+      },
+      {
+        "suite": "day6.py\ntests/browser_day6",
+        "result": "PASS",
+        "seconds": 103.55,
+        "shard": 1
+      },
+      {
+        "suite": "readiness.py\ntests/browser_readiness",
+        "result": "PASS",
+        "seconds": 58.56,
+        "shard": 1
+      },
+      {
+        "suite": "provider_quality.py\ntests/browser_provider_quality",
+        "result": "PASS",
+        "seconds": 62.29,
+        "shard": 1
+      }
+    ]
+  },
+  "frozenDependencies": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    }
+  },
+  "candidateFileSHA256": {
+    "docs/DAY6-10-ACCEPTANCE.md": "69573fd7f6828c101d1cc8671c2c6700ec64dec0484c308ec1eacf6aea06ee65",
+    "docs/DAY6-P2-COMPARATOR.md": "a9de25a3cd8a31897978f452f428b746492918a1c7053ddffc44b812ca4d9db9",
+    "docs/LOCAL-AI-DAY6-PREPARATION.md": "60ad2c920e498327b40b0d5d15d5fea28cd6d692810cdc29085a517d278afca6",
+    "docs/contracts/P2-CONTRACT-PENDING.example.json": "d0e5fd4fd5b4d76e0af91c8cb9277d424a35b6691f532d2892794974e0f6f1d7",
+    "docs/contracts/THN-P2-CONTRACT-1.schema.json": "8dc8d6112bf7cb4c5d4999078116a8df2891d61c8dd8426648ebf1c0f9112b13",
+    "docs/evidence/day6/actual-missing-input.json": "40a04a2a667319ee293bdee7683c26c25df34af6ddc37f9fe6329d8f0ea7dc15",
+    "docs/evidence/day6/controlled-ai-preparation.json": "6f7c6ce1ea606dd82a0c3a724bd85fa3179cdc73126d45fc2c6fdeb0a188908b",
+    "docs/evidence/day6/controlled-p2-demo.json": "075b31bed0c62280f69fa0571a53b7c8bb8452acec74a5cee6f20e944fa5a35a",
+    "docs/evidence/day6/preservation.json": "7bd0e4205c878654693ab5cde089f1d2e3b74715afa389aa50214c94edd91e28",
+    "scripts/compare-source-cases.mjs": "0e772a4852fb6472a454339efe43997f68119b00ecfc3a47ca9b851a00fd0449",
+    "scripts/p2-private-files.mjs": "5e6348eac20ecad6e5513d6b18b765a80dda517c183bce02e5287a633fd0c47f",
+    "scripts/p2-source-cases.mjs": "bf57d66c96662c7d4010cca875c710bafbf79d3e81cdf718f87621799bcd5665",
+    "scripts/p2-source-demo.mjs": "5971946cd3b42cadd08b9355d4c46af1e9e794b312e98be22648f633aa211d81",
+    "scripts/prepare-local-ai.mjs": "c1cc868ecdbdd5b0faec67b2e261c1fa27fd2cdc5c34b00b62656b706d846ad0",
+    "tests/local-ai-preparation.test.mjs": "84534115346c44fa73e19159173a89700b0e779d9a7011858861a5c9b0f8fb78",
+    "tests/p2-source-cases.test.mjs": "52329e3af30f955d287e0225af9b1a1a3884a77ff2c675aceda52563517b51bf",
+    "AGENTS.md": "2286cc06b654d97f2a7cc04745821a631c731c33ce57fa0df2aab1c419f34061"
+  },
+  "financialEngines": "UNCHANGED",
+  "applicationAndOriginalTests": "UNCHANGED",
+  "realSourceQualification": "NOT_VERIFIED",
+  "actualModelQualification": "NOT_VERIFIED",
+  "realHypotheticalTicket": "NOT_VERIFIED",
+  "lastOwnerModelResult": "NO_GO_TIMEOUT_12003MS_NO_RESPONSE",
+  "inferenceOrModelActivationPerformed": false,
+  "sourceOrEligibilityChange": false,
+  "toolingNote": "A repeated dependency gate lacked Bun on PATH; diagnosed missing executable and reran unchanged gate with pinned Bun1.4.3. Initial audit also passed. No dependency or test changes."
+}

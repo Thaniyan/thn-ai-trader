@@ -1,0 +1,16 @@
+[
+  {
+    "host": "query1.finance.yahoo.com",
+    "curlExit": 56,
+    "httpStatus": "000",
+    "connectProxy403": true,
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  },
+  {
+    "host": "query2.finance.yahoo.com",
+    "curlExit": 56,
+    "httpStatus": "000",
+    "connectProxy403": true,
+    "error": "curl: (56) CONNECT tunnel failed, response 403"
+  }
+]

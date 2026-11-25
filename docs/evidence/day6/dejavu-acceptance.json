@@ -1,0 +1,4616 @@
+{
+  "scope": "OFFLINE synthetic histories; controlled directional/confirmation admission. Original engine prices and authoritative risk results. UI verification only, not a real provider-qualified setup.",
+  "profiles": [
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1598.375,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1808.375,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1299.015625,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1509.015625,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 191,
+          "y": 366.734375,
+          "width": 858,
+          "height": 896.640625,
+          "top": 366.734375,
+          "right": 1049,
+          "bottom": 1263.375,
+          "left": 191
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1598.375,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1808.375,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1299.015625,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1509.015625,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 191,
+          "y": 366.734375,
+          "width": 858,
+          "height": 896.640625,
+          "top": 366.734375,
+          "right": 1049,
+          "bottom": 1263.375,
+          "left": 191
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1581.875,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1791.875,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1260.859375,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1470.859375,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 391,
+          "y": 366.734375,
+          "width": 858,
+          "height": 874.984375,
+          "top": 366.734375,
+          "right": 1249,
+          "bottom": 1241.71875,
+          "left": 391
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1581.875,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1791.875,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1260.859375,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1470.859375,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 391,
+          "y": 366.734375,
+          "width": 858,
+          "height": 874.984375,
+          "top": 366.734375,
+          "right": 1249,
+          "bottom": 1241.71875,
+          "left": 391
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1711.40625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1941.40625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 96,
+          "y": 527.734375,
+          "width": 560,
+          "height": 560,
+          "top": 527.734375,
+          "right": 656,
+          "bottom": 1087.734375,
+          "left": 96
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1327.015625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1557.015625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 95,
+          "y": 436.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 436.734375,
+          "right": 657,
+          "bottom": 1333.375,
+          "left": 95
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1711.40625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1941.40625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 96,
+          "y": 527.734375,
+          "width": 560,
+          "height": 560,
+          "top": 527.734375,
+          "right": 656,
+          "bottom": 1087.734375,
+          "left": 96
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1327.015625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1557.015625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 95,
+          "y": 436.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 436.734375,
+          "right": 657,
+          "bottom": 1333.375,
+          "left": 95
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1627.40625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1857.40625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 519.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 519.015625,
+          "right": 336,
+          "bottom": 986.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1277.015625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1507.015625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 367,
+          "y": 386.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 386.734375,
+          "right": 929,
+          "bottom": 1283.375,
+          "left": 367
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 519.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 519.015625,
+          "right": 336,
+          "bottom": 986.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1627.40625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1857.40625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 519.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 519.015625,
+          "right": 336,
+          "bottom": 986.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1277.015625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1507.015625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 367,
+          "y": 386.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 386.734375,
+          "right": 929,
+          "bottom": 1283.375,
+          "left": 367
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 519.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 519.015625,
+          "right": 336,
+          "bottom": 986.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 2189.21875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2716.046875,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 713.421875,
+          "width": 338,
+          "height": 330,
+          "top": 713.421875,
+          "right": 364,
+          "bottom": 1043.421875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1200.421875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1200.421875,
+          "right": 357,
+          "bottom": 1855.21875,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 1871.296875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2398.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 702.421875,
+          "width": 340,
+          "height": 808.265625,
+          "top": 702.421875,
+          "right": 365,
+          "bottom": 1510.6875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1537.6875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1537.6875,
+          "right": 357,
+          "bottom": 2192.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 2189.21875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2716.046875,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 713.421875,
+          "width": 338,
+          "height": 330,
+          "top": 713.421875,
+          "right": 364,
+          "bottom": 1043.421875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1200.421875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1200.421875,
+          "right": 357,
+          "bottom": 1855.21875,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.078733",
+        "SL": "1.075192",
+        "T1": "1.084398",
+        "T2": "1.08723",
+        "T3": "1.089355"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 1871.296875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2398.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 702.421875,
+          "width": 340,
+          "height": 808.265625,
+          "top": 702.421875,
+          "right": 365,
+          "bottom": 1510.6875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1537.6875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1537.6875,
+          "right": 357,
+          "bottom": 2192.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 2154.03125,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2661.359375,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 693.921875,
+          "width": 338,
+          "height": 330,
+          "top": 693.921875,
+          "right": 364,
+          "bottom": 1023.921875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1180.921875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1180.921875,
+          "right": 357,
+          "bottom": 1816.53125,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 1808.796875,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2316.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 682.921875,
+          "width": 340,
+          "height": 764.953125,
+          "top": 682.921875,
+          "right": 365,
+          "bottom": 1447.875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1474.875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1474.875,
+          "right": 357,
+          "bottom": 2110.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 2154.03125,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2661.359375,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 693.921875,
+          "width": 338,
+          "height": 330,
+          "top": 693.921875,
+          "right": 364,
+          "bottom": 1023.921875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1180.921875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1180.921875,
+          "right": 357,
+          "bottom": 1816.53125,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "BUY",
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "GBPUSD",
+        "interval": "1h",
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "barTime": 1795066165000,
+        "side": "BUY",
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0660\u0667\u0668\u0667\u0663\u0663",
+        "SL": "\u0661\u066b\u0660\u0667\u0665\u0661\u0669\u0662",
+        "T1": "\u0661\u066b\u0660\u0668\u0664\u0663\u0669\u0668",
+        "T2": "\u0661\u066b\u0660\u0668\u0667\u0662\u0663",
+        "T3": "\u0661\u066b\u0660\u0668\u0669\u0663\u0665\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nBUY",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 1808.796875,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2316.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 682.921875,
+          "width": 340,
+          "height": 764.953125,
+          "top": 682.921875,
+          "right": 365,
+          "bottom": 1447.875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1474.875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1474.875,
+          "right": 357,
+          "bottom": 2110.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1598.375,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1808.375,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1299.015625,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1509.015625,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 191,
+          "y": 366.734375,
+          "width": 858,
+          "height": 896.640625,
+          "top": 366.734375,
+          "right": 1049,
+          "bottom": 1263.375,
+          "left": 191
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1598.375,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1808.375,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 192,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1048,
+          "bottom": 1017.734375,
+          "left": 192
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 176,
+          "y": 210,
+          "width": 888,
+          "height": 1299.015625,
+          "top": 210,
+          "right": 1064,
+          "bottom": 1509.015625,
+          "left": 176
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 191,
+          "y": 366.734375,
+          "width": 858,
+          "height": 896.640625,
+          "top": 366.734375,
+          "right": 1049,
+          "bottom": 1263.375,
+          "left": 191
+        },
+        "commandSetup": {
+          "x": 1084,
+          "y": 499.015625,
+          "width": 340,
+          "height": 487.09375,
+          "top": 499.015625,
+          "right": 1424,
+          "bottom": 986.109375,
+          "left": 1084
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1581.875,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1791.875,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1260.859375,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1470.859375,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 391,
+          "y": 366.734375,
+          "width": 858,
+          "height": 874.984375,
+          "top": 366.734375,
+          "right": 1249,
+          "bottom": 1241.71875,
+          "left": 391
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1581.875,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1791.875,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 392,
+          "y": 457.734375,
+          "width": 856,
+          "height": 560,
+          "top": 457.734375,
+          "right": 1248,
+          "bottom": 1017.734375,
+          "left": 392
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 376,
+          "y": 210,
+          "width": 888,
+          "height": 1260.859375,
+          "top": 210,
+          "right": 1264,
+          "bottom": 1470.859375,
+          "left": 376
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 391,
+          "y": 366.734375,
+          "width": 858,
+          "height": 874.984375,
+          "top": 366.734375,
+          "right": 1249,
+          "bottom": 1241.71875,
+          "left": 391
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 464.015625,
+          "width": 340,
+          "height": 467.5,
+          "top": 464.015625,
+          "right": 356,
+          "bottom": 931.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1711.40625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1941.40625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 96,
+          "y": 527.734375,
+          "width": 560,
+          "height": 560,
+          "top": 527.734375,
+          "right": 656,
+          "bottom": 1087.734375,
+          "left": 96
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1327.015625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1557.015625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 95,
+          "y": 436.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 436.734375,
+          "right": 657,
+          "bottom": 1333.375,
+          "left": 95
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1711.40625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1941.40625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 96,
+          "y": 527.734375,
+          "width": 560,
+          "height": 560,
+          "top": 527.734375,
+          "right": 656,
+          "bottom": 1087.734375,
+          "left": 96
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 80,
+          "y": 230,
+          "width": 592,
+          "height": 1327.015625,
+          "top": 230,
+          "right": 672,
+          "bottom": 1557.015625,
+          "left": 80
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 95,
+          "y": 436.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 436.734375,
+          "right": 657,
+          "bottom": 1333.375,
+          "left": 95
+        },
+        "commandSetup": {
+          "x": 688,
+          "y": 519.015625,
+          "width": 320,
+          "height": 503.59375,
+          "top": 519.015625,
+          "right": 1008,
+          "bottom": 1022.609375,
+          "left": 688
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1627.40625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1857.40625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 484.015625,
+          "right": 336,
+          "bottom": 951.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1277.015625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1507.015625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 367,
+          "y": 386.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 386.734375,
+          "right": 929,
+          "bottom": 1283.375,
+          "left": 367
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 484.015625,
+          "right": 336,
+          "bottom": 951.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1627.40625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1857.40625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 368,
+          "y": 477.734375,
+          "width": 560,
+          "height": 560,
+          "top": 477.734375,
+          "right": 928,
+          "bottom": 1037.734375,
+          "left": 368
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 484.015625,
+          "right": 336,
+          "bottom": 951.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 1024,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 352,
+          "y": 230,
+          "width": 592,
+          "height": 1277.015625,
+          "top": 230,
+          "right": 944,
+          "bottom": 1507.015625,
+          "left": 352
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 367,
+          "y": 386.734375,
+          "width": 562,
+          "height": 896.640625,
+          "top": 386.734375,
+          "right": 929,
+          "bottom": 1283.375,
+          "left": 367
+        },
+        "commandSetup": {
+          "x": 16,
+          "y": 484.015625,
+          "width": 320,
+          "height": 467.5,
+          "top": 484.015625,
+          "right": 336,
+          "bottom": 951.515625,
+          "left": 16
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 2189.21875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2716.046875,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 713.421875,
+          "width": 338,
+          "height": 330,
+          "top": 713.421875,
+          "right": 364,
+          "bottom": 1043.421875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1200.421875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1200.421875,
+          "right": 357,
+          "bottom": 1855.21875,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 1871.296875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2398.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 702.421875,
+          "width": 340,
+          "height": 808.265625,
+          "top": 702.421875,
+          "right": 365,
+          "bottom": 1510.6875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1537.6875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1537.6875,
+          "right": 357,
+          "bottom": 2192.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 2189.21875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2716.046875,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 713.421875,
+          "width": 338,
+          "height": 330,
+          "top": 713.421875,
+          "right": 364,
+          "bottom": 1043.421875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1200.421875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1200.421875,
+          "right": 357,
+          "bottom": 1855.21875,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "1.121267",
+        "SL": "1.124808",
+        "T1": "1.115602",
+        "T2": "1.11277",
+        "T3": "1.110645"
+      },
+      "ticketLabel": "TRADE TICKET \u00b7 HYPOTHETICAL\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 526.828125,
+          "width": 358,
+          "height": 1871.296875,
+          "top": 526.828125,
+          "right": 374,
+          "bottom": 2398.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 702.421875,
+          "width": 340,
+          "height": 808.265625,
+          "top": 702.421875,
+          "right": 365,
+          "bottom": 1510.6875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1537.6875,
+          "width": 324,
+          "height": 654.796875,
+          "top": 1537.6875,
+          "right": 357,
+          "bottom": 2192.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 2154.03125,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2661.359375,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 693.921875,
+          "width": 338,
+          "height": 330,
+          "top": 693.921875,
+          "right": 364,
+          "bottom": 1023.921875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1180.921875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1180.921875,
+          "right": 357,
+          "bottom": 1816.53125,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 1808.796875,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2316.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 682.921875,
+          "width": 340,
+          "height": 764.953125,
+          "top": 682.921875,
+          "right": 365,
+          "bottom": 1447.875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1474.875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1474.875,
+          "right": 357,
+          "bottom": 2110.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "research",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 2154.03125,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2661.359375,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 26,
+          "y": 693.921875,
+          "width": 338,
+          "height": 330,
+          "top": 693.921875,
+          "right": 364,
+          "bottom": 1023.921875,
+          "left": 26
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1180.921875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1180.921875,
+          "right": 357,
+          "bottom": 1816.53125,
+          "left": 33
+        },
+        "chart": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "side": "SELL",
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "mode": "manual",
+      "candidate": {
+        "source": "rule_based_evidence",
+        "policy": "retained-engine-levels-1",
+        "symbol": "EURUSD",
+        "interval": "1h",
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "barTime": 1795066165000,
+        "side": "SELL",
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "executionAuthorized": false,
+        "entryQuoteVerified": false,
+        "capital": null,
+        "lots": null
+      },
+      "display": {
+        "E": "\u0661\u066b\u0661\u0662\u0661\u0662\u0666\u0667",
+        "SL": "\u0661\u066b\u0661\u0662\u0664\u0668\u0660\u0668",
+        "T1": "\u0661\u066b\u0661\u0661\u0665\u0666\u0660\u0662",
+        "T2": "\u0661\u066b\u0661\u0661\u0662\u0667\u0667",
+        "T3": "\u0661\u066b\u0661\u0661\u0660\u0666\u0664\u0665"
+      },
+      "ticketLabel": "\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u00b7 \u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629\nSELL",
+      "boxes": {
+        "commandChartHost": {
+          "x": 16,
+          "y": 507.328125,
+          "width": 358,
+          "height": 1808.796875,
+          "top": 507.328125,
+          "right": 374,
+          "bottom": 2316.125,
+          "left": 16
+        },
+        "qCandles": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "chart": {
+          "x": 25,
+          "y": 682.921875,
+          "width": 340,
+          "height": 764.953125,
+          "top": 682.921875,
+          "right": 365,
+          "bottom": 1447.875,
+          "left": 25
+        },
+        "commandSetup": {
+          "x": 33,
+          "y": 1474.875,
+          "width": 324,
+          "height": 635.609375,
+          "top": 1474.875,
+          "right": 357,
+          "bottom": 2110.484375,
+          "left": 33
+        }
+      },
+      "riskValidated": true,
+      "renderedPriceFonts": [
+        {
+          "familyName": "DejaVu Sans",
+          "postScriptName": "DejaVuSans-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    }
+  ],
+  "negativeCases": [
+    {
+      "case": "wait",
+      "result": "PASS",
+      "requiredBlocker": "neutral_consensus",
+      "warnings": [
+        "neutral_consensus",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "stale-series",
+      "result": "PASS",
+      "requiredBlocker": "history_stale",
+      "warnings": [
+        "history_stale",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "stale-frame",
+      "result": "PASS",
+      "requiredBlocker": "incomplete_frames",
+      "warnings": [
+        "incomplete_frames",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "missing-frame",
+      "result": "PASS",
+      "requiredBlocker": "incomplete_frames",
+      "warnings": [
+        "incomplete_frames",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "conflicting-frame",
+      "result": "PASS",
+      "requiredBlocker": "conflicting_frames",
+      "warnings": [
+        "conflicting_frames",
+        "signal_disagreement",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "proxy",
+      "result": "PASS",
+      "requiredBlocker": "proxy_context",
+      "warnings": [
+        "proxy_context",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "currency",
+      "result": "PASS",
+      "requiredBlocker": "currency_mismatch",
+      "warnings": [
+        "source_identity_unverified",
+        "risk_review_required",
+        "currency_mismatch"
+      ]
+    },
+    {
+      "case": "provider",
+      "result": "PASS",
+      "requiredBlocker": "source_identity_unverified",
+      "warnings": [
+        "source_identity_unverified",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "missing-contract",
+      "result": "PASS",
+      "requiredBlocker": "contract_unavailable",
+      "warnings": [
+        "risk_review_required",
+        "contract_unavailable"
+      ]
+    },
+    {
+      "case": "invalid-contract",
+      "result": "PASS",
+      "requiredBlocker": "contract_unavailable",
+      "warnings": [
+        "risk_review_required",
+        "contract_unavailable"
+      ]
+    },
+    {
+      "case": "contract-mapping",
+      "result": "PASS",
+      "requiredBlocker": "source_identity_unverified",
+      "warnings": [
+        "source_identity_unverified",
+        "proxy_context",
+        "risk_review_required"
+      ]
+    },
+    {
+      "case": "missing-levels",
+      "result": "PASS",
+      "requiredBlocker": "invalid_recorded_levels",
+      "warnings": [
+        "risk_review_required",
+        "invalid_recorded_levels"
+      ]
+    },
+    {
+      "case": "geometry",
+      "result": "PASS",
+      "requiredBlocker": "invalid_recorded_levels",
+      "warnings": [
+        "risk_review_required",
+        "invalid_recorded_levels"
+      ]
+    },
+    {
+      "case": "contradictory",
+      "result": "PASS",
+      "requiredBlocker": "signal_disagreement",
+      "warnings": [
+        "signal_disagreement",
+        "risk_review_required"
+      ]
+    }
+  ],
+  "errors": [],
+  "engineReferences": {
+    "BUY": {
+      "symbol": "GBPUSD",
+      "originalDecision": "BUY LIMIT",
+      "originalConsensus": "NEUTRAL",
+      "engine": "legacy-window-14",
+      "raw": {
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ]
+      },
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "GBPUSD=X",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 600,
+        "firstTime": 1792909765000,
+        "lastTime": 1795066165000,
+        "providerTime": 1795069765000,
+        "status": "recent",
+        "discardedRows": 0,
+        "gapCount": 0,
+        "hash": "49bbfc54b73c5aaf6193a9ec15e82342a1aaa3dfd71ba0bd894ee91948398027",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": true,
+        "asOf": 1795069768870,
+        "observedAt": 1795069765000,
+        "availableAt": 1795069765000,
+        "timestampConvention": "bar-open; available after interval close",
+        "excludedUnclosedBars": 0
+      },
+      "controlledAdmission": true,
+      "riskPlan": {
+        "version": "6.4.0",
+        "symbol": "GBPUSD",
+        "side": "BUY",
+        "capital": 10000,
+        "riskPct": 1,
+        "entry": 1.078733,
+        "stop": 1.075192,
+        "targets": [
+          1.084398,
+          1.08723,
+          1.089355
+        ],
+        "leverage": 100,
+        "spreadBps": 0,
+        "slippageBps": 0,
+        "commissionBps": 0,
+        "lots": 0.28,
+        "contractSize": 100000,
+        "budget": 100,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 30204.52,
+          "requiredMargin": 302.05,
+          "slDistance": 0.00354,
+          "slDollars": 99.15,
+          "tpDistance": 0.00567,
+          "tpDollars": 158.62,
+          "rrRatio": 1.6
+        },
+        "estimatedRoundTripCosts": 0,
+        "plannedStopLossWithCosts": 99.15,
+        "targetOutcomes": [
+          {
+            "price": 1.084398,
+            "reward": 158.62000000000089,
+            "rewardRisk": 1.5997982854261308
+          },
+          {
+            "price": 1.08723,
+            "reward": 237.91599999999937,
+            "rewardRisk": 2.399556227937462
+          },
+          {
+            "price": 1.089355,
+            "reward": 297.41600000000375,
+            "rewardRisk": 2.9996570852244453
+          }
+        ],
+        "warnings": [
+          "hypothetical_capital",
+          "stop_not_guaranteed",
+          "no_funding_or_borrow",
+          "contract_terms_unverified"
+        ],
+        "inputValid": true,
+        "sizingMode": "nominal",
+        "budgetCompliant": true,
+        "executionAuthorized": false
+      }
+    },
+    "SELL": {
+      "symbol": "EURUSD",
+      "originalDecision": "SELL LIMIT",
+      "originalConsensus": "NEUTRAL",
+      "engine": "legacy-window-14",
+      "raw": {
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ]
+      },
+      "provenance": {
+        "source": "Yahoo Finance chart data",
+        "providerSymbol": "EURUSD=X",
+        "interval": "1h",
+        "requestedInterval": "1h",
+        "currency": "USD",
+        "count": 600,
+        "firstTime": 1792909765000,
+        "lastTime": 1795066165000,
+        "providerTime": 1795069765000,
+        "status": "recent",
+        "discardedRows": 0,
+        "gapCount": 0,
+        "hash": "715296dbb07a058de0960500a0a97a9cfc82bd395ece667e65c2dd3dc90d98ba",
+        "closedBarsOnly": true,
+        "observation": "Provider OHLCV observations",
+        "volumeAvailable": true,
+        "asOf": 1795069799761,
+        "observedAt": 1795069765000,
+        "availableAt": 1795069765000,
+        "timestampConvention": "bar-open; available after interval close",
+        "excludedUnclosedBars": 0
+      },
+      "controlledAdmission": true,
+      "riskPlan": {
+        "version": "6.4.0",
+        "symbol": "EURUSD",
+        "side": "SELL",
+        "capital": 10000,
+        "riskPct": 1,
+        "entry": 1.121267,
+        "stop": 1.124808,
+        "targets": [
+          1.115602,
+          1.11277,
+          1.110645
+        ],
+        "leverage": 100,
+        "spreadBps": 0,
+        "slippageBps": 0,
+        "commissionBps": 0,
+        "lots": 0.28,
+        "contractSize": 100000,
+        "budget": 100,
+        "metrics": {
+          "contractSize": 100000,
+          "notionalValue": 31395.48,
+          "requiredMargin": 313.95,
+          "slDistance": 0.00354,
+          "slDollars": 99.15,
+          "tpDistance": 0.00567,
+          "tpDollars": 158.62,
+          "rrRatio": 1.6
+        },
+        "estimatedRoundTripCosts": 0,
+        "plannedStopLossWithCosts": 99.15,
+        "targetOutcomes": [
+          {
+            "price": 1.115602,
+            "reward": 158.62000000000089,
+            "rewardRisk": 1.5997982854261308
+          },
+          {
+            "price": 1.11277,
+            "reward": 237.91599999999937,
+            "rewardRisk": 2.399556227937462
+          },
+          {
+            "price": 1.110645,
+            "reward": 297.4159999999975,
+            "rewardRisk": 2.9996570852243822
+          }
+        ],
+        "warnings": [
+          "hypothetical_capital",
+          "stop_not_guaranteed",
+          "no_funding_or_borrow",
+          "contract_terms_unverified"
+        ],
+        "inputValid": true,
+        "sizingMode": "nominal",
+        "budgetCompliant": true,
+        "executionAuthorized": false
+      }
+    }
+  },
+  "precisionRegression": {
+    "raw": {
+      "entry": 1.100019,
+      "stop": 1.100013,
+      "targets": [
+        1.100029,
+        1.100034,
+        1.100038
+      ]
+    },
+    "display": {
+      "E": "\u0661\u066b\u0661\u0660\u0660\u0660\u0661\u0669",
+      "SL": "\u0661\u066b\u0661\u0660\u0660\u0660\u0661\u0663",
+      "T1": "\u0661\u066b\u0661\u0660\u0660\u0660\u0662\u0669",
+      "T2": "\u0661\u066b\u0661\u0660\u0660\u0660\u0663\u0664",
+      "T3": "\u0661\u066b\u0661\u0660\u0660\u0660\u0663\u0668"
+    },
+    "candidate": {
+      "source": "rule_based_evidence",
+      "policy": "retained-engine-levels-1",
+      "symbol": "AUDUSD",
+      "interval": "1h",
+      "hash": "adf41ef529a8bb892822fe780c853a66295763242df3769b09a585436e75758f",
+      "barTime": 1795066165000,
+      "side": "BUY",
+      "entry": 1.100019,
+      "stop": 1.100013,
+      "targets": [
+        1.100029,
+        1.100034,
+        1.100038
+      ],
+      "executionAuthorized": false,
+      "entryQuoteVerified": false,
+      "capital": null,
+      "lots": null
+    },
+    "riskPlan": {
+      "version": "6.4.0",
+      "symbol": "AUDUSD",
+      "side": "BUY",
+      "capital": 1000000,
+      "riskPct": 1,
+      "entry": 1.100019,
+      "stop": 1.100013,
+      "targets": [
+        1.100029,
+        1.100034,
+        1.100038
+      ],
+      "leverage": 100,
+      "spreadBps": 0,
+      "slippageBps": 0,
+      "commissionBps": 0,
+      "lots": 100,
+      "contractSize": 100000,
+      "budget": 10000,
+      "metrics": {
+        "contractSize": 100000,
+        "notionalValue": 11000190,
+        "requiredMargin": 110001.9,
+        "slDistance": 1e-05,
+        "slDollars": 60,
+        "tpDistance": 1e-05,
+        "tpDollars": 100,
+        "rrRatio": 1.67
+      },
+      "estimatedRoundTripCosts": 0,
+      "plannedStopLossWithCosts": 60,
+      "targetOutcomes": [
+        {
+          "price": 1.100029,
+          "reward": 99.99999999843467,
+          "rewardRisk": 1.6666666666405778
+        },
+        {
+          "price": 1.100034,
+          "reward": 149.99999999876223,
+          "rewardRisk": 2.4999999999793707
+        },
+        {
+          "price": 1.100038,
+          "reward": 189.99999999991246,
+          "rewardRisk": 3.1666666666652077
+        }
+      ],
+      "warnings": [
+        "hypothetical_capital",
+        "stop_not_guaranteed",
+        "no_funding_or_borrow",
+        "contract_terms_unverified"
+      ],
+      "inputValid": true,
+      "sizingMode": "nominal",
+      "budgetCompliant": true,
+      "executionAuthorized": false
+    },
+    "scope": "Original engine six-decimal values; controlled admission, synthetic low-range history."
+  },
+  "partialTargets": "PASS: only retained T1 available; no T2/T3 controls",
+  "concurrentContext": "PASS: immediate withdrawal, held new brief, no old risk eligibility",
+  "missingProviderData": "PASS: no substitute prices",
+  "financialExecution": "Unavailable; no order/paper mutation requested"
+}

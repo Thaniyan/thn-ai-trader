@@ -1,0 +1,275 @@
+{
+  "scope": "SYNTHETIC controlled admission; original numerical analysis/risk prices. NOT real source, model or Ticket qualification.",
+  "profiles": [
+    {
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "5e78ae9d0fe7113d19c0579cf159e41442f80ff4d54dbca661dbcfad799ad7a0",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 1440,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 768,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "dark",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    },
+    {
+      "symbol": "EURUSD",
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "candidateHash": "89c4ad8c266b250ebd922151cc68fa584a14930b5fedbd26ccee38417f6fd69d",
+      "targets": 3,
+      "axeViolations": [],
+      "riskBound": true
+    }
+  ],
+  "checks": [
+    "GBPUSD: original Library roundtrip retains source-bound plan and quoted references",
+    "GBPUSD: separate valid entry cannot validate recorded Ticket; saved record immutable",
+    "EURUSD: original Library roundtrip retains source-bound plan and quoted references",
+    "EURUSD: separate valid entry cannot validate recorded Ticket; saved record immutable",
+    "Only retained T1 rendered and planned; no unavailable target placeholders",
+    "en: nine empty required assumptions rejected without provider request",
+    "ar: nine empty required assumptions rejected without provider request",
+    "Late actual planner response cannot attach to changed source hash",
+    "en: stationary pointer-boundary submit and normal click; no model inference",
+    "ar: stationary pointer-boundary submit and normal click; no model inference",
+    "WAIT has no released prices/outcomes; no execution calls; deterministic model method"
+  ],
+  "errors": [],
+  "waitProfiles": [
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "axeViolations": [],
+      "candidatePresent": false
+    },
+    {
+      "width": 390,
+      "language": "ar",
+      "theme": "light",
+      "axeViolations": [],
+      "candidatePresent": false
+    }
+  ]
+}

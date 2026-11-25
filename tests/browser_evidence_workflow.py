@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Readable citations -> immutable observations -> assistant draft / matched chart.
 Real local analysis and committee APIs, offline provider fixtures, no model run.
 """
@@ -15,7 +16,7 @@ with sync_playwright() as p:
   for theme in ['dark','light']:
    s.evaluate('(value)=>document.documentElement.dataset.theme=value',theme)
    for width in [1440,390,240,160]:
-    s.set_viewport_size({'width':width,'height':844 if width==390 else 1000});opener=s.locator('#evoDecisionDesk [data-evo=evidence]');opener.click();modal=s.locator('#evoEvidenceDialog');expect(modal).to_be_visible();assert modal.locator('[data-evidence]').count()==len(review['snapshot']['refs']);assert modal.locator('[data-evidence]').first.get_attribute('data-evidence')=='frame-'+review['snapshot']['interval']
+    s.set_viewport_size({'width':width,'height':844 if width==390 else 1000});opener=control(s,'#evoDecisionDesk [data-evo=evidence]');opener.click();modal=s.locator('#evoEvidenceDialog');expect(modal).to_be_visible();assert modal.locator('[data-evidence]').count()==len(review['snapshot']['refs']);assert modal.locator('[data-evidence]').first.get_attribute('data-evidence')=='frame-'+review['snapshot']['interval']
     for ref in review['snapshot']['refs']:
      card=modal.locator('[data-evidence="'+ref['id']+'"]');expect(card).to_contain_text(ref['source'])
      card.locator('details summary').click();expect(card.locator('pre')).to_contain_text(ref['datasetHash']);assert json.loads(card.locator('pre').inner_text())['inputs']==ref['inputs'];card.locator('details summary').click()
@@ -38,20 +39,20 @@ with sync_playwright() as p:
     if width in [1440,390]:s.screenshot(path=str(out/f'evidence-{lang}-{theme}-{width}.png'),animations='disabled')
     s.keyboard.press('Escape');expect(modal).not_to_be_visible();expect(opener).to_be_focused();results['profiles'].append([lang,theme,width])
   # Guided questions draft a real supported question, never silently submit inference.
-  s.set_viewport_size({'width':1440,'height':1000});s.locator('#evoDecisionDesk [data-evo=evidence]').click();count=len(posts);s.locator('[data-evo=explain-evidence]').click();expect(s.locator('#evoEvidenceDialog')).not_to_be_visible();expect(s.locator('#view-ai')).to_be_visible();expect(s.locator('#i7Question')).to_be_focused();expect(s.locator('#i7Question')).not_to_be_empty();assert len(posts)==count
+  s.set_viewport_size({'width':1440,'height':1000});control(s,'#evoDecisionDesk [data-evo=evidence]').click();count=len(posts);s.locator('[data-evo=explain-evidence]').click();expect(s.locator('#evoEvidenceDialog')).not_to_be_visible();expect(s.locator('#view-ai')).to_be_visible();expect(s.locator('#i7Question')).to_be_focused();expect(s.locator('#i7Question')).not_to_be_empty();assert len(posts)==count
   s.locator('#i7PromptSuggestions button').nth(1).click();expect(s.locator('#i7Question')).to_be_focused();assert len(posts)==count
   s.locator('#intelligenceAssistant form button[type=submit]').click();s.wait_for_function('(lang)=>THNIntelligence.result()?.roles.length===6&&THNIntelligence.state().language===lang&&!THNIntelligence.state().busy',arg=lang)
   # Role citations open the original assistant evidence disclosure, not raw JSON alone.
   s.locator('#intelligenceAssistant .i7-committee button').first.click();expect(s.locator('#intelligenceAssistant [data-evidence]').first).to_be_visible();assert s.evaluate('document.activeElement.hasAttribute("data-evidence")')
   s.screenshot(path=str(out/f'assistant-evidence-{lang}.png'),animations='disabled')
-  s.locator('.nav-stack [data-view=dashboard]').click();s.locator('#evoDecisionDesk [data-evo=evidence]').click();s.locator('[data-evo=evidence-chart]').click();expect(s.locator('#qCandles')).to_be_focused();assert s.evaluate('THNResearch.chart.offset===0&&THNResearch.chart.layers.ema&&THNResearch.chart.layers.levels');assert s.evaluate('THNIntelligence.result().snapshot.selectedHash===THNContext.get().datasetId')
+  s.locator('.nav-stack [data-view=dashboard]').click();control(s,'#evoDecisionDesk [data-evo=evidence]').click();s.locator('[data-evo=evidence-chart]').click();expect(s.locator('#qCandles')).to_be_focused();assert s.evaluate('THNResearch.chart.offset===0&&THNResearch.chart.layers.ema&&THNResearch.chart.layers.levels');assert s.evaluate('THNIntelligence.result().snapshot.selectedHash===THNContext.get().datasetId')
  # Exercise the wider font metrics found on Ubuntu runners, without changing product fonts.
  for lang in ['en','ar']:
   s.locator('.terminal-topbar [data-language='+lang+']').click();s.locator('.nav-stack [data-view=dashboard]').click();s.locator('#evoRunDesk').click();s.wait_for_function('(lang)=>THNIntelligence.state().language===lang&&!THNIntelligence.state().busy',arg=lang);s.wait_for_function('!document.getElementById("evoRunDesk").disabled')
   for theme in ['dark','light']:
    s.evaluate('(theme)=>document.documentElement.dataset.theme=theme',theme)
    for width in [240,160]:
-    s.set_viewport_size({'width':width,'height':1000});s.locator('#evoDecisionDesk [data-evo=evidence]').click();modal=s.locator('#evoEvidenceDialog');modal.evaluate('el=>el.style.fontFamily="DejaVu Sans, sans-serif"');s.evaluate('document.fonts.ready')
+    s.set_viewport_size({'width':width,'height':1000});control(s,'#evoDecisionDesk [data-evo=evidence]').click();modal=s.locator('#evoEvidenceDialog');modal.evaluate('el=>el.style.fontFamily="DejaVu Sans, sans-serif"');s.evaluate('document.fonts.ready')
     first=modal.locator('.evidence-card').first;first.locator('summary').click();first.locator('summary').click()
     measured=modal.evaluate('el=>({client:el.clientWidth,scroll:el.scrollWidth,context:{client:el.querySelector(".evidence-context").clientWidth,scroll:el.querySelector(".evidence-context").scrollWidth},metrics:[...el.querySelectorAll("dl>dt,dl>dd")].map(n=>({text:n.textContent,width:n.clientWidth,scroll:n.scrollWidth}))})');measured.update({'lang':lang,'theme':theme,'viewport':width,'font':'DejaVu Sans'})
     assert measured['scroll']<=measured['client']+1,measured
@@ -71,7 +72,7 @@ with sync_playwright() as p:
  for starter in s.locator('#i7PromptSuggestions button').all():expect(starter).to_be_enabled()
  s.locator('.nav-stack [data-view=trading]').click()
  # Changing the actual selected instrument clears the old review entry point.
- s.locator('#evoDecisionDesk [data-evo=evidence]').click();expect(s.locator('#evoEvidenceDialog')).to_be_visible();s.evaluate('THNContext.set({symbol:"GBPUSD",interval:"1h"},"acceptance-navigation")');expect(s.locator('#evoEvidenceDialog')).not_to_be_visible();s.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"');assert s.locator('#evoDecisionDesk [data-evo=evidence]').count()==0
+ control(s,'#evoDecisionDesk [data-evo=evidence]').click();expect(s.locator('#evoEvidenceDialog')).to_be_visible();s.evaluate('THNContext.set({symbol:"GBPUSD",interval:"1h"},"acceptance-navigation")');expect(s.locator('#evoEvidenceDialog')).not_to_be_visible();s.wait_for_function('THNContext.get().symbol==="GBPUSD"&&THNResearch.series()?.symbol==="GBPUSD"');assert s.locator('#evoDecisionDesk [data-evo=evidence]').count()==0
  assert not any('/api/broker/' in path or '/api/accounts' in path or '/provider/check' in path for path in posts)
  assert not results['errors'],results['errors'];b.close()
 (out/'results.json').write_text(json.dumps(results,indent=2)+'\n');print(json.dumps({'profiles':len(results['profiles']),'fallbackProfiles':len(results['fallbackProfiles']),'errors':results['errors'],'realModelRun':False,'automaticInferenceRequests':0}))

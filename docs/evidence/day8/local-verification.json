@@ -1,0 +1,202 @@
+{
+  "recordedAt": "2026-11-23T12:13:03.102813+04:00",
+  "baseCommit": "19d47f8011b958d58cb77337d90a7efc6af44b6d",
+  "scope": "Actual packaged application with explicitly controlled synthetic admission for positive Tickets. Real EURUSD unavailable/WAIT observation separately retained.",
+  "core": 530,
+  "security": 21,
+  "system": 10,
+  "browserSuites": 50,
+  "failed": 0,
+  "skipped": 0,
+  "newBUYSELLProfiles": 24,
+  "newWAITProfiles": 2,
+  "originalAssertionsAndTimeoutsUnchanged": true,
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 2.69
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.51
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.26
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 56.07
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.45
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.84
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.22
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 0.84
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.26
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 31.35
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.03
+    }
+  ],
+  "browser": {
+    "mode": "canonical sequential; original npm run test:browser",
+    "suites": [
+      "workstation",
+      "research",
+      "research_outage",
+      "quality",
+      "decision",
+      "library_reliability",
+      "maturity",
+      "terminal",
+      "intelligence",
+      "intelligence_memory",
+      "layout",
+      "pilot",
+      "trust",
+      "professional",
+      "journal_lifecycle",
+      "trading_remediation",
+      "evolution",
+      "consolidation",
+      "experience",
+      "consistency",
+      "recovery",
+      "assisted_desk",
+      "paper_review",
+      "evidence_workflow",
+      "broker_workspace",
+      "visual_refinement",
+      "workflow_polish",
+      "visual_identity",
+      "confidence",
+      "dashboard_confidence",
+      "research_risk",
+      "workspace_hierarchy",
+      "unified_workspace",
+      "research_studio",
+      "responsive_fonts",
+      "command_center",
+      "command_workbench",
+      "institutional_desk",
+      "command_trust",
+      "command_trust_candidate",
+      "precision",
+      "heritage",
+      "decision_validation",
+      "phase2_interpretation",
+      "day5",
+      "day6",
+      "readiness",
+      "provider_quality",
+      "day7_research",
+      "day8_ticket"
+    ],
+    "durations": {
+      "workstation": "33.67",
+      "research": "35.52",
+      "research_outage": "3.98",
+      "quality": "39.74",
+      "decision": "49.81",
+      "library_reliability": "3.39",
+      "maturity": "56.89",
+      "terminal": "135.69",
+      "intelligence": "28.04",
+      "intelligence_memory": "5.14",
+      "layout": "43.7",
+      "pilot": "23.08",
+      "trust": "44.5",
+      "professional": "150.8",
+      "journal_lifecycle": "63.94",
+      "trading_remediation": "74.86",
+      "evolution": "79.99",
+      "consolidation": "27.11",
+      "experience": "71.42",
+      "consistency": "29.58",
+      "recovery": "124.69",
+      "assisted_desk": "13.44",
+      "paper_review": "6.71",
+      "evidence_workflow": "57.01",
+      "broker_workspace": "20.24",
+      "visual_refinement": "17.54",
+      "workflow_polish": "76.24",
+      "visual_identity": "63.15",
+      "confidence": "51.55",
+      "dashboard_confidence": "23.2",
+      "research_risk": "56.86",
+      "workspace_hierarchy": "68.7",
+      "unified_workspace": "100.59",
+      "research_studio": "62.89",
+      "responsive_fonts": "38.21",
+      "command_center": "32.92",
+      "command_workbench": "35.92",
+      "institutional_desk": "49.71",
+      "command_trust": "24.81",
+      "command_trust_candidate": "8.67",
+      "precision": "32.28",
+      "heritage": "30.2",
+      "decision_validation": "28.65",
+      "phase2_interpretation": "42.84",
+      "day5": "89.71",
+      "day6": "87.41",
+      "readiness": "54.52",
+      "provider_quality": "60.33",
+      "day7_research": "18.3",
+      "day8_ticket": "98.72"
+    }
+  },
+  "artifact": {
+    "output": "/workspace/thn-issue19-workstation/.vercel/output",
+    "runtimeFiles": 119,
+    "artifactFiles": 123,
+    "manifestSHA256": "50c23dce1de9c8b3664bc5440048b6e7a92ab9b17d2a2d26e76db9b148ce2635"
+  },
+  "frozenInstall": {
+    "exit": 0,
+    "before": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "after": {
+      "package.json": "ab5fb05b5a24097693f2c6c9995827262b5c26589d037577cb2c78c58366c7f4",
+      "bun.lock": "56f929c9b059eeb68d24bac2a6e8b572fb5ab673fe46917a3bfea6aa449bfe8c"
+    },
+    "output": "bun install v1.4.3 (c6da4a4d3)\n\nChecked 41 installs across 42 packages (no changes) [5.00ms]\n"
+  },
+  "realModelQualification": "NOT_VERIFIED; prior12003ms/no-response NO_GO remains",
+  "realSourceQualification": "NOT_VERIFIED",
+  "realTicketQualification": "NOT_VERIFIED",
+  "hostedCi": "Verify both exact-head workflows after push; this local receipt does not claim hosted PASS.",
+  "mainMerged": false,
+  "productionDeployed": false
+}

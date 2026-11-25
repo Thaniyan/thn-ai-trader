@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-24",
+  "operation": "Single HEAD to existing Yahoo EURUSD=X1h route",
+  "status": 403,
+  "layer": "Envoy CONNECT proxy before TLS",
+  "curlExit": 56,
+  "realRowsObserved": 0,
+  "newAccessOrPolicyChange": false
+}

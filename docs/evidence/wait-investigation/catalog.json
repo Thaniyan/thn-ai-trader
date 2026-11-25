@@ -1,0 +1,137 @@
+{
+  "head": "60b301f5838eca9cdf29598ea7c05cd9274442bc",
+  "scope": "Actual local catalog only; no market data fetch",
+  "intervals": [
+    "15m",
+    "1h",
+    "1d"
+  ],
+  "instruments": [
+    {
+      "symbol": "EURUSD",
+      "category": "Forex",
+      "providerSymbol": "EURUSD=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "category": "Forex",
+      "providerSymbol": "GBPUSD=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "AUDUSD",
+      "category": "Forex",
+      "providerSymbol": "AUDUSD=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "NZDUSD",
+      "category": "Forex",
+      "providerSymbol": "NZDUSD=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "USDJPY",
+      "category": "Forex",
+      "providerSymbol": "USDJPY=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "USDCHF",
+      "category": "Forex",
+      "providerSymbol": "USDCHF=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "USDCAD",
+      "category": "Forex",
+      "providerSymbol": "USDCAD=X",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "XAUUSD",
+      "category": "Metals",
+      "providerSymbol": "GC=F",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "XAGUSD",
+      "category": "Metals",
+      "providerSymbol": "SI=F",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "USOIL",
+      "category": "Oil",
+      "providerSymbol": "CL=F",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "BRENT",
+      "category": "Oil",
+      "providerSymbol": "BZ=F",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "BTCUSD",
+      "category": "Crypto",
+      "providerSymbol": "BTC-USD",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "BTCUSDT",
+      "category": "Crypto",
+      "providerSymbol": "BTC-USD",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "ETHUSD",
+      "category": "Crypto",
+      "providerSymbol": "ETH-USD",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "ETHUSDT",
+      "category": "Crypto",
+      "providerSymbol": "ETH-USD",
+      "proxy": true,
+      "contractPresent": true
+    },
+    {
+      "symbol": "SPX",
+      "category": "Index",
+      "providerSymbol": "^GSPC",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "NAS100",
+      "category": "Index",
+      "providerSymbol": "^NDX",
+      "proxy": false,
+      "contractPresent": true
+    },
+    {
+      "symbol": "US30",
+      "category": "Index",
+      "providerSymbol": "^DJI",
+      "proxy": false,
+      "contractPresent": true
+    }
+  ]
+}

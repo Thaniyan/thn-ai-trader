@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Chart-first hierarchy, real disclosure navigation, retained state and accessibility."""
 import itertools,json,os,pathlib
 from playwright.sync_api import sync_playwright,expect
@@ -38,7 +39,7 @@ with sync_playwright() as p:
  go('dashboard');page.locator('#dashboardDataStatus').click();page.locator('.terminal-topbar [data-language=en]').click();page.locator('#dashboardDataStatus').focus();page.evaluate('document.documentElement.lang="ar"');expect(page.locator('#dashboardDataStatus')).to_be_focused();assert page.locator('#dashboardEvidence details').evaluate('(e)=>e.open')
  # Disclosures and drafts survive owner rerenders and language changes.
  page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click();go('ai');page.locator('[data-cockpit=record]').click();page.locator('#d64Thesis').fill('Preserve this personal thesis');page.locator('.terminal-topbar [data-language=ar]').click();expect(page.locator('#d64Thesis')).to_have_value('Preserve this personal thesis');assert page.locator('#researchConclusion').evaluate('(e)=>e.open')
- page.locator('.terminal-topbar [data-language=en]').click();go('dashboard');page.locator('#dashboardConviction [data-cockpit=details]').click();expect(page.locator('#researchSchools > summary')).to_be_focused();expect(page.locator('#schoolsGrid')).to_be_visible()
+ page.locator('.terminal-topbar [data-language=en]').click();go('dashboard');control(page,'#dashboardConviction [data-cockpit=details]').click();expect(page.locator('#researchSchools > summary')).to_be_focused();expect(page.locator('#schoolsGrid')).to_be_visible()
  # Existing chart and evaluation entry points reveal the retained deeper brief.
  go('trading');page.locator('#proEvidenceLink').click();expect(page.locator('#researchEvidence > summary')).to_be_focused();expect(page.locator('#evoIntelligence')).to_be_visible()
  go('ai');page.locator('#analysisCockpit').get_by_role('button',name='Confidence test',exact=True).click();expect(page.locator('#confidenceTestTitle')).to_be_focused();page.locator('#qRun').click();page.wait_for_function('THNConfidence.review().testStatus==="complete"');assert len(page.evaluate('THNConfidence.review().checks'))==10

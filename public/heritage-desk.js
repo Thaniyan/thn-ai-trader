@@ -1,3 +1,4 @@
+import {commandEvidence} from './command-evidence.js';
 import {escapeHTML as esc} from './decision-records.js';
 
 // Reconcile THN's original identity with the current single owned workstation.
@@ -11,6 +12,8 @@ export function attachHeritageDesk(){
  const markets=document.createElement('nav');markets.id='heritageMarkets';
  welcome.append(markets);
  const meaning=document.createElement('p');meaning.id='heritageLevelMeaning';meaning.setAttribute('role','status');
+ const source=document.createElement('button');source.id='heritageSourceContext';source.type='button';source.className='heritage-source-context';source.dataset.desk='source';source.setAttribute('aria-controls','deskSourceCertificate');
+ source.innerHTML='<span id="heritageSourceState"></span><bdi id="heritageSourceIdentity" dir="ltr"></bdi>';
  let selected=null,lastContext='',queued=false;
  const meanings={
   E:['Entry is a recorded research reference, not an executable quote.','الدخول مرجع بحثي مسجل وليس سعر تنفيذ.'],
@@ -19,16 +22,23 @@ export function attachHeritageDesk(){
  };
  function levelGuide(code){const key=code==='E'?'E':code==='SL'?'SL':'T';return tr(...meanings[key]);}
  function render(){
-  const home=$('view-dashboard').classList.contains('view-active');
+  const home=$('view-dashboard').classList.contains('view-active'),mobile=matchMedia('(max-width:900px)').matches;
   document.documentElement.classList.toggle('heritage-home',home);
   const c=THNContext.get(),m=THNCommand.state(),review=THNPrecision.review();
   $('commandVerdict').dataset.heritageState=review.status;$('commandVerdict').dataset.heritageCandidate=String(!!review.candidate);
   if(home&&$('deskSourceStrip').parentElement!==$('precisionFooterLinks'))$('precisionFooterLinks').prepend($('deskSourceStrip'));
+  const quote=$('proTerminal').querySelector('.pro-instrument-quote');if(source.parentElement!==quote)quote.append(source);
+  const evidence=commandEvidence({model:m,context:c,series:THNResearch.series(),brief:THNDecision.brief(),analysis:THNConfidence.review().analysis});
+  const identityMismatch=m.warnings.includes('source_identity_unverified'),currencyMismatch=m.warnings.includes('currency_mismatch');
+  const current=m.fresh&&evidence.matched&&!identityMismatch&&!currencyMismatch,p=m.fresh&&evidence.matched?evidence.source:null;source.dataset.current=String(current);source.dataset.hash=p?.hash||'';source.dataset.proxy=String(!!m.identity.proxy);
+  $('heritageSourceState').textContent=identityMismatch||currencyMismatch?tr('Source mismatch · inspect','عدم تطابق المصدر · افحص'):mobile?(current?(m.identity.proxy?tr('Proxy source','مصدر بديل'):tr('THN source','مصدر THN')):tr('Unverified source','مصدر غير موثق')):current?(m.identity.proxy?tr('Proxy history · inspect source','سجل بديل · افحص المصدر'):tr('THN closed history · inspect source','سجل THN مغلق · افحص المصدر')):tr('Current evidence unavailable · inspect source','الأدلة الحالية غير متاحة · افحص المصدر');
+  $('heritageSourceIdentity').textContent=mobile?(p?.providerSymbol||'—'):p?[p.providerSymbol||'—',p.currency||'—',Number.isFinite(p.lastTime)?new Date(p.lastTime).toISOString().slice(5,16).replace('T',' ')+' UTC':'—'].join(' · '):'—';
+  source.title=p?[p.source,p.providerSymbol,p.currency,Number.isFinite(p.lastTime)?new Date(p.lastTime).toISOString():null,tr('Bar opening time · not a live quote','وقت افتتاح الشمعة · ليس سعراً حياً')].filter(Boolean).join(' · '):tr('No matching fresh source. Retained observations are not current approval.','لا مصدر حديث مطابق. المشاهدات المحفوظة ليست اعتماداً حالياً.');
   const context=[c.symbol,c.interval,c.datasetId].join('|');if(context!==lastContext){lastContext=context;selected=null;}
   let intro=$('heritageIntro');if(!intro){intro=document.createElement('div');intro.id='heritageIntro';welcome.prepend(intro);}
   const introHTML=`<p class="heritage-eyebrow">${tr('THN / MARKET INTELLIGENCE','THN / أبحاث السوق')}</p><h2>${tr('Analyze your market.','حلل سوقك.')}</h2><p>${tr('Select an instrument. Review the evidence. Build a hypothetical plan.','اختر الأداة. افحص الأدلة. ابنِ خطة افتراضية.')}</p>`;
   if(intro.innerHTML!==introHTML)intro.innerHTML=introHTML;
-  const mobile=matchMedia('(max-width:900px)').matches;const marketHost=mobile?$('commandSearch').parentElement:welcome;if(markets.parentElement!==marketHost)marketHost.append(markets);
+  const marketHost=mobile?$('commandSearch').parentElement:welcome;if(markets.parentElement!==marketHost)marketHost.append(markets);
   markets.setAttribute('aria-label',tr('Quick instrument selection','اختيار سريع للأداة'));
   const catalog=THNMarketTerminal.catalog();
   const codes=['EURUSD','GBPUSD','XAUUSD','BTCUSD','BTCUSDT'].filter(s=>catalog.some(v=>v.symbol===s)).slice(0,4);
@@ -58,15 +68,19 @@ export function attachHeritageDesk(){
     const key=button.dataset.desk.slice(6);if(key===selected)button.setAttribute('aria-describedby','heritageLevelMeaning');else button.removeAttribute('aria-describedby');button.title=levelGuide(key);
    }
   }else{meaning.remove();for(const b of levelButtons)b.removeAttribute('aria-describedby');}
-  const inspect=$('commandSetup').querySelector('[data-trust=candidate]');if(inspect)inspect.textContent=tr('Why these levels?','لماذا هذه المستويات؟');
-  if(review.candidate)for(const b of levelButtons){const guide=levelGuide(b.dataset.desk.slice(6));b.title=guide;const label=b.closest('dd')?.previousElementSibling?.textContent||'';b.setAttribute('aria-label',label+': '+b.textContent.trim()+'. '+guide);}
+  const inspect=$('commandSetup').querySelector('[data-trust=candidate]');if(inspect){inspect.textContent=tr('Why levels?','لماذا المستويات؟');inspect.setAttribute('aria-label',tr('Why these levels?','لماذا هذه المستويات؟'));}
+  if(review.candidate)for(const b of levelButtons){const guide=levelGuide(b.dataset.desk.slice(6));b.title=guide;const label=b.closest('dd')?.previousElementSibling?.textContent||'';b.setAttribute('aria-label',label+': '+b.textContent.trim()+'. '+guide+' '+tr('Inspect on the THN chart; Escape returns here.','افحص على رسم THN؛ يعيدك Escape إلى هنا.'));}
   $('commandAssessment').setAttribute('aria-label',tr('Decision Center and hypothetical Trade Ticket','مركز القرار وبطاقة التداول الافتراضية'));
   const note=$('precisionProbability');if(!window.THNDecisionValidation)note.textContent=tr('Heuristic evidence ≠ historical validation. Calibrated win probability is unavailable.','الأدلة الاستدلالية لا تعني تحققاً تاريخياً. احتمال الربح المعاير غير متاح.');
  }
  document.addEventListener('click',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
  document.addEventListener('focusin',event=>{const action=event.target.closest('[data-desk]')?.dataset.desk;if(action?.startsWith('level:')){selected=action.slice(6);render();}});
+ function withdraw(){selected=null;meaning.remove();for(const b of $('commandSetup').querySelectorAll('[aria-describedby=heritageLevelMeaning]'))b.removeAttribute('aria-describedby');}
+ window.addEventListener('thn:context',withdraw);
+ window.addEventListener('thn:research-context',()=>{const c=THNContext.get();if([c.symbol,c.interval,c.datasetId].join('|')!==lastContext)withdraw();});
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
- for(const event of ['thn:command-render','thn:view','thn:plan','thn:evaluation','thn:evaluation-state','thn:context','thn:analysis'])window.addEventListener(event,schedule);
+ window.addEventListener('thn:command-render',render);
+ for(const event of ['thn:view','thn:plan','thn:evaluation','thn:evaluation-state','thn:context','thn:analysis'])window.addEventListener(event,schedule);
  window.addEventListener('thn:catalog',schedule);matchMedia('(max-width:900px)').addEventListener('change',schedule);
  new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});
  window.THNHeritage={render};render();

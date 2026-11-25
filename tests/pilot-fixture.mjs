@@ -1,6 +1,6 @@
 import {evidenceSnapshot,routeQuestion} from '../server/intelligence.js';
 import {evidenceState} from '../public/intelligence-generation.js';
-export const pilotEnv={THN_AI_ENABLED:'1',THN_AI_PROVIDER:'ollama',THN_AI_AUTH_TOKEN:'test-only-operator-token',THN_AI_MODEL:'fixture:local',THN_AI_MAX_REQUESTS:'12',THN_AI_TOTAL_TOKEN_CEILING:'50000',THN_AI_MAX_OUTPUT_TOKENS:'200',THN_AI_CONTEXT_TOKENS:'8192'};
+export const pilotEnv={THN_AI_ENABLED:'1',THN_AI_PROVIDER:'ollama',THN_AI_AUTH_TOKEN:'test-only-operator-token',THN_AI_MODEL:'fixture:local',THN_AI_EXPECTED_DIGEST:'a'.repeat(64),THN_AI_MAX_REQUESTS:'12',THN_AI_TOTAL_TOKEN_CEILING:'50000',THN_AI_MAX_OUTPUT_TOKENS:'200',THN_AI_CONTEXT_TOKENS:'8192'};
 export function pilotSnapshot(now=Date.now()){
  return evidenceSnapshot({symbol:'EURUSD',interval:'1h',asOf:now,selected:{provenance:{hash:'2'.repeat(64)},events:[]},frames:['15m','1h','1d'].map((interval,i)=>({interval,available:true,trend:i===2?'bearish':'bullish',close:1.1,ema20:1.09,provenance:{source:'FROZEN SYNTHETIC FIXTURE',providerSymbol:'EURUSD=X',hash:String(i+1).repeat(64),lastTime:now-86400000,status:'recent'}}))});
 }

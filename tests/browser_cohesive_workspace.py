@@ -1,0 +1,63 @@
+from workspace_controls import control
+"""Actual packaged app with explicit SYNTHETIC upstream quality failure.
+No real provider, model or eligible Ticket qualification is asserted.
+"""
+import itertools,json,os,pathlib,select,subprocess
+from playwright.sync_api import sync_playwright,expect
+out=pathlib.Path(os.environ.get('TEST_OUTPUT','work'))/'cohesive';out.mkdir(parents=True,exist_ok=True)
+server=subprocess.Popen(['node','--import','./tests/browser_workspace_quality.mjs','tests/packaged-launch.mjs'],env={**os.environ,'VERCEL':'1','THN_AI_ENABLED':'0','THN_LOCAL_PAPER':'0'},stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+result={'scope':'SYNTHETIC upstream geometry row; original adapter/analysis/risk and actual app. NOT real market/model qualification.','profiles':[],'errors':[]}
+try:
+ assert select.select([server.stdout],[],[],10)[0];line=server.stdout.readline().strip();assert line.startswith('THN_TEST_PORT=');url='http://127.0.0.1:'+line.split('=')[1]
+ with sync_playwright() as pw:
+  browser=pw.chromium.launch(executable_path=os.environ['CHROMIUM_PATH'],args=['--no-sandbox']);page=browser.new_page(viewport={'width':1440,'height':1000});posts=[];page.on('pageerror',lambda e:result['errors'].append(str(e)));page.on('request',lambda r:posts.append(r.url) if r.method=='POST' else None);page.route('https://**/*',lambda r:r.abort())
+  page.goto(url);page.wait_for_function('window.THNCommandWorkspace&&THNCommand.state().fresh&&THNCommand.state().warnings.includes("data_quality")');page.locator('.nav-stack [data-view=dashboard]').click();page.add_script_tag(path=os.environ['AXE_PATH']);chart=page.evaluate('window.__cohesiveChart=THNResearch.chart;true');saved=page.evaluate('JSON.stringify(THNLibrary.records())')
+  for width,lang,theme in itertools.product([1440,768,390],['en','ar'],['dark','light']):
+   page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme);page.wait_for_function('(lang)=>document.querySelector("#decisionDataLabel").textContent===(lang==="ar"?"تأهيل البيانات":"Data qualification")',arg=lang);page.evaluate('scrollTo(0,0)')
+   expect(page.locator('#commandVerdict h1')).to_have_text('انتظار' if lang=='ar' else 'WAIT');expect(page.locator('#decisionDataStatus')).to_contain_text('محجوبة' if lang=='ar' else 'Blocked');assert page.locator('#workspaceTicketGate [data-workspace-blocker=data_quality]').count()==1
+   expect(page.locator('#workspaceAnalyticalDirection')).to_be_visible();expect(page.locator('#workspaceAnalyticalDirection')).to_contain_text('فرضية المحرك' if lang=='ar' else 'Engine hypothesis');assert page.locator('#workspaceAnalyticalDirection').get_attribute('data-signal')==page.evaluate('THNCommand.state().recommendation.signal');expect(page.locator('#workspaceTicketGate [data-workspace-blocker=data_quality]')).to_contain_text('صف مرفوض' if lang=='ar' else 'rejected rows')
+   assert page.evaluate('THNPrecision.review().candidate') is None;assert page.locator('#commandSetup .command-levels>div').count()==0;expect(page.locator('#dashboardHistorical')).not_to_be_visible();assert not page.locator('#workspaceMore').evaluate('(e)=>e.open');assert not page.locator('#commandAdvancedChart').evaluate('(e)=>e.open');assert page.locator('#deskPrimaryActions #evoRunDesk').count()==1 and page.locator('[data-desk=analyze]').count()==1
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1');rect=page.locator('#qCandles').bounding_box();assert rect['y']<750 and min(1000,rect['y']+rect['height'])-max(0,rect['y'])>250,(width,lang,theme,rect)
+   height=page.evaluate('document.documentElement.scrollHeight');assert height<(1900 if width==1440 else 3200),(width,lang,theme,height)
+   for selector in ['#commandVerdict','#commandSetup','#workspaceMore']:
+    bad=page.evaluate('async(s)=>(await axe.run(document.querySelector(s),{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)}))',selector);assert not bad,(width,lang,theme,selector,bad)
+   page.screenshot(path=str(out/f'quality-WAIT-{width}-{lang}-{theme}.png'),animations='disabled');result['profiles'].append({'width':width,'language':lang,'theme':theme,'height':height,'chart':rect,'candidate':False,'qualityBlocked':True})
+  page.set_viewport_size({'width':1440,'height':1000});page.locator('.terminal-topbar [data-language=en]').click();page.locator('#dashboardDataStatus').click();expect(page.locator('#dashboardHistorical')).to_be_visible();page.locator('#dashboardDataStatus').click();expect(page.locator('#dashboardHistorical')).not_to_be_visible()
+  # One primary button invokes each original analysis/review exactly once and
+  # returns to the visible Decision Center, not an unrelated legacy subsection.
+  before=len([u for u in posts if u.endswith('/api/analyze')]);page.locator('#evoRunDesk').click();page.wait_for_function('document.querySelector("#evoDeskRunStatus").textContent.startsWith("Review complete")');expect(page.locator('#commandVerdict')).to_be_focused();assert len([u for u in posts if u.endswith('/api/analyze')])==before+1;assert page.evaluate('THNIntelligence.result().method')=='deterministic';assert page.evaluate('THNIntelligence.result().modelCalls')==0
+  # Existing confidence/evaluator owners stay inline, explicit and keyboard-safe.
+  page.locator('#trustReviewAction').click();expect(page.locator('#trustTitle')).to_be_focused();assert page.locator('#commandRationale').evaluate('(e)=>e.open');page.screenshot(path=str(out/'confidence-expanded-1440-en-light.png'),animations='disabled');page.locator('#commandTrust').press('Escape');expect(page.locator('#trustReviewAction')).to_be_focused()
+  before=len([u for u in posts if '/research/evaluate' in u]);page.locator('#heritageConfidenceTestAction').click();expect(page.locator('#trustTestTitle')).to_be_focused();assert page.locator('#trustTest').evaluate('(e)=>e.open');assert len([u for u in posts if '/research/evaluate' in u])==before;page.locator('#trustTest').press('Escape');expect(page.locator('#heritageConfidenceTestAction')).to_be_focused()
+  page.locator('#workspaceTicketGate [data-desk=source]').click();expect(page.locator('#deskSourceCertificate')).to_be_focused();expect(page.locator('#commandReadiness')).to_contain_text('data_quality');page.screenshot(path=str(out/'source-blockers-1440-en-light.png'),animations='disabled');page.locator('#deskSourceCertificate').press('Escape');expect(page.locator('#workspaceTicketGate [data-desk=source]')).to_be_focused()
+  # The full source/evidence assistant is one preserved owner inside Research.
+  control(page,'#interpretationOpen').click();expect(page.locator('#interpretationTitle')).to_be_focused();assert page.locator('#interpretationQuestion').count()==1;page.locator('#interpretationQuestion').fill('Preserved current evidence question')
+  page.locator('#deskPrimaryActions [data-desk=notebook]').click();page.locator('#commandThesis').fill('Cohesive workspace retained note');page.locator('.terminal-topbar [data-language=ar]').click();expect(page.locator('#commandThesis')).to_have_value('Cohesive workspace retained note');expect(page.locator('#interpretationQuestion')).to_have_value('Preserved current evidence question')
+  page.locator('#commandRationale').evaluate('(e)=>e.open=false');page.locator('#workspaceMoreTitle').click();expect(page.locator('#evoDashboard')).to_be_visible();expect(page.locator('#flowWatchlist')).to_be_visible();page.locator('#workspaceMore').press('Escape');expect(page.locator('#workspaceMoreTitle')).to_be_focused();assert not page.locator('#workspaceMore').evaluate('(e)=>e.open')
+  # A single original zoom callback, chart identity and state across view changes.
+  count=page.evaluate('THNResearch.chart.count');page.locator('[data-desk=zoom-in]').click();assert page.evaluate('THNResearch.chart.count')==max(12,int(count*.8));page.locator('#qReset').click();page.locator('.nav-stack [data-view=trading]').click();expect(page.locator('#proChartTools>summary')).to_be_visible();page.locator('.nav-stack [data-view=dashboard]').click();assert page.evaluate('THNResearch.chart===__cohesiveChart');assert page.locator('#qCandles').count()==1;expect(page.locator('#evoRunDesk')).to_be_visible();assert page.evaluate('JSON.stringify(THNLibrary.records())')==saved
+  # Route restoration must be synchronous: otherwise an already-open chart
+  # disclosure can close after a caller discovers/opens its eligible controls.
+  # These native route clicks inspect the event boundary; no paper control,
+  # service capability or financial state is created or made visible by the test.
+  result['routeDisclosureProfiles']=[]
+  for width,lang,theme in itertools.product([1440,390],['en','ar'],['dark','light']):
+   page.set_viewport_size({'width':width,'height':1000});page.locator('.terminal-topbar [data-language='+lang+']').click();page.evaluate('(t)=>document.documentElement.dataset.theme=t',theme)
+   if page.locator('#commandAdvancedChart').evaluate('(e)=>e.open'):page.locator('#commandAdvancedChartTitle').click()
+   page.evaluate("document.querySelector('.nav-stack [data-view=risk]').click()")
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+   closed=page.evaluate("()=>{document.querySelector('.nav-stack [data-view=dashboard]').click();return document.getElementById('commandAdvancedChart').open;}");assert closed is False,(width,lang,theme,'home preference must be restored before the route event returns')
+   page.locator('#commandAdvancedChartTitle').focus();page.keyboard.press('Enter');expect(page.locator('#commandAdvancedChart')).to_have_attribute('open','')
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))');assert page.locator('#commandAdvancedChart').evaluate('(e)=>e.open'),(width,lang,theme,'queued render must not close user-opened controls')
+   page.evaluate("document.querySelector('.nav-stack [data-view=risk]').click()")
+   page.evaluate('()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))')
+   opened=page.evaluate("()=>{document.querySelector('.nav-stack [data-view=dashboard]').click();return document.getElementById('commandAdvancedChart').open;}");assert opened is True,(width,lang,theme,'open home preference must be retained')
+   page.locator('#commandAdvancedChartTitle').click();result['routeDisclosureProfiles'].append({'width':width,'language':lang,'theme':theme,'closedRestoredSynchronously':True,'keyboardOpenSurvivesQueuedRender':True,'openPreferenceRetained':True})
+  # Raw direction must disappear in the synchronous source-context boundary.
+  withdrawn=page.evaluate('()=>{THNContext.set({datasetId:"f".repeat(64)},"wait-context-test");return document.querySelector("#workspaceAnalyticalDirection")?.dataset.signal||"unavailable";}');assert withdrawn=='unavailable';assert page.evaluate('THNCommand.state().candidate') is None;assert page.locator('#commandSetup .command-levels>div').count()==0
+  assert not any('/api/orders' in u or '/api/paper/' in u for u in posts);assert not result['errors'],result['errors'];(out/'results.json').write_text(json.dumps(result,indent=2));browser.close()
+ print('PASS cohesive workstation:12 quality-WAIT profiles, original analysis once, inline confidence/history/source, retained notes, keyboard and chart state; SYNTHETIC only',flush=True)
+finally:
+ server.terminate()
+ try:server.wait(timeout=5)
+ except subprocess.TimeoutExpired:server.kill();server.wait()

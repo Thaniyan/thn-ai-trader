@@ -1,0 +1,24 @@
+{
+  "baseCommit": "1ef63e58f9b0a53a8cb90eef96a45a502a803138",
+  "scope": "OFFLINE_DAY6_NO_APPLICATION_OR_FINANCIAL_CHANGES",
+  "applicationAndDependencies": {
+    "files": 115,
+    "unchanged": true,
+    "differences": []
+  },
+  "originalTests": {
+    "files": 120,
+    "unchanged": true,
+    "differences": []
+  },
+  "existingCIAndBrowserRoster": {
+    "files": 11,
+    "unchanged": true,
+    "differences": []
+  },
+  "allExistingNonDocumentationFiles": {
+    "files": 275,
+    "unchanged": true,
+    "differences": []
+  }
+}

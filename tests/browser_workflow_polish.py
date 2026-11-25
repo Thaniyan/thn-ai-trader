@@ -1,3 +1,4 @@
+from workspace_controls import control
 """Real favorite/context and calculator journeys; offline provider data only."""
 import itertools
 import json
@@ -19,6 +20,7 @@ with sync_playwright() as p:
     def go(view):
         page.locator('.nav-stack [data-view=' + view + ']').click()
         expect(page.locator('#view-' + view)).to_be_visible()
+        if view=='dashboard' and not page.locator('#workspaceMore').evaluate('(e)=>e.open'): page.locator('#workspaceMoreTitle').click()
 
     go('markets')
     for symbol in ['GBPUSD', 'USDJPY']:

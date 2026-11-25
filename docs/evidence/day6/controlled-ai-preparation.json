@@ -1,0 +1,118 @@
+{
+  "scope": "CONTROLLED_CONFIGURATION_DEMO_NOT_OWNER_RUNTIME_OR_MODEL_QUALIFICATION",
+  "result": {
+    "schema": "THN-LOCAL-AI-PREPARATION-1",
+    "mode": "offline-preparation",
+    "configurationValid": true,
+    "model": "qwen3:1.7b",
+    "digestIdentity": "REQUESTED_NOT_INSPECTED",
+    "runtimeInventory": "NOT_VERIFIED",
+    "modelQualification": "NOT_VERIFIED",
+    "releaseDecision": "NO_GO",
+    "generationTested": false,
+    "networkRequests": 0,
+    "modelActivationPerformed": false,
+    "financialExecution": false,
+    "syntheticOnly": true,
+    "requestPolicyMs": 12000,
+    "parallelism": 1,
+    "plannedAttempts": 12,
+    "worstCaseReservedUnits": 49152,
+    "budgets": {
+      "requestLimit": 12,
+      "tokenLimit": 50000,
+      "contextTokens": 4096,
+      "outputTokens": 500
+    },
+    "requestedSettings": {
+      "compactPilot": true,
+      "keepAlive": "5m",
+      "pilotThreads": 2
+    },
+    "workerConfirmedSettings": null,
+    "runtimeSettingsVerified": false,
+    "requestedInferenceAuthorized": false,
+    "minimumRepeatedPositiveCoveragePlanned": false,
+    "preparationExplicit": false,
+    "preparationWouldActivateModel": false,
+    "evidenceCases": [
+      {
+        "caseName": "bullish",
+        "state": "consistent",
+        "localEvidenceAdmissible": true,
+        "sourceReferences": 3,
+        "syntheticOnly": true
+      },
+      {
+        "caseName": "bearish",
+        "state": "consistent",
+        "localEvidenceAdmissible": true,
+        "sourceReferences": 3,
+        "syntheticOnly": true
+      },
+      {
+        "caseName": "neutral",
+        "state": "consistent",
+        "localEvidenceAdmissible": true,
+        "sourceReferences": 3,
+        "syntheticOnly": true
+      },
+      {
+        "caseName": "conflicting",
+        "state": "conflicting",
+        "localEvidenceAdmissible": true,
+        "sourceReferences": 3,
+        "syntheticOnly": true
+      },
+      {
+        "caseName": "missing",
+        "state": "insufficient",
+        "localEvidenceAdmissible": false,
+        "sourceReferences": 2,
+        "syntheticOnly": true
+      },
+      {
+        "caseName": "stale",
+        "state": "insufficient",
+        "localEvidenceAdmissible": false,
+        "sourceReferences": 3,
+        "syntheticOnly": true
+      }
+    ],
+    "blockers": [
+      "REAL_INSTALLED_DIGEST_NOT_INSPECTED",
+      "NO_REAL_MODEL_RESPONSE",
+      "NO_MEASURED_MODEL_LATENCY",
+      "HUMAN_EN_AR_REVIEW_NOT_PERFORMED",
+      "REPEATED_POSITIVE_COVERAGE_INCOMPLETE",
+      "EXPLICIT_LOCAL_INFERENCE_AUTHORIZATION_NOT_CONFIGURED"
+    ],
+    "futureSingleShotCommands": [
+      {
+        "language": "en",
+        "command": "node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b en",
+        "requiresSeparateOwnerAuthorization": true,
+        "syntheticOnly": true,
+        "qualifiesMarketData": false
+      },
+      {
+        "language": "ar",
+        "command": "node scripts/pilot-local-ai.mjs --run --model qwen3:1.7b ar",
+        "requiresSeparateOwnerAuthorization": true,
+        "syntheticOnly": true,
+        "qualifiesMarketData": false
+      }
+    ],
+    "acceptanceContract": {
+      "strictSnapshotHash": true,
+      "exactInstalledDigest": true,
+      "sourceCitations": true,
+      "opposition": true,
+      "unknownEvidenceRefusal": true,
+      "missingOrStaleEvidenceFallback": true,
+      "hardDeadlineIncludingCancellationMs": 12000,
+      "noPredictiveProbability": true,
+      "humanReviewRequired": true
+    }
+  }
+}

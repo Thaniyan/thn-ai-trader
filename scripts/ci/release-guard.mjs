@@ -7,7 +7,12 @@ git('merge-base','--is-ancestor',base,'HEAD');
 if(git('rev-parse','--is-shallow-repository')!=='false')throw Error('Complete tested ancestry required');
 for(const name of ['objects/info/alternates','info/grafts'])if(fs.existsSync(git('rev-parse','--git-path',name)))throw Error('Borrowed or grafted ancestry forbidden');
 if(git('replace','-l'))throw Error('Replacement ancestry forbidden');
-if(git('rev-list','--merges',base+'..HEAD'))throw Error('Unreviewed merge ancestry');
+// PR #20 was explicitly owner-approved and merged as part of the released
+// canonical main history. It is the only allowed merge in this scanned range;
+// future, unknown or rewritten merges still fail this security gate.
+const ownerApprovedReleaseMerge='d75dc60a366c3241f16af2c5d80f89e9e4f4f49a';
+const merges=git('rev-list','--merges',base+'..HEAD').split('\n').filter(Boolean);
+if(merges.some(sha=>sha!==ownerApprovedReleaseMerge))throw Error('Unreviewed merge ancestry');
 const problems=[];
 for(const file of git('ls-files','-c','-o','--exclude-standard').split('\n').filter(Boolean)) {
  if(!fs.existsSync(file))continue;
