@@ -1,0 +1,144 @@
+{
+  "baseline": "db6938deac253dabbd10361a8dc95c7f647e544a",
+  "scope": "SYNTHETIC audit transport tests plus original packaged-application gates; no actual Yahoo qualification",
+  "core": {
+    "passed": 581,
+    "failed": 0
+  },
+  "auditFocused": {
+    "passed": 19,
+    "failed": 0
+  },
+  "security": 21,
+  "system": 10,
+  "browsers": [
+    {
+      "shard": 0,
+      "passed": 26,
+      "suites": [
+        "browser_workstation.py",
+        "browser_research_outage.py",
+        "browser_decision.py",
+        "browser_maturity.py",
+        "browser_intelligence.py",
+        "browser_layout.py",
+        "browser_trust.py",
+        "browser_journal_lifecycle.py",
+        "browser_evolution.py",
+        "browser_experience.py",
+        "browser_recovery.py",
+        "browser_paper_review.py",
+        "browser_broker_workspace.py",
+        "browser_workflow_polish.py",
+        "browser_confidence.py",
+        "browser_research_risk.py",
+        "browser_unified_workspace.py",
+        "browser_responsive_fonts.py",
+        "browser_command_workbench.py",
+        "browser_command_trust.py",
+        "browser_precision.py",
+        "browser_heritage.py",
+        "browser_decision_validation.py",
+        "browser_phase2_interpretation.py",
+        "browser_day5.py",
+        "browser_day8_ticket.py"
+      ]
+    },
+    {
+      "shard": 1,
+      "passed": 25,
+      "suites": [
+        "browser_research.py",
+        "browser_quality.py",
+        "browser_library_reliability.py",
+        "browser_terminal.py",
+        "browser_intelligence_memory.py",
+        "browser_pilot.py",
+        "browser_professional.py",
+        "browser_trading_remediation.py",
+        "browser_consolidation.py",
+        "browser_consistency.py",
+        "browser_assisted_desk.py",
+        "browser_evidence_workflow.py",
+        "browser_visual_refinement.py",
+        "browser_visual_identity.py",
+        "browser_dashboard_confidence.py",
+        "browser_workspace_hierarchy.py",
+        "browser_research_studio.py",
+        "browser_command_center.py",
+        "browser_institutional_desk.py",
+        "browser_command_trust_candidate.py",
+        "browser_day6.py",
+        "browser_readiness.py",
+        "browser_provider_quality.py",
+        "browser_day7_research.py",
+        "browser_cohesive_workspace.py"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate": "build",
+      "exit": 0,
+      "seconds": 3.37
+    },
+    {
+      "gate": "lint",
+      "exit": 0,
+      "seconds": 2.55
+    },
+    {
+      "gate": "package-before-tests",
+      "exit": 0,
+      "seconds": 0.32
+    },
+    {
+      "gate": "core",
+      "exit": 0,
+      "seconds": 57.31
+    },
+    {
+      "gate": "system",
+      "exit": 0,
+      "seconds": 0.45
+    },
+    {
+      "gate": "security",
+      "exit": 0,
+      "seconds": 1.88
+    },
+    {
+      "gate": "package",
+      "exit": 0,
+      "seconds": 0.29
+    },
+    {
+      "gate": "workflow",
+      "exit": 0,
+      "seconds": 1.13
+    },
+    {
+      "gate": "dependencies",
+      "exit": 0,
+      "seconds": 0.33
+    },
+    {
+      "gate": "integrity",
+      "exit": 0,
+      "seconds": 34.41
+    },
+    {
+      "gate": "git-fsck",
+      "exit": 0,
+      "seconds": 3.48
+    }
+  ],
+  "sourceFrozen": true,
+  "lockfileFrozen": true,
+  "pinnedBrowser": "Chromium151.0.7922.34 / Playwright1.62.0 revision1234",
+  "actualTechnicalQualification": "NOT_VERIFIED",
+  "usageRights": "NOT_VERIFIED",
+  "sourceRoutingChanged": false,
+  "eligibilityChanged": false,
+  "executionActivated": false
+}

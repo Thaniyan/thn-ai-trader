@@ -1,0 +1,16 @@
+{
+  "reviewDateAsiaMuscat": "2026-11-26",
+  "baseline": "db6938deac253dabbd10361a8dc95c7f647e544a",
+  "operation": "Single HEAD access probe to existing Yahoo BTC-USD15m chart URL; not an adapter GET or source-quality test",
+  "layer": "Envoy CONNECT403 before TLS",
+  "curlExit": 56,
+  "realSourceRowsObtained": 0,
+  "actualTechnicalResults": {
+    "15m": "NOT_VERIFIED",
+    "1h": "NOT_VERIFIED",
+    "1d": "NOT_VERIFIED"
+  },
+  "sourceContract": "NOT_VERIFIED",
+  "usageRights": "NOT_VERIFIED",
+  "newAccessOrPolicyChange": false
+}
